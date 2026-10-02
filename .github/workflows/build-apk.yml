@@ -1,0 +1,35 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ccr-83d74c23-ipw6nf]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install NDK and build tools
+        run: sdkmanager "ndk;29.0.14206865" "build-tools;36.0.0" "platforms;android-36"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dictate-keyboard-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
