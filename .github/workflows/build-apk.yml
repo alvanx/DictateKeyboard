@@ -21,8 +21,10 @@ jobs:
 
       - name: Install NDK and build tools
         run: |
-          yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager "ndk;29.0.14206865" "build-tools;36.0.0" "platforms;android-36"
+          SDKM=$(find "${ANDROID_HOME:-/usr/local/lib/android/sdk}/cmdline-tools" -name sdkmanager -path '*/bin/*' | head -1)
+          echo "Using $SDKM"
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" "ndk;29.0.14206865" "build-tools;36.0.0" "platforms;android-36"
 
       - uses: gradle/actions/setup-gradle@v4
 
