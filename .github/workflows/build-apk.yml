@@ -19,10 +19,10 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - uses: android-actions/setup-android@v3
-
       - name: Install NDK and build tools
-        run: sdkmanager "ndk;29.0.14206865" "build-tools;36.0.0" "platforms;android-36"
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "ndk;29.0.14206865" "build-tools;36.0.0" "platforms;android-36"
 
       - uses: gradle/actions/setup-gradle@v4
 
