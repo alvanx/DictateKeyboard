@@ -1254,8 +1254,9 @@
     <string name="smartbar__a11y_show_suggestions">Zobrazit návrhy</string>
     <string name="smartbar__a11y_show_more_actions">Zobrazit další akce</string>
     <string name="smartbar__a11y_hide_more_actions">Skrýt další akce</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Zůstává vždy plně viditelné.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Po několika sekundách se zmenší na malou tečku; klepnutím obnovíte.</string>
+    <string name="dictate__floating_button_fade_never">Nikdy</string>
+    <string name="dictate__floating_button_fade_gentle">Jemně, po chvíli</string>
+    <string name="dictate__floating_button_fade_strong">Na malou tečku, rychle</string>
     <string name="dictate__floating_button_auto_dim_title">Ztlumit při nečinnosti</string>
     <string name="dictate__floating_button_color_title">Barva tlačítka</string>
     <string name="dictate__floating_button_design_orb">Koule</string>

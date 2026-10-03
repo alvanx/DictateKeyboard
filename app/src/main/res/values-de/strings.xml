@@ -1205,8 +1205,9 @@
     <string name="dictate__floating_button_snap_summary_off">Der Button bleibt dort, wo du ihn ablegst.</string>
     <string name="dictate__floating_button_color_title">Buttonfarbe</string>
     <string name="dictate__floating_button_auto_dim_title">Bei Inaktivität ausblenden</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Schrumpft nach ein paar Sekunden zu einem kleinen Punkt; tippen zum Wiederherstellen.</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Bleibt immer voll sichtbar.</string>
+    <string name="dictate__floating_button_fade_never">Nie</string>
+    <string name="dictate__floating_button_fade_gentle">Sanft, nach einer Weile</string>
+    <string name="dictate__floating_button_fade_strong">Zu einem kleinen Punkt, schnell</string>
     <string name="dictate__floating_button_remember_position_title">Position pro App merken</string>
     <string name="dictate__floating_button_remember_position_summary_on">Jede App behält ihre eigene Button-Position.</string>
     <string name="dictate__floating_button_remember_position_summary_off">Eine gemeinsame Position für alle Apps.</string>

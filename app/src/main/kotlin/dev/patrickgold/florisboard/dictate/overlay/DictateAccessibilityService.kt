@@ -184,7 +184,12 @@ class DictateAccessibilityService : AccessibilityService() {
             // transition on top of the accessibility framework's notification timeout (#222).
             AccessibilityEvent.TYPE_VIEW_FOCUSED,
             AccessibilityEvent.TYPE_VIEW_CLICKED,
-            -> updateEditableFocusImmediately()
+            -> {
+                updateEditableFocusImmediately()
+                // Selecting a field is the moment the user is most likely to dictate, so a faded bubble
+                // comes back to full size for it.
+                if (_editableFocused.value) bubble?.onFieldActivity()
+            }
             // Only when the change could have moved the focus — see [windowsChangedMayMoveFocus] for the
             // burst that made the distinction necessary.
             AccessibilityEvent.TYPE_WINDOWS_CHANGED -> {
@@ -201,7 +206,10 @@ class DictateAccessibilityService : AccessibilityService() {
             AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED -> scheduleFocusUpdate()
             // The one witness that says what the *user* sees. Deliberately nothing but three field
             // writes — no node fetch, which is what made a per-keystroke event expensive (#222).
-            AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED -> noteTextAdded(event)
+            AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED -> {
+                noteTextAdded(event)
+                if (event.addedCount > 0) bubble?.onTextTyped()
+            }
         }
     }
 

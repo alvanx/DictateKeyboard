@@ -1844,9 +1844,10 @@
     <string name="dictate__floating_button_snap_summary_on" comment="Summary when edge-snapping is on">The button snaps to the nearest side after you drag it.</string>
     <string name="dictate__floating_button_snap_summary_off" comment="Summary when edge-snapping is off">The button stays wherever you drop it.</string>
     <string name="dictate__floating_button_color_title" comment="Title of the floating-button color picker">Button color</string>
-    <string name="dictate__floating_button_auto_dim_title" comment="Toggle: fade the floating button to a dot when idle">Fade when idle</string>
-    <string name="dictate__floating_button_auto_dim_summary_on" comment="Summary when idle-fade is on">Shrinks to a small dot after a few seconds; tap to restore.</string>
-    <string name="dictate__floating_button_auto_dim_summary_off" comment="Summary when idle-fade is off">Always stays fully visible.</string>
+    <string name="dictate__floating_button_auto_dim_title" comment="Setting title: how much the floating button shrinks and fades while unused; opens a list of three choices">Fade when idle</string>
+    <string name="dictate__floating_button_fade_never" comment="Choice for “Fade when idle”: the floating button always stays full size and fully visible">Never</string>
+    <string name="dictate__floating_button_fade_gentle" comment="Choice for “Fade when idle” (default): after about 15 seconds unused, the floating button shrinks and fades only slightly">Gently, after a while</string>
+    <string name="dictate__floating_button_fade_strong" comment="Choice for “Fade when idle”: after a few seconds unused, the floating button shrinks to a small, see-through dot">To a small dot, quickly</string>
     <string name="dictate__floating_button_remember_position_title" comment="Toggle: remember the floating button position per app">Remember position per app</string>
     <string name="dictate__floating_button_remember_position_summary_on" comment="Summary when per-app position memory is on">Each app keeps its own button position.</string>
     <string name="dictate__floating_button_remember_position_summary_off" comment="Summary when per-app position memory is off">One shared position for all apps.</string>

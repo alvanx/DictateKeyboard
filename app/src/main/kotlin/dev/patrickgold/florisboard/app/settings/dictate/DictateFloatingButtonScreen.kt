@@ -75,6 +75,7 @@ import dev.patrickgold.jetpref.datastore.model.collectAsState
 import dev.patrickgold.jetpref.material.ui.JetPrefAlertDialog
 import org.florisboard.lib.compose.rippleClickable
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonDesign
+import dev.patrickgold.florisboard.dictate.DictateFloatingButtonFade
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonShowWhen
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonSize
 import kotlinx.coroutines.launch
@@ -299,13 +300,25 @@ fun DictateFloatingButtonScreen() = FlorisScreen {
                 enableAdvancedLayout = true,
             )
 
-            SwitchPreference(
-                prefs.dictate.floatingButtonAutoDim,
+            ListPreference(
+                prefs.dictate.floatingButtonFade,
                 icon = Icons.Default.BlurOn,
                 modifier = Modifier.settingsSearchAnchor("dictate__floating_button_auto_dim_title"),
                 title = stringRes(R.string.dictate__floating_button_auto_dim_title),
-                summaryOn = stringRes(R.string.dictate__floating_button_auto_dim_summary_on),
-                summaryOff = stringRes(R.string.dictate__floating_button_auto_dim_summary_off),
+                entries = listPrefEntries {
+                    entry(
+                        DictateFloatingButtonFade.NEVER,
+                        stringRes(R.string.dictate__floating_button_fade_never),
+                    )
+                    entry(
+                        DictateFloatingButtonFade.GENTLE,
+                        stringRes(R.string.dictate__floating_button_fade_gentle),
+                    )
+                    entry(
+                        DictateFloatingButtonFade.STRONG,
+                        stringRes(R.string.dictate__floating_button_fade_strong),
+                    )
+                },
             )
 
             SwitchPreference(

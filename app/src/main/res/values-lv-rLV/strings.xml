@@ -1183,8 +1183,9 @@
     <string name="smartbar__a11y_show_suggestions">Rādīt ieteikumus</string>
     <string name="smartbar__a11y_show_more_actions">Rādīt vairāk darbību</string>
     <string name="smartbar__a11y_hide_more_actions">Paslēpt papildu darbības</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Vienmēr paliek pilnībā redzams.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Pēc dažām sekundēm sarūk līdz mazam punktam; pieskarieties, lai atjaunotu.</string>
+    <string name="dictate__floating_button_fade_never">Nekad</string>
+    <string name="dictate__floating_button_fade_gentle">Viegli, pēc brīža</string>
+    <string name="dictate__floating_button_fade_strong">Līdz mazam punktam, ātri</string>
     <string name="dictate__floating_button_auto_dim_title">Aptumšot dīkstāvē</string>
     <string name="dictate__floating_button_color_title">Pogas krāsa</string>
     <string name="dictate__floating_button_design_orb">Lode</string>

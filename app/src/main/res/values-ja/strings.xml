@@ -1170,8 +1170,9 @@
     <string name="smartbar__a11y_show_suggestions">候補を表示</string>
     <string name="smartbar__a11y_show_more_actions">その他のアクションを表示</string>
     <string name="smartbar__a11y_hide_more_actions">その他のアクションを非表示</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">常に完全に表示されたままです。</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">数秒後に小さな点に縮小します。タップで元に戻ります。</string>
+    <string name="dictate__floating_button_fade_never">しない</string>
+    <string name="dictate__floating_button_fade_gentle">しばらくしてから控えめに</string>
+    <string name="dictate__floating_button_fade_strong">すぐに小さな点にする</string>
     <string name="dictate__floating_button_auto_dim_title">操作がないとき薄くする</string>
     <string name="dictate__floating_button_color_title">ボタンの色</string>
     <string name="dictate__floating_button_design_orb">オーブ</string>

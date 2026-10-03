@@ -1083,8 +1083,9 @@
     <string name="smartbar__a11y_show_suggestions">Показати пропозиції</string>
     <string name="smartbar__a11y_show_more_actions">Показати більше дій</string>
     <string name="smartbar__a11y_hide_more_actions">Приховати додаткові дії</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Завжди повністю видимий.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Через кілька секунд стискається до маленької крапки; торкніться, щоб відновити.</string>
+    <string name="dictate__floating_button_fade_never">Ніколи</string>
+    <string name="dictate__floating_button_fade_gentle">Злегка, через деякий час</string>
+    <string name="dictate__floating_button_fade_strong">До маленької крапки, швидко</string>
     <string name="dictate__floating_button_auto_dim_title">Згасати при бездіяльності</string>
     <string name="dictate__floating_button_color_title">Колір кнопки</string>
     <string name="dictate__floating_button_design_orb">Сфера</string>

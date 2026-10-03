@@ -1233,8 +1233,9 @@
     <string name="smartbar__a11y_show_suggestions">显示建议</string>
     <string name="smartbar__a11y_show_more_actions">显示更多操作</string>
     <string name="smartbar__a11y_hide_more_actions">隐藏更多操作</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">始终保持完全可见。</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">几秒后缩小为一个小圆点；点按可恢复。</string>
+    <string name="dictate__floating_button_fade_never">从不</string>
+    <string name="dictate__floating_button_fade_gentle">稍后轻微淡出</string>
+    <string name="dictate__floating_button_fade_strong">很快缩成小点</string>
     <string name="dictate__floating_button_auto_dim_title">空闲时淡出</string>
     <string name="dictate__floating_button_color_title">按钮颜色</string>
     <string name="dictate__floating_button_design_orb">光球</string>

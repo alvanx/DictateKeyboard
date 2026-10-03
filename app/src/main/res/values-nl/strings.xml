@@ -1138,8 +1138,9 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="smartbar__a11y_show_suggestions">Suggesties tonen</string>
     <string name="smartbar__a11y_show_more_actions">Meer acties tonen</string>
     <string name="smartbar__a11y_hide_more_actions">Extra acties verbergen</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Blijft altijd volledig zichtbaar.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Krimpt na enkele seconden tot een klein puntje; tik om te herstellen.</string>
+    <string name="dictate__floating_button_fade_never">Nooit</string>
+    <string name="dictate__floating_button_fade_gentle">Licht, na een tijdje</string>
+    <string name="dictate__floating_button_fade_strong">Tot een kleine stip, snel</string>
     <string name="dictate__floating_button_auto_dim_title">Vervagen bij inactiviteit</string>
     <string name="dictate__floating_button_color_title">Knopkleur</string>
     <string name="dictate__floating_button_design_orb">Bol</string>

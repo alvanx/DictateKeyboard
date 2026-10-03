@@ -1238,8 +1238,9 @@
     <string name="smartbar__a11y_show_suggestions">Показване на предложенията</string>
     <string name="smartbar__a11y_show_more_actions">Показване на още действия</string>
     <string name="smartbar__a11y_hide_more_actions">Скриване на допълнителните действия</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Винаги остава напълно видим.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">След няколко секунди се свива до малка точка; докоснете, за да възстановите.</string>
+    <string name="dictate__floating_button_fade_never">Никога</string>
+    <string name="dictate__floating_button_fade_gentle">Леко, след известно време</string>
+    <string name="dictate__floating_button_fade_strong">До малка точка, бързо</string>
     <string name="dictate__floating_button_auto_dim_title">Затъмняване при бездействие</string>
     <string name="dictate__floating_button_color_title">Цвят на бутона</string>
     <string name="dictate__floating_button_design_orb">Сфера</string>

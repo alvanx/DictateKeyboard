@@ -1042,8 +1042,9 @@
     <string name="smartbar__a11y_show_suggestions">Mostrar sugestões</string>
     <string name="smartbar__a11y_show_more_actions">Mostrar mais ações</string>
     <string name="smartbar__a11y_hide_more_actions">Ocultar mais ações</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Permanece sempre totalmente visível.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Encolhe para um pontinho após alguns segundos; toque para restaurar.</string>
+    <string name="dictate__floating_button_fade_never">Nunca</string>
+    <string name="dictate__floating_button_fade_gentle">Suavemente, depois de um tempo</string>
+    <string name="dictate__floating_button_fade_strong">Para um pontinho, rapidamente</string>
     <string name="dictate__floating_button_auto_dim_title">Esmaecer quando inativo</string>
     <string name="dictate__floating_button_color_title">Cor do botão</string>
     <string name="dictate__floating_button_design_orb">Esfera</string>

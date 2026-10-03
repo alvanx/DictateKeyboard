@@ -59,6 +59,7 @@ import dev.patrickgold.florisboard.dictate.DictateController
 import dev.patrickgold.florisboard.dictate.importer.TranscribeShareActivity
 import dev.patrickgold.florisboard.dictate.recognition.RecognitionBridge
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonDesign
+import dev.patrickgold.florisboard.dictate.DictateFloatingButtonFade
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonShowWhen
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonSize
 import dev.patrickgold.florisboard.dictate.data.prompts.PromptModel
@@ -75,6 +76,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -198,10 +200,20 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
     /** Animates the horizontal snap-to-edge after a drag. */
     private var snapAnim: ValueAnimator? = null
 
-    /** Idle auto-dim: shrinks/fades the bubble to a small dot after a while; restored on touch. */
+    /**
+     * Idle auto-dim: steps the bubble back (how far is [DictateFloatingButtonFade]) after a while unused.
+     * Restored on touch, on selecting a field, on the keyboard opening and on a dictation finishing.
+     */
     private var dimJob: Job? = null
     private var dimmed = false
     private var idleShownPrev = false
+    private var imeVisiblePrev = false
+
+    /** When [dimJob] is due to fire, in [SystemClock.uptimeMillis] time; lets typing bring it forward. */
+    private var dimDueAt = 0L
+
+    /** When the last dictation finished; the bubble stays full size for a while after, for undo. */
+    private var dictationEndedAt = 0L
 
     /** The state of the previous emission, used to tell a successful finish (busy → idle) from a cancel. */
     private var prevState: DictateController.UiState = DictateController.UiState.Idle
@@ -249,6 +261,10 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
     fun start() {
         scope.launch {
             DictateAccessibilityService.foregroundPackage.collect { pkg -> onForegroundPackageChanged(pkg) }
+        }
+        // A new fade level applies at once: wake the bubble and let the new timer decide.
+        scope.launch {
+            prefs.dictate.floatingButtonFade.asFlow().drop(1).collect { wake() }
         }
         scope.launch {
             val base = combine(
@@ -337,6 +353,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
                     (prevState is DictateController.UiState.Transcribing || prevState is DictateController.UiState.Rewording)
                 ) {
                     justDictated = true
+                    dictationEndedAt = SystemClock.uptimeMillis()
                 }
                 manageUndo(state, show)
                 reportTerminalState(state)
@@ -347,7 +364,10 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
                     cancelDim()
                     applyDim(false)
                 }
+                // The keyboard coming up means the user is about to write: the moment to be noticed.
+                if (idleShown && idleShownPrev && imeVisible && !imeVisiblePrev) wake()
                 idleShownPrev = idleShown
+                imeVisiblePrev = imeVisible
                 prevState = state
             }
         }
@@ -398,6 +418,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         cancelDim()
         dimmed = false
         idleShownPrev = false
+        imeVisiblePrev = false
         visual?.apply {
             alpha = 1f
             scaleX = 1f
@@ -1416,11 +1437,41 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         scope.launch { prefs.dictate.floatingButtonPositions.set(BubbleAnchors.of(stored)) }
     }
 
-    private fun scheduleDim() {
+    /** Called by the service when the user selects or taps a text field. */
+    fun onFieldActivity() {
+        if (added && DictateController.state.value is DictateController.UiState.Idle) wake()
+    }
+
+    /**
+     * Called by the service when text is added to a field. Someone typing has chosen the keyboard for now,
+     * so the bubble steps back sooner — unless a dictation just finished, whose own text lands here too.
+     */
+    fun onTextTyped() {
+        if (!added || dimmed || DictateController.state.value !is DictateController.UiState.Idle) return
+        if (SystemClock.uptimeMillis() - dictationEndedAt < AFTER_DICTATION_MS) return
+        // Bring a pending dim forward, never push it back: each keystroke must not restart the wait.
+        val due = SystemClock.uptimeMillis() + TYPING_DIM_DELAY_MS
+        if (dimJob?.isActive == true && dimDueAt <= due) return
+        scheduleDim(TYPING_DIM_DELAY_MS)
+    }
+
+    /** Restores the bubble to full size and restarts the idle timer. */
+    private fun wake() {
         cancelDim()
-        if (!prefs.dictate.floatingButtonAutoDim.get()) return
+        applyDim(false)
+        if (added && DictateController.state.value is DictateController.UiState.Idle) scheduleDim()
+    }
+
+    private fun scheduleDim(delayMs: Long? = null) {
+        cancelDim()
+        val fade = prefs.dictate.floatingButtonFade.get()
+        if (!fade.enabled) return
+        // Never sooner than the post-dictation window, which is when undo is on offer.
+        val afterDictation = dictationEndedAt + AFTER_DICTATION_MS - SystemClock.uptimeMillis()
+        val wait = maxOf(delayMs ?: fade.delayMs, afterDictation)
+        dimDueAt = SystemClock.uptimeMillis() + wait
         dimJob = scope.launch {
-            delay(AUTO_DIM_DELAY_MS)
+            delay(wait)
             if (added && DictateController.state.value is DictateController.UiState.Idle) applyDim(true)
         }
     }
@@ -1430,7 +1481,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         dimJob = null
     }
 
-    /** Fades + shrinks the bubble to a small dot (or restores it), pivoting toward the anchored edge. */
+    /** Fades + shrinks the bubble (or restores it), pivoting toward the anchored edge. */
     private fun applyDim(dim: Boolean) {
         if (dimmed == dim) return
         dimmed = dim
@@ -1442,10 +1493,11 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         val overhang = skin?.canvasOverhang ?: 0
         view.pivotX = if (sideIsRight) (view.width - overhang).toFloat() else overhang.toFloat()
         view.pivotY = view.height / 2f
+        val fade = prefs.dictate.floatingButtonFade.get()
         view.animate()
-            .alpha(if (dim) 0.45f else 1f)
-            .scaleX(if (dim) 0.5f else 1f)
-            .scaleY(if (dim) 0.5f else 1f)
+            .alpha(if (dim) fade.alpha else 1f)
+            .scaleX(if (dim) fade.scale else 1f)
+            .scaleY(if (dim) fade.scale else 1f)
             .setDuration(200)
             .start()
         // Keep the undo button in step with the bubble: hide it while dimmed, restore it on wake.
@@ -2712,7 +2764,12 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         private const val ERROR_HOLD_MS = 1800L
         private const val SUCCESS_HOLD_MS = 1700L
         private const val TICK_MS = 50L
-        private const val AUTO_DIM_DELAY_MS = 3500L
+
+        /** How long after a dictation the bubble stays full size, so undo is still on offer. */
+        private const val AFTER_DICTATION_MS = 10_000L
+
+        /** How soon the bubble steps back once the user starts typing on the keyboard. */
+        private const val TYPING_DIM_DELAY_MS = 2_000L
 
         /**
          * How far the bubble's visible shape parks from the screen edge, in dp. The wider of the two gaps

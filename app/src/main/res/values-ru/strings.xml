@@ -1244,8 +1244,9 @@
     <string name="smartbar__a11y_show_suggestions">Показать подсказки</string>
     <string name="smartbar__a11y_show_more_actions">Показать больше действий</string>
     <string name="smartbar__a11y_hide_more_actions">Скрыть дополнительные действия</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Всегда полностью виден.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Через несколько секунд сжимается в маленькую точку; коснитесь, чтобы восстановить.</string>
+    <string name="dictate__floating_button_fade_never">Никогда</string>
+    <string name="dictate__floating_button_fade_gentle">Слегка, через некоторое время</string>
+    <string name="dictate__floating_button_fade_strong">До маленькой точки, быстро</string>
     <string name="dictate__floating_button_auto_dim_title">Затухать при бездействии</string>
     <string name="dictate__floating_button_color_title">Цвет кнопки</string>
     <string name="dictate__floating_button_design_orb">Сфера</string>

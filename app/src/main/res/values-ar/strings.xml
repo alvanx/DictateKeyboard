@@ -1096,8 +1096,9 @@
     <string name="smartbar__a11y_show_suggestions">إظهار الاقتراحات</string>
     <string name="smartbar__a11y_show_more_actions">إظهار المزيد من الإجراءات</string>
     <string name="smartbar__a11y_hide_more_actions">إخفاء الإجراءات الإضافية</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">يظل مرئيًا بالكامل دائمًا.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">يتقلص إلى نقطة صغيرة بعد بضع ثوانٍ؛ انقر لاستعادته.</string>
+    <string name="dictate__floating_button_fade_never">أبدًا</string>
+    <string name="dictate__floating_button_fade_gentle">بلطف، بعد فترة</string>
+    <string name="dictate__floating_button_fade_strong">إلى نقطة صغيرة، بسرعة</string>
     <string name="dictate__floating_button_auto_dim_title">تعتيم عند الخمول</string>
     <string name="dictate__floating_button_color_title">لون الزر</string>
     <string name="dictate__floating_button_design_orb">كرة</string>

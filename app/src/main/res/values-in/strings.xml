@@ -1193,8 +1193,9 @@ Klik di sini untuk menyelesaikan masalah ini.</string>
     <string name="smartbar__a11y_show_suggestions">Tampilkan saran</string>
     <string name="smartbar__a11y_show_more_actions">Tampilkan tindakan lainnya</string>
     <string name="smartbar__a11y_hide_more_actions">Sembunyikan tindakan lainnya</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Selalu tetap terlihat sepenuhnya.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Mengecil menjadi titik kecil setelah beberapa detik; ketuk untuk memulihkan.</string>
+    <string name="dictate__floating_button_fade_never">Tidak pernah</string>
+    <string name="dictate__floating_button_fade_gentle">Perlahan, setelah beberapa saat</string>
+    <string name="dictate__floating_button_fade_strong">Menjadi titik kecil, dengan cepat</string>
     <string name="dictate__floating_button_auto_dim_title">Pudar saat diam</string>
     <string name="dictate__floating_button_color_title">Warna tombol</string>
     <string name="dictate__floating_button_design_orb">Bola</string>

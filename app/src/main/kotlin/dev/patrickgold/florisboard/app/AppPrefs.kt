@@ -25,6 +25,7 @@ import dev.patrickgold.florisboard.app.settings.theme.SnyggLevel
 import dev.patrickgold.florisboard.app.setup.NotificationPermissionState
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonAppScope
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonDesign
+import dev.patrickgold.florisboard.dictate.DictateFloatingButtonFade
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonShowWhen
 import dev.patrickgold.florisboard.dictate.DictateLongformMode
 import dev.patrickgold.florisboard.dictate.audio.AudioSpeedUp
@@ -585,10 +586,11 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             default = Color(0xFF30B7E6),
             serializer = ColorPreferenceSerializer,
         )
-        // Fade + shrink the button to a small dot after a few seconds of inactivity; tap to restore.
-        val floatingButtonAutoDim = boolean(
-            key = "dictate__floating_button_auto_dim",
-            default = true,
+        // How far the button fades + shrinks while unused. Replaces the boolean
+        // `dictate__floating_button_auto_dim`, which migrate() carries over. See DictateFloatingButtonFade.
+        val floatingButtonFade = enum(
+            key = "dictate__floating_button_fade",
+            default = DictateFloatingButtonFade.GENTLE,
         )
         // Remember the button's position separately per app.
         val floatingButtonRememberPosition = boolean(
@@ -2063,6 +2065,16 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
                     type = PreferenceType.string(),
                     key = "dictate__floating_button_show_when",
                     rawValue = DictateFloatingButtonShowWhen.fromShowWithDictateKeyboard(entry.rawValue).name,
+                )
+            }
+
+            // The floating button's "Fade when idle" switch became a three-way choice. Runs on load and on a
+            // backup import alike.
+            "dictate__floating_button_auto_dim" -> {
+                entry.transform(
+                    type = PreferenceType.string(),
+                    key = "dictate__floating_button_fade",
+                    rawValue = DictateFloatingButtonFade.fromAutoDim(entry.rawValue).name,
                 )
             }
 

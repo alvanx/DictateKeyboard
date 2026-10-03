@@ -1237,8 +1237,9 @@
     <string name="smartbar__a11y_show_suggestions">Javaslatok megjelenítése</string>
     <string name="smartbar__a11y_show_more_actions">További műveletek megjelenítése</string>
     <string name="smartbar__a11y_hide_more_actions">További műveletek elrejtése</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Mindig teljesen látható marad.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Néhány másodperc után apró ponttá zsugorodik; koppintson a visszaállításhoz.</string>
+    <string name="dictate__floating_button_fade_never">Soha</string>
+    <string name="dictate__floating_button_fade_gentle">Finoman, egy idő után</string>
+    <string name="dictate__floating_button_fade_strong">Kis pöttyé, gyorsan</string>
     <string name="dictate__floating_button_auto_dim_title">Elhalványítás tétlenségkor</string>
     <string name="dictate__floating_button_color_title">Gomb színe</string>
     <string name="dictate__floating_button_design_orb">Gömb</string>

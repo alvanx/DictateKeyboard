@@ -1217,8 +1217,9 @@
     <string name="smartbar__a11y_show_suggestions">Önerileri göster</string>
     <string name="smartbar__a11y_show_more_actions">Daha fazla eylem göster</string>
     <string name="smartbar__a11y_hide_more_actions">Ek eylemleri gizle</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Her zaman tam görünür kalır.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Birkaç saniye sonra küçük bir noktaya küçülür; geri getirmek için dokunun.</string>
+    <string name="dictate__floating_button_fade_never">Asla</string>
+    <string name="dictate__floating_button_fade_gentle">Hafifçe, bir süre sonra</string>
+    <string name="dictate__floating_button_fade_strong">Küçük bir noktaya, hızla</string>
     <string name="dictate__floating_button_auto_dim_title">Boştayken soluklaştır</string>
     <string name="dictate__floating_button_color_title">Düğme rengi</string>
     <string name="dictate__floating_button_design_orb">Küre</string>

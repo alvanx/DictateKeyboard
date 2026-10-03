@@ -1108,8 +1108,9 @@
     <string name="smartbar__a11y_show_suggestions">Mostra els suggeriments</string>
     <string name="smartbar__a11y_show_more_actions">Mostra més accions</string>
     <string name="smartbar__a11y_hide_more_actions">Amaga les accions addicionals</string>
-    <string name="dictate__floating_button_auto_dim_summary_off">Es manté sempre totalment visible.</string>
-    <string name="dictate__floating_button_auto_dim_summary_on">Es redueix a un petit punt després d’uns segons; toca per restaurar.</string>
+    <string name="dictate__floating_button_fade_never">Mai</string>
+    <string name="dictate__floating_button_fade_gentle">Suaument, al cap d’una estona</string>
+    <string name="dictate__floating_button_fade_strong">Fins a un petit punt, de seguida</string>
     <string name="dictate__floating_button_auto_dim_title">Atenua en repòs</string>
     <string name="dictate__floating_button_color_title">Color del botó</string>
     <string name="dictate__floating_button_design_orb">Esfera</string>
