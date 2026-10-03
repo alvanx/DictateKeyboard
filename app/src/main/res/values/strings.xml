@@ -1213,12 +1213,12 @@
     <string name="setup__finish_up__description_p2">You can change languages, the AI provider and everything else anytime in the settings. If you ever run into a problem or have an idea, reach out from the about screen!</string>
     <string name="setup__finish_up__add_key_hint">Tip: you haven\'t added an AI key yet. Add one anytime in Settings → Dictate → AI providers to start dictating.</string>
     <string name="setup__finish_up__finish_btn">Start using Dictate</string>
-    <string name="setup__floating_button__btn" comment="Onboarding button that opens the floating-button settings">Set up the floating button</string>
-    <string name="setup__floating_button__title" comment="Title of the optional floating-button onboarding step">Dictate anywhere (optional)</string>
+    <string name="setup__floating_button__btn" comment="Main onboarding button that opens the floating-button settings to turn the bubble on">Turn on the bubble</string>
+    <string name="setup__floating_button__title" comment="Title of the onboarding step that sets up the floating dictation bubble, the default way to dictate">Dictate with the bubble</string>
     <string name="setup__floating_button__intro" comment="Explanation on the optional floating-button onboarding step">The floating button puts a small dictation bubble over any app, so you can speak into any text field without switching keyboards.</string>
     <string name="setup__floating_button__accessibility_note" comment="Transparency note about the accessibility service the floating button relies on">To do this, {app_name} uses Android\'s accessibility settings — that\'s how the bubble can show over other apps and insert the transcribed text for you. The next screen guides you through enabling it.</string>
-    <string name="setup__floating_button__optional_note" comment="Reassurance that the floating button is optional">This is completely optional — skip it if you just want to use {app_name} as a full keyboard. You can always set it up later in the settings.</string>
-    <string name="setup__floating_button__skip_btn" comment="Button to skip the optional floating-button step">Skip — I\'ll use the keyboard</string>
+    <string name="setup__floating_button__optional_note" comment="Points users who prefer the full keyboard to the button below">Rather use a full keyboard? Pick the option below to use {app_name} as your keyboard instead. You can change this anytime in the settings.</string>
+    <string name="setup__floating_button__skip_btn" comment="Button that picks the full keyboard instead of the bubble">Use the full keyboard instead</string>
 
     <!-- Physical keyboard -->
     <string name="physical_keyboard__title">Physical keyboard</string>

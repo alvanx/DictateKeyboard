@@ -43,7 +43,6 @@ import androidx.compose.material.icons.filled.Celebration
 import androidx.compose.material.icons.filled.Dns
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Keyboard
-import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.SwapHoriz
 import androidx.compose.material.icons.filled.VpnKey
@@ -149,9 +148,12 @@ fun SetupScreen() = FlorisScreen {
         isProviderConfigured(accounts, activeProviderId) { LocalModelManager.isInstalled(context, it) }
     }
     var providerSkipped by rememberSaveable { mutableStateOf(false) }
-    // The floating-button step is optional and has no completion signal of its own, so (like the
-    // provider step) a flag lets the user move past it to the final page once they've decided.
+    // The floating-button step has no completion signal of its own, so (like the provider step) a
+    // flag lets a user who picks the keyboard instead move past it.
     var floatingButtonStepPassed by rememberSaveable { mutableStateOf(false) }
+    // The bubble is the default way to dictate, so enabling and switching to the keyboard is only
+    // asked of users who turn the bubble down in favour of the full keyboard.
+    var wantsKeyboard by rememberSaveable { mutableStateOf(false) }
 
     val requestNotification =
         rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -183,7 +185,8 @@ fun SetupScreen() = FlorisScreen {
         providerSkipped,
         { providerSkipped = true },
         floatingButtonStepPassed,
-        { floatingButtonStepPassed = true },
+        wantsKeyboard,
+        { floatingButtonStepPassed = true; wantsKeyboard = true },
         accounts,
         context,
         navController,
@@ -246,7 +249,8 @@ private fun FlorisScreenScope.content(
     providerSkipped: Boolean,
     onSkipProvider: () -> Unit,
     floatingButtonStepPassed: Boolean,
-    onPassFloatingButton: () -> Unit,
+    wantsKeyboard: Boolean,
+    onChooseKeyboard: () -> Unit,
     accounts: ProviderAccounts,
     context: Context,
     navController: NavController,
@@ -257,14 +261,14 @@ private fun FlorisScreenScope.content(
 ) {
 
     fun targetStep(): Int = when {
-        !isFlorisBoardEnabled -> Steps.EnableIme.id
-        !isFlorisBoardSelected -> Steps.SelectIme.id
         !isMicGranted -> Steps.GrantMicPermission.id
         hasNotificationPermission == NotificationPermissionState.NOT_SET && AndroidVersion.ATLEAST_API33_T -> Steps.SelectNotification.id
         !isProviderConfigured && !providerSkipped -> Steps.SetUpProvider.id
-        // Land on the optional floating-button step first, only moving on to the final page once the
-        // user has explicitly decided to skip it or set it up.
+        // The bubble step is where the flow ends by default: setting the bubble up finishes setup.
+        // Only a user who picks the full keyboard instead goes on to enable and switch to it.
         !floatingButtonStepPassed -> Steps.FloatingButton.id
+        wantsKeyboard && !isFlorisBoardEnabled -> Steps.EnableIme.id
+        wantsKeyboard && !isFlorisBoardSelected -> Steps.SelectIme.id
         else -> Steps.FinishUp.id
     }
 
@@ -276,7 +280,7 @@ private fun FlorisScreenScope.content(
         LaunchedEffect(
             isFlorisBoardEnabled, isFlorisBoardSelected, isMicGranted,
             hasNotificationPermission, isProviderConfigured, providerSkipped,
-            floatingButtonStepPassed,
+            floatingButtonStepPassed, wantsKeyboard,
         ) {
             stepState.setCurrentAuto(targetStep())
         }
@@ -291,7 +295,6 @@ private fun FlorisScreenScope.content(
                     stepState.getCurrentManual().value == -1 &&
                     !isFlorisBoardEnabled &&
                     !isFlorisBoardSelected &&
-                    hasNotificationPermission == NotificationPermissionState.NOT_SET &&
                     isEnabled
                 ) {
                     context.launchActivity(FlorisAppActivity::class) {
@@ -315,7 +318,7 @@ private fun FlorisScreenScope.content(
             },
             steps = steps(
                 context, navController, requestNotification, requestMic,
-                isProviderConfigured, onSkipProvider, onPassFloatingButton, accounts, scope,
+                isProviderConfigured, onSkipProvider, wantsKeyboard, onChooseKeyboard, accounts, scope,
             ),
             footer = {
                 footer(context)
@@ -353,7 +356,8 @@ private fun PreferenceUiScope<FlorisPreferenceModel>.steps(
     requestMic: ManagedActivityResultLauncher<String, Boolean>,
     isProviderConfigured: Boolean,
     onSkipProvider: () -> Unit,
-    onPassFloatingButton: () -> Unit,
+    wantsKeyboard: Boolean,
+    onChooseKeyboard: () -> Unit,
     accounts: ProviderAccounts,
     scope: CoroutineScope,
 ): List<FlorisStep> {
@@ -396,31 +400,11 @@ private fun PreferenceUiScope<FlorisPreferenceModel>.steps(
 
     return listOfNotNull(
         FlorisStep(
-            id = Steps.EnableIme.id,
-            title = stringRes(R.string.setup__enable_ime__title),
-            // The app greets with its waveform rather than a keyboard glyph — the same animation the
-            // "What's new" tour opens with, so the two screens rhyme from the first second.
-            art = { SetupWelcomeWave() },
-        ) {
-            StepText(stringRes(R.string.setup__enable_ime__description))
-            StepButton(label = stringRes(R.string.setup__enable_ime__open_settings_btn)) {
-                InputMethodUtils.showImeEnablerActivity(context)
-            }
-        },
-        FlorisStep(
-            id = Steps.SelectIme.id,
-            title = stringRes(R.string.setup__select_ime__title),
-            icon = Icons.Default.SwapHoriz,
-        ) {
-            StepText(stringRes(R.string.setup__select_ime__description))
-            StepButton(label = stringRes(R.string.setup__select_ime__switch_keyboard_btn)) {
-                InputMethodUtils.showImePicker(context)
-            }
-        },
-        FlorisStep(
             id = Steps.GrantMicPermission.id,
             title = stringRes(R.string.setup__grant_mic_permission__title),
-            icon = Icons.Default.Mic,
+            // The app greets with its waveform rather than a glyph — the same animation the
+            // "What's new" tour opens with, so the two screens rhyme from the first second.
+            art = { SetupWelcomeWave() },
         ) {
             StepText(stringRes(R.string.setup__grant_mic_permission__description))
             StepButton(stringRes(R.string.setup__grant_mic_permission__btn)) {
@@ -483,7 +467,7 @@ private fun PreferenceUiScope<FlorisPreferenceModel>.steps(
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(top = 4.dp),
-                onClick = onPassFloatingButton,
+                onClick = onChooseKeyboard,
             ) {
                 Text(
                     text = stringRes(R.string.setup__floating_button__skip_btn),
@@ -491,6 +475,27 @@ private fun PreferenceUiScope<FlorisPreferenceModel>.steps(
                 )
             }
         },
+        // Only for users who chose the full keyboard over the bubble.
+        if (wantsKeyboard) FlorisStep(
+            id = Steps.EnableIme.id,
+            title = stringRes(R.string.setup__enable_ime__title),
+            icon = Icons.Default.Keyboard,
+        ) {
+            StepText(stringRes(R.string.setup__enable_ime__description))
+            StepButton(label = stringRes(R.string.setup__enable_ime__open_settings_btn)) {
+                InputMethodUtils.showImeEnablerActivity(context)
+            }
+        } else null,
+        if (wantsKeyboard) FlorisStep(
+            id = Steps.SelectIme.id,
+            title = stringRes(R.string.setup__select_ime__title),
+            icon = Icons.Default.SwapHoriz,
+        ) {
+            StepText(stringRes(R.string.setup__select_ime__description))
+            StepButton(label = stringRes(R.string.setup__select_ime__switch_keyboard_btn)) {
+                InputMethodUtils.showImePicker(context)
+            }
+        } else null,
         FlorisStep(
             id = Steps.FinishUp.id,
             title = stringRes(R.string.setup__finish_up__title),
