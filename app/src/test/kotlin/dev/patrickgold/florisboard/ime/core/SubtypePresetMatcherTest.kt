@@ -62,6 +62,14 @@ class SubtypePresetMatcherTest {
     private fun seed(vararg tags: String): List<String> =
         SubtypePresetMatcher.seedFor(tags.map { FlorisLocale.fromTag(it) }, presets) { it.locale }.map { it.tag }
 
+    /** What the language menu offers to add, for a phone set to [tags] and keyboards in [added]. */
+    private fun toAdd(added: List<String>, vararg tags: String): List<String> =
+        SubtypePresetMatcher.toAddFor(
+            tags.map { FlorisLocale.fromTag(it) },
+            added.map { FlorisLocale.fromTag(it) },
+            presets,
+        ) { it.locale }.map { it.tag }
+
     @Test
     fun `german variants get their own layout`() {
         assertEquals("de-DE", best("de-DE")?.tag, "the Neo layout must not win over plain German")
@@ -132,5 +140,34 @@ class SubtypePresetMatcherTest {
     fun `seeding stops at the limit`() {
         assertEquals(3, SubtypePresetMatcher.SEED_LIMIT)
         assertEquals(listOf("de-DE", "fr-FR", "it-IT"), seed("de-DE", "fr-FR", "it-IT", "es-ES", "en-US"))
+    }
+
+    @Test
+    fun `the menu offers the phone's languages that have no keyboard yet`() {
+        // The complaint that asked for the menu: German added, and English gone from the keyboard for good.
+        assertEquals(listOf("en-US"), toAdd(listOf("de-DE"), "de-DE", "en-US"))
+        assertEquals(emptyList<String>(), toAdd(listOf("de-DE", "en-US"), "de-DE", "en-US"))
+    }
+
+    @Test
+    fun `the menu goes by language, not by region`() {
+        // English typed on en-US is English: en-GB on the phone is no reason to offer a second keyboard.
+        assertEquals(emptyList<String>(), toAdd(listOf("de-DE", "en-US"), "de-CH", "en-GB"))
+        assertEquals(listOf("fr-FR", "de-AT", "en-UK"), toAdd(emptyList(), "fr-FR", "de-AT", "de-DE", "en-GB"))
+    }
+
+    @Test
+    fun `the menu matches system spellings against the keyboards`() {
+        assertEquals(emptyList<String>(), toAdd(listOf("nb-NO"), "no-NO"), "older devices report Bokmål as no")
+        assertEquals(emptyList<String>(), toAdd(listOf("no"), "nb-NO"), "a keyboard saved as no is Bokmål too")
+    }
+
+    @Test
+    fun `the menu skips languages without a preset and has no limit`() {
+        assertEquals(emptyList<String>(), toAdd(listOf("de-DE"), "sw-KE"))
+        assertEquals(
+            listOf("fr-FR", "it-IT", "es-ES", "en-US"),
+            toAdd(listOf("de-DE"), "de-DE", "fr-FR", "it-IT", "es-ES", "en-US"),
+        )
     }
 }

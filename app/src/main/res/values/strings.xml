@@ -272,7 +272,11 @@
     <string name="quick_actions_editor__subheader_sticky_action">Sticky action ({n})</string>
     <string name="quick_actions_editor__subheader_dynamic_actions">Dynamic actions ({n})</string>
     <string name="quick_actions_editor__subheader_hidden_actions">Hidden actions ({n})</string>
-    <string name="select_subtype_panel__header">Select subtype</string>
+    <string name="select_subtype_panel__header" comment="Title of the keyboard's language menu, opened by holding the globe key or the space bar">Languages</string>
+    <string name="select_subtype_panel__from_your_phone" comment="Section of the keyboard's language menu listing the phone's system languages that have no keyboard yet">From your phone</string>
+    <string name="select_subtype_panel__add_language" comment="Row in the keyboard's language menu that adds a keyboard for one of the phone's languages. {language} is its name, e.g. English (United States)">Add {language}</string>
+    <string name="select_subtype_panel__language_settings" comment="Row in the keyboard's language menu that opens the Languages &amp; Layouts settings">Language settings</string>
+    <string name="select_subtype_panel__switch_keyboard_app" comment="Row in the keyboard's language menu that opens the system's list of keyboard apps">Switch keyboard app</string>
 
     <!-- Incognito mode strings -->
     <string name="incognito_mode__toast_after_enabled">Incognito mode is now enabled\n\n{app_name} will not learn words from your input while this mode is active</string>
@@ -1727,6 +1731,7 @@
     <string name="enum__swipe_action__select_characters_precisely" comment="Enum value label">Select characters precisely</string>
     <string name="enum__swipe_action__select_words_precisely" comment="Enum value label">Select words precisely</string>
     <string name="enum__swipe_action__show_input_method_picker" comment="Enum value label">Show input method picker</string>
+    <string name="enum__swipe_action__show_subtype_picker" comment="Enum value label">Show language menu</string>
     <string name="enum__swipe_action__switch_to_prev_keyboard" comment="Enum value label">Switch to previous keyboard</string>
     <string name="enum__swipe_action__switch_to_prev_subtype" comment="Enum value label">Switch to previous subtype</string>
     <string name="enum__swipe_action__switch_to_next_subtype" comment="Enum value label">Switch to next subtype</string>

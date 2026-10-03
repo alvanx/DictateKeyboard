@@ -1294,9 +1294,12 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "gestures__space_bar_swipe_right",
             default = SwipeAction.MOVE_CURSOR_RIGHT,
         )
+        // The language menu by default, where it was the system's list of keyboard apps: holding the space
+        // bar is where Gboard users look for their languages, and the menu still ends with that list. No
+        // migration needed — JetPref only stores what was touched, so whoever picked an action keeps it.
         val spaceBarLongPress = enum(
             key = "gestures__space_bar_long_press",
-            default = SwipeAction.SHOW_INPUT_METHOD_PICKER,
+            default = SwipeAction.SHOW_SUBTYPE_PICKER,
         )
         val deleteKeySwipeLeft = enum(
             key = "gestures__delete_key_swipe_left",

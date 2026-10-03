@@ -15,8 +15,8 @@ import java.util.Locale
 
 /**
  * Finds the subtype preset that fits a locale: for the subtype editor's suggestions, for pre-filling a
- * subtype whose language was just picked, and for the keyboard languages an install starts with
- * (see [SubtypeManager]).
+ * subtype whose language was just picked, for the keyboard languages an install starts with
+ * (see [SubtypeManager]), and for the phone's languages the keyboard's language menu offers to add.
  *
  * The matching is generic over the candidate, with [SubtypePreset] overloads on top, so it can be tested
  * on the JVM with bare locales. Nothing in here touches Android or the extension manager.
@@ -77,6 +77,25 @@ object SubtypePresetMatcher {
         return matchAll(locales, candidates, localeOf).distinctBy { localeOf(it).language }.take(limit)
     }
 
+    /**
+     * The candidates the keyboard's language menu offers to add under "From your phone": [matchAll] for the
+     * system languages, one per language, minus every language one of [added] already types. The test is
+     * the language alone — someone typing de-DE is not offered Swiss German because the phone also lists
+     * de-CH — and runs on the candidate's language, so `no` on the system list and an `nb` keyboard are one.
+     * Unlike [seedFor] there is no limit: the menu lists what is there, and nothing is added without a tap.
+     */
+    fun <T> toAddFor(
+        locales: List<FlorisLocale>,
+        added: List<FlorisLocale>,
+        candidates: List<T>,
+        localeOf: (T) -> FlorisLocale,
+    ): List<T> {
+        val addedLanguages = added.mapTo(HashSet()) { LANGUAGE_ALIASES[it.language] ?: it.language }
+        return matchAll(locales, candidates, localeOf)
+            .distinctBy { localeOf(it).language }
+            .filter { localeOf(it).language !in addedLanguages }
+    }
+
     fun bestMatch(locale: FlorisLocale, presets: List<SubtypePreset>): SubtypePreset? =
         bestMatch(locale, presets) { it.locale }
 
@@ -85,6 +104,12 @@ object SubtypePresetMatcher {
 
     fun seedFor(locales: List<FlorisLocale>, presets: List<SubtypePreset>): List<SubtypePreset> =
         seedFor(locales, presets) { it.locale }
+
+    fun toAddFor(
+        locales: List<FlorisLocale>,
+        added: List<FlorisLocale>,
+        presets: List<SubtypePreset>,
+    ): List<SubtypePreset> = toAddFor(locales, added, presets) { it.locale }
 
     /**
      * Lower is a better stand-in for a language as a whole: a preset without a variant whose region is

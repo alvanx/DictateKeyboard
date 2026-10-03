@@ -65,6 +65,7 @@ import dev.patrickgold.florisboard.ime.nlp.latin.TouchTrace
 import dev.patrickgold.florisboard.ime.nlp.latin.WordLearningGate
 import dev.patrickgold.florisboard.ime.nlp.math.MathSuggestionCandidate
 import dev.patrickgold.florisboard.ime.popup.PopupMappingComponent
+import dev.patrickgold.florisboard.ime.sheet.isAnyBottomSheetVisible
 import dev.patrickgold.florisboard.ime.text.composing.Composer
 import dev.patrickgold.florisboard.ime.text.gestures.SwipeAction
 import dev.patrickgold.florisboard.ime.text.key.KeyCode
@@ -2275,8 +2276,24 @@ class KeyboardManager(context: Context) : InputKeyEventReceiver {
         }
     }
 
+    /** Set while a back press that closed a sheet is still down, so that its release is not seen either. */
+    private var isBackClosingSheet = false
+
     fun onHardwareKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         when (keyCode) {
+            // Back closes a sheet over the keys — the language menu above all, which the space bar opens on
+            // a long press — before it closes the keyboard, the way a tap beside the sheet does. The system
+            // hands an IME the back gesture as this key too.
+            KeyEvent.KEYCODE_BACK -> {
+                if (!activeState.isAnyBottomSheetVisible()) return false
+                activeState.batchEdit {
+                    it.isActionsEditorVisible = false
+                    it.isSubtypeSelectionVisible = false
+                    it.isTranscriptionProviderSelectionVisible = false
+                }
+                isBackClosingSheet = true
+                return true
+            }
             KeyEvent.KEYCODE_SPACE -> {
                 handleHardwareKeyboardSpace()
                 return true
@@ -2295,6 +2312,11 @@ class KeyboardManager(context: Context) : InputKeyEventReceiver {
 
     fun onHardwareKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
         when (keyCode) {
+            KeyEvent.KEYCODE_BACK -> {
+                if (!isBackClosingSheet) return false
+                isBackClosingSheet = false
+                return true
+            }
             KeyEvent.KEYCODE_SHIFT_LEFT, KeyEvent.KEYCODE_SHIFT_RIGHT -> {
                 inputEventDispatcher.sendUp(TextKeyData.SHIFT)
                 return true

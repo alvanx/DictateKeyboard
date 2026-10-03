@@ -571,6 +571,8 @@ class FlorisImeService : LifecycleInputMethodService() {
                 activeState.imeUiMode = ImeUiMode.TEXT
                 activeState.isActionsOverflowVisible = false
                 activeState.isActionsEditorVisible = false
+                // The language menu too: it was left open, and so came back with the next field's keyboard.
+                activeState.isSubtypeSelectionVisible = false
                 activeState.isTranscriptionProviderSelectionVisible = false
             }
         } else {

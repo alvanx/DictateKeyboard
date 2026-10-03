@@ -207,6 +207,7 @@ class EditorInstance(context: Context) : AbstractEditorInstance(context) {
         }
         activeState.isActionsOverflowVisible = false
         activeState.isActionsEditorVisible = false
+        activeState.isSubtypeSelectionVisible = false
         activeState.isTranscriptionProviderSelectionVisible = false
         super.handleStartInputView(editorInfo, isRestart)
         val keyboardMode = when (editorInfo.inputAttributes.type) {

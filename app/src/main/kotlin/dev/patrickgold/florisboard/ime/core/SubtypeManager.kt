@@ -141,9 +141,10 @@ class SubtypeManager(context: Context) {
 
     /**
      * The device's languages in the user's order of preference, as set in the system settings. Read from
-     * the system resources rather than the app's, which follow a per-app language if one is set.
+     * the system resources rather than the app's, which follow a per-app language if one is set. Also what
+     * the keyboard's language menu offers to add, see [SelectSubtypePanel].
      */
-    private fun systemLocales(): List<FlorisLocale> {
+    fun systemLocales(): List<FlorisLocale> {
         val localeList = Resources.getSystem().configuration.locales
         return (0 until localeList.size()).map { FlorisLocale.from(localeList.get(it)) }
     }
@@ -186,6 +187,29 @@ class SubtypeManager(context: Context) {
         persistNewSubtypeList(newSubtypeList)
         ensureLanguageData(subtypeToAdd)
         return true
+    }
+
+    /**
+     * Adds [subtype] like [addSubtype] and switches the keyboard to it, for the language menu's "Add"
+     * rows. One already on the list (equal but for the id) is switched to instead of added a second time.
+     *
+     * [switchToSubtypeById] cannot follow [addSubtype] here: the new list reaches [subtypes] only once
+     * the preference store hands it back, so the id would not be found yet. Instead the active id is
+     * stored before the list, so that the list collector's [evaluateActiveSubtype] keeps the new one.
+     */
+    fun addSubtypeAndSwitchTo(subtype: Subtype) = scope.launch {
+        val existing = subtypes.find { it.equalsExcludingId(subtype) }
+        if (existing != null) {
+            switchToSubtypeById(existing.id)
+            return@launch
+        }
+        val subtypeToAdd = subtype.copy(id = System.currentTimeMillis())
+        val previous = activeSubtype
+        prefs.localization.activeSubtypeId.set(subtypeToAdd.id)
+        prefs.localization.subtypes.set(SubtypeJsonConfig.encodeToString(subtypes + subtypeToAdd))
+        activeSubtype = subtypeToAdd
+        ensureLanguageData(subtypeToAdd)
+        DictateController.followKeyboardLanguage(subtypeToAdd.primaryLocale.base, previous.primaryLocale.base)
     }
 
     /**

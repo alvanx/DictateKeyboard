@@ -687,8 +687,11 @@ private class TextKeyboardLayoutController(
                             // We always return false here to prevent blockade for the up touch event
                             false
                         }
+                        // Holding the globe opens the language menu, as on Gboard, where it used to open the
+                        // system's list of keyboard apps — which the menu still offers as its last row.
                         KeyCode.LANGUAGE_SWITCH -> {
-                            inputEventDispatcher.sendDownUp(TextKeyData.SYSTEM_INPUT_METHOD_PICKER)
+                            inputEventDispatcher.sendDownUp(TextKeyData.SHOW_SUBTYPE_PICKER)
+                            inputFeedbackController?.keyLongPress(key.computedData)
                             true
                         }
                         else -> {
