@@ -468,6 +468,14 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
             }
         }
 
+    // Misspellings a language is known for, each with its one fix (`teh` → `the`), from the bundled
+    // ime/dict/<lang>_typos.txt. A language without that file has no list and nothing changes for it.
+    private val typoCatalog = TypoCatalog { path -> runCatching { appContext.assets.readText(path) }.getOrNull() }
+
+    /** The listed fix for [word] in [subtype]'s dictionary language, cased the way it was typed, or null. */
+    private fun listedTypoFixFor(word: String, subtype: Subtype): String? =
+        dictLangFor(subtype)?.let { typoCatalog.correctionFor(it, word) }
+
     // Context model. Per-language "w1 w2" -> count and "w1 w2 w3" -> count tables, read from a
     // downloaded <lang>_bigrams.txt / <lang>_trigrams.txt or the bundled English bigram asset. A
     // language without a file gets [NgramIndex.EMPTY] and context simply doesn't apply.
@@ -1233,7 +1241,14 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
             trimmed, index, prefixIndexFor(subtype), maxSuggestionCount, allowDistance2 = true,
             bigramContextScore(prevWord, bigrams),
         )
-        return SpellingResult.typo(suggestions.toTypedArray())
+        // A listed misspelling's fix goes first: `alot` is not within any edit of `a lot`.
+        val listedFix = listedTypoFixFor(trimmed, subtype)
+        val offered = if (listedFix == null) {
+            suggestions
+        } else {
+            (listOf(listedFix) + suggestions).distinctBy { it.lowercase() }.take(maxSuggestionCount.coerceAtLeast(1))
+        }
+        return SpellingResult.typo(offered.toTypedArray())
     }
 
     // --- Where a word ends (issue #318, round 3) ------------------------------------------------------
@@ -1624,6 +1639,30 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
                 if (score > 0.0) score else Double.MAX_VALUE
             }
 
+        // A misspelling the language is known for ([TypoCatalog]): `teh`, `recieve`, `alot`. It has exactly
+        // one fix and the list says which, so that fix goes in ahead of anything the readers below would
+        // guess, and Space may take it when autocorrect is on — unless a restoration above already claimed
+        // that slot, because first claim wins. Never for a word the user's languages or their own
+        // dictionary know (`isKnown`): with multilingual typing on, `teh` is tea to someone who also types
+        // Indonesian, and a word the user taught the keyboard is not taken back from them. The typed
+        // spelling stays tappable and left-most, as for every other fix here (issue #150).
+        val listedFix = if (!isKnown && isDictionaryJudgeable(word)) listedTypoFixFor(word, subtype) else null
+        if (listedFix != null) {
+            out.putIfAbsent(
+                word.lowercase(),
+                WordSuggestionCandidate(
+                    text = word, confidence = 1.0, isEligibleForAutoCommit = false, sourceProvider = this,
+                ),
+            )
+            val mayTakeSlot = autoCorrectOn && out.values.none { it.isEligibleForAutoCommit }
+            out.putIfAbsent(
+                listedFix.lowercase(),
+                WordSuggestionCandidate(
+                    text = listedFix, confidence = 1.0, isEligibleForAutoCommit = mayTakeSlot, sourceProvider = this,
+                ),
+            )
+        }
+
         // What the user stored behind this exact word as a *shortcut* — an e-mail address behind "mail",
         // say. Deliberately exempt from the prefix filter above and offered first, because an expansion
         // is the opposite of a completion: it looks nothing like what was typed, and typing the shortcut
@@ -2010,6 +2049,10 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         // sightings that are supposed to record how much it is used.
         val slip = if (trustedByUser || ourPromotedWord || WordRun.isAddressLike(trimmed)) {
             false
+        } else if (listedTypoFixFor(trimmed, subtype) != null) {
+            // A listed misspelling ([TypoCatalog]) is a slip by definition. Learning it would end, after
+            // promotion, in a personal word that the list can then never correct again.
+            true
         } else {
             val reading = tapPoints?.let { beamReadingOf(trimmed, subtype, index, it) }
             WordLearningGate.looksLikeASlip(

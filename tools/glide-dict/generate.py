@@ -19,6 +19,9 @@ Two reachable sources are combined:
     full of ان / الى / اخى where the correct spellings are أن / إلى / أخي; Hunspell rejects exactly
     those, which is what leaves them *outside* the dictionary and therefore correctable at runtime.
 
+  * Typos — every typo in the app's `<lang>_typos.txt` (app/src/main/assets/ime/dict) is dropped whatever
+    the corpus and Hunspell say, because the runtime can only correct a word the dictionary does not hold.
+
 Requires the `hunspell` binary on PATH (sudo pacman -S hunspell / apt install hunspell). Without a Hunspell
 dictionary for the language the result is left lowercase (a warning is printed).
 
@@ -49,6 +52,10 @@ LIBREOFFICE = "https://raw.githubusercontent.com/LibreOffice/dictionaries/master
 # The OPUS lists are frequency-sorted, so a word this far down can never merge its way into the top N.
 # Bounding the scan keeps peak memory sane on the big lists (Arabic 2.9 M words, Finnish 2.65 M).
 SCAN_LIMIT_FACTOR = 10
+
+# Where the app keeps <lang>_typos.txt, the misspellings the runtime corrects — see load_typos.
+TYPOS_DIR = os.path.normpath(os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "..", "app", "src", "main", "assets", "ime", "dict"))
 
 
 def get(url: str) -> bytes:
@@ -165,6 +172,29 @@ def load_opus_counts(opus_lang: str, top: int, recode: tuple = None) -> dict:
             break
     sys.stderr.write(f"  opus {opus_lang}: {scanned} tokens scanned, {len(merged)} distinct\n")
     return merged
+
+
+def load_typos(lang: str) -> set:
+    """The lowercased typos in the app's `<lang>_typos.txt` (typo ⇥ correction), or an empty set.
+
+    Subtitle text is full of the misspellings people really make — the English list held teh, recieve,
+    definately and alot, all frequent enough to rank — and a word in the dictionary is a word the keyboard
+    never corrects. Hunspell keeps most of them out, but not where it is skipped or where a typo happens
+    to be some rare valid form, so the typo list the runtime corrects from is also a list of words that
+    must never be written into <lang>.json. Reading the shipped asset keeps the two from drifting apart.
+    """
+    path = os.path.join(TYPOS_DIR, f"{lang}_typos.txt")
+    if not os.path.isfile(path):
+        return set()
+    typos = set()
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.rstrip("\n")
+            if not line.strip() or line.startswith("#"):
+                continue
+            typos.add(line.split("\t", 1)[0].strip().lower())
+    sys.stderr.write(f"  typos: {len(typos)} listed in {path}, excluded from the dictionary\n")
+    return typos
 
 
 def rank(counts: dict, top: int) -> list:
@@ -301,7 +331,9 @@ def main():
         raise SystemExit("--fix-opus-encoding takes 'STORED:READ', e.g. iso8859_4:latin1")
     opus = {} if args.no_opus else load_opus_counts(args.opus or args.lang, args.top, recode)
     leipzig = load_leipzig_counts(args.leipzig) if args.leipzig else {}
-    words = rank(merge_counts(opus, leipzig), args.top)
+    typos = load_typos(args.lang)
+    counts = {w: c for w, c in merge_counts(opus, leipzig).items() if w not in typos}
+    words = rank(counts, args.top)
     if not words:
         raise SystemExit("no frequency data (wrong --opus code / --leipzig package?)")
     if args.no_hunspell:

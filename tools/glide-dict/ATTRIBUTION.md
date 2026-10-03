@@ -52,3 +52,9 @@ has not reached yet.
 ## Bundled languages
 English (`en`, from the upstream FlorisBoard dictionary) and German (`de`) ship inside the app; all other
 languages download on demand.
+
+## Typo lists
+`app/src/main/assets/ime/dict/<lang>_typos.txt` (English and German so far) are curated by hand for this
+project from general knowledge of frequent misspellings, each typo checked to be rejected by Hunspell (en_US,
+en_GB, en_CA, en_AU; de_DE). No published misspelling list was copied. `generate.py` drops every listed typo
+from the word list it builds; the 40 that were in the bundled `en.json` were removed from it by hand.

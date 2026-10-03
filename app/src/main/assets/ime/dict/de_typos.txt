@@ -1,0 +1,87 @@
+# Häufige deutsche Rechtschreibfehler — common German misspellings, one per line:
+#
+#     <typo><TAB><correction>
+#
+# Same format and rules as en_typos.txt (see there): read by TypoCatalog, matched lowercased, the typed
+# capitalisation carried over onto the correction, which keeps its own noun capital otherwise
+# (standart -> Standard). Grammar confusions between real words (das/dass, seid/seit, tod/tot) are not
+# typos and are deliberately absent, as are spellings the 1996/2006 reforms left as accepted variants.
+#
+# None of these is in de.json today — the Hunspell filter in tools/glide-dict/generate.py already kept
+# them out — but generate.py drops them explicitly as well, so that stays true.
+#
+# Source: curated by hand for this project from general knowledge of frequent German misspellings, each
+# checked against Hunspell de_DE. Not copied from any published list.
+
+addresse	Adresse
+agression	Aggression
+agressiv	aggressiv
+akkustik	Akustik
+akkustisch	akustisch
+apoteke	Apotheke
+ausversehen	aus Versehen
+bibliotek	Bibliothek
+bischen	bisschen
+detailiert	detailliert
+dilletant	Dilettant
+dilletantisch	dilettantisch
+diskusion	Diskussion
+eigendlich	eigentlich
+entgeld	Entgelt
+entgültig	endgültig
+ergebniss	Ergebnis
+erlebniss	Erlebnis
+erwiedern	erwidern
+erwiederung	Erwiderung
+gallerie	Galerie
+garnicht	gar nicht
+garnichts	gar nichts
+geheimniss	Geheimnis
+gröhlen	grölen
+hinderniss	Hindernis
+ingeneur	Ingenieur
+interresiert	interessiert
+interressant	interessant
+interresse	Interesse
+interressiert	interessiert
+kathastrophe	Katastrophe
+komission	Kommission
+kommision	Kommission
+konkurenz	Konkurrenz
+lizens	Lizenz
+maschiene	Maschine
+matraze	Matratze
+nähmlich	nämlich
+orginal	original
+reperatur	Reparatur
+rhytmus	Rhythmus
+rythmus	Rhythmus
+rytmus	Rhythmus
+rückgrad	Rückgrat
+satelit	Satellit
+seperat	separat
+silouette	Silhouette
+spatzieren	spazieren
+standart	Standard
+stehgreif	Stegreif
+symetrie	Symmetrie
+symetrisch	symmetrisch
+terasse	Terrasse
+tolleranz	Toleranz
+verhältniss	Verhältnis
+vieleicht	vielleicht
+vileicht	vielleicht
+villeicht	vielleicht
+vorraus	voraus
+vorraussetzung	Voraussetzung
+vorraussetzungen	Voraussetzungen
+widerum	wiederum
+wiederrum	wiederum
+wiederspiegeln	widerspiegeln
+wiederspiegelt	widerspiegelt
+wiederspruch	Widerspruch
+wiederstand	Widerstand
+zeugniss	Zeugnis
+ziehmlich	ziemlich
+zuende	zu Ende
+zumindestens	zumindest

@@ -245,10 +245,9 @@ class DictionaryLanguagesTest {
         Log.i(TAG, "en  hell -> $out")
         assertTrue("expected English completions, got $out", out.any { it.equals("hello", true) })
 
-        // A one-key slip, not a famous misspelling: the bundled en.json is the upstream FlorisBoard word
-        // list and it *contains* teh, recieve, seperate, definately, thier and wich, so the engine
-        // deliberately leaves those alone — a word in the dictionary is never corrected. (That is the same
-        // defect the Hunspell filter keeps out of the languages this issue added; worth its own issue.)
+        // A one-key slip, not a famous misspelling: those (teh, recieve, seperate, definately, thier, wich)
+        // were taken out of en.json and are fixed from the typo list instead (TypoCatalog, en_typos.txt),
+        // which is a different path from the one this guards.
         val corrections = suggestionsFor(en, "morninh")
         Log.i(TAG, "en  morninh -> $corrections")
         assertTrue("expected morning offered for morninh, got $corrections", corrections.contains("morning"))
