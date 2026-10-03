@@ -103,10 +103,36 @@ private const val CLASSIC_MAX_EMOJI = 3
  *
  * Measured against the case that was reported: a classic-mode cell is about a third of the strip, which
  * leaves the label roughly 94 dp once the margin and padding are paid, and "Misunderstanding" wants about
- * 116 dp at the default 14 sp — 81 % of it. Three quarters clears that with room for a wider font or a
- * raised font scale, and stops well short of the size at which a shrunk label is worse than a cut one.
+ * 133 dp at the default 16 sp — 71 % of it. Two thirds clears that with a little room for a wider font,
+ * and keeps the floor where it was before the bundled themes went from 14 sp to 16 sp (three quarters of
+ * 14 sp, about 10.5 sp): the bigger default was meant to make the strip easier to read, not to let a long
+ * word be cut off sooner, and below that a shrunk label is worse than a cut one.
  */
-private const val CANDIDATE_MIN_FONT_RATIO = 0.75f
+private const val CANDIDATE_MIN_FONT_RATIO = 0.66f
+
+/**
+ * The classic strip's three words in the order Gboard shows them: the best one in the middle slot, the
+ * runner-up to its left and the third to its right. The best is the word space will apply when there is
+ * one, otherwise the provider's first. The middle is where the eye already is while typing, and the
+ * thumb's shortest reach from either side.
+ *
+ * Only ever the order on screen. Nothing reads a candidate back by its slot — each cell commits the
+ * candidate it was handed, and space finds the auto-commit word in the provider's list by its flag — so
+ * moving one does not change what any tap or space does. Left alone unless the strip holds exactly three
+ * words: two have no middle, and a clipboard offer, a sum or an emoji search is not a ranking.
+ */
+private fun List<SuggestionCandidate>.withBestInTheMiddle(): List<SuggestionCandidate> {
+    if (size != CLASSIC_WORD_SLOTS) return this
+    val isRanking = none {
+        it is ClipboardSuggestionCandidate || it is MathSuggestionCandidate || it is EmojiSuggestionCandidate
+    }
+    if (!isRanking) return this
+    // By position, not by equality: two candidates with the same text are equal data classes, and
+    // removing "the best" by value could take the wrong one out.
+    val bestIndex = indexOfFirst { it.isEligibleForAutoCommit }.coerceAtLeast(0)
+    val others = filterIndexed { n, _ -> n != bestIndex }
+    return listOf(others[0], this[bestIndex], others[1])
+}
 
 @Composable
 fun CandidatesRow(modifier: Modifier = Modifier) {
@@ -169,13 +195,13 @@ fun CandidatesRow(modifier: Modifier = Modifier) {
             }
             val list = when {
                 annexedEmojis.isEmpty() && displayMode == CandidatesDisplayMode.CLASSIC ->
-                    candidates.subList(0, 3.coerceAtMost(candidates.size))
+                    candidates.subList(0, 3.coerceAtMost(candidates.size)).withBestInTheMiddle()
                 annexedEmojis.isEmpty() -> candidates
                 // The classic strip renders what it is given, so the words are cut to their three
                 // slots here; the scrolling modes keep every word and simply carry the emoji at a
                 // position where they are visible without scrolling.
                 displayMode == CandidatesDisplayMode.CLASSIC ->
-                    words.take(CLASSIC_WORD_SLOTS) + annexedEmojis.take(CLASSIC_MAX_EMOJI)
+                    words.take(CLASSIC_WORD_SLOTS).withBestInTheMiddle() + annexedEmojis.take(CLASSIC_MAX_EMOJI)
                 else ->
                     words.take(CLASSIC_WORD_SLOTS) + annexedEmojis + words.drop(CLASSIC_WORD_SLOTS)
             }

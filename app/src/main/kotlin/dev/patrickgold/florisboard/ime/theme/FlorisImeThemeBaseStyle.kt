@@ -238,7 +238,9 @@ val FlorisImeThemeBaseStyle = SnyggStylesheet.v2 {
     FlorisImeUi.SmartbarCandidateWord.elementName {
         background = rgbaColor(0, 0, 0, 0f)
         foreground = `var`("--on-background")
-        fontSize = fontSize(14.sp)
+        // 16sp rather than 14sp, here as in every bundled stylesheet: at 14 the strip read as tiny and
+        // crowded beside Gboard's. A long word still shrinks to fit its cell before it is cut (issue #346).
+        fontSize = fontSize(16.sp)
         margin = padding(4.dp)
         // 4dp rather than 8dp: with the margin on top of it, a third of the strip was spending 24dp on
         // whitespace, which is most of what a long word was missing (issue #346). Here as well as in

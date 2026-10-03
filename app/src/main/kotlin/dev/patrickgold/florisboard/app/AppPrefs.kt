@@ -1795,9 +1795,12 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "suggestion__ignore_app_suggestion_block",
             default = false,
         )
+        // Three fixed slots by default, the way Gboard does it: a scrolling strip of up to eight words, each
+        // cut to its own width, read as tiny and crowded next to it. Only the default — a mode somebody
+        // picked is stored and stays theirs.
         val displayMode = enum(
             key = "suggestion__display_mode",
-            default = CandidatesDisplayMode.DYNAMIC_SCROLLABLE,
+            default = CandidatesDisplayMode.CLASSIC,
         )
         val incognitoMode = enum(
             key = "suggestion__incognito_mode",

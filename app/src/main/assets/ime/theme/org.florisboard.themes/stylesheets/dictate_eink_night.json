@@ -239,7 +239,7 @@
   "smartbar-candidate-word": {
     "background": "var(--surface)",
     "foreground": "var(--on-background)",
-    "font-size": "14sp",
+    "font-size": "16sp",
     "margin": "4dp",
     "padding": "4dp 0dp",
     "shape": "rectangle()",

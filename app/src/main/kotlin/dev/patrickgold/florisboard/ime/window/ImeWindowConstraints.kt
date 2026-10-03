@@ -62,7 +62,10 @@ sealed class ImeWindowConstraints(rootInsets: ImeInsets.Root) {
 
     open val baselineRowCount: Float = 4f
     open val smartbarDynamicScalingFactor = 0.20f
-    open val smartbarStaticScalingFactor by calculation { 0.753f - smartbarDynamicScalingFactor }
+    // 0.82 of a key row rather than upstream's 0.753 (about 47 dp instead of 43 dp on the baseline phone):
+    // next to Gboard's, the suggestion strip read as tiny and crowded, and a few dp of height is what lets
+    // its bigger candidate text breathe. Everything sized off the Smartbar row grows with it in proportion.
+    open val smartbarStaticScalingFactor by calculation { 0.82f - smartbarDynamicScalingFactor }
 
     open val resizeHandleTouchSize: Dp = 48.dp
     open val resizeHandleTouchOffsetFloating: Dp by calculation { resizeHandleTouchSize / 2 }
