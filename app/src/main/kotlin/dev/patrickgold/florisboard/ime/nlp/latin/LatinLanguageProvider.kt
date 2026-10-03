@@ -1418,7 +1418,8 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         // "im"→"I'm". The apostrophe-less form is often itself a dictionary word (so the generic correction
         // path below skips it), yet the apostrophe form is usually what was meant and more common. Offered at
         // the front of the strip as a tap suggestion — not auto-committed, so a genuine "ill"/"well" is never
-        // silently turned into "i'll"/"we'll".
+        // silently turned into "i'll"/"we'll". The English contractions whose bare spelling is no word at all
+        // are the one exception, and [ApostropheForms] lists them.
         //
         // French gets nothing at all out of that loop and needs the most: elisions are 4 % of everything
         // written in the language, and the word list holds 13 apostrophe entries in 68,605 words, because
@@ -1427,15 +1428,23 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         // "n'on" from "non" as "j'aime" from "jaime", since "on" is a word and `n'` is a prefix. The corpus
         // is what tells the two apart, and it decides both whether a form is offered at all and whether it
         // may be taken silently; [ElisionEvidence] carries the measurements.
-        if (word.length >= 3 && word.none { it == '\'' || it == '’' }) {
-            val typedFreq = index.freq[index.fold(word)] ?: 0
+        //
+        // English has rules of its own in [ApostropheForms]: a form as common as what was typed is offered
+        // too (its → it's), two letters are enough (im → I'm), and a short list of contractions nobody
+        // types without the apostrophe on purpose is taken by Space (dont → don't).
+        if (word.length >= ApostropheForms.minTypedLength(index.lang) && word.none { it == '\'' || it == '’' }) {
+            val typedKey = index.fold(word)
+            val typedFreq = index.freq[typedKey] ?: 0
             // Corpus key → its frequency on the dictionary's 128..255 scale and the spelling to show.
             // Insertion order is the order they reach the strip.
             val forms = LinkedHashMap<String, Pair<Int, String>>()
             (1 until word.length)
                 .map { word.substring(0, it) + "'" + word.substring(it) }
                 .mapNotNull { v -> index.fold(v).let { k -> index.freq[k]?.let { f -> f to (index.canonical[k] ?: v) } } }
-                .filter { it.first > typedFreq }
+                .filter { (f, canonical) ->
+                    ApostropheForms.admits(word.length, index.lang, canonical) &&
+                        ApostropheForms.isOffered(index.lang, f, typedFreq)
+                }
                 .sortedByDescending { it.first }
                 .forEach { (freq, canonical) ->
                     forms.putIfAbsent(ElisionEvidence.key(index.fold(canonical)), freq to canonical)
@@ -1462,14 +1471,41 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
                     }
             }
 
-            // What may be swapped in silently. Only a single unambiguous reading, and only when the corpus
-            // is lopsided enough to say the apostrophe-less spelling was a slip rather than a word
-            // ([ElisionEvidence.DOMINANCE]). Every other language stays tap-only, because "ill", "well" and
-            // "its" are exactly as common as the contractions they would be rewritten into.
-            val autoCommitKey = forms.keys.singleOrNull()?.takeIf {
-                autoCorrectOn && index.lang == ELISION_LANG &&
-                    ElisionEvidence.mayReplace(corpus, ElisionEvidence.key(index.fold(word)), it)
+            // What may be swapped in silently. In French, only a single unambiguous reading, and only when
+            // the corpus is lopsided enough to say the apostrophe-less spelling was a slip rather than a word
+            // ([ElisionEvidence.DOMINANCE]). In English, only a contraction on [ApostropheForms]' list, whose
+            // bare spelling is no word anybody means — and not when it is one after all: in another language
+            // the writer types in (`dont` is French, `im` is German), or in their own dictionary, where a word
+            // goes precisely so that autocorrect leaves it alone. Nor from caps lock: the strip's casing knows
+            // only a capital first letter, so DONT would come back as Don't. Every other language stays
+            // tap-only, and so do "ill", "well" and "its", as common as the contractions they would become.
+            val autoCommitKey = when {
+                !autoCorrectOn -> null
+                index.lang == ELISION_LANG -> forms.keys.singleOrNull()?.takeIf {
+                    ElisionEvidence.mayReplace(corpus, ElisionEvidence.key(typedKey), it)
+                }
+                index.lang == ApostropheForms.ENGLISH -> ApostropheForms.englishAutoCommitFor(typedKey)?.takeIf {
+                    it in forms && word.drop(1).none { c -> c.isUpperCase() } &&
+                        !isLowercaseWordInAnotherLanguage(typedKey, subtype) && !isInUserDictionary(word, subtype)
+                }
+                else -> null
             }
+            // Whether each form goes ahead of the typed word. Ahead, as it always went, when it is the more
+            // common spelling; behind when it is merely as common (its/it's), so a real word is not pushed
+            // out of the middle slot on a coin toss. The previous word overrules both when the bigram
+            // table has an opinion — "of its", "think it's". Only English is reordered at all, and the table
+            // is only read once there is a previous word, as everywhere else.
+            val prevWord = if (index.lang == ApostropheForms.ENGLISH && forms.isNotEmpty() && autoCommitKey == null) {
+                previousWordOf(content, index)
+            } else {
+                null
+            }
+            val bigrams = if (prevWord != null) bigramsFor(subtype) else NgramIndex.EMPTY
+            fun contextOf(key: String): Long = if (prevWord == null) 0L else bigrams.countOf("$prevWord $key")
+            val typedContext = contextOf(typedKey)
+            fun formLeads(key: String, freq: Int): Boolean =
+                index.lang != ApostropheForms.ENGLISH || autoCommitKey != null ||
+                    ApostropheForms.formLeads(freq, typedFreq, contextOf(key), typedContext)
             if (rebuilt || autoCommitKey != null) {
                 // Keep the typed spelling tappable and left-most, so an elision can be refused before it is
                 // taken and a real word is never pushed out of the strip by one (issue #150). Under its own
@@ -1483,6 +1519,16 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
             }
             forms.forEach { (key, entry) ->
                 val (freq, canonical) = entry
+                if (!formLeads(key, freq)) {
+                    // The typed spelling first, under its own plain key so the completion walk does not
+                    // add it twice — the same entry the French and auto-commit cases above put in.
+                    out.putIfAbsent(
+                        word.lowercase(),
+                        WordSuggestionCandidate(
+                            text = word, confidence = 1.0, isEligibleForAutoCommit = false, sourceProvider = this,
+                        ),
+                    )
+                }
                 // English "I" contractions are stored lowercase in the dictionary; show them capitalised.
                 val display = if (canonical.startsWith("i'")) "I" + canonical.substring(1) else cased(canonical)
                 out.putIfAbsent(
