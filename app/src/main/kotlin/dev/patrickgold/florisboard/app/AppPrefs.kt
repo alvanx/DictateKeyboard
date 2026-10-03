@@ -1612,6 +1612,13 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "localization__devanagari_punctuation_migrated",
             default = false,
         )
+        // One-time guard: an empty subtype list falls back to English/QWERTY whatever the device speaks,
+        // so it is seeded from the system languages once and never again after that. See
+        // SubtypeManager.seedFromSystemLocalesIfNeeded.
+        val subtypesSeeded = boolean(
+            key = "localization__subtypes_seeded",
+            default = false,
+        )
     }
 
     val other = Other()

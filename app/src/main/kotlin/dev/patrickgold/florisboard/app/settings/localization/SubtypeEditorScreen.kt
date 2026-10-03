@@ -68,7 +68,7 @@ import dev.patrickgold.florisboard.ime.core.Subtype
 import dev.patrickgold.florisboard.ime.core.SubtypeJsonConfig
 import dev.patrickgold.florisboard.ime.core.SubtypeLayoutMap
 import dev.patrickgold.florisboard.ime.core.SubtypeNlpProviderMap
-import dev.patrickgold.florisboard.ime.core.SubtypePreset
+import dev.patrickgold.florisboard.ime.core.SubtypePresetMatcher
 import dev.patrickgold.florisboard.ime.keyboard.LayoutArrangementComponent
 import dev.patrickgold.florisboard.ime.keyboard.LayoutType
 import dev.patrickgold.florisboard.ime.keyboard.extCorePopupMapping
@@ -458,11 +458,7 @@ fun SubtypeEditorScreen(id: Long?) = FlorisScreen {
                             list
                         }
                         val suggestedPresets = remember(subtypePresets) {
-                            val presets = mutableListOf<SubtypePreset>()
-                            for (systemLocale in systemLocales) {
-                                subtypePresets.find { it.locale == systemLocale }?.let { presets.add(it) }
-                            }
-                            presets
+                            SubtypePresetMatcher.matchAll(systemLocales, subtypePresets)
                         }
                         if (suggestedPresets.isNotEmpty()) {
                             for (suggestedPreset in suggestedPresets) {

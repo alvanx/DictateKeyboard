@@ -17,18 +17,23 @@
 package dev.patrickgold.florisboard.ime.core
 
 import android.content.Context
+import android.content.res.Resources
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
+import dev.patrickgold.florisboard.appContext
 import dev.patrickgold.florisboard.dictate.DictateController
+import dev.patrickgold.florisboard.extensionManager
 import dev.patrickgold.florisboard.ime.keyboard.CurrencySet
 import dev.patrickgold.florisboard.ime.nlp.han.PinyinPackManager
 import dev.patrickgold.florisboard.ime.nlp.latin.GlideDictionaryManager
 import dev.patrickgold.florisboard.keyboardManager
 import dev.patrickgold.florisboard.lib.FlorisLocale
 import dev.patrickgold.florisboard.lib.devtools.flogDebug
+import dev.patrickgold.florisboard.lib.devtools.flogError
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import org.florisboard.lib.kotlin.collectLatestIn
@@ -46,6 +51,8 @@ val SubtypeJsonConfig = Json {
 class SubtypeManager(context: Context) {
     private val prefs by FlorisPreferenceStore
     private val appContext = context.applicationContext
+    private val application by context.appContext()
+    private val extensionManager by context.extensionManager()
     private val keyboardManager by context.keyboardManager()
     private val scope = CoroutineScope(Dispatchers.Default)
 
@@ -72,6 +79,73 @@ class SubtypeManager(context: Context) {
             subtypes = list
             evaluateActiveSubtype(list)
         }
+        scope.launch {
+            // This scope has no supervisor: a failure here must not take the subtype collector above
+            // down with it, and the keyboard works fine on the English fallback.
+            try {
+                seedFromSystemLocalesIfNeeded()
+            } catch (e: Exception) {
+                flogError { "Seeding subtypes from system locales failed: $e" }
+            }
+        }
+    }
+
+    /**
+     * Gives an install without any subtype the keyboard languages of the device, once.
+     *
+     * With an empty list the keyboard falls back to [Subtype.DEFAULT], English QWERTY, whatever the device
+     * speaks — and onboarding never asks — so a German phone typed on an English layout until someone found
+     * the Languages & Layouts screen. Instead, each system language (in the order the system ranks them)
+     * gets its matching preset, see [SubtypePresetMatcher.seedFor]. Languages without a preset are skipped;
+     * when none has one the list stays empty and the English fallback applies as before.
+     *
+     * Runs once per install, guarded by `prefs.localization.subtypesSeeded`: an existing install that
+     * still has an empty list is seeded on its first start after the update, and a list the user empties
+     * or changes later is never touched again.
+     */
+    private suspend fun seedFromSystemLocalesIfNeeded() {
+        // The store loads asynchronously while this manager is being constructed, and before then the
+        // subtype list reads as the empty default on every install.
+        application.preferenceStoreLoaded.first { it }
+        if (prefs.localization.subtypesSeeded.get()) return
+        // The presets come from the bundled localization extension, which is indexed off the main thread at
+        // app start. Taken from the extension index rather than the keyboard manager's copy of it, so that
+        // this does not construct the keyboard manager on a background thread just to read a list.
+        val presets = extensionManager.keyboardExtensions
+            .first { extensions -> extensions.any { it.subtypePresets.isNotEmpty() } }
+            .flatMap { it.subtypePresets }
+        val listRaw = prefs.localization.subtypes.get()
+        val existing: List<Subtype>? = if (listRaw.isBlank()) {
+            emptyList()
+        } else {
+            runCatching { SubtypeJsonConfig.decodeFromString<List<Subtype>>(listRaw) }.getOrNull()
+        }
+        // An unreadable list is left alone rather than overwritten with a guess.
+        if (existing != null && existing.isEmpty()) {
+            val seeded = SubtypePresetMatcher.seedFor(systemLocales(), presets)
+            if (seeded.isNotEmpty()) {
+                // Distinct ids in one go: addSubtype stamps each with the current millisecond and reads
+                // the list back from the flow, so calling it in a loop would lose all but the last one.
+                val now = System.currentTimeMillis()
+                val list = seeded.mapIndexed { n, preset -> preset.toSubtype().copy(id = now + n) }
+                flogDebug { "Seeding subtypes from system locales: ${list.map { it.toShortString() }}" }
+                prefs.localization.subtypes.set(SubtypeJsonConfig.encodeToString(list))
+                // Only the language the keyboard opens in: nobody was asked, and the others (4-14 MB each,
+                // issue #334) still fetch themselves the first time the keyboard is switched to them.
+                ensureLanguageData(list.first())
+            }
+        }
+        // Set last, so a process that dies halfway gets another go on the next start.
+        prefs.localization.subtypesSeeded.set(true)
+    }
+
+    /**
+     * The device's languages in the user's order of preference, as set in the system settings. Read from
+     * the system resources rather than the app's, which follow a per-app language if one is set.
+     */
+    private fun systemLocales(): List<FlorisLocale> {
+        val localeList = Resources.getSystem().configuration.locales
+        return (0 until localeList.size()).map { FlorisLocale.from(localeList.get(it)) }
     }
 
     private fun persistNewSubtypeList(list: List<Subtype>) = scope.launch {
@@ -110,13 +184,21 @@ class SubtypeManager(context: Context) {
         }
         val newSubtypeList = subtypeList + subtypeToAdd
         persistNewSubtypeList(newSubtypeList)
+        ensureLanguageData(subtypeToAdd)
+        return true
+    }
+
+    /**
+     * Starts fetching the language data a newly added [subtype] needs, both for a subtype the user adds
+     * and for one seeded from the system languages.
+     */
+    private fun ensureLanguageData(subtype: Subtype) {
         // Start fetching the glide-typing dictionary for the new language right away (issue #127) instead
         // of waiting until the keyboard is first switched to it.
-        GlideDictionaryManager.ensureDownloaded(appContext, subtypeToAdd.primaryLocale.language)
+        GlideDictionaryManager.ensureDownloaded(appContext, subtype.primaryLocale.language)
         // Same for the Pinyin reading table (issue #262), without which the Chinese Pinyin subtype would
         // be a QWERTY layout that produces no characters at all.
-        PinyinPackManager.ensureDownloaded(appContext, subtypeToAdd.primaryLocale)
-        return true
+        PinyinPackManager.ensureDownloaded(appContext, subtype.primaryLocale)
     }
 
     /**
@@ -148,8 +230,7 @@ class SubtypeManager(context: Context) {
      *  found.
      */
     fun getSubtypePresetForLocale(locale: FlorisLocale): SubtypePreset? {
-        val presets = keyboardManager.resources.subtypePresets.value
-        return presets.find { it.locale == locale } ?: presets.find { it.locale.language == locale.language }
+        return SubtypePresetMatcher.bestMatch(locale, keyboardManager.resources.subtypePresets.value)
     }
 
     /**
