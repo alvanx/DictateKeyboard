@@ -82,6 +82,8 @@ class TranscribeShareActivity : ComponentActivity() {
                             TranscribeShareScreen(
                                 uris = uris,
                                 onClose = { finish() },
+                                retryHistoryId = intent?.getLongExtra(EXTRA_RETRY_HISTORY_ID, -1L)
+                                    ?.takeIf { it >= 0L },
                             )
                         }
                     }
@@ -106,6 +108,9 @@ class TranscribeShareActivity : ComponentActivity() {
         /** Extra asking the screen to open the file picker itself (issue #408). */
         const val EXTRA_PICK = "dictate.pickFile"
 
+        /** Extra naming a failed history entry whose kept recording this run retries. */
+        const val EXTRA_RETRY_HISTORY_ID = "dictate.retryHistoryId"
+
         val MIME_TYPES = arrayOf("audio/*", "video/*")
 
         /** Launches the screen for a file the user picked inside the app. */
@@ -121,6 +126,15 @@ class TranscribeShareActivity : ComponentActivity() {
          * the keyboard). This screen already has an activity, so it runs the picker itself rather than
          * hopping through a second one.
          */
+        /**
+         * Launches the screen on a failed dictation's kept recording, from the home screen's recent
+         * list. The transcript then completes that history entry instead of logging a new one.
+         */
+        fun retryIntent(context: Context, entryId: Long, audioPath: String): Intent =
+            Intent(context, TranscribeShareActivity::class.java)
+                .putExtra(EXTRA_PICKED_URI, Uri.fromFile(File(audioPath)))
+                .putExtra(EXTRA_RETRY_HISTORY_ID, entryId)
+
         fun pickIntent(context: Context): Intent =
             Intent(context, TranscribeShareActivity::class.java)
                 .putExtra(EXTRA_PICK, true)
@@ -178,6 +192,11 @@ data class SharedFileHeader(val displayName: String, val sizeBytes: Long)
 
 /** Reads [uri]'s name and size. Cheap: one cursor query, no bytes moved. */
 fun readSharedFileHeader(context: Context, uri: Uri): SharedFileHeader {
+    // Our own kept recording (a history retry): no provider to ask, and the extension must survive.
+    if (uri.scheme == "file") {
+        val file = File(uri.path ?: "")
+        return SharedFileHeader(file.name.ifBlank { "shared_audio" }, file.length())
+    }
     var name = "shared_audio"
     var size = 0L
     runCatching {

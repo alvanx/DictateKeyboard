@@ -28,14 +28,14 @@ import dev.patrickgold.jetpref.datastore.ui.PreferenceGroup
 import org.florisboard.lib.compose.stringRes
 
 /**
- * One place for every word list, reached from a home tile. "Dictionary" meant three things spread over
+ * One place for every word list ("Dictionary"), reached from a home tile. "Dictionary" meant three things spread over
  * two branches of the settings: the speech model's custom words and the find-and-replace mappings
  * (Dictate → Formatting & vocabulary), and the keyboard's own dictionary (Typing → User dictionaries).
  * The original screens stay where they are; this only gathers them.
  */
 @Composable
 fun DictateWordsScreen() = FlorisScreen {
-    title = stringRes(R.string.words__title)
+    title = stringRes(R.string.dictionary_hub__title)
     previewFieldVisible = false
     iconSpaceReserved = true
 

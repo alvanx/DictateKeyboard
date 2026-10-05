@@ -67,7 +67,7 @@ object SettingsSearchIndex {
         SettingsSearchEntry(R.string.dictate__stats_title, R.string.dictate__stats_title, Routes.Settings.DictateStats, parentRes = R.string.dictate__title),
         SettingsSearchEntry(R.string.dictate__wear_title, R.string.dictate__wear_title, Routes.Settings.DictateWear, parentRes = R.string.dictate__title),
         SettingsSearchEntry(R.string.settings__dictionary__title, R.string.settings__dictionary__title, Routes.Settings.Dictionary),
-        SettingsSearchEntry(R.string.words__title, R.string.words__title, Routes.Settings.Words),
+        SettingsSearchEntry(R.string.dictionary_hub__title, R.string.dictionary_hub__title, Routes.Settings.Words),
         SettingsSearchEntry(R.string.settings__gestures__title, R.string.settings__gestures__title, Routes.Settings.Gestures),
         SettingsSearchEntry(R.string.settings__input_feedback__title, R.string.settings__input_feedback__title, Routes.Settings.InputFeedback, parentRes = R.string.settings__keyboard__title),
         SettingsSearchEntry(R.string.settings__keyboard__title, R.string.settings__keyboard__title, Routes.Settings.Keyboard),

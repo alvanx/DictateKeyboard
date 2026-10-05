@@ -30,33 +30,24 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.automirrored.outlined.Assignment
 import androidx.compose.material.icons.filled.AudioFile
 import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.material.icons.filled.ContentCopy
-import androidx.compose.material.icons.filled.Extension
-import androidx.compose.material.icons.filled.Gesture
 import androidx.compose.material.icons.filled.History
-import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.MenuBook
-import androidx.compose.material.icons.filled.Mic
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.filled.Schedule
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.SentimentSatisfiedAlt
-import androidx.compose.material.icons.filled.SmartButton
-import androidx.compose.material.icons.filled.Spellcheck
-import androidx.compose.material.icons.outlined.Build
-import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.outlined.Keyboard
-import androidx.compose.material.icons.outlined.Palette
-import androidx.compose.material.icons.outlined.Translate
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -70,6 +61,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -84,41 +76,43 @@ import dev.patrickgold.florisboard.app.Routes
 import dev.patrickgold.florisboard.app.settings.dictate.copyToClipboard
 import dev.patrickgold.florisboard.app.settings.dictate.isOverlayServiceEnabled
 import dev.patrickgold.florisboard.app.settings.dictate.providerDisplayName
+import dev.patrickgold.florisboard.dictate.DictateController
 import dev.patrickgold.florisboard.dictate.data.history.DictateHistoryEntry
 import dev.patrickgold.florisboard.dictate.data.history.DictateHistoryStore
 import dev.patrickgold.florisboard.dictate.data.stats.DictateStats
+import dev.patrickgold.florisboard.dictate.importer.ImportTranscriber
 import dev.patrickgold.florisboard.dictate.importer.TranscribeShareActivity
 import dev.patrickgold.florisboard.lib.compose.FlorisScreen
 import dev.patrickgold.florisboard.lib.util.InputMethodUtils
 import dev.patrickgold.jetpref.datastore.model.collectAsState
-import dev.patrickgold.jetpref.datastore.ui.Preference
-import dev.patrickgold.jetpref.datastore.ui.PreferenceGroup
 import java.text.NumberFormat
-import org.florisboard.lib.compose.FlorisIconButton
 import org.florisboard.lib.compose.stringRes
 
 /** How many transcripts the home screen previews before "See all". */
 private const val RECENT_COUNT = 3
 
+/** How long a failed dictation keeps its place on the home screen. */
+private const val RETRY_WINDOW_MS = 7L * 24 * 60 * 60 * 1000
+
 /**
  * The app's landing page, built around what people come back for: their recent dictations and their word
- * lists. Shortcuts to the other things worth one tap sit right under them; every settings category
- * follows as a plain list below.
+ * lists, with the other things worth one tap right under them. Every settings category sits one tap
+ * away behind the gear, in [AllSettingsScreen], so this page stays short.
  */
 @Composable
 fun HomeScreen() = FlorisScreen {
     title = stringRes(R.string.settings__home__title)
     navigationIconVisible = false
-    previewFieldVisible = true
+    // The keyboard test field lives with the settings now: the keyboard is the secondary way in.
+    previewFieldVisible = false
 
     val navController = LocalNavController.current
     val context = LocalContext.current
 
     actions {
-        FlorisIconButton(
-            onClick = { navController.navigate(Routes.Settings.Search) },
-            icon = Icons.Default.Search,
-        )
+        IconButton(onClick = { navController.navigate(Routes.Settings.All) }) {
+            Icon(Icons.Outlined.Settings, contentDescription = stringRes(R.string.settings__all__title))
+        }
     }
 
     content {
@@ -145,12 +139,23 @@ fun HomeScreen() = FlorisScreen {
         }
 
         val entries by remember { DictateHistoryStore.flow(context) }.collectFlowAsState(initial = emptyList())
+        // While a dictation is in flight its placeholder row already reads as failed (issue #358); no
+        // retry is offered then, the same rule DictateController.retranscribeHistoryEntry applies.
+        val dictateState by DictateController.state.collectFlowAsState()
+        val busy = dictateState is DictateController.UiState.Recording ||
+            dictateState is DictateController.UiState.Transcribing ||
+            dictateState is DictateController.UiState.Rewording
         RecentDictationsCard(
-            // The store floats pinned entries to the top; here it is about what was said last.
-            entries = remember(entries) { entries.sortedByDescending { it.createdAt }.take(RECENT_COUNT) },
+            entries = remember(entries) { recentEntries(entries, System.currentTimeMillis()) },
+            canRetry = !busy,
             onCopy = { entry ->
                 copyToClipboard(context, entry.text)
                 Toast.makeText(context, R.string.dictate__history_copied, Toast.LENGTH_SHORT).show()
+            },
+            onRetry = { entry ->
+                entry.audioPath?.let { path ->
+                    context.startActivity(TranscribeShareActivity.retryIntent(context, entry.id, path))
+                }
             },
             onSeeAll = { navController.navigate(Routes.Settings.DictateHistory) },
         )
@@ -161,14 +166,20 @@ fun HomeScreen() = FlorisScreen {
         }
         val providerId by prefs.dictate.transcriptionProviderId.collectAsState()
         val accounts by prefs.dictate.providerAccounts.collectAsState()
-        val providerName = remember(providerId, accounts) { providerDisplayName(providerId, accounts) }
+        // The model in use, or the provider's name when it has no model of its own to show.
+        val modelName = remember(providerId, accounts) {
+            val account = accounts.getOrEmpty(providerId)
+            account.transcriptionModel
+                .ifBlank { ImportTranscriber.presetFor(account).defaultTranscriptionModel ?: "" }
+                .ifBlank { providerDisplayName(providerId, accounts) }
+        }
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 4.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             QuickTile(
                 icon = Icons.Default.MenuBook,
-                label = stringRes(R.string.words__title),
+                label = stringRes(R.string.dictionary_hub__title),
                 detail = stringRes(R.string.home__words_detail),
                 onClick = { navController.navigate(Routes.Settings.Words) },
             )
@@ -181,7 +192,7 @@ fun HomeScreen() = FlorisScreen {
             QuickTile(
                 icon = Icons.Default.Cloud,
                 label = stringRes(R.string.home__ai_model),
-                detail = providerName,
+                detail = modelName,
                 onClick = { navController.navigate(Routes.Settings.DictateProviders) },
             )
         }
@@ -201,75 +212,6 @@ fun HomeScreen() = FlorisScreen {
 
         // Milestone celebrations are shown on the keyboard (Smartbar nudge), consistent with rate/donate
         // (issue #142) — see DictateController.showMilestoneNudge. Not surfaced here.
-
-        PreferenceGroup(title = stringRes(R.string.home__settings_group)) {
-            Preference(
-                icon = Icons.Default.Mic,
-                title = stringRes(R.string.dictate__title),
-                onClick = { navController.navigate(Routes.Settings.Dictate) },
-            )
-            Preference(
-                icon = Icons.Default.Language,
-                title = stringRes(R.string.settings__localization__title),
-                onClick = { navController.navigate(Routes.Settings.Localization) },
-            )
-            Preference(
-                icon = Icons.Outlined.Palette,
-                title = stringRes(R.string.settings__theme__title),
-                onClick = { navController.navigate(Routes.Settings.Theme) },
-            )
-            Preference(
-                icon = Icons.Outlined.Keyboard,
-                title = stringRes(R.string.settings__keyboard__title),
-                onClick = { navController.navigate(Routes.Settings.Keyboard) },
-            )
-            Preference(
-                icon = Icons.Default.SmartButton,
-                title = stringRes(R.string.settings__smartbar__title),
-                onClick = { navController.navigate(Routes.Settings.Smartbar) },
-            )
-            Preference(
-                icon = Icons.Default.Spellcheck,
-                title = stringRes(R.string.settings__typing__title),
-                onClick = { navController.navigate(Routes.Settings.Typing) },
-            )
-            Preference(
-                icon = Icons.Default.Gesture,
-                title = stringRes(R.string.settings__gestures__title),
-                onClick = { navController.navigate(Routes.Settings.Gestures) },
-            )
-            Preference(
-                icon = Icons.AutoMirrored.Outlined.Assignment,
-                title = stringRes(R.string.settings__clipboard__title),
-                onClick = { navController.navigate(Routes.Settings.Clipboard) },
-            )
-            Preference(
-                icon = Icons.Default.SentimentSatisfiedAlt,
-                title = stringRes(R.string.settings__media__title),
-                onClick = { navController.navigate(Routes.Settings.Media) },
-            )
-            // With the other tools the Smartbar opens (issue #424): it is one, and not a dictation feature.
-            Preference(
-                icon = Icons.Outlined.Translate,
-                title = stringRes(R.string.settings__translation__title),
-                onClick = { navController.navigate(Routes.Settings.Translation) },
-            )
-            Preference(
-                icon = Icons.Default.Extension,
-                title = stringRes(R.string.ext__home__title),
-                onClick = { navController.navigate(Routes.Ext.Home) },
-            )
-            Preference(
-                icon = Icons.Outlined.Build,
-                title = stringRes(R.string.settings__other__title),
-                onClick = { navController.navigate(Routes.Settings.Other) },
-            )
-            Preference(
-                icon = Icons.Outlined.Info,
-                title = stringRes(R.string.about__title),
-                onClick = { navController.navigate(Routes.Settings.About) },
-            )
-        }
     }
 }
 
@@ -297,10 +239,30 @@ private fun SetupCard(onFloatingButton: () -> Unit, onKeyboard: () -> Unit) {
     }
 }
 
+/** A failed dictation whose recording was kept, so it can be sent again. */
+private fun DictateHistoryEntry.isRetryable(): Boolean = failed && !audioPath.isNullOrEmpty()
+
+/**
+ * The newest [RECENT_COUNT] dictations, newest first. A failed one from the last [RETRY_WINDOW_MS] whose
+ * recording was kept always gets a row, taking the last slot if it is older than the rest: a lost
+ * dictation is the one entry somebody opens the app to find.
+ */
+internal fun recentEntries(all: List<DictateHistoryEntry>, nowMs: Long): List<DictateHistoryEntry> {
+    // The store floats pinned entries to the top; here it is about what was said last.
+    val newest = all.sortedByDescending { it.createdAt }
+    val shown = newest.take(RECENT_COUNT)
+    if (shown.any { it.isRetryable() }) return shown
+    val failed = newest.firstOrNull { it.isRetryable() && nowMs - it.createdAt <= RETRY_WINDOW_MS }
+        ?: return shown
+    return shown.take(RECENT_COUNT - 1) + failed
+}
+
 @Composable
 private fun RecentDictationsCard(
     entries: List<DictateHistoryEntry>,
+    canRetry: Boolean,
     onCopy: (DictateHistoryEntry) -> Unit,
+    onRetry: (DictateHistoryEntry) -> Unit,
     onSeeAll: () -> Unit,
 ) {
     Card(modifier = Modifier.padding(8.dp).fillMaxWidth()) {
@@ -337,8 +299,9 @@ private fun RecentDictationsCard(
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            entry.text,
+                            if (entry.failed) stringRes(R.string.home__recent_failed) else entry.text,
                             style = MaterialTheme.typography.bodyMedium,
+                            color = if (entry.failed) MaterialTheme.colorScheme.error else Color.Unspecified,
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis,
                         )
@@ -359,6 +322,12 @@ private fun RecentDictationsCard(
                             modifier = Modifier.size(18.dp),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
+                    } else if (entry.isRetryable()) {
+                        FilledTonalButton(onClick = { onRetry(entry) }, enabled = canRetry) {
+                            Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(stringRes(R.string.home__recent_retry))
+                        }
                     }
                 }
             }

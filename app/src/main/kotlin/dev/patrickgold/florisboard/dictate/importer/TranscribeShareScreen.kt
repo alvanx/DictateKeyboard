@@ -111,7 +111,7 @@ import java.io.File
  * summary is the payload, not the words.
  */
 @Composable
-fun TranscribeShareScreen(uris: List<Uri>, onClose: () -> Unit) {
+fun TranscribeShareScreen(uris: List<Uri>, onClose: () -> Unit, retryHistoryId: Long? = null) {
     val context = LocalContext.current
     val prefs by FlorisPreferenceStore
     val scope = rememberCoroutineScope()
@@ -229,7 +229,15 @@ fun TranscribeShareScreen(uris: List<Uri>, onClose: () -> Unit) {
                 // skip: it logged even with history switched off. That was a stray row until the folder
                 // export (issue #379) turned the same omission into files appearing on someone's disk.
                 withContext(Dispatchers.IO) {
-                    if (prefs.dictate.historyEnabled.get()) runCatching {
+                    // A retry of a failed dictation fills in that entry rather than logging a second one.
+                    if (retryHistoryId != null) runCatching {
+                        DictateHistoryStore.completePending(
+                            context = context,
+                            id = retryHistoryId,
+                            text = result,
+                            keepAudio = prefs.dictate.historyAudioRetention.get(),
+                        )
+                    } else if (prefs.dictate.historyEnabled.get()) runCatching {
                         val account = ImportTranscriber.accountFor(prefs)
                         val preset = ImportTranscriber.presetFor(account)
                         DictateHistoryStore.record(
