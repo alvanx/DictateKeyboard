@@ -146,6 +146,8 @@ class FlorisApplication : Application() {
             DictateLegacyMigrator.migrateDevanagariPunctuationRuleIfNeeded()
             DictateLegacyMigrator.reofferRateAndDonateIfNeeded()
             preferenceStoreLoaded.value = true
+            // Recordings saved while offline are transcribed by a system job, which a reboot forgets.
+            dev.patrickgold.florisboard.dictate.offline.OfflineDictationQueue.rescheduleIfPending(this@FlorisApplication)
             // Keep the Wear OS companion's settings snapshot fresh: re-publish whenever a watch-relevant
             // phone setting changes (#106), so the watch reflects accent/provider/key/prompt automatically.
             DictateWearPublisher.startPublishingOnChange(this@FlorisApplication, scope)

@@ -5,6 +5,10 @@
     <!-- Permission needed to vibrate if the user has key press vibration enabled -->
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Lets a dictation made with no connection say so straight away, and be transcribed by itself
+         once the connection is back (JobScheduler's network constraint needs it too). Read-only:
+         it reports whether a network exists, never which one or where. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- Buying credit packs for Dictate Cloud. The billing library declares this itself, but
          stating it here keeps it visible: without it in the uploaded build, the Play Console
          will not let in-app products be created at all. -->
@@ -135,6 +139,22 @@
         <service
             android:name="dev.patrickgold.florisboard.dictate.provider.ModelDownloadService"
             android:foregroundServiceType="dataSync"
+            android:exported="false"/>
+
+        <!-- Transcribes recordings that were saved while offline, once the connection is back. Run by the
+             system's JobScheduler (it only fires with a network); not exported. -->
+        <service
+            android:name="dev.patrickgold.florisboard.dictate.offline.OfflineQueueJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false"/>
+
+        <!-- Tap target of the "transcribed" notification: puts the text on the clipboard. An activity
+             rather than a receiver because Android only lets the app in front write the clipboard. -->
+        <activity
+            android:name="dev.patrickgold.florisboard.dictate.offline.OfflineTranscriptCopyActivity"
+            android:theme="@style/FlorisAppTheme.Transparent"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
             android:exported="false"/>
 
         <!-- On-device translation (issue #424). Its own process, bound only while the translate bar is

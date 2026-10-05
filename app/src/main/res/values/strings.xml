@@ -2436,6 +2436,15 @@
     <string name="dictate__history_age_days" comment="Retention value. {days} is a number of days">{days} days</string>
     <string name="dictate__history_age_never" comment="Retention value: keep entries forever">No limit</string>
     <string name="dictate__history_failed" comment="Placeholder text for a logged dictation whose transcription failed; its audio can be re-transcribed">Transcription failed — re-transcribe to retry</string>
+    <string name="dictate__history_waiting" comment="Placeholder text for a logged recording that is saved and will be transcribed automatically once the phone is back online">Waiting for a connection — will transcribe automatically</string>
+    <string name="dictate__offline_queued" comment="Short chip text after dictating with no internet: the recording is saved and will be transcribed later">Offline — saved, will transcribe later</string>
+    <string name="dictate__offline_queued_detail" comment="Detail shown when tapping the offline chip">You\'re offline. Your recording is saved and will be transcribed automatically when you\'re back online. The text will appear in your history, and you\'ll get a notification you can tap to copy it.</string>
+    <string name="dictate__offline_notif_channel" comment="Notification channel name for recordings that were transcribed after being saved offline">Saved recordings</string>
+    <string name="dictate__offline_notif_title" comment="Notification title: a recording made offline has now been transcribed">Recording transcribed</string>
+    <string name="dictate__offline_notif_hint" comment="Notification hint: tapping it copies the transcribed text">Tap to copy the text</string>
+    <string name="dictate__offline_notif_failed_title" comment="Notification title: a recording made offline could not be transcribed once back online">Couldn\'t transcribe a saved recording</string>
+    <string name="dictate__offline_notif_failed_text" comment="Notification text: where to retry a failed saved recording">Open your history to try again.</string>
+    <string name="dictate__offline_copied" comment="Toast after tapping the notification: the transcribed text was copied">Copied to clipboard</string>
     <string name="dictate__history_search" comment="Placeholder in the history search field">Search history</string>
     <string name="dictate__history_disk_usage" comment="Disk-usage line on the history screen. {size} is a file size like 12.3 MB">Retained audio: {size}</string>
     <string name="dictate__history_audio_missing" comment="Shown when a stored recording can no longer be played back">Recording is no longer available.</string>

@@ -35,7 +35,16 @@ import java.io.File
  */
 object PhoneTranscriber {
 
-    suspend fun transcribe(context: Context, prefs: FlorisPreferenceModel, audio: File): String {
+    /**
+     * [reword] is false for the offline queue: a recording that waited for a connection is delivered as
+     * the plain transcript, not run through the watch's auto-rewording setting.
+     */
+    suspend fun transcribe(
+        context: Context,
+        prefs: FlorisPreferenceModel,
+        audio: File,
+        reword: Boolean = true,
+    ): String {
         val id = prefs.dictate.transcriptionProviderId.get()
         val account = prefs.dictate.providerAccounts.get().getOrEmpty(id)
         val preset = presetFor(account)
@@ -72,7 +81,7 @@ object PhoneTranscriber {
         }
         // Auto-reword the tethered dictation here on the phone (#130), so the watch receives finished text
         // exactly like the phone produces — but only when the user kept auto-rewording on for the watch.
-        return maybeReword(context, prefs, transcript)
+        return if (reword) maybeReword(context, prefs, transcript) else transcript
     }
 
     /** Runs the shared rewording chain on [transcript] when the user enabled watch auto-rewording. */

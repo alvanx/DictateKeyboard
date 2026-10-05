@@ -116,6 +116,11 @@ interface DictateHistoryDao {
     )
     suspend fun updateText(id: Long, text: String, originalText: String)
 
+    // Rewrites only the caption of a row that is still waiting for its transcript: unlike [updateText] it
+    // leaves the failed flag alone, because the recording has not been transcribed yet.
+    @Query("UPDATE $DICTATE_HISTORY_TABLE SET text = :text WHERE ${BaseColumns._ID} = :id")
+    suspend fun setPlaceholderText(id: Long, text: String)
+
     @Query("UPDATE $DICTATE_HISTORY_TABLE SET pinned = :pinned WHERE ${BaseColumns._ID} = :id")
     suspend fun setPinned(id: Long, pinned: Boolean)
 
@@ -276,6 +281,15 @@ object DictateHistoryStore {
         db(context).dao().updateText(id, text, originalText)
         // The file already in the export folder now says something this entry no longer does.
         DictateHistoryExporter.enqueue(context, id)
+    }
+
+    /**
+     * Changes what a still-failed row says (e.g. "waiting for a connection") without marking it done.
+     * Not exported: a placeholder is a caption, not a dictation (issue #379).
+     */
+    suspend fun setPlaceholderText(context: Context, id: Long, text: String) {
+        if (text.isBlank()) return
+        db(context).dao().setPlaceholderText(id, text)
     }
 
     /**

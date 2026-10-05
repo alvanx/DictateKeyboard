@@ -296,6 +296,7 @@ does not require us to collect more information just to be able to (Art. 12(2)).
 | --- | --- |
 | `RECORD_AUDIO` | To capture your voice when you press the dictation button. |
 | `INTERNET` | To send audio/text to the AI provider you configured and receive the result. |
+| `ACCESS_NETWORK_STATE` | To tell whether the phone is online, so a recording made offline is saved and transcribed once the connection is back. It reports only whether a network is available, never which one or where. |
 | `MODIFY_AUDIO_SETTINGS` / `BLUETOOTH` | To route recording correctly, including through Bluetooth headsets. |
 | `VIBRATE` | Optional haptic feedback. |
 | `POST_NOTIFICATIONS` | To show status notifications (e.g. transcription progress) on Android 13+. |

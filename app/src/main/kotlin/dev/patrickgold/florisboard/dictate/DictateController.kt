@@ -48,6 +48,8 @@ import dev.patrickgold.florisboard.dictate.audio.SmartTurnModel
 import dev.patrickgold.florisboard.dictate.audio.Pcm16Resampler
 import dev.patrickgold.florisboard.dictate.audio.RecordingController
 import dev.patrickgold.florisboard.dictate.audio.SpeechGate
+import dev.patrickgold.florisboard.dictate.offline.DictateConnectivity
+import dev.patrickgold.florisboard.dictate.offline.OfflineDictationQueue
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloud
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloudApi
 import dev.patrickgold.florisboard.dictate.data.prompts.CommandTrigger
@@ -1974,6 +1976,13 @@ object DictateController {
                     ).transcribe(request)
                 } else {
                     try {
+                        // No network at all: fail now, as the same kind of error a dead connection ends in,
+                        // instead of waiting out the provider's retries. It lands in the handling below, so
+                        // the on-device fallback (#104) still gets its turn, and without one the recording
+                        // is queued for when the connection returns.
+                        if (DictateConnectivity.isOffline(appContext)) {
+                            throw DictateApiException(DictateApiException.Kind.NETWORK, "No network connection")
+                        }
                         OpenAiCompatibleClient.from(
                             preset, apiKey,
                             baseUrlOverride = baseUrlOverrideFor(account),
@@ -2094,12 +2103,28 @@ object DictateController {
                     historyId = pendingHistoryId ?: replayHistoryId,
                     force = e.kind in EXPORTABLE_ERROR_KINDS,
                 )
-                _state.value = apiError(
+                val error = apiError(
                     e, appContext, canResend = keepAudio,
                     suggestOnDevice = !ranOnDevice && shouldSuggestOnDevice(appContext, e.kind, preset),
                     stage = stage,
                     onDevice = ranOnDevice,
                 )
+                // The recording never reached a provider because there was no connection: it is saved in
+                // the history, so say so, and have it transcribed by itself once the connection is back.
+                // Only for the transcription itself — a rewording that fails offline has its transcript.
+                val queueId = pendingHistoryId ?: replayHistoryId
+                val queued = e.kind == DictateApiException.Kind.NETWORK &&
+                    stage == Stage.TRANSCRIPTION && !ranOnDevice && queueId != null &&
+                    OfflineDictationQueue.enqueue(appContext, queueId)
+                _state.value = if (queued) {
+                    error.copy(
+                        message = appContext.getString(R.string.dictate__offline_queued),
+                        detail = appContext.getString(R.string.dictate__offline_queued_detail),
+                        neutral = true,
+                    )
+                } else {
+                    error
+                }
             } catch (t: Throwable) {
                 outcome = "unexpectedError"
                 val stage = stageOf(_state.value)
