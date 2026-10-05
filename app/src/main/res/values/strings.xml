@@ -292,6 +292,25 @@
     <string name="settings__home__title" comment="Title of the Home screen">Welcome to {app_name}</string>
     <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when the keyboard is not enabled in the system">{app_name} is not enabled in the system and thus won\'t be available as an input method in the input picker. Click here to resolve this issue.</string>
     <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when the keyboard is not selected as the default keyboard">{app_name} is not selected as the default input method. Click here to resolve this issue.</string>
+    <string name="home__setup_title" comment="Home screen card shown while neither the floating button nor the keyboard is set up">Turn on dictation</string>
+    <string name="home__setup_body" comment="Body of the home setup card">Dictate into any app with the floating mic button, or switch to the {app_name} keyboard.</string>
+    <string name="home__setup_floating_button" comment="Button on the home setup card that opens the floating button settings">Floating button</string>
+    <string name="home__setup_keyboard" comment="Button on the home setup card that opens the system keyboard settings">Keyboard</string>
+    <string name="home__recent_title" comment="Title of the recent dictations card on the home screen">Recent dictations</string>
+    <string name="home__recent_see_all" comment="Button on the recent dictations card that opens the full history">See all</string>
+    <string name="home__recent_copy" comment="Accessibility label of the copy icon on a recent dictation row">Copy</string>
+    <string name="home__words_detail" comment="Second line of the Words tile on the home screen">Names &amp; terms</string>
+    <string name="home__transcribe_file" comment="Home tile that opens the file picker to transcribe an audio file">Transcribe a file</string>
+    <string name="home__transcribe_file_detail" comment="Second line of the Transcribe a file tile">Audio or video</string>
+    <string name="home__ai_model" comment="Home tile that opens the AI providers screen; its second line names the current provider">AI service</string>
+    <string name="home__stats_summary" comment="Home time-saved strip, after the bold duration. {count} is the number of dictations">saved · {count} dictations</string>
+    <string name="home__settings_group" comment="Header above the list of settings categories on the home screen">Settings</string>
+    <string name="words__title" comment="Title of the Words screen gathering every word list, and of its home tile">Words</string>
+    <string name="words__dictation_group" comment="Words screen group: lists used when dictating">For dictation</string>
+    <string name="words__typing_group" comment="Words screen group: lists used by the keyboard when typing">For typing</string>
+    <string name="words__personal_dictionary" comment="Words screen row opening the keyboard's own user dictionary">Personal dictionary</string>
+    <string name="words__personal_dictionary_summary" comment="Summary of the personal dictionary row">Words the keyboard suggests and never corrects</string>
+    <string name="words__dictionary_settings_summary" comment="Summary of the row opening all keyboard dictionary settings">Phone dictionary, learning and more</string>
 
     <string name="settings__search__title" comment="Title of the settings search screen">Search settings</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Search settings…</string>

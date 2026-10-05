@@ -648,7 +648,7 @@ fun DictateLayoutScreen() = FlorisScreen {
  * the [ProviderRegistry], user-defined endpoints from their stored display name in the keyring, falling
  * back to the raw id if neither is available.
  */
-private fun providerDisplayName(id: String, accounts: ProviderAccounts): String {
+internal fun providerDisplayName(id: String, accounts: ProviderAccounts): String {
     ProviderRegistry.byId(id)?.let { return it.displayName }
     return accounts[id]?.displayName?.takeIf { it.isNotBlank() } ?: id
 }

@@ -962,7 +962,7 @@ private fun historyRowMeta(entry: DictateHistoryEntry): String {
     return parts.joinToString(" · ")
 }
 
-private fun copyToClipboard(context: Context, text: String) {
+internal fun copyToClipboard(context: Context, text: String) {
     val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     cm.setPrimaryClip(ClipData.newPlainText("Dictate", text))
 }
