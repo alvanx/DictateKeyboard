@@ -26,7 +26,6 @@ import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.TouchApp
 import androidx.compose.material.icons.filled.Brush
 import androidx.compose.material.icons.filled.BlurOn
-import androidx.compose.material.icons.filled.ColorLens
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Keyboard
 import androidx.compose.material.icons.filled.PinDrop
@@ -67,6 +66,9 @@ import dev.patrickgold.florisboard.app.settings.search.settingsSearchAnchor
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.app.LocalNavController
 import dev.patrickgold.florisboard.app.Routes
+import dev.patrickgold.florisboard.app.settings.MainTab
+import dev.patrickgold.florisboard.app.settings.navigateToTab
+import dev.patrickgold.florisboard.app.settings.style.charmLabel
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonAppScope
 import dev.patrickgold.florisboard.dictate.overlay.BubbleMenuAction
 import dev.patrickgold.florisboard.dictate.overlay.DictateAccessibilityService
@@ -74,13 +76,10 @@ import dev.patrickgold.florisboard.lib.compose.FlorisScreen
 import dev.patrickgold.jetpref.datastore.model.collectAsState
 import dev.patrickgold.jetpref.material.ui.JetPrefAlertDialog
 import org.florisboard.lib.compose.rippleClickable
-import dev.patrickgold.florisboard.dictate.DictateFloatingButtonDesign
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonFade
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonShowWhen
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonSize
 import kotlinx.coroutines.launch
-import org.florisboard.lib.color.ColorMappings
-import dev.patrickgold.jetpref.datastore.ui.ColorPickerPreference
 import dev.patrickgold.jetpref.datastore.ui.ListPreference
 import dev.patrickgold.jetpref.datastore.ui.Preference
 import dev.patrickgold.jetpref.datastore.ui.PreferenceGroup
@@ -219,43 +218,13 @@ fun DictateFloatingButtonScreen() = FlorisScreen {
                 onClick = { navController.navigate(Routes.Settings.DictateFloatingButtonApps) },
             )
 
-            ListPreference(
-                prefs.dictate.floatingButtonDesign,
+            // The button's look (charm, design, colour) is picked on the Style tab now.
+            val charm by prefs.dictate.floatingButtonCharm.collectAsState()
+            Preference(
                 icon = Icons.Default.Brush,
-                modifier = Modifier.settingsSearchAnchor("dictate__floating_button_design_title"),
-                title = stringRes(R.string.dictate__floating_button_design_title),
-                entries = listPrefEntries {
-                    entry(
-                        DictateFloatingButtonDesign.PILL,
-                        stringRes(R.string.dictate__floating_button_design_pill),
-                        stringRes(R.string.dictate__floating_button_design_pill_summary),
-                    )
-                    entry(
-                        DictateFloatingButtonDesign.RING,
-                        stringRes(R.string.dictate__floating_button_design_ring),
-                        stringRes(R.string.dictate__floating_button_design_ring_summary),
-                    )
-                    entry(
-                        DictateFloatingButtonDesign.ORB,
-                        stringRes(R.string.dictate__floating_button_design_orb),
-                        stringRes(R.string.dictate__floating_button_design_orb_summary),
-                    )
-                    entry(
-                        DictateFloatingButtonDesign.CLOUD,
-                        stringRes(R.string.dictate__floating_button_design_cloud),
-                        stringRes(R.string.dictate__floating_button_design_cloud_summary),
-                    )
-                    entry(
-                        DictateFloatingButtonDesign.AURORA,
-                        stringRes(R.string.dictate__floating_button_design_aurora),
-                        stringRes(R.string.dictate__floating_button_design_aurora_summary),
-                    )
-                    entry(
-                        DictateFloatingButtonDesign.LATTICE,
-                        stringRes(R.string.dictate__floating_button_design_lattice),
-                        stringRes(R.string.dictate__floating_button_design_lattice_summary),
-                    )
-                },
+                title = stringRes(R.string.nav__style),
+                summary = stringRes(R.string.style__look_summary, "charm" to charmLabel(charm)),
+                onClick = { navController.navigateToTab(MainTab.STYLE) },
             )
 
             ListPreference(
@@ -286,18 +255,6 @@ fun DictateFloatingButtonScreen() = FlorisScreen {
                 title = stringRes(R.string.dictate__floating_button_snap_title),
                 summaryOn = stringRes(R.string.dictate__floating_button_snap_summary_on),
                 summaryOff = stringRes(R.string.dictate__floating_button_snap_summary_off),
-            )
-
-            ColorPickerPreference(
-                prefs.dictate.floatingButtonColor,
-                icon = Icons.Default.ColorLens,
-                modifier = Modifier.settingsSearchAnchor("dictate__floating_button_color_title"),
-                title = stringRes(R.string.dictate__floating_button_color_title),
-                defaultValueLabel = stringRes(R.string.action__default),
-                showAlphaSlider = false,
-                defaultColors = ColorMappings.colors,
-                // Enable the full RGB/HSV picker (not just the preset palette), matching the accent color.
-                enableAdvancedLayout = true,
             )
 
             ListPreference(

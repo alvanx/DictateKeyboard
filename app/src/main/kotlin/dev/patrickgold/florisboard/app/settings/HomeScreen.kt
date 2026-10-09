@@ -20,11 +20,16 @@ import android.text.format.DateUtils
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -34,53 +39,45 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.AudioFile
-import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.History
-import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.filled.Schedule
+import androidx.compose.material.icons.outlined.Keyboard
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState as collectFlowAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.LocalNavController
 import dev.patrickgold.florisboard.app.Routes
 import dev.patrickgold.florisboard.app.settings.dictate.copyToClipboard
-import dev.patrickgold.florisboard.app.settings.dictate.isOverlayServiceEnabled
-import dev.patrickgold.florisboard.app.settings.dictate.providerDisplayName
+import dev.patrickgold.florisboard.app.settings.style.MicCharm
+import dev.patrickgold.florisboard.app.settings.style.charmLabel
 import dev.patrickgold.florisboard.dictate.DictateController
+import dev.patrickgold.florisboard.dictate.DictateMicCharm
 import dev.patrickgold.florisboard.dictate.data.history.DictateHistoryEntry
 import dev.patrickgold.florisboard.dictate.data.history.DictateHistoryStore
 import dev.patrickgold.florisboard.dictate.data.stats.DictateStats
-import dev.patrickgold.florisboard.dictate.importer.ImportTranscriber
 import dev.patrickgold.florisboard.dictate.importer.TranscribeShareActivity
 import dev.patrickgold.florisboard.lib.compose.FlorisScreen
 import dev.patrickgold.florisboard.lib.util.InputMethodUtils
@@ -95,47 +92,47 @@ private const val RECENT_COUNT = 3
 private const val RETRY_WINDOW_MS = 7L * 24 * 60 * 60 * 1000
 
 /**
- * The app's landing page, built around what people come back for: their recent dictations and their word
- * lists, with the other things worth one tap right under them. Every settings category sits one tap
- * away behind the gear, in [AllSettingsScreen], so this page stays short.
+ * The Home tab, built around what people come back for: the mic button and their recent dictations.
+ * The other tabs hold the rest — Style the button's look, Dictionary the word lists, Settings everything
+ * else — so this page stays short. Transcribing a file is the one action with a button of its own.
  */
 @Composable
 fun HomeScreen() = FlorisScreen {
     title = stringRes(R.string.settings__home__title)
     navigationIconVisible = false
-    // The keyboard test field lives with the settings now: the keyboard is the secondary way in.
+    // The keyboard test field lives with the settings: the keyboard is the secondary way in.
     previewFieldVisible = false
 
     val navController = LocalNavController.current
     val context = LocalContext.current
 
-    actions {
-        IconButton(onClick = { navController.navigate(Routes.Settings.All) }) {
-            Icon(Icons.Outlined.Settings, contentDescription = stringRes(R.string.settings__all__title))
+    // "Transcribe a file" (issue #301): the page's one action, so it gets the floating button.
+    floatingActionButton {
+        val transcribePicker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            if (uri != null) context.startActivity(TranscribeShareActivity.intentFor(context, uri))
         }
+        ExtendedFloatingActionButton(
+            onClick = { transcribePicker.launch(TranscribeShareActivity.MIME_TYPES) },
+            icon = { Icon(Icons.Default.AudioFile, contentDescription = null) },
+            text = { Text(stringRes(R.string.home__transcribe_file)) },
+        )
     }
 
     content {
-        // Setup, only while there is no way to dictate at all. The floating button is the main way in
-        // now and the keyboard the second, so either one being ready is enough — the old "not selected
-        // as default keyboard" nag would only bother somebody who dictates through the button.
-        val lifecycleOwner = LocalLifecycleOwner.current
-        val isImeEnabled by InputMethodUtils.observeIsFlorisboardEnabled(foregroundOnly = true)
-        val bubbleEnabled by prefs.dictate.floatingButtonEnabled.collectAsState()
-        var bubbleServiceEnabled by remember { mutableStateOf(isOverlayServiceEnabled(context)) }
-        DisposableEffect(lifecycleOwner) {
-            // The accessibility service is switched on in system settings, so re-check on return.
-            val observer = LifecycleEventObserver { _, event ->
-                if (event == Lifecycle.Event.ON_RESUME) bubbleServiceEnabled = isOverlayServiceEnabled(context)
-            }
-            lifecycleOwner.lifecycle.addObserver(observer)
-            onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
-        }
-        if (!isImeEnabled && !(bubbleEnabled && bubbleServiceEnabled)) {
-            SetupCard(
-                onFloatingButton = { navController.navigate(Routes.Settings.DictateFloatingButton) },
-                onKeyboard = { InputMethodUtils.showImeEnablerActivity(context) },
-            )
+        // The floating button is the main way in and the keyboard the second, so the button always has
+        // its card here and the keyboard only asks for a row while it is off.
+        val charm by prefs.dictate.floatingButtonCharm.collectAsState()
+        val color by prefs.dictate.floatingButtonColor.collectAsState()
+        val buttonOn = rememberMicButtonOn()
+        MicButtonCard(
+            charm = charm,
+            color = color,
+            on = buttonOn,
+            onChangeLook = { navController.navigateToTab(MainTab.STYLE) },
+            onTurnOn = { navController.navigate(Routes.Settings.DictateFloatingButton) },
+        )
+        if (!rememberKeyboardOn()) {
+            KeyboardRow(onTurnOn = { InputMethodUtils.showImeEnablerActivity(context) })
         }
 
         val entries by remember { DictateHistoryStore.flow(context) }.collectFlowAsState(initial = emptyList())
@@ -160,43 +157,6 @@ fun HomeScreen() = FlorisScreen {
             onSeeAll = { navController.navigate(Routes.Settings.DictateHistory) },
         )
 
-        // "Transcribe a file" (issue #301) stays one tap from the top, now as a labelled tile.
-        val transcribePicker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
-            if (uri != null) context.startActivity(TranscribeShareActivity.intentFor(context, uri))
-        }
-        val providerId by prefs.dictate.transcriptionProviderId.collectAsState()
-        val accounts by prefs.dictate.providerAccounts.collectAsState()
-        // The model in use, or the provider's name when it has no model of its own to show.
-        val modelName = remember(providerId, accounts) {
-            val account = accounts.getOrEmpty(providerId)
-            account.transcriptionModel
-                .ifBlank { ImportTranscriber.presetFor(account).defaultTranscriptionModel ?: "" }
-                .ifBlank { providerDisplayName(providerId, accounts) }
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 4.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            QuickTile(
-                icon = Icons.Default.MenuBook,
-                label = stringRes(R.string.dictionary_hub__title),
-                detail = stringRes(R.string.home__words_detail),
-                onClick = { navController.navigate(Routes.Settings.Words) },
-            )
-            QuickTile(
-                icon = Icons.Default.AudioFile,
-                label = stringRes(R.string.home__transcribe_file),
-                detail = stringRes(R.string.home__transcribe_file_detail),
-                onClick = { transcribePicker.launch(TranscribeShareActivity.MIME_TYPES) },
-            )
-            QuickTile(
-                icon = Icons.Default.Cloud,
-                label = stringRes(R.string.home__ai_model),
-                detail = modelName,
-                onClick = { navController.navigate(Routes.Settings.DictateProviders) },
-            )
-        }
-
         // Passive dictation-stats summary (issue #142): appears once the user has dictated, taps through
         // to the full statistics screen. No interruption — just a glanceable "time saved".
         val statDictations by prefs.dictate.statsDictations.collectAsState()
@@ -209,32 +169,98 @@ fun HomeScreen() = FlorisScreen {
                 onClick = { navController.navigate(Routes.Settings.DictateStats) },
             )
         }
+        // Room for the floating button, so it never covers the last card.
+        Spacer(modifier = Modifier.height(88.dp))
 
         // Milestone celebrations are shown on the keyboard (Smartbar nudge), consistent with rate/donate
         // (issue #142) — see DictateController.showMilestoneNudge. Not surfaced here.
     }
 }
 
+/** The mic button as it looks now, gently moving, with the way to change it or switch it on. */
 @Composable
-private fun SetupCard(onFloatingButton: () -> Unit, onKeyboard: () -> Unit) {
+private fun MicButtonCard(
+    charm: DictateMicCharm,
+    color: Color,
+    on: Boolean,
+    onChangeLook: () -> Unit,
+    onTurnOn: () -> Unit,
+) {
     Card(
         modifier = Modifier.padding(8.dp).fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.errorContainer,
-            contentColor = MaterialTheme.colorScheme.onErrorContainer,
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
         ),
     ) {
-        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(
-                stringRes(R.string.home__setup_title),
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            // A slow idle bloom: alive on the page that shows it off, never on top of other apps.
+            val transition = rememberInfiniteTransition(label = "idle")
+            val t by transition.animateFloat(
+                initialValue = 0f,
+                targetValue = if (charm == DictateMicCharm.CLASSIC) 0f else 1f,
+                animationSpec = infiniteRepeatable(tween(2000, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+                label = "bloom",
             )
-            Text(stringRes(R.string.home__setup_body), style = MaterialTheme.typography.bodyMedium)
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(onClick = onFloatingButton) { Text(stringRes(R.string.home__setup_floating_button)) }
-                OutlinedButton(onClick = onKeyboard) { Text(stringRes(R.string.home__setup_keyboard)) }
+            MicCharm(
+                charm = charm,
+                color = color,
+                modifier = Modifier
+                    .size(64.dp)
+                    .graphicsLayer {
+                        scaleX = 0.96f + 0.06f * t
+                        scaleY = scaleX
+                        rotationZ = 10f * t
+                    },
+            )
+            Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                Text(
+                    stringRes(R.string.home__mic_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    if (on) stringRes(R.string.home__mic_on, "charm" to charmLabel(charm))
+                    else stringRes(R.string.home__mic_off),
+                    style = MaterialTheme.typography.bodySmall,
+                )
+                Row(
+                    modifier = Modifier.padding(top = 6.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    if (!on) {
+                        Button(onClick = onTurnOn) { Text(stringRes(R.string.home__turn_on)) }
+                    }
+                    OutlinedButton(onClick = onChangeLook) { Text(stringRes(R.string.home__mic_change_look)) }
+                }
             }
+        }
+    }
+}
+
+/** The keyboard, only while it is off: the second way to dictate, one tap from being on. */
+@Composable
+private fun KeyboardRow(onTurnOn: () -> Unit) {
+    Card(modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp).fillMaxWidth()) {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 8.dp, top = 8.dp, bottom = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Icon(Icons.Outlined.Keyboard, contentDescription = null)
+            Column(modifier = Modifier.weight(1f)) {
+                Text(stringRes(R.string.home__keyboard_title), style = MaterialTheme.typography.titleSmall)
+                Text(
+                    stringRes(R.string.home__keyboard_off),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            FilledTonalButton(onClick = onTurnOn) { Text(stringRes(R.string.home__turn_on)) }
         }
     }
 }
@@ -332,37 +358,6 @@ private fun RecentDictationsCard(
                 }
             }
             Spacer(modifier = Modifier.height(4.dp))
-        }
-    }
-}
-
-@Composable
-private fun RowScope.QuickTile(
-    icon: ImageVector,
-    label: String,
-    detail: String,
-    onClick: () -> Unit,
-) {
-    Card(onClick = onClick, modifier = Modifier.weight(1f)) {
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-        ) {
-            Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-            Text(
-                label,
-                style = MaterialTheme.typography.labelLarge,
-                maxLines = 2,
-                minLines = 2,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Text(
-                detail,
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
         }
     }
 }

@@ -28,6 +28,8 @@ import dev.patrickgold.florisboard.dictate.DictateFloatingButtonDesign
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonFade
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonShowWhen
 import dev.patrickgold.florisboard.dictate.DictateLongformMode
+import dev.patrickgold.florisboard.dictate.DictateMicCharm
+import dev.patrickgold.florisboard.dictate.DictateMicMotion
 import dev.patrickgold.florisboard.dictate.audio.AudioSpeedUp
 import dev.patrickgold.florisboard.dictate.audio.DictateAudioSource
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonSize
@@ -585,6 +587,17 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__floating_button_color",
             default = Color(0xFF30B7E6),
             serializer = ColorPreferenceSerializer,
+        )
+        // The look picked on the Style tab: a charm (daisy, butterfly…) in place of the round button, or
+        // CLASSIC to keep floatingButtonDesign. The charm takes floatingButtonColor as its colour.
+        val floatingButtonCharm = enum(
+            key = "dictate__floating_button_charm",
+            default = DictateMicCharm.CLASSIC,
+        )
+        // How a charm moves while it listens (Style tab). Ignored by the classic designs.
+        val floatingButtonMotion = enum(
+            key = "dictate__floating_button_motion",
+            default = DictateMicMotion.BLOOM,
         )
         // How far the button fades + shrinks while unused. Replaces the boolean
         // `dictate__floating_button_auto_dim`, which migrate() carries over. See DictateFloatingButtonFade.
