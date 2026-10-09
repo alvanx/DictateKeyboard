@@ -29,7 +29,6 @@ import dev.patrickgold.florisboard.dictate.DictateFloatingButtonFade
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonShowWhen
 import dev.patrickgold.florisboard.dictate.DictateLongformMode
 import dev.patrickgold.florisboard.dictate.DictateMicCharm
-import dev.patrickgold.florisboard.dictate.DictateMicMotion
 import dev.patrickgold.florisboard.dictate.audio.AudioSpeedUp
 import dev.patrickgold.florisboard.dictate.audio.DictateAudioSource
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonSize
@@ -588,16 +587,23 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             default = Color(0xFF30B7E6),
             serializer = ColorPreferenceSerializer,
         )
-        // The look picked on the Style tab: a charm (daisy, butterfly…) in place of the round button, or
-        // CLASSIC to keep floatingButtonDesign. The charm takes floatingButtonColor as its colour.
+        // The look picked on the Style tab: a charm (daisy, mixtape, neon…) in place of the round button, or
+        // CLASSIC to keep floatingButtonDesign, which takes floatingButtonColor as its colour.
         val floatingButtonCharm = enum(
             key = "dictate__floating_button_charm",
             default = DictateMicCharm.CLASSIC,
         )
-        // How a charm moves while it listens (Style tab). Ignored by the classic designs.
-        val floatingButtonMotion = enum(
-            key = "dictate__floating_button_motion",
-            default = DictateMicMotion.BLOOM,
+        // The colour of a charm that takes one; transparent means the charm's own (DictateMicCharm.resolveColor).
+        // Separate from floatingButtonColor, so a white daisy does not repaint the classic button white.
+        val floatingButtonCharmColor = custom(
+            key = "dictate__floating_button_charm_color",
+            default = Color.Transparent,
+            serializer = ColorPreferenceSerializer,
+        )
+        // Whether a charm moves its own way (blooms, spins its reels…) while it listens.
+        val floatingButtonCharmAnimated = boolean(
+            key = "dictate__floating_button_charm_animated",
+            default = true,
         )
         // How far the button fades + shrinks while unused. Replaces the boolean
         // `dictate__floating_button_auto_dim`, which migrate() carries over. See DictateFloatingButtonFade.

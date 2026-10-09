@@ -63,7 +63,6 @@ import dev.patrickgold.florisboard.dictate.DictateFloatingButtonFade
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonShowWhen
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonSize
 import dev.patrickgold.florisboard.dictate.DictateMicCharm
-import dev.patrickgold.florisboard.dictate.DictateMicMotion
 import dev.patrickgold.florisboard.dictate.MicCharmPainter
 import dev.patrickgold.florisboard.dictate.data.prompts.PromptModel
 import dev.patrickgold.florisboard.dictate.data.prompts.PromptsDatabaseHelper
@@ -153,7 +152,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
     private var menuView: View? = null
     private var menuAdded = false
 
-    private var currentLook = Look(DictateFloatingButtonDesign.PILL, DictateMicCharm.CLASSIC, DictateMicMotion.BLOOM)
+    private var currentLook = Look(DictateFloatingButtonDesign.PILL, DictateMicCharm.CLASSIC, 0, true)
     private var sizeScale = DictateFloatingButtonSize.MEDIUM.scale
     private var accentColor = 0xFF30B7E6.toInt()
 
@@ -247,7 +246,9 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
     private data class Look(
         val design: DictateFloatingButtonDesign,
         val charm: DictateMicCharm,
-        val motion: DictateMicMotion,
+        /** The charm's colour as picked; 0 for its own. See [DictateMicCharm.resolveColor]. */
+        val charmColor: Int,
+        val animated: Boolean,
     )
 
     /** [Inputs] plus the design/size/color prefs and the IME-visible signal; one combined emission. */
@@ -289,9 +290,10 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
             val look = combine(
                 prefs.dictate.floatingButtonDesign.asFlow(),
                 prefs.dictate.floatingButtonCharm.asFlow(),
-                prefs.dictate.floatingButtonMotion.asFlow(),
-            ) { design, charm, motion ->
-                Look(design, charm, motion)
+                prefs.dictate.floatingButtonCharmColor.asFlow(),
+                prefs.dictate.floatingButtonCharmAnimated.asFlow(),
+            ) { design, charm, charmColor, animated ->
+                Look(design, charm, charmColor.toArgb(), animated)
             }
             val emissions = combine(
                 base,
@@ -888,7 +890,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
 
     private fun createView(): View {
         val newSkin = if (currentLook.charm != DictateMicCharm.CLASSIC) {
-            CharmSkin(context, currentLook.charm, currentLook.motion)
+            CharmSkin(context, currentLook.charm, currentLook.charm.resolveColor(currentLook.charmColor), currentLook.animated)
         } else when (currentLook.design) {
             DictateFloatingButtonDesign.RING -> RingSkin(context)
             DictateFloatingButtonDesign.PILL -> PillSkin(context)
@@ -2782,17 +2784,19 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
     // --- Charm skin (Style tab) ------------------------------------------------------------------
 
     /**
-     * A charm picked on the Style tab — a daisy, a butterfly, a heart… — in place of the round button.
+     * A look picked on the Style tab — a daisy, a mixtape, a neon sign… — in place of the round button.
      *
-     * Same 64dp window as the orb, with the charm a little smaller than it so there is room to bloom and
-     * pulse without being clipped. It stays still at rest, since it sits on screen all day; while it
-     * listens it moves the way the user chose, with a ripple in the recording colour behind it, and while
-     * the transcript is being worked on it breathes slowly whatever the choice, so it still says "busy".
+     * Same 64dp window as the orb, with the look a little smaller than it, so it has room to bloom, sway
+     * and glow without being clipped. It stays still at rest, since it sits on screen all day. While it
+     * listens it moves its own way (unless the user turned that off), with a ripple in the recording colour
+     * behind it; while the transcript is worked on it breathes slowly, so it still says "busy". The
+     * drawing and the movement both come from [MicCharmPainter], the same code the Style tab previews with.
      */
     private inner class CharmSkin(
         context: Context,
         private val charm: DictateMicCharm,
-        private val motion: DictateMicMotion,
+        private val charmColor: Int,
+        private val animated: Boolean,
     ) : BubbleSkin {
         private val viewSize = sdp(64)
         private val charmSize = sdp(54)
@@ -2809,30 +2813,30 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
 
         override val root: View = FrameLayout(context).apply {
             addView(halo, FrameLayout.LayoutParams(viewSize, viewSize))
-            addView(body, FrameLayout.LayoutParams(charmSize, charmSize, Gravity.CENTER))
+            addView(body, FrameLayout.LayoutParams(viewSize, viewSize))
         }
 
         override fun applyState(state: DictateController.UiState) {
             stopAnims()
             when (state) {
                 is DictateController.UiState.Recording -> {
-                    body.setGlyph(R.drawable.ic_dictate_overlay_stop)
+                    body.setSign(R.drawable.ic_dictate_overlay_stop)
                     smoothed = 0f
                     startHalo()
-                    startMotion()
+                    if (animated) startMove()
                 }
                 is DictateController.UiState.Transcribing,
                 is DictateController.UiState.Rewording -> {
-                    body.setGlyph(R.drawable.ic_dictate_overlay_mic)
+                    body.setSign(R.drawable.ic_dictate_overlay_mic)
                     startBreathe()
                 }
-                else -> body.setGlyph(R.drawable.ic_dictate_overlay_mic)
+                else -> body.setSign(R.drawable.ic_dictate_overlay_mic)
             }
         }
 
         override fun showFlash(kind: FlashKind) {
             stopAnims()
-            body.setGlyph(
+            body.setSign(
                 when (kind) {
                     FlashKind.ERROR -> R.drawable.ic_dictate_overlay_error
                     FlashKind.SUCCESS -> R.drawable.ic_dictate_overlay_check
@@ -2847,44 +2851,36 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
 
         override fun destroy() = stopAnims()
 
-        /** The chosen movement, on a loop for as long as the recording runs. */
-        private fun startMotion() {
-            val (period, frame) = when (motion) {
-                DictateMicMotion.BLOOM -> 1200L to { t: Float ->
-                    body.scaleX = 0.94f + 0.13f * t
-                    body.scaleY = body.scaleX
-                    body.rotation = 14f * t
-                }
-                DictateMicMotion.FLUTTER -> 250L to { t: Float -> body.scaleX = 1f - 0.42f * t }
-                DictateMicMotion.PULSE -> 600L to { t: Float ->
-                    body.scaleX = 1f + 0.09f * t
-                    body.scaleY = body.scaleX
-                }
-                DictateMicMotion.STILL -> return
+        /** The look's own movement, looped for as long as the recording runs. */
+        private fun startMove() {
+            moveAnim = loop(charm.move.periodMs) { t ->
+                body.t = t
+                body.invalidate()
             }
-            moveAnim = loop(period, ValueAnimator.REVERSE) { frame(it) }
         }
 
         private fun startBreathe() {
-            moveAnim = loop(1100L, ValueAnimator.REVERSE) { t ->
-                body.scaleX = 1f + 0.05f * t
-                body.scaleY = body.scaleX
+            moveAnim = loop(2200L) { t ->
+                val s = 1f + 0.05f * ((1f - kotlin.math.cos(2f * Math.PI.toFloat() * t)) / 2f)
+                body.scaleX = s
+                body.scaleY = s
             }
         }
 
         private fun startHalo() {
             halo.color = color(R.color.dictate_overlay_recording)
-            haloAnim = loop(1600L, ValueAnimator.RESTART) { t ->
+            haloAnim = loop(1600L) { t ->
                 halo.phase = t
                 halo.invalidate()
             }
         }
 
-        private fun loop(period: Long, mode: Int, onFrame: (Float) -> Unit): ValueAnimator =
+        private fun loop(period: Long, onFrame: (Float) -> Unit): ValueAnimator =
             ValueAnimator.ofFloat(0f, 1f).apply {
                 duration = period
+                interpolator = LinearInterpolator()
                 repeatCount = ValueAnimator.INFINITE
-                repeatMode = mode
+                repeatMode = ValueAnimator.RESTART
                 addUpdateListener { onFrame(it.animatedValue as Float) }
                 start()
             }
@@ -2896,25 +2892,33 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
             haloAnim = null
             body.scaleX = 1f
             body.scaleY = 1f
-            body.rotation = 0f
+            body.t = 0f
+            body.invalidate()
             halo.phase = -1f
             halo.invalidate()
         }
 
         private inner class CharmView(context: Context) : View(context) {
-            private var glyph: android.graphics.drawable.Drawable? = null
+            private var sign: android.graphics.drawable.Drawable? = null
+            private var signIsMic = true
+            var t = 0f
 
-            fun setGlyph(resId: Int) {
-                glyph = ContextCompat.getDrawable(context, resId)?.mutate()
+            fun setSign(resId: Int) {
+                sign = ContextCompat.getDrawable(context, resId)?.mutate()
+                signIsMic = resId == R.drawable.ic_dictate_overlay_mic
                 invalidate()
             }
 
             override fun onDraw(canvas: Canvas) {
-                MicCharmPainter.draw(canvas, charm, accentColor, width.toFloat(), glyph)
+                val inset = (width - charmSize) / 2f
+                canvas.save()
+                canvas.translate(inset, inset)
+                MicCharmPainter.draw(canvas, charm, charmColor, charmSize.toFloat(), sign, signIsMic, t)
+                canvas.restore()
             }
         }
 
-        /** A ring spreading out from behind the charm and fading, louder voice making it bolder. */
+        /** A ring spreading out from behind the look and fading, louder voice making it bolder. */
         private inner class HaloView(context: Context) : View(context) {
             var color: Int = Color.TRANSPARENT
             /** 0..1 through one ripple; below zero means no ripple. */

@@ -326,13 +326,52 @@
     <string name="style__preview_message" comment="Sample chat message in the Style tab preview">Are you still coming tonight?</string>
     <string name="style__preview_caption" comment="Caption in the Style tab preview, which shows the mic button listening">Listening in a chat app</string>
     <string name="style__preview_field" comment="Placeholder of the sample message field in the Style tab preview">Message</string>
-    <string name="style__mic_button" comment="Style tab heading above the mic button looks">Mic button</string>
     <string name="style__charm_classic" comment="Mic button look: the plain round button">Classic</string>
     <string name="style__charm_daisy" comment="Mic button look: a daisy">Daisy</string>
     <string name="style__charm_butterfly" comment="Mic button look: a butterfly">Butterfly</string>
     <string name="style__charm_heart" comment="Mic button look: a heart">Heart</string>
     <string name="style__charm_clover" comment="Mic button look: a four-leaf clover">Clover</string>
     <string name="style__charm_moon" comment="Mic button look: a crescent moon">Moon</string>
+    <string name="style__charm_sunflower" comment="Mic button look: a sunflower">Sunflower</string>
+    <string name="style__charm_blossom" comment="Mic button look: a cherry blossom">Blossom</string>
+    <string name="style__charm_on_air" comment="Mic button look: a lit "On Air" studio sign">On Air</string>
+    <string name="style__charm_gramophone" comment="Mic button look: an old gramophone horn">Gramophone</string>
+    <string name="style__charm_crooner" comment="Mic button look: a vintage stage microphone">Crooner</string>
+    <string name="style__charm_mixtape" comment="Mic button look: a cassette tape">Mixtape</string>
+    <string name="style__charm_planet" comment="Mic button look: a ringed planet">Planet</string>
+    <string name="style__charm_shooting_star" comment="Mic button look: a shooting star">Shooting star</string>
+    <string name="style__charm_disco_ball" comment="Mic button look: a disco ball">Disco ball</string>
+    <string name="style__charm_big_red_button" comment="Mic button look: a big red arcade button">Big red button</string>
+    <string name="style__charm_pixel_heart" comment="Mic button look: a pixel-art heart">8-bit heart</string>
+    <string name="style__charm_neon" comment="Mic button look: a neon sign of a microphone">Neon</string>
+    <string name="style__charm_studio_mic" comment="Mic button look: a studio microphone">Studio mic</string>
+    <string name="style__collection_garden" comment="Style tab: name of a collection of mic button looks">Garden</string>
+    <string name="style__collection_garden_tagline" comment="Style tab: one-line description of the Garden collection">Soft, bright, alive</string>
+    <string name="style__collection_retro" comment="Style tab: name of a collection of mic button looks">Retro</string>
+    <string name="style__collection_retro_tagline" comment="Style tab: one-line description of the Retro collection">Warm, analog, a bit of a wink</string>
+    <string name="style__collection_night_sky" comment="Style tab: name of a collection of mic button looks">Night sky</string>
+    <string name="style__collection_night_sky_tagline" comment="Style tab: one-line description of the Night sky collection">Calm and dreamy</string>
+    <string name="style__collection_arcade" comment="Style tab: name of a collection of mic button looks">Arcade</string>
+    <string name="style__collection_arcade_tagline" comment="Style tab: one-line description of the Arcade collection">Punchy and playful</string>
+    <string name="style__collection_simple" comment="Style tab: name of a collection of mic button looks">Simple</string>
+    <string name="style__collection_simple_tagline" comment="Style tab: one-line description of the Simple collection">The plain round button</string>
+    <string name="style__move_bloom" comment="How the mic button moves while recording: grows and turns like a flower opening">Blooms while it listens</string>
+    <string name="style__move_flutter" comment="How the mic button moves while recording: flaps like wings">Flutters while it listens</string>
+    <string name="style__move_turn" comment="How the mic button moves while recording: spins slowly">Turns while it listens</string>
+    <string name="style__move_sway" comment="How the mic button moves while recording: swings gently side to side">Sways while it listens</string>
+    <string name="style__move_glow" comment="How the mic button moves while recording: lights up and dims">Glows while it listens</string>
+    <string name="style__move_wobble" comment="How the mic button moves while recording: rocks and swells">Wobbles while it listens</string>
+    <string name="style__move_pulse" comment="How the mic button moves while recording: grows and shrinks">Pulses while it listens</string>
+    <string name="style__move_spin" comment="How the mic button moves while recording: the cassette reels turn">Spins its reels while it listens</string>
+    <string name="style__move_tilt" comment="How the mic button moves while recording: leans side to side">Tilts while it listens</string>
+    <string name="style__move_twinkle" comment="How the mic button moves while recording: the star sparkles">Twinkles while it listens</string>
+    <string name="style__move_press" comment="How the mic button moves while recording: the button pushes in">Presses down while it listens</string>
+    <string name="style__move_beat" comment="How the mic button moves while recording: double-thumps like a heartbeat">Beats while it listens</string>
+    <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">Flickers while it listens</string>
+    <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">Move while listening</string>
+    <string name="style__move_off" comment="Summary of the movement switch while it is off">Stays still</string>
+    <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">Original colors</string>
+    <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">{charm} keeps its own colors.</string>
     <string name="style__color" comment="Style tab heading above the colour swatches">Color</string>
     <string name="style__color_cloud" comment="Colour swatch name (white)">Cloud</string>
     <string name="style__color_blossom" comment="Colour swatch name (pink)">Blossom</string>
@@ -342,10 +381,6 @@
     <string name="style__color_sky" comment="Colour swatch name (light blue)">Sky</string>
     <string name="style__more_colors" comment="Style tab row opening the full colour picker">More colors</string>
     <string name="style__motion" comment="Style tab heading above how the mic button moves while recording">While it listens</string>
-    <string name="style__motion_bloom" comment="Mic button movement: grows and turns like a blooming flower">Bloom</string>
-    <string name="style__motion_flutter" comment="Mic button movement: flaps like wings">Flutter</string>
-    <string name="style__motion_pulse" comment="Mic button movement: beats like a heart">Pulse</string>
-    <string name="style__motion_still" comment="Mic button movement: none">Stay still</string>
     <string name="style__button_off" comment="Style tab note while the floating mic button is off">The floating mic button is off, so you\'ll only see this here for now.</string>
     <string name="style__look_summary" comment="Floating button settings: summary of the row opening the Style tab. {charm} is the look">{charm} · change it on the Style tab</string>
 

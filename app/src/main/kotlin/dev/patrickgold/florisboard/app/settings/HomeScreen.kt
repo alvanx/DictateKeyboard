@@ -20,12 +20,6 @@ import android.text.format.DateUtils
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -62,7 +56,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -71,7 +65,7 @@ import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.LocalNavController
 import dev.patrickgold.florisboard.app.Routes
 import dev.patrickgold.florisboard.app.settings.dictate.copyToClipboard
-import dev.patrickgold.florisboard.app.settings.style.MicCharm
+import dev.patrickgold.florisboard.app.settings.style.MovingMicCharm
 import dev.patrickgold.florisboard.app.settings.style.charmLabel
 import dev.patrickgold.florisboard.dictate.DictateController
 import dev.patrickgold.florisboard.dictate.DictateMicCharm
@@ -122,11 +116,15 @@ fun HomeScreen() = FlorisScreen {
         // The floating button is the main way in and the keyboard the second, so the button always has
         // its card here and the keyboard only asks for a row while it is off.
         val charm by prefs.dictate.floatingButtonCharm.collectAsState()
-        val color by prefs.dictate.floatingButtonColor.collectAsState()
+        val classicColor by prefs.dictate.floatingButtonColor.collectAsState()
+        val charmColor by prefs.dictate.floatingButtonCharmColor.collectAsState()
+        val animated by prefs.dictate.floatingButtonCharmAnimated.collectAsState()
         val buttonOn = rememberMicButtonOn()
         MicButtonCard(
             charm = charm,
-            color = color,
+            color = if (charm == DictateMicCharm.CLASSIC) classicColor.toArgb()
+            else charm.resolveColor(charmColor.toArgb()),
+            moving = animated && charm != DictateMicCharm.CLASSIC,
             on = buttonOn,
             onChangeLook = { navController.navigateToTab(MainTab.STYLE) },
             onTurnOn = { navController.navigate(Routes.Settings.DictateFloatingButton) },
@@ -181,7 +179,8 @@ fun HomeScreen() = FlorisScreen {
 @Composable
 private fun MicButtonCard(
     charm: DictateMicCharm,
-    color: Color,
+    color: Int,
+    moving: Boolean,
     on: Boolean,
     onChangeLook: () -> Unit,
     onTurnOn: () -> Unit,
@@ -198,25 +197,8 @@ private fun MicButtonCard(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            // A slow idle bloom: alive on the page that shows it off, never on top of other apps.
-            val transition = rememberInfiniteTransition(label = "idle")
-            val t by transition.animateFloat(
-                initialValue = 0f,
-                targetValue = if (charm == DictateMicCharm.CLASSIC) 0f else 1f,
-                animationSpec = infiniteRepeatable(tween(2000, easing = FastOutSlowInEasing), RepeatMode.Reverse),
-                label = "bloom",
-            )
-            MicCharm(
-                charm = charm,
-                color = color,
-                modifier = Modifier
-                    .size(64.dp)
-                    .graphicsLayer {
-                        scaleX = 0.96f + 0.06f * t
-                        scaleY = scaleX
-                        rotationZ = 10f * t
-                    },
-            )
+            // Its own movement, at half speed: alive on the page that shows it off, never on top of other apps.
+            MovingMicCharm(charm = charm, color = color, moving = moving, slowdown = 2, modifier = Modifier.size(64.dp))
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 Text(
                     stringRes(R.string.home__mic_title),
