@@ -64,7 +64,28 @@ jobs:
       - name: Unit tests
         run: ./gradlew :app:testDebugUnitTest :lib:dictate-core:testDebugUnitTest --no-daemon --stacktrace
 
+      # When a test fails, name it in the log and keep the full report, so no one has to dig for it.
+      - name: Name the failing tests
+        if: failure()
+        run: |
+          grep -l "<failure" app/build/test-results/testDebugUnitTest/*.xml lib/dictate-core/build/test-results/testDebugUnitTest/*.xml 2>/dev/null | while read -r f; do
+            echo "=== $f"
+            grep -B1 -A6 "<failure" "$f" | head -40
+          done
+
+      - name: Keep the test reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            app/build/reports/tests/testDebugUnitTest
+            lib/dictate-core/build/reports/tests/testDebugUnitTest
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Keep the debug APK
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: debug-apk
