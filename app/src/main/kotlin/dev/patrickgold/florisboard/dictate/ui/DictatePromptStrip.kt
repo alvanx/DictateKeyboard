@@ -69,15 +69,20 @@ const val HIGHLIGHT_WASH_ALPHA = 0.22f
 
 /**
  * The contextual prompt chip strip shown in the Smartbar's center area, in place of the candidates,
- * while there is an active text selection and rewording is enabled (roadmap 4.3). Each chip runs the
- * matching prompt via [DictateController.applyPrompt] on the current selection (or, for free prompts,
- * generates from the instruction and replaces it). Horizontally scrollable so any number of prompts
- * fits. Used only in the PANEL layout mode; the ROW mode shows [DictatePromptRow] above the Smartbar.
+ * while there is an active text selection and rewording is enabled (roadmap 4.3), and in the "show when
+ * useful" layout right after a dictation as well. Each chip runs the matching prompt via
+ * [DictateController.applyPrompt] on the current selection (with none, on the whole field; free prompts
+ * generate from the instruction). Horizontally scrollable so any number of prompts fits. The ROW mode
+ * shows [DictatePromptRow] above the Smartbar instead.
+ *
+ * @param withLiveChip ends the strip with "Ask by voice", as the row does. The PANEL layout leaves it out:
+ *  there it lives in the panel.
  */
 @Composable
 fun DictatePromptStrip(
     prompts: List<PromptModel>,
     modifier: Modifier = Modifier,
+    withLiveChip: Boolean = false,
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
@@ -95,6 +100,13 @@ fun DictatePromptStrip(
                 text = prompt.name.orEmpty(),
                 onClick = { DictateController.applyPrompt(context, prompt) },
                 onLongClick = { editPromptInSettings(prompt) },
+                modifier = Modifier.padding(horizontal = 3.dp),
+            )
+        }
+        if (withLiveChip) {
+            // Last, after the written prompts, as in the row: it records a spoken instruction.
+            DictateLivePromptChip(
+                onClick = { DictateController.startLivePrompt(context) },
                 modifier = Modifier.padding(horizontal = 3.dp),
             )
         }

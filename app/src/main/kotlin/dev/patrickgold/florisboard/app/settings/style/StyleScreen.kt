@@ -10,14 +10,7 @@
 
 package dev.patrickgold.florisboard.app.settings.style
 
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
@@ -51,17 +44,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
-import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -69,7 +56,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.LocalNavController
 import dev.patrickgold.florisboard.app.Routes
@@ -81,6 +67,9 @@ import dev.patrickgold.florisboard.dictate.DictateMicCollection
 import dev.patrickgold.florisboard.dictate.DictateMicColors
 import dev.patrickgold.florisboard.dictate.DictateMicMove
 import dev.patrickgold.florisboard.dictate.MicCharmPainter
+import dev.patrickgold.florisboard.dictate.ui.MicCharm
+import dev.patrickgold.florisboard.dictate.ui.MicCharmRipple
+import dev.patrickgold.florisboard.dictate.ui.MovingMicCharm
 import dev.patrickgold.florisboard.lib.compose.FlorisScreen
 import dev.patrickgold.jetpref.datastore.model.collectAsState
 import dev.patrickgold.jetpref.datastore.ui.ColorPickerPreference
@@ -320,59 +309,6 @@ private fun shelfOf(collection: DictateMicCollection): Shelf = when (collection)
 }
 
 /**
- * A look drawn in Compose, with the same shapes and movement the floating button paints: [MicCharmPainter]
- * draws both. [t] is how far through one loop of the look's movement; 0 is at rest.
- */
-@Composable
-internal fun MicCharm(
-    charm: DictateMicCharm,
-    color: Int,
-    modifier: Modifier = Modifier,
-    signRes: Int? = R.drawable.ic_dictate_overlay_mic,
-    t: Float = 0f,
-) {
-    val context = LocalContext.current
-    val sign = remember(signRes) { signRes?.let { ContextCompat.getDrawable(context, it)?.mutate() } }
-    Canvas(modifier = modifier) {
-        drawIntoCanvas { canvas ->
-            MicCharmPainter.draw(
-                canvas.nativeCanvas, charm, color, size.minDimension, sign,
-                signIsMic = signRes == R.drawable.ic_dictate_overlay_mic, t = t,
-            )
-        }
-    }
-}
-
-/** [MicCharm], looping through its own movement; [slowdown] stretches the loop for a calmer idle. */
-@Composable
-internal fun MovingMicCharm(
-    charm: DictateMicCharm,
-    color: Int,
-    moving: Boolean,
-    modifier: Modifier = Modifier,
-    signRes: Int? = R.drawable.ic_dictate_overlay_mic,
-    slowdown: Int = 1,
-) {
-    if (!moving) {
-        MicCharm(charm, color, modifier, signRes)
-        return
-    }
-    // A new clock per look, since a running one keeps the timing it started with.
-    key(charm) {
-        val t by rememberInfiniteTransition(label = "charm").animateFloat(
-            initialValue = 0f,
-            targetValue = 1f,
-            animationSpec = infiniteRepeatable(
-                tween((charm.move.periodMs * slowdown).toInt(), easing = LinearEasing),
-                RepeatMode.Restart,
-            ),
-            label = "t",
-        )
-        MicCharm(charm, color, modifier, signRes, t)
-    }
-}
-
-/**
  * The button as it looks while it listens, beside a sample chat. It keeps moving here so the choice can be
  * judged; on screen the button only moves while it records.
  */
@@ -421,7 +357,7 @@ private fun StylePreview(charm: DictateMicCharm, color: Int, moving: Boolean) {
                 )
             }
             Box(modifier = Modifier.align(Alignment.BottomEnd).size(80.dp), contentAlignment = Alignment.Center) {
-                Ripple(modifier = Modifier.fillMaxSize())
+                MicCharmRipple(modifier = Modifier.fillMaxSize())
                 MovingMicCharm(
                     charm = charm,
                     color = color,
@@ -431,24 +367,6 @@ private fun StylePreview(charm: DictateMicCharm, color: Int, moving: Boolean) {
                 )
             }
         }
-    }
-}
-
-/** The recording ripple the floating button spreads behind itself. */
-@Composable
-private fun Ripple(modifier: Modifier) {
-    val ripple by rememberInfiniteTransition(label = "ripple").animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(tween(1600, easing = LinearEasing), RepeatMode.Restart),
-        label = "ripple",
-    )
-    val haloColor = colorResource(R.color.dictate_overlay_recording)
-    Canvas(modifier = modifier) {
-        drawCircle(
-            color = haloColor.copy(alpha = (1f - ripple) * 0.45f),
-            radius = size.minDimension / 2f * (0.7f + 0.3f * ripple),
-        )
     }
 }
 

@@ -975,6 +975,14 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__prompts_layout_row_migrated",
             default = false,
         )
+        // Guard for the one-time move of the prompt chips from the always-on row to "show when useful"
+        // (the chips in the bar right after a dictation or on a selection). Runs after the ROW move above,
+        // so everyone that one put on ROW lands here; PANEL stays. See
+        // DictateLegacyMigrator.migratePromptsLayoutToWhenUsefulIfNeeded.
+        val promptsLayoutWhenUsefulMigrated = boolean(
+            key = "dictate__prompts_layout_when_useful_migrated",
+            default = false,
+        )
         // Guard for the one-time re-engagement reset shipped with the 4.0.0 relaunch: existing users
         // (who had already rated/donated, or whose audio counter was long past the thresholds) are
         // given the rate & donate nudges one more time so they can react to the new app. Clears
@@ -1011,13 +1019,13 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__rewording_reasoning_effort_custom",
             default = "",
         )
-        // How the rewording prompt chips are surfaced: a dedicated panel (PANEL) opened from the
-        // Smartbar, or an always-on extra row pinned above the Smartbar (ROW). See DictatePromptsLayout.
-        // Defaults to ROW so the prompts are immediately visible; existing users are moved to ROW once via
-        // DictateLegacyMigrator.migratePromptsLayoutToRowIfNeeded.
+        // How the rewording prompt chips are surfaced: in the Smartbar only when useful (WHEN_USEFUL),
+        // a dedicated panel (PANEL) opened from the Smartbar, or an always-on extra row pinned above the
+        // Smartbar (ROW). See DictatePromptsLayout. Defaults to WHEN_USEFUL; those the earlier ROW default
+        // reached are moved there once via DictateLegacyMigrator.migratePromptsLayoutToWhenUsefulIfNeeded.
         val promptsLayout = enum(
             key = "dictate__prompts_layout",
-            default = DictatePromptsLayout.ROW,
+            default = DictatePromptsLayout.WHEN_USEFUL,
         )
         // Classic keyboard-less "legacy" dictation layout (issue #125): OFF = modern keyboard (default);
         // LOCKED = only the legacy record-first UI; SWIPE = legacy UI as home, horizontal swipe flips to

@@ -44,7 +44,6 @@ import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.CloudOff
 import androidx.compose.material.icons.filled.DataUsage
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.animation.core.Animatable
 import androidx.compose.material.icons.filled.ErrorOutline
 import androidx.compose.material.icons.filled.FastForward
@@ -136,13 +135,22 @@ private val RecordingRed = Color(0xFFE53935)
  * sticky mic button) while [DictateController] is recording or transcribing, so the keyboard itself
  * stays fully visible instead of being replaced by a separate panel.
  *
- * - Recording: a cancel button, an audio-reactive cloud orb + an elapsed `m:ss` timer, and a pause/resume
- *   button. The sticky mic (rendered by the Smartbar) stops the recording and starts transcribing.
+ * - Recording: a cancel (×) button at the bar's edge, where the actions toggle sits otherwise, then the
+ *   level meter, an elapsed `m:ss` timer and the pause/resume button. The sticky mic (rendered by the
+ *   Smartbar) is the one start/finish button: tapping it again stops the recording and starts
+ *   transcribing, so there is no separate done button here.
  * - Transcribing: a spinning icon + label, or a retry indicator while a transient failure is retried.
  * - Error: the error message, auto-cleared after a few seconds.
+ *
+ * @param mirrored the user swapped the bar's sides: the mic is on the left, so the cancel button goes to
+ *  the right edge instead, away from it.
  */
 @Composable
-fun DictateSmartbarUi(state: DictateController.UiState, modifier: Modifier = Modifier) {
+fun DictateSmartbarUi(
+    state: DictateController.UiState,
+    modifier: Modifier = Modifier,
+    mirrored: Boolean = false,
+) {
     val arrangement = when {
         state is DictateController.UiState.Recording -> Arrangement.SpaceBetween
         state is DictateController.UiState.Error &&
@@ -160,7 +168,7 @@ fun DictateSmartbarUi(state: DictateController.UiState, modifier: Modifier = Mod
         verticalAlignment = Alignment.CenterVertically,
     ) {
         when (state) {
-            is DictateController.UiState.Recording -> RecordingContent(state)
+            is DictateController.UiState.Recording -> RecordingContent(state, mirrored)
             is DictateController.UiState.Transcribing -> TranscribingContent(state)
             is DictateController.UiState.Rewording -> RewordingContent(state)
             is DictateController.UiState.Error -> ErrorContent(state)
@@ -172,7 +180,7 @@ fun DictateSmartbarUi(state: DictateController.UiState, modifier: Modifier = Mod
 }
 
 @Composable
-private fun RowScope.RecordingContent(state: DictateController.UiState.Recording) {
+private fun RowScope.RecordingContent(state: DictateController.UiState.Recording, mirrored: Boolean) {
     val prefs by FlorisPreferenceStore
     val context = LocalContext.current
     // The indicator mode is needed out here, not just inside the dot: WAVE (#371) is a different *layout*
@@ -205,40 +213,52 @@ private fun RowScope.RecordingContent(state: DictateController.UiState.Recording
     val rawCancelProgress by DictateController.cancelSlideProgress.collectFlowAsState()
     val cancelProgress = if (ptt.discarding) 1f else rawCancelProgress
 
-    // Cancel button (far left) – discards the recording. In long-form it drops only the current (uncut)
-    // segment and keeps recording, so you can scrap the last utterance without losing the transcript (#183).
-    // While holding it is the discard target: it reddens as the finger approaches, and reaching it drops
-    // the recording immediately (see DictateController.onPushToTalkSlide) rather than on release.
-    SnyggIconButton(
-        elementName = FlorisImeUi.SmartbarActionKey.elementName,
-        onClick = { DictateController.cancelOrDiscardSegment(context) },
-        modifier = Modifier
-            .fillMaxHeight()
-            .aspectRatio(1f)
-            // The swollen mic is drawn by the mic key and has to be thrown *here*; it can only aim at a
-            // position someone measured.
-            .onGloballyPositioned { DictateHoldTargets.reportBinBounds(it.boundsInWindow().roundToIntRect()) },
-    ) {
-        // The red goes behind the icon rather than into it. SnyggIcon takes both its size and its colour
-        // from the keyboard theme, and swapping it for Material's Icon to gain a tint is exactly what
-        // shrank this button before — that one is a fixed 24 dp.
-        Box(contentAlignment = Alignment.Center) {
-            if (holding && cancelProgress > 0f) {
-                Box(
-                    modifier = Modifier
-                        .size(FlorisImeSizing.smartbarHeight * 0.8f)
-                        .background(RecordingRed.copy(alpha = 0.85f * cancelProgress), CircleShape),
+    // Cancel button (the bar's edge, where the actions toggle sits otherwise) – discards the recording. In
+    // long-form it drops only the current (uncut) segment and keeps recording, so you can scrap the last
+    // utterance without losing the transcript (#183). While holding it is the discard target: it reddens
+    // as the finger approaches, and reaching it drops the recording immediately (see
+    // DictateController.onPushToTalkSlide) rather than on release.
+    val cancelButton: @Composable () -> Unit = {
+        SnyggIconButton(
+            elementName = FlorisImeUi.SmartbarActionKey.elementName,
+            onClick = { DictateController.cancelOrDiscardSegment(context) },
+            modifier = Modifier
+                .fillMaxHeight()
+                .aspectRatio(1f)
+                // The swollen mic is drawn by the mic key and has to be thrown *here*; it can only aim at a
+                // position someone measured.
+                .onGloballyPositioned { DictateHoldTargets.reportBinBounds(it.boundsInWindow().roundToIntRect()) },
+        ) {
+            // The red goes behind the icon rather than into it. SnyggIcon takes both its size and its colour
+            // from the keyboard theme, and swapping it for Material's Icon to gain a tint is exactly what
+            // shrank this button before — that one is a fixed 24 dp.
+            Box(contentAlignment = Alignment.Center) {
+                if (holding && cancelProgress > 0f) {
+                    Box(
+                        modifier = Modifier
+                            .size(FlorisImeSizing.smartbarHeight * 0.8f)
+                            .background(RecordingRed.copy(alpha = 0.85f * cancelProgress), CircleShape),
+                    )
+                }
+                // A plain ×, the way every recorder says "throw this away".
+                SnyggIcon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = stringRes(R.string.dictate__action_cancel),
                 )
             }
-            SnyggIcon(
-                imageVector = Icons.Default.Delete,
-                contentDescription = stringRes(R.string.dictate__action_cancel),
-            )
         }
     }
+    if (!mirrored) cancelButton()
 
-    // Center: audio-reactive dot + elapsed timer.
-    Row(verticalAlignment = Alignment.CenterVertically) {
+    // Middle: the meter, the elapsed timer and the pause button, kept together and centred between the
+    // cancel button and the mic.
+    Row(
+        modifier = Modifier
+            .weight(1f)
+            .fillMaxHeight(),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
         var elapsedMs by remember { mutableLongStateOf(state.accumulatedMs) }
         // Frozen once the recording has been thrown away: nothing is being captured any more, so a timer
         // still counting up and a dot still pulsing would be showing something that is not happening.
@@ -252,9 +272,25 @@ private fun RowScope.RecordingContent(state: DictateController.UiState.Recording
                 }
             }
         }
-        // In WAVE mode the waveform *is* the indicator and stands after the timer, so the dot and its
-        // spacer are not drawn at all — two mic-reactive things on one bar would only compete.
-        if (animation != DictateRecordingAnimation.WAVE) {
+        // The meter stands just before the timer, in whichever form the recording animation setting picks.
+        // In WAVE mode the waveform *is* the indicator and the dot is not drawn at all — two mic-reactive
+        // things on one bar would only compete. The waveform takes the whole slack up to the timer (#371):
+        // weighted rather than a fixed size because how much is left over differs by screen, orientation,
+        // language chip and long-form mode; it draws nothing at all once that is down to a stub (see
+        // MIN_BARS).
+        if (animation == DictateRecordingAnimation.WAVE) {
+            RecordingWaveform(
+                color = RecordingRed,
+                paused = state.paused,
+                // Same distinction the dot makes: a thrown-away recording stops moving but stays at full
+                // strength, because the bar is only still there for the discard animation.
+                frozen = ptt.discarding,
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(0.5f)
+                    .padding(start = 6.dp, end = 10.dp),
+            )
+        } else {
             RecordingAudioDot(paused = state.paused, frozen = ptt.discarding)
             Spacer(modifier = Modifier.width(10.dp))
         }
@@ -266,66 +302,52 @@ private fun RowScope.RecordingContent(state: DictateController.UiState.Recording
             Spacer(modifier = Modifier.width(2.dp))
             SnyggText(text = "$segmentsInFlight")
         }
-    }
+        Spacer(modifier = Modifier.width(6.dp))
 
-    // The waveform takes the whole slack between the timer and the right-hand buttons (#371). Weighted
-    // rather than a fixed size because how much is left over differs by screen, orientation, language
-    // chip and long-form mode; it draws nothing at all once that is down to a stub (see MIN_BARS).
-    if (animation == DictateRecordingAnimation.WAVE) {
-        RecordingWaveform(
-            color = RecordingRed,
-            paused = state.paused,
-            // Same distinction the dot makes: a thrown-away recording stops moving but stays at full
-            // strength, because the bar is only still there for the discard animation.
-            frozen = ptt.discarding,
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight(0.5f)
-                .padding(start = 10.dp, end = 6.dp),
-        )
-    }
-
-    // Right group: language chip + (in long-form mode) the "Next segment" button, otherwise the
-    // pause/resume button — left of the sticky mic. Long-form replaces pause with Next: pausing is
-    // redundant there (the Next button / auto-split already handle thought-breaks).
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        if (holding) {
-            // Neither the chip nor pause can be reached with the finger still on the mic, so the space
-            // says what the gesture will do instead of showing controls that cannot be used.
-            PushToTalkAffordance(cancelProgress)
-            return@Row
-        }
-        LanguageChip()
-        if (segmented) {
-            SnyggIconButton(
-                elementName = FlorisImeUi.SmartbarActionKey.elementName,
-                onClick = { DictateController.flushSegment(context) },
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .aspectRatio(1f)
-                    .scale(1f + nextFlash.value * 0.35f),
-            ) {
-                Icon(
-                    imageVector = Icons.Default.FastForward,
-                    contentDescription = stringRes(R.string.dictate__action_next_segment),
-                    tint = lerp(LocalContentColor.current, accent, nextFlash.value),
-                )
+        // Then the language chip + (in long-form mode) the "Next segment" button, otherwise the
+        // pause/resume button. Long-form replaces pause with Next: pausing is redundant there (the Next
+        // button / auto-split already handle thought-breaks).
+        Row(modifier = Modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
+            if (holding) {
+                // Neither the chip nor pause can be reached with the finger still on the mic, so the space
+                // says what the gesture will do instead of showing controls that cannot be used.
+                PushToTalkAffordance(cancelProgress)
+                return@Row
             }
-        } else {
-            SnyggIconButton(
-                elementName = FlorisImeUi.SmartbarActionKey.elementName,
-                onClick = { DictateController.togglePause() },
-                modifier = Modifier.fillMaxHeight().aspectRatio(1f),
-            ) {
-                SnyggIcon(
-                    imageVector = if (state.paused) Icons.Default.PlayArrow else Icons.Default.Pause,
-                    contentDescription = stringRes(
-                        if (state.paused) R.string.dictate__action_resume else R.string.dictate__action_pause,
-                    ),
-                )
+            LanguageChip()
+            if (segmented) {
+                SnyggIconButton(
+                    elementName = FlorisImeUi.SmartbarActionKey.elementName,
+                    onClick = { DictateController.flushSegment(context) },
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .aspectRatio(1f)
+                        .scale(1f + nextFlash.value * 0.35f),
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.FastForward,
+                        contentDescription = stringRes(R.string.dictate__action_next_segment),
+                        tint = lerp(LocalContentColor.current, accent, nextFlash.value),
+                    )
+                }
+            } else {
+                SnyggIconButton(
+                    elementName = FlorisImeUi.SmartbarActionKey.elementName,
+                    onClick = { DictateController.togglePause() },
+                    modifier = Modifier.fillMaxHeight().aspectRatio(1f),
+                ) {
+                    SnyggIcon(
+                        imageVector = if (state.paused) Icons.Default.PlayArrow else Icons.Default.Pause,
+                        contentDescription = stringRes(
+                            if (state.paused) R.string.dictate__action_resume else R.string.dictate__action_pause,
+                        ),
+                    )
+                }
             }
         }
     }
+
+    if (mirrored) cancelButton()
 }
 
 /**

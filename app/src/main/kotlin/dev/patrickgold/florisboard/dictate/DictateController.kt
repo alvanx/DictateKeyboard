@@ -304,6 +304,20 @@ object DictateController {
      */
     val livePromptActive: StateFlow<Boolean> = _livePromptActive.asStateFlow()
 
+    private val _afterDictation = MutableStateFlow(false)
+    /**
+     * True from the moment a dictation lands in the keyboard's field until the user moves on: types, opens
+     * another field or closes the keyboard. That is when rewriting it is most likely wanted, so with the
+     * "show when useful" prompt layout the Smartbar offers the prompt chips in place of the suggestions.
+     * Only the keyboard's own dictations count; the floating button's text goes to another field.
+     */
+    val afterDictation: StateFlow<Boolean> = _afterDictation.asStateFlow()
+
+    /** The user moved on from the last dictation (see [afterDictation]). */
+    fun endAfterDictation() {
+        _afterDictation.value = false
+    }
+
     // --- Real-time streaming transcription (issue #128) -----------------------------------------
     private val _interimText = MutableStateFlow("")
     /**
@@ -2280,6 +2294,7 @@ object DictateController {
         }
         recordHistory(appContext, outputText, originalForHistory, recordedSeconds, capture, reworded = isLive)
         discardRetainedAudio()
+        _afterDictation.value = outputTarget == OutputTarget.IME && outputText.isNotBlank()
         if (reportSwallowedRewording(appContext)) return
         _state.value = UiState.Idle
         // Both nudges are Smartbar chips: they can only be seen, tapped and dismissed on the keyboard.
