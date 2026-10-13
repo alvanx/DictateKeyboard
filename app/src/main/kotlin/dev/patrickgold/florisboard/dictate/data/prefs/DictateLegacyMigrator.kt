@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.dictate.DictateLanguages
 import dev.patrickgold.florisboard.dictate.DictatePromptsLayout
+import dev.patrickgold.florisboard.dictate.data.prompts.PromptsDatabaseHelper
 import dev.patrickgold.florisboard.dictate.provider.DictateProxyType
 import dev.patrickgold.florisboard.dictate.provider.ProviderAccount
 import dev.patrickgold.florisboard.dictate.provider.ProviderAccounts
@@ -293,6 +294,26 @@ object DictateLegacyMigrator {
         if (prefs.dictate.livePromptActionRemoved.get()) return
         removeActionIfPresent(KeyCode.DICTATE_LIVE_PROMPT)
         prefs.dictate.livePromptActionRemoved.set(true)
+    }
+
+    /**
+     * Withdraws the "Inspiring quote" and "Fun fact" starter prompts from existing installs: they wrote
+     * something nobody could predict, which made them noise on the always-on prompt row. Only rows still
+     * exactly as seeded go — compared in the current language and in English, the two a seed is most
+     * likely to have been written in — so a prompt the user rewrote is left alone. Once, via
+     * `prefs.dictate.generatorExamplesRemoved`.
+     */
+    fun removeGeneratorExamplesIfNeeded(context: Context) {
+        val prefs by FlorisPreferenceStore
+        if (prefs.dictate.generatorExamplesRemoved.get()) return
+        val english = context.createConfigurationContext(
+            android.content.res.Configuration(context.resources.configuration).apply { setLocale(Locale.ENGLISH) },
+        )
+        val examples = listOf(context, english).flatMap { ctx ->
+            PromptsDatabaseHelper.GENERATOR_EXAMPLES.map { (name, prompt) -> ctx.getString(name) to ctx.getString(prompt) }
+        }.distinct()
+        runCatching { PromptsDatabaseHelper.getInstance(context).deleteUntouched(examples) }
+            .onSuccess { prefs.dictate.generatorExamplesRemoved.set(true) }
     }
 
     /**

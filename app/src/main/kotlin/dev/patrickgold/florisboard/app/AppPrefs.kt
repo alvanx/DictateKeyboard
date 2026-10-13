@@ -947,6 +947,12 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__live_prompt_action_removed",
             default = false,
         )
+        // Guard for the one-time withdrawal of the untouched "Inspiring quote" / "Fun fact" starter
+        // prompts. See DictateLegacyMigrator.removeGeneratorExamplesIfNeeded.
+        val generatorExamplesRemoved = boolean(
+            key = "dictate__generator_examples_removed",
+            default = false,
+        )
         // Guard for the one-time switch of existing users to the always-on prompt ROW layout (the new
         // default). Fires once so users who were on PANEL land on ROW after the update; they can switch
         // back any time. See DictateLegacyMigrator.migratePromptsLayoutToRowIfNeeded.
