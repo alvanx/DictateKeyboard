@@ -29,7 +29,7 @@ Out of scope for this spec (but the design must leave room for them):
 | Dictation and rewording with the user's own key, any provider | Yes, unlimited | Yes |
 | Local extras we add (dictionary, formatting rules, per-app profiles, bubble skins) | Yes | Yes |
 | Managed dictation (provider `cloud`) | Trial only | Daily allowance |
-| Managed cleanup and rewording (provider `cloud`) | Trial only | Same allowance |
+| Managed cleanup and rewording (provider `cloud`), including one-tap cleanup with list formatting (`cleanup.md`) | Trial only | Same allowance |
 | Dictionary sync and device pairing | No | Yes |
 
 "Trial" means the Play free-trial offer (section 4), not a separate no-card trial.
@@ -125,7 +125,9 @@ Errors reuse today's codes: `purchase_pending` (409), `purchase_unknown` (404), 
 
 `plan` is `plus` or `free`. `features` is computed on the server from the plan, so the app never hard-codes who gets what. Unknown features are ignored by older apps.
 
-### Paid routes (`/v1/audio/transcriptions`, `/v1/chat/completions`)
+### Paid routes (`/v1/audio/transcriptions`, `/v1/chat/completions`, `/v1/cleanup`)
+
+`/v1/cleanup` (one-tap cleanup that formats spoken lists) is specified in `cleanup.md`. It is gated and metered like the other two and shares the daily allowance.
 
 Check entitlement before the upstream call. Two new refusal reasons next to today's `blocked`, `insufficient`, `rate_limited` in `debitError`:
 - Not entitled: `402`, code `not_entitled`.
