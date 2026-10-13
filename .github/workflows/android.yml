@@ -1,0 +1,52 @@
+name: Android build
+
+# Builds the phone and Wear apps and runs the unit tests on every push, so a change that does not
+# compile is caught without anyone opening Android Studio. The debug APK is attached to each run:
+# download it from the run's "Artifacts" section and install it on a phone to try the app.
+
+on:
+  push:
+    branches: [main, 'claude/**']
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the build stamps the git commit into the app
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up the Android SDK
+        uses: android-actions/setup-android@v3
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      # On-device speech libraries are not committed; the build needs them (see the script's header).
+      - name: Fetch on-device speech libraries
+        run: bash tools/fetch-sherpa-onnx.sh
+
+      - name: Build the phone and Wear apps
+        run: ./gradlew :app:assembleDebug :wear:assembleDebug --stacktrace
+
+      - name: Unit tests
+        run: ./gradlew :app:testDebugUnitTest :lib:dictate-core:testDebugUnitTest --stacktrace
+
+      - name: Keep the debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: warn
+          retention-days: 14
