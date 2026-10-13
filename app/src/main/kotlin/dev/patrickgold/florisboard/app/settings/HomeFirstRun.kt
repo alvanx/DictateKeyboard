@@ -48,7 +48,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.patrickgold.florisboard.R
-import dev.patrickgold.florisboard.app.settings.style.MovingMicCharm
+import dev.patrickgold.florisboard.dictate.ui.MovingMicCharm
 import dev.patrickgold.florisboard.app.settings.style.charmLabel
 import dev.patrickgold.florisboard.dictate.DictateMicCharm
 import dev.patrickgold.florisboard.dictate.data.history.DictateHistoryEntry
