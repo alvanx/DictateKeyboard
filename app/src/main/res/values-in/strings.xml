@@ -179,7 +179,8 @@
     <string name="firstrun__floating_summary" comment="First-run home, second line of the floating mic option">Di samping kotak teks mana pun, dengan keyboard yang sudah kamu pakai</string>
     <string name="firstrun__keyboard_summary" comment="First-run home, second line of the keyboard option">Keyboard lengkap dengan mikrofon bawaan</string>
     <string name="firstrun__done" comment="Accessibility label of the check mark shown instead of Turn on once an option is on">Aktif</string>
-    <string name="firstrun__history_hint" comment="First-run home, where recent dictations will appear once there are some">Hasil diktemu akan muncul di sini, siap disalin.</string>
+    <string name="firstrun__try_title">Coba di sini</string>
+    <string name="firstrun__try_summary">Ketuk dan ucapkan apa saja. Teksmu muncul di bawah, siap disalin.</string>
     <string name="settings__dictation_group" comment="Settings tab: the group of dictation settings at the top">Dikte</string>
     <string name="settings__more_group" comment="Settings tab: the group of every other settings category">Keyboard dan aplikasi</string>
     <string name="settings__floating_button_on" comment="Settings tab: summary of the floating mic button row while it is on">Aktif · di mana dan kapan muncul</string>

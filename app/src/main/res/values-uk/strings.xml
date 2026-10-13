@@ -176,7 +176,8 @@
     <string name="firstrun__floating_summary">Поруч із будь-яким полем введення, зі звичною вам клавіатурою</string>
     <string name="firstrun__keyboard_summary">Повноцінна клавіатура з вбудованим мікрофоном</string>
     <string name="firstrun__done">Увімкнено</string>
-    <string name="firstrun__history_hint">Тут з\'являтимуться ваші диктування — одразу готові до копіювання.</string>
+    <string name="firstrun__try_title">Спробуйте тут</string>
+    <string name="firstrun__try_summary">Торкніться й скажіть будь-що. Текст з’явиться нижче, готовий до копіювання.</string>
     <string name="settings__dictation_group">Диктування</string>
     <string name="settings__more_group">Клавіатура й застосунок</string>
     <string name="settings__floating_button_on">Увімк. · де й коли вона з\'являється</string>

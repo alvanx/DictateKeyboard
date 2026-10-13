@@ -176,7 +176,8 @@
     <string name="firstrun__floating_summary">À côté de n\'importe quel champ de texte, avec le clavier que vous utilisez déjà</string>
     <string name="firstrun__keyboard_summary">Un clavier complet avec votre micro intégré</string>
     <string name="firstrun__done">Activé</string>
-    <string name="firstrun__history_hint">Vos dictées apparaîtront ici, prêtes à être copiées.</string>
+    <string name="firstrun__try_title">Essayez ici</string>
+    <string name="firstrun__try_summary">Touchez et dites ce que vous voulez. Votre texte s\'affiche en dessous, prêt à être copié.</string>
     <string name="settings__dictation_group">Dictée</string>
     <string name="settings__more_group">Clavier et application</string>
     <string name="settings__floating_button_on">Activé · où et quand il apparaît</string>

@@ -180,7 +180,8 @@
     <string name="firstrun__floating_summary">Junto a cualquier campo de texto, con el teclado que ya usas</string>
     <string name="firstrun__keyboard_summary">Un teclado completo con tu micrófono integrado</string>
     <string name="firstrun__done">Activado</string>
-    <string name="firstrun__history_hint">Tus dictados aparecerán aquí, listos para copiar.</string>
+    <string name="firstrun__try_title">Pruébalo aquí</string>
+    <string name="firstrun__try_summary">Toca y di lo que quieras. Tu texto aparece abajo, listo para copiar.</string>
     <string name="settings__dictation_group">Dictado</string>
     <string name="settings__more_group">Teclado y app</string>
     <string name="settings__floating_button_on">Activado · dónde y cuándo aparece</string>

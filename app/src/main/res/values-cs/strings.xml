@@ -183,7 +183,8 @@
     <string name="firstrun__floating_summary">Vedle každého textového pole, s klávesnicí, kterou už používáte</string>
     <string name="firstrun__keyboard_summary">Plnohodnotná klávesnice s vestavěným mikrofonem</string>
     <string name="firstrun__done">Zapnuto</string>
-    <string name="firstrun__history_hint">Vaše diktáty se objeví tady, připravené ke zkopírování.</string>
+    <string name="firstrun__try_title">Vyzkoušejte to tady</string>
+    <string name="firstrun__try_summary">Klepněte a řekněte cokoli. Text se objeví níže, připravený ke zkopírování.</string>
     <string name="settings__dictation_group">Diktování</string>
     <string name="settings__more_group">Klávesnice a aplikace</string>
     <string name="settings__floating_button_on">Zapnuto · kde a kdy se zobrazuje</string>

@@ -181,7 +181,8 @@
     <string name="firstrun__floating_summary" comment="First-run home, second line of the floating mic option">Her metin kutusunun yanında, zaten kullandığın klavyeyle</string>
     <string name="firstrun__keyboard_summary" comment="First-run home, second line of the keyboard option">Mikrofonu içinde, eksiksiz bir klavye</string>
     <string name="firstrun__done" comment="Accessibility label of the check mark shown instead of Turn on once an option is on">Açık</string>
-    <string name="firstrun__history_hint" comment="First-run home, where recent dictations will appear once there are some">Diktelerin burada görünecek, kopyalanmaya hazır.</string>
+    <string name="firstrun__try_title">Burada dene</string>
+    <string name="firstrun__try_summary">Dokun ve bir şey söyle. Metnin aşağıda, kopyalanmaya hazır görünür.</string>
     <string name="settings__dictation_group" comment="Settings tab: the group of dictation settings at the top">Dikte</string>
     <string name="settings__more_group" comment="Settings tab: the group of every other settings category">Klavye ve uygulama</string>
     <string name="settings__floating_button_on" comment="Settings tab: summary of the floating mic button row while it is on">Açık · nerede ve ne zaman görüneceği</string>

@@ -177,7 +177,8 @@
     <string name="firstrun__floating_summary">Blakus jebkuram teksta laukam, ar tastatūru, ko jau lietojat</string>
     <string name="firstrun__keyboard_summary">Pilna tastatūra ar iebūvētu mikrofonu</string>
     <string name="firstrun__done">Ieslēgts</string>
-    <string name="firstrun__history_hint">Šeit parādīsies jūsu diktējumi, gatavi kopēšanai.</string>
+    <string name="firstrun__try_title">Izmēģiniet šeit</string>
+    <string name="firstrun__try_summary">Pieskarieties un sakiet jebko. Teksts parādīsies zemāk, gatavs kopēšanai.</string>
     <string name="settings__dictation_group">Diktēšana</string>
     <string name="settings__more_group">Tastatūra un lietotne</string>
     <string name="settings__floating_button_on">Ieslēgta · kur un kad tā parādās</string>

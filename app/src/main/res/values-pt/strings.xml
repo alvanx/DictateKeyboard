@@ -179,7 +179,8 @@
     <string name="firstrun__floating_summary">Junto a qualquer caixa de texto, com o teclado que já usa</string>
     <string name="firstrun__keyboard_summary">Um teclado completo com o microfone incorporado</string>
     <string name="firstrun__done">Ativado</string>
-    <string name="firstrun__history_hint">Os seus ditados aparecem aqui, prontos a copiar.</string>
+    <string name="firstrun__try_title">Experimente aqui</string>
+    <string name="firstrun__try_summary">Toque e diga qualquer coisa. O texto aparece abaixo, pronto a copiar.</string>
     <string name="settings__dictation_group">Ditado</string>
     <string name="settings__more_group">Teclado e aplicação</string>
     <string name="settings__floating_button_on">Ativado · onde e quando aparece</string>

@@ -184,7 +184,8 @@
     <string name="firstrun__floating_summary">Bármely szövegmező mellett, a már megszokott billentyűzettel</string>
     <string name="firstrun__keyboard_summary">Teljes billentyűzet beépített mikrofonnal</string>
     <string name="firstrun__done">Bekapcsolva</string>
-    <string name="firstrun__history_hint">A diktálásai itt jelennek majd meg, másolásra készen.</string>
+    <string name="firstrun__try_title">Próbálja ki itt</string>
+    <string name="firstrun__try_summary">Koppintson, és mondjon bármit. A szöveg alább jelenik meg, másolásra készen.</string>
     <string name="settings__dictation_group">Diktálás</string>
     <string name="settings__more_group">Billentyűzet és alkalmazás</string>
     <string name="settings__floating_button_on">Be · hol és mikor jelenik meg</string>

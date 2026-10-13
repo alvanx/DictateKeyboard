@@ -182,7 +182,8 @@
     <string name="firstrun__floating_summary">Рядом с любым полем ввода, с привычной вам клавиатурой</string>
     <string name="firstrun__keyboard_summary">Полноценная клавиатура со встроенным микрофоном</string>
     <string name="firstrun__done">Включено</string>
-    <string name="firstrun__history_hint">Здесь появятся ваши диктовки — их можно будет сразу скопировать.</string>
+    <string name="firstrun__try_title">Попробуйте здесь</string>
+    <string name="firstrun__try_summary">Нажмите и скажите что угодно. Текст появится ниже, готовый к копированию.</string>
     <string name="settings__dictation_group">Диктовка</string>
     <string name="settings__more_group">Клавиатура и приложение</string>
     <string name="settings__floating_button_on">Вкл. · где и когда она появляется</string>

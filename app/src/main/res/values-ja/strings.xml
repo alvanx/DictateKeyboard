@@ -177,7 +177,8 @@
     <string name="firstrun__floating_summary" comment="First-run home, second line of the floating mic option">どの入力欄の横にも。今のキーボードのままで使えます</string>
     <string name="firstrun__keyboard_summary" comment="First-run home, second line of the keyboard option">マイクを内蔵したフルキーボード</string>
     <string name="firstrun__done" comment="Accessibility label of the check mark shown instead of Turn on once an option is on">オン</string>
-    <string name="firstrun__history_hint" comment="First-run home, where recent dictations will appear once there are some">音声入力したテキストはここに表示され、すぐにコピーできます。</string>
+    <string name="firstrun__try_title">ここで試す</string>
+    <string name="firstrun__try_summary">タップして何か話してください。テキストが下に表示され、すぐにコピーできます。</string>
     <string name="settings__dictation_group" comment="Settings tab: the group of dictation settings at the top">音声入力</string>
     <string name="settings__more_group" comment="Settings tab: the group of every other settings category">キーボードとアプリ</string>
     <string name="settings__floating_button_on" comment="Settings tab: summary of the floating mic button row while it is on">オン · 表示する場所とタイミング</string>

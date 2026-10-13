@@ -184,7 +184,8 @@
     <string name="firstrun__floating_summary">До всяко текстово поле, с клавиатурата, която вече използвате</string>
     <string name="firstrun__keyboard_summary">Пълноценна клавиатура с вграден микрофон</string>
     <string name="firstrun__done">Включено</string>
-    <string name="firstrun__history_hint">Диктовките ви ще се появяват тук, готови за копиране.</string>
+    <string name="firstrun__try_title">Опитайте тук</string>
+    <string name="firstrun__try_summary">Докоснете и кажете каквото и да е. Текстът ще се появи отдолу, готов за копиране.</string>
     <string name="settings__dictation_group">Диктовка</string>
     <string name="settings__more_group">Клавиатура и приложение</string>
     <string name="settings__floating_button_on">Вкл. · къде и кога се показва</string>

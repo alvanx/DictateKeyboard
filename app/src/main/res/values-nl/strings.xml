@@ -177,7 +177,8 @@
     <string name="firstrun__floating_summary">Naast elk tekstveld, met het toetsenbord dat je al gebruikt</string>
     <string name="firstrun__keyboard_summary">Een volledig toetsenbord met je microfoon ingebouwd</string>
     <string name="firstrun__done">Aan</string>
-    <string name="firstrun__history_hint">Je dictaten verschijnen hier, klaar om te kopiëren.</string>
+    <string name="firstrun__try_title">Probeer het hier</string>
+    <string name="firstrun__try_summary">Tik en zeg iets. Je tekst verschijnt hieronder, klaar om te kopiëren.</string>
     <string name="settings__dictation_group">Dicteren</string>
     <string name="settings__more_group">Toetsenbord en app</string>
     <string name="settings__floating_button_on">Aan · waar en wanneer hij verschijnt</string>

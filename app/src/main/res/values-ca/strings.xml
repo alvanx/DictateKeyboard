@@ -177,7 +177,8 @@
     <string name="firstrun__floating_summary">Al costat de qualsevol camp de text, amb el teclat que ja fas servir</string>
     <string name="firstrun__keyboard_summary">Un teclat complet amb el micròfon integrat</string>
     <string name="firstrun__done">Activat</string>
-    <string name="firstrun__history_hint">Els teus dictats apareixeran aquí, a punt per copiar.</string>
+    <string name="firstrun__try_title">Prova-ho aquí</string>
+    <string name="firstrun__try_summary">Toca i digues qualsevol cosa. El text apareix a sota, a punt per copiar.</string>
     <string name="settings__dictation_group">Dictat</string>
     <string name="settings__more_group">Teclat i aplicació</string>
     <string name="settings__floating_button_on">Activat · on i quan apareix</string>

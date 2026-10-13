@@ -177,7 +177,8 @@
     <string name="firstrun__floating_summary">Accanto a qualsiasi campo di testo, con la tastiera che usi già</string>
     <string name="firstrun__keyboard_summary">Una tastiera completa con il microfono integrato</string>
     <string name="firstrun__done">Attivo</string>
-    <string name="firstrun__history_hint">Le tue dettature appariranno qui, pronte da copiare.</string>
+    <string name="firstrun__try_title">Provalo qui</string>
+    <string name="firstrun__try_summary">Tocca e di\' qualsiasi cosa. Il testo appare qui sotto, pronto da copiare.</string>
     <string name="settings__dictation_group">Dettatura</string>
     <string name="settings__more_group">Tastiera e app</string>
     <string name="settings__floating_button_on">Attivo · dove e quando appare</string>

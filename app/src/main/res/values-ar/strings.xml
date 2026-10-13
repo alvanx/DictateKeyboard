@@ -177,7 +177,8 @@
     <string name="firstrun__floating_summary" comment="First-run home, second line of the floating mic option">بجانب أي حقل نص، مع لوحة المفاتيح التي تستخدمها بالفعل</string>
     <string name="firstrun__keyboard_summary" comment="First-run home, second line of the keyboard option">لوحة مفاتيح كاملة مدمج فيها الميكروفون</string>
     <string name="firstrun__done" comment="Accessibility label of the check mark shown instead of Turn on once an option is on">مُفعَّل</string>
-    <string name="firstrun__history_hint" comment="First-run home, where recent dictations will appear once there are some">ستظهر إملاءاتك هنا، جاهزة للنسخ.</string>
+    <string name="firstrun__try_title">جرّبه هنا</string>
+    <string name="firstrun__try_summary">انقر وقل أي شيء. سيظهر النص بالأسفل جاهزًا للنسخ.</string>
     <string name="settings__dictation_group" comment="Settings tab: the group of dictation settings at the top">الإملاء</string>
     <string name="settings__more_group" comment="Settings tab: the group of every other settings category">لوحة المفاتيح والتطبيق</string>
     <string name="settings__floating_button_on" comment="Settings tab: summary of the floating mic button row while it is on">مُفعَّل · أين ومتى يظهر</string>

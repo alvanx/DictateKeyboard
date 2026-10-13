@@ -184,7 +184,8 @@
     <string name="firstrun__floating_summary">Obok każdego pola tekstowego, z klawiaturą, której już używasz</string>
     <string name="firstrun__keyboard_summary">Pełna klawiatura z wbudowanym mikrofonem</string>
     <string name="firstrun__done">Włączone</string>
-    <string name="firstrun__history_hint">Tutaj pojawią się twoje dyktowania, gotowe do skopiowania.</string>
+    <string name="firstrun__try_title">Wypróbuj tutaj</string>
+    <string name="firstrun__try_summary">Dotknij i powiedz cokolwiek. Tekst pojawi się poniżej, gotowy do skopiowania.</string>
     <string name="settings__dictation_group">Dyktowanie</string>
     <string name="settings__more_group">Klawiatura i aplikacja</string>
     <string name="settings__floating_button_on">Włączony · gdzie i kiedy się pojawia</string>

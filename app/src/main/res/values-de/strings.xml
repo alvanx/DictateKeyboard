@@ -180,7 +180,8 @@
     <string name="firstrun__floating_summary">Neben jedem Textfeld, mit der Tastatur, die du schon nutzt</string>
     <string name="firstrun__keyboard_summary">Eine vollständige Tastatur mit eingebautem Mikrofon</string>
     <string name="firstrun__done">Ein</string>
-    <string name="firstrun__history_hint">Deine Diktate erscheinen hier, bereit zum Kopieren.</string>
+    <string name="firstrun__try_title">Hier ausprobieren</string>
+    <string name="firstrun__try_summary">Tippe und sag irgendwas. Dein Text erscheint darunter, bereit zum Kopieren.</string>
     <string name="settings__dictation_group">Diktat</string>
     <string name="settings__more_group">Tastatur und App</string>
     <string name="settings__floating_button_on">Ein · wo und wann er erscheint</string>
