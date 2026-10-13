@@ -174,9 +174,11 @@ fun DictateCloudScreen() = FlorisScreen {
 
         // Reporting whatever Play lists comes first: if a payment went through but never reached the
         // server, this is where it is put right, before anything is drawn that would say "Free".
+        // Play's prices load alongside, not after: they do not depend on our server, and a slow or
+        // unreachable server must not keep the plans behind a spinner.
         LaunchedEffect(Unit) {
+            launch { shop = DictateCloud.shop(context) }
             DictateCloud.syncSubscription(context)
-            shop = DictateCloud.shop(context)
         }
 
         fun openPlay() {
@@ -208,9 +210,15 @@ fun DictateCloudScreen() = FlorisScreen {
         fun restorePurchase() {
             refreshing = true
             scope.launch {
-                val verified = DictateCloud.syncSubscription(context)
+                val settled = DictateCloud.syncSubscription(context)
                 refreshing = false
-                notice = if (verified > 0) noticeRestoreDone else noticeRestoreNone
+                notice = when {
+                    settled.any { it is DictateCloud.Settlement.Verified } -> noticeRestoreDone
+                    settled.any { it is DictateCloud.Settlement.NeedsRecovery } -> noticeNeedsRecovery
+                    settled.any { it is DictateCloud.Settlement.Pending } -> noticePending
+                    settled.any { it is DictateCloud.Settlement.Failed } -> noticeNotVerified
+                    else -> noticeRestoreNone
+                }
             }
         }
 

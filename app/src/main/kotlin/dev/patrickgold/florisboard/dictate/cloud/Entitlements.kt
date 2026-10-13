@@ -62,6 +62,15 @@ object Entitlements {
         state.value = applyOverride(Entitlement.NONE)
     }
 
+    /**
+     * Re-reads the cache from preferences. Called once the preference store has loaded, so a read
+     * that happened earlier cannot leave the empty record in place for the life of the process, and
+     * after a backup restore has replaced the stored record.
+     */
+    fun reload() {
+        state.value = applyOverride(load())
+    }
+
     /** Debug builds only: "plus", "free", or "" to follow the server. */
     suspend fun setDebugOverride(plan: String) {
         if (!BuildConfig.DEBUG) return

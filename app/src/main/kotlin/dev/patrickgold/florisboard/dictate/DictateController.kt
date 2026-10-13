@@ -1179,7 +1179,8 @@ object DictateController {
         val outOfCredit = notEntitled || dailyLimit
         val action = when {
             notEntitled -> ErrorAction.TOP_UP
-            dailyLimit -> ErrorAction.NONE
+            // The recording itself is fine and worth keeping for after the reset, or for another provider.
+            dailyLimit -> if (canResend) ErrorAction.SAVE_AUDIO else ErrorAction.NONE
             canResend && e.kind in EXPORTABLE_ERROR_KINDS -> ErrorAction.SAVE_AUDIO
             canResend && e.kind.isRetryable -> ErrorAction.RESEND
             e.kind == DictateApiException.Kind.INVALID_API_KEY -> ErrorAction.OPEN_SETTINGS
@@ -4655,7 +4656,11 @@ object DictateController {
         if (!entitlement.isKnown || Entitlements.has(PaidFeature.MANAGED_TRANSCRIPTION)) return false
         scope.launch { DictateCloud.refreshEntitlement() }
         _state.value = UiState.Error(
-            message = context.getString(R.string.dictate__error_cloud_not_entitled),
+            // On hold the subscription still exists; what is missing is the payment, not Plus.
+            message = context.getString(
+                if (entitlement.needsPaymentFix) R.string.dictate__error_cloud_payment
+                else R.string.dictate__error_cloud_not_entitled,
+            ),
             kind = DictateApiException.Kind.QUOTA_EXCEEDED,
             action = ErrorAction.TOP_UP,
         )

@@ -146,6 +146,7 @@ class FlorisApplication : Application() {
             DictateLegacyMigrator.migrateDevanagariPunctuationRuleIfNeeded()
             DictateLegacyMigrator.reofferRateAndDonateIfNeeded()
             preferenceStoreLoaded.value = true
+            dev.patrickgold.florisboard.dictate.cloud.Entitlements.reload()
             // Recordings saved while offline are transcribed by a system job, which a reboot forgets.
             dev.patrickgold.florisboard.dictate.offline.OfflineDictationQueue.rescheduleIfPending(this@FlorisApplication)
             // Report any Plus subscription Play lists and refresh the cached entitlement. Without a

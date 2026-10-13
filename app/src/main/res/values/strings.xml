@@ -2147,6 +2147,7 @@
     <string name="dictate__action_open_cloud" comment="Content description for the button that opens the Dictate Cloud subscription screen">Open Dictate Cloud</string>
     <string name="dictate__error_cloud_no_account_plus" comment="Smartbar error when Dictate Cloud is the active provider but this device holds no account">No Dictate Cloud account on this device</string>
     <string name="dictate__error_cloud_not_entitled" comment="Short Smartbar error: dictating through Dictate Cloud needs an active Plus subscription. Plus is the product name.">Dictate Cloud needs Plus</string>
+    <string name="dictate__error_cloud_payment" comment="Short Smartbar error: the Plus subscription is on hold because Google could not charge for it">Plus payment needs fixing</string>
     <string name="dictate__error_cloud_daily_limit" comment="Short Smartbar error: today's Plus allowance is used up. %1$s is a time of day, e.g. 02:00">Daily limit reached · back at %1$s</string>
     <string name="dictate__promo_cloud_payment_message" comment="Smartbar nudge shown once when Google could not charge for the Plus subscription">Plus payment didn\'t go through.</string>
     <string name="dictate__promo_cloud_payment_action" comment="Short label of the accent pill that opens the subscription screen. Must stay short to fit the single-line Smartbar.">Fix</string>

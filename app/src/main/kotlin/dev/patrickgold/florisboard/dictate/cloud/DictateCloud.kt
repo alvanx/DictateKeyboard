@@ -264,6 +264,10 @@ object DictateCloud {
             val launched = withContext(Dispatchers.Main) {
                 billing.launch(activity, details, option.offerToken, account().walletId)
             }
+            // Play refuses a second subscription to the same product. That means the paywall was
+            // shown to someone who already has Plus (offline, or a cache not yet refreshed), so the
+            // answer is to report what they own rather than to say the purchase failed.
+            if (launched == BillingResponseCode.ITEM_ALREADY_OWNED) return alreadyOwned(activity)
             if (launched != BillingResponseCode.OK) {
                 return PurchaseResult.Failed(launched, "launchBillingFlow returned $launched")
             }
@@ -271,7 +275,11 @@ object DictateCloud {
             return when (val outcome = billing.awaitOutcome()) {
                 is DictateCloudBilling.Outcome.Cancelled -> PurchaseResult.Cancelled
                 is DictateCloudBilling.Outcome.Failed ->
-                    PurchaseResult.Failed(outcome.code, outcome.message)
+                    if (outcome.code == BillingResponseCode.ITEM_ALREADY_OWNED) {
+                        alreadyOwned(activity)
+                    } else {
+                        PurchaseResult.Failed(outcome.code, outcome.message)
+                    }
                 is DictateCloudBilling.Outcome.Purchased -> {
                     val mine = outcome.purchases.filter { DictateCloudPlan.PRODUCT_ID in it.products }
                     val settled = mine.map { settle(it) }
@@ -293,6 +301,19 @@ object DictateCloud {
         }
     }
 
+    /** What a purchase attempt amounts to when Play says the subscription is already owned. */
+    private suspend fun alreadyOwned(context: Context): PurchaseResult {
+        val settled = syncSubscription(context)
+        settled.filterIsInstance<Settlement.Verified>().lastOrNull()
+            ?.let { return PurchaseResult.Subscribed(it.entitlement) }
+        return when (val first = settled.firstOrNull { it !is Settlement.Skipped }) {
+            is Settlement.Pending -> PurchaseResult.Pending
+            is Settlement.NeedsRecovery -> PurchaseResult.NeedsRecovery
+            is Settlement.Failed -> PurchaseResult.NotVerified(first.error)
+            else -> PurchaseResult.Failed(BillingResponseCode.ITEM_ALREADY_OWNED, "Already owned")
+        }
+    }
+
     /**
      * Sends every subscription Play lists to the server, then refreshes the entitlement.
      *
@@ -300,31 +321,31 @@ object DictateCloud {
      * users with their own key never reach the server from here (rule 3): with no subscription in
      * Play and no account on the device, this ends after asking Play.
      *
-     * Returns how many subscriptions the server verified on this run.
+     * Returns what became of each subscription Play listed, so "Restore purchase" can say whether
+     * there was nothing to find or something it could not attach.
      */
-    suspend fun syncSubscription(context: Context): Int {
-        var verified = 0
+    suspend fun syncSubscription(context: Context): List<Settlement> {
+        val settled = mutableListOf<Settlement>()
         val billing = DictateCloudBilling(context)
         try {
             if (billing.connect() == BillingResponseCode.OK) {
                 for (purchase in billing.purchases()) {
-                    when (val settlement = settle(purchase)) {
-                        is Settlement.Verified -> verified++
-                        is Settlement.Failed -> flogError {
-                            "Dictate Cloud: subscription not verified (${settlement.error.code}): ${settlement.error.message}"
-                        }
-                        else -> Unit
+                    val settlement = settle(purchase)
+                    settled += settlement
+                    if (settlement is Settlement.Failed) flogError {
+                        "Dictate Cloud: subscription not verified (${settlement.error.code}): ${settlement.error.message}"
                     }
                 }
             }
         } finally {
             billing.close()
         }
+        val verified = settled.count { it is Settlement.Verified }
         if (verified > 0) flogInfo { "Dictate Cloud: verified $verified subscription(s)" }
         // Verify already returned an entitlement, but a separate read also covers an account whose
         // subscription lives on another Play account, and one that has just expired.
         refreshEntitlement()
-        return verified
+        return settled
     }
 
     /**
