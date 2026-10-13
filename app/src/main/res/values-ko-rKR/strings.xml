@@ -102,8 +102,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">기본값</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">시스템 기본값</string>
     <string name="settings__home__title" comment="Title of the Home screen">{app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">앱이 시스템 설정에서 켜져 있지 않아 입력 방법으로 선택할 수 없습니다. 여기를 눌러 문제를 해결할 수 있습니다.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">앱이 기본 입력 방법으로 선택되어 있지 않습니다. 여기를 눌러 문제를 해결할 수 있습니다.</string>
     <string name="settings__localization__title" comment="Title of languages and Layout screen">언어 및 레이아웃</string>
     <string name="settings__localization__display_language_names_in__label" comment="Label of Display language names in preference">언어 표시 방식</string>
     <string name="settings__localization__group_subtypes__label" comment="Label of subtypes group">하위 유형</string>

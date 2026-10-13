@@ -126,8 +126,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Standard</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Systemstandard</string>
     <string name="settings__home__title" comment="Title of the Home screen">Willkommen bei {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} ist in deinem System nicht aktiviert und kann daher nicht als Eingabemethode ausgewählt werden. Hier klicken, um dieses Problem zu lösen.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} ist nicht als Standard-Eingabemethode ausgewählt. Hier klicken, um dieses Problem zu lösen.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Einstellungen durchsuchen</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Einstellungen durchsuchen…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Letzte Suchen</string>
@@ -1543,9 +1541,7 @@
     <string name="dictate__custom_words_title">Eigene Wörter</string>
     <string name="dictate__custom_words_summary_empty">Namen oder Fachbegriffe hinzufügen, die korrekt geschrieben werden sollen</string>
     <string name="dictate__custom_words_placeholder">z. B. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} Wörter · etwa {tokens} von {budget} Tokens</string>
     <string name="dictate__custom_words_budget_info">Jedes Wort hier wird bei jeder Diktatanfrage mitgeschickt, und das Sprachmodell liest davon nur etwa {budget} Tokens Kontext. Deine Liste belegt davon etwa {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">Deine Liste ist länger, als das Sprachmodell liest. Etwa {fits} deiner {count} Wörter kommen an; der Rest wird bei jedem Diktat mitgeschickt und ignoriert. Für einen größeren Wortschatz nimm eigene Zuordnungen — die sind exakt, funktionieren offline und kosten nichts.</string>
     <string name="dictate__custom_words_import">Wortliste importieren</string>
     <string name="dictate__custom_words_export">Wortliste exportieren</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1555,11 +1551,8 @@
     <string name="dictate__custom_words_import_nofit">{count} blieben übrig — das Sprachmodell liest nur etwa {budget} Tokens Kontext, sie wären also bei jedem Diktat mitgeschickt und ignoriert worden.</string>
     <string name="dictate__custom_words_import_unusable">{count} Zeilen enthielten nichts Schreibbares und wurden übersprungen.</string>
     <string name="dictate__custom_words_import_truncated">Nur die ersten {count} Einträge der Datei wurden gelesen.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Auch ins persönliche Wörterbuch aufnehmen</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Diese Liste sagt nur dem Sprachmodell, wie ein Wort geschrieben wird. Das persönliche Wörterbuch ist das, was die Tastatur beim Tippen benutzt — es hat keine Längengrenze, es kommt also jedes Wort der Datei hinein, nicht nur die, die oben hineinpassen.</string>
     <string name="dictate__custom_words_import_empty">Keine Wörter in dieser Datei gefunden</string>
     <string name="dictate__custom_words_import_done">{count} Wörter hinzugefügt</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} Wörter hinzugefügt und {dict} ins persönliche Wörterbuch</string>
     <string name="dictate__file_unreadable">Diese Datei konnte nicht gelesen werden</string>
     <string name="dictate__file_export_done">Datei gespeichert</string>
     <string name="dictate__file_export_failed">Datei konnte nicht geschrieben werden</string>

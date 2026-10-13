@@ -122,8 +122,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">За замовчуванням</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Системний за замовчуванням</string>
     <string name="settings__home__title" comment="Title of the Home screen">Ласкаво просимо до {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} не ввімкнено в системі, тому він не буде доступним як метод вводу в меню вибору методу вводу. Натисніть сюди, щоб виправити це.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} не вибрано як стандартний метод вводу. Натисніть сюди, щоб виправити це.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Пошук у налаштуваннях</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Пошук у налаштуваннях…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Останні пошуки</string>
@@ -1394,9 +1392,7 @@
     <string name="dictate__custom_words_title">Власні слова</string>
     <string name="dictate__custom_words_summary_empty">Додайте імена або технічні терміни для правильного написання</string>
     <string name="dictate__custom_words_placeholder">напр. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} слів · приблизно {tokens} з {budget} токенів</string>
     <string name="dictate__custom_words_budget_info">Кожне слово звідси вирушає з кожним диктуванням, а мовна модель читає лише близько {budget} токенів контексту. Ваш список займає з них приблизно {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">Ваш список довший за те, що читає мовна модель. До неї доходить приблизно {fits} з ваших {count} слів; решта надсилається з кожним диктуванням і ігнорується. Для більшого словника скористайтеся власними замінами — вони точні, працюють офлайн і нічого не коштують.</string>
     <string name="dictate__custom_words_import">Імпортувати список слів</string>
     <string name="dictate__custom_words_export">Експортувати список слів</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1406,11 +1402,8 @@
     <string name="dictate__custom_words_import_nofit">{count} залишилися поза списком — мовна модель читає лише близько {budget} токенів контексту, тож вони надсилалися б із кожним диктуванням і ігнорувалися.</string>
     <string name="dictate__custom_words_import_unusable">У {count} рядках не знайшлося нічого, що можна записати, — їх пропущено.</string>
     <string name="dictate__custom_words_import_truncated">Прочитано лише перші {count} записів файлу.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Додати їх і до особистого словника</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Цей список лише каже мовній моделі, як пишеться слово. Особистий словник — це те, чим клавіатура користується під час набору: він не має обмеження за довжиною, тож туди потрапляє кожне слово з файлу, а не лише ті, що вміщуються вище.</string>
     <string name="dictate__custom_words_import_empty">У цьому файлі не знайдено слів</string>
     <string name="dictate__custom_words_import_done">Додано {count} слів</string>
-    <string name="dictate__custom_words_import_done_dictionary">Додано {count} слів і {dict} до вашого особистого словника</string>
     <string name="dictate__file_unreadable">Цей файл не вдалося прочитати</string>
     <string name="dictate__file_export_done">Файл збережено</string>
     <string name="dictate__file_export_failed">Не вдалося записати цей файл</string>

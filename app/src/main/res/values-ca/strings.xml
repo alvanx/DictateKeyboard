@@ -123,8 +123,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Per defecte</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Per defecte del sistema</string>
     <string name="settings__home__title" comment="Title of the Home screen">Us donem la benvinguda a {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} no està habilitat en el sistema i, per tant, no estarà disponible com a mètode d\'entrada en el selector d\'entrada. Feu clic aquí per a resoldre aquest problema.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} no està seleccionat com a mètode d\'entrada per defecte. Feu clic aquí per a resoldre aquest problema.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Cerca la configuració</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Cerca la configuració…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Cerques recents</string>
@@ -1419,9 +1417,7 @@
     <string name="dictate__custom_words_title">Paraules personalitzades</string>
     <string name="dictate__custom_words_summary_empty">Afegeix noms o termes tècnics perquè s\'escriguin correctament</string>
     <string name="dictate__custom_words_placeholder">p. ex. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} paraules · uns {tokens} de {budget} tokens</string>
     <string name="dictate__custom_words_budget_info">Cada paraula d\'aquí viatja amb cada dictat, i el model de veu només en llegeix uns {budget} tokens de context. La teva llista n\'ocupa uns {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">La teva llista és més llarga del que el model de veu llegeix. Unes {fits} de les teves {count} paraules hi arriben; la resta s\'envia a cada dictat i s\'ignora. Per a un vocabulari més ampli fes servir les correspondències personalitzades: són exactes, funcionen sense connexió i no costen res.</string>
     <string name="dictate__custom_words_import">Importa una llista de paraules</string>
     <string name="dictate__custom_words_export">Exporta la llista de paraules</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1431,11 +1427,8 @@
     <string name="dictate__custom_words_import_nofit">{count} han quedat fora: el model de veu només llegeix uns {budget} tokens de context, així que s\'haurien enviat a cada dictat i s\'haurien ignorat.</string>
     <string name="dictate__custom_words_import_unusable">{count} línies no contenien res per escriure i s\'han omès.</string>
     <string name="dictate__custom_words_import_truncated">Només s\'han llegit les primeres {count} entrades del fitxer.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Afegeix-les també al diccionari personal</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Aquesta llista només diu al model de veu com s\'escriu una paraula. El diccionari personal és el que el teclat fa servir mentre escrius: no té límit de longitud, així que hi entren totes les paraules del fitxer, no només les que caben a dalt.</string>
     <string name="dictate__custom_words_import_empty">No s\'ha trobat cap paraula en aquest fitxer</string>
     <string name="dictate__custom_words_import_done">{count} paraules afegides</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} paraules afegides i {dict} al teu diccionari personal</string>
     <string name="dictate__file_unreadable">No s\'ha pogut llegir aquest fitxer</string>
     <string name="dictate__file_export_done">Fitxer desat</string>
     <string name="dictate__file_export_failed">No s\'ha pogut escriure aquest fitxer</string>

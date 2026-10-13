@@ -123,8 +123,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Standaard</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Systeemstandaard</string>
     <string name="settings__home__title" comment="Title of the Home screen">Welkom bij {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} is niet ingeschakeld in het systeem en zal dus niet beschikbaar zijn als een invoermethode in de invoermethode-kiezer. Klik hier om dit probleem op te lossen.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} is niet geselecteerd als de standaard invoermethode. Klik hier om dit probleem op te lossen.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Instellingen doorzoeken</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Instellingen doorzoeken…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Recente zoekopdrachten</string>
@@ -1449,9 +1447,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__custom_words_title">Aangepaste woorden</string>
     <string name="dictate__custom_words_summary_empty">Voeg namen of vaktermen toe die correct gespeld moeten worden</string>
     <string name="dictate__custom_words_placeholder">bv. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} woorden · ongeveer {tokens} van {budget} tokens</string>
     <string name="dictate__custom_words_budget_info">Elk woord hier gaat met elk dictaat mee, en het spraakmodel leest daarvan maar zo\'n {budget} tokens context. Je lijst gebruikt er ongeveer {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">Je lijst is langer dan het spraakmodel leest. Ongeveer {fits} van je {count} woorden komen aan; de rest gaat bij elk dictaat mee en wordt genegeerd. Gebruik voor een grotere woordenschat eigen vervangingen — die zijn exact, werken offline en kosten niets.</string>
     <string name="dictate__custom_words_import">Woordenlijst importeren</string>
     <string name="dictate__custom_words_export">Woordenlijst exporteren</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1461,11 +1457,8 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__custom_words_import_nofit">{count} vielen af — het spraakmodel leest maar zo\'n {budget} tokens context, ze zouden dus bij elk dictaat zijn meegestuurd en genegeerd.</string>
     <string name="dictate__custom_words_import_unusable">{count} regels bevatten niets om te spellen en zijn overgeslagen.</string>
     <string name="dictate__custom_words_import_truncated">Alleen de eerste {count} vermeldingen van het bestand zijn gelezen.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Ook aan het persoonlijke woordenboek toevoegen</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Deze lijst vertelt alleen het spraakmodel hoe een woord geschreven wordt. Het persoonlijke woordenboek is wat het toetsenbord gebruikt terwijl je typt — dat heeft geen lengtegrens, dus elk woord uit het bestand komt erin, niet alleen de woorden die hierboven passen.</string>
     <string name="dictate__custom_words_import_empty">Geen woorden in dat bestand gevonden</string>
     <string name="dictate__custom_words_import_done">{count} woorden toegevoegd</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} woorden toegevoegd, en {dict} aan je persoonlijke woordenboek</string>
     <string name="dictate__file_unreadable">Dat bestand kon niet worden gelezen</string>
     <string name="dictate__file_export_done">Bestand opgeslagen</string>
     <string name="dictate__file_export_failed">Kon dat bestand niet schrijven</string>

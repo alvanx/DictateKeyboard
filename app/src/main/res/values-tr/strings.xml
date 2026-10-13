@@ -127,8 +127,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Varsayılan</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Sistem varsayılanı</string>
     <string name="settings__home__title" comment="Title of the Home screen">{app_name} Uygulamasına Hoş Geldiniz</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} sistemde etkin değil ve bu nedenle giriş yöntemi seçicisinde bir giriş yöntemi olarak kullanılamayacak. Bu sorunu çözmek için buraya tıklayın.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} varsayılan giriş yöntemi olarak seçilmemiş. Bu sorunu çözmek için buraya tıklayın.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Ayarlarda ara</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Ayarlarda ara…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Son aramalar</string>
@@ -1528,9 +1526,7 @@
     <string name="dictate__custom_words_title">Özel sözcükler</string>
     <string name="dictate__custom_words_summary_empty">Doğru yazılması için adlar veya teknik terimler ekleyin</string>
     <string name="dictate__custom_words_placeholder">örn. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} kelime · {budget} jetonun yaklaşık {tokens} kadarı</string>
     <string name="dictate__custom_words_budget_info">Buradaki her kelime her dikteyle birlikte gönderilir ve konuşma modeli bunun yalnızca yaklaşık {budget} jetonluk bağlamını okur. Listen bunun yaklaşık {tokens} kadarını kullanıyor.</string>
-    <string name="dictate__custom_words_budget_over">Listen, konuşma modelinin okuduğundan uzun. {count} kelimenin yaklaşık {fits} tanesi modele ulaşıyor; geri kalanı her diktede gönderilip yok sayılıyor. Daha geniş bir sözcük dağarcığı için özel eşleştirmeleri kullan — onlar birebirdir, çevrimdışı çalışır ve hiçbir maliyeti yoktur.</string>
     <string name="dictate__custom_words_import">Kelime listesi içe aktar</string>
     <string name="dictate__custom_words_export">Kelime listesini dışa aktar</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1540,11 +1536,8 @@
     <string name="dictate__custom_words_import_nofit">{count} tanesi dışarıda kaldı — konuşma modeli yalnızca yaklaşık {budget} jetonluk bağlam okuyor, dolayısıyla her diktede gönderilip yok sayılacaklardı.</string>
     <string name="dictate__custom_words_import_unusable">{count} satırda yazılacak bir şey yoktu ve atlandı.</string>
     <string name="dictate__custom_words_import_truncated">Dosyanın yalnızca ilk {count} kaydı okundu.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Kişisel sözlüğe de ekle</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Bu liste yalnızca konuşma modeline bir kelimenin nasıl yazıldığını söyler. Kişisel sözlük ise klavyenin sen yazarken kullandığı sözlüktür — uzunluk sınırı yoktur, bu yüzden dosyadaki her kelime oraya girer, yalnızca yukarıya sığanlar değil.</string>
     <string name="dictate__custom_words_import_empty">Bu dosyada kelime bulunamadı</string>
     <string name="dictate__custom_words_import_done">{count} kelime eklendi</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} kelime eklendi, {dict} tanesi de kişisel sözlüğüne</string>
     <string name="dictate__file_unreadable">Bu dosya okunamadı</string>
     <string name="dictate__file_export_done">Dosya kaydedildi</string>
     <string name="dictate__file_export_failed">Bu dosya yazılamadı</string>

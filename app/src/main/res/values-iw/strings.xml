@@ -110,8 +110,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">ברירת מחדל</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">ברירת המחדל של המערכת</string>
     <string name="settings__home__title" comment="Title of the Home screen">ברוכים הבאים ל{app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} אינו מופעל במערכת ולכן לא יהיה זמין כשיטת קלט בעת בחירת סוג המלקדת. לחץ כאן כדי לפתור תקלה זו.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} לא הוגדר כמקלדת ברירת המחדל. לחיצה כאן תאפשר לפתור תקלה זו.</string>
     <string name="settings__localization__title" comment="Title of languages and Layout screen">שפות &amp; פריסות</string>
     <string name="settings__localization__display_language_names_in__label" comment="Label of Display language names in preference">הציגו שם שפה ב</string>
     <string name="settings__localization__display_keyboard_labels_in_subtype_language" comment="Label of Display keyboard labels in subtype language preference">הצגת תוויות מקלדת בשפת תת-סוג</string>

@@ -33,8 +33,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Προεπιλογή</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Προεπιλογή συστήματος</string>
     <string name="settings__home__title" comment="Title of the Home screen">Καλώς ήλθατε στο {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">Το {app_name} δεν είναι ενεργοποιημένο στο σύστημα και συνεπώς δε θα είναι διαθέσιμο ως μέθοδος εισαγωγής στον επιλογέα εισαγωγής. Πατήστε εδώ για να επιλύσετε αυτό το πρόβλημα.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">Το {app_name} δεν έχει επιλεχθεί ως η προεπιλεγμένη μέθοδος εισαγωγής. Πατήστε εδώ για να επιλύσετε αυτό το πρόβλημα.</string>
     <string name="settings__localization__title" comment="Title of languages and Layout screen">Γλώσσες &amp; Διατάξεις</string>
     <string name="settings__localization__group_subtypes__label" comment="Label of subtypes group">Υποτύποι</string>
     <string name="settings__localization__subtype_add_title" comment="Title of subtype dialog when adding a new subtype">Προσθήκη υποτύπου</string>

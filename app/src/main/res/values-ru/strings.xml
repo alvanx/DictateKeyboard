@@ -128,8 +128,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">По умолчанию</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Как в системе</string>
     <string name="settings__home__title" comment="Title of the Home screen">Приветствуем в {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} не включена в системе и поэтому не будет доступна в качестве метода ввода. Нажмите здесь, чтобы исправить эту проблему.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} не выбрана в качестве метода ввода по умолчанию. Нажмите здесь, чтобы исправить эту проблему.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Поиск по настройкам</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Поиск по настройкам…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Недавние запросы</string>
@@ -1555,9 +1553,7 @@
     <string name="dictate__custom_words_title">Пользовательские слова</string>
     <string name="dictate__custom_words_summary_empty">Добавьте имена или технические термины для правильного написания</string>
     <string name="dictate__custom_words_placeholder">напр. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} слов · примерно {tokens} из {budget} токенов</string>
     <string name="dictate__custom_words_budget_info">Каждое слово отсюда уходит с каждой диктовкой, а речевая модель читает лишь около {budget} токенов контекста. Ваш список занимает из них примерно {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">Ваш список длиннее того, что читает речевая модель. До неё доходит примерно {fits} из ваших {count} слов; остальные отправляются при каждой диктовке и игнорируются. Для большого словаря используйте собственные замены — они точные, работают офлайн и ничего не стоят.</string>
     <string name="dictate__custom_words_import">Импортировать список слов</string>
     <string name="dictate__custom_words_export">Экспортировать список слов</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1567,11 +1563,8 @@
     <string name="dictate__custom_words_import_nofit">{count} остались за бортом — речевая модель читает лишь около {budget} токенов контекста, поэтому они отправлялись бы при каждой диктовке и игнорировались.</string>
     <string name="dictate__custom_words_import_unusable">В {count} строках не нашлось ничего, что можно записать, — они пропущены.</string>
     <string name="dictate__custom_words_import_truncated">Прочитаны только первые {count} записей файла.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Добавить их и в личный словарь</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Этот список только говорит речевой модели, как пишется слово. Личный словарь — это то, чем клавиатура пользуется при наборе: у него нет ограничения по длине, поэтому туда попадает каждое слово из файла, а не только те, что помещаются выше.</string>
     <string name="dictate__custom_words_import_empty">В этом файле не найдено слов</string>
     <string name="dictate__custom_words_import_done">Добавлено {count} слов</string>
-    <string name="dictate__custom_words_import_done_dictionary">Добавлено {count} слов и {dict} в ваш личный словарь</string>
     <string name="dictate__file_unreadable">Этот файл не удалось прочитать</string>
     <string name="dictate__file_export_done">Файл сохранён</string>
     <string name="dictate__file_export_failed">Не удалось записать этот файл</string>

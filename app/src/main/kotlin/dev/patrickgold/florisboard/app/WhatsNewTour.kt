@@ -1723,7 +1723,7 @@ private fun TourShareToText() {
                     )
                     Spacer(modifier = Modifier.width(7.dp))
                     Text(
-                        text = "Dictate",
+                        text = stringRes(R.string.app_name),
                         style = MaterialTheme.typography.labelLarge,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface,

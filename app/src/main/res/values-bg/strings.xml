@@ -130,8 +130,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">По подразбиране</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">По подразбиране от системата</string>
     <string name="settings__home__title" comment="Title of the Home screen">Добре дошли във {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">Клавиатурата {app_name} не е активна в системата и не е достъпна като метод за въвеждане. Докоснете тук, за да промените.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">Клавиатурата {app_name} не е избрана като подразбиран метод за въвеждане. Докоснете, за да направите промяната.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Търсене в настройките</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Търсене в настройките…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Скорошни търсения</string>
@@ -1549,9 +1547,7 @@
     <string name="dictate__custom_words_title">Персонализирани думи</string>
     <string name="dictate__custom_words_summary_empty">Добавете имена или технически термини за правилно изписване</string>
     <string name="dictate__custom_words_placeholder">напр. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} думи · около {tokens} от {budget} токена</string>
     <string name="dictate__custom_words_budget_info">Всяка дума оттук пътува с всяка диктовка, а речевият модел прочита само около {budget} токена контекст. Твоят списък заема около {tokens} от тях.</string>
-    <string name="dictate__custom_words_budget_over">Списъкът ти е по-дълъг от това, което речевият модел прочита. До него стигат около {fits} от твоите {count} думи; останалите се изпращат при всяка диктовка и се пренебрегват. За по-голям речник използвай собствените замени — те са точни, работят офлайн и не струват нищо.</string>
     <string name="dictate__custom_words_import">Импортиране на списък с думи</string>
     <string name="dictate__custom_words_export">Експортиране на списъка с думи</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1561,11 +1557,8 @@
     <string name="dictate__custom_words_import_nofit">{count} останаха извън него — речевият модел прочита само около {budget} токена контекст, така че те щяха да се изпращат при всяка диктовка и да се пренебрегват.</string>
     <string name="dictate__custom_words_import_unusable">{count} реда не съдържаха нищо за изписване и бяха пропуснати.</string>
     <string name="dictate__custom_words_import_truncated">Прочетени бяха само първите {count} записа от файла.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Добави ги и в личния речник</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Този списък само казва на речевия модел как се пише една дума. Личният речник е това, което клавиатурата използва, докато пишеш — той няма ограничение за дължина, така че в него влиза всяка дума от файла, а не само тези, които се побират по-горе.</string>
     <string name="dictate__custom_words_import_empty">В този файл не са намерени думи</string>
     <string name="dictate__custom_words_import_done">Добавени са {count} думи</string>
-    <string name="dictate__custom_words_import_done_dictionary">Добавени са {count} думи и {dict} в личния ти речник</string>
     <string name="dictate__file_unreadable">Този файл не можа да бъде прочетен</string>
     <string name="dictate__file_export_done">Файлът е запазен</string>
     <string name="dictate__file_export_failed">Този файл не можа да бъде записан</string>

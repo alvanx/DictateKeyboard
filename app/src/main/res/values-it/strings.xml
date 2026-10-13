@@ -123,8 +123,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Predefinito</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Predefinito di sistema</string>
     <string name="settings__home__title" comment="Title of the Home screen">Benvenuto in {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} non è abilitato nel sistema e quindi non sarà disponibile come metodo di immissione. Clicca qui per risolvere il problema.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} non è la tastiera predefinita. Clicca qui per risolvere il problema.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Cerca nelle impostazioni</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Cerca nelle impostazioni…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Ricerche recenti</string>
@@ -1332,9 +1330,7 @@
     <string name="dictate__custom_words_title">Parole personalizzate</string>
     <string name="dictate__custom_words_summary_empty">Aggiungi nomi o termini tecnici da scrivere correttamente</string>
     <string name="dictate__custom_words_placeholder">es. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} parole · circa {tokens} di {budget} token</string>
     <string name="dictate__custom_words_budget_info">Ogni parola qui viaggia con ogni dettatura, e il modello vocale ne legge solo circa {budget} token di contesto. Il tuo elenco ne occupa circa {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">Il tuo elenco è più lungo di quanto il modello vocale legga. Circa {fits} delle tue {count} parole lo raggiungono; il resto viene inviato a ogni dettatura e ignorato. Per un vocabolario più ampio usa le sostituzioni personalizzate: sono esatte, funzionano offline e non costano nulla.</string>
     <string name="dictate__custom_words_import">Importa un elenco di parole</string>
     <string name="dictate__custom_words_export">Esporta l\'elenco di parole</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1344,11 +1340,8 @@
     <string name="dictate__custom_words_import_nofit">{count} sono rimaste fuori: il modello vocale legge solo circa {budget} token di contesto, quindi sarebbero state inviate a ogni dettatura e ignorate.</string>
     <string name="dictate__custom_words_import_unusable">{count} righe non contenevano nulla da scrivere e sono state saltate.</string>
     <string name="dictate__custom_words_import_truncated">Sono state lette solo le prime {count} voci del file.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Aggiungile anche al dizionario personale</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Questo elenco dice soltanto al modello vocale come si scrive una parola. Il dizionario personale è ciò che la tastiera usa mentre digiti: non ha limiti di lunghezza, quindi entrano tutte le parole del file, non solo quelle che sopra ci stanno.</string>
     <string name="dictate__custom_words_import_empty">Nessuna parola trovata in questo file</string>
     <string name="dictate__custom_words_import_done">{count} parole aggiunte</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} parole aggiunte e {dict} al tuo dizionario personale</string>
     <string name="dictate__file_unreadable">Non è stato possibile leggere questo file</string>
     <string name="dictate__file_export_done">File salvato</string>
     <string name="dictate__file_export_failed">Non è stato possibile scrivere questo file</string>

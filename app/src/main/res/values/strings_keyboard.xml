@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="dictate__prompts_layout_when_useful_label" comment="Prompt layout option: the rewrite chips appear in the keyboard's top bar only right after dictating or while text is selected">When useful</string>
-    <string name="dictate__prompts_layout_when_useful_description">Show the prompts in the top bar right after you dictate or when text is selected.</string>
-</resources>

@@ -193,7 +193,7 @@ object ProviderRegistry {
      */
     val CLOUD = ProviderPreset(
         id = "cloud",
-        displayName = "Dictate Cloud",
+        displayName = "Voice Mode Cloud",
         baseUrl = "https://api.dictatekeyboard.com/v1/",
         capabilities = CHAT_AND_STT,
         supportsDynamicModels = false,

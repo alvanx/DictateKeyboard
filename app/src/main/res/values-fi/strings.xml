@@ -34,8 +34,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Oletus</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Järjestelmän oletus</string>
     <string name="settings__home__title" comment="Title of the Home screen">Tervetuloa {app_name}iin</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name}ia ei ole otettu järjestelmäasetuksissa käyttöön eikä sen vuoksi ole valittavissa syöttötavaksi. Klikkaa tästä ratkaistaksesi ongelman.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name}ia ei ole valittu oletussyöttötavaksi. Klikkaa tästä ratkaistaksesi ongelman.</string>
     <string name="settings__localization__title" comment="Title of languages and Layout screen">Kielet &amp; ulkoasut</string>
     <string name="settings__localization__display_language_names_in__label" comment="Label of Display language names in preference">Kieli, jolla kielten nimet näytetään</string>
     <string name="settings__localization__group_subtypes__label" comment="Label of subtypes group">Alityypit</string>

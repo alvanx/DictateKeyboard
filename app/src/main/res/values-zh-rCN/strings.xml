@@ -130,8 +130,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">默认</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">系统默认</string>
     <string name="settings__home__title" comment="Title of the Home screen">欢迎使用{app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name}没有在系统中被启用，因此在输入法选择界面中不会出现。点击这里解决这一问题。</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name}没有被设置为默认输入法。点击这里解决这一问题。</string>
     <string name="settings__search__title" comment="Title of the settings search screen">搜索设置</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">搜索设置…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">最近搜索</string>
@@ -1544,9 +1542,7 @@
     <string name="dictate__custom_words_title">自定义词汇</string>
     <string name="dictate__custom_words_summary_empty">添加姓名或专业术语以正确拼写</string>
     <string name="dictate__custom_words_placeholder">例如：FlorisBoard、Kubernetes、Renée、OAuth、Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} 个词 · 约 {tokens}/{budget} 个词元</string>
     <string name="dictate__custom_words_budget_info">这里的每个词都会随每次听写一起发送，而语音模型只读取其中约 {budget} 个词元的上下文。你的列表约占 {tokens} 个。</string>
-    <string name="dictate__custom_words_budget_over">你的列表比语音模型能读取的更长。{count} 个词中约有 {fits} 个能送达，其余的每次听写都会发送并被忽略。词汇量较大时请改用自定义替换，它精确、可离线工作，而且不产生任何费用。</string>
     <string name="dictate__custom_words_import">导入词表</string>
     <string name="dictate__custom_words_export">导出词表</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1556,11 +1552,8 @@
     <string name="dictate__custom_words_import_nofit">有 {count} 个没放下——语音模型只读取约 {budget} 个词元的上下文，它们即使被发送也会被忽略。</string>
     <string name="dictate__custom_words_import_unusable">{count} 行没有可拼写的内容，已跳过。</string>
     <string name="dictate__custom_words_import_truncated">只读取了文件中的前 {count} 条。</string>
-    <string name="dictate__custom_words_import_also_dictionary">同时加入个人词典</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">这个列表只告诉语音模型一个词该怎么写。个人词典才是键盘在你打字时使用的词典——它没有长度限制，所以文件中的每个词都会加入，而不只是上面放得下的那些。</string>
     <string name="dictate__custom_words_import_empty">在该文件中未找到词语</string>
     <string name="dictate__custom_words_import_done">已添加 {count} 个词</string>
-    <string name="dictate__custom_words_import_done_dictionary">已添加 {count} 个词，并将 {dict} 个加入你的个人词典</string>
     <string name="dictate__file_unreadable">无法读取该文件</string>
     <string name="dictate__file_export_done">文件已保存</string>
     <string name="dictate__file_export_failed">无法写入该文件</string>

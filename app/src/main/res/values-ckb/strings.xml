@@ -100,8 +100,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">بنەڕەتی</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">بەپێی سیستەم</string>
     <string name="settings__home__title" comment="Title of the Home screen">بەخێربێی بۆ {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">تەختەکلیلی {app_name} هێشتا چالاک نەکراوە لە ڕێکخستنەکانی سیستەمدا، پێویستە چالاکی بکەیت بۆ بەکارهێنان پەنجەبنێ بێرەدا.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">تەختەکلیلی {app_name} چالاککراوە لە ڕێکخستنەکانی سیستەمدا بەڵام هەڵنەبژێردراوە بۆ بەکارهێنان وەک تەختەکلیلی سەرەکی، پێویستە دیاریبکەیت بۆ بەکارهێنان پەنجەبنێ بێرەدا بۆ هەڵبژاردن.</string>
     <string name="settings__localization__title" comment="Title of languages and Layout screen">زمان و شێوازەکان</string>
     <string name="settings__localization__display_language_names_in__label" comment="Label of Display language names in preference">پیشاندانی ناوی زمان بەشێوەی</string>
     <string name="settings__localization__group_subtypes__label" comment="Label of subtypes group">شێوازەکان</string>

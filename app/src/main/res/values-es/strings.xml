@@ -126,8 +126,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Por defecto</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Predeterminado del sistema</string>
     <string name="settings__home__title" comment="Title of the Home screen">Bienvenido a {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} no está habilitado en el sistema y por lo tanto no estará disponible como método de entrada en el selector de entrada. Haga clic aquí para resolver este problema.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} no está seleccionado como método de entrada predeterminado. Haga clic aquí para solucionar este problema.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Buscar en los ajustes</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Buscar en los ajustes…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Búsquedas recientes</string>
@@ -1531,9 +1529,7 @@
     <string name="dictate__custom_words_title">Palabras personalizadas</string>
     <string name="dictate__custom_words_summary_empty">Añade nombres o términos técnicos para escribirlos correctamente</string>
     <string name="dictate__custom_words_placeholder">p. ej. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} palabras · unos {tokens} de {budget} tokens</string>
     <string name="dictate__custom_words_budget_info">Cada palabra de aquí viaja con cada dictado, y el modelo de voz solo lee unos {budget} tokens de contexto. Tu lista ocupa unos {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">Tu lista es más larga de lo que el modelo de voz lee. Unas {fits} de tus {count} palabras le llegan; el resto se envía en cada dictado y se ignora. Para un vocabulario más amplio usa las asignaciones personalizadas: son exactas, funcionan sin conexión y no cuestan nada.</string>
     <string name="dictate__custom_words_import">Importar una lista de palabras</string>
     <string name="dictate__custom_words_export">Exportar la lista de palabras</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1543,11 +1539,8 @@
     <string name="dictate__custom_words_import_nofit">{count} se quedaron fuera: el modelo de voz solo lee unos {budget} tokens de contexto, así que se habrían enviado en cada dictado y se habrían ignorado.</string>
     <string name="dictate__custom_words_import_unusable">{count} líneas no contenían nada que escribir y se omitieron.</string>
     <string name="dictate__custom_words_import_truncated">Solo se leyeron las primeras {count} entradas del archivo.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Añadirlas también al diccionario personal</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Esta lista solo le dice al modelo de voz cómo se escribe una palabra. El diccionario personal es lo que el teclado usa mientras escribes: no tiene límite de longitud, así que entran todas las palabras del archivo, no solo las que caben arriba.</string>
     <string name="dictate__custom_words_import_empty">No se han encontrado palabras en ese archivo</string>
     <string name="dictate__custom_words_import_done">{count} palabras añadidas</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} palabras añadidas y {dict} a tu diccionario personal</string>
     <string name="dictate__file_unreadable">No se ha podido leer ese archivo</string>
     <string name="dictate__file_export_done">Archivo guardado</string>
     <string name="dictate__file_export_failed">No se ha podido escribir ese archivo</string>

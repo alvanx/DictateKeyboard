@@ -123,8 +123,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">デフォルト</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">システムのデフォルト</string>
     <string name="settings__home__title" comment="Title of the Home screen">{app_name}へようこそ</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name}がシステムで有効になっていないため、入力方法として使用できません。この問題を解決するには、ここをタップしてください。</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name}は、デフォルトの入力方法として選択されていません。この問題を解決するには、ここをタップしてください。</string>
     <string name="settings__search__title" comment="Title of the settings search screen">設定を検索</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">設定を検索…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">最近の検索</string>
@@ -1481,9 +1479,7 @@
     <string name="dictate__custom_words_title">カスタム単語</string>
     <string name="dictate__custom_words_summary_empty">正しく表記するために名前や専門用語を追加します</string>
     <string name="dictate__custom_words_placeholder">例: FlorisBoard、Kubernetes、Renée、OAuth、Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} 語 · 約 {tokens} / {budget} トークン</string>
     <string name="dictate__custom_words_budget_info">ここの単語は口述のたびに毎回送られますが、音声モデルが読むのは約 {budget} トークン分の文脈だけです。このリストはそのうち約 {tokens} を使っています。</string>
-    <string name="dictate__custom_words_budget_over">リストが音声モデルの読み取れる長さを超えています。{count} 語のうち約 {fits} 語だけが届き、残りは毎回送られたうえで無視されます。語彙が多い場合はカスタム置換をお使いください。正確で、オフラインでも動き、費用もかかりません。</string>
     <string name="dictate__custom_words_import">単語リストを読み込む</string>
     <string name="dictate__custom_words_export">単語リストを書き出す</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1493,11 +1489,8 @@
     <string name="dictate__custom_words_import_nofit">{count} 語は入りませんでした。音声モデルが読む文脈は約 {budget} トークンまでなので、送られても無視されていたはずです。</string>
     <string name="dictate__custom_words_import_unusable">{count} 行には表記すべき語がなく、読み飛ばしました。</string>
     <string name="dictate__custom_words_import_truncated">ファイルの先頭 {count} 件のみを読み込みました。</string>
-    <string name="dictate__custom_words_import_also_dictionary">ユーザー辞書にも追加する</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">このリストは音声モデルに綴りを伝えるだけのものです。ユーザー辞書は入力中にキーボードが使う辞書で、長さの制限がありません。そのため上に収まらなかった語も含め、ファイル内のすべての単語が登録されます。</string>
     <string name="dictate__custom_words_import_empty">このファイルに単語は見つかりませんでした</string>
     <string name="dictate__custom_words_import_done">{count} 語を追加しました</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} 語を追加し、{dict} 語をユーザー辞書にも追加しました</string>
     <string name="dictate__file_unreadable">このファイルは読み込めませんでした</string>
     <string name="dictate__file_export_done">ファイルを保存しました</string>
     <string name="dictate__file_export_failed">このファイルを書き込めませんでした</string>

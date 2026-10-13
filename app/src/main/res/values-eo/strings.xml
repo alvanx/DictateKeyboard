@@ -110,8 +110,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Defaŭlta</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Sistema defaŭlta</string>
     <string name="settings__home__title" comment="Title of the Home screen">Bonvenon al {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} estas ne ebligita en la sistemo kaj sekve estos ne disponebla kiel enigmetodo en la elektilo. Klaku ĉi tie por solvi la problemon.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} ne estas elektita kiel la implicita enigmetodo. Klaku ĉi tie por solvi la problemon.</string>
     <string name="settings__localization__title" comment="Title of languages and Layout screen">Lingvoj &amp; Aranĝoj</string>
     <string name="settings__localization__display_language_names_in__label" comment="Label of Display language names in preference">Montri lingvajn nomojn en</string>
     <string name="settings__localization__display_keyboard_labels_in_subtype_language" comment="Label of Display keyboard labels in subtype language preference">Montri klavarajn etikedojn en la subspeca lingvo</string>

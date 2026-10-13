@@ -130,8 +130,6 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Alapértelmezett</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Rendszer alapértelmezése</string>
     <string name="settings__home__title" comment="Title of the Home screen">Üdvözli a {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">A {app_name} nincs engedélyezve a rendszerben, így nem lesz elérhető beviteli módként a bevitelválasztóban. A probléma megoldásához kattintson ide.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">Nem a {app_name} az alapértelmezett beviteli mód. A probléma megoldásához kattintson ide.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Keresés a beállításokban</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Keresés a beállításokban…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Legutóbbi keresések</string>
@@ -1548,9 +1546,7 @@
     <string name="dictate__custom_words_title">Egyéni szavak</string>
     <string name="dictate__custom_words_summary_empty">Adjon hozzá neveket vagy szakkifejezéseket a helyes írásmódhoz</string>
     <string name="dictate__custom_words_placeholder">pl. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} szó · nagyjából {tokens} a {budget} tokenből</string>
     <string name="dictate__custom_words_budget_info">Az itteni szavak mindegyike minden diktálással együtt megy el, és a beszédmodell ebből csak körülbelül {budget} token kontextust olvas. A listád ebből nagyjából {tokens} tokent foglal.</string>
-    <string name="dictate__custom_words_budget_over">A listád hosszabb annál, mint amennyit a beszédmodell elolvas. A {count} szavadból nagyjából {fits} jut el hozzá; a többi minden diktáláskor elmegy, és figyelmen kívül marad. Nagyobb szókincshez használd az egyéni cseréket — azok pontosak, offline is működnek, és semmibe sem kerülnek.</string>
     <string name="dictate__custom_words_import">Szólista importálása</string>
     <string name="dictate__custom_words_export">Szólista exportálása</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1560,11 +1556,8 @@
     <string name="dictate__custom_words_import_nofit">{count} kimaradt — a beszédmodell csak körülbelül {budget} token kontextust olvas, így ezek minden diktáláskor elmentek volna, és figyelmen kívül maradtak volna.</string>
     <string name="dictate__custom_words_import_unusable">{count} sor nem tartalmazott leírható szót, ezeket kihagytuk.</string>
     <string name="dictate__custom_words_import_truncated">A fájlnak csak az első {count} bejegyzését olvastuk be.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Add hozzá a személyes szótárhoz is</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Ez a lista csak a beszédmodellnek mondja meg, hogyan kell egy szót írni. A személyes szótár az, amit a billentyűzet gépelés közben használ — annak nincs hosszkorlátja, így a fájl minden szava bekerül, nem csak azok, amelyek fentebb elférnek.</string>
     <string name="dictate__custom_words_import_empty">Ebben a fájlban nem található szó</string>
     <string name="dictate__custom_words_import_done">{count} szó hozzáadva</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} szó hozzáadva, és {dict} a személyes szótáradhoz</string>
     <string name="dictate__file_unreadable">Ezt a fájlt nem sikerült beolvasni</string>
     <string name="dictate__file_export_done">Fájl mentve</string>
     <string name="dictate__file_export_failed">Ezt a fájlt nem sikerült megírni</string>
