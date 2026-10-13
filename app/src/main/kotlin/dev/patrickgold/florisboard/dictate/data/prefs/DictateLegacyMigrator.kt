@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.dictate.DictateLanguages
 import dev.patrickgold.florisboard.dictate.DictatePromptsLayout
+import dev.patrickgold.florisboard.dictate.data.prompts.MyWordsSync
 import dev.patrickgold.florisboard.dictate.data.prompts.PromptsDatabaseHelper
 import dev.patrickgold.florisboard.dictate.provider.DictateProxyType
 import dev.patrickgold.florisboard.dictate.provider.ProviderAccount
@@ -404,6 +405,16 @@ object DictateLegacyMigrator {
         if (prefs.suggestion.learnTypedWordsDefaultMigrated.get()) return
         prefs.suggestion.learnTypedWords.set(true)
         prefs.suggestion.learnTypedWordsDefaultMigrated.set(true)
+    }
+
+    /**
+     * Makes the dictation custom words and the keyboard's personal dictionary one "My words" list, once
+     * (guarded by `prefs.dictate.myWordsMerged`): each list gets the other's words, so nothing either
+     * held is lost. From then on My words is the list people edit, and [MyWordsSync] keeps the
+     * dictionary following it. Waits for a later start while the internal dictionary is switched off.
+     */
+    suspend fun mergeMyWordsIfNeeded(context: Context) {
+        runCatching { MyWordsSync.mergeIfNeeded(context) }
     }
 
     /**

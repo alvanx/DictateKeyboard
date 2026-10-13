@@ -28,6 +28,7 @@ import androidx.core.os.UserManagerCompat
 import dev.patrickgold.florisboard.app.FlorisPreferenceModel
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.dictate.data.prefs.DictateLegacyMigrator
+import dev.patrickgold.florisboard.dictate.data.prompts.MyWordsSync
 import dev.patrickgold.florisboard.dictate.wear.DictateWearPublisher
 import dev.patrickgold.florisboard.ime.clipboard.ClipboardManager
 import dev.patrickgold.florisboard.ime.core.SubtypeManager
@@ -147,9 +148,13 @@ class FlorisApplication : Application() {
             DictateLegacyMigrator.migrateDevanagariPunctuationRuleIfNeeded()
             DictateLegacyMigrator.reofferRateAndDonateIfNeeded()
             preferenceStoreLoaded.value = true
+            // After the store is marked loaded: it reads two databases, and nothing has to wait for it.
+            DictateLegacyMigrator.mergeMyWordsIfNeeded(this@FlorisApplication)
             // Keep the Wear OS companion's settings snapshot fresh: re-publish whenever a watch-relevant
             // phone setting changes (#106), so the watch reflects accent/provider/key/prompt automatically.
             DictateWearPublisher.startPublishingOnChange(this@FlorisApplication, scope)
+            // My words is also the keyboard's list: keep the personal dictionary following it.
+            MyWordsSync.startMirroring(this@FlorisApplication, scope)
         }
         extensionManager.value.init()
         clipboardManager.value.initializeForContext(this)

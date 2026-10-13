@@ -1094,6 +1094,18 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__custom_words",
             default = "",
         )
+        // "My words": customWords above is also the keyboard's list now, copied into the personal
+        // dictionary (MyWordsSync). This is what was copied last, so a word removed from My words can be
+        // removed from the dictionary too — and only such a word. Newline-separated.
+        val myWordsMirrored = string(
+            key = "dictate__my_words_mirrored",
+            default = "",
+        )
+        // Guard for the one-time merge of the personal dictionary into My words (and the other way round).
+        val myWordsMerged = boolean(
+            key = "dictate__my_words_merged",
+            default = false,
+        )
         // Custom mappings (issue #129): deterministic find-and-replace applied to the finished transcript
         // before it is inserted — exact and token-free, unlike the prompt-hint customWords above.
         val customMappings = custom(
