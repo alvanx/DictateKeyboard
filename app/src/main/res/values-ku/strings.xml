@@ -229,7 +229,7 @@
     <string name="setup__finish_up__title">Bi dawî bû</string>
     <string name="setup__finish_up__description_p1">{app_name} niha di pergalê de çalak e û amade ye ku ji hêla we ve were xwemalîkirin.</string>
     <string name="setup__finish_up__description_p2">Heke hûn bi pirsgirêk, xeletî, qezayan an jî bi tenê dixwazin pêşnîyazekê bikin, li depoya projeyê binêrin ji ekrana der barê ekranê!</string>
-    <string name="setup__finish_up__finish_btn">Dest Bi Taybetkirinê Bike</string>
+    <string name="setup__finish_up__finish_btn">Dest bi bikaranîna {app_name} bike</string>
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
     <string name="backup_and_restore__title">Yêdek &amp; Nûvdekirin kirin</string>
@@ -244,14 +244,14 @@
     <string name="backup_and_restore__restore__title">Daneyan vegerîne</string>
     <string name="backup_and_restore__restore__mode">Moda restorebike</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Raporta xeletiya Dictate</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">Ji ber nelirêtîyê xemgîn im, lê Dictate ji ber xeletîyeka nelibendê têk çû.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Heke hûn bixwazin vê çewtiyê ragihînin, pêşî li ser GitHubê temaşekerê pirsgirêkê kontrol bikin heke qezaya we jixwe nehatibe ragihandin. nIf ew nehatibe ragihandin, qeyda têkçûnê ya hilberandî kopî bikin û pirsgirêkeke nû vekin. Şablona \"%s\" bi kar bîne û danasînê, gavên ji nû ve hilberînê dagire û di dawîyê da rojnivîska têkçûnê ya çêkirî pê ve bike. Ev, dibe alîkar ku Dictate ji bo her kesî baştir û aramtir bibe. Sax bî!</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Raporta xeletiya Voice Mode</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">Ji ber nelirêtîyê xemgîn im, lê Voice Mode ji ber xeletîyeka nelibendê têk çû.</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Heke hûn bixwazin vê çewtiyê ragihînin, pêşî li ser GitHubê temaşekerê pirsgirêkê kontrol bikin heke qezaya we jixwe nehatibe ragihandin. nIf ew nehatibe ragihandin, qeyda têkçûnê ya hilberandî kopî bikin û pirsgirêkeke nû vekin. Şablona \"%s\" bi kar bîne û danasînê, gavên ji nû ve hilberînê dagire û di dawîyê da rojnivîska têkçûnê ya çêkirî pê ve bike. Ev, dibe alîkar ku Voice Mode ji bo her kesî baştir û aramtir bibe. Sax bî!</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Bigire</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Raportên xeletiya Dictate</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">FlorîsBoardê dest ji kar berda…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Raportên xeletiya Voice Mode</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode dest ji kar berda…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Ji bo dîtina hûrguliyên çewtiyê destlêdan bike</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Xuya ye FlorîsBoard bi berdewamî dest ji kar berde…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Xuya ye Voice Mode bi berdewamî dest ji kar berde…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Ji bo rawestandina loopa lêxistinê ya bêdawî, dîsa li klavyeya berê vedigerî. Ji bo dîtina hûrguliyên çewtiyê lêdan bike</string>
     <!-- Clipboard strings -->
     <string name="clipboard__disabled__title">ھەڵگرتنی لەبەرگیراوەکان نا چالاکە</string>

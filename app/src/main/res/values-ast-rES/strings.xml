@@ -177,14 +177,14 @@
     <string name="setup__select_ime__switch_keyboard_btn">Cambiar de tecláu</string>
     <string name="setup__grant_notification_permission__title">Avisos pa informar de casques</string>
     <string name="setup__grant_notification_permission__description">A partir d\'Android 13, les aplicaciones tienen de pidir
-        permisu pa unviar avisos. En Dictate, esti permisu namás s\'usa p\'abrir la pantalla d\'informar casques al producise dalgún.
+        permisu pa unviar avisos. En {app_name}, esti permisu namás s\'usa p\'abrir la pantalla d\'informar casques al producise dalgún.
         Pues camudar esti permisu cuando quieras na configuración del sistema.
     </string>
     <string name="setup__grant_notification_permission__btn">Conceder el permisu</string>
     <string name="setup__finish_up__title">Fin</string>
     <string name="setup__finish_up__description_p1">{app_name} ta activáu nel sistema y yá pues personalizalu.</string>
     <string name="setup__finish_up__description_p2">Si atopes cualesquier problema, fallu, casque o namás quier facer dalguna suxerencia, consulta\'l depósitu del proyeutu na pantalla «Tocante a».</string>
-    <string name="setup__finish_up__finish_btn">Comenzar a personalizar</string>
+    <string name="setup__finish_up__finish_btn">Comenzar a usar {app_name}</string>
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
     <string name="backup_and_restore__back_up__destination_file_sys">Sistema de ficheros llocal</string>
@@ -197,8 +197,8 @@
     <string name="backup_and_restore__restore__failure">La restauración de los datos falló: {error_message}</string>
     <!-- Crash Dialog strings -->
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Zarrar</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate dexó de funcionar…</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Paez que Dictate dexa de funcionar de contino…</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode dexó de funcionar…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Paez que Voice Mode dexa de funcionar de contino…</string>
     <!-- Clipboard strings -->
     <string name="clipboard__header_title">Cartafueyu</string>
     <string name="clipboard__disabled__message">L\'historial del cartafueyu de {app_name} permítete atroxar y acceder aína al testu y a les imáxenes que copies, cola capacidá de fixar elementos, configurar la llimpieza automática y afitar un númberu máximu d\'elementos.</string>

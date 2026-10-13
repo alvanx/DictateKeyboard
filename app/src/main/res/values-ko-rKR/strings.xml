@@ -320,7 +320,7 @@
     <string name="setup__finish_up__title">마무리</string>
     <string name="setup__finish_up__description_p1">이제 {app_name} 키보드를 마음껏 꾸미고 써볼 수 있어요.</string>
     <string name="setup__finish_up__description_p2">문제가 생기거나, 버그를 발견하거나, 제안할 내용이 있다면 정보 화면에서 프로젝트 리포지터리에 방문해 주세요!</string>
-    <string name="setup__finish_up__finish_btn">꾸미기 시작</string>
+    <string name="setup__finish_up__finish_btn">{app_name} 사용 시작</string>
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
     <string name="backup_and_restore__title">백업 및 복원</string>
@@ -342,12 +342,12 @@
     <string name="backup_and_restore__restore__mode_merge">현재 데이터에 합치기</string>
     <string name="backup_and_restore__restore__mode_erase_and_overwrite">현재 데이터를 덮어쓰기</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">앱 오류 보고</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Voice Mode 오류 보고</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">클립보드에 복사</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">클립보드에 복사했습니다.</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">클립보드에 복사할 수 없습니다. 클립보드 관리자 인스턴스를 찾을 수 없습니다.</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">닫기</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">앱 오류 보고</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Voice Mode 오류 보고</string>
     <!-- Clipboard strings -->
     <string name="clipboard__header_title">클립보드</string>
     <string name="clipboard__disabled__title">클립보드 기록이 꺼져 있음</string>

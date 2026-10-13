@@ -414,7 +414,7 @@
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Dictate fejlrapport</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Voice Mode-fejlrapport</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Luk</string>
     <!-- Clipboard strings -->
     <string name="clipboard__header_title">Udklipsholder</string>

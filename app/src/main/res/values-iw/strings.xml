@@ -262,14 +262,14 @@
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Dictate דוח שגיאה</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">מצטער על אי הנוחות, אך Dictate קרס בגלל שגיאה לא צפויה.</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Voice Mode דוח שגיאה</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">מצטער על אי הנוחות, אך Voice Mode קרס בגלל שגיאה לא צפויה.</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">העתק ללוח המערכת</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">סגור</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Dictate דוח שגיאה</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate הפסיק לעבוד…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Voice Mode דוח שגיאה</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode הפסיק לעבוד…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">לחץ להצגת פרטי השגיאה</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">נראה שDictate מפסיק לעבוד שוב שוב…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">נראה ש-Voice Mode מפסיק לעבוד שוב שוב…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">המקדלת הקומדת הוחזרה כדי למנוע לולאת קריסה אינסופית. לחץ כדי לראות את פרטי השגיאה</string>
     <!-- Clipboard strings -->
     <string name="clipboard__disabled__enable_button">אפשר היסטוריה של הלוח</string>

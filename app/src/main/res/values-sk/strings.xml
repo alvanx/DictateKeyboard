@@ -305,7 +305,7 @@
     <string name="backup_and_restore__restore__failure">Dáta sa nepodarilo obnoviť: {error_message}</string>
     <!-- Crash Dialog strings -->
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Zavrieť</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Aplikácia Dictate prestala pracovať…</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Aplikácia Voice Mode prestala pracovať…</string>
     <!-- Clipboard strings -->
     <string name="clipboard__header_title">Schránka</string>
     <string name="clipboard__disabled__title">História schránky je momentálne zakázaná</string>

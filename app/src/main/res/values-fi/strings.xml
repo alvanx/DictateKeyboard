@@ -274,16 +274,16 @@
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Dictatein virheraportti</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">Pahoittelut, Dictate kaatui odottamattoman virheen vuoksi.</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Voice Mode -virheraportti</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">Pahoittelut, Voice Mode kaatui odottamattoman virheen vuoksi.</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Kopioi järjestelmän leikepöydälle</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Kopioitu järjestelmän leikepöydälle</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">Avaa ongelmien seuranta (github.com)</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Sulje</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Dictate-virheraportit</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate on lopettanut toimintansa…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Voice Mode -virheraportit</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode on lopettanut toimintansa…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Napauta nähdäksesi virheen tiedot</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Dictate vaikuttaa lopettavan toimintansa toistuvasti…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Voice Mode vaikuttaa lopettavan toimintansa toistuvasti…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Vaihdetaan edelliseen näppäimistöön, jotta kaatumiskierre loppuu. Napauta nähdäksesi virheen tiedot</string>
     <!-- Clipboard strings -->
     <string name="clipboard__header_title">Leikepöytä</string>

@@ -217,7 +217,7 @@
     <string name="setup__finish_up__title">Ολοκλήρωση</string>
     <string name="setup__finish_up__description_p1">{app_name} είναι τώρα ενεργοποιημένο στο σύστημα και έτοιμο να προσαρμοστεί από εσάς.</string>
     <string name="setup__finish_up__description_p2">Εάν αντιμετωπίσετε τυχόν θέματα, προβλήματα, σφάλματα ή απλώς θέλετε να κάνετε μία πρόταση, ρίξτε μία ματιά στο αποθετήριο από το πεδίο σχετικά με!</string>
-    <string name="setup__finish_up__finish_btn">Ξεκινήστε την προσαρμογή</string>
+    <string name="setup__finish_up__finish_btn">Ξεκινήστε να χρησιμοποιείτε το {app_name}</string>
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
     <string name="backup_and_restore__restore__title">Επαναφορά δεδομένων</string>
@@ -225,18 +225,18 @@
     <string name="backup_and_restore__restore__success">Επιτυχής επαναφορά δεδομένων!</string>
     <string name="backup_and_restore__restore__failure">Αποτυχία επαναφοράς δεδομένων: {error_message}</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Αναφορά σφάλματος Dictate</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">Συγγνώμη για την ταλαιπωρία, αλλά το Dictate έχει τερματιστεί απροσδόκητα εξαιτίας ενός απρόσμενου σφάλματος.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Εάν επιθυμείτε να αναφέρετε αυτό το σφάλμα, πρώτα ελέγξτε αν το πρόβλημά σας δεν έχει ακόμα αναφερθεί στην παρακολούθηση προβλημάτων στο GitHub.\nΕάν δεν έχει αναφερθεί, αντιγράψτε την καταγραφή του απροσδόκητου τερματισμού που έχει προκύψει και ανοίξτε ένα νέο θέμα. Χρησιμοποιήστε το πρότυπο \"%s\" και συμπληρώστε την περιγραφή, τα βήματα για αναπαραγωγή, και αντιγράψτε την καταγραφή του τερματισμού στο τέλος. Αυτό βοηθάει να γίνει το Dictate καλύτερο και πιο σταθερό για όλους. Ευχαριστώ!</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Αναφορά σφάλματος Voice Mode</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">Συγγνώμη για την ταλαιπωρία, αλλά το Voice Mode έχει τερματιστεί απροσδόκητα εξαιτίας ενός απρόσμενου σφάλματος.</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Εάν επιθυμείτε να αναφέρετε αυτό το σφάλμα, πρώτα ελέγξτε αν το πρόβλημά σας δεν έχει ακόμα αναφερθεί στην παρακολούθηση προβλημάτων στο GitHub.\nΕάν δεν έχει αναφερθεί, αντιγράψτε την καταγραφή του απροσδόκητου τερματισμού που έχει προκύψει και ανοίξτε ένα νέο θέμα. Χρησιμοποιήστε το πρότυπο \"%s\" και συμπληρώστε την περιγραφή, τα βήματα για αναπαραγωγή, και αντιγράψτε την καταγραφή του τερματισμού στο τέλος. Αυτό βοηθάει να γίνει το Voice Mode καλύτερο και πιο σταθερό για όλους. Ευχαριστώ!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Αντιγραφή στο πρόχειρο συστήματος</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Αντιγράφηκε στο πρόχειρο συστήματος</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">Αδυναμία αντιγραφής στο πρόχειρο συστήματος: Η πραγμάτωση διαχειριστή προχείρου δε βρέθηκε</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">Άνοιγμα παρακολούθησης θεμάτων (github.com)</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Κλείσιμο</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Αναφορές σφάλματος Dictate</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Το Dictate έχει σταματήσει να λειτουργεί…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Αναφορές σφάλματος Voice Mode</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Το Voice Mode έχει σταματήσει να λειτουργεί…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Πατήστε για προβολή λεπτομερειών σφάλματος</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Φαίνεται πως το Dictate σταματά να λειτουργεί επανειλημμένα…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Φαίνεται πως το Voice Mode σταματά να λειτουργεί επανειλημμένα…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Χρήση εναλλακτικά του προηγούμενου πληκτρολογίου για να σταματήσει ο αδιάκοπος κύκλος απροσδόκητων τερματισμών. Πατήστε για να δείτε λεπτομέρειες του σφάλματος</string>
     <!-- Clipboard strings -->
     <string name="clipboard__header_title">Πρόχειρο</string>
