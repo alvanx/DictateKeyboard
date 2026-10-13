@@ -1775,7 +1775,7 @@
     <string name="enum__auto_correct_strength__aggressive">Агресивне</string>
     <string name="enum__auto_correct_strength__aggressive__description">Виправляє й віддаленіші слова — та інколи замінює те, яке ви мали на увазі.</string>
     <string name="pref__suggestion__multilingual_typing__label">Багатомовне введення</string>
-    <string name="pref__suggestion__multilingual_typing__summary">Приймати слова з усіх мов клавіатури</string>
+    <string name="pref__suggestion__multilingual_typing__summary">Підказки та виправлення підлаштовуються під мову клавіатури, якою ви пишете</string>
     <string name="pref__suggestion__next_word_prediction__label">Підказки наступного слова</string>
     <string name="pref__suggestion__next_word_prediction__summary">Пропонує ймовірні наступні слова після завершення слова</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">Ігнорувати програми, які вимикають підказки</string>

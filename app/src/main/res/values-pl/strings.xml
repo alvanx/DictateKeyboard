@@ -1947,7 +1947,7 @@
     <string name="enum__auto_correct_strength__aggressive">Agresywna</string>
     <string name="enum__auto_correct_strength__aggressive__description">Poprawia też słowa bardziej odległe — i co jakiś czas zamienia to, które chciałeś.</string>
     <string name="pref__suggestion__multilingual_typing__label">Pisanie wielojęzyczne</string>
-    <string name="pref__suggestion__multilingual_typing__summary">Akceptuj słowa ze wszystkich języków klawiatury</string>
+    <string name="pref__suggestion__multilingual_typing__summary">Podpowiedzi i poprawki dopasowują się do języka klawiatury, w którym piszesz</string>
     <string name="pref__suggestion__next_word_prediction__label">Podpowiedzi następnego słowa</string>
     <string name="pref__suggestion__next_word_prediction__summary">Proponuje prawdopodobne następne słowa po zakończeniu słowa</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">Ignoruj aplikacje wyłączające podpowiedzi</string>

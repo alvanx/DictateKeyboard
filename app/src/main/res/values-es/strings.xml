@@ -1910,7 +1910,7 @@
     <string name="enum__auto_correct_strength__aggressive">Agresiva</string>
     <string name="enum__auto_correct_strength__aggressive__description">También corrige palabras más alejadas — y de vez en cuando sustituye una que sí querías.</string>
     <string name="pref__suggestion__multilingual_typing__label">Escritura multilingüe</string>
-    <string name="pref__suggestion__multilingual_typing__summary">Acepta palabras de todos los idiomas del teclado</string>
+    <string name="pref__suggestion__multilingual_typing__summary">Las sugerencias y correcciones siguen el idioma del teclado en el que escribes</string>
     <string name="pref__suggestion__next_word_prediction__label">Sugerencias de palabra siguiente</string>
     <string name="pref__suggestion__next_word_prediction__summary">Sugiere palabras probables cuando terminas una palabra</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">Ignorar las aplicaciones que desactivan las sugerencias</string>

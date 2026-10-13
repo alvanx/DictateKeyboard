@@ -1927,7 +1927,7 @@
     <string name="enum__auto_correct_strength__aggressive">Agresszív</string>
     <string name="enum__auto_correct_strength__aggressive__description">A távolabbi szavakat is javítja — és néha olyat cserél le, amit szándékosan írtál.</string>
     <string name="pref__suggestion__multilingual_typing__label">Többnyelvű gépelés</string>
-    <string name="pref__suggestion__multilingual_typing__summary">Szavak elfogadása az összes billentyűzetnyelvedből</string>
+    <string name="pref__suggestion__multilingual_typing__summary">A javaslatok és javítások ahhoz a billentyűzetnyelvhez igazodnak, amelyen éppen írsz</string>
     <string name="pref__suggestion__next_word_prediction__label">Következő szó javaslatok</string>
     <string name="pref__suggestion__next_word_prediction__summary">Valószínű következő szavakat javasol, ha befejezett egy szót</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">A javaslatokat kikapcsoló alkalmazások figyelmen kívül hagyása</string>

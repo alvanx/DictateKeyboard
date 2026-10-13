@@ -1907,7 +1907,7 @@
     <string name="enum__auto_correct_strength__aggressive">Agresif</string>
     <string name="enum__auto_correct_strength__aggressive__description">Daha uzaktaki sözcükleri de düzeltir — ve arada bir kastettiğinizi değiştirir.</string>
     <string name="pref__suggestion__multilingual_typing__label">Çok dilli yazım</string>
-    <string name="pref__suggestion__multilingual_typing__summary">Tüm klavye dillerinizdeki kelimeleri kabul edin</string>
+    <string name="pref__suggestion__multilingual_typing__summary">Öneriler ve düzeltmeler yazdığınız klavye dilini takip eder</string>
     <string name="pref__suggestion__next_word_prediction__label">Sonraki kelime önerileri</string>
     <string name="pref__suggestion__next_word_prediction__summary">Bir kelimeyi bitirdiğinizde olası sonraki kelimeleri önerir</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">Önerileri kapatan uygulamaları yok say</string>

@@ -1804,7 +1804,7 @@
     <string name="enum__auto_correct_strength__aggressive">Agressive</string>
     <string name="enum__auto_correct_strength__aggressive__description">Corrige aussi les mots plus éloignés — et remplace parfois celui que vous vouliez.</string>
     <string name="pref__suggestion__multilingual_typing__label">Saisie multilingue</string>
-    <string name="pref__suggestion__multilingual_typing__summary">Accepter les mots de toutes vos langues de clavier</string>
+    <string name="pref__suggestion__multilingual_typing__summary">Les suggestions et corrections suivent la langue de clavier dans laquelle vous écrivez</string>
     <string name="pref__suggestion__next_word_prediction__label">Suggestions de mot suivant</string>
     <string name="pref__suggestion__next_word_prediction__summary">Propose les mots probables une fois un mot terminé</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">Ignorer les applications qui désactivent les suggestions</string>

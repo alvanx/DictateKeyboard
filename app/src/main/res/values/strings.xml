@@ -697,7 +697,7 @@
     <string name="enum__auto_correct_strength__aggressive" comment="Option of the auto-correct strength setting">Aggressive</string>
     <string name="enum__auto_correct_strength__aggressive__description" comment="Description of the aggressive auto-correct strength">Also fixes words that are further off — and now and then replaces one you meant.</string>
     <string name="pref__suggestion__multilingual_typing__label" comment="Preference title">Multilingual typing</string>
-    <string name="pref__suggestion__multilingual_typing__summary" comment="Preference summary">Accept words from all your keyboard languages</string>
+    <string name="pref__suggestion__multilingual_typing__summary" comment="Preference summary">Suggestions and corrections follow whichever of your keyboard languages you type in</string>
     <string name="pref__suggestion__next_word_prediction__label" comment="Preference title">Next-word suggestions</string>
     <string name="pref__suggestion__next_word_prediction__summary" comment="Preference summary">Suggest likely next words once you have finished a word</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label" comment="Preference title">Ignore apps that turn suggestions off</string>

@@ -1711,7 +1711,7 @@
     <string name="enum__auto_correct_strength__aggressive">Aggressiva</string>
     <string name="enum__auto_correct_strength__aggressive__description">Corregge anche parole più lontane — e ogni tanto ne sostituisce una che volevi davvero.</string>
     <string name="pref__suggestion__multilingual_typing__label">Digitazione multilingue</string>
-    <string name="pref__suggestion__multilingual_typing__summary">Accetta parole da tutte le lingue della tastiera</string>
+    <string name="pref__suggestion__multilingual_typing__summary">Suggerimenti e correzioni seguono la lingua della tastiera in cui scrivi</string>
     <string name="pref__suggestion__next_word_prediction__label">Suggerimenti parola successiva</string>
     <string name="pref__suggestion__next_word_prediction__summary">Suggerisce le parole probabili dopo aver completato una parola</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">Ignora le app che disattivano i suggerimenti</string>
