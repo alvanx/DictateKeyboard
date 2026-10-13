@@ -685,7 +685,7 @@ private fun RowScope.ErrorContent(state: DictateController.UiState.Error) {
             ) {
                 SnyggIcon(
                     imageVector = Icons.Default.AddCard,
-                    contentDescription = stringRes(R.string.dictate__action_top_up),
+                    contentDescription = stringRes(R.string.dictate__action_open_cloud),
                 )
             }
             DismissButton()
@@ -884,7 +884,7 @@ private fun PromoContent(kind: DictateController.PromoKind, message: String? = n
         DictateController.PromoKind.MILESTONE -> Icons.Default.EmojiEvents
         // The mark of what is running low, not of the action — the accent pill beside it already
         // says "top up".
-        DictateController.PromoKind.LOW_CREDIT -> ImageVector.vectorResource(R.drawable.ic_dictate_cloud)
+        DictateController.PromoKind.CLOUD_PAYMENT -> ImageVector.vectorResource(R.drawable.ic_dictate_cloud)
     }
     // Milestone text is dynamic (which milestone), so it arrives via [message]; the rest map to a res.
     val messageRes = when (kind) {
@@ -893,7 +893,7 @@ private fun PromoContent(kind: DictateController.PromoKind, message: String? = n
         DictateController.PromoKind.CHANGELOG -> R.string.dictate__promo_changelog_message
         DictateController.PromoKind.FLOATING_BUTTON -> R.string.dictate__promo_floating_button_message
         DictateController.PromoKind.MILESTONE -> R.string.dictate__stats_milestone_title
-        DictateController.PromoKind.LOW_CREDIT -> R.string.dictate__promo_low_credit_message
+        DictateController.PromoKind.CLOUD_PAYMENT -> R.string.dictate__promo_cloud_payment_message
     }
     val actionRes = when (kind) {
         DictateController.PromoKind.RATE -> R.string.dictate__promo_rate_action
@@ -901,7 +901,7 @@ private fun PromoContent(kind: DictateController.PromoKind, message: String? = n
         DictateController.PromoKind.CHANGELOG -> R.string.dictate__promo_changelog_action
         DictateController.PromoKind.FLOATING_BUTTON -> R.string.dictate__promo_floating_button_action
         DictateController.PromoKind.MILESTONE -> R.string.dictate__promo_milestone_action
-        DictateController.PromoKind.LOW_CREDIT -> R.string.dictate__promo_low_credit_action
+        DictateController.PromoKind.CLOUD_PAYMENT -> R.string.dictate__promo_cloud_payment_action
     }
 
     // Gentle pop-in (fade + slight scale) on top of the Smartbar's own slide transition.

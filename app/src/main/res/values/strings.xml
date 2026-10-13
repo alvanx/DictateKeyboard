@@ -2145,6 +2145,74 @@
     <string name="dictate__cloud_privacy_body">Your recordings and texts are passed straight through and never written to disk. Only numbers are kept: which account, when, how long, and whether it worked. There\'s no name, no email address and no Google account behind a credit account — only a random ID.</string>
     <string name="dictate__cloud_other_way_title">Your own provider stays available</string>
     <string name="dictate__cloud_other_way_body">You can switch to your own API key at any time, and back again. Your credit stays where it is.</string>
+    <!-- Voice Mode Cloud: Plus subscription (billing spec v0.1). Replaces the credit-pack strings above. -->
+    <string name="dictate__action_open_cloud" comment="Content description for the button that opens the Voice Mode Cloud subscription screen">Open Voice Mode Cloud</string>
+    <string name="dictate__error_cloud_no_account_plus" comment="Smartbar error when Voice Mode Cloud is the active provider but this device holds no account">No Voice Mode Cloud account on this device</string>
+    <string name="dictate__error_cloud_not_entitled" comment="Short Smartbar error: dictating through Voice Mode Cloud needs an active Plus subscription. Plus is the product name.">Voice Mode Cloud needs Plus</string>
+    <string name="dictate__error_cloud_payment" comment="Short Smartbar error: the Plus subscription is on hold because Google could not charge for it">Plus payment needs fixing</string>
+    <string name="dictate__error_cloud_daily_limit" comment="Short Smartbar error: today's Plus allowance is used up. %1$s is a time of day, e.g. 02:00">Daily limit reached · back at %1$s</string>
+    <string name="dictate__promo_cloud_payment_message" comment="Smartbar nudge shown once when Google could not charge for the Plus subscription">Plus payment didn\'t go through.</string>
+    <string name="dictate__promo_cloud_payment_action" comment="Short label of the accent pill that opens the subscription screen. Must stay short to fit the single-line Smartbar.">Fix</string>
+    <string name="dictate__cloud_plus_row_summary_none" comment="Summary of the Voice Mode Cloud row in the provider list when the user has no Plus subscription">No API key needed — try Plus free</string>
+    <string name="dictate__cloud_plus_row_summary_active" comment="Summary of the Voice Mode Cloud row when Plus is active">Plus is active</string>
+    <string name="dictate__cloud_plus_row_summary_inactive" comment="Summary of the Voice Mode Cloud row when an account exists but Plus is not active">Plus isn\'t active</string>
+    <string name="dictate__cloud_plus_intro_body">Plus lets you dictate and reword through our server — no AI provider account, no API key. Everything else in the app stays free, including dictating with your own key.</string>
+    <string name="dictate__cloud_plus_status_label" comment="Label above the plan name on the subscription screen">Your plan</string>
+    <string name="dictate__cloud_plus_name" comment="Name of the paid plan">Plus</string>
+    <string name="dictate__cloud_free_name" comment="Name of the free plan">Free</string>
+    <string name="dictate__cloud_state_trial" comment="{date} is a formatted date">Free trial · ends {date}</string>
+    <string name="dictate__cloud_state_active" comment="{date} is a formatted date">Renews {date}</string>
+    <string name="dictate__cloud_state_canceled" comment="{date} is a formatted date">Canceled · access until {date}</string>
+    <string name="dictate__cloud_state_grace" comment="{date} is a formatted date">Payment problem · access until {date}</string>
+    <string name="dictate__cloud_state_on_hold">Paused — the last payment didn\'t go through</string>
+    <string name="dictate__cloud_state_expired">Expired</string>
+    <string name="dictate__cloud_state_pending">Waiting for the payment to complete</string>
+    <string name="dictate__cloud_state_none">No subscription</string>
+    <string name="dictate__cloud_daily_usage" comment="{used} and {total} are numbers of minutes, {time} a time of day">Today: {used} of {total} min used · resets {time}</string>
+    <string name="dictate__cloud_checked" comment="{time} is a formatted date and time">Updated {time}</string>
+    <string name="dictate__cloud_refresh">Refresh</string>
+    <string name="dictate__cloud_payment_title">Fix your payment</string>
+    <string name="dictate__cloud_payment_body">Google couldn\'t charge your payment method. Update it in Google Play to keep Plus.</string>
+    <string name="dictate__cloud_open_play_btn">Open Google Play</string>
+    <string name="dictate__cloud_plans_title">Get Plus</string>
+    <string name="dictate__cloud_plans_includes">Dictation and rewording through our server, with a daily allowance. No API key, no account with an AI provider.</string>
+    <string name="dictate__cloud_plan_monthly">Monthly</string>
+    <string name="dictate__cloud_plan_yearly">Yearly</string>
+    <string name="dictate__cloud_plan_price_monthly" comment="{price} is a formatted price from Google Play, e.g. $3.99">{price} / month</string>
+    <string name="dictate__cloud_plan_price_yearly" comment="{price} is a formatted price from Google Play, e.g. $29.99">{price} / year</string>
+    <string name="dictate__cloud_plan_trial" comment="{days} is a number of days">First {days} days free</string>
+    <string name="dictate__cloud_plan_savings" comment="{percent} is a number, e.g. 37. A small badge on the yearly plan: how much less a month costs than on the monthly plan.">{percent}% cheaper</string>
+    <string name="dictate__cloud_plan_btn_trial">Start free trial</string>
+    <string name="dictate__cloud_plan_btn_subscribe">Subscribe</string>
+    <string name="dictate__cloud_plan_disclosure">Renews automatically at the price shown until you cancel. With a free trial you\'re charged when the trial ends unless you cancel before then. Cancel anytime in Google Play under Payments &amp; subscriptions.</string>
+    <string name="dictate__cloud_shop_unavailable_plus">Plus can\'t be shown here. Usually that means the app wasn\'t installed from Google Play, or no Play account is signed in on this device. Your own API key works either way.</string>
+    <string name="dictate__cloud_manage_btn">Manage subscription</string>
+    <string name="dictate__cloud_restore_purchase_btn">Restore purchase</string>
+    <string name="dictate__cloud_restore_purchase_none">No Plus subscription found on this Google account.</string>
+    <string name="dictate__cloud_restore_purchase_done">Plus restored.</string>
+    <string name="dictate__cloud_activate_plus_title">Plus is ready</string>
+    <string name="dictate__cloud_activate_plus_body">Dictation currently runs through a different provider. Switch whenever you like — nothing changes without you.</string>
+    <string name="dictate__cloud_notice_subscribed">Welcome to Plus.</string>
+    <string name="dictate__cloud_notice_sub_pending">Your payment hasn\'t completed yet. Plus starts as soon as Google confirms it.</string>
+    <string name="dictate__cloud_notice_not_verified">The payment went through, but our server couldn\'t confirm it yet. Nothing is lost — open this screen again in a moment.</string>
+    <string name="dictate__cloud_notice_sub_needs_recovery">This subscription belongs to another account. Enter that account\'s recovery code to use it here.</string>
+    <string name="dictate__cloud_notice_account_deleted" comment="Shown when the app finds out that the account was deleted elsewhere">Your Voice Mode Cloud account no longer exists — it was deleted on the website or on another device. It has been removed from this device too.</string>
+    <string name="dictate__cloud_notice_account_signed_out" comment="Shown when this device was signed out of the account, which still exists">This device was signed out of your Voice Mode Cloud account. The account is untouched — tap Restore purchase, or enter your recovery code, to sign back in.</string>
+    <string name="dictate__cloud_notice_account_removed">Your Voice Mode Cloud account was deleted.</string>
+    <string name="dictate__cloud_recovery_explain_plus">Write this code down. A new phone normally gets Plus back on its own from Google Play; this code is the backup, and it also lets you use Plus on a second device.</string>
+    <string name="dictate__cloud_recovery_enter_btn">Enter recovery code</string>
+    <string name="dictate__cloud_recovery_dialog_body_plus">Enter the recovery code of an existing account. The device you were using it on keeps working.</string>
+    <string name="dictate__cloud_recovery_not_found_plus">No account found for this code.</string>
+    <string name="dictate__cloud_devices_full_body_plus" comment="{count} is the number of devices already signed in">Your account is already in use on {count} devices, which is the most allowed at once. Sign one out to use it here.</string>
+    <string name="dictate__cloud_limits_body_plus">Live transcription while you speak isn\'t included — the on-device engine does it offline and for free. The AI model and how hard it thinks are set by the server, so model choice, reasoning effort and custom endpoints stay off. Everything else is unchanged: prompts, history, the floating button, long-form dictation and the watch.</string>
+    <string name="dictate__cloud_privacy_body_plus">Your recordings and texts are passed straight through and never written to disk. Only numbers are kept: which account, when, how long, and whether it worked. There\'s no name and no email address behind an account — only a random ID.</string>
+    <string name="dictate__cloud_other_way_body_plus">You can switch to your own API key at any time, and back again. Your subscription keeps running until you cancel it in Google Play.</string>
+    <string name="dictate__cloud_delete_title_plus">Delete account</string>
+    <string name="dictate__cloud_delete_explain_plus">Deletes your Voice Mode Cloud account and everything stored about it. This doesn\'t cancel a subscription — only Google Play can, so cancel there first.</string>
+    <string name="dictate__cloud_delete_dialog_body_plus">Deleting removes your account, your recovery code and every signed-in device.</string>
+    <string name="dictate__cloud_delete_dialog_sub_warning">Your Plus subscription is still active. Deleting the account doesn\'t stop Google from charging you — cancel it in Google Play first.</string>
+    <string name="dictate__cloud_delete_dialog_cancel_sub_btn">Cancel in Google Play</string>
+    <string name="dictate__cloud_delete_dialog_records_plus">Your purchase records are kept, as tax law requires. They hold an order number and an amount, nothing that leads back to you.</string>
 
     <string name="dictate__providers_network_group" comment="Group title for network-level provider settings (proxy)">Network</string>
     <!-- How long a request to the AI provider may take (issue #337). One number for the gap between

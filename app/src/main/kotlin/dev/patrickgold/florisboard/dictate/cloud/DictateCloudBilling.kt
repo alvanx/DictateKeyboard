@@ -17,7 +17,6 @@ import com.android.billingclient.api.BillingClient.BillingResponseCode
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.BillingResult
-import com.android.billingclient.api.ConsumeParams
 import com.android.billingclient.api.PendingPurchasesParams
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.Purchase
@@ -29,8 +28,12 @@ import kotlin.coroutines.resume
 
 /**
  * A coroutine-shaped wrapper around Google Play Billing, kept deliberately thin: it connects, lists
- * the packs, starts a purchase, reports what came back and consumes. It knows nothing about credit —
- * what a purchase is worth is decided by the server, and the two never meet in this file.
+ * the Plus subscription, starts a purchase and reports what came back. It knows nothing about
+ * entitlement — what a purchase unlocks is decided by the server, and the two never meet in this file.
+ *
+ * Nothing is acknowledged or consumed here. Subscriptions are acknowledged by the server when it
+ * verifies the token (billing spec, section 6), so a purchase the app never managed to report is
+ * still visible to [purchases] and gets reported on the next run.
  *
  * One instance covers one errand and is then closed. Billing connections are cheap next to how
  * rarely this runs (a purchase, or one sweep at startup), and a short-lived client removes a whole
@@ -38,8 +41,8 @@ import kotlin.coroutines.resume
  *
  * Requires Billing 8 or newer, which Play makes mandatory for uploads from 31.08.2026. Two things
  * changed there that shape the code below: purchase results arrive through [QueryProductDetailsResult]
- * rather than a bare list, and a one-time product can no longer be bought without an **offer token**
- * taken from its purchase option — passing none is rejected outright.
+ * rather than a bare list, and nothing can be bought without an **offer token** — for a subscription
+ * that is the token of a base plan or of an offer on it (see [optionsOf] and [pickOffer]).
  */
 class DictateCloudBilling(context: Context) {
 
@@ -68,9 +71,9 @@ class DictateCloudBilling(context: Context) {
             )
         }
         .enableAutoServiceReconnection()
-        // Required since Billing 6, and true for us: a one-time product can be paid for in ways that
-        // do not complete immediately (cash at a counter, for one). Such a purchase arrives PENDING
-        // and must not be credited until it settles — see how the caller treats the state.
+        // Required since Billing 6. A subscription can be paid for in ways that do not complete at
+        // once (cash at a counter, for one); such a purchase arrives PENDING and is not reported to
+        // the server until it settles — see how the caller treats the state.
         .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
         .build()
 
@@ -100,16 +103,16 @@ class DictateCloudBilling(context: Context) {
         })
     }
 
-    /** The four packs as Play knows them — localised name, description and price. */
+    /** The Plus subscription as Play knows it — localised name, base plans, offers and prices. */
     suspend fun products(): Products = suspendCancellableCoroutine { cont ->
         val params = QueryProductDetailsParams.newBuilder()
             .setProductList(
-                DictateCloudPack.productIds.map { id ->
+                listOf(
                     QueryProductDetailsParams.Product.newBuilder()
-                        .setProductId(id)
-                        .setProductType(BillingClient.ProductType.INAPP)
-                        .build()
-                },
+                        .setProductId(DictateCloudPlan.PRODUCT_ID)
+                        .setProductType(BillingClient.ProductType.SUBS)
+                        .build(),
+                ),
             )
             .build()
         client.queryProductDetailsAsync(params) { result, details ->
@@ -118,20 +121,22 @@ class DictateCloudBilling(context: Context) {
     }
 
     data class Products(val code: Int, val details: List<ProductDetails>) {
-        fun find(pack: DictateCloudPack): ProductDetails? =
-            details.firstOrNull { it.productId == pack.productId }
+        /** The Plus subscription, or null when Play did not return it. */
+        val plus: ProductDetails?
+            get() = details.firstOrNull { it.productId == DictateCloudPlan.PRODUCT_ID }
     }
 
     /**
-     * Purchases Play still considers owned — that is, paid for and not yet consumed.
+     * Subscriptions Play considers current on this Play account — active, in grace, or not yet
+     * acknowledged.
      *
-     * This is the safety net of the whole flow. Anything that was paid for but never turned into
-     * credit stays in this list until it does, so a crash or a dead connection between paying and
-     * being credited costs a retry rather than the purchase.
+     * This is the safety net of the whole flow and also the restore path: a new phone or a
+     * reinstall finds the subscription here, and sending its token to the server brings the
+     * account back without the recovery code (billing spec, section 11).
      */
     suspend fun purchases(): List<Purchase> = suspendCancellableCoroutine { cont ->
         val params = QueryPurchasesParams.newBuilder()
-            .setProductType(BillingClient.ProductType.INAPP)
+            .setProductType(BillingClient.ProductType.SUBS)
             .build()
         client.queryPurchasesAsync(params) { result, purchases ->
             cont.resume(if (result.responseCode == BillingResponseCode.OK) purchases else emptyList())
@@ -143,10 +148,9 @@ class DictateCloudBilling(context: Context) {
      * here but through [awaitOutcome]; this only says whether the sheet could be opened.
      *
      * [walletId] travels along as Play's `obfuscatedAccountId` and comes back to the server on the
-     * order. It lets a purchase be traced to an account by hand when something has gone wrong, and
-     * the server keeps a hash of it so that a top-up by someone who has already had a refund is
-     * recognisable. Note what that does *not* cover: an empty [walletId] attaches nothing, so a
-     * first purchase — and any purchase made after the account was deleted — carries no history.
+     * order. The server matches on it when someone resubscribes after their plan expired, so the
+     * new token lands on the same account (billing spec, section 11). An empty [walletId] attaches
+     * nothing: a first purchase creates its account on the server instead.
      */
     fun launch(
         activity: Activity,
@@ -168,26 +172,27 @@ class DictateCloudBilling(context: Context) {
     /** Suspends until Play reports how the purchase went. */
     suspend fun awaitOutcome(): Outcome = outcomes.receive()
 
-    /**
-     * Consumes a purchase so the pack can be bought again.
-     *
-     * Call this only once the credit is safely granted. Consuming removes the purchase from Play's
-     * owned list, which is exactly the record [purchases] relies on to retry — throw it away too
-     * early and a paid purchase is gone with nothing to show for it.
-     */
-    suspend fun consume(purchaseToken: String): Int = suspendCancellableCoroutine { cont ->
-        val params = ConsumeParams.newBuilder().setPurchaseToken(purchaseToken).build()
-        client.consumeAsync(params) { result, _ -> cont.resume(result.responseCode) }
-    }
-
     fun close() {
         outcomes.close()
         client.endConnection()
     }
 
-    /** The offer token of a product's first (and for us only) purchase option, or null. */
     companion object {
-        fun offerTokenOf(details: ProductDetails): String? =
-            details.oneTimePurchaseOfferDetailsList?.firstOrNull()?.offerToken
+        /** Every base plan and offer Play lists for [details], in the shape [pickOffer] reads. */
+        fun optionsOf(details: ProductDetails): List<DictateCloudPlanOption> =
+            details.subscriptionOfferDetails.orEmpty().map {
+                DictateCloudPlanOption(
+                    basePlanId = it.basePlanId,
+                    offerId = it.offerId,
+                    offerToken = it.offerToken,
+                )
+            }
+
+        /** Play's full record for the option [pickOffer] chose, to read its prices from. */
+        fun offerDetailsOf(
+            details: ProductDetails,
+            option: DictateCloudPlanOption,
+        ): ProductDetails.SubscriptionOfferDetails? =
+            details.subscriptionOfferDetails?.firstOrNull { it.offerToken == option.offerToken }
     }
 }

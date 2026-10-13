@@ -13,6 +13,8 @@ package dev.patrickgold.florisboard.app.settings.dictate
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,6 +36,8 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Restore
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -41,6 +45,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -64,6 +69,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import dev.patrickgold.florisboard.BuildConfig
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.app.LocalNavController
@@ -71,25 +77,32 @@ import dev.patrickgold.florisboard.app.Routes
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloud
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloudApi
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloudDeletion
-import dev.patrickgold.florisboard.dictate.cloud.DictateCloudPack
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloudDevice
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloudDeviceLimitException
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloudException
+import dev.patrickgold.florisboard.dictate.cloud.DictateCloudPlan
+import dev.patrickgold.florisboard.dictate.cloud.Entitlement
+import dev.patrickgold.florisboard.dictate.cloud.EntitlementState
+import dev.patrickgold.florisboard.dictate.cloud.Entitlements
+import dev.patrickgold.florisboard.dictate.cloud.PaidFeature
 import dev.patrickgold.florisboard.dictate.provider.ProviderRegistry
 import dev.patrickgold.florisboard.lib.compose.FlorisScreen
 import dev.patrickgold.jetpref.datastore.model.collectAsState
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.florisboard.lib.compose.stringRes
 import java.text.DateFormat
 import java.util.Date
 
 /**
- * Dictate Cloud: balance, the credit packs, and getting an account back onto a new device.
+ * Dictate Cloud: the Plus subscription — what it costs, whether it is active, and getting an account
+ * back onto a new device (billing spec, section 9).
  *
  * The screen is written to be readable by someone who has not decided yet. Dictate Cloud is one of
  * two equal ways to use the app, not the intended one — so the alternative is named here rather
  * than tucked away, and what the cloud path *cannot* do is stated on the same screen that sells it.
- * A user who finds that out after paying has been misled, however true the small print was.
+ * A user who finds that out after paying has been misled, however true the small print was. For the
+ * same reason the trial length, the renewal price and how to cancel sit right next to the buttons.
  */
 @Composable
 fun DictateCloudScreen() = FlorisScreen {
@@ -122,9 +135,12 @@ fun DictateCloudScreen() = FlorisScreen {
         val activeProviderId by prefs.dictate.transcriptionProviderId.collectAsState()
         val account = accounts.getOrEmpty(ProviderRegistry.CLOUD.id)
         val isSelected = activeProviderId == ProviderRegistry.CLOUD.id
+        val entitlement by Entitlements.current.collectAsState()
+        val entitled = entitlement.has(PaidFeature.MANAGED_TRANSCRIPTION, System.currentTimeMillis())
+        val manageUrl = DictateCloud.manageSubscriptionUrl(context.packageName)
 
         var shop by remember { mutableStateOf<DictateCloud.Shop?>(null) }
-        var buying by remember { mutableStateOf<String?>(null) }
+        var buying by remember { mutableStateOf<DictateCloudPlan?>(null) }
         var refreshing by remember { mutableStateOf(false) }
         var notice by remember { mutableStateOf<String?>(null) }
         var showRestore by remember { mutableStateOf(false) }
@@ -132,19 +148,20 @@ fun DictateCloudScreen() = FlorisScreen {
         var deleting by remember { mutableStateOf(false) }
         var deletePreview by remember { mutableStateOf<DictateCloudDeletion?>(null) }
 
-        val noticePurchased = stringRes(R.string.dictate__cloud_notice_purchased)
-        val noticePending = stringRes(R.string.dictate__cloud_notice_pending)
-        val noticeNotRedeemed = stringRes(R.string.dictate__cloud_notice_not_redeemed)
-        val noticeNeedsRecovery = stringRes(R.string.dictate__cloud_notice_needs_recovery)
+        val noticeSubscribed = stringRes(R.string.dictate__cloud_notice_subscribed)
+        val noticePending = stringRes(R.string.dictate__cloud_notice_sub_pending)
+        val noticeNotVerified = stringRes(R.string.dictate__cloud_notice_not_verified)
+        val noticeNeedsRecovery = stringRes(R.string.dictate__cloud_notice_sub_needs_recovery)
         val noticeFailed = stringRes(R.string.dictate__cloud_notice_failed)
-        val noticeDeleted = stringRes(R.string.dictate__cloud_notice_deleted)
-        val noticeGoneDeleted = stringRes(R.string.dictate__cloud_notice_gone_deleted)
-        val noticeGoneSignedOut = stringRes(R.string.dictate__cloud_notice_gone_signed_out)
+        val noticeDeleted = stringRes(R.string.dictate__cloud_notice_account_removed)
+        val noticeGoneDeleted = stringRes(R.string.dictate__cloud_notice_account_deleted)
+        val noticeGoneSignedOut = stringRes(R.string.dictate__cloud_notice_account_signed_out)
+        val noticeRestoreNone = stringRes(R.string.dictate__cloud_restore_purchase_none)
+        val noticeRestoreDone = stringRes(R.string.dictate__cloud_restore_purchase_done)
 
         // An account can end somewhere else entirely — deleted from the web page or from a second
         // phone, this device signed out from the dashboard. The refresh below clears it either way,
-        // and this is what keeps that from happening in silence: a balance that vanishes without a
-        // word looks like the app losing track of paid-for credit.
+        // and this is what keeps that from happening in silence.
         val gone by DictateCloud.gone.collectAsState()
         LaunchedEffect(gone) {
             when (gone) {
@@ -155,54 +172,79 @@ fun DictateCloudScreen() = FlorisScreen {
             DictateCloud.gone.value = null
         }
 
-        // Settling outstanding purchases first is the important part of entering this screen: if a
-        // payment went through but the credit never arrived, this is where it is put right, before
-        // anything is drawn that would claim the balance is zero.
+        // Reporting whatever Play lists comes first: if a payment went through but never reached the
+        // server, this is where it is put right, before anything is drawn that would say "Free".
+        // Play's prices load alongside, not after: they do not depend on our server, and a slow or
+        // unreachable server must not keep the plans behind a spinner.
         LaunchedEffect(Unit) {
-            DictateCloud.redeemPending(context)
-            DictateCloud.refreshBalance()
-            shop = DictateCloud.shop(context)
+            launch { shop = DictateCloud.shop(context) }
+            DictateCloud.syncSubscription(context)
         }
 
-        fun buy(pack: dev.patrickgold.florisboard.dictate.cloud.DictateCloudPack) {
+        fun openPlay() {
+            runCatching {
+                context.startActivity(
+                    Intent(Intent.ACTION_VIEW, Uri.parse(manageUrl)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+                )
+            }
+        }
+
+        fun buy(plan: DictateCloudPlan) {
             val host = activity ?: return
-            buying = pack.productId
+            buying = plan
             scope.launch {
-                notice = when (val result = DictateCloud.purchase(host, pack)) {
-                    is DictateCloud.PurchaseResult.Granted ->
-                        noticePurchased.replace("{minutes}", result.grantedMinutes.toString())
+                notice = when (val result = DictateCloud.purchase(host, plan)) {
+                    is DictateCloud.PurchaseResult.Subscribed -> noticeSubscribed
                     is DictateCloud.PurchaseResult.Pending -> noticePending
                     is DictateCloud.PurchaseResult.NeedsRecovery -> noticeNeedsRecovery
-                    is DictateCloud.PurchaseResult.NotRedeemed -> noticeNotRedeemed
+                    is DictateCloud.PurchaseResult.NotVerified -> noticeNotVerified
                     is DictateCloud.PurchaseResult.Cancelled -> null
                     is DictateCloud.PurchaseResult.Unavailable -> noticeFailed
                     is DictateCloud.PurchaseResult.Failed -> noticeFailed
                 }
                 buying = null
-                DictateCloud.refreshBalance()
+                DictateCloud.refreshEntitlement()
+            }
+        }
+
+        fun restorePurchase() {
+            refreshing = true
+            scope.launch {
+                val settled = DictateCloud.syncSubscription(context)
+                refreshing = false
+                notice = when {
+                    settled.any { it is DictateCloud.Settlement.Verified } -> noticeRestoreDone
+                    settled.any { it is DictateCloud.Settlement.NeedsRecovery } -> noticeNeedsRecovery
+                    settled.any { it is DictateCloud.Settlement.Pending } -> noticePending
+                    settled.any { it is DictateCloud.Settlement.Failed } -> noticeNotVerified
+                    else -> noticeRestoreNone
+                }
             }
         }
 
         Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
 
             if (account.hasWallet) {
-                BalanceCard(
-                    minutesLeft = account.balanceSeconds.coerceAtLeast(0) / 60,
-                    rewordsLeft = account.balanceRewords.coerceAtLeast(0),
-                    checkedAt = account.balanceCheckedAt,
+                StatusCard(
+                    entitlement = entitlement,
+                    entitled = entitled,
                     refreshing = refreshing,
                     onRefresh = {
                         refreshing = true
                         scope.launch {
-                            DictateCloud.redeemPending(context)
-                            DictateCloud.refreshBalance()
+                            DictateCloud.syncSubscription(context)
                             refreshing = false
                         }
                     },
                 )
                 Spacer(Modifier.height(12.dp))
 
-                if (!isSelected) {
+                if (entitlement.needsPaymentFix) {
+                    PaymentCard(onFix = ::openPlay)
+                    Spacer(Modifier.height(12.dp))
+                }
+
+                if (entitled && !isSelected) {
                     ActivateCard(onActivate = { scope.launch { DictateCloud.activate() } })
                     Spacer(Modifier.height(12.dp))
                 }
@@ -216,45 +258,67 @@ fun DictateCloudScreen() = FlorisScreen {
                 Spacer(Modifier.height(12.dp))
             }
 
-            SectionTitle(
-                stringRes(
-                    if (account.hasWallet) R.string.dictate__cloud_topup_title
-                    else R.string.dictate__cloud_packs_title
-                ),
-            )
-            Spacer(Modifier.height(4.dp))
+            // The plans are the paywall: shown whenever Plus is not active. Someone on hold is not
+            // shown them — their subscription still exists, and the fix is the payment, not a second
+            // purchase.
+            if (!entitled && !entitlement.needsPaymentFix) {
+                SectionTitle(stringRes(R.string.dictate__cloud_plans_title))
+                Spacer(Modifier.height(4.dp))
+                BodyText(stringRes(R.string.dictate__cloud_plans_includes))
+                Spacer(Modifier.height(8.dp))
 
-            when (val state = shop) {
-                null -> Row(
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
-                    horizontalArrangement = Arrangement.Center,
-                ) {
-                    CircularProgressIndicator(modifier = Modifier.size(28.dp))
-                }
+                when (val state = shop) {
+                    null -> Row(
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
+                        horizontalArrangement = Arrangement.Center,
+                    ) {
+                        CircularProgressIndicator(modifier = Modifier.size(28.dp))
+                    }
 
-                is DictateCloud.Shop.Unavailable -> BodyText(
-                    stringRes(R.string.dictate__cloud_shop_unavailable),
-                )
-
-                is DictateCloud.Shop.Ready -> state.offers.forEach { offer ->
-                    PackCard(
-                        title = offer.title,
-                        price = offer.formattedPrice,
-                        minutes = offer.pack.minutes,
-                        rewords = offer.pack.rewords,
-                        savingsPercent = offer.savingsPercent,
-                        busy = buying == offer.pack.productId,
-                        anyBusy = buying != null,
-                        onBuy = { buy(offer.pack) },
+                    is DictateCloud.Shop.Unavailable -> BodyText(
+                        stringRes(R.string.dictate__cloud_shop_unavailable_plus),
                     )
-                    Spacer(Modifier.height(8.dp))
+
+                    is DictateCloud.Shop.Ready -> {
+                        state.plans.forEach { offer ->
+                            PlanCard(
+                                offer = offer,
+                                busy = buying == offer.plan,
+                                anyBusy = buying != null,
+                                onBuy = { buy(offer.plan) },
+                            )
+                            Spacer(Modifier.height(8.dp))
+                        }
+                        Text(
+                            text = stringRes(R.string.dictate__cloud_plan_disclosure),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                }
+                Spacer(Modifier.height(8.dp))
+            }
+
+            // Stacked rather than side by side: both labels grow long in translation.
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                if (account.hasWallet && entitlement.isPlus) {
+                    OutlinedButton(onClick = ::openPlay) {
+                        Icon(Icons.Default.Settings, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(Modifier.size(8.dp))
+                        Text(stringRes(R.string.dictate__cloud_manage_btn))
+                    }
+                }
+                OutlinedButton(onClick = ::restorePurchase, enabled = !refreshing) {
+                    Icon(Icons.Default.Restore, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(Modifier.size(8.dp))
+                    Text(stringRes(R.string.dictate__cloud_restore_purchase_btn))
                 }
             }
 
             Spacer(Modifier.height(16.dp))
             SectionTitle(stringRes(R.string.dictate__cloud_recovery_title))
             Spacer(Modifier.height(4.dp))
-            BodyText(stringRes(R.string.dictate__cloud_recovery_explain))
+            BodyText(stringRes(R.string.dictate__cloud_recovery_explain_plus))
 
             if (account.walletRecoveryCode.isNotBlank()) {
                 Spacer(Modifier.height(8.dp))
@@ -263,28 +327,28 @@ fun DictateCloudScreen() = FlorisScreen {
 
             Spacer(Modifier.height(8.dp))
             OutlinedButton(onClick = { showRestore = true }) {
-                Icon(Icons.Default.Restore, contentDescription = null, modifier = Modifier.size(18.dp))
+                Icon(Icons.Default.Key, contentDescription = null, modifier = Modifier.size(18.dp))
                 Spacer(Modifier.size(8.dp))
-                Text(stringRes(R.string.dictate__cloud_recovery_restore_btn))
+                Text(stringRes(R.string.dictate__cloud_recovery_enter_btn))
             }
 
             Spacer(Modifier.height(20.dp))
             SectionTitle(stringRes(R.string.dictate__cloud_limits_title))
             Spacer(Modifier.height(4.dp))
-            BodyText(stringRes(R.string.dictate__cloud_limits_body))
+            BodyText(stringRes(R.string.dictate__cloud_limits_body_plus))
 
             Spacer(Modifier.height(16.dp))
             SectionTitle(stringRes(R.string.dictate__cloud_privacy_title))
             Spacer(Modifier.height(4.dp))
-            BodyText(stringRes(R.string.dictate__cloud_privacy_body))
+            BodyText(stringRes(R.string.dictate__cloud_privacy_body_plus))
 
             // Deleting sits below everything else on purpose: it is the one action here that cannot
-            // be undone, and it should not share a resting place with buying credit.
+            // be undone, and it should not share a resting place with subscribing.
             if (account.hasWallet) {
                 Spacer(Modifier.height(20.dp))
-                SectionTitle(stringRes(R.string.dictate__cloud_delete_title))
+                SectionTitle(stringRes(R.string.dictate__cloud_delete_title_plus))
                 Spacer(Modifier.height(4.dp))
-                BodyText(stringRes(R.string.dictate__cloud_delete_explain))
+                BodyText(stringRes(R.string.dictate__cloud_delete_explain_plus))
                 Spacer(Modifier.height(8.dp))
                 OutlinedButton(
                     onClick = {
@@ -292,8 +356,6 @@ fun DictateCloudScreen() = FlorisScreen {
                         scope.launch {
                             deletePreview = runCatching { DictateCloud.previewDeletion() }.getOrNull()
                             deleting = false
-                            // No preview means the server could not be reached. Opening a dialog
-                            // that says "you will lose ? minutes" would be worse than saying so.
                             if (deletePreview != null) showDelete = true else notice = noticeFailed
                         }
                     },
@@ -306,6 +368,11 @@ fun DictateCloudScreen() = FlorisScreen {
                     Spacer(Modifier.size(8.dp))
                     Text(stringRes(R.string.dictate__cloud_delete_btn))
                 }
+            }
+
+            if (BuildConfig.DEBUG) {
+                Spacer(Modifier.height(20.dp))
+                DebugOverrideCard(scope = scope)
             }
 
             Spacer(Modifier.height(16.dp))
@@ -343,11 +410,12 @@ fun DictateCloudScreen() = FlorisScreen {
             )
         }
 
-        deletePreview?.let { preview ->
+        deletePreview?.let {
             if (showDelete) {
                 DeleteAccountDialog(
-                    preview = preview,
+                    subscriptionActive = entitlement.isPlus && entitlement.autoRenewing,
                     busy = deleting,
+                    onCancelSubscription = ::openPlay,
                     onDismiss = { if (!deleting) { showDelete = false; deletePreview = null } },
                     onConfirm = {
                         deleting = true
@@ -368,19 +436,15 @@ fun DictateCloudScreen() = FlorisScreen {
 /**
  * The confirmation before an account is destroyed.
  *
- * It names the **exact** number of minutes about to be forfeited, fetched from the server a moment
- * earlier rather than read from the cached balance. A warning that says "your credit will be lost"
- * is easy to click past; one that says "your 340 minutes will be lost" is not, and that difference
- * is the entire point of asking.
- *
- * Two things the wording has to carry, because both surprise people afterwards: the credit is not
- * refunded, and the purchase records stay for tax reasons. Saying the second one here is cheaper
- * than explaining it to someone who later reads the privacy policy and feels misled.
+ * Deleting the account does not cancel a Play subscription — only Google can — so while one is
+ * still renewing the dialog says so in the error colour and links to Play's page first (billing
+ * spec, section 6). Someone who deletes and keeps being charged has been let down by this dialog.
  */
 @Composable
 private fun DeleteAccountDialog(
-    preview: DictateCloudDeletion,
+    subscriptionActive: Boolean,
     busy: Boolean,
+    onCancelSubscription: () -> Unit,
     onDismiss: () -> Unit,
     onConfirm: () -> Unit,
 ) {
@@ -397,27 +461,27 @@ private fun DeleteAccountDialog(
         text = {
             Column {
                 Text(
-                    text = stringRes(
-                        R.string.dictate__cloud_delete_dialog_body,
-                        "minutes" to preview.minutesLeft.toString(),
-                    ),
+                    text = stringRes(R.string.dictate__cloud_delete_dialog_body_plus),
                     style = MaterialTheme.typography.bodyMedium,
                 )
-                Spacer(Modifier.height(10.dp))
-                Text(
-                    text = stringRes(R.string.dictate__cloud_delete_dialog_forfeit),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.error,
-                )
-                if (preview.purchases > 0) {
+                if (subscriptionActive) {
                     Spacer(Modifier.height(10.dp))
                     Text(
-                        text = stringRes(R.string.dictate__cloud_delete_dialog_records),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        text = stringRes(R.string.dictate__cloud_delete_dialog_sub_warning),
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.error,
                     )
+                    TextButton(onClick = onCancelSubscription) {
+                        Text(stringRes(R.string.dictate__cloud_delete_dialog_cancel_sub_btn))
+                    }
                 }
+                Spacer(Modifier.height(10.dp))
+                Text(
+                    text = stringRes(R.string.dictate__cloud_delete_dialog_records_plus),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
         },
         confirmButton = {
@@ -455,18 +519,39 @@ private fun BodyText(text: String) {
     )
 }
 
-/** The balance, as the first thing on the screen when there is one. */
+/**
+ * The plan, as the first thing on the screen once there is an account: Plus or Free, what state the
+ * subscription is in and until when, and how much of today's allowance is used.
+ */
 @Composable
-private fun BalanceCard(
-    minutesLeft: Int,
-    rewordsLeft: Int,
-    checkedAt: Long,
+private fun StatusCard(
+    entitlement: Entitlement,
+    entitled: Boolean,
     refreshing: Boolean,
     onRefresh: () -> Unit,
 ) {
+    val dateFormat = remember { DateFormat.getDateInstance(DateFormat.MEDIUM) }
+    val timeFormat = remember { DateFormat.getTimeInstance(DateFormat.SHORT) }
+    val date = dateFormat.format(Date(entitlement.expiresAt))
+    val stateLine = when (entitlement.state) {
+        EntitlementState.TRIAL -> stringRes(R.string.dictate__cloud_state_trial, "date" to date)
+        EntitlementState.ACTIVE -> stringRes(R.string.dictate__cloud_state_active, "date" to date)
+        EntitlementState.CANCELED_ACTIVE -> stringRes(R.string.dictate__cloud_state_canceled, "date" to date)
+        EntitlementState.GRACE -> stringRes(R.string.dictate__cloud_state_grace, "date" to date)
+        EntitlementState.ON_HOLD -> stringRes(R.string.dictate__cloud_state_on_hold)
+        EntitlementState.EXPIRED -> stringRes(R.string.dictate__cloud_state_expired)
+        EntitlementState.PENDING -> stringRes(R.string.dictate__cloud_state_pending)
+        else -> stringRes(R.string.dictate__cloud_state_none)
+    }
     Card(
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+        colors = CardDefaults.cardColors(
+            containerColor = if (entitled) {
+                MaterialTheme.colorScheme.primaryContainer
+            } else {
+                MaterialTheme.colorScheme.surfaceVariant
+            },
+        ),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -474,36 +559,40 @@ private fun BalanceCard(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = stringRes(R.string.dictate__cloud_balance_label),
+                    text = stringRes(R.string.dictate__cloud_plus_status_label),
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                 )
                 Text(
                     text = stringRes(
-                        R.string.dictate__cloud_balance_minutes,
-                        "minutes" to minutesLeft.toString(),
+                        if (entitlement.isPlus) R.string.dictate__cloud_plus_name
+                        else R.string.dictate__cloud_free_name,
                     ),
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                 )
-                Text(
-                    text = stringRes(
-                        R.string.dictate__cloud_balance_rewords,
-                        "count" to DictateCloudPack.roundDown(rewordsLeft).toString(),
-                    ),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                )
-                if (checkedAt > 0L) {
+                if (entitlement.isKnown) {
+                    Text(text = stateLine, style = MaterialTheme.typography.bodyMedium)
+                }
+                val daily = entitlement.daily
+                if (entitled && daily != null && daily.allowanceSeconds > 0) {
                     Text(
                         text = stringRes(
-                            R.string.dictate__cloud_balance_checked,
-                            "time" to DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT)
-                                .format(Date(checkedAt)),
+                            R.string.dictate__cloud_daily_usage,
+                            "used" to (daily.usedSeconds / 60).toString(),
+                            "total" to (daily.allowanceSeconds / 60).toString(),
+                            "time" to timeFormat.format(Date(daily.resetsAt)),
                         ),
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    )
+                }
+                if (entitlement.isKnown) {
+                    Text(
+                        text = stringRes(
+                            R.string.dictate__cloud_checked,
+                            "time" to DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT)
+                                .format(Date(entitlement.fetchedAt)),
+                        ),
+                        style = MaterialTheme.typography.bodySmall,
                     )
                 }
             }
@@ -511,12 +600,77 @@ private fun BalanceCard(
                 CircularProgressIndicator(modifier = Modifier.size(24.dp))
             } else {
                 IconButton(onClick = onRefresh) {
-                    Icon(
-                        Icons.Default.Refresh,
-                        contentDescription = stringRes(R.string.dictate__cloud_balance_refresh),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                    )
+                    Icon(Icons.Default.Refresh, contentDescription = stringRes(R.string.dictate__cloud_refresh))
                 }
+            }
+        }
+    }
+}
+
+/** Grace period or account hold: Google could not charge, and only Play's settings can fix that. */
+@Composable
+private fun PaymentCard(onFix: () -> Unit) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    Icons.Default.Warning,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onErrorContainer,
+                )
+                Spacer(Modifier.size(8.dp))
+                Text(
+                    text = stringRes(R.string.dictate__cloud_payment_title),
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onErrorContainer,
+                )
+            }
+            Spacer(Modifier.height(4.dp))
+            Text(
+                text = stringRes(R.string.dictate__cloud_payment_body),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onErrorContainer,
+            )
+            Spacer(Modifier.height(8.dp))
+            Button(onClick = onFix) {
+                Text(stringRes(R.string.dictate__cloud_open_play_btn))
+            }
+        }
+    }
+}
+
+/**
+ * Debug builds only: pretend the server said Plus or Free, to walk through the paywall states
+ * without a license tester (billing spec, section 10). Never compiled into a decision in release:
+ * [Entitlements] ignores the setting there, and this card is not drawn.
+ */
+@Composable
+private fun DebugOverrideCard(scope: CoroutineScope) {
+    var current by remember { mutableStateOf(Entitlements.debugOverride()) }
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Developer override (debug builds only)",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+            )
+            Spacer(Modifier.height(8.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                listOf("" to "Server", Entitlement.PLAN_PLUS to "Force Plus", Entitlement.PLAN_FREE to "Force free")
+                    .forEach { (value, label) ->
+                        FilterChip(
+                            selected = current == value,
+                            onClick = {
+                                current = value
+                                scope.launch { Entitlements.setDebugOverride(value) }
+                            },
+                            label = { Text(label) },
+                        )
+                    }
             }
         }
     }
@@ -544,7 +698,7 @@ private fun IntroCard(onOwnProvider: () -> Unit) {
                 )
             }
             Spacer(Modifier.height(8.dp))
-            BodyText(stringRes(R.string.dictate__cloud_intro_body))
+            BodyText(stringRes(R.string.dictate__cloud_plus_intro_body))
             Spacer(Modifier.height(8.dp))
             BodyText(stringRes(R.string.dictate__cloud_intro_alternative))
             TextButton(onClick = onOwnProvider) {
@@ -556,7 +710,7 @@ private fun IntroCard(onOwnProvider: () -> Unit) {
     }
 }
 
-/** Credit exists but dictation still runs through another provider — offer to switch, do not switch. */
+/** Plus is active but dictation still runs through another provider — offer to switch, do not switch. */
 @Composable
 private fun ActivateCard(onActivate: () -> Unit) {
     Card(
@@ -567,14 +721,14 @@ private fun ActivateCard(onActivate: () -> Unit) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = stringRes(R.string.dictate__cloud_activate_title),
+                text = stringRes(R.string.dictate__cloud_activate_plus_title),
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
             )
             Spacer(Modifier.height(4.dp))
             Text(
-                text = stringRes(R.string.dictate__cloud_activate_body),
+                text = stringRes(R.string.dictate__cloud_activate_plus_body),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
             )
@@ -614,24 +768,19 @@ private fun NoticeCard(text: String, onDismiss: () -> Unit) {
 }
 
 /**
- * One pack in the shop.
- *
- * [savingsPercent] is how much cheaper a minute is here than in the smallest pack — set only where
- * that is worth saying, so the smallest pack and anything barely below it simply carry no badge.
- * Deliberately no price-per-minute line beside it: the card already answers "what do I get and what
- * does it cost", and a fourth number would make the cheapest pack the hardest one to read.
+ * One plan on the paywall: the recurring price from Play, the trial if this buyer gets one, and on
+ * the yearly plan how much cheaper a month comes out. The button says what tapping it starts — a
+ * trial or a paid subscription — because "Subscribe" on a free trial undersells it and "Start free
+ * trial" on a paid one misleads.
  */
 @Composable
-private fun PackCard(
-    title: String,
-    price: String,
-    minutes: Int,
-    rewords: Int,
-    savingsPercent: Int?,
+private fun PlanCard(
+    offer: DictateCloud.PlanOffer,
     busy: Boolean,
     anyBusy: Boolean,
     onBuy: () -> Unit,
 ) {
+    val yearly = offer.plan == DictateCloudPlan.YEARLY
     Card(modifier = Modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -640,37 +789,43 @@ private fun PackCard(
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = title,
+                        text = stringRes(
+                            if (yearly) R.string.dictate__cloud_plan_yearly else R.string.dictate__cloud_plan_monthly,
+                        ),
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.SemiBold,
                     )
-                    if (savingsPercent != null) {
+                    offer.savingsPercent?.let {
                         Spacer(Modifier.width(8.dp))
-                        SavingsPill(percent = savingsPercent)
+                        SavingsPill(percent = it)
                     }
                 }
                 Text(
                     text = stringRes(
-                        R.string.dictate__cloud_pack_minutes,
-                        "minutes" to minutes.toString(),
+                        if (yearly) R.string.dictate__cloud_plan_price_yearly
+                        else R.string.dictate__cloud_plan_price_monthly,
+                        "price" to offer.formattedPrice,
                     ),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
-                Text(
-                    text = stringRes(
-                        R.string.dictate__cloud_balance_rewords,
-                        "count" to DictateCloudPack.roundDown(rewords).toString(),
-                    ),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+                offer.trialDays?.let { days ->
+                    Text(
+                        text = stringRes(R.string.dictate__cloud_plan_trial, "days" to days.toString()),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                }
             }
             if (busy) {
                 CircularProgressIndicator(modifier = Modifier.size(24.dp))
             } else {
                 Button(onClick = onBuy, enabled = !anyBusy) {
-                    Text(price)
+                    Text(
+                        stringRes(
+                            if (offer.trialDays != null) R.string.dictate__cloud_plan_btn_trial
+                            else R.string.dictate__cloud_plan_btn_subscribe,
+                        ),
+                    )
                 }
             }
         }
@@ -678,7 +833,7 @@ private fun PackCard(
 }
 
 /**
- * "31 % cheaper" — how much less a minute costs in this pack than in the smallest one.
+ * "37 % cheaper" — how much less a month costs on the yearly plan than on the monthly one.
  *
  * Same shape as the category pill in the prompt library, so the two read as the same kind of
  * marking rather than as two designers passing through.
@@ -692,7 +847,7 @@ private fun SavingsPill(percent: Int) {
         Text(
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
             text = stringRes(
-                R.string.dictate__cloud_pack_savings,
+                R.string.dictate__cloud_plan_savings,
                 "percent" to percent.toString(),
             ),
             style = MaterialTheme.typography.labelSmall,
@@ -756,7 +911,7 @@ private fun OtherWayCard(onOwnProvider: () -> Unit) {
                 )
             }
             Spacer(Modifier.height(6.dp))
-            BodyText(stringRes(R.string.dictate__cloud_other_way_body))
+            BodyText(stringRes(R.string.dictate__cloud_other_way_body_plus))
             TextButton(onClick = onOwnProvider) {
                 Text(stringRes(R.string.dictate__cloud_use_own_provider_btn))
             }
@@ -830,7 +985,7 @@ private fun RestoreDialog(
     // it has one that works — and asks which device should make room instead.
     var full by remember { mutableStateOf<RestoreOutcome.TooManyDevices?>(null) }
 
-    val notFound = stringRes(R.string.dictate__cloud_recovery_not_found)
+    val notFound = stringRes(R.string.dictate__cloud_recovery_not_found_plus)
     val failed = stringRes(R.string.dictate__cloud_recovery_error)
 
     fun attempt() {
@@ -852,7 +1007,7 @@ private fun RestoreDialog(
             Text(
                 stringRes(
                     if (full != null) R.string.dictate__cloud_devices_full_title
-                    else R.string.dictate__cloud_recovery_restore_btn
+                    else R.string.dictate__cloud_recovery_enter_btn
                 ),
             )
         },
@@ -860,7 +1015,7 @@ private fun RestoreDialog(
             val limit = full
             Column {
                 if (limit == null) {
-                    BodyText(stringRes(R.string.dictate__cloud_recovery_dialog_body))
+                    BodyText(stringRes(R.string.dictate__cloud_recovery_dialog_body_plus))
                     Spacer(Modifier.height(12.dp))
                     OutlinedTextField(
                         modifier = Modifier.fillMaxWidth(),
@@ -874,7 +1029,7 @@ private fun RestoreDialog(
                 } else {
                     BodyText(
                         stringRes(
-                            R.string.dictate__cloud_devices_full_body,
+                            R.string.dictate__cloud_devices_full_body_plus,
                             "count" to limit.devices.size.toString(),
                         ),
                     )

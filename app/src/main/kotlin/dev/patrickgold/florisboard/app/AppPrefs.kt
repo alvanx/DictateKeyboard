@@ -863,12 +863,30 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__has_donated",
             default = false,
         )
-        // Set once the "credit is running low" nudge has been shown, so it appears once per
-        // depletion rather than on every keyboard open. Cleared again the moment a purchase credits
-        // the wallet (see DictateCloud.store), which makes one nudge per refill cycle.
+        // Set once the "Plus payment needs fixing" nudge has been shown, so it appears once per
+        // payment problem rather than on every keyboard open. Cleared again when the subscription
+        // leaves grace or hold (see Entitlements.store). Key kept from the credit-pack era.
         val cloudLowCreditNudged = boolean(
             key = "dictate__cloud_low_credit_nudged",
             default = false,
+        )
+        // The last entitlement record from GET /v1/entitlement, as JSON (see Entitlements). A cache
+        // for deciding what to show only; the server checks every paid request itself.
+        val cloudEntitlement = string(
+            key = "dictate__cloud_entitlement",
+            default = "",
+        )
+        // A referral code, when the user arrived with one. Its only effect so far: the subscribe
+        // button picks the 30-day trial offer instead of the 7-day one (see pickOffer).
+        val cloudReferralCode = string(
+            key = "dictate__cloud_referral_code",
+            default = "",
+        )
+        // Debug builds only: "plus" or "free" overrides the cached entitlement for testing the
+        // paywall; empty follows the server. Ignored entirely in release builds.
+        val cloudDebugPlan = string(
+            key = "dictate__cloud_debug_plan",
+            default = "",
         )
         // The app version whose "Dictate was updated" changelog nudge has already been shown on the
         // keyboard (Smartbar). Set when the user taps or dismisses that nudge, so it appears only once

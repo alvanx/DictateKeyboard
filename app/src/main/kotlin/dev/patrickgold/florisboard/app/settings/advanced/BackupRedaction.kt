@@ -65,6 +65,9 @@ object BackupRedaction {
         // per-install identifier sent to the provider; two devices sharing one would fuse two people's
         // history there, and it is regenerated on first use, so dropping it costs nothing.
         "dictate__cloud_low_credit_nudged",
+        // The cached Plus entitlement and the referral code describe the same leaving account.
+        "dictate__cloud_entitlement",
+        "dictate__cloud_referral_code",
         "gif__customer_id",
     )
 

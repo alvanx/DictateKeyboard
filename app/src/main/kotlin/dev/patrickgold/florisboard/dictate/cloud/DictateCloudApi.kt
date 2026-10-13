@@ -32,15 +32,15 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 /**
- * The wallet half of Dictate Cloud: redeeming a purchase, reading the balance, moving an account to
- * a new device.
+ * The account half of Dictate Cloud: verifying a subscription, reading the entitlement, moving an
+ * account to a new device (billing spec, section 6).
  *
- * Only these three endpoints live here. Dictation and rewording deliberately do not — the server
+ * Only these account endpoints live here. Dictation and rewording deliberately do not — the server
  * speaks the ordinary OpenAI formats for those, so they run through `OpenAiCompatibleClient` like
  * every other provider, with the wallet token in place of an API key.
  *
- * Nothing here decides anything about credit. The app cannot grant itself minutes, and a reply that
- * says otherwise changes nothing upstream: every request is metered where the money is.
+ * Nothing here decides anything about entitlement. The app cannot unlock itself, and a reply that
+ * says otherwise changes nothing upstream: every paid request is checked where the money is.
  */
 object DictateCloudApi {
 
@@ -54,16 +54,31 @@ object DictateCloudApi {
         const val PURCHASE_VOIDED = "purchase_voided"
         /** Google could not be asked right now. Our problem, not the purchase's: retry. */
         const val VERIFY_UNAVAILABLE = "verify_unavailable"
+
+        /** Same as [VERIFY_UNAVAILABLE], under the name `/v1/subscription/verify` uses. */
+        const val GOOGLE_UNAVAILABLE = "google_unavailable"
+
+        /**
+         * A paid route was called without an active Plus subscription (HTTP 402). The remedy is the
+         * paywall, so the app refreshes its cached entitlement and offers the subscription screen.
+         */
+        const val NOT_ENTITLED = "not_entitled"
+
+        /**
+         * Plus is active but today's allowance is used up (HTTP 429). Not something to buy or retry
+         * now: it resets at 00:00 UTC, which the reply carries as `resets_at`.
+         */
+        const val DAILY_LIMIT = "daily_limit"
         /** No account for this recovery code (also returned for blocked ones, on purpose). */
         const val WALLET_NOT_FOUND = "wallet_not_found"
         /** The stored token is not (or no longer) valid — including because the account is gone. */
         const val INVALID_TOKEN = "invalid_token"
 
         /**
-         * This device was signed out from the dashboard, but the account is still there. Only
-         * `GET /wallet` distinguishes this from [INVALID_TOKEN]; everywhere else the two are one
-         * error, because nothing else can act on the difference. Here it decides whether the
-         * recovery code is thrown away with the token or is the one thing kept.
+         * This device was signed out from the dashboard, but the account is still there. Only the
+         * account reads (`GET /wallet`, `GET /entitlement`) tell this apart from [INVALID_TOKEN];
+         * elsewhere the two are one error, because nothing else can act on the difference. Here it
+         * decides whether the recovery code is thrown away with the token or is the one thing kept.
          */
         const val DEVICE_REVOKED = "device_revoked"
 
@@ -75,9 +90,9 @@ object DictateCloudApi {
         const val DEVICE_LIMIT = "device_limit"
 
         /**
-         * Out of credit. Sent on dictation and rewording alike, and the one error whose remedy is a
-         * button in this app rather than something to sort out at a provider — which is why it is
-         * matched on exactly instead of on the flattened "quota" bucket every provider lands in.
+         * Out of credit — the credit-pack server's answer, kept while servers that still send it
+         * are around. Treated like [NOT_ENTITLED]: the remedy is a button in this app rather than
+         * something to sort out at a provider.
          */
         const val INSUFFICIENT_CREDITS = "insufficient_credits"
     }
@@ -94,36 +109,52 @@ object DictateCloudApi {
     private val prefs by FlorisPreferenceStore
 
     /**
-     * Turns a Play purchase into credit.
+     * Reports a Play subscription to the server, which checks it with Google, acknowledges it and
+     * attaches it to an account (`POST /v1/subscription/verify`).
      *
-     * Safe to call repeatedly with the same [purchaseToken]: the server keys the purchase table on
-     * it, so a second attempt reports the same outcome instead of granting twice. That is not a
-     * nicety but the design — the app calls this again after any crash or lost connection between
-     * paying and being credited.
+     * Safe to call repeatedly with the same [purchaseToken]: the server keys subscriptions on it, so
+     * a second call returns the same account. That is the design — the app calls this at every
+     * start for whatever Play lists, which is also how a reinstall gets its account back.
      *
-     * [walletId] tops up an existing account; leaving it null has the server create one and return
-     * its token and recovery code, once and only once.
+     * [token] is this device's own token when it has one, which attaches a new subscription to the
+     * existing account. Without one the server either finds the account the token already belongs
+     * to and issues a device token for it, or creates an account and returns its token and recovery
+     * code, once and only once.
      *
-     * [label] names the buying device in the ledger. Worth sending even on the very first purchase:
-     * that device is the one most likely to turn up in a support request later, and a name that was
-     * not recorded then cannot be filled in afterwards.
+     * [label] names the device in the ledger.
      */
-    suspend fun redeem(
+    suspend fun verifySubscription(
         purchaseToken: String,
-        productId: String,
+        productId: String = DictateCloudPlan.PRODUCT_ID,
         walletId: String? = null,
         label: String? = null,
-    ): DictateCloudRedeem = post(
-        path = "/wallet/redeem",
-        body = json.encodeToString(
-            RedeemRequest(
+        token: String? = null,
+    ): DictateCloudVerify {
+        val body = json.encodeToString(
+            VerifyRequest(
                 purchaseToken = purchaseToken,
                 productId = productId,
                 walletId = walletId?.takeIf { it.isNotBlank() },
                 label = label,
             ),
-        ),
-    )
+        )
+        val request = Request.Builder()
+            .url("$base/subscription/verify")
+            .apply { if (!token.isNullOrBlank()) header("authorization", "Bearer $token") }
+            .post(body.toRequestBody(jsonMedia))
+            .build()
+        return call(request)
+    }
+
+    /** The current entitlement for [token] (`GET /v1/entitlement`). */
+    suspend fun entitlement(token: String): Entitlement {
+        val request = Request.Builder()
+            .url("$base/entitlement")
+            .header("authorization", "Bearer $token")
+            .get()
+            .build()
+        return call(request)
+    }
 
     /**
      * How this device names itself in the ledger, e.g. `SM-A556B · Android 15 · 5.4.0`.
@@ -137,16 +168,6 @@ object DictateCloudApi {
         "Android ${android.os.Build.VERSION.RELEASE}",
         dev.patrickgold.florisboard.BuildConfig.VERSION_NAME,
     ).filter { it.isNotBlank() }.joinToString(" · ")
-
-    /** Current balance for [token]. */
-    suspend fun balance(token: String): DictateCloudBalance {
-        val request = Request.Builder()
-            .url("$base/wallet")
-            .header("authorization", "Bearer $token")
-            .get()
-            .build()
-        return call(request)
-    }
 
     /**
      * Claims an existing account on this device using its recovery code.
@@ -177,11 +198,8 @@ object DictateCloudApi {
     }
 
     /**
-     * Asks what deleting this account would destroy, without destroying it.
-     *
-     * Two calls rather than one, on purpose: the confirmation dialog names the exact number of
-     * minutes about to be forfeited, and a figure the user can read beats a warning they have to
-     * believe. Nothing changes on the server until [deleteAccount] is called with the confirmation.
+     * Asks what deleting this account would affect, without deleting it. Nothing changes on the
+     * server until [deleteAccount] is called with the confirmation.
      */
     suspend fun previewDeletion(token: String): DictateCloudDeletion = postAuthed(
         path = "/wallet/delete",
@@ -190,9 +208,8 @@ object DictateCloudApi {
     )
 
     /**
-     * Deletes the account for good. The credit is forfeited, not refunded — see the server's
-     * `routes/delete.ts` for why that is the only defensible choice, and the dialog for how it is
-     * said to the user.
+     * Deletes the account for good. It does **not** cancel a Play subscription — only Google can —
+     * which is why the dialog links to Play's subscription page first (billing spec, section 6).
      */
     suspend fun deleteAccount(token: String): DictateCloudDeletion = postAuthed(
         path = "/wallet/delete",
@@ -260,7 +277,7 @@ object DictateCloudApi {
     }
 
     /**
-     * Built per call rather than kept around: these three endpoints are used a handful of times in
+     * Built per call rather than kept around: these endpoints are used a handful of times in
      * an install's life, and rebuilding costs nothing next to holding a client that would miss a
      * proxy setting changed in the meantime.
      *
@@ -303,7 +320,7 @@ object DictateCloudApi {
     }
 
     @Serializable
-    private data class RedeemRequest(
+    private data class VerifyRequest(
         val purchaseToken: String,
         val productId: String,
         val walletId: String? = null,
@@ -379,36 +396,21 @@ data class DictateCloudRevoke(
     @SerialName("devices_left") val devicesLeft: Int = 0,
 )
 
-/** Reply to a redemption. [token] and [recoveryCode] are present only when the account was created. */
+/**
+ * Reply to `POST /v1/subscription/verify`. [token] is present when this device was given a new one
+ * (first purchase, reinstall, new phone); [recoveryCode] only when the account was just created.
+ */
 @Serializable
-data class DictateCloudRedeem(
+data class DictateCloudVerify(
     @SerialName("wallet_id") val walletId: String,
     val token: String? = null,
     @SerialName("recovery_code") val recoveryCode: String? = null,
-    @SerialName("granted_minutes") val grantedMinutes: Int = 0,
-    @SerialName("seconds_left") val secondsLeft: Int = 0,
-    @SerialName("minutes_left") val minutesLeft: Int = 0,
-    @SerialName("rewords_left") val rewordsLeft: Int = 0,
-    @SerialName("already_redeemed") val alreadyRedeemed: Boolean = false,
-)
-
-@Serializable
-data class DictateCloudBalance(
-    @SerialName("wallet_id") val walletId: String,
-    @SerialName("seconds_left") val secondsLeft: Int = 0,
-    @SerialName("minutes_left") val minutesLeft: Int = 0,
-    @SerialName("rewords_left") val rewordsLeft: Int = 0,
-    @SerialName("seconds_bought") val secondsBought: Int = 0,
-    @SerialName("seconds_used") val secondsUsed: Int = 0,
-    val status: String = "active",
+    val entitlement: Entitlement? = null,
 )
 
 /**
- * Reply to both steps of deleting an account.
- *
- * Before confirming, [minutesLeft] and [purchases] describe what would be lost; afterwards,
- * [forfeitedMinutes] and [purchasesRetained] describe what was. One shape for both so the caller
- * does not have to branch on which call it made.
+ * Reply to both steps of deleting an account. One shape for both so the caller does not have to
+ * branch on which call it made. The minute fields are the credit-pack server's and read 0 otherwise.
  */
 @Serializable
 data class DictateCloudDeletion(
