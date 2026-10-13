@@ -171,11 +171,17 @@ object DictatePromptDefaults {
      * [rawWords] may be comma- or newline-separated; surrounding whitespace and blank entries are
      * dropped. Returns the trimmed [base] when no words are given, the bare comma-joined list when
      * [base] is null/blank, or `"<base> <words>"` otherwise. Returns null only when both are empty.
+     *
+     * Only the words that fit in [CustomWordList.TOKEN_BUDGET] are sent, taken from the front. The list
+     * is also the keyboard's "My words" now, used for typing too, so it may hold far more than the speech
+     * model reads; sending all of it would make every request bigger for nothing, and Whisper keeps the
+     * *end* of an over-long prompt — it would drop the style prompt in front, not the extra words.
      */
     fun appendCustomWords(base: String?, rawWords: String?): String? {
         // One splitting rule, in CustomWordList, so the count and the token estimate the settings screen
         // shows describe the glossary that is actually assembled here (issue #389).
-        val words = CustomWordList.parse(rawWords)
+        val all = CustomWordList.parse(rawWords)
+        val words = all.take(CustomWordList.countWithinBudget(all))
         val baseClean = base?.trim()?.takeIf { it.isNotEmpty() }
         if (words.isEmpty()) return baseClean
         val glossary = words.joinToString(", ")
