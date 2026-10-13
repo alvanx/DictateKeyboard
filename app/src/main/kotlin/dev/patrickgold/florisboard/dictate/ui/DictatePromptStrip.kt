@@ -133,8 +133,8 @@ fun DictatePromptRow(
             onClick = { DictateController.startLivePrompt(context) },
             modifier = Modifier.padding(horizontal = 1.5.dp),
             tapPadding = rowChipPadding,
-            // Compact row: show only the voice icon to leave more width for the saved-prompt chips.
-            iconOnly = true,
+            // Spelled out, and last in the row: as a bare voice icon at the start it read as a second
+            // dictation button. It is a spoken *instruction*, so it goes after the written ones.
             // Accent-highlight it while its recording runs (tap again to stop — startLivePrompt toggles).
             highlighted = livePromptActive,
         )
@@ -164,8 +164,8 @@ fun DictatePromptRow(
     // one strip that happens to wrap onto two lines (#194), not two independently-scrolling rows.
     val scrollState = rememberScrollState()
     if (rows >= 2) {
-        // Reading order stays left-to-right: the live chip + first half on the top line, the rest below;
-        // both lines share the one horizontal scroll.
+        // Reading order stays left-to-right: the first half on the top line, the rest and then the live
+        // chip below; both lines share the one horizontal scroll.
         val half = (prompts.size + 1) / 2
         Column(
             modifier = modifier
@@ -174,11 +174,11 @@ fun DictatePromptRow(
                 .padding(horizontal = 4.dp),
         ) {
             Row(modifier = Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically) {
-                liveChip()
                 prompts.take(half).forEach { promptChip(it) }
             }
             Row(modifier = Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically) {
                 prompts.drop(half).forEach { promptChip(it) }
+                liveChip()
             }
         }
     } else {
@@ -191,8 +191,8 @@ fun DictatePromptRow(
                 .padding(horizontal = 4.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            liveChip()
             prompts.forEach { promptChip(it) }
+            liveChip()
         }
     }
 }
@@ -277,7 +277,7 @@ internal fun DictatePromptChip(
 }
 
 /**
- * The live-prompt chip (voice + "Live prompt"): records a spoken instruction and hands it to the
+ * The live-prompt chip (voice + "Ask by voice"): records a spoken instruction and hands it to the
  * rewording model. Rendered alongside the saved-prompt chips in the panel/row so the live prompt lives
  * with the other prompts instead of as a separate Smartbar button. Uses a distinct voice icon so it is
  * not confused with the free-prompt sparkle.
@@ -293,7 +293,7 @@ internal fun DictateLivePromptChip(
 ) {
     DictatePromptChip(
         icon = Icons.Default.RecordVoiceOver,
-        text = stringRes(R.string.quick_action__dictate_live_prompt),
+        text = stringRes(R.string.dictate__live_prompt_chip),
         onClick = onClick,
         modifier = modifier,
         iconSize = iconSize,

@@ -695,7 +695,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         // reads as a different thing beside the filled rows around it.
         list.addView(
             menuItem(
-                context.getString(R.string.quick_action__dictate_live_prompt),
+                context.getString(R.string.dictate__live_prompt_chip),
                 R.drawable.ic_dictate_live_prompt,
                 bold = true,
             ) {
