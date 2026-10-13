@@ -12,6 +12,7 @@ package dev.patrickgold.florisboard.dictate.cloud
 
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.dictate.dictateProxyConfig
+import dev.patrickgold.florisboard.dictate.provider.CloudAvailability
 import dev.patrickgold.florisboard.dictate.provider.ProviderRegistry
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.serialization.SerialName
@@ -218,6 +219,9 @@ object DictateCloudApi {
     }
 
     private suspend inline fun <reified T> call(request: Request): T {
+        // The one door to the Cloud server. Shut while the service is switched off, so nothing can
+        // reach the placeholder address however it got here.
+        if (!CloudAvailability.ENABLED) throw DictateCloudException(0, "unavailable", "Cloud is not available")
         val response = try {
             client().newCall(request).await()
         } catch (e: IOException) {

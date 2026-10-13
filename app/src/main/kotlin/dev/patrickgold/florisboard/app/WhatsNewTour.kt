@@ -15,6 +15,7 @@ import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.ui.viewinterop.AndroidView
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloudPack
+import dev.patrickgold.florisboard.dictate.provider.CloudAvailability
 import dev.patrickgold.florisboard.dictate.ui.AudioReactiveCloudOrbView
 import dev.patrickgold.florisboard.dictate.ui.DictateAuroraOrbView
 import dev.patrickgold.florisboard.dictate.ui.DictateWaveform
@@ -1012,7 +1013,8 @@ fun WhatsNewTour(autoQueue: List<VersionName>) {
         autoTours.isNotEmpty() && queueIndex <= autoTours.lastIndex -> autoTours[queueIndex]
         else -> null
     } ?: return
-    val pages = activeTour.pages
+    // The credit page points at the Cloud screen, which does not exist while Cloud is switched off.
+    val pages = activeTour.pages.filter { CloudAvailability.ENABLED || it.route != Routes.Settings.DictateCloud }
     // Another unseen tour after this one → an "Weiter zu X" bridge on the outro instead of "Fertig".
     val nextAutoTour = if (!isManual && queueIndex < autoTours.lastIndex) autoTours[queueIndex + 1] else null
 

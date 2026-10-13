@@ -911,13 +911,21 @@ object ProviderRegistry {
     )
 
     /** All built-in presets in display order. The custom option is added by the UI on top of these. */
-    val presets: List<ProviderPreset> = listOf(
+    private val allPresets: List<ProviderPreset> = listOf(
         CLOUD, OPENAI, GROQ, OPENROUTER, GEMINI, ANTHROPIC, TOGETHER, DEEPINFRA, MISTRAL, SONIOX,
         ELEVENLABS, DEEPGRAM, ASSEMBLYAI, AZURE, XAI, DEEPSEEK, SILICONFLOW, SCALEWAY, OVHCLOUD,
         OLLAMA, LOCAL,
     )
 
-    fun byId(id: String): ProviderPreset? = presets.firstOrNull { it.id == id }
+    /** The presets to show, with [CLOUD] only when [cloudEnabled]; see [CloudAvailability]. */
+    fun presetsFor(cloudEnabled: Boolean): List<ProviderPreset> =
+        if (cloudEnabled) allPresets else allPresets.filter { it.id != CLOUD.id }
+
+    /** What the app offers: [allPresets] minus [CLOUD] while [CloudAvailability.ENABLED] is false. */
+    val presets: List<ProviderPreset> = presetsFor(CloudAvailability.ENABLED)
+
+    /** Looks up any preset, [CLOUD] included, so code that names it by id keeps working. */
+    fun byId(id: String): ProviderPreset? = allPresets.firstOrNull { it.id == id }
 
     /**
      * The data-residency region [customBaseUrl] selects on [preset] (issue #403).
