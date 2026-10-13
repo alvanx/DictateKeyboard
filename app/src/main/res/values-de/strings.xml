@@ -1903,7 +1903,7 @@
     <string name="enum__auto_correct_strength__aggressive">Aggressiv</string>
     <string name="enum__auto_correct_strength__aggressive__description">Korrigiert auch weiter entfernte Wörter — und ersetzt hin und wieder eines, das du so wolltest.</string>
     <string name="pref__suggestion__multilingual_typing__label">Mehrsprachiges Tippen</string>
-    <string name="pref__suggestion__multilingual_typing__summary">Wörter aus allen deinen Tastatursprachen akzeptieren</string>
+    <string name="pref__suggestion__multilingual_typing__summary">Vorschläge und Korrekturen folgen der Tastatursprache, in der du gerade schreibst</string>
     <string name="pref__suggestion__next_word_prediction__label">Wortvorschläge</string>
     <string name="pref__suggestion__next_word_prediction__summary">Schlägt wahrscheinliche nächste Wörter vor, sobald ein Wort fertig ist</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">Apps übergehen, die Vorschläge abschalten</string>

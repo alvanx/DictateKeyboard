@@ -1920,7 +1920,7 @@
     <string name="enum__auto_correct_strength__aggressive">激进</string>
     <string name="enum__auto_correct_strength__aggressive__description">也更正相差更远的词——偶尔会替换掉你本来想要的词。</string>
     <string name="pref__suggestion__multilingual_typing__label">多语言输入</string>
-    <string name="pref__suggestion__multilingual_typing__summary">接受来自所有键盘语言的单词</string>
+    <string name="pref__suggestion__multilingual_typing__summary">建议和纠正会跟随你正在输入的键盘语言</string>
     <string name="pref__suggestion__next_word_prediction__label">下一个词建议</string>
     <string name="pref__suggestion__next_word_prediction__summary">输入完一个词后建议可能的下一个词</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">忽略关闭候选词的应用</string>

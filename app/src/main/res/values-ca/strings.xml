@@ -1797,7 +1797,7 @@
     <string name="enum__auto_correct_strength__aggressive">Agressiva</string>
     <string name="enum__auto_correct_strength__aggressive__description">També corregeix paraules més allunyades — i de tant en tant en substitueix una que volies.</string>
     <string name="pref__suggestion__multilingual_typing__label">Escriptura multilingüe</string>
-    <string name="pref__suggestion__multilingual_typing__summary">Accepta paraules de tots els idiomes del teclat</string>
+    <string name="pref__suggestion__multilingual_typing__summary">Els suggeriments i les correccions segueixen l\'idioma del teclat en què escrius</string>
     <string name="pref__suggestion__next_word_prediction__label">Suggeriments de paraula següent</string>
     <string name="pref__suggestion__next_word_prediction__summary">Suggereix paraules probables quan hàgiu acabat una paraula</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">Ignora les aplicacions que desactiven els suggeriments</string>
