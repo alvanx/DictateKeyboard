@@ -688,6 +688,21 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__floating_button_spotlight_version",
             default = "",
         )
+        // Finished dictations by where they were started: the floating button or the keyboard's own mic.
+        // Only to tell whether someone's habit is the floating button (KeepOverKeyboardTip).
+        val floatingButtonDictations = int(
+            key = "dictate__floating_button_dictations",
+            default = 0,
+        )
+        val keyboardDictations = int(
+            key = "dictate__keyboard_dictations",
+            default = 0,
+        )
+        // Whether the keyboard has asked once to keep the floating button up beside it.
+        val floatingButtonOverKeyboardAsked = boolean(
+            key = "dictate__floating_button_over_keyboard_asked",
+            default = false,
+        )
         // --- Output behavior (roadmap section 10) ------------------------------------------------
         // Press Enter / trigger the editor action automatically after committing a transcription.
         val autoEnter = boolean(

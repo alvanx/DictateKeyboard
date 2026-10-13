@@ -885,6 +885,8 @@ private fun PromoContent(kind: DictateController.PromoKind, message: String? = n
         // The mark of what is running low, not of the action — the accent pill beside it already
         // says "top up".
         DictateController.PromoKind.LOW_CREDIT -> ImageVector.vectorResource(R.drawable.ic_dictate_cloud)
+        // The floating button's own mark, as on the spotlight that introduced it.
+        DictateController.PromoKind.KEEP_BUTTON_OVER_KEYBOARD -> Icons.Default.Adjust
     }
     // Milestone text is dynamic (which milestone), so it arrives via [message]; the rest map to a res.
     val messageRes = when (kind) {
@@ -894,6 +896,7 @@ private fun PromoContent(kind: DictateController.PromoKind, message: String? = n
         DictateController.PromoKind.FLOATING_BUTTON -> R.string.dictate__promo_floating_button_message
         DictateController.PromoKind.MILESTONE -> R.string.dictate__stats_milestone_title
         DictateController.PromoKind.LOW_CREDIT -> R.string.dictate__promo_low_credit_message
+        DictateController.PromoKind.KEEP_BUTTON_OVER_KEYBOARD -> R.string.dictate__promo_keep_button_message
     }
     val actionRes = when (kind) {
         DictateController.PromoKind.RATE -> R.string.dictate__promo_rate_action
@@ -902,6 +905,7 @@ private fun PromoContent(kind: DictateController.PromoKind, message: String? = n
         DictateController.PromoKind.FLOATING_BUTTON -> R.string.dictate__promo_floating_button_action
         DictateController.PromoKind.MILESTONE -> R.string.dictate__promo_milestone_action
         DictateController.PromoKind.LOW_CREDIT -> R.string.dictate__promo_low_credit_action
+        DictateController.PromoKind.KEEP_BUTTON_OVER_KEYBOARD -> R.string.dictate__promo_keep_button_action
     }
 
     // Gentle pop-in (fade + slight scale) on top of the Smartbar's own slide transition.

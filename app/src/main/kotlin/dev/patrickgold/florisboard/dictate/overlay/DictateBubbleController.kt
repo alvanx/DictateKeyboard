@@ -78,6 +78,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -268,10 +269,31 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         val allowedInApp: Boolean,
     )
 
+    /**
+     * Screen y of the top of the Dictate keyboard while it is up, else null. Only ever set for our own
+     * keyboard: the bubble stands beside it only when the user asked for that ("Also with the Dictate
+     * keyboard"), and then it keeps off the keys — see [bottomLimit]. Over other keyboards it goes where
+     * the user put it, as it always has.
+     */
+    private var keyboardTopOnScreen: Int? = null
+
     /** Starts observing the feature toggle + focus + design + dictation state to drive the bubble. */
     fun start() {
         scope.launch {
             DictateAccessibilityService.foregroundPackage.collect { pkg -> onForegroundPackageChanged(pkg) }
+        }
+        // Our keyboard opening or closing (or changing height) moves the bubble above it and back again.
+        // Nothing is written to the anchor: once the keyboard goes, the bubble returns to its own spot.
+        scope.launch {
+            combine(
+                DictateAccessibilityService.imeTop,
+                DictateAccessibilityService.dictateKeyboardActive,
+            ) { top, ours -> if (ours) top else null }
+                .distinctUntilChanged()
+                .collect { top ->
+                    keyboardTopOnScreen = top
+                    if (added) applyAnchor()
+                }
         }
         // A new fade level applies at once: wake the bubble and let the new timer decide.
         scope.launch {
@@ -1091,7 +1113,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         val v = rootView ?: return
         val maxX = (screenWidth() - v.width).coerceAtLeast(0)
         val margin = edgeMargin(maxX)
-        lp.y = lp.y.coerceIn(0, (screenHeight() - v.height).coerceAtLeast(0))
+        lp.y = lp.y.coerceIn(0, bottomLimit(v.height))
         // The drag decided which side; read that off the dropped position before animating towards it.
         // After the clamp, so a drop past the bottom edge is anchored where it lands, not where it went.
         captureAnchor()
@@ -1136,7 +1158,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         val v = rootView ?: return
         if (!added) return
         val maxX = (screenWidth() - v.width).coerceAtLeast(0)
-        val maxY = (screenHeight() - v.height).coerceAtLeast(0)
+        val maxY = bottomLimit(v.height)
         val snapped = prefs.dictate.floatingButtonSnapToEdge.get()
         val nx = (if (snapped) edgeMargin(maxX) else lp.x).coerceIn(0, maxX)
         val ny = lp.y.coerceIn(0, maxY)
@@ -1206,6 +1228,25 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         }
         val dm = context.resources.displayMetrics
         return Point(dm.widthPixels, dm.heightPixels)
+    }
+
+    /**
+     * The lowest y a window [height] px tall may take: the bottom of the screen, or, while the Dictate
+     * keyboard is up beside it, just above that keyboard, so the button never sits on its keys.
+     */
+    private fun bottomLimit(height: Int): Int {
+        val screenMax = (screenHeight() - height).coerceAtLeast(0)
+        val keyboardTop = keyboardTopOnScreen ?: return screenMax
+        // The window is placed in a frame that starts below the status bar; the keyboard's top is
+        // measured on the whole screen.
+        val frameTop = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            windowManager.currentWindowMetrics.windowInsets.getInsetsIgnoringVisibility(
+                WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout(),
+            ).top
+        } else {
+            0
+        }
+        return (keyboardTop - frameTop - height - dp(KEYBOARD_GAP_DP)).coerceIn(0, screenMax)
     }
 
     /** How far the bubble can travel horizontally, i.e. the x of the right edge. */
@@ -1377,7 +1418,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         val maxX = travelX()
         val maxY = travelY()
         val nx = anchor.toX(maxX, edgeMargin(maxX), prefs.dictate.floatingButtonSnapToEdge.get())
-        val ny = anchor.toY(maxY)
+        val ny = anchor.toY(maxY).coerceAtMost(bottomLimit(rootView?.height ?: 0))
         // The only way to observe where the bubble ended up without guessing at a screenshot. Debug builds
         // only; flog compiles out of a release.
         flogDebug {
@@ -2944,6 +2985,9 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
 
         /** How long after a dictation the bubble stays full size, so undo is still on offer. */
         private const val AFTER_DICTATION_MS = 10_000L
+
+        /** The gap kept between the bubble and the top of the Dictate keyboard, in dp. */
+        private const val KEYBOARD_GAP_DP = 8
 
         /** How soon the bubble steps back once the user starts typing on the keyboard. */
         private const val TYPING_DIM_DELAY_MS = 2_000L

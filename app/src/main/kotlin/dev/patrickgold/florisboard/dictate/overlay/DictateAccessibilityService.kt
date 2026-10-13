@@ -280,9 +280,11 @@ class DictateAccessibilityService : AccessibilityService() {
      * as editable, so the bubble appears in the same situations a keyboard does. Requires
      * `flagRetrieveInteractiveWindows`, which the service config sets.
      */
-    private fun isImeWindowShown(): Boolean = runCatching {
-        windows.any { it.type == AccessibilityWindowInfo.TYPE_INPUT_METHOD }
-    }.getOrDefault(false)
+    /** Screen y of the top of the soft keyboard's window, or null while no keyboard is shown. */
+    private fun imeWindowTop(): Int? = runCatching {
+        windows.firstOrNull { it.type == AccessibilityWindowInfo.TYPE_INPUT_METHOD }
+            ?.let { window -> android.graphics.Rect().also { window.getBoundsInScreen(it) }.top }
+    }.getOrNull()
 
     /**
      * Starts listening for the display turning off and on. Both actions are sent to runtime-registered
@@ -364,7 +366,9 @@ class DictateAccessibilityService : AccessibilityService() {
         // the user wants the button only with a keyboard up (#439), a field alone cannot bring it, so the
         // app's tree is not fetched to find one — the bubble controller applies the same rule over its flows,
         // which is what reacts to the setting itself; this one only spares the node fetch.
-        val imeShown = isImeWindowShown()
+        val imeTop = imeWindowTop()
+        val imeShown = imeTop != null
+        if (_imeTop.value != imeTop) _imeTop.value = imeTop
         val keyboardRequired = prefs.dictate.floatingButtonShowWhen.get().keyboardRequired
         val focused = !blocked && (imeShown || (!keyboardRequired && focusedEditableNode() != null))
         if (_editableFocused.value != focused) {
@@ -1205,6 +1209,7 @@ class DictateAccessibilityService : AccessibilityService() {
             _editableFocused.value = false
             _dictateKeyboardActive.value = false
             _imeVisible.value = false
+            _imeTop.value = null
             bubble?.destroy()
             bubble = null
             mainHandler.removeCallbacksAndMessages(null)
@@ -1443,6 +1448,14 @@ class DictateAccessibilityService : AccessibilityService() {
 
         /** Whether a soft-keyboard (IME) window is currently shown on screen. */
         val imeVisible: StateFlow<Boolean> = _imeVisible.asStateFlow()
+
+        private val _imeTop = MutableStateFlow<Int?>(null)
+
+        /**
+         * Screen y of the top of the soft keyboard while one is shown, else null. Lets the floating button
+         * keep off the Dictate keyboard's keys when it is allowed to stand beside it.
+         */
+        val imeTop: StateFlow<Int?> = _imeTop.asStateFlow()
 
         private val _foregroundPackage = MutableStateFlow<String?>(null)
 

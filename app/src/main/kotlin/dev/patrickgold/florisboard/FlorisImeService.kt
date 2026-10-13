@@ -473,6 +473,10 @@ class FlorisImeService : LifecycleInputMethodService() {
         // Floating-button spotlight: one-time nudge for users who have not enabled it yet. After the
         // changelog nudge so it does not compete on the same update; all no-op unless idle.
         dev.patrickgold.florisboard.dictate.DictateController.maybePromptFloatingButton(this)
+        // For someone who already dictates with the floating button: ask once whether it should stay up
+        // over this keyboard too, instead of stepping aside. Mutually exclusive with the spotlight above
+        // (that one is for people who have not turned the button on).
+        dev.patrickgold.florisboard.dictate.DictateController.maybePromptKeepButtonOverKeyboard()
         // Rate/donate nudge (roadmap 9.7/9.8): shown in the Smartbar once enough audio was dictated.
         // Guarded internally to no-op unless idle, so it never interrupts a recording started above.
         dev.patrickgold.florisboard.dictate.DictateController.maybePromptForReview()
