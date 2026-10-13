@@ -52,7 +52,10 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState as collectFlowAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -124,6 +127,10 @@ fun HomeScreen() = FlorisScreen {
     }
 
     content {
+        // "Try it here" on the first-run page (HomeFirstRun.kt). Set up out here, where it outlives that page.
+        var tryItNote by rememberSaveable { mutableStateOf<String?>(null) }
+        val tryIt = rememberTryItHere(onNote = { tryItNote = it })
+
         // The floating button is the main way in and the keyboard the second, so the button always has
         // its card here and the keyboard only asks for a row while it is off.
         val charm by prefs.dictate.floatingButtonCharm.collectAsState()
@@ -150,6 +157,7 @@ fun HomeScreen() = FlorisScreen {
                     navController.navigate(Routes.Settings.DictateFloatingButton)
                 },
                 onTurnOnKeyboard = { InputMethodUtils.showImeEnablerActivity(context) },
+                onTryIt = tryIt,
             )
             // Room for the floating button, so it never covers the last line.
             Spacer(modifier = Modifier.height(88.dp))
@@ -174,8 +182,16 @@ fun HomeScreen() = FlorisScreen {
         val busy = dictateState is DictateController.UiState.Recording ||
             dictateState is DictateController.UiState.Transcribing ||
             dictateState is DictateController.UiState.Rewording
+        // A note from "Try it here" is in the history like any dictation; only with the history off does it
+        // need putting on the list by hand.
+        val historyOn by prefs.dictate.historyEnabled.collectAsState()
+        val shownNote = tryItNote?.takeUnless { historyOn }
         RecentDictationsCard(
-            entries = remember(entries) { recentEntries(entries.orEmpty(), System.currentTimeMillis()) },
+            entries = remember(entries, shownNote) {
+                val now = System.currentTimeMillis()
+                val recent = recentEntries(entries.orEmpty(), now)
+                if (shownNote == null) recent else (listOf(tryItEntry(shownNote, now)) + recent).take(RECENT_COUNT)
+            },
             canRetry = !busy,
             onCopy = { entry ->
                 copyToClipboard(context, entry.text)
