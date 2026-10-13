@@ -1,6 +1,6 @@
-# Dictate Cloud
+# Voice Mode Cloud
 
-The credit server behind Dictate's optional "buy minutes instead of bringing your own API key"
+The credit server behind the app's optional "buy minutes instead of bringing your own API key"
 path. A single Cloudflare Worker: it verifies a Google Play purchase, keeps a balance, and passes
 dictation and rewording to Cloudflare's own Workers AI while metering what they cost.
 
@@ -8,7 +8,7 @@ The models run inside the same platform the Worker does, reached through a bindi
 the network — so there is no API key for them, and nothing has to leave for an outside service.
 Which model does the work is `TRANSCRIBE_MODEL` and `CHAT_MODEL`, changeable without a code change.
 
-Using Dictate does not require any of this. Bring an API key from a provider of your choice and the
+Using the app does not require any of this. Bring an API key from a provider of your choice and the
 app never speaks to this server at all — see the app's provider settings. This exists so that
 someone who does not want a provider account has a way in.
 

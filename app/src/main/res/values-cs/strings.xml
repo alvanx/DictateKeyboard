@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Dictate</string>
+    <string name="app_name">Voice Mode</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Pauza</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Počkat</string>
     <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">Tří-tečková ikona. Pokud je viditelná, tak se po delším podržení nabídne více písmen.</string>
@@ -129,8 +129,8 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Výchozí</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Výchozí nastavení systému</string>
     <string name="settings__home__title" comment="Title of the Home screen">Vítejte ve {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} není povolena v systému a proto nemůže být použita jako metoda zadávání. Klikněte sem pro vyřešení tohoto problému.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} není vybrán jako výchozí vstupní metoda. Kliknutím sem tento problém vyřešíte.</string>
+    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name} není povolena v systému a proto nemůže být použita jako metoda zadávání. Klikněte sem pro vyřešení tohoto problému.</string>
+    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name} není vybrán jako výchozí vstupní metoda. Kliknutím sem tento problém vyřešíte.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Hledat v nastavení</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Hledat v nastavení…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Nedávná hledání</string>
@@ -640,7 +640,7 @@
     <string name="setup__select_ime__switch_keyboard_btn">Přepnout klávesnici</string>
     <string name="setup__grant_notification_permission__title">Povolit oznámení o hlášení pádu</string>
     <string name="setup__grant_notification_permission__description">Počínaje systémem Android 13 musí aplikace žádat o oprávnění
-        k posílání oznámení. V aplikaci Dictate je toto oprávnění použito pouze pro otevření obrazovky hlášení
+        k posílání oznámení. V aplikaci Voice Mode je toto oprávnění použito pouze pro otevření obrazovky hlášení
         o pádu. Toto oprávnění lze kdykoli změnit v systémových nastaveních.
     </string>
     <string name="setup__grant_notification_permission__btn">Udělit oprávnění</string>
@@ -665,8 +665,8 @@
     <string name="backup_and_restore__back_up__files">Vyberte, co chcete zálohovat</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Předvolby</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">Klíče API a hesla</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Tento archiv obsahuje tvoje klíče API a hesla v čitelné podobě i tvůj kredit Dictate Cloud — kdokoli ho dostane, může diktovat na tvůj účet. Nepředávej ho dál, a pokud jsi to už udělal, změň klíč u svého poskytovatele. Všechno ostatní zaškrtnuté níže jde s ním, včetně historie přepisů a schránky.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Tento archiv neobsahuje žádné klíče API, hesla ani kredit Dictate Cloud, takže ho můžeš předat dál, ale tvoje také neobnoví. Všechno ostatní zaškrtnuté níže v něm zůstává, včetně historie přepisů a schránky.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Tento archiv obsahuje tvoje klíče API a hesla v čitelné podobě i tvůj kredit Voice Mode Cloud — kdokoli ho dostane, může diktovat na tvůj účet. Nepředávej ho dál, a pokud jsi to už udělal, změň klíč u svého poskytovatele. Všechno ostatní zaškrtnuté níže jde s ním, včetně historie přepisů a schránky.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Tento archiv neobsahuje žádné klíče API, hesla ani kredit Voice Mode Cloud, takže ho můžeš předat dál, ale tvoje také neobnoví. Všechno ostatní zaškrtnuté níže v něm zůstává, včetně historie přepisů a schránky.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Tento archiv neobsahuje klíče API ani hesla, ale obsahuje všechno zaškrtnuté níže: historii přepisů i s uchovanými nahrávkami, schránku, tvoje prompty a slova, která se klávesnice od tebe naučila.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Rozšíření klávesnice</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Rozšíření kontroly pravopisu / slovníky</string>
@@ -683,7 +683,7 @@
     <string name="backup_and_restore__restore__metadata">Vybraný archiv zálohy</string>
     <string name="backup_and_restore__restore__metadata_warn_different_version">Tento archiv zálohy byl vygenerován v jiné verzi, než jakou aktuálně používáte, což je většinou podporováno. Mějte ale prosím na vědomí, že se mohou vyskytnout menší problémy nebo se některé předvolby nemusí správně převést kvůli rozdílům ve funkcích.</string>
     <string name="backup_and_restore__restore__metadata_warn_different_vendor">Tento archiv zálohy byl vygenerován v aplikaci třetí strany, což většinou není podporováno. Mohou se vyskytnout ztráty dat, obnovte na vlastní nebezpečí!</string>
-    <string name="backup_and_restore__restore__metadata_note_no_credentials">Tento záložní archiv neobsahuje klíče API ani hesla. Všechno ostatní se obnoví. Sloučení zachová klíče, které už v tomto zařízení jsou; přepsání je odstraní, včetně kódu pro obnovení Dictate Cloud, který nelze zadat znovu.</string>
+    <string name="backup_and_restore__restore__metadata_note_no_credentials">Tento záložní archiv neobsahuje klíče API ani hesla. Všechno ostatní se obnoví. Sloučení zachová klíče, které už v tomto zařízení jsou; přepsání je odstraní, včetně kódu pro obnovení Voice Mode Cloud, který nelze zadat znovu.</string>
     <string name="backup_and_restore__restore__metadata_error_invalid_metadata">Tento archiv zálohy obsahuje neplatná metadata. Buď byl poškozen, nebo nesprávně upraven. Obnovení zálohy z tohoto archivu není možné, zvolte prosím jiný.</string>
     <string name="backup_and_restore__restore__metadata_error_nothing_to_restore">Tento archiv zálohy neobsahuje žádné soubory k obnovení, vyberte prosím jiný.</string>
     <string name="backup_and_restore__restore__mode">Obnovovací reřim</string>
@@ -693,17 +693,17 @@
     <string name="backup_and_restore__restore__failure">Nepodařilo se obnovit data: {error_message}</string>
     <!-- Crash Dialog strings -->
     <string name="crash_dialog__title" comment="Title of crash dialog">Zpráva o chybě Dictateu</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">Omlouváme se za potíže, ale aplikace Dictate spadla kvůli neočekávané chybě.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Pokud chcete tuto chybu nahlásit, podívejte se nejprve do nástroje pro sledování problémů na GitHubu, pokud již nebyla chyba nahlášena.\nPokud tomu tak není, zkopírujte vygenerovaný záznam o chybě a otevřete nový problém. Použijte šablonu „%s“ a vyplňte popis, kroky k reprodukci a na konec vložte vygenerovaný záznam o pádu. Pomůžete tak k tomu, aby byl Dictate lepší a stabilnější pro všechny. Děkujeme!</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">Omlouváme se za potíže, ale aplikace Voice Mode spadla kvůli neočekávané chybě.</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Pokud chcete tuto chybu nahlásit, podívejte se nejprve do nástroje pro sledování problémů na GitHubu, pokud již nebyla chyba nahlášena.\nPokud tomu tak není, zkopírujte vygenerovaný záznam o chybě a otevřete nový problém. Použijte šablonu „%s“ a vyplňte popis, kroky k reprodukci a na konec vložte vygenerovaný záznam o pádu. Pomůžete tak k tomu, aby byl Voice Mode lepší a stabilnější pro všechny. Děkujeme!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Kopírovat do schránky</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Zkopírováno do schránky</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">Nepodařilo se zkopírovat do systémové schránky: Instance správce schránky nenalezena</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">Nahlásit problém (github.com)</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Zavřít</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Chybová hlášení Dictate</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate přestal pracovat…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Chybová hlášení Voice Mode</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode přestal pracovat…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Klepnutím zobrazíte podrobnosti o chybě</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Zdá se, že Dictate přestal opakovaně pracovat…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Zdá se, že Voice Mode přestal opakovaně pracovat…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Vrácení zpět na předchozí klávesnici pro zastavení nekonečného crash loopu. Klepnutím zobrazíte podrobnosti o chybě</string>
     <!-- Clipboard strings -->
     <string name="editing__back_to_keyboard">Zpět na klávesnici</string>
@@ -855,7 +855,7 @@
     <string name="ext__export__failure">Nepodařilo se exportovat rozšíření: {error_message}</string>
     <string name="ext__import__success">Rozšíření úspěšně importováno!</string>
     <string name="ext__import__failure">Nepodařilo se importovat rozšíření: {error_message}</string>
-    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Dictate Keyboard extension">Importovat rozšíření</string>
+    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Voice Mode extension">Importovat rozšíření</string>
     <string name="ext__import__ext_keyboard" comment="Title of Importer screen for keyboard extension import">Importovat rozšíření klávesnice</string>
     <string name="ext__import__ext_theme" comment="Title of Importer screen for theme extension import">Importovat rozšíření témat</string>
     <string name="ext__import__ext_languagepack" comment="Title of Importer screen for language pack extension import">Importovat rozšíření jazykových balíčků</string>
@@ -895,7 +895,7 @@
     <string name="ext__addon_management_box__managing_placeholder">Správa {extensions}</string>
     <string name="ext__addon_management_box__addon_manager_info">Všechny úlohy spojené s importováním, exportováním, vytvářením, přizpůsobováním a odstraňováním rozšíření mohou být prováděny skrze centralizovaného správce doplňků.</string>
     <string name="ext__addon_management_box__go_to_page">Přejít na {ext_home_title}</string>
-    <string name="ext__home__info">Rozšíření můžete stahovat a instalovat z Obchodu s doplňky Dictate nebo importovat jakýkoli soubor rozšíření, který jste si stáhli z internetu.</string>
+    <string name="ext__home__info">Rozšíření můžete stahovat a instalovat z Obchodu s doplňky Voice Mode nebo importovat jakýkoli soubor rozšíření, který jste si stáhli z internetu.</string>
     <string name="ext__home__visit_store">Navštívit Obchod s doplňky</string>
     <string name="ext__home__manage_extensions">Správa nainstalovaných doplňků</string>
     <string name="ext__list__view_details">Zobrazit podrobnosti</string>
@@ -1161,14 +1161,14 @@
         <item quantity="many">{v} návrhů</item>
         <item quantity="other">{v} návrhů</item>
     </plurals>
-    <!-- Dictate strings -->
+    <!-- Voice Mode strings -->
     <string name="quick_action__ime_ui_mode_editing">Úpravy textu</string>
     <string name="quick_action__ime_ui_mode_editing__tooltip">Přesouvání kurzoru, výběr a úpravy textu</string>
     <string name="quick_action__ime_ui_mode_scan">Skenovat text</string>
     <string name="quick_action__ime_ui_mode_scan__tooltip">Vyfotit tištěný text a vložit ho</string>
     <string name="quick_action__translate">Přeložit</string>
     <string name="quick_action__translate__tooltip">Překládat při psaní, přímo v zařízení</string>
-    <string name="quick_action__ime_ui_mode_dictate">Dictate</string>
+    <string name="quick_action__ime_ui_mode_dictate">Voice Mode</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Klepnutím diktujte, dalším klepnutím přepište</string>
     <string name="quick_action__dictate_live_prompt">Pokyn naživo</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Nahrajte mluvený pokyn a odešlete jej AI</string>
@@ -1176,15 +1176,14 @@
     <string name="quick_action__dictate_prompts__tooltip">Otevřít prompty přeformulování AI</string>
     <string name="about__based_on_floris__title">Založeno na FlorisBoard</string>
     <string name="about__based_on_floris__summary">Fork FlorisBoard od Patricka Goldingera a přispěvatelů, Apache 2.0. Klepnutím jej otevřete.</string>
-    <string name="about__made_by">Vytvořeno s ❤️ od DevEmperor\nSoli deo gloria ✝️</string>
     <string name="about__feedback__title">Zpětná vazba a podpora</string>
     <string name="about__feedback__summary">Pošlete e-mail s dotazy, chybami nebo nápady</string>
-    <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
-    <string name="setup__provider__title">Vyberte, jak má Dictate přepisovat</string>
-    <string name="setup__provider__choose_intro">Dictate převádí vaši řeč na text pomocí služby AI. Většině lidí vyhoví jeden ze dvou způsobů — a pokud nechcete používat žádnou cloudovou službu, níže najdete další dva.</string>
+    <string name="about__feedback__email">support@voicemode.example</string>
+    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="setup__provider__title">Vyberte, jak má Voice Mode přepisovat</string>
+    <string name="setup__provider__choose_intro">Voice Mode převádí vaši řeč na text pomocí služby AI. Většině lidí vyhoví jeden ze dvou způsobů — a pokud nechcete používat žádnou cloudovou službu, níže najdete další dva.</string>
     <string name="setup__provider__choice_cloud_title">Koupit kredit v aplikaci</string>
-    <string name="setup__provider__choice_cloud_body">Dictate Cloud: nikde žádný účet, žádný klíč API. Minuty diktování kupujete přes Google Play a nikdy nevyprší. Pohodlná cesta — a o něco dražší než jít k poskytovateli přímo.</string>
+    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: nikde žádný účet, žádný klíč API. Minuty diktování kupujete přes Google Play a nikdy nevyprší. Pohodlná cesta — a o něco dražší než jít k poskytovateli přímo.</string>
     <string name="setup__provider__choice_cloud_btn">Zobrazit balíčky kreditu</string>
     <string name="setup__provider__choice_own_title">Použít vlastního poskytovatele AI</string>
     <string name="setup__provider__choice_own_body">Vytvořte si klíč u poskytovatele podle svého výběru — Groq je pro běžné diktování zdarma. Zůstává vám vlastní účet a platíte přímo poskytovateli za jeho ceny. Zabere to asi dvě minuty.</string>
@@ -1194,15 +1193,15 @@
     <string name="setup__provider__choice_local_title">Ve vašem zařízení, offline</string>
     <string name="setup__provider__choice_local_body">Jednou stáhnete řečový model. Žádný účet, žádné náklady a žádná nahrávka neopustí telefon.</string>
     <string name="setup__provider__choice_server_title">Vlastní server</string>
-    <string name="setup__provider__choice_server_body">Nasměrujte Dictate na řečový server, který provozujete sami, nebo na jakýkoli koncový bod kompatibilní s OpenAI.</string>
+    <string name="setup__provider__choice_server_body">Nasměrujte Voice Mode na řečový server, který provozujete sami, nebo na jakýkoli koncový bod kompatibilní s OpenAI.</string>
     <string name="setup__provider__local_intro">Rozpoznávání řeči pak běží ve vašem telefonu: nic se nikam neposílá a funguje to i bez připojení. Vyberte si teď jeden model ke stažení — další můžete přidat nebo změnit později.</string>
     <string name="setup__provider__local_recommended">Doporučeno pro váš jazyk</string>
     <string name="setup__provider__local_bigger">Přesnější, ale výrazně větší stahování</string>
     <string name="setup__provider__local_download_btn">Stáhnout model</string>
     <string name="setup__provider__local_use_btn">Použít tento model</string>
     <string name="setup__provider__local_all_models">Zobrazit všechny modely</string>
-    <string name="setup__provider__intro">Dictate převádí váš hlas na text pomocí online služby AI. K jejímu používání potřebujete vlastní osobní klíč pro takovou službu.</string>
-    <string name="setup__provider__what_is_key">Klíč API je jako osobní heslo, které aplikaci Dictate umožňuje používat službu za vás. Jeho vytvoření je zdarma a trvá asi dvě minuty.</string>
+    <string name="setup__provider__intro">Voice Mode převádí váš hlas na text pomocí online služby AI. K jejímu používání potřebujete vlastní osobní klíč pro takovou službu.</string>
+    <string name="setup__provider__what_is_key">Klíč API je jako osobní heslo, které aplikaci Voice Mode umožňuje používat službu za vás. Jeho vytvoření je zdarma a trvá asi dvě minuty.</string>
     <string name="setup__provider__recommended">Doporučujeme <b>Groq</b> – je rychlý a zdarma pro každodenní diktování.</string>
     <string name="setup__provider__steps_groq">1. Klepnutím na tlačítko níže otevřete Groq.\n2. Přihlaste se pomocí Googlu nebo e-mailu.\n3. Klepněte na „Create API Key\", zadejte libovolný název a potvrďte.\n4. Zkopírujte klíč (začíná na „gsk_\").\n5. Vraťte se sem a klepněte na „Vložit klíč API\" níže.</string>
     <string name="setup__provider__steps_generic">1. Klepnutím na tlačítko níže otevřete {provider}.\n2. Vytvořte si účet, pokud ještě žádný nemáte.\n3. Vytvořte nový klíč API a zkopírujte jej.\n4. Vraťte se sem a klepněte na „Vložit klíč API\" níže.</string>
@@ -1216,7 +1215,7 @@
     <string name="setup__provider__skip_btn">Nastavit později</string>
     <string name="setup__provider__other_provider">Použít jiného poskytovatele AI</string>
     <string name="setup__provider__other_provider_hint">Pokročilé: zvolte jinou službu než Groq. Budete potřebovat klíč API od tohoto poskytovatele.</string>
-    <string name="setup__finish_up__add_key_hint">Tip: zatím jste nepřidali klíč AI. Přidejte jej kdykoli v Nastavení → Dictate → Poskytovatelé AI a začněte diktovat.</string>
+    <string name="setup__finish_up__add_key_hint">Tip: zatím jste nepřidali klíč AI. Přidejte jej kdykoli v Nastavení → Voice Mode → Poskytovatelé AI a začněte diktovat.</string>
     <string name="crash_dialog__bug_report_template">Hlášení o pádu</string>
     <string name="enum__swipe_action__toggle_compact_layout">Přepnout kompaktní rozložení</string>
     <string name="unit__hours__symbol">{v} h</string>
@@ -1226,9 +1225,9 @@
     <string name="unit__percent__symbol">{v} %</string>
     <string name="unit__display_pixel__symbol">{v} dp</string>
     <string name="unit__display_pixel_per_seconds__symbol">{v} dp/s</string>
-    <string name="dictate__accessibility_service_label">Plovoucí tlačítko Dictate</string>
+    <string name="dictate__accessibility_service_label">Plovoucí tlačítko Voice Mode</string>
     <string name="dictate__accessibility_service_summary">Zobrazit plovoucí tlačítko pro diktování do libovolného textového pole.</string>
-    <string name="dictate__accessibility_service_description">Dictate používá tuto službu pro plovoucí tlačítko diktování. Když je zapnutá, rozpozná, že je textové pole zaměřené v jakékoli aplikaci — aby se tlačítko mohlo zobrazit — a vloží přepsanou řeč do tohoto pole. Dictate čte pouze zaměřené pole, aby umístil text na pozici kurzoru; nesbírá, neukládá ani nesdílí žádný jiný obsah obrazovky.</string>
+    <string name="dictate__accessibility_service_description">Voice Mode používá tuto službu pro plovoucí tlačítko diktování. Když je zapnutá, rozpozná, že je textové pole zaměřené v jakékoli aplikaci — aby se tlačítko mohlo zobrazit — a vloží přepsanou řeč do tohoto pole. Voice Mode čte pouze zaměřené pole, aby umístil text na pozici kurzoru; nesbírá, neukládá ani nesdílí žádný jiný obsah obrazovky.</string>
     <string name="dictate__overlay_notification_channel">Plovoucí tlačítko diktování</string>
     <string name="dictate__overlay_notification_recording">Nahrávání — klepnutím na plovoucí tlačítko přepíšete</string>
     <string name="dictate__overlay_notification_working">Přepis…</string>
@@ -1240,14 +1239,14 @@
     <string name="dictate__floating_button_service_enabled">Zapnuto · klepnutím otevřete nastavení systému</string>
     <string name="dictate__floating_button_service_disabled">Zatím nezapnuto · klepnutím nastavíte</string>
     <string name="dictate__floating_button_disclosure_title">Zapnout plovoucí tlačítko</string>
-    <string name="dictate__floating_button_disclosure_message">Aby se plovoucí tlačítko zobrazilo, Dictate potřebuje službu přístupnosti. Rozpozná, že je textové pole zaměřené v jakékoli aplikaci — aby se tlačítko mohlo zobrazit — a vloží přepsanou řeč do tohoto pole. Dictate čte pouze zaměřené pole, aby umístil váš text; nesbírá, neukládá ani nesdílí žádný jiný obsah obrazovky.\n\nNa další obrazovce najděte „Plovoucí tlačítko Dictate” a zapněte ho.</string>
+    <string name="dictate__floating_button_disclosure_message">Aby se plovoucí tlačítko zobrazilo, Voice Mode potřebuje službu přístupnosti. Rozpozná, že je textové pole zaměřené v jakékoli aplikaci — aby se tlačítko mohlo zobrazit — a vloží přepsanou řeč do tohoto pole. Voice Mode čte pouze zaměřené pole, aby umístil váš text; nesbírá, neukládá ani nesdílí žádný jiný obsah obrazovky.\n\nNa další obrazovce najděte „Plovoucí tlačítko Voice Mode” a zapněte ho.</string>
     <string name="dictate__floating_button_disclosure_continue">Otevřít nastavení</string>
     <string name="dictate__floating_button_mic_title">Přístup k mikrofonu</string>
     <string name="dictate__floating_button_mic_summary">Vyžadováno k nahrávání hlasu · klepnutím povolíte</string>
     <string name="dictate__floating_button_show_when_title">Kdy zobrazit</string>
     <string name="dictate__floating_button_show_when_field">Jakmile je vybráno textové pole</string>
     <string name="dictate__floating_button_show_when_keyboard">Jen při otevřené klávesnici</string>
-    <string name="dictate__floating_button_show_when_dictate_keyboard">I s klávesnicí Dictate</string>
+    <string name="dictate__floating_button_show_when_dictate_keyboard">I s klávesnicí Voice Mode</string>
     <string name="dictate__action_continue_recording">Pokračovat v nahrávání</string>
     <string name="dictate__a11y_mic_hold_local">Přepsat v zařízení</string>
     <string name="smartbar__a11y_show_actions">Zobrazit akce</string>
@@ -1278,7 +1277,7 @@
     <string name="dictate__floating_button_apps_scope_all">Všechny aplikace</string>
     <string name="dictate__floating_button_apps_scope_only">Jen aplikace níže</string>
     <string name="dictate__floating_button_apps_scope_except">Všechny kromě aplikací níže</string>
-    <string name="dictate__floating_button_apps_note">Nad aplikací, kterou vynecháte, se tlačítko nikdy nevykreslí a Dictate v ní nečte textová pole. Aplikace, které vadí služby přístupnosti jako takové, stejně pozná, že je služba zapnutá.</string>
+    <string name="dictate__floating_button_apps_note">Nad aplikací, kterou vynecháte, se tlačítko nikdy nevykreslí a Voice Mode v ní nečte textová pole. Aplikace, které vadí služby přístupnosti jako takové, stejně pozná, že je služba zapnutá.</string>
     <string name="dictate__floating_button_apps_list_title">Aplikace</string>
     <string name="dictate__floating_button_apps_search">Hledat aplikace</string>
     <string name="dictate__floating_button_apps_none">Pro „{search_term}“ nebyla nalezena žádná aplikace</string>
@@ -1286,7 +1285,7 @@
     <string name="dictate__floating_button_haptic_summary_off">Bez vibrace při klepnutí.</string>
     <string name="dictate__floating_button_haptic_summary_on">Krátké zavibrování při klepnutí na tlačítko.</string>
     <string name="dictate__floating_button_haptic_title">Vibrovat při klepnutí</string>
-    <string name="dictate__floating_button_no_prompts">Zatím žádné přeformulovací pokyny — přidejte je v nastavení Dictate.</string>
+    <string name="dictate__floating_button_no_prompts">Zatím žádné přeformulovací pokyny — přidejte je v nastavení Voice Mode.</string>
     <string name="dictate__floating_button_remember_position_summary_off">Jedna společná poloha pro všechny aplikace.</string>
     <string name="dictate__floating_button_remember_position_summary_on">Každá aplikace si pamatuje vlastní polohu tlačítka.</string>
     <string name="dictate__floating_button_remember_position_title">Zapamatovat polohu pro každou aplikaci</string>
@@ -1301,7 +1300,7 @@
     <string name="dictate__providers_summary_both">Přepis: {transcription} · Přeformulování: {rewording}</string>
     <string name="dictate__remember_last_dictation_summary">Uchová poslední diktát, aby jej plovoucí tlačítko mohlo vrátit zpět a klasické rozvržení znovu vložit.</string>
     <string name="dictate__remember_last_dictation_title">Zapamatovat poslední diktování</string>
-    <string name="changelog__v4_2_0">• NOVÉ: plovoucí tlačítko diktování — diktujte přímo v jakékoli aplikaci, i když je aktivní jiná klávesnice. Vyberte si ze tří stylů (Pilulka, Prstenec, Koule), sledujte živý průběh zvuku, když mluvíte, přetáhněte ho kamkoli s přichytáváním k okrajům, nastavte barvu a velikost a podržením přeformulujte. Zapněte ho v Nastavení ▸ Dictate ▸ Plovoucí tlačítko.\n• NOVÉ: Google Gemini — použijte vlastní klíč API z AI Studia pro přepis i přeformulování.\n• Výzvy se nyní ve výchozím nastavení zobrazují ve stálém řádku nad klávesami.\n• Spolehlivější vkládání textu napříč aplikacemi, včetně prohlížečů a jiných klávesnic.</string>
+    <string name="changelog__v4_2_0">• NOVÉ: plovoucí tlačítko diktování — diktujte přímo v jakékoli aplikaci, i když je aktivní jiná klávesnice. Vyberte si ze tří stylů (Pilulka, Prstenec, Koule), sledujte živý průběh zvuku, když mluvíte, přetáhněte ho kamkoli s přichytáváním k okrajům, nastavte barvu a velikost a podržením přeformulujte. Zapněte ho v Nastavení ▸ Voice Mode ▸ Plovoucí tlačítko.\n• NOVÉ: Google Gemini — použijte vlastní klíč API z AI Studia pro přepis i přeformulování.\n• Výzvy se nyní ve výchozím nastavení zobrazují ve stálém řádku nad klávesami.\n• Spolehlivější vkládání textu napříč aplikacemi, včetně prohlížečů a jiných klávesnic.</string>
     <string name="dictate__promo_floating_button_message">Nové: diktujte kdekoli</string>
     <string name="dictate__promo_floating_button_action">Vyzkoušet</string>
     <string name="setup__floating_button__btn">Nastavit plovoucí tlačítko</string>
@@ -1314,7 +1313,7 @@
     <string name="setup__floating_button__skip_btn">Přeskočit — použiji klávesnici</string>
     <string name="dictate__floating_button_badge_new">Nové</string>
     <string name="dictate__panel_title">Prompty AI</string>
-    <string name="dictate__panel_no_prompts">Zatím žádné prompty. Přidejte nějaké v nastavení Dictate v sekci „Přeformulování\".</string>
+    <string name="dictate__panel_no_prompts">Zatím žádné prompty. Přidejte nějaké v nastavení Voice Mode v sekci „Přeformulování\".</string>
     <string name="dictate__prompts_layout_title">Rozložení promptů</string>
     <string name="dictate__prompts_layout_panel_label">Vlastní panel</string>
     <string name="dictate__prompts_layout_panel_description">Otevírejte prompty ve vlastním panelu pomocí tlačítka kouzelné hůlky.</string>
@@ -1332,8 +1331,8 @@
     <string name="dictate__voice_input_transcribing">Přepis…</string>
     <string name="dictate__voice_input_stop">Hotovo</string>
     <string name="dictate__voice_input_hint">Klepnutím odešlete</string>
-    <string name="dictate__voice_ime_label">Hlasový vstup Dictate</string>
-    <string name="dictate__error_no_api_key">Není nastaven klíč API – nastavte jej v nastavení Dictate.</string>
+    <string name="dictate__voice_ime_label">Hlasový vstup Voice Mode</string>
+    <string name="dictate__error_no_api_key">Není nastaven klíč API – nastavte jej v nastavení Voice Mode.</string>
     <string name="dictate__error_transcription_failed">Přepis selhal.</string>
     <string name="dictate__error_unknown">Neznámá chyba při přepisu.</string>
     <string name="dictate__error_rewording_failed">Přeformulování selhalo.</string>
@@ -1365,13 +1364,13 @@
     <string name="dictate__action_dismiss">Zavřít</string>
     <string name="dictate__action_yes">Ano</string>
     <string name="dictate__action_no">Ne, děkuji</string>
-    <string name="dictate__promo_rate_message">Líbí se vám Dictate?</string>
-    <string name="dictate__promo_donate_message">Podpořit Dictate?</string>
+    <string name="dictate__promo_rate_message">Líbí se vám Voice Mode?</string>
+    <string name="dictate__promo_donate_message">Podpořit Voice Mode?</string>
     <string name="dictate__promo_rate_action">Ohodnotit</string>
     <string name="dictate__promo_donate_action">Přispět</string>
-    <string name="dictate__promo_changelog_message">Dictate byl aktualizován</string>
+    <string name="dictate__promo_changelog_message">Voice Mode byl aktualizován</string>
     <string name="dictate__promo_changelog_action">Podrobnosti</string>
-    <string name="dictate__title">Dictate</string>
+    <string name="dictate__title">Voice Mode</string>
     <string name="dictate__provider_title">Poskytovatel přepisu</string>
     <string name="dictate__provider__openai">OpenAI</string>
     <string name="dictate__provider__groq">Groq</string>
@@ -1604,7 +1603,7 @@
     <string name="dictate__command_word_summary">Diktáty začínající slovem „{word}“ se spustí jako pokyn naživo</string>
     <string name="dictate__command_word_placeholder">Jarvis</string>
     <string name="dictate__command_word_info_title">O příkazovém slově</string>
-    <string name="dictate__command_word_info_description">Dictate normálně zapisuje to, co řeknete. Když nastavíte příkazové slovo, diktát, který jím začíná, se místo toho stane pokynem: slovo se odstraní a zbytek se pošle AI spolu s vybraným textem, pokud nějaký je.\n\n„Jarvisi, uprav to formálněji“ přepíše výběr. „Jarvisi, jaké je hlavní město Japonska“ zapíše odpověď do pole. Je to tlačítko pokynu naživo, jen vyvolané vyslovením jeho jména místo klepnutí.\n\nSlovo platí jen úplně na začátku diktátu a jen jako celé slovo — vyberte tedy něco, čím větu zahajujete zřídka.</string>
+    <string name="dictate__command_word_info_description">Voice Mode normálně zapisuje to, co řeknete. Když nastavíte příkazové slovo, diktát, který jím začíná, se místo toho stane pokynem: slovo se odstraní a zbytek se pošle AI spolu s vybraným textem, pokud nějaký je.\n\n„Jarvisi, uprav to formálněji“ přepíše výběr. „Jarvisi, jaké je hlavní město Japonska“ zapíše odpověď do pole. Je to tlačítko pokynu naživo, jen vyvolané vyslovením jeho jména místo klepnutí.\n\nSlovo platí jen úplně na začátku diktátu a jen jako celé slovo — vyberte tedy něco, čím větu zahajujete zřídka.</string>
     <string name="dictate__auto_formatting_title">Automatické formátování</string>
     <string name="dictate__auto_formatting_summary">Převádět vyřčené pokyny k formátování na Markdown (nadpisy, seznamy, …)</string>
     <string name="dictate__system_prompt_title">Pokyn k přeformulování</string>
@@ -1715,19 +1714,19 @@
     <string name="dictate__import_not_audio">Tento soubor neobsahuje zvuk.</string>
     <string name="dictate__import_only_first">Přepisuje se jen první soubor – dalších {count} bylo vynecháno.</string>
     <string name="dictate__setup_description">Nastavte poskytovatele AI a klíč API, abyste mohli začít diktovat mikrofonem.</string>
-    <string name="dictate__setup_configure_btn">Nastavit Dictate</string>
+    <string name="dictate__setup_configure_btn">Nastavit Voice Mode</string>
     <string name="setup__grant_mic_permission__title">Přístup k mikrofonu</string>
-    <string name="setup__grant_mic_permission__description">Dictate potřebuje přístup k mikrofonu, aby mohl nahrát váš hlas pro přepis.</string>
+    <string name="setup__grant_mic_permission__description">Voice Mode potřebuje přístup k mikrofonu, aby mohl nahrát váš hlas pro přepis.</string>
     <string name="setup__grant_mic_permission__btn">Udělit oprávnění k mikrofonu</string>
     <string name="changelog__dialog_title">Co je nového</string>
     <string name="changelog__view_all">Zobrazit všechny změny</string>
-    <string name="changelog__intro">Dictate byl aktualizován. Co je nového:</string>
+    <string name="changelog__intro">Voice Mode byl aktualizován. Co je nového:</string>
     <string name="changelog__version_header">Verze {version}</string>
-    <string name="changelog__donate">Líbí se vám Dictate? Klepnutím sem podpoříte vývoj ♥</string>
-    <string name="changelog__current">• Zcela nová klávesnice: Dictate je nyní plnohodnotná vícejazyčná klávesnice s vyhrazenou klávesou mikrofonu, která otevírá hlasový panel.\n• Vlastní AI: vyberte libovolného poskytovatele kompatibilního s OpenAI a zadejte klíč API v Nastavení → Dictate.\n• Inteligentní formátování a přeformulování pomocí zvoleného modelu.\n• Nastavení z předchozí aplikace Dictate se importují automaticky.</string>
+    <string name="changelog__donate">Líbí se vám Voice Mode? Klepnutím sem podpoříte vývoj ♥</string>
+    <string name="changelog__current">• Zcela nová klávesnice: Voice Mode je nyní plnohodnotná vícejazyčná klávesnice s vyhrazenou klávesou mikrofonu, která otevírá hlasový panel.\n• Vlastní AI: vyberte libovolného poskytovatele kompatibilního s OpenAI a zadejte klíč API v Nastavení → Voice Mode.\n• Inteligentní formátování a přeformulování pomocí zvoleného modelu.\n• Nastavení z předchozí aplikace Voice Mode se importují automaticky.</string>
     <string name="changelog__v4_1_0">• Novinka: vyhledávejte emoji přímo z klávesnice.\n• Nový poskytovatel přepisu: Soniox.\n• Znovu vložte své poslední diktování a obnovte nahrávky přerušené při zavření klávesnice.\n• Lišta promptů se nyní aktualizuje živě: podržením promptu jej upravíte.\n• Obrazovka poskytovatelů AI nyní zobrazuje aktivního poskytovatele přepisu i přeformulování.\n• Větší tlačítko nahrávání, na které se snáze míří.\n• Opravy: výzva k podpoře mohla zůstat viset a zakrýt lištu v některých jazycích; záloha už neselhává při vybraných promptech, klávesnici nebo motivu; uložené klíče API zůstanou zachovány při aktualizaci.</string>
-    <string name="changelog__v4_1_1">• Oprava: zvýrazňovací barva se na některých zařízeních mohla zobrazovat zeleně; klávesy a tlačítka jsou opět v modré barvě Dictate.</string>
-    <!-- Dictate on-device (offline) models -->
+    <string name="changelog__v4_1_1">• Oprava: zvýrazňovací barva se na některých zařízeních mohla zobrazovat zeleně; klávesy a tlačítka jsou opět v modré barvě Voice Mode.</string>
+    <!-- Voice Mode on-device (offline) models -->
     <string name="dictate__local_models_header">Běží ve vašem zařízení — žádný zvuk se neodesílá. Stáhněte model a začněte.</string>
     <string name="dictate__local_models_live_header">Živě (streamování)</string>
     <string name="dictate__local_models_live_summary">Píší, zatímco mluvíte. Zapněte „Přepis v reálném čase“ v Nahrávání, abyste je mohli použít.</string>
@@ -1765,7 +1764,7 @@
     <string name="dictate__floating_button_copy_to_clipboard_summary_on">Každé diktování se také zkopíruje do schránky, takže je můžeš vložit ručně, pokud vložení selže. Na některých telefonech může zobrazit upozornění schránky.</string>
     <string name="dictate__floating_button_copy_to_clipboard_summary_off">Diktování se pouze vkládají, nekopírují se do schránky.</string>
     <string name="dictate__floating_button_menu_group">Nabídka při podržení</string>
-    <string name="dictate__floating_button_menu_settings_title">Nastavení Dictate</string>
+    <string name="dictate__floating_button_menu_settings_title">Nastavení Voice Mode</string>
     <string name="dictate__floating_button_undo_summary_off">Tlačítko zpět se nezobrazuje.</string>
     <string name="dictate__floating_button_undo_summary_on">Po diktování se vedle tlačítka zobrazí tlačítko zpět, kterým jedním klepnutím odstraníte vložený text.</string>
     <string name="dictate__floating_button_undo_title">Tlačítko zpět</string>
@@ -1814,7 +1813,7 @@
     <string name="dictate__providers_rewording_single_call_note">Momentálně se nepoužívá — váš poskytovatel přepisu provádí přeformulování ve svém jediném požadavku.</string>
     <string name="dictate__wear_title">Wear OS</string>
     <string name="dictate__wear_summary">Možnosti diktování ze spárovaných hodinek</string>
-    <string name="dictate__wear_install_title">Nainstalovat Dictate do hodinek</string>
+    <string name="dictate__wear_install_title">Nainstalovat Voice Mode do hodinek</string>
     <string name="dictate__wear_install_summary">Otevře Play Store — na spárovaných hodinkách Wear OS 3+ vyberte jako cíl své hodinky.</string>
     <string name="dictate__wear_auto_rewording_title">Automaticky přeformulovat diktování z hodinek</string>
     <string name="dictate__wear_auto_rewording_summary">Přeformulujte diktování z hodinek, jako v telefonu.</string>
@@ -1822,7 +1821,7 @@
     <string name="quick_action__system_prev_input_method__tooltip">Přepnout zpět na předchozí klávesnici</string>
     <string name="quick_action__system_input_method_picker">Vybrat klávesnici</string>
     <string name="quick_action__system_input_method_picker__tooltip">Otevřít systémový výběr klávesnice</string>
-    <string name="changelog__v4_3_0">• NOVÉ: Přepis v zařízení — diktujte zcela offline. Bez internetu a nic neopustí váš telefon. Stáhněte si jednou hlasový model v Nastavení ▸ Dictate ▸ Poskytovatelé. 📴\n• NOVÉ: Klávesnice pro Wear OS — diktujte přímo z hodinek, přes telefon nebo samostatně. ⌚\n• NOVÉ: Pravidla pro hledání a nahrazení — automaticky opravujte opakující se slova, jména nebo fráze v každém přepisu. Nastavte je v Nastavení ▸ Dictate ▸ Vlastní mapování. 🔁\n• NOVÉ: Režim jediného volání — jeden schopný AI model přepíše a naformátuje v jediném požadavku, rychleji a často levněji. Zapněte pro každého poskytovatele. ⚡\n• NOVÉ: Akce Smartbaru pro přepnutí zpět na předchozí klávesnici nebo otevření systémového výběru klávesnice. ⌨️\n• Barva zvýraznění klávesnice nyní odpovídá barvě, kterou zvolíte v Nastavení ▸ Motiv. 🎨\n• Přidáno volitelné tlačítko zpět k plovoucímu tlačítku diktování. ↩️\n• Různé opravy a vylepšení stability. 🛠️</string>
+    <string name="changelog__v4_3_0">• NOVÉ: Přepis v zařízení — diktujte zcela offline. Bez internetu a nic neopustí váš telefon. Stáhněte si jednou hlasový model v Nastavení ▸ Voice Mode ▸ Poskytovatelé. 📴\n• NOVÉ: Klávesnice pro Wear OS — diktujte přímo z hodinek, přes telefon nebo samostatně. ⌚\n• NOVÉ: Pravidla pro hledání a nahrazení — automaticky opravujte opakující se slova, jména nebo fráze v každém přepisu. Nastavte je v Nastavení ▸ Voice Mode ▸ Vlastní mapování. 🔁\n• NOVÉ: Režim jediného volání — jeden schopný AI model přepíše a naformátuje v jediném požadavku, rychleji a často levněji. Zapněte pro každého poskytovatele. ⚡\n• NOVÉ: Akce Smartbaru pro přepnutí zpět na předchozí klávesnici nebo otevření systémového výběru klávesnice. ⌨️\n• Barva zvýraznění klávesnice nyní odpovídá barvě, kterou zvolíte v Nastavení ▸ Motiv. 🎨\n• Přidáno volitelné tlačítko zpět k plovoucímu tlačítku diktování. ↩️\n• Různé opravy a vylepšení stability. 🛠️</string>
     <string name="dictate__audio_source_title">Zdroj zvukového vstupu</string>
     <string name="dictate__audio_source_default">Výchozí mikrofon</string>
     <string name="dictate__audio_source_default_summary">Standardní mikrofon s vestavěným zpracováním zvuku telefonu</string>
@@ -1878,7 +1877,7 @@
     <string name="dictate__history_export_all_result">Zapsáno: {written}, již přítomno: {skipped}, selhalo: {failed}</string>
     <string name="dictate__history_export_last_failure">Zápis {when} selhal. „Exportovat vše nyní“ doplní, co chybí.</string>
     <string name="dictate__history_export_warning_title">Co tam skončí</string>
-    <string name="dictate__history_export_warning_message">Složka bude od nynějška obsahovat text každého vašeho diktování a při zapnutí i nahrávky. Vše, co ji synchronizuje — cloudový klient, zálohovací nástroj, jiná aplikace — odnáší tyto přepisy z tohoto zařízení.\n\nDictate zapisuje, dokud složku neodpojíte, a nikdy z ní nic nemaže: záznamy, které vypadnou z historie, ve složce zůstávají. Pole pro hesla a anonymní režim se nikdy nezaznamenávají, a tedy ani neexportují.</string>
+    <string name="dictate__history_export_warning_message">Složka bude od nynějška obsahovat text každého vašeho diktování a při zapnutí i nahrávky. Vše, co ji synchronizuje — cloudový klient, zálohovací nástroj, jiná aplikace — odnáší tyto přepisy z tohoto zařízení.\n\nVoice Mode zapisuje, dokud složku neodpojíte, a nikdy z ní nic nemaže: záznamy, které vypadnou z historie, ve složce zůstávají. Pole pro hesla a anonymní režim se nikdy nezaznamenávají, a tedy ani neexportují.</string>
     <string name="dictate__history_export_needs_history">Export do složky zapisuje to, co zaznamenává historie, takže historie musí být zapnutá.</string>
     <string name="dictate__history_export_enable_history">Zapnout historii</string>
     <string name="dictate__history_export_pick_failed">K této složce se nepodařilo získat oprávnění k zápisu</string>
@@ -1901,15 +1900,15 @@
     <string name="dictate__stats_reset_confirm_title">Vynulovat statistiky?</string>
     <string name="dictate__stats_reset_confirm_msg">Trvale to vymaže všechny vaše statistiky diktování.</string>
     <string name="dictate__stats_share">Sdílet</string>
-    <string name="dictate__stats_share_text">Ušetřil jsem %1$s s Dictate — %2$s diktátů, %3$s slov. 🎤</string>
+    <string name="dictate__stats_share_text">Ušetřil jsem %1$s s Voice Mode — %2$s diktátů, %3$s slov. 🎤</string>
     <string name="dictate__stats_view">Zobrazit statistiky</string>
     <string name="dictate__stats_milestones_title">Oslavy milníků</string>
     <string name="dictate__stats_milestones_summary">Oslavte jednou, když dosáhnete milníku ušetřeného času nebo diktátů</string>
     <string name="dictate__stats_milestone_title">Milník dosažen 🎉</string>
-    <string name="dictate__stats_milestone_time">Ušetřili jste %s s Dictate — skvělé!</string>
-    <string name="dictate__stats_milestone_count">Dosáhli jste %s diktátů s Dictate!</string>
-    <string name="dictate__promo_milestone_time">Ušetřeno %s s Dictate! 🎉</string>
-    <string name="dictate__promo_milestone_count">%s diktátů s Dictate! 🎉</string>
+    <string name="dictate__stats_milestone_time">Ušetřili jste %s s Voice Mode — skvělé!</string>
+    <string name="dictate__stats_milestone_count">Dosáhli jste %s diktátů s Voice Mode!</string>
+    <string name="dictate__promo_milestone_time">Ušetřeno %s s Voice Mode! 🎉</string>
+    <string name="dictate__promo_milestone_count">%s diktátů s Voice Mode! 🎉</string>
     <string name="dictate__promo_milestone_action">Statistiky</string>
     <string name="dictate__reasoning_effort_title">Úsilí uvažování</string>
     <string name="dictate__reasoning_effort_off">Vypnuto</string>
@@ -1924,7 +1923,7 @@
     <string name="dictate__reasoning_effort_high_summary">Nejvíce přemýšlení, pomalejší</string>
     <string name="dictate__reasoning_effort_custom">Vlastní</string>
     <string name="dictate__action_save_audio">Uložit zvuk</string>
-    <string name="dictate__audio_saved">Zvuk uložen do Downloads/Dictate: %s</string>
+    <string name="dictate__audio_saved">Zvuk uložen do Downloads/VoiceMode: %s</string>
     <string name="dictate__audio_save_failed">Zvuk se nepodařilo uložit</string>
     <string name="dictate__instant_recording_mode_off">Vypnuto</string>
     <string name="dictate__instant_recording_mode_always">Při každém otevření klávesnice</string>
@@ -1987,11 +1986,11 @@
     <string name="apptour__intro_body">Tohle je novinka v Dictate 5.0 — to nejdůležitější za necelou minutu. Klepnutím na „Vyzkoušet“ na kterékoli stránce přejdete rovnou k danému nastavení.</string>
     <string name="apptour__glide_eyebrow">Klávesnice</string>
     <string name="apptour__glide_title">Psaní tahem</string>
-    <string name="apptour__glide_body">Táhněte prstem od klávesy ke klávese a Dictate z té dráhy vytvoří celá slova. Každý jazyk má vlastní slovník, který se stáhne podle potřeby — zapněte ho v sekci Gesta.</string>
+    <string name="apptour__glide_body">Táhněte prstem od klávesy ke klávese a Voice Mode z té dráhy vytvoří celá slova. Každý jazyk má vlastní slovník, který se stáhne podle potřeby — zapněte ho v sekci Gesta.</string>
     <string name="apptour__glide_cta">Nastavit psaní tahem</string>
     <string name="apptour__suggestions_eyebrow">Klávesnice</string>
     <string name="apptour__suggestions_title">Automatické opravy a návrhy</string>
-    <string name="apptour__suggestions_body">Během psaní Dictate navrhuje vhodná slova a nenápadně opravuje překlepy. Slovo, které jste skutečně napsali, zůstává v liště návrhů, takže jediné klepnutí vrátí každou opravu zpět.</string>
+    <string name="apptour__suggestions_body">Během psaní Voice Mode navrhuje vhodná slova a nenápadně opravuje překlepy. Slovo, které jste skutečně napsali, zůstává v liště návrhů, takže jediné klepnutí vrátí každou opravu zpět.</string>
     <string name="apptour__suggestions_cta">Upravit návrhy</string>
     <string name="apptour__realtime_eyebrow">Přepis</string>
     <string name="apptour__realtime_title">Přepis v reálném čase</string>
@@ -2024,16 +2023,16 @@
     <string name="apptour51__continue_to">Pokračovat na {version}</string>
     <string name="apptour51__intro_eyebrow">Version 5.1</string>
     <string name="apptour51__intro_title">Novinky v 5.1</string>
-    <string name="apptour51__intro_body">Dictate od verze 5.0 hodně vyrostl. Tady je to nejdůležitější z 5.1 — klepnutím na „Vyzkoušet“ na kterékoli stránce přejdete rovnou k dané funkci.</string>
+    <string name="apptour51__intro_body">Voice Mode od verze 5.0 hodně vyrostl. Tady je to nejdůležitější z 5.1 — klepnutím na „Vyzkoušet“ na kterékoli stránce přejdete rovnou k dané funkci.</string>
     <string name="apptour51__history_eyebrow">Přepis</string>
     <string name="apptour51__history_title">Historie přepisů</string>
     <string name="apptour51__history_body">Každé diktování se teď ukládá do prohledávatelné historie. Jedním klepnutím znovu vložíte kterýkoli dřívější přepis, přehrajete původní zvuk, znovu jej přepíšete nebo připnete ty, které používáte nejčastěji. Samostatná obrazovka umožňuje spravovat vše, včetně toho, jak dlouho se zvukové nahrávky uchovávají.</string>
     <string name="apptour51__longform_eyebrow">Přepis</string>
     <string name="apptour51__longform_title">Dlouhé diktování</string>
-    <string name="apptour51__longform_body">Mluvte, jak dlouho chcete. Dlouhé nahrávky se automaticky rozdělí na části a přepisují se na pozadí, zatímco pokračujete, takže text máte dřív a nikdy nenarazíte na omezení délky. Úsek si rozdělte sami, nebo nechte Dictate rozpoznat přirozené pauzy.</string>
+    <string name="apptour51__longform_body">Mluvte, jak dlouho chcete. Dlouhé nahrávky se automaticky rozdělí na části a přepisují se na pozadí, zatímco pokračujete, takže text máte dřív a nikdy nenarazíte na omezení délky. Úsek si rozdělte sami, nebo nechte Voice Mode rozpoznat přirozené pauzy.</string>
     <string name="apptour51__gif_eyebrow">Klávesnice</string>
     <string name="apptour51__gif_title">Vyhledávání GIF</string>
-    <string name="apptour51__gif_body">Najděte a odešlete GIF, aniž byste kdy opustili Dictate. Otevřete panel GIF, vyhledejte cokoli a vložte to rovnou do konverzace — rychlý výběr ve stylu Gboardu vestavěný přímo tady.</string>
+    <string name="apptour51__gif_body">Najděte a odešlete GIF, aniž byste kdy opustili Voice Mode. Otevřete panel GIF, vyhledejte cokoli a vložte to rovnou do konverzace — rychlý výběr ve stylu Gboardu vestavěný přímo tady.</string>
     <string name="apptour51__classic_eyebrow">Klasické rozvržení</string>
     <string name="apptour51__classic_title">Klasické rozvržení, přepracované</string>
     <string name="apptour51__classic_body">Obrazovka diktování bez klávesnice dostala velké vylepšení: volně uspořádatelný řádek akcí, který sestavíte přetažením, ovládání dlouhého nahrávání, jeden nebo dva řádky s prompty, vždy dostupná klávesa Backspace, vyskakovací znaky na klávese Enter a volitelné druhé tlačítko „přepnout klávesnici“ pro snazší ovládání jednou rukou.</string>
@@ -2048,14 +2047,14 @@
     <string name="apptour51__more_body">Spousta menších vylepšení také: v nastavení zvolte aktivní jazyk přepisu, tlačítko zastavení teď skutečně zruší běžící požadavek, přepínač zobrazení/skrytí API klíčů a vícejazyčné psaní bez automatických oprav mezi jazyky — plus řada oprav v klasickém rozvržení, číselné klávesnici a dál.</string>
     <string name="apptour51__outro_eyebrow">To je 5.1</string>
     <string name="apptour51__outro_title">Užijte si aktualizaci</string>
-    <string name="apptour51__outro_body">Děkujeme, že používáte Dictate! Pokud vám pomáhá každý den, drobný příspěvek udrží projekt v chodu. Kteroukoli z těchto prohlídek si můžete kdykoli znovu projít v Nastavení › O aplikaci.</string>
+    <string name="apptour51__outro_body">Děkujeme, že používáte Voice Mode! Pokud vám pomáhá každý den, drobný příspěvek udrží projekt v chodu. Kteroukoli z těchto prohlídek si můžete kdykoli znovu projít v Nastavení › O aplikaci.</string>
     <string name="apptour52__cta_try">Vyzkoušet</string>
     <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
     <string name="apptour52__intro_title">Diktujte všude</string>
-    <string name="apptour52__intro_body">Tato verze posouvá Dictate za hranice vlastní klávesnice: jako hlasový vstup telefonu, pro mluvené příkazy odkudkoli a pro úpravu dlouhých diktátů. Tohle je nové.</string>
+    <string name="apptour52__intro_body">Tato verze posouvá Voice Mode za hranice vlastní klávesnice: jako hlasový vstup telefonu, pro mluvené příkazy odkudkoli a pro úpravu dlouhých diktátů. Tohle je nové.</string>
     <string name="apptour52__voiceinput_eyebrow">Systémový hlasový vstup</string>
-    <string name="apptour52__voiceinput_title">Dictate z libovolné klávesnice</string>
-    <string name="apptour52__voiceinput_body">Dictate se nyní registruje jako systémový hlasový vstup: tlačítko mikrofonu v jiných klávesnicích a aplikacích přepisuje přes Dictate — s vaším poskytovatelem, vašimi prompty a vašimi místními modely. Zapněte „Hlasový vstup Dictate“ v seznamu klávesnic a zvolte jej jako metodu hlasového vstupu. (Gboard má mikrofon napevno na Google — použijte klávesnici, která respektuje systémové nastavení.)</string>
+    <string name="apptour52__voiceinput_title">Voice Mode z libovolné klávesnice</string>
+    <string name="apptour52__voiceinput_body">Voice Mode se nyní registruje jako systémový hlasový vstup: tlačítko mikrofonu v jiných klávesnicích a aplikacích přepisuje přes Voice Mode — s vaším poskytovatelem, vašimi prompty a vašimi místními modely. Zapněte „Hlasový vstup Voice Mode“ v seznamu klávesnic a zvolte jej jako metodu hlasového vstupu. (Gboard má mikrofon napevno na Google — použijte klávesnici, která respektuje systémové nastavení.)</string>
     <string name="apptour52__liveprompt_eyebrow">Volný hlasový příkaz</string>
     <string name="apptour52__liveprompt_title">Řekněte AI, co má udělat — kdekoli</string>
     <string name="apptour52__liveprompt_body">Podržte plovoucí tlačítko pro otevření nabídky, klepněte na „Live prompt“ a prostě řekněte, co chcete: „napiš zdvořilé odmítnutí schůzky na zítra“, „přelož text výše do španělštiny“. Vybraný text slouží jako kontext; bez výběru píše AI od nuly.</string>
@@ -2067,7 +2066,7 @@
     <string name="apptour52__trim_body">Zamyslíte se uprostřed věty? Ticho delší než pár sekund se před odesláním vystřihne — každé vyřčené slovo zůstane, zmizí jen hluchý čas. Kratší nahrávání znamená méně čekání a nižší náklady.</string>
     <string name="apptour52__paragraphs_eyebrow">Čitelné dlouhé diktáty</string>
     <string name="apptour52__paragraphs_title">Automatické odstavce</string>
-    <string name="apptour52__paragraphs_body">Dlouhé diktáty už nepřijdou jako zeď textu. Nastavte počet slov a Dictate začne nový odstavec na dalším konci věty — deterministicky a jen u čistých přepisů, nikdy u textu formátovaného AI.</string>
+    <string name="apptour52__paragraphs_body">Dlouhé diktáty už nepřijdou jako zeď textu. Nastavte počet slov a Voice Mode začne nový odstavec na dalším konci věty — deterministicky a jen u čistých přepisů, nikdy u textu formátovaného AI.</string>
     <string name="apptour52__smartturn_eyebrow">Chytřejší dlouhý režim</string>
     <string name="apptour52__smartturn_title">Stříhá u dokončených myšlenek</string>
     <string name="apptour52__smartturn_body">Diktování dlouhých textů může nyní používat místní model Smart Turn v3, aby poznalo, kdy jste myšlenku opravdu dokončili, místo stříhání při každé pauze. Volitelné a stahované podle potřeby.</string>
@@ -2083,7 +2082,7 @@
     <string name="apptour53__intro_body">Tahle verze je o dvou věcech, které děláte nejčastěji: mluvíte na telefon a píšete na něm. Obojí je rychlejší a obojí vám líp uhne z cesty.</string>
     <string name="apptour53__pushtotalk_eyebrow">Stisknout a mluvit</string>
     <string name="apptour53__pushtotalk_title">Podržte mikrofon, puštěním odešlete</string>
-    <string name="apptour53__pushtotalk_body">Jako hlasová zpráva: podržte klávesu mikrofonu a mluvte, pusťte a odejde to. Přejetím doleva nahrávku zahodíte, tažením nahoru ji zamknete a uvolníte si ruku. Krátké ťuknutí funguje jako dřív. Zapnete v nastavení Dictate.</string>
+    <string name="apptour53__pushtotalk_body">Jako hlasová zpráva: podržte klávesu mikrofonu a mluvte, pusťte a odejde to. Přejetím doleva nahrávku zahodíte, tažením nahoru ji zamknete a uvolníte si ruku. Krátké ťuknutí funguje jako dřív. Zapnete v nastavení Voice Mode.</string>
     <string name="apptour53__autocorrect_eyebrow">Přestavěná autokorekce</string>
     <string name="apptour53__autocorrect_title">Čte vaše prsty, ne vaše překlepy</string>
     <string name="apptour53__autocorrect_body">Opravy teď vycházejí z toho, kam jste na klávesy skutečně sáhli, a prohledávají pravděpodobná slova průběžně, místo hádání z hotového slova. Na naší testovací sadě to stouplo z 88 % na 98 % — rozdíl je vidět hlavně při rychlém a nedbalém psaní.</string>
@@ -2101,7 +2100,7 @@
     <string name="apptour53__prediction_body">Lišta návrhů teď nabízí, co obvykle následuje — naučeno z toho, jak píšete. A jakékoli slovo přidáte do slovníku dlouhým stiskem, aby se vaše jména a žargon přestaly opravovat.</string>
     <string name="apptour53__ownserver_eyebrow">Váš vlastní server</string>
     <string name="apptour53__ownserver_title">Vlastní hosting, teď i živě</string>
-    <string name="apptour53__ownserver_body">Váš server může zvládnout i živý přepis, pokud mluví protokolem realtime od OpenAI. A pokud za ním stojí stroj, který spí, Dictate ho probudí včas, aby první požadavek nečekal na start.</string>
+    <string name="apptour53__ownserver_body">Váš server může zvládnout i živý přepis, pokud mluví protokolem realtime od OpenAI. A pokud za ním stojí stroj, který spí, Voice Mode ho probudí včas, aby první požadavek nečekal na start.</string>
     <string name="apptour53__outro_eyebrow">To je 5.3</string>
     <string name="apptour53__outro_title">Příjemné diktování</string>
     <string name="apptour53__outro_body">A spousta drobností: každý poskytovatel má vlastní logo, indikátor nahrávání může být klidný, pulzující nebo reagující na hlas, výstup promptu si vedle sebe může nechat původní přepis a odstavce se už nelámou po zkratkách. Každou prohlídku si znovu pustíte v Nastavení › O aplikaci.</string>
@@ -2112,7 +2111,7 @@
     <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
     <string name="apptour60__intro_title">Kredit, čínština, levnější diktování</string>
     <string name="apptour60__intro_body">Tato verze přidává druhou cestu dovnitř — koupit kredit místo vlastního klíče API —, k tomu pinyin pro čínštinu, sedm jazyků s novým slovníkem a nahrávky, které stojí méně.</string>
-    <string name="apptour60__cloud_eyebrow">Novinka: Dictate Cloud</string>
+    <string name="apptour60__cloud_eyebrow">Novinka: Voice Mode Cloud</string>
     <string name="apptour60__cloud_title">Kupte si minuty místo shánění klíče</string>
     <string name="apptour60__cloud_body">Kdo si nechce zakládat účet u poskytovatele, koupí si teď prostě kredit. Ano, jde to přes náš server — ale ani vaše nahrávky, ani vaše texty se tam neukládají, putují rovnou dál. Celý kód serveru je veřejný a dá se přečíst. Váš vlastní klíč funguje přesně jako dřív.</string>
     <string name="apptour60__speedup_eyebrow">Nižší náklady na API</string>
@@ -2132,7 +2131,7 @@
     <string name="apptour60__more_body">Podržení tlačítka stop vezme zpět zaseknutý přepis. Plovoucí tlačítko už nehlásí úspěch, který nedokázalo ověřit, a zhasne s obrazovkou. Psaní tahem teď zná slova, která jste si přidali. A pád hned po aktualizaci je opraven.</string>
     <string name="apptour60__outro_eyebrow">To je 6.0</string>
     <string name="apptour60__outro_title">Ať slouží</string>
-    <string name="apptour60__outro_body">Ať Dictate používáte jakkoli — vlastní klíč, vlastní server, model v zařízení nebo kredit —, na ostatních cestách se nic nezměnilo. Každou prohlídku si znovu pustíte v Nastavení › O aplikaci.</string>
+    <string name="apptour60__outro_body">Ať Voice Mode používáte jakkoli — vlastní klíč, vlastní server, model v zařízení nebo kredit —, na ostatních cestách se nic nezměnilo. Každou prohlídku si znovu pustíte v Nastavení › O aplikaci.</string>
     <string name="apptour61__cta_try">Vyzkoušet</string>
     <string name="apptour61__art_folder">Samolepky</string>
     <string name="apptour61__art_share">Sdílet přes</string>
@@ -2140,13 +2139,13 @@
     <string name="apptour61__art_fixed">nie</string>
     <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
     <string name="apptour61__intro_title">Samolepky, hlasové zprávy a automatické opravy, které konečně vidí překlep</string>
-    <string name="apptour61__intro_body">Ukažte klávesnici složku s vlastními samolepkami, sdílejte hlasovou zprávu přímo do Dictate, abyste zjistili, co v ní je, a získejte automatickou opravu, která konečně zaznamená chybu, kterou byla postavena přehlížet.</string>
+    <string name="apptour61__intro_body">Ukažte klávesnici složku s vlastními samolepkami, sdílejte hlasovou zprávu přímo do Voice Mode, abyste zjistili, co v ní je, a získejte automatickou opravu, která konečně zaznamená chybu, kterou byla postavena přehlížet.</string>
     <string name="apptour61__stickers_eyebrow">Novinka: vlastní samolepky</string>
     <string name="apptour61__stickers_title">Složka v telefonu, na klávesnici</string>
-    <string name="apptour61__stickers_body">Ukažte Dictate libovolnou složku a její obrázky se stanou samolepkami — podsložky se promění v záložky s vlastními oblíbenými a naposledy použitými. Přidávejte z kterékoli aplikace přes nabídku sdílení, mažte bez opuštění klávesnice. To, co chatovací aplikace skutečně přijme, není to, co tvrdí, že přijímá: proto se každá samolepka jednou při vložení uvede do tvaru a odtud se už jen odesílá.</string>
-    <string name="apptour61__share_eyebrow">Novinka: sdílet do Dictate</string>
+    <string name="apptour61__stickers_body">Ukažte Voice Mode libovolnou složku a její obrázky se stanou samolepkami — podsložky se promění v záložky s vlastními oblíbenými a naposledy použitými. Přidávejte z kterékoli aplikace přes nabídku sdílení, mažte bez opuštění klávesnice. To, co chatovací aplikace skutečně přijme, není to, co tvrdí, že přijímá: proto se každá samolepka jednou při vložení uvede do tvaru a odtud se už jen odesílá.</string>
+    <string name="apptour61__share_eyebrow">Novinka: sdílet do Voice Mode</string>
     <string name="apptour61__share_title">Zjistit, co ta hlasová zpráva říká</string>
-    <string name="apptour61__share_body">Dictate je nyní v nabídce sdílení pro zvuk i video. Sdílejte tam hlasovou zprávu a otevře se obrazovka, která začne přepisovat sama — není co hledat ani co mačkat. V přepisu lze vyhledávat a dlouhé nahrávky se zpracují po částech místo odmítnutí.</string>
+    <string name="apptour61__share_body">Voice Mode je nyní v nabídce sdílení pro zvuk i video. Sdílejte tam hlasovou zprávu a otevře se obrazovka, která začne přepisovat sama — není co hledat ani co mačkat. V přepisu lze vyhledávat a dlouhé nahrávky se zpracují po částech místo odmítnutí.</string>
     <string name="apptour61__autocorrect_eyebrow">Automatické opravy</string>
     <string name="apptour61__autocorrect_title">Překlep, který nemohla vidět</string>
     <string name="apptour61__autocorrect_body">Pravidlo rozhodující, zda lze slovo opravit, propouštělo prst, který sklouzl téměř k sousední klávese, ale nikdy ten, který na ni dopadl přesně — a to je právě běžný překlep. To je opraveno a rozhodnost oprav si teď nastavíte sami. Slovo, které vezme mezerník, je označeno vaší zvýrazňovací barvou a Backspace hned poté vrátí přesně to, co jste napsali.</string>
@@ -2175,7 +2174,7 @@
     <string name="apptour62__learning_body">Napište jméno nebo odborný výraz dostatečně často a klávesnice si je nechá: přestane je označovat za chybu a začne je nabízet. Tato aktualizace funkci zapíná všem, i těm, kdo si ji dřív vypnuli. V anonymním režimu, v polích pro hesla a z čehokoli, co jste nenapsali klávesu po klávese, se neučí nic; všechno zůstává v tomto zařízení a tlačítko níže otevře seznam — i ten přepínač.</string>
     <string name="apptour62__themes_eyebrow">Pět nových vzhledů</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep a tmavý E-Ink</string>
-    <string name="apptour62__themes_body">Dictate Glass nechává aplikaci prosvítat mezerami mezi klávesami, zatímco samotné klávesy zůstávají dost kryjící, aby se na nich dalo číst; Glass Clear jde dál a vypadá lépe — za cenu toho, že v aplikacích, které kreslí za klávesnicí, jejich text prosvítá. Sand je teplý světlý vzhled, Deep klidný tmavý a E-Ink má konečně noční variantu, takže vám automatické přepínání po setmění už nepodá bílou klávesnici.</string>
+    <string name="apptour62__themes_body">Voice Mode Glass nechává aplikaci prosvítat mezerami mezi klávesami, zatímco samotné klávesy zůstávají dost kryjící, aby se na nich dalo číst; Glass Clear jde dál a vypadá lépe — za cenu toho, že v aplikacích, které kreslí za klávesnicí, jejich text prosvítá. Sand je teplý světlý vzhled, Deep klidný tmavý a E-Ink má konečně noční variantu, takže vám automatické přepínání po setmění už nepodá bílou klávesnici.</string>
     <string name="apptour62__split_eyebrow">Novinka: rozdělená klávesnice</string>
     <string name="apptour62__split_title">Oba palce, bez natahování</string>
     <string name="apptour62__split_body">Nová rychlá akce vedle jednoruční a plovoucí klávesnice roztáhne řady, aby každý palec zůstal u své poloviny. Rozdělí se každé rozložení, nejen QWERTY, protože šev se počítá ze šířek kláves místo toho, aby byl zapsaný v každém rozložení. A na šířku teď aplikace zůstává vidět, kdykoli je místo pro obojí.</string>
@@ -2196,7 +2195,7 @@
     <string name="apptour62__gestures_body">Podržte klávesu symbolů, posuňte se na znak, který chcete, a pusťte: vloží se a písmena jsou zpátky, bez přepínání tam a zase zpět. Tažení nahoru po mezerníku teď dosáhne na řádek nad, ne jen na předchozí slovo. A mezeru mezi klávesami lze nastavit v rozsahu, který je opravdu vidět.</string>
     <string name="apptour62__export_eyebrow">Novinka: diktáty jako soubory</string>
     <string name="apptour62__export_title">Každý diktát do složky podle vaší volby</string>
-    <string name="apptour62__export_body">Vyberte jednou složku a každý dokončený diktát se do ní navíc zapíše jako prostý textový soubor, přesně ve chvíli, kdy je hotový. Cokoli tu složku sleduje — poznámková aplikace, synchronizační nástroj, vaše záloha — dostane vaše texty, aniž by se Dictate musel učit jeho řeč.</string>
+    <string name="apptour62__export_body">Vyberte jednou složku a každý dokončený diktát se do ní navíc zapíše jako prostý textový soubor, přesně ve chvíli, kdy je hotový. Cokoli tu složku sleduje — poznámková aplikace, synchronizační nástroj, vaše záloha — dostane vaše texty, aniž by se Voice Mode musel učit jeho řeč.</string>
     <string name="apptour62__more_eyebrow">A ještě</string>
     <string name="apptour62__more_title">Spousta malých věcí</string>
     <string name="apptour62__more_body">Návrhy se teď v každém jazyce dívají na dvě slova před kurzorem, nejen v angličtině. Zálohu lze vytvořit bez vašich API klíčů, takže se dá bezpečně předat. Vlastní přepisovací modely Azure jsou dostupné, volba modelu pro práci bez připojení teď přepne i na offline engine a každý požadavek má lhůtu odpovídající čekání. Diktáty se v historii objeví ve chvíli odeslání, importy říkají, v jakém jsou kroku, a jdou zrušit, a text spolehlivěji dorazí do aplikací, kterým to dělalo potíže.</string>
@@ -2209,7 +2208,7 @@
     <string name="apptour63__intro_body">Namiřte fotoaparát na tištěný text a text přistane v poli. Kurzor, výběr a schránka konečně sdílejí jeden panel. Každé tlačítko Smartbaru může pod dlouhým stiskem nést druhou akci. A diktování bez sítě má konečně modely, které se do telefonu opravdu vejdou.</string>
     <string name="apptour63__scan_eyebrow">Novinka: naskenovat text</string>
     <string name="apptour63__scan_title">Tištěné rovnou do pole</string>
-    <string name="apptour63__scan_body">IBAN z dopisu, sériové číslo z krabice, adresa z balíku: namiřte fotoaparát a text se objeví tam, kde jste právě psali, místo aby se přepisoval. Rozpoznání probíhá v tomto zařízení — nic se nikam neodesílá a žádný poskytovatel do toho nevstupuje. Dictate si také nikdy neřekne o oprávnění k fotoaparátu: fotku pořídí systémový fotoaparát a vrátí jen tento jeden snímek, který se smaže, jakmile je přečtený.</string>
+    <string name="apptour63__scan_body">IBAN z dopisu, sériové číslo z krabice, adresa z balíku: namiřte fotoaparát a text se objeví tam, kde jste právě psali, místo aby se přepisoval. Rozpoznání probíhá v tomto zařízení — nic se nikam neodesílá a žádný poskytovatel do toho nevstupuje. Voice Mode si také nikdy neřekne o oprávnění k fotoaparátu: fotku pořídí systémový fotoaparát a vrátí jen tento jeden snímek, který se smaže, jakmile je přečtený.</string>
     <string name="apptour63__editing_eyebrow">Novinka: panel úprav</string>
     <string name="apptour63__editing_title">Kurzor, výběr a schránka na jednom místě</string>
     <string name="apptour63__editing_body">Všechno to už existovalo, rozházené po jedenácti klávesách, o kterých bylo potřeba vědět. Teď je to jeden panel: posun po znaku, slovu nebo řádku, výběr, kopírování, vložení, zpět. Podržená klávesa se opakuje, místo aby vyžadovala jedenáct klepnutí. A numerickou klávesnici lze konečně vyvolat výslovně, místo aby se k ní dalo dostat jen gestem, které si nikdo nenastavil.</string>
@@ -2280,12 +2279,12 @@
     <string name="dictate__legacy_prompt_rows_one">Jeden řádek</string>
     <string name="dictate__legacy_prompt_rows_two">Dva řádky</string>
     <string name="about__website__title">Webové stránky</string>
-    <string name="dictate__cloud_title">Dictate Cloud</string>
+    <string name="dictate__cloud_title">Voice Mode Cloud</string>
     <string name="dictate__cloud_row_summary_none">Koupit kredit na diktování — bez klíče API</string>
     <string name="dictate__cloud_row_summary_balance">Zbývá {minutes} minut kreditu</string>
     <string name="dictate__cloud_intro_title">Diktování bez klíče API</string>
     <string name="dictate__cloud_intro_body">Kupte si kredit na diktování přímo tady v aplikaci. Žádný účet u poskytovatele AI, žádný klíč API, žádné předplatné. Kredit nevyprší a spotřebuje se, jen když ho opravdu použijete: minuta diktování stojí minutu, přeformulování asi dvě sekundy.</string>
-    <string name="dictate__cloud_intro_alternative">Je to zcela dobrovolné. Dictate funguje stejně dobře s vaším vlastním klíčem u poskytovatele podle vašeho výběru — několik jich je zdarma — a pak vám zůstává vlastní účet a platíte přímo poskytovateli za jeho ceny.</string>
+    <string name="dictate__cloud_intro_alternative">Je to zcela dobrovolné. Voice Mode funguje stejně dobře s vaším vlastním klíčem u poskytovatele podle vašeho výběru — několik jich je zdarma — a pak vám zůstává vlastní účet a platíte přímo poskytovateli za jeho ceny.</string>
     <string name="dictate__cloud_use_own_provider_btn">Raději vlastního poskytovatele</string>
     <string name="dictate__cloud_balance_label">Zbývající kredit</string>
     <string name="dictate__cloud_balance_minutes">{minutes} min</string>
@@ -2299,7 +2298,7 @@
     <string name="dictate__cloud_shop_unavailable">Balíčky kreditu tu nelze zobrazit. Obvykle to znamená, že aplikace nebyla nainstalována z Google Play nebo že na tomto zařízení není přihlášený účet Play. Váš vlastní klíč API funguje v obou případech.</string>
     <string name="dictate__cloud_activate_title">Kredit je připravený</string>
     <string name="dictate__cloud_activate_body">Máte kredit, ale diktování teď běží přes jiného poskytovatele. Přepněte, kdykoli budete chtít — bez vás se nic nezmění.</string>
-    <string name="dictate__cloud_activate_btn">Diktovat přes Dictate Cloud</string>
+    <string name="dictate__cloud_activate_btn">Diktovat přes Voice Mode Cloud</string>
     <string name="dictate__cloud_notice_purchased">Ke kreditu bylo přidáno {minutes} minut.</string>
     <string name="dictate__cloud_notice_pending">Platba zatím není dokončená. Kredit se objeví, jakmile ji Google potvrdí.</string>
     <string name="dictate__cloud_notice_not_redeemed">Platba prošla, ale kredit se nepodařilo načíst. Nic není ztraceno — otevřete tuto obrazovku znovu a kredit se připíše.</string>
@@ -2309,7 +2308,7 @@
     <string name="dictate__cloud_notice_gone_deleted" comment="Shown when the app finds out that the credit account was deleted elsewhere">Tvůj kreditní účet už neexistuje — byl smazán na webu nebo na jiném zařízení. Teď zmizel i z tohoto telefonu.</string>
     <string name="dictate__cloud_notice_gone_signed_out" comment="Shown when this device was signed out of the credit account, which still exists">Toto zařízení bylo z tvého kreditního účtu odhlášeno. Účet ani kredit se nezměnily — přihlas se znovu obnovovacím kódem níže.</string>
     <string name="dictate__cloud_delete_title">Smazat kreditní účet</string>
-    <string name="dictate__cloud_delete_explain">Smaže tvůj kreditní účet a vše, co je o něm uloženo. Zbývající kredit propadá a nevrací se. Pokud aplikaci už nemáš, jde to i na api.dictatekeyboard.com/delete.</string>
+    <string name="dictate__cloud_delete_explain">Smaže tvůj kreditní účet a vše, co je o něm uloženo. Zbývající kredit propadá a nevrací se. Pokud aplikaci už nemáš, jde to i na api.voicemode.example/delete.</string>
     <string name="dictate__cloud_delete_btn">Smazat účet</string>
     <string name="dictate__cloud_delete_dialog_title">Opravdu smazat účet?</string>
     <string name="dictate__cloud_delete_dialog_body" comment="{minutes} is a number">Máš ještě {minutes} minut kreditu. Smazáním zmizí účet, obnovovací kód i všechna přihlášená zařízení.</string>
@@ -2335,7 +2334,7 @@
     <string name="dictate__cloud_devices_last_used">Naposledy použito {time}</string>
     <string name="dictate__cloud_devices_never_used">Zatím nepoužito</string>
     <string name="dictate__cloud_recovery_error">Server je nedostupný. Zkontrolujte připojení a zkuste to znovu.</string>
-    <string name="dictate__cloud_limits_title">Co Dictate Cloud neumí</string>
+    <string name="dictate__cloud_limits_title">Co Voice Mode Cloud neumí</string>
     <string name="dictate__cloud_limits_body">Živý přepis během mluvení s kreditem není — stojí zhruba čtyřikrát víc za minutu a engine přímo v zařízení to zvládne offline a zdarma. Model AI i to, jak dlouho přemýšlí, určuje server, takže volba modelu, míra uvažování a vlastní koncové body zůstávají vypnuté. Všechno ostatní je beze změny: prompty, historie, plovoucí tlačítko, dlouhé diktování i hodinky.</string>
     <string name="dictate__cloud_privacy_title">Co se ukládá</string>
     <string name="dictate__cloud_privacy_body">Vaše nahrávky a texty se pouze předávají dál a nikdy se nezapisují na disk. Ukládají se jen čísla: který účet, kdy, jak dlouho a jestli to vyšlo. Za kreditním účtem není žádné jméno, žádný e-mail ani žádný účet Google — jen náhodný identifikátor.</string>
@@ -2383,9 +2382,9 @@
     <string name="quick_action__ime_ui_mode_sticker">Samolepka</string>
     <string name="quick_action__ime_ui_mode_sticker__tooltip">Vložit vlastní samolepky</string>
     <string name="prefs__media__sticker_add">Přidat samolepky</string>
-    <string name="prefs__media__sticker_add__summary">Zkopírujte obrázky do složky. Obrázek můžete také sdílet do Dictate z libovolné aplikace.</string>
+    <string name="prefs__media__sticker_add__summary">Zkopírujte obrázky do složky. Obrázek můžete také sdílet do Voice Mode z libovolné aplikace.</string>
     <string name="prefs__media__sticker_import_whatsapp">Načíst z WhatsAppu</string>
-    <string name="prefs__media__sticker_import_whatsapp__summary">Otevře výběr souborů ve složce se samolepkami WhatsAppu. Klávesnice jako ta od Samsungu si samolepky ukládají tam, kam žádná jiná aplikace nevidí — ty sdílejte do Dictate.</string>
+    <string name="prefs__media__sticker_import_whatsapp__summary">Otevře výběr souborů ve složce se samolepkami WhatsAppu. Klávesnice jako ta od Samsungu si samolepky ukládají tam, kam žádná jiná aplikace nevidí — ty sdílejte do Voice Mode.</string>
     <string name="sticker__import_share_label">Uložit jako samolepku</string>
     <string name="sticker__import_added">Přidáno: {n}</string>
     <string name="sticker__import_duplicate">{n} už tam bylo</string>
@@ -2409,7 +2408,7 @@
     <string name="sticker__source_downloads">Stažené</string>
     <string name="sticker__source_pictures">Obrázky</string>
     <string name="sticker__source_dcim">Fotoaparát</string>
-    <string name="sticker__source_hint">Jsou to výchozí body, ne záruky — pokud složka neexistuje, výběr se otevře jako obvykle. Aplikace, které si samolepky nechávají pro sebe, třeba klávesnice Samsungu, je umí jen sdílet do Dictate.</string>
+    <string name="sticker__source_hint">Jsou to výchozí body, ne záruky — pokud složka neexistuje, výběr se otevře jako obvykle. Aplikace, které si samolepky nechávají pro sebe, třeba klávesnice Samsungu, je umí jen sdílet do Voice Mode.</string>
     <string name="sticker__import_progress">Kopíruje se {done} z {total}</string>
     <string name="sticker__import_cancel">Klepnutím zastavíte. Co je zkopírované, zůstává.</string>
     <string name="sticker__refused_declares_nothing">Tato aplikace nepřijímá obrázky z klávesnice — zkopírováno do schránky, dlouhým stiskem vložíte</string>

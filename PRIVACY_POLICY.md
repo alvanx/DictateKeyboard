@@ -1,22 +1,28 @@
-# Privacy Policy for Dictate Keyboard
+# Privacy Policy for Voice Mode
+
+> **DRAFT. Do not publish as is.** This is the upstream project's policy with the names swapped
+> for placeholders. It describes prepaid credit packs and a different operator. Before the app
+> ships it must be rewritten for the subscription service (see `docs/specs/billing.md`) and filled in
+> with the real operator's details. Placeholders are in square brackets.
+
 
 **Effective date:** 31 August 2026
 **Last updated:** 31 August 2026
 
-This Privacy Policy explains how **Dictate Keyboard** (the "App", application ID
-`net.devemperor.dictate`) handles your information. The App is developed and
-maintained by **Jannis Zahn**, trading as DevEmperor (the "Developer", "we",
-"us"), Talstraße 84, 35625 Hüttenberg, Germany — the data controller for the
+This Privacy Policy explains how **Voice Mode** (the "App", application ID
+`com.placeholder.voicemode`) handles your information. The App is developed and
+maintained by **[OPERATOR NAME]** (the "Developer", "we",
+"us"), [OPERATOR ADDRESS] — the data controller for the
 limited purposes described below.
 
 If you have any questions about this policy, contact us at
-**contact@devemperor.net**.
+**[SUPPORT EMAIL]**.
 
 ---
 
 ## 0. Two ways to use this App, and only one of them involves us
 
-Dictate Keyboard turns your speech into text. There are two ways to set that up,
+Voice Mode turns your speech into text. There are two ways to set that up,
 and they differ completely in what happens to your data:
 
 **By default, we are not involved at all.** You bring your own API key for a
@@ -24,28 +30,28 @@ provider you choose, or you use on-device recognition. Your audio goes from your
 phone straight to that provider, or never leaves the phone. We operate no server
 in that path, receive nothing, and store nothing about you.
 
-**Dictate Cloud is optional.** If — and only if — you deliberately buy credit
+**Voice Mode Cloud is optional.** If — and only if — you deliberately buy credit
 through Google Play, your recordings pass through a server we operate. That is
 the only situation in which any of your data reaches us, and it is described
 separately in section 4.
 
 **Nothing about the first way changed when the second was added.** If you never
-buy credit, this policy applies to you exactly as it did before Dictate Cloud
+buy credit, this policy applies to you exactly as it did before Voice Mode Cloud
 existed: we have no server in your path and no data about you.
 
 ---
 
 ## 1. Summary (the short version)
 
-- **Unless you choose Dictate Cloud, we do not receive any of your data.** No
+- **Unless you choose Voice Mode Cloud, we do not receive any of your data.** No
   backend in your path, no database about you, no analytics.
-- Dictate Keyboard is a voice-to-text keyboard. To turn your speech into text it
+- Voice Mode is a voice-to-text keyboard. To turn your speech into text it
   sends the audio you record to an **AI provider that you choose and configure**
   (for example OpenAI, Groq, or a self-hosted server). That transfer happens
   **directly from your device to that provider** — it never passes through us.
 - **On-device recognition is available** and needs no network connection and no
   provider at all.
-- **Dictate Cloud is the one exception**, it is entirely optional, it is never
+- **Voice Mode Cloud is the one exception**, it is entirely optional, it is never
   switched on without a purchase you make yourself, and section 4 says exactly
   what it does.
 - Your API keys, prompts, and settings are stored **only on your device**.
@@ -54,7 +60,7 @@ existed: we have no server in your path and no data about you.
 - As a keyboard, the App **does not log your keystrokes or collect what you type**
   in other apps. It only processes audio that you explicitly record by pressing
   the dictation button.
-- **All of this can be checked.** The App and the Dictate Cloud server are open
+- **All of this can be checked.** The App and the Voice Mode Cloud server are open
   source and readable in full — see section 8.
 
 ---
@@ -155,19 +161,19 @@ yourself. The feature is unavailable until you configure that key, and nothing i
 sent to KLIPY unless you open the panel and search.
 
 ### 3.3 Google Play
-Purchases of Dictate Cloud credit are processed by **Google**, who is the seller
+Purchases of Voice Mode Cloud credit are processed by **Google**, who is the seller
 and an independent controller for the payment. We never see your payment details.
 See https://policies.google.com/privacy.
 
 ---
 
-## 4. Dictate Cloud (optional credit)
+## 4. Voice Mode Cloud (optional credit)
 
 **This section applies only if you buy credit.** If you use your own API key or
 on-device recognition, none of it applies to you and nothing here changes what is
 described above.
 
-Dictate Cloud exists for people who do not want to create an account with an AI
+Voice Mode Cloud exists for people who do not want to create an account with an AI
 provider. You buy dictation minutes through Google Play, and your recordings are
 sent to a server we operate, which has them transcribed on **Cloudflare Workers
 AI** and returns the text. Rewording works the same way.
@@ -256,8 +262,8 @@ anyone to reach into.
 
 ### 4.5 Deleting your credit account
 
-You can delete it **in the App** under Settings → Dictate Cloud, or **in a
-browser** at **https://api.dictatekeyboard.com/delete** if you no longer have the
+You can delete it **in the App** under Settings → Voice Mode Cloud, or **in a
+browser** at **https://api.voicemode.example/delete** if you no longer have the
 App installed. Deleting removes your account, your recovery code, every signed-in
 device and your usage log.
 
@@ -321,7 +327,7 @@ You can see and delete these names in the App's dictionary settings.
   Temporary audio recordings are deleted automatically after transcription.
 - **With your chosen provider:** any retention of audio or text is governed by
   that provider's policy, not by us.
-- **With the Developer:** nothing — unless you use Dictate Cloud, where section
+- **With the Developer:** nothing — unless you use Voice Mode Cloud, where section
   4.4 applies.
 
 To erase all locally stored data, clear the App's keys, history and settings in
@@ -331,7 +337,7 @@ its settings screens, or uninstall the App.
 
 ## 7. We do not collect what you type
 
-Although Dictate Keyboard is an input method (a keyboard), it does **not** record,
+Although Voice Mode is an input method (a keyboard), it does **not** record,
 log, store, or transmit your general typing. Only audio you deliberately record
 for dictation is processed, and only for the purpose of returning a transcript.
 Password fields and incognito mode are excluded from the dictation history
@@ -341,11 +347,11 @@ entirely.
 
 ## 8. You do not have to take our word for any of this
 
-The App is open source, and so is the server behind Dictate Cloud. Both live in
+The App is open source, and so is the server behind Voice Mode Cloud. Both live in
 the same public repository:
 
-**<https://github.com/DevEmperor/DictateKeyboard>** — the App under `app/` and
-`lib/`, the Dictate Cloud server under `cloud/`.
+**<https://github.com/alvanx/DictateKeyboard>** — the App under `app/` and
+`lib/`, the Voice Mode Cloud server under `cloud/`.
 
 You can read every line, including the parts this policy describes: what is sent
 to a provider and when, that recordings are streamed through the server without
@@ -369,10 +375,10 @@ worth less than none:
 
 ## 9. Data security
 
-Data sent to AI providers, and to Dictate Cloud, is transmitted over encrypted
+Data sent to AI providers, and to Voice Mode Cloud, is transmitted over encrypted
 HTTPS connections. Your credentials and settings are kept in the App's private,
 sandboxed storage, which on Android is not accessible to other apps. On the
-Dictate Cloud server, recovery codes and access keys are stored only as SHA-256
+Voice Mode Cloud server, recovery codes and access keys are stored only as SHA-256
 hashes, so possession of the database does not allow anyone to sign in. No method
 of transmission or storage is 100% secure.
 
@@ -394,7 +400,7 @@ the United States). When you send audio or text to a provider, that data may be
 processed in the country where the provider operates, under that provider's
 policies.
 
-For Dictate Cloud, the transfer arrangements are set out in section 4.3.
+For Voice Mode Cloud, the transfer arrangements are set out in section 4.3.
 
 ---
 
@@ -405,11 +411,11 @@ For Dictate Cloud, the transfer arrangements are set out in section 4.3.
 - You can change or delete your API keys at any time in the App's settings.
 - You can delete your dictation history, your custom prompts and reset settings
   in the App.
-- You can delete your Dictate Cloud account (section 4.5).
+- You can delete your Voice Mode Cloud account (section 4.5).
 - You can uninstall the App to remove all locally stored data.
 - Under the GDPR you have the rights of access, rectification, erasure,
   restriction, data portability and objection (Art. 15–21), and the right to
-  complain to a supervisory authority. For Dictate Cloud, please read section 4.6
+  complain to a supervisory authority. For Voice Mode Cloud, please read section 4.6
   first: we can only act on a request we can connect to an account.
 - For data already processed by a third-party provider, please exercise your
   rights directly with that provider, who is the controller for that data.
@@ -429,7 +435,7 @@ of the revised policy.
 
 If you have questions or requests regarding this Privacy Policy, contact:
 
-**Jannis Zahn** (DevEmperor) — contact@devemperor.net
-Talstraße 84, 35625 Hüttenberg, Germany
+**[OPERATOR NAME]** — [SUPPORT EMAIL]
+[OPERATOR ADDRESS]
 
-Project repository: https://github.com/DevEmperor/DictateKeyboard
+Project repository: https://github.com/alvanx/DictateKeyboard

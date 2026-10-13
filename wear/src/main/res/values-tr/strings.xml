@@ -13,7 +13,7 @@
     <string name="wear_cd_resume">Sürdür</string>
     <string name="wear_cd_backspace">Sil</string>
     <string name="wear_cd_enter">Enter</string>
-    <string name="wear_err_mic_grant">Dictate\'te mikrofona izin ver</string>
+    <string name="wear_err_mic_grant">Voice Mode\'te mikrofona izin ver</string>
     <string name="wear_err_mic_unavailable">Mikrofon kullanılamıyor</string>
     <string name="wear_err_transcribe_failed">Yazıya dökme başarısız</string>
     <string name="wear_err_tap_to_retry">%1$s · Yeniden denemek için dokun</string>

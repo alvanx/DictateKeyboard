@@ -74,7 +74,7 @@ export const ZONES: GraphZone[] = [
       '<p>Alles in dieser Spalte gehört der nutzenden Person, nicht dem Dienst. Was hier liegt — das ' +
       'Zugangstoken, der Wiederherstellungscode, die Aufnahme vor dem Absenden —, liegt in der ' +
       'app-privaten Ablage von Android und ist für andere Apps nicht lesbar.</p>' +
-      '<p>Wichtig für das Verständnis des ganzen Bildes: <strong>Ohne Dictate Cloud existiert diese ' +
+      '<p>Wichtig für das Verständnis des ganzen Bildes: <strong>Ohne Voice Mode Cloud existiert diese ' +
       'Spalte allein.</strong> Wer einen eigenen API-Schlüssel hinterlegt oder die Erkennung auf dem ' +
       'Gerät nutzt, spricht nie mit irgendetwas rechts davon. Der bezahlte Weg ist der Sonderfall, ' +
       'nicht der Normalfall — auch wenn er hier die meisten Linien erzeugt.</p>',
@@ -119,15 +119,15 @@ export const ZONES: GraphZone[] = [
 
 export const NODES: GraphNode[] = [
   {
-    id: 'app', zone: 'client', label: 'Dictate (Android)', sub: 'Tastatur, schwebender Knopf',
+    id: 'app', zone: 'client', label: 'Voice Mode (Android)', sub: 'Tastatur, schwebender Knopf',
     col: 0, row: 0,
     holds: ['Wallet-Token', 'Wiederherstellungscode'],
     guards: ['Token nur in App-privaten Prefs', 'höchstens 3 Geräte je Konto'],
     detail: 'Das Wallet-Token liegt in <code>ProviderAccount.apiKey</code> — genau dort, wo sonst ein API-Schlüssel steht. Deshalb erreicht der unveränderte OpenAI-Client den Dienst, ohne dass eine einzige Zeile im Netzwerkpfad angepasst werden musste. Wird der Zugang auf einem vierten Gerät wiederhergestellt, antwortet der Server mit der Geräteliste statt mit einem Token: Abmelden ist eine Auswahl, keine automatische Verdrängung.',
     long:
-      '<p>Dictate Cloud ist in der App <em>kein eigener Netzwerkpfad</em>, sondern ein Anbieter wie ' +
+      '<p>Voice Mode Cloud ist in der App <em>kein eigener Netzwerkpfad</em>, sondern ein Anbieter wie ' +
       'jeder andere. Das Zugangstoken liegt in <code>ProviderAccount.apiKey</code>, die Basis-URL zeigt ' +
-      'auf <code>api.dictatekeyboard.com</code>, und der Server spricht dieselbe Sprache wie OpenAI. ' +
+      'auf <code>api.voicemode.example</code>, und der Server spricht dieselbe Sprache wie OpenAI. ' +
       'Deshalb musste für den bezahlten Weg keine Zeile im Sende- und Empfangspfad geändert werden — ' +
       'und deshalb kann dort auch nichts kaputtgehen, was für alle anderen Anbieter funktioniert.</p>' +
       '<p><strong>Die Gerätegrenze ist eine Auswahl, keine Verdrängung.</strong> Wer den Code auf einem ' +
@@ -141,7 +141,7 @@ export const NODES: GraphNode[] = [
     source: 'app/.../dictate/cloud/DictateCloud.kt',
   },
   {
-    id: 'wear', zone: 'client', label: 'Dictate (Wear OS)', sub: 'Uhr, standalone oder getethert',
+    id: 'wear', zone: 'client', label: 'Voice Mode (Wear OS)', sub: 'Uhr, standalone oder getethert',
     col: 0, row: 1,
     holds: ['Wallet-Token (synchronisiert)'],
     detail: 'Bekommt Basis-URL und Token über den Data-Layer-Sync vom Telefon und rechnet dasselbe Guthaben ab. Nimmt 16-kHz-Mono-WAV auf — das Format, dessen Dauer der Server exakt misst.',
@@ -287,7 +287,7 @@ export const NODES: GraphNode[] = [
     source: 'src/routes/transcriptions.ts, src/routes/chat.ts',
   },
   {
-    id: 'worker', zone: 'cf', label: 'Worker', sub: 'api.dictatekeyboard.com',
+    id: 'worker', zone: 'cf', label: 'Worker', sub: 'api.voicemode.example',
     col: 1, row: 1,
     // Kein Schlüssel für die Modelle: Workers AI läuft über die Bindung und rechnet über dasselbe
     // Konto ab wie dieser Worker.
@@ -864,7 +864,7 @@ export const EDGES: GraphEdge[] = [
       'sei deshalb der schnellere, liegt bei langen Aufnahmen zwei Sekunden daneben.</p>' +
       '<p>Was zurückkommt, wird auf das Nötige gekürzt: der Text, beziehungsweise die eine Antwort und ' +
       'ihr Verbrauch. Segmente, Wortzahlen, ein VTT-Spur und der <code>@cf/…</code>-Modellname bleiben ' +
-      'hier — sie helfen niemandem und verraten, was hinter Dictate Cloud steht.</p>',
+      'hier — sie helfen niemandem und verraten, was hinter Voice Mode Cloud steht.</p>',
   },
 
   {

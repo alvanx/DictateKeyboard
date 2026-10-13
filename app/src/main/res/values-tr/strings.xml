@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Dictate</string>
+    <string name="app_name">Voice Mode</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Duraklat</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Bekle</string>
     <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">Üç nokta simgesi. Görünürse, daha uzun basıldığında daha fazla harfin kullanılabileceğini gösterir.</string>
@@ -127,8 +127,8 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Varsayılan</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Sistem varsayılanı</string>
     <string name="settings__home__title" comment="Title of the Home screen">{app_name} Uygulamasına Hoş Geldiniz</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} sistemde etkin değil ve bu nedenle giriş yöntemi seçicisinde bir giriş yöntemi olarak kullanılamayacak. Bu sorunu çözmek için buraya tıklayın.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} varsayılan giriş yöntemi olarak seçilmemiş. Bu sorunu çözmek için buraya tıklayın.</string>
+    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name} sistemde etkin değil ve bu nedenle giriş yöntemi seçicisinde bir giriş yöntemi olarak kullanılamayacak. Bu sorunu çözmek için buraya tıklayın.</string>
+    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name} varsayılan giriş yöntemi olarak seçilmemiş. Bu sorunu çözmek için buraya tıklayın.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Ayarlarda ara</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Ayarlarda ara…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Son aramalar</string>
@@ -631,7 +631,7 @@
     <string name="setup__select_ime__description">{app_name} artık sisteminizde etkin. Aktif olarak kullanmak için giriş seçici diyaloğunda seçerek {app_name} uygulamasına geçin!</string>
     <string name="setup__select_ime__switch_keyboard_btn">Klavyeyi Değiştir</string>
     <string name="setup__grant_notification_permission__title">Kilitlenme Raporu Bildirimlerine İzin Verin</string>
-    <string name="setup__grant_notification_permission__description">Android 13+ itibarıyla, uygulamalar bildirim göndermek için izin istemelidir. Dictate\'da bu yalnızca bir kilitlenme durumunda kilitlenme raporu ekranını açmak için kullanılır. Bu izin sistem ayarlarından herhangi bir zamanda değiştirilebilir.</string>
+    <string name="setup__grant_notification_permission__description">Android 13+ itibarıyla, uygulamalar bildirim göndermek için izin istemelidir. Voice Mode\'da bu yalnızca bir kilitlenme durumunda kilitlenme raporu ekranını açmak için kullanılır. Bu izin sistem ayarlarından herhangi bir zamanda değiştirilebilir.</string>
     <string name="setup__grant_notification_permission__btn">İzin Ver</string>
     <string name="setup__finish_up__title">Bitir</string>
     <string name="setup__finish_up__description_p1">{app_name} sistemde etkin ve özelleştirilmeye hazır.</string>
@@ -654,8 +654,8 @@
     <string name="backup_and_restore__back_up__files">Nelerin yedekleneceğini seç</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Tercihler</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API anahtarları ve şifreler</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Bu arşiv API anahtarlarınızı ve şifrelerinizi düz metin olarak, Dictate Cloud bakiyenizle birlikte içerir — onu alan herkes sizin hesabınıza dikte edebilir. Başkasına vermeyin; verdiyseniz sağlayıcınızdaki anahtarı değiştirin. Aşağıda işaretli olan her şey onunla birlikte gider, dikte geçmişiniz ve panonuz da dahil.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Bu arşivde API anahtarı, şifre veya Dictate Cloud bakiyesi yok, bu yüzden paylaşılabilir; ama sizinkileri de geri yüklemez. Aşağıda işaretli olan her şey hâlâ içindedir, dikte geçmişiniz ve panonuz da dahil.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Bu arşiv API anahtarlarınızı ve şifrelerinizi düz metin olarak, Voice Mode Cloud bakiyenizle birlikte içerir — onu alan herkes sizin hesabınıza dikte edebilir. Başkasına vermeyin; verdiyseniz sağlayıcınızdaki anahtarı değiştirin. Aşağıda işaretli olan her şey onunla birlikte gider, dikte geçmişiniz ve panonuz da dahil.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Bu arşivde API anahtarı, şifre veya Voice Mode Cloud bakiyesi yok, bu yüzden paylaşılabilir; ama sizinkileri de geri yüklemez. Aşağıda işaretli olan her şey hâlâ içindedir, dikte geçmişiniz ve panonuz da dahil.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Bu arşivde API anahtarı ve şifre yok, ama aşağıda işaretli olan her şey var: saklanan kayıtlarla birlikte dikte geçmişiniz, panonuz, istemleriniz ve klavyenin sizden öğrendiği kelimeler.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Klavye eklentileri</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Yazım denetimi eklentileri / sözlükler</string>
@@ -672,7 +672,7 @@
     <string name="backup_and_restore__restore__metadata">Seçilen yedek arşivi</string>
     <string name="backup_and_restore__restore__metadata_warn_different_version">Bu yedek arşivi mevcut sürümden farklı bir sürümde oluşturulmuştur, bu genellikle desteklenir. Ancak küçük sorunların ortaya çıkabileceğini veya özellik farklılıkları nedeniyle bazı tercihlerin düzgün aktarılamayabileceğini unutmayın.</string>
     <string name="backup_and_restore__restore__metadata_warn_different_vendor">Bu yedek arşivi üçüncü taraf bir uygulamada oluşturulmuştur, bu genellikle desteklenmez. Veri kayıpları meydana gelebilir, riski size ait olmak üzere geri yükleyin!</string>
-    <string name="backup_and_restore__restore__metadata_note_no_credentials">Bu yedek arşivinde API anahtarı ve şifre yok. Diğer her şey geri yüklenir. Birleştirme bu cihazdaki anahtarları korur; üzerine yazma ise onları siler — yeniden yazılamayan Dictate Cloud kurtarma kodu da dahil.</string>
+    <string name="backup_and_restore__restore__metadata_note_no_credentials">Bu yedek arşivinde API anahtarı ve şifre yok. Diğer her şey geri yüklenir. Birleştirme bu cihazdaki anahtarları korur; üzerine yazma ise onları siler — yeniden yazılamayan Voice Mode Cloud kurtarma kodu da dahil.</string>
     <string name="backup_and_restore__restore__metadata_error_invalid_metadata">Bu yedek arşivi geçersiz meta veriler içeriyor. Ya bozulmuş ya da kötü bir şekilde değiştirilmiş. Bu arşivden geri yükleme yapmak mümkün değil, lütfen başka bir tane seçin.</string>
     <string name="backup_and_restore__restore__metadata_error_nothing_to_restore">Bu yedek arşivi geri yüklenecek herhangi bir dosya içermiyor, lütfen başka bir tane seçin.</string>
     <string name="backup_and_restore__restore__mode">Geri yükleme modu</string>
@@ -681,18 +681,18 @@
     <string name="backup_and_restore__restore__success">Veriler başarıyla geri yüklendi!</string>
     <string name="backup_and_restore__restore__failure">Veriler geri yüklenemedi: {error_message}</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Dictate hata raporu</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">Verdiğimiz rahatsızlıktan dolayı özür dileriz, ancak Dictate beklenmedik bir hata nedeniyle çöktü.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Bu hatayı bildirmek isterseniz, önce GitHub\'daki sorun izleyiciyi kontrol ederek çökmenizin daha önce bildirilip bildirilmediğini kontrol edin.\nBildirilmediyse, oluşturulan çökme günlüğünü kopyalayın ve yeni bir sorun açın. \"%s\" şablonunu kullanın ve açıklamayı, yeniden oluşturma adımlarını doldurun ve oluşturulan çökme günlüğünü sonuna yapıştırın. Bu, Dictate\'un herkes için daha iyi ve daha kararlı hale gelmesine yardımcı olur. Teşekkür ederiz!</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Voice Mode hata raporu</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">Verdiğimiz rahatsızlıktan dolayı özür dileriz, ancak Voice Mode beklenmedik bir hata nedeniyle çöktü.</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Bu hatayı bildirmek isterseniz, önce GitHub\'daki sorun izleyiciyi kontrol ederek çökmenizin daha önce bildirilip bildirilmediğini kontrol edin.\nBildirilmediyse, oluşturulan çökme günlüğünü kopyalayın ve yeni bir sorun açın. \"%s\" şablonunu kullanın ve açıklamayı, yeniden oluşturma adımlarını doldurun ve oluşturulan çökme günlüğünü sonuna yapıştırın. Bu, Voice Mode\'un herkes için daha iyi ve daha kararlı hale gelmesine yardımcı olur. Teşekkür ederiz!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Sistem panosuna kopyala</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Sistem panosuna kopyalandı</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">Sistem panosuna kopyalanamıyor: Pano yöneticisi örneği bulunamadı</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">Sorun izleyiciyi aç (github.com)</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Kapat</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Dictate hata raporları</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate çalışmayı durdurdu…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Voice Mode hata raporları</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode çalışmayı durdurdu…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Hata ayrıntılarını görüntülemek için dokunun</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Dictate tekrar tekrar çalışmayı durduruyor gibi görünüyor…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Voice Mode tekrar tekrar çalışmayı durduruyor gibi görünüyor…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Sonsuz çökme döngüsünü durdurmak için önceki klavyeye geri dönülüyor. Hata ayrıntılarını görüntülemek için dokunun</string>
     <!-- Clipboard strings -->
     <string name="editing__back_to_keyboard">Klavyeye dön</string>
@@ -837,7 +837,7 @@
     <string name="ext__export__failure">Eklenti dışa aktarılamadı: {error_message}</string>
     <string name="ext__import__success">Eklenti başarıyla içe aktarıldı!</string>
     <string name="ext__import__failure">Eklenti içe aktarılamadı: {error_message}</string>
-    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Dictate Keyboard extension">Eklentiyi içe aktar</string>
+    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Voice Mode extension">Eklentiyi içe aktar</string>
     <string name="ext__import__ext_keyboard" comment="Title of Importer screen for keyboard extension import">Klavye eklentisini içe aktar</string>
     <string name="ext__import__ext_theme" comment="Title of Importer screen for theme extension import">Tema eklentisini içe aktar</string>
     <string name="ext__import__ext_languagepack" comment="Title of Importer screen for language pack extension import">Dil paketi eklentisini içe aktar</string>
@@ -877,7 +877,7 @@
     <string name="ext__addon_management_box__managing_placeholder">{extensions} Yönetiliyor</string>
     <string name="ext__addon_management_box__addon_manager_info">Eklentileri içe aktarma, dışa aktarma, oluşturma, özelleştirme ve kaldırma ile ilgili tüm görevler merkezi eklenti yöneticisi aracılığıyla halledilebilir.</string>
     <string name="ext__addon_management_box__go_to_page">{ext_home_title} sayfasına git</string>
-    <string name="ext__home__info">Dictate Eklenti Mağazası\'ndan eklentiler indirebilir ve yükleyebilir veya internetten indirdiğiniz herhangi bir eklenti dosyasını içe aktarabilirsiniz.</string>
+    <string name="ext__home__info">Voice Mode Eklenti Mağazası\'ndan eklentiler indirebilir ve yükleyebilir veya internetten indirdiğiniz herhangi bir eklenti dosyasını içe aktarabilirsiniz.</string>
     <string name="ext__home__visit_store">Eklenti Mağazasını Ziyaret Et</string>
     <string name="ext__home__manage_extensions">Yüklü eklentileri yönet</string>
     <string name="ext__list__view_details">Ayrıntıları görüntüle</string>
@@ -1124,7 +1124,7 @@
         <item quantity="one">{v} aday</item>
         <item quantity="other">{v} aday</item>
     </plurals>
-    <!-- Dictate strings -->
+    <!-- Voice Mode strings -->
     <string name="quick_action__ime_ui_mode_editing">Metin düzenleme</string>
     <string name="quick_action__ime_ui_mode_editing__tooltip">İmleci taşıyın, metni seçin ve düzenleyin</string>
     <string name="quick_action__ime_ui_mode_scan">Metin tara</string>
@@ -1139,15 +1139,14 @@
     <string name="quick_action__dictate_prompts__tooltip">Yapay zekâ yeniden ifade etme komutlarını açın</string>
     <string name="about__based_on_floris__title">FlorisBoard tabanlıdır</string>
     <string name="about__based_on_floris__summary">Patrick Goldinger ve katkıda bulunanların FlorisBoard çatalı, Apache 2.0. Açmak için dokunun.</string>
-    <string name="about__made_by">❤️ ile yapan: DevEmperor\nSoli deo gloria ✝️</string>
     <string name="about__feedback__title">Geri bildirim ve destek</string>
     <string name="about__feedback__summary">Sorular, hatalar veya fikirlerle bir e-posta gönderin</string>
-    <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
-    <string name="setup__provider__title">Dictate\'in nasıl yazıya dökeceğini seçin</string>
-    <string name="setup__provider__choose_intro">Dictate, konuşmanızı bir yapay zekâ hizmetiyle metne dönüştürür. Çoğu kişiye yukarıdaki iki yoldan biri uyar — hiç bulut hizmeti kullanmak istemiyorsanız aşağıda iki yol daha var.</string>
+    <string name="about__feedback__email">support@voicemode.example</string>
+    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="setup__provider__title">Voice Mode\'in nasıl yazıya dökeceğini seçin</string>
+    <string name="setup__provider__choose_intro">Voice Mode, konuşmanızı bir yapay zekâ hizmetiyle metne dönüştürür. Çoğu kişiye yukarıdaki iki yoldan biri uyar — hiç bulut hizmeti kullanmak istemiyorsanız aşağıda iki yol daha var.</string>
     <string name="setup__provider__choice_cloud_title">Uygulamada kontör satın alın</string>
-    <string name="setup__provider__choice_cloud_body">Dictate Cloud: hiçbir yerde hesap yok, API anahtarı yok. Dikte dakikalarını Google Play üzerinden satın alırsınız ve süreleri hiç dolmaz. Rahat yol — ve doğrudan bir sağlayıcıya gitmekten biraz daha pahalı.</string>
+    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: hiçbir yerde hesap yok, API anahtarı yok. Dikte dakikalarını Google Play üzerinden satın alırsınız ve süreleri hiç dolmaz. Rahat yol — ve doğrudan bir sağlayıcıya gitmekten biraz daha pahalı.</string>
     <string name="setup__provider__choice_cloud_btn">Kontör paketlerini göster</string>
     <string name="setup__provider__choice_own_title">Kendi yapay zekâ sağlayıcınızı kullanın</string>
     <string name="setup__provider__choice_own_body">Seçtiğiniz sağlayıcıda bir anahtar oluşturun — Groq günlük dikte için ücretsiz. Kendi hesabınızı korur ve sağlayıcıya doğrudan kendi fiyatlarından ödersiniz. Yaklaşık iki dakika sürer.</string>
@@ -1157,15 +1156,15 @@
     <string name="setup__provider__choice_local_title">Cihazınızda, çevrimdışı</string>
     <string name="setup__provider__choice_local_body">Bir konuşma modelini bir kez indirin. Hesap yok, ücret yok ve hiçbir ses telefonunuzdan çıkmaz.</string>
     <string name="setup__provider__choice_server_title">Kendi sunucunuz</string>
-    <string name="setup__provider__choice_server_body">Dictate\'i kendi işlettiğiniz bir konuşma sunucusuna ya da OpenAI uyumlu herhangi bir uç noktaya yönlendirin.</string>
+    <string name="setup__provider__choice_server_body">Voice Mode\'i kendi işlettiğiniz bir konuşma sunucusuna ya da OpenAI uyumlu herhangi bir uç noktaya yönlendirin.</string>
     <string name="setup__provider__local_intro">Konuşma tanıma o zaman telefonunuzda çalışır: hiçbir şey hiçbir yere gönderilmez ve bağlantı olmadan da çalışır. Şimdi indirmek için bir model seçin — sonradan model ekleyebilir veya değiştirebilirsiniz.</string>
     <string name="setup__provider__local_recommended">Diliniz için önerilir</string>
     <string name="setup__provider__local_bigger">Daha doğru, ama çok daha büyük bir indirme</string>
     <string name="setup__provider__local_download_btn">Modeli indir</string>
     <string name="setup__provider__local_use_btn">Bu modeli kullan</string>
     <string name="setup__provider__local_all_models">Tüm modelleri göster</string>
-    <string name="setup__provider__intro">Dictate, çevrimiçi bir yapay zekâ hizmetinin yardımıyla konuşmanızı metne dönüştürür. Bunu kullanmak için böyle bir hizmete ait kendi kişisel anahtarınıza ihtiyacınız vardır.</string>
-    <string name="setup__provider__what_is_key">API anahtarı, Dictate\'in hizmeti sizin adınıza kullanmasını sağlayan kişisel bir parola gibidir. Oluşturmak ücretsizdir ve yaklaşık iki dakika sürer.</string>
+    <string name="setup__provider__intro">Voice Mode, çevrimiçi bir yapay zekâ hizmetinin yardımıyla konuşmanızı metne dönüştürür. Bunu kullanmak için böyle bir hizmete ait kendi kişisel anahtarınıza ihtiyacınız vardır.</string>
+    <string name="setup__provider__what_is_key">API anahtarı, Voice Mode\'in hizmeti sizin adınıza kullanmasını sağlayan kişisel bir parola gibidir. Oluşturmak ücretsizdir ve yaklaşık iki dakika sürer.</string>
     <string name="setup__provider__recommended"><b>Groq</b>\'u öneriyoruz — günlük dikte için hızlı ve ücretsizdir.</string>
     <string name="setup__provider__steps_groq">1. Groq\'u açmak için aşağıdaki düğmeye dokunun.\n2. Google ile veya e-posta adresinizle oturum açın.\n3. “Create API Key”e dokunun, herhangi bir ad verin ve onaylayın.\n4. Anahtarı kopyalayın (“gsk_” ile başlar).\n5. Buraya geri dönün ve aşağıdaki “API anahtarını yapıştır”a dokunun.</string>
     <string name="setup__provider__steps_generic">1. {provider} hizmetini açmak için aşağıdaki düğmeye dokunun.\n2. Henüz bir hesabınız yoksa oluşturun.\n3. Yeni bir API anahtarı oluşturun ve kopyalayın.\n4. Buraya geri dönün ve aşağıdaki “API anahtarını yapıştır”a dokunun.</string>
@@ -1179,7 +1178,7 @@
     <string name="setup__provider__skip_btn">Daha sonra ayarla</string>
     <string name="setup__provider__other_provider">Farklı bir yapay zekâ sağlayıcısı kullan</string>
     <string name="setup__provider__other_provider_hint">Gelişmiş: Groq yerine başka bir hizmet seçin. Bu sağlayıcıdan bir API anahtarına ihtiyacınız olacak.</string>
-    <string name="setup__finish_up__add_key_hint">İpucu: Henüz bir yapay zekâ anahtarı eklemediniz. Dikte etmeye başlamak için Ayarlar → Dictate → Yapay zekâ sağlayıcıları bölümünden istediğiniz zaman bir tane ekleyebilirsiniz.</string>
+    <string name="setup__finish_up__add_key_hint">İpucu: Henüz bir yapay zekâ anahtarı eklemediniz. Dikte etmeye başlamak için Ayarlar → Voice Mode → Yapay zekâ sağlayıcıları bölümünden istediğiniz zaman bir tane ekleyebilirsiniz.</string>
     <string name="crash_dialog__bug_report_template">Çökme raporu</string>
     <string name="enum__swipe_action__toggle_compact_layout">Kompakt düzeni aç/kapat</string>
     <string name="unit__hours__symbol">{v} sa</string>
@@ -1189,9 +1188,9 @@
     <string name="unit__percent__symbol">%{v}</string>
     <string name="unit__display_pixel__symbol">{v} dp</string>
     <string name="unit__display_pixel_per_seconds__symbol">{v} dp/sn</string>
-    <string name="dictate__accessibility_service_label">Dictate kayan düğmesi</string>
+    <string name="dictate__accessibility_service_label">Voice Mode kayan düğmesi</string>
     <string name="dictate__accessibility_service_summary">Herhangi bir metin alanına dikte etmek için kayan bir düğme göster.</string>
-    <string name="dictate__accessibility_service_description">Dictate, kayan dikte düğmesi için bu hizmeti kullanır. Etkinleştirildiğinde, herhangi bir uygulamada bir metin alanının odaklandığını algılar — böylece düğme görünebilir — ve yazıya dökülen konuşmanızı o alana ekler. Dictate metninizi imlece yerleştirmek için yalnızca odaklanılan alanı okur; başka hiçbir ekran içeriğini toplamaz, saklamaz veya paylaşmaz.</string>
+    <string name="dictate__accessibility_service_description">Voice Mode, kayan dikte düğmesi için bu hizmeti kullanır. Etkinleştirildiğinde, herhangi bir uygulamada bir metin alanının odaklandığını algılar — böylece düğme görünebilir — ve yazıya dökülen konuşmanızı o alana ekler. Voice Mode metninizi imlece yerleştirmek için yalnızca odaklanılan alanı okur; başka hiçbir ekran içeriğini toplamaz, saklamaz veya paylaşmaz.</string>
     <string name="dictate__overlay_notification_channel">Kayan dikte düğmesi</string>
     <string name="dictate__overlay_notification_recording">Kaydediliyor — yazıya dökmek için kayan düğmeye dokunun</string>
     <string name="dictate__overlay_notification_working">Yazıya dökülüyor…</string>
@@ -1203,14 +1202,14 @@
     <string name="dictate__floating_button_service_enabled">Etkin · sistem ayarlarını açmak için dokunun</string>
     <string name="dictate__floating_button_service_disabled">Henüz etkin değil · kurmak için dokunun</string>
     <string name="dictate__floating_button_disclosure_title">Kayan düğmeyi etkinleştir</string>
-    <string name="dictate__floating_button_disclosure_message">Kayan düğmeyi göstermek için Dictate’in erişilebilirlik hizmetine ihtiyacı var. Herhangi bir uygulamada bir metin alanının odaklandığını algılar — böylece düğme görünebilir — ve yazıya dökülen konuşmanızı o alana ekler. Dictate metninizi yerleştirmek için yalnızca odaklanılan alanı okur; başka hiçbir ekran içeriğini toplamaz, saklamaz veya paylaşmaz.\n\nSonraki ekranda “Dictate kayan düğmesi” öğesini bulun ve açın.</string>
+    <string name="dictate__floating_button_disclosure_message">Kayan düğmeyi göstermek için Voice Mode’in erişilebilirlik hizmetine ihtiyacı var. Herhangi bir uygulamada bir metin alanının odaklandığını algılar — böylece düğme görünebilir — ve yazıya dökülen konuşmanızı o alana ekler. Voice Mode metninizi yerleştirmek için yalnızca odaklanılan alanı okur; başka hiçbir ekran içeriğini toplamaz, saklamaz veya paylaşmaz.\n\nSonraki ekranda “Voice Mode kayan düğmesi” öğesini bulun ve açın.</string>
     <string name="dictate__floating_button_disclosure_continue">Ayarları aç</string>
     <string name="dictate__floating_button_mic_title">Mikrofon erişimi</string>
     <string name="dictate__floating_button_mic_summary">Sesinizi kaydetmek için gerekli · izin vermek için dokunun</string>
     <string name="dictate__floating_button_show_when_title">Ne zaman gösterilsin</string>
     <string name="dictate__floating_button_show_when_field">Bir metin alanı seçilir seçilmez</string>
     <string name="dictate__floating_button_show_when_keyboard">Yalnızca klavye açıkken</string>
-    <string name="dictate__floating_button_show_when_dictate_keyboard">Dictate klavyesiyle de</string>
+    <string name="dictate__floating_button_show_when_dictate_keyboard">Voice Mode klavyesiyle de</string>
     <string name="dictate__action_continue_recording">Kaydı sürdür</string>
     <string name="dictate__a11y_mic_hold_local">Cihazda yazıya dök</string>
     <string name="smartbar__a11y_show_actions">Eylemleri göster</string>
@@ -1241,7 +1240,7 @@
     <string name="dictate__floating_button_apps_scope_all">Her uygulama</string>
     <string name="dictate__floating_button_apps_scope_only">Yalnızca aşağıdaki uygulamalar</string>
     <string name="dictate__floating_button_apps_scope_except">Aşağıdakiler dışındaki her uygulama</string>
-    <string name="dictate__floating_button_apps_note">Dışarıda bıraktığınız bir uygulamanın üzerine düğme hiçbir zaman çizilmez ve Dictate orada metin alanlarını okumaz. Erişilebilirlik hizmetlerine ilkesel olarak karşı çıkan bir uygulama, hizmetin açık olduğunu yine de görecektir.</string>
+    <string name="dictate__floating_button_apps_note">Dışarıda bıraktığınız bir uygulamanın üzerine düğme hiçbir zaman çizilmez ve Voice Mode orada metin alanlarını okumaz. Erişilebilirlik hizmetlerine ilkesel olarak karşı çıkan bir uygulama, hizmetin açık olduğunu yine de görecektir.</string>
     <string name="dictate__floating_button_apps_list_title">Uygulamalar</string>
     <string name="dictate__floating_button_apps_search">Uygulama ara</string>
     <string name="dictate__floating_button_apps_none">“{search_term}” için uygulama bulunamadı</string>
@@ -1249,7 +1248,7 @@
     <string name="dictate__floating_button_haptic_summary_off">Dokununca titreşim yok.</string>
     <string name="dictate__floating_button_haptic_summary_on">Düğmeye dokununca kısa bir titreşim.</string>
     <string name="dictate__floating_button_haptic_title">Dokununca titreşim</string>
-    <string name="dictate__floating_button_no_prompts">Henüz yeniden ifade istemi yok — Dictate ayarlarından ekleyin.</string>
+    <string name="dictate__floating_button_no_prompts">Henüz yeniden ifade istemi yok — Voice Mode ayarlarından ekleyin.</string>
     <string name="dictate__floating_button_remember_position_summary_off">Tüm uygulamalar için tek ortak konum.</string>
     <string name="dictate__floating_button_remember_position_summary_on">Her uygulama kendi düğme konumunu korur.</string>
     <string name="dictate__floating_button_remember_position_title">Konumu uygulamaya göre hatırla</string>
@@ -1264,7 +1263,7 @@
     <string name="dictate__providers_summary_both">Yazıya dökme: {transcription} · Yeniden ifade: {rewording}</string>
     <string name="dictate__remember_last_dictation_summary">Son diktenizi saklar; böylece yüzen düğme geri alabilir, klasik düzen yeniden ekleyebilir.</string>
     <string name="dictate__remember_last_dictation_title">Son dikteyi hatırla</string>
-    <string name="changelog__v4_2_0">• YENİ: kayan dikte düğmesi — başka bir klavye etkin olsa bile herhangi bir uygulamaya doğrudan dikte edin. Üç stilden birini seçin (Hap, Halka, Küre), konuşurken canlı dalga biçimini izleyin, kenara yapışmayla istediğiniz yere sürükleyin, rengini ve boyutunu ayarlayın ve yeniden ifade etmek için basılı tutun. Ayarlar ▸ Dictate ▸ Kayan düğme bölümünden açın.\n• YENİ: Google Gemini — transkripsiyon ve yeniden ifade için kendi AI Studio API anahtarını kullan.\n• İstemler artık varsayılan olarak tuşların üzerinde sabit bir sırada görünür.\n• Tarayıcılar ve diğer klavyeler dahil uygulamalar arası daha güvenilir metin ekleme.</string>
+    <string name="changelog__v4_2_0">• YENİ: kayan dikte düğmesi — başka bir klavye etkin olsa bile herhangi bir uygulamaya doğrudan dikte edin. Üç stilden birini seçin (Hap, Halka, Küre), konuşurken canlı dalga biçimini izleyin, kenara yapışmayla istediğiniz yere sürükleyin, rengini ve boyutunu ayarlayın ve yeniden ifade etmek için basılı tutun. Ayarlar ▸ Voice Mode ▸ Kayan düğme bölümünden açın.\n• YENİ: Google Gemini — transkripsiyon ve yeniden ifade için kendi AI Studio API anahtarını kullan.\n• İstemler artık varsayılan olarak tuşların üzerinde sabit bir sırada görünür.\n• Tarayıcılar ve diğer klavyeler dahil uygulamalar arası daha güvenilir metin ekleme.</string>
     <string name="dictate__promo_floating_button_message">Yeni: her yerde dikte et</string>
     <string name="dictate__promo_floating_button_action">Deneyin</string>
     <string name="setup__floating_button__btn">Kayan düğmeyi ayarla</string>
@@ -1277,7 +1276,7 @@
     <string name="setup__floating_button__skip_btn">Atla — klavyeyi kullanacağım</string>
     <string name="dictate__floating_button_badge_new">Yeni</string>
     <string name="dictate__panel_title">Yapay zekâ komutları</string>
-    <string name="dictate__panel_no_prompts">Henüz komut yok. Dictate ayarlarındaki Yeniden ifade etme bölümünden birkaç tane ekleyin.</string>
+    <string name="dictate__panel_no_prompts">Henüz komut yok. Voice Mode ayarlarındaki Yeniden ifade etme bölümünden birkaç tane ekleyin.</string>
     <string name="dictate__prompts_layout_title">Komut düzeni</string>
     <string name="dictate__prompts_layout_panel_label">Ayrı panel</string>
     <string name="dictate__prompts_layout_panel_description">Komutları sihirli değnek düğmesiyle kendi panellerinde açın.</string>
@@ -1295,8 +1294,8 @@
     <string name="dictate__voice_input_transcribing">Yazıya dökülüyor…</string>
     <string name="dictate__voice_input_stop">Bitti</string>
     <string name="dictate__voice_input_hint">Göndermek için dokun</string>
-    <string name="dictate__voice_ime_label">Dictate sesli giriş</string>
-    <string name="dictate__error_no_api_key">API anahtarı ayarlanmadı – Dictate ayarlarından yapılandırın.</string>
+    <string name="dictate__voice_ime_label">Voice Mode sesli giriş</string>
+    <string name="dictate__error_no_api_key">API anahtarı ayarlanmadı – Voice Mode ayarlarından yapılandırın.</string>
     <string name="dictate__error_transcription_failed">Yazıya dökme başarısız oldu.</string>
     <string name="dictate__error_unknown">Yazıya dökme sırasında bilinmeyen hata.</string>
     <string name="dictate__error_rewording_failed">Yeniden ifade etme başarısız oldu.</string>
@@ -1328,13 +1327,13 @@
     <string name="dictate__action_dismiss">Kapat</string>
     <string name="dictate__action_yes">Evet</string>
     <string name="dictate__action_no">Hayır, teşekkürler</string>
-    <string name="dictate__promo_rate_message">Dictate\'ten memnun musunuz?</string>
-    <string name="dictate__promo_donate_message">Dictate\'i destekleyin mi?</string>
+    <string name="dictate__promo_rate_message">Voice Mode\'ten memnun musunuz?</string>
+    <string name="dictate__promo_donate_message">Voice Mode\'i destekleyin mi?</string>
     <string name="dictate__promo_rate_action">Puan ver</string>
     <string name="dictate__promo_donate_action">Bağış yap</string>
-    <string name="dictate__promo_changelog_message">Dictate güncellendi</string>
+    <string name="dictate__promo_changelog_message">Voice Mode güncellendi</string>
     <string name="dictate__promo_changelog_action">Ayrıntılar</string>
-    <string name="dictate__title">Dictate</string>
+    <string name="dictate__title">Voice Mode</string>
     <string name="dictate__provider_title">Yazıya dökme sağlayıcısı</string>
     <string name="dictate__provider__openai">OpenAI</string>
     <string name="dictate__provider__groq">Groq</string>
@@ -1567,7 +1566,7 @@
     <string name="dictate__command_word_summary">“{word}” ile başlayan dikteler canlı komut olarak çalıştırılır</string>
     <string name="dictate__command_word_placeholder">Jarvis</string>
     <string name="dictate__command_word_info_title">Komut kelimesi hakkında</string>
-    <string name="dictate__command_word_info_description">Dictate normalde söylediğinizi yazar. Bir komut kelimesi ayarlarsanız, onunla başlayan bir dikte bunun yerine bir talimata dönüşür: kelime çıkarılır, kalanı seçili metinle birlikte (varsa) yapay zekâya gönderilir.\n\n“Jarvis, bunu daha resmî yap” seçimi yeniden yazar. “Jarvis, Japonya’nın başkenti neresi” cevabı alana yazar. Bu, dokunmak yerine adını söyleyerek ulaşılan canlı komut düğmesidir.\n\nKelime yalnızca diktenin en başında ve yalnızca tam kelime olarak sayılır; bu yüzden cümleye nadiren başladığınız bir şey seçin.</string>
+    <string name="dictate__command_word_info_description">Voice Mode normalde söylediğinizi yazar. Bir komut kelimesi ayarlarsanız, onunla başlayan bir dikte bunun yerine bir talimata dönüşür: kelime çıkarılır, kalanı seçili metinle birlikte (varsa) yapay zekâya gönderilir.\n\n“Jarvis, bunu daha resmî yap” seçimi yeniden yazar. “Jarvis, Japonya’nın başkenti neresi” cevabı alana yazar. Bu, dokunmak yerine adını söyleyerek ulaşılan canlı komut düğmesidir.\n\nKelime yalnızca diktenin en başında ve yalnızca tam kelime olarak sayılır; bu yüzden cümleye nadiren başladığınız bir şey seçin.</string>
     <string name="dictate__auto_formatting_title">Otomatik biçimlendirme</string>
     <string name="dictate__auto_formatting_summary">Sözlü biçimlendirme ipuçlarını Markdown\'a dönüştür (başlıklar, listeler, …)</string>
     <string name="dictate__system_prompt_title">Yeniden ifade etme talimatı</string>
@@ -1678,19 +1677,19 @@
     <string name="dictate__import_not_audio">Bu dosyada ses yok.</string>
     <string name="dictate__import_only_first">Yalnızca ilk dosya yazıya dökülür – {count} dosya daha atlandı.</string>
     <string name="dictate__setup_description">Mikrofonla dikte etmeye başlayabilmek için yapay zekâ sağlayıcınızı ve API anahtarınızı ayarlayın.</string>
-    <string name="dictate__setup_configure_btn">Dictate\'i yapılandır</string>
+    <string name="dictate__setup_configure_btn">Voice Mode\'i yapılandır</string>
     <string name="setup__grant_mic_permission__title">Mikrofon erişimi</string>
-    <string name="setup__grant_mic_permission__description">Dictate, sesinizi yazıya dökmek üzere kaydetmek için mikrofon erişimine ihtiyaç duyar.</string>
+    <string name="setup__grant_mic_permission__description">Voice Mode, sesinizi yazıya dökmek üzere kaydetmek için mikrofon erişimine ihtiyaç duyar.</string>
     <string name="setup__grant_mic_permission__btn">Mikrofon iznini ver</string>
     <string name="changelog__dialog_title">Yenilikler</string>
     <string name="changelog__view_all">Tüm değişiklikleri görüntüle</string>
-    <string name="changelog__intro">Dictate güncellendi. İşte yenilikler:</string>
+    <string name="changelog__intro">Voice Mode güncellendi. İşte yenilikler:</string>
     <string name="changelog__version_header">Sürüm {version}</string>
-    <string name="changelog__donate">Dictate\'ten memnun musunuz? Geliştirmeyi desteklemek için buraya dokunun ♥</string>
-    <string name="changelog__current">• Yepyeni bir klavye: Dictate artık, ses panelini açan özel bir mikrofon tuşuna sahip, tam donanımlı çok dilli bir düzen klavyesi olarak geliyor.\n• Kendi yapay zekânızı getirin: OpenAI uyumlu herhangi bir sağlayıcı seçin ve API anahtarınızı Ayarlar → Dictate altında girin.\n• Seçtiğiniz modelle desteklenen akıllı biçimlendirme ve yeniden ifade etme.\n• Önceki Dictate uygulamasındaki ayarlarınız otomatik olarak içe aktarılır.</string>
+    <string name="changelog__donate">Voice Mode\'ten memnun musunuz? Geliştirmeyi desteklemek için buraya dokunun ♥</string>
+    <string name="changelog__current">• Yepyeni bir klavye: Voice Mode artık, ses panelini açan özel bir mikrofon tuşuna sahip, tam donanımlı çok dilli bir düzen klavyesi olarak geliyor.\n• Kendi yapay zekânızı getirin: OpenAI uyumlu herhangi bir sağlayıcı seçin ve API anahtarınızı Ayarlar → Voice Mode altında girin.\n• Seçtiğiniz modelle desteklenen akıllı biçimlendirme ve yeniden ifade etme.\n• Önceki Voice Mode uygulamasındaki ayarlarınız otomatik olarak içe aktarılır.</string>
     <string name="changelog__v4_1_0">• Yeni: doğrudan klavyeden emoji arayın.\n• Yeni transkripsiyon sağlayıcısı: Soniox.\n• Son dikte ettiğinizi yeniden ekleyin ve klavye kapandığında kesilen kayıtları geri getirin.\n• İstem çubuğu artık canlı olarak yenileniyor: düzenlemek için bir isteme uzun basın.\n• Yapay zekâ sağlayıcıları ekranı artık hem etkin transkripsiyon hem de yeniden ifade sağlayıcınızı gösteriyor.\n• Daha büyük, daha kolay dokunulan kayıt düğmesi.\n• Düzeltmeler: bir destek bildirimi bazı dillerde takılıp çubuğu kapatabiliyordu; istemler, klavye veya tema seçiliyken yedekleme artık başarısız olmuyor; kaydedilen API anahtarları güncellemede korunuyor.</string>
-    <string name="changelog__v4_1_1">• Düzeltme: vurgu rengi bazı cihazlarda yeşil görünebiliyordu; tuşlar ve düğmeler yeniden Dictate mavisinde.</string>
-    <!-- Dictate on-device (offline) models -->
+    <string name="changelog__v4_1_1">• Düzeltme: vurgu rengi bazı cihazlarda yeşil görünebiliyordu; tuşlar ve düğmeler yeniden Voice Mode mavisinde.</string>
+    <!-- Voice Mode on-device (offline) models -->
     <string name="dictate__local_models_header">Cihazınızda çalışır — ses gönderilmez. Başlamak için bir model indirin.</string>
     <string name="dictate__local_models_live_header">Canlı (akış)</string>
     <string name="dictate__local_models_live_summary">Siz konuşurken yazarlar. Bunları kullanmak için Kayıt altındaki “Gerçek zamanlı transkripsiyon” seçeneğini açın.</string>
@@ -1726,7 +1725,7 @@
     <string name="dictate__floating_button_copy_to_clipboard_summary_on">Her dikte panoya da kopyalanır; böylece ekleme başarısız olursa metni elle yapıştırabilirsin. Bazı telefonlarda pano bildirimi gösterebilir.</string>
     <string name="dictate__floating_button_copy_to_clipboard_summary_off">Dikteler yalnızca eklenir, panoya kopyalanmaz.</string>
     <string name="dictate__floating_button_menu_group">Basılı tutma menüsü</string>
-    <string name="dictate__floating_button_menu_settings_title">Dictate ayarları</string>
+    <string name="dictate__floating_button_menu_settings_title">Voice Mode ayarları</string>
     <string name="dictate__floating_button_undo_summary_off">Geri alma düğmesi gösterilmiyor.</string>
     <string name="dictate__floating_button_undo_summary_on">Bir dikteden sonra, eklenen metni tek dokunuşla kaldırmak için düğmenin yanında bir geri alma düğmesi belirir.</string>
     <string name="dictate__floating_button_undo_title">Geri alma düğmesi</string>
@@ -1775,7 +1774,7 @@
     <string name="dictate__providers_rewording_single_call_note">Şu anda kullanılmıyor — yazıya dökme sağlayıcınız yeniden ifadeyi tek çağrısında yapıyor.</string>
     <string name="dictate__wear_title">Wear OS</string>
     <string name="dictate__wear_summary">Eşleştirilmiş saatten dikte seçenekleri</string>
-    <string name="dictate__wear_install_title">Dictate\'i saatinize yükleyin</string>
+    <string name="dictate__wear_install_title">Voice Mode\'i saatinize yükleyin</string>
     <string name="dictate__wear_install_summary">Play Store\'u açar — eşleşmiş Wear OS 3+ saatte saatinizi hedef olarak seçin.</string>
     <string name="dictate__wear_auto_rewording_title">Saat diktelerini otomatik yeniden ifade et</string>
     <string name="dictate__wear_auto_rewording_summary">Saat diktelerini telefondaki gibi yeniden ifade et.</string>
@@ -1783,7 +1782,7 @@
     <string name="quick_action__system_prev_input_method__tooltip">Önceki klavyene geri dön</string>
     <string name="quick_action__system_input_method_picker">Klavye seç</string>
     <string name="quick_action__system_input_method_picker__tooltip">Sistem klavye seçiciyi aç</string>
-    <string name="changelog__v4_3_0">• YENİ: Cihaz üzerinde yazıya dökme — tamamen çevrimdışı dikte edin. İnternet gerekmez ve hiçbir şey telefonunuzdan çıkmaz. Ayarlar ▸ Dictate ▸ Sağlayıcılar bölümünden bir kez konuşma modeli indirin. 📴\n• YENİ: Wear OS klavyesi — doğrudan saatinizden, telefonunuz üzerinden veya bağımsız olarak dikte edin. ⌚\n• YENİ: Bul ve değiştir kuralları — her yazıya dökmede tekrarlayan kelimeleri, adları veya ifadeleri otomatik düzeltin. Ayarlar ▸ Dictate ▸ Özel eşlemeler bölümünden ayarlayın. 🔁\n• YENİ: Tek çağrı modu — yetenekli tek bir yapay zekâ modeli, tek bir istekte yazıya döker ve biçimlendirir; daha hızlı ve genellikle daha ucuz. Her sağlayıcı için açabilirsiniz. ⚡\n• YENİ: Önceki klavyeye dönmek veya sistem klavye seçiciyi açmak için Smartbar eylemleri. ⌨️\n• Klavyenin vurgu rengi artık Ayarlar ▸ Tema bölümünde seçtiğiniz rengi izliyor. 🎨\n• Kayan dikte düğmesine isteğe bağlı geri al düğmesi eklendi. ↩️\n• Çeşitli düzeltmeler ve kararlılık iyileştirmeleri. 🛠️</string>
+    <string name="changelog__v4_3_0">• YENİ: Cihaz üzerinde yazıya dökme — tamamen çevrimdışı dikte edin. İnternet gerekmez ve hiçbir şey telefonunuzdan çıkmaz. Ayarlar ▸ Voice Mode ▸ Sağlayıcılar bölümünden bir kez konuşma modeli indirin. 📴\n• YENİ: Wear OS klavyesi — doğrudan saatinizden, telefonunuz üzerinden veya bağımsız olarak dikte edin. ⌚\n• YENİ: Bul ve değiştir kuralları — her yazıya dökmede tekrarlayan kelimeleri, adları veya ifadeleri otomatik düzeltin. Ayarlar ▸ Voice Mode ▸ Özel eşlemeler bölümünden ayarlayın. 🔁\n• YENİ: Tek çağrı modu — yetenekli tek bir yapay zekâ modeli, tek bir istekte yazıya döker ve biçimlendirir; daha hızlı ve genellikle daha ucuz. Her sağlayıcı için açabilirsiniz. ⚡\n• YENİ: Önceki klavyeye dönmek veya sistem klavye seçiciyi açmak için Smartbar eylemleri. ⌨️\n• Klavyenin vurgu rengi artık Ayarlar ▸ Tema bölümünde seçtiğiniz rengi izliyor. 🎨\n• Kayan dikte düğmesine isteğe bağlı geri al düğmesi eklendi. ↩️\n• Çeşitli düzeltmeler ve kararlılık iyileştirmeleri. 🛠️</string>
     <string name="dictate__audio_source_title">Ses giriş kaynağı</string>
     <string name="dictate__audio_source_default">Varsayılan mikrofon</string>
     <string name="dictate__audio_source_default_summary">Telefonun yerleşik ses işlemesiyle standart mikrofon</string>
@@ -1839,7 +1838,7 @@
     <string name="dictate__history_export_all_result">{written} yazıldı, {skipped} zaten vardı, {failed} başarısız</string>
     <string name="dictate__history_export_last_failure">Bir yazma {when} başarısız oldu. “Şimdi tümünü aktar” eksikleri tamamlar.</string>
     <string name="dictate__history_export_warning_title">Oraya ne gider</string>
-    <string name="dictate__history_export_warning_message">Klasör, bundan sonra yapacağınız her diktenin metnini, açarsanız kayıtları da barındıracak. Onu eşitleyen her şey — bir bulut istemcisi, bir yedekleme aracı, başka bir uygulama — bu dökümleri bu cihazın dışına taşır.\n\nDictate, siz klasörün bağlantısını kesene kadar yazmayı sürdürür ve klasörden asla bir şey silmez: geçmişten düşen kayıtlar klasörde kalır. Parola ve gizli alanlar hiçbir zaman kaydedilmez, dolayısıyla hiç aktarılmaz.</string>
+    <string name="dictate__history_export_warning_message">Klasör, bundan sonra yapacağınız her diktenin metnini, açarsanız kayıtları da barındıracak. Onu eşitleyen her şey — bir bulut istemcisi, bir yedekleme aracı, başka bir uygulama — bu dökümleri bu cihazın dışına taşır.\n\nVoice Mode, siz klasörün bağlantısını kesene kadar yazmayı sürdürür ve klasörden asla bir şey silmez: geçmişten düşen kayıtlar klasörde kalır. Parola ve gizli alanlar hiçbir zaman kaydedilmez, dolayısıyla hiç aktarılmaz.</string>
     <string name="dictate__history_export_needs_history">Klasöre aktarma, geçmişin kaydettiğini yazar; bu yüzden geçmiş açık olmalıdır.</string>
     <string name="dictate__history_export_enable_history">Geçmişi aç</string>
     <string name="dictate__history_export_pick_failed">Bu klasör için yazma izni alınamadı</string>
@@ -1862,15 +1861,15 @@
     <string name="dictate__stats_reset_confirm_title">İstatistikler sıfırlansın mı?</string>
     <string name="dictate__stats_reset_confirm_msg">Bu, tüm dikte istatistiklerinizi kalıcı olarak siler.</string>
     <string name="dictate__stats_share">Paylaş</string>
-    <string name="dictate__stats_share_text">Dictate ile %1$s kazandım — %2$s dikte, %3$s kelime. 🎤</string>
+    <string name="dictate__stats_share_text">Voice Mode ile %1$s kazandım — %2$s dikte, %3$s kelime. 🎤</string>
     <string name="dictate__stats_view">İstatistikleri gör</string>
     <string name="dictate__stats_milestones_title">Kilometre taşı kutlamaları</string>
     <string name="dictate__stats_milestones_summary">Kazanılan zaman veya dikte kilometre taşına ulaşınca bir kez kutla</string>
     <string name="dictate__stats_milestone_title">Kilometre taşına ulaşıldı 🎉</string>
-    <string name="dictate__stats_milestone_time">Dictate ile %s kazandın — harika!</string>
-    <string name="dictate__stats_milestone_count">Dictate ile %s dikteye ulaştın!</string>
-    <string name="dictate__promo_milestone_time">Dictate ile %s kazanıldı! 🎉</string>
-    <string name="dictate__promo_milestone_count">Dictate ile %s dikte! 🎉</string>
+    <string name="dictate__stats_milestone_time">Voice Mode ile %s kazandın — harika!</string>
+    <string name="dictate__stats_milestone_count">Voice Mode ile %s dikteye ulaştın!</string>
+    <string name="dictate__promo_milestone_time">Voice Mode ile %s kazanıldı! 🎉</string>
+    <string name="dictate__promo_milestone_count">Voice Mode ile %s dikte! 🎉</string>
     <string name="dictate__promo_milestone_action">İstatistik</string>
     <string name="dictate__reasoning_effort_title">Akıl yürütme çabası</string>
     <string name="dictate__reasoning_effort_off">Kapalı</string>
@@ -1885,7 +1884,7 @@
     <string name="dictate__reasoning_effort_high_summary">En çok düşünme, daha yavaş</string>
     <string name="dictate__reasoning_effort_custom">Özel</string>
     <string name="dictate__action_save_audio">Sesi kaydet</string>
-    <string name="dictate__audio_saved">Ses Downloads/Dictate klasörüne kaydedildi: %s</string>
+    <string name="dictate__audio_saved">Ses Downloads/VoiceMode klasörüne kaydedildi: %s</string>
     <string name="dictate__audio_save_failed">Ses kaydedilemedi</string>
     <string name="dictate__instant_recording_mode_off">Kapalı</string>
     <string name="dictate__instant_recording_mode_always">Klavye her açıldığında</string>
@@ -1948,11 +1947,11 @@
     <string name="apptour__intro_body">İşte Dictate 5.0’daki yenilikler — öne çıkanlar bir dakikadan kısa sürede. Doğrudan o ayara gitmek için herhangi bir sayfada «Dene»ye dokun.</string>
     <string name="apptour__glide_eyebrow">Klavye</string>
     <string name="apptour__glide_title">Kaydırarak yaz</string>
-    <string name="apptour__glide_body">Parmağını tuştan tuşa kaydır, Dictate bu izi bütün kelimelere dönüştürsün. Her dil, istendiğinde indirilen kendi sözlüğünü getirir — Hareketler altından etkinleştir.</string>
+    <string name="apptour__glide_body">Parmağını tuştan tuşa kaydır, Voice Mode bu izi bütün kelimelere dönüştürsün. Her dil, istendiğinde indirilen kendi sözlüğünü getirir — Hareketler altından etkinleştir.</string>
     <string name="apptour__glide_cta">Kaydırarak yazmayı ayarla</string>
     <string name="apptour__suggestions_eyebrow">Klavye</string>
     <string name="apptour__suggestions_title">Otomatik düzeltme ve öneriler</string>
-    <string name="apptour__suggestions_body">Sen yazarken Dictate uygun kelimeler önerir ve yazım hatalarını sessizce düzeltir. Gerçekten yazdığın kelime öneri çubuğunda kalır, böylece tek dokunuş her düzeltmeyi geri alır.</string>
+    <string name="apptour__suggestions_body">Sen yazarken Voice Mode uygun kelimeler önerir ve yazım hatalarını sessizce düzeltir. Gerçekten yazdığın kelime öneri çubuğunda kalır, böylece tek dokunuş her düzeltmeyi geri alır.</string>
     <string name="apptour__suggestions_cta">Önerileri ayarla</string>
     <string name="apptour__realtime_eyebrow">Transkripsiyon</string>
     <string name="apptour__realtime_title">Gerçek zamanlı transkripsiyon</string>
@@ -1985,16 +1984,16 @@
     <string name="apptour51__continue_to">{version} sürümüne devam et</string>
     <string name="apptour51__intro_eyebrow">Sürüm 5.1</string>
     <string name="apptour51__intro_title">5.1’deki yenilikler</string>
-    <string name="apptour51__intro_body">Dictate, 5.0’dan bu yana çok gelişti. İşte 5.1’in öne çıkanları — doğrudan o özelliğe atlamak için herhangi bir sayfada «Dene»ye dokun.</string>
+    <string name="apptour51__intro_body">Voice Mode, 5.0’dan bu yana çok gelişti. İşte 5.1’in öne çıkanları — doğrudan o özelliğe atlamak için herhangi bir sayfada «Dene»ye dokun.</string>
     <string name="apptour51__history_eyebrow">Transkripsiyon</string>
     <string name="apptour51__history_title">Transkripsiyon geçmişi</string>
     <string name="apptour51__history_body">Artık her dikte, aranabilir bir geçmişte saklanır. Geçmiş herhangi bir metni tek dokunuşla yeniden ekle, orijinal sesi yeniden çal, yeniden transkribe et ya da en çok kullandıklarını sabitle. Özel bir ekran, ses kayıtlarının ne kadar saklanacağı dahil her şeyi yönetmeni sağlar.</string>
     <string name="apptour51__longform_eyebrow">Transkripsiyon</string>
     <string name="apptour51__longform_title">Uzun dikte</string>
-    <string name="apptour51__longform_body">İstediğin kadar konuş. Uzun kayıtlar otomatik olarak parçalara bölünür ve sen devam ederken arka planda transkribe edilir; böylece metnini daha erken alırsın ve asla bir uzunluk sınırına takılmazsın. Bir parçayı kendin kes ya da Dictate’in doğal duraklamaları algılamasına izin ver.</string>
+    <string name="apptour51__longform_body">İstediğin kadar konuş. Uzun kayıtlar otomatik olarak parçalara bölünür ve sen devam ederken arka planda transkribe edilir; böylece metnini daha erken alırsın ve asla bir uzunluk sınırına takılmazsın. Bir parçayı kendin kes ya da Voice Mode’in doğal duraklamaları algılamasına izin ver.</string>
     <string name="apptour51__gif_eyebrow">Klavye</string>
     <string name="apptour51__gif_title">GIF arama</string>
-    <string name="apptour51__gif_body">Dictate’ten hiç çıkmadan GIF bul ve gönder. GIF panelini aç, istediğin her şeyi ara ve doğrudan sohbetine bırak — tam buraya yerleştirilmiş, Gboard tarzı hızlı bir seçici.</string>
+    <string name="apptour51__gif_body">Voice Mode’ten hiç çıkmadan GIF bul ve gönder. GIF panelini aç, istediğin her şeyi ara ve doğrudan sohbetine bırak — tam buraya yerleştirilmiş, Gboard tarzı hızlı bir seçici.</string>
     <string name="apptour51__classic_eyebrow">Klasik düzen</string>
     <string name="apptour51__classic_title">Klasik düzen, yenilendi</string>
     <string name="apptour51__classic_body">Klavyesiz dikte ekranı büyük bir güncelleme aldı: sürükle bırak ile oluşturduğun serbestçe düzenlenebilir bir eylem satırı, uzun kayıt denetimleri, bir ya da iki istem satırı, her zaman erişilebilir bir geri silme tuşu, Enter tuşunda bir karakter açılır menüsü ve tek elle daha kolay kullanım için isteğe bağlı ikinci bir «klavye değiştir» düğmesi.</string>
@@ -2009,14 +2008,14 @@
     <string name="apptour51__more_body">Birçok küçük yükseltme de var: ayarlardan etkin transkripsiyon dilini seç, durdurma düğmesi artık çalışan bir isteği gerçekten iptal eder, API anahtarları için bir göster/gizle geçişi ve diller arası otomatik düzeltme olmadan çok dilli yazım — ayrıca klasik düzen, sayı tuş takımı ve ötesinde birçok düzeltme.</string>
     <string name="apptour51__outro_eyebrow">İşte 5.1</string>
     <string name="apptour51__outro_title">Güncellemenin keyfini çıkar</string>
-    <string name="apptour51__outro_body">Dictate’i kullandığın için teşekkürler! Her gün işine yarıyorsa, küçük bir bağış projeyi ayakta tutar. Bu turların herhangi birine istediğin zaman Ayarlar › Hakkında altından yeniden göz atabilirsin.</string>
+    <string name="apptour51__outro_body">Voice Mode’i kullandığın için teşekkürler! Her gün işine yarıyorsa, küçük bir bağış projeyi ayakta tutar. Bu turların herhangi birine istediğin zaman Ayarlar › Hakkında altından yeniden göz atabilirsin.</string>
     <string name="apptour52__cta_try">Dene</string>
     <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
     <string name="apptour52__intro_title">Her yerde dikte et</string>
-    <string name="apptour52__intro_body">Bu sürüm Dictate\'i kendi klavyesinin ötesine taşıyor: telefonunun sesli girişi olarak, her yerden sesli komutlar için ve uzun diktelerini düzenlemek için. İşte yenilikler.</string>
+    <string name="apptour52__intro_body">Bu sürüm Voice Mode\'i kendi klavyesinin ötesine taşıyor: telefonunun sesli girişi olarak, her yerden sesli komutlar için ve uzun diktelerini düzenlemek için. İşte yenilikler.</string>
     <string name="apptour52__voiceinput_eyebrow">Sistem geneli sesli giriş</string>
-    <string name="apptour52__voiceinput_title">Her klavyeden Dictate</string>
-    <string name="apptour52__voiceinput_body">Dictate artık sistem sesli girişi olarak kaydoluyor: diğer klavyelerin ve uygulamaların mikrofon tuşu Dictate üzerinden yazıya döküyor — kendi sağlayıcın, kendi istemlerin ve kendi yerel modellerinle. Klavye listende „Dictate sesli giriş“i etkinleştir ve sesli giriş yöntemi olarak seç. (Gboard mikrofonunu Google\'a sabitler — sistem ayarına uyan bir klavye kullan.)</string>
+    <string name="apptour52__voiceinput_title">Her klavyeden Voice Mode</string>
+    <string name="apptour52__voiceinput_body">Voice Mode artık sistem sesli girişi olarak kaydoluyor: diğer klavyelerin ve uygulamaların mikrofon tuşu Voice Mode üzerinden yazıya döküyor — kendi sağlayıcın, kendi istemlerin ve kendi yerel modellerinle. Klavye listende „Voice Mode sesli giriş“i etkinleştir ve sesli giriş yöntemi olarak seç. (Gboard mikrofonunu Google\'a sabitler — sistem ayarına uyan bir klavye kullan.)</string>
     <string name="apptour52__liveprompt_eyebrow">Serbest sesli komut</string>
     <string name="apptour52__liveprompt_title">Yapay zekâya ne yapacağını söyle — her yerde</string>
     <string name="apptour52__liveprompt_body">Menüyü açmak için yüzen düğmeyi basılı tut, „Live prompt“a dokun ve ne istediğini söyle: „yarınki toplantı için kibar bir ret yaz“, „yukarıdaki metni İspanyolcaya çevir“. Seçili metin bağlam olur; seçim yoksa yapay zekâ sıfırdan yazar.</string>
@@ -2028,7 +2027,7 @@
     <string name="apptour52__trim_body">Cümlenin ortasında düşündün mü? Birkaç saniyeden uzun sessizlikler gönderilmeden önce kesiliyor — söylenen her kelime kalıyor, yalnızca ölü zaman gidiyor. Daha kısa yükleme, daha az bekleme ve daha az maliyet demek.</string>
     <string name="apptour52__paragraphs_eyebrow">Okunur uzun dikteler</string>
     <string name="apptour52__paragraphs_title">Otomatik paragraflar</string>
-    <string name="apptour52__paragraphs_body">Uzun dikteler artık tek bir metin duvarı olarak gelmiyor. Bir kelime sayısı belirle, Dictate bir sonraki cümle sonunda yeni paragrafa geçsin — belirlenimci ve yalnızca düz metinlerde, yapay zekâ ile biçimlendirilmiş metinde asla.</string>
+    <string name="apptour52__paragraphs_body">Uzun dikteler artık tek bir metin duvarı olarak gelmiyor. Bir kelime sayısı belirle, Voice Mode bir sonraki cümle sonunda yeni paragrafa geçsin — belirlenimci ve yalnızca düz metinlerde, yapay zekâ ile biçimlendirilmiş metinde asla.</string>
     <string name="apptour52__smartturn_eyebrow">Daha akıllı uzun mod</string>
     <string name="apptour52__smartturn_title">Biten düşüncelerde keser</string>
     <string name="apptour52__smartturn_body">Uzun dikte artık her duraklamada kesmek yerine, bir düşünceyi gerçekten bitirdiğini anlamak için yerel Smart Turn v3 modelini kullanabilir. İsteğe bağlı ve gerektiğinde indirilir.</string>
@@ -2044,7 +2043,7 @@
     <string name="apptour53__intro_body">Bu sürüm en çok yaptığın iki şeyle ilgili: telefonunla konuşmak ve onda yazmak. İkisi de hızlandı, ikisi de yolundan daha iyi çekiliyor.</string>
     <string name="apptour53__pushtotalk_eyebrow">Bas konuş</string>
     <string name="apptour53__pushtotalk_title">Mikrofonu basılı tut, bırakınca gitsin</string>
-    <string name="apptour53__pushtotalk_body">Sesli mesaj gibi: mikrofon tuşunu basılı tut ve konuş, bırak ve gönderilsin. Kaydı atmak için sola kaydır, elini serbest bırakmak için yukarı sürükleyip kilitle. Kısa dokunuş her zamanki gibi çalışıyor. Dictate ayarlarından açılır.</string>
+    <string name="apptour53__pushtotalk_body">Sesli mesaj gibi: mikrofon tuşunu basılı tut ve konuş, bırak ve gönderilsin. Kaydı atmak için sola kaydır, elini serbest bırakmak için yukarı sürükleyip kilitle. Kısa dokunuş her zamanki gibi çalışıyor. Voice Mode ayarlarından açılır.</string>
     <string name="apptour53__autocorrect_eyebrow">Yeniden yazılan düzeltme</string>
     <string name="apptour53__autocorrect_title">Yazım hatanı değil, parmağını okuyor</string>
     <string name="apptour53__autocorrect_body">Düzeltmeler artık bitmiş kelimeden tahmin etmek yerine, tuşlara gerçekte nereye dokunduğundan yola çıkıyor ve olası kelimeleri sen yazarken tarıyor. Test kümemizde başarı %88\'den %98\'e çıktı — fark en çok hızlı ve özensiz yazarken görülüyor.</string>
@@ -2062,7 +2061,7 @@
     <string name="apptour53__prediction_body">Öneri çubuğu artık genelde sırada ne geldiğini sunuyor — senin yazışından öğrenerek. Ve herhangi bir kelimeyi uzun basarak sözlüğüne ekleyebilirsin; isimlerin ve jargonun artık düzeltilmesin.</string>
     <string name="apptour53__ownserver_eyebrow">Kendi sunucun</string>
     <string name="apptour53__ownserver_title">Kendi barındırdığın sunucu, artık canlı da</string>
-    <string name="apptour53__ownserver_body">Kendi sunucun da canlı yazıya dökmeyi üstlenebilir — OpenAI\'ın realtime protokolünü konuşuyorsa. Önünde uyuyan bir makine varsa, Dictate onu erkenden uyandırabilir; böylece ilk istek açılışı beklemez.</string>
+    <string name="apptour53__ownserver_body">Kendi sunucun da canlı yazıya dökmeyi üstlenebilir — OpenAI\'ın realtime protokolünü konuşuyorsa. Önünde uyuyan bir makine varsa, Voice Mode onu erkenden uyandırabilir; böylece ilk istek açılışı beklemez.</string>
     <string name="apptour53__outro_eyebrow">İşte 5.3</string>
     <string name="apptour53__outro_title">İyi dikteler</string>
     <string name="apptour53__outro_body">Ayrıca bir sürü küçük şey: her sağlayıcı kendi logosunu taşıyor, kayıt göstergesi sabit, nabız gibi ya da sese tepkili olabiliyor, komut çıktısı orijinal metni yanında tutabiliyor ve paragraflar kısaltmalardan sonra artık bölünmüyor. Tüm turları Ayarlar › Hakkında altında yeniden izleyebilirsin.</string>
@@ -2073,7 +2072,7 @@
     <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
     <string name="apptour60__intro_title">Kredi, Çince ve daha ucuz dikte</string>
     <string name="apptour60__intro_body">Bu sürüm ikinci bir giriş yolu ekliyor — kendi API anahtarınızı getirmek yerine kredi satın almak —, ayrıca Çince için pinyin, sözlük kazanan yedi dil ve daha az maliyetli kayıtlar.</string>
-    <string name="apptour60__cloud_eyebrow">Yeni: Dictate Cloud</string>
+    <string name="apptour60__cloud_eyebrow">Yeni: Voice Mode Cloud</string>
     <string name="apptour60__cloud_title">Anahtar aramak yerine dakika satın alın</string>
     <string name="apptour60__cloud_body">Bir sağlayıcıda hesap açmak istemiyorsanız artık doğrudan kredi satın alabilirsiniz. Evet, bu bizim sunucumuzdan geçiyor — ama ne kayıtlarınız ne de metinleriniz orada saklanıyor, doğrudan iletiliyor. Sunucunun tüm kaynak kodu açık ve okunabilir. Kendi anahtarınız eskisi gibi çalışmayı sürdürüyor.</string>
     <string name="apptour60__speedup_eyebrow">API maliyetinden tasarruf</string>
@@ -2093,7 +2092,7 @@
     <string name="apptour60__more_body">Durdurma düğmesini basılı tutmak takılıp kalan bir dökümü geri alır. Yüzen düğme artık doğrulayamadığı bir başarıyı bildirmiyor ve ekranla birlikte sönüyor. Kaydırarak yazma artık kendi eklediğiniz sözcükleri tanıyor. Güncellemenin hemen ardından yaşanan çökme de giderildi.</string>
     <string name="apptour60__outro_eyebrow">İşte 6.0</string>
     <string name="apptour60__outro_title">İyi kullanımlar</string>
-    <string name="apptour60__outro_body">Dictate\'i nasıl kullanırsanız kullanın — kendi anahtarınız, kendi sunucunuz, cihazdaki bir model ya da kredi —, diğer yollarda hiçbir şey değişmedi. Tüm turları Ayarlar › Hakkında altında yeniden izleyebilirsiniz.</string>
+    <string name="apptour60__outro_body">Voice Mode\'i nasıl kullanırsanız kullanın — kendi anahtarınız, kendi sunucunuz, cihazdaki bir model ya da kredi —, diğer yollarda hiçbir şey değişmedi. Tüm turları Ayarlar › Hakkında altında yeniden izleyebilirsiniz.</string>
     <string name="apptour61__cta_try">Dene</string>
     <string name="apptour61__art_folder">Çıkartmalar</string>
     <string name="apptour61__art_share">Şununla paylaş</string>
@@ -2101,13 +2100,13 @@
     <string name="apptour61__art_fixed">bir</string>
     <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
     <string name="apptour61__intro_title">Çıkartmalar, sesli mesajlar ve yazım hatasını nihayet gören bir otomatik düzeltme</string>
-    <string name="apptour61__intro_body">Klavyeye kendi çıkartmalarının bulunduğu bir klasörü göster, bir sesli mesajı ne dediğini öğrenmek için doğrudan Dictate ile paylaş ve görmemek üzere kurulmuş olduğu hatayı nihayet fark eden bir otomatik düzeltme kullan.</string>
+    <string name="apptour61__intro_body">Klavyeye kendi çıkartmalarının bulunduğu bir klasörü göster, bir sesli mesajı ne dediğini öğrenmek için doğrudan Voice Mode ile paylaş ve görmemek üzere kurulmuş olduğu hatayı nihayet fark eden bir otomatik düzeltme kullan.</string>
     <string name="apptour61__stickers_eyebrow">Yeni: kendi çıkartmaların</string>
     <string name="apptour61__stickers_title">Telefondaki bir klasör, klavyede</string>
-    <string name="apptour61__stickers_body">Dictate\'e herhangi bir klasörü göster, içindeki görseller çıkartmaya dönüşsün — alt klasörler kendi favorileri ve son kullanılanlarıyla sekme olur. Herhangi bir uygulamadan paylaşma menüsüyle ekle, klavyeden çıkmadan sil. Bir sohbet uygulamasının gerçekte kabul ettiği, kabul ettiğini söylediği şey değildir: bu yüzden her çıkartma girişte bir kez biçime sokulur ve oradan yalnızca gönderilir.</string>
-    <string name="apptour61__share_eyebrow">Yeni: Dictate ile paylaş</string>
+    <string name="apptour61__stickers_body">Voice Mode\'e herhangi bir klasörü göster, içindeki görseller çıkartmaya dönüşsün — alt klasörler kendi favorileri ve son kullanılanlarıyla sekme olur. Herhangi bir uygulamadan paylaşma menüsüyle ekle, klavyeden çıkmadan sil. Bir sohbet uygulamasının gerçekte kabul ettiği, kabul ettiğini söylediği şey değildir: bu yüzden her çıkartma girişte bir kez biçime sokulur ve oradan yalnızca gönderilir.</string>
+    <string name="apptour61__share_eyebrow">Yeni: Voice Mode ile paylaş</string>
     <string name="apptour61__share_title">O sesli mesajın ne dediğini öğren</string>
-    <string name="apptour61__share_body">Dictate artık ses ve video için paylaşma menüsünde. Oraya bir sesli mesaj paylaş, kendiliğinden yazıya dökmeye başlayan bir ekran açılsın — aranacak alan yok, basılacak düğme yok. Metinde arama yapılabilir ve uzun kayıtlar geri çevrilmek yerine parçalar hâlinde işlenir.</string>
+    <string name="apptour61__share_body">Voice Mode artık ses ve video için paylaşma menüsünde. Oraya bir sesli mesaj paylaş, kendiliğinden yazıya dökmeye başlayan bir ekran açılsın — aranacak alan yok, basılacak düğme yok. Metinde arama yapılabilir ve uzun kayıtlar geri çevrilmek yerine parçalar hâlinde işlenir.</string>
     <string name="apptour61__autocorrect_eyebrow">Otomatik düzeltme</string>
     <string name="apptour61__autocorrect_title">Göremediği yazım hatası</string>
     <string name="apptour61__autocorrect_body">Bir kelimenin düzeltilip düzeltilemeyeceğine karar veren kural, komşu tuşa neredeyse kayan bir parmağı geçiriyor ama tam üstüne inen parmağı hiç geçirmiyordu — oysa sıradan hata tam olarak budur. Bu düzeldi ve düzeltmenin ne kadar kararlı olacağını artık sen ayarlıyorsun. Boşluk tuşunun alacağı kelime vurgu renginle işaretlenir, hemen ardından geri tuşu ise tam olarak yazdığın şeyi geri verir.</string>
@@ -2136,7 +2135,7 @@
     <string name="apptour62__learning_body">Bir ismi, bir terimi ya da bir yeri yeterince sık yaz, klavye onu saklasın: artık hata olarak işaretlemeyi bırakır, onu önermeye ve ona düzeltmeye başlar. Bu güncelleme özelliği herkeste açıyor, daha önce kapatmış olanlarda da. Gizli modda, parola alanlarında ve tuş tuş yazmadığın hiçbir şeyden öğrenilmez; her şey bu cihazda kalır ve aşağıdaki düğme listeyi — ve anahtarı — açar.</string>
     <string name="apptour62__themes_eyebrow">Beş yeni görünüm</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep ve karanlık bir E-Ink</string>
-    <string name="apptour62__themes_body">Dictate Glass, uygulamayı tuşlar arasındaki boşluklardan gösterirken tuşların kendisi üzerinde okunacak kadar örtücü kalır; Glass Clear daha ileri gider ve daha güzel durur, bunun bedeli de klavyenin arkasına çizen uygulamaların yazısının sızmasıdır. Sand sıcak bir açık tema, Deep sakin bir koyu tema, E-Ink ise nihayet gece sürümüne kavuştu — yani otomatik geçiş hava karardıktan sonra artık eline beyaz bir klavye tutuşturmuyor.</string>
+    <string name="apptour62__themes_body">Voice Mode Glass, uygulamayı tuşlar arasındaki boşluklardan gösterirken tuşların kendisi üzerinde okunacak kadar örtücü kalır; Glass Clear daha ileri gider ve daha güzel durur, bunun bedeli de klavyenin arkasına çizen uygulamaların yazısının sızmasıdır. Sand sıcak bir açık tema, Deep sakin bir koyu tema, E-Ink ise nihayet gece sürümüne kavuştu — yani otomatik geçiş hava karardıktan sonra artık eline beyaz bir klavye tutuşturmuyor.</string>
     <string name="apptour62__split_eyebrow">Yeni: bölünmüş klavye</string>
     <string name="apptour62__split_title">İki başparmak da, uzanmadan</string>
     <string name="apptour62__split_body">Tek elli ve yüzen modun yanına gelen yeni bir hızlı eylem, sıraları birbirinden ayırarak her başparmağın kendi yarısında kalmasını sağlıyor. Yalnızca QWERTY değil, her düzen bölünüyor; çünkü ayrım yeri her düzene ayrı ayrı yazılmak yerine tuş genişliklerinden hesaplanıyor. Yatay modda ise uygulama, ikisine birden yer olduğu sürece görünür kalıyor.</string>
@@ -2157,7 +2156,7 @@
     <string name="apptour62__gestures_body">Sembol tuşunu basılı tut, istediğin karaktere kaydır ve bırak: karakter eklenir, harfler de çoktan geri gelmiştir — ileri geri geçiş yok. Boşluk çubuğunda yukarı kaydırmak artık yalnızca önceki kelimeye değil, bir üstteki satıra ulaşıyor. Tuşlar arasındaki boşluk da gerçekten görülebilen bir aralıkta ayarlanabiliyor.</string>
     <string name="apptour62__export_eyebrow">Yeni: dikteler dosya olarak</string>
     <string name="apptour62__export_title">Her dikte, seçtiğin bir klasöre</string>
-    <string name="apptour62__export_body">Bir kez klasör seç, biten her dikte tam bittiği anda oraya düz metin dosyası olarak da yazılsın. O klasörü izleyen her ne varsa — bir not uygulaması, bir eşitleme aracı, yedeğin — Dictate onun dilini öğrenmek zorunda kalmadan metinlerini alır.</string>
+    <string name="apptour62__export_body">Bir kez klasör seç, biten her dikte tam bittiği anda oraya düz metin dosyası olarak da yazılsın. O klasörü izleyen her ne varsa — bir not uygulaması, bir eşitleme aracı, yedeğin — Voice Mode onun dilini öğrenmek zorunda kalmadan metinlerini alır.</string>
     <string name="apptour62__more_eyebrow">Ayrıca</string>
     <string name="apptour62__more_title">Pek çok küçük şey</string>
     <string name="apptour62__more_body">Öneriler artık yalnızca İngilizcede değil, her dilde imlecin önündeki iki kelimeye bakıyor. Yedek, API anahtarların olmadan alınabiliyor; böylece gönül rahatlığıyla paylaşılabiliyor. Azure\'un kendi transkripsiyon modellerine ulaşılabiliyor, çevrimdışı kullanım için model seçmek artık çevrimdışı motora da geçiriyor ve her isteğin beklemeye uygun bir süre sınırı var. Dikteler gönderildikleri anda geçmişte beliriyor, içe aktarmalar hangi adımda olduklarını söylüyor ve iptal edilebiliyor, metin de zorluk çıkaran uygulamalara daha güvenilir ulaşıyor.</string>
@@ -2170,7 +2169,7 @@
     <string name="apptour63__intro_body">Kamerayı basılı bir metne tut, metin alana düşsün. İmleç, seçim ve pano sonunda tek bir paneli paylaşıyor. Her Smartbar düğmesi uzun basışla ikinci bir eylem taşıyabiliyor. Ve çevrimdışı dikte için nihayet bir telefona gerçekten sığan modeller var.</string>
     <string name="apptour63__scan_eyebrow">Yeni: metni tara</string>
     <string name="apptour63__scan_title">Basılı metin doğrudan alana</string>
-    <string name="apptour63__scan_body">Mektuptaki IBAN, kutudaki seri numarası, kolideki adres: kamerayı doğrult, metin yazmakta olduğun yere gelsin, yeniden yazılmak yerine. Tanıma bu cihazda yapılır — hiçbir şey yüklenmez ve hiçbir sağlayıcı işin içine girmez. Dictate kamera iznini de hiç istemez: fotoğrafı sistem kamerası çeker ve yalnızca o tek görüntüyü geri verir; o görüntü okunur okunmaz silinir.</string>
+    <string name="apptour63__scan_body">Mektuptaki IBAN, kutudaki seri numarası, kolideki adres: kamerayı doğrult, metin yazmakta olduğun yere gelsin, yeniden yazılmak yerine. Tanıma bu cihazda yapılır — hiçbir şey yüklenmez ve hiçbir sağlayıcı işin içine girmez. Voice Mode kamera iznini de hiç istemez: fotoğrafı sistem kamerası çeker ve yalnızca o tek görüntüyü geri verir; o görüntü okunur okunmaz silinir.</string>
     <string name="apptour63__editing_eyebrow">Yeni: düzenleme paneli</string>
     <string name="apptour63__editing_title">İmleç, seçim ve pano tek yerde</string>
     <string name="apptour63__editing_body">Hepsi zaten vardı, bilmen gereken on bir tuşa dağılmış hâlde. Artık tek bir panel: karakter, sözcük ya da satır bazında hareket, seçme, kopyalama, yapıştırma, geri alma. Basılı tutulan tuş kendini tekrarlıyor, on bir dokunuş istemek yerine. Sayı tuş takımı da artık açıkça çağrılabiliyor; kimsenin atamadığı bir hareketle rastlantı sonucu bulunmak yerine.</string>
@@ -2241,12 +2240,12 @@
     <string name="dictate__legacy_prompt_rows_one">Tek satır</string>
     <string name="dictate__legacy_prompt_rows_two">İki satır</string>
     <string name="about__website__title">Web sitesi</string>
-    <string name="dictate__cloud_title">Dictate Cloud</string>
+    <string name="dictate__cloud_title">Voice Mode Cloud</string>
     <string name="dictate__cloud_row_summary_none">Dikte kontörü satın alın — API anahtarı gerekmez</string>
     <string name="dictate__cloud_row_summary_balance">{minutes} dakika kontör kaldı</string>
     <string name="dictate__cloud_intro_title">API anahtarı olmadan dikte</string>
     <string name="dictate__cloud_intro_body">Dikte kontörünü doğrudan burada, uygulamada satın alın. Yapay zekâ sağlayıcısında hesap yok, API anahtarı yok, abonelik yok. Kontörün süresi dolmaz ve yalnızca gerçekten kullandığınızda harcanır: bir dakika dikte bir dakikaya, bir yeniden ifade yaklaşık iki saniyeye mal olur.</string>
-    <string name="dictate__cloud_intro_alternative">Bu tamamen isteğe bağlı. Dictate, seçtiğiniz bir sağlayıcıdaki kendi anahtarınızla da aynı derecede iyi çalışır — birkaçı ücretsizdir — ve o zaman kendi hesabınızı korur, sağlayıcıya doğrudan kendi fiyatlarından ödersiniz.</string>
+    <string name="dictate__cloud_intro_alternative">Bu tamamen isteğe bağlı. Voice Mode, seçtiğiniz bir sağlayıcıdaki kendi anahtarınızla da aynı derecede iyi çalışır — birkaçı ücretsizdir — ve o zaman kendi hesabınızı korur, sağlayıcıya doğrudan kendi fiyatlarından ödersiniz.</string>
     <string name="dictate__cloud_use_own_provider_btn">Kendi sağlayıcımı kullanayım</string>
     <string name="dictate__cloud_balance_label">Kalan kontör</string>
     <string name="dictate__cloud_balance_minutes">{minutes} dk</string>
@@ -2260,7 +2259,7 @@
     <string name="dictate__cloud_shop_unavailable">Kontör paketleri burada gösterilemiyor. Bu genellikle uygulamanın Google Play üzerinden kurulmadığı ya da bu cihazda oturum açmış bir Play hesabı olmadığı anlamına gelir. Kendi API anahtarınız her iki durumda da çalışır.</string>
     <string name="dictate__cloud_activate_title">Kontör hazır</string>
     <string name="dictate__cloud_activate_body">Kontörünüz var ama dikte şu anda başka bir sağlayıcı üzerinden gidiyor. İstediğiniz zaman geçin — siz yapmadan hiçbir şey değişmez.</string>
-    <string name="dictate__cloud_activate_btn">Dictate Cloud ile dikte et</string>
+    <string name="dictate__cloud_activate_btn">Voice Mode Cloud ile dikte et</string>
     <string name="dictate__cloud_notice_purchased">Kontörünüze {minutes} dakika eklendi.</string>
     <string name="dictate__cloud_notice_pending">Ödemeniz henüz tamamlanmadı. Google onayladığı anda kontör görünecek.</string>
     <string name="dictate__cloud_notice_not_redeemed">Ödeme geçti ama kontör alınamadı. Hiçbir şey kaybolmadı — bu ekranı yeniden açın, eklenecek.</string>
@@ -2270,7 +2269,7 @@
     <string name="dictate__cloud_notice_gone_deleted" comment="Shown when the app finds out that the credit account was deleted elsewhere">Kredi hesabınız artık yok — web sitesinde ya da başka bir cihazda silinmiş. Şimdi bu telefondan da kayboldu.</string>
     <string name="dictate__cloud_notice_gone_signed_out" comment="Shown when this device was signed out of the credit account, which still exists">Bu cihazın kredi hesabınızdaki oturumu kapatıldı. Hesabınız ve krediniz olduğu gibi duruyor — yeniden giriş yapmak için aşağıya kurtarma kodunuzu girin.</string>
     <string name="dictate__cloud_delete_title">Kredi hesabını sil</string>
-    <string name="dictate__cloud_delete_explain">Kredi hesabınızı ve onunla ilgili kayıtlı her şeyi siler. Kalan kredi yanar ve iade edilmez. Uygulama artık sizde değilse bunu api.dictatekeyboard.com/delete adresinden de yapabilirsiniz.</string>
+    <string name="dictate__cloud_delete_explain">Kredi hesabınızı ve onunla ilgili kayıtlı her şeyi siler. Kalan kredi yanar ve iade edilmez. Uygulama artık sizde değilse bunu api.voicemode.example/delete adresinden de yapabilirsiniz.</string>
     <string name="dictate__cloud_delete_btn">Hesabı sil</string>
     <string name="dictate__cloud_delete_dialog_title">Hesabınız silinsin mi?</string>
     <string name="dictate__cloud_delete_dialog_body" comment="{minutes} is a number">Hâlâ {minutes} dakika krediniz var. Silme işlemi hesabınızı, kurtarma kodunuzu ve giriş yapılmış tüm cihazları kaldırır.</string>
@@ -2296,7 +2295,7 @@
     <string name="dictate__cloud_devices_last_used">Son kullanım {time}</string>
     <string name="dictate__cloud_devices_never_used">Henüz kullanılmadı</string>
     <string name="dictate__cloud_recovery_error">Sunucuya ulaşılamadı. Bağlantınızı kontrol edip yeniden deneyin.</string>
-    <string name="dictate__cloud_limits_title">Dictate Cloud\'un yapmadıkları</string>
+    <string name="dictate__cloud_limits_title">Voice Mode Cloud\'un yapmadıkları</string>
     <string name="dictate__cloud_limits_body">Siz konuşurken canlı yazıya dökme kontörle yoktur — dakika başına yaklaşık dört katı tutar ve cihaz üzerindeki motor bunu çevrimdışı ve ücretsiz yapar. Yapay zekâ modelini ve ne kadar düşüneceğini sunucu belirler, bu yüzden model seçimi, akıl yürütme düzeyi ve kendi uç noktalarınız kapalı kalır. Geri kalan her şey aynı: istemler, geçmiş, yüzen düğme, uzun dikte ve saat.</string>
     <string name="dictate__cloud_privacy_title">Neler saklanıyor</string>
     <string name="dictate__cloud_privacy_body">Kayıtlarınız ve metinleriniz doğrudan iletilir, hiçbir zaman diske yazılmaz. Yalnızca sayılar saklanır: hangi hesap, ne zaman, ne kadar süre ve işe yarayıp yaramadığı. Bir kontör hesabının arkasında ad, e-posta veya Google hesabı yoktur — yalnızca rastgele bir kimlik.</string>
@@ -2344,9 +2343,9 @@
     <string name="quick_action__ime_ui_mode_sticker">Çıkartma</string>
     <string name="quick_action__ime_ui_mode_sticker__tooltip">Kendi çıkartmalarınızı ekleyin</string>
     <string name="prefs__media__sticker_add">Çıkartma ekle</string>
-    <string name="prefs__media__sticker_add__summary">Görselleri klasöre kopyalayın. Herhangi bir uygulamadan bir görseli Dictate ile de paylaşabilirsiniz.</string>
+    <string name="prefs__media__sticker_add__summary">Görselleri klasöre kopyalayın. Herhangi bir uygulamadan bir görseli Voice Mode ile de paylaşabilirsiniz.</string>
     <string name="prefs__media__sticker_import_whatsapp">WhatsApp\'tan getir</string>
-    <string name="prefs__media__sticker_import_whatsapp__summary">Dosya seçiciyi WhatsApp\'ın çıkartma klasöründe açar. Samsung\'unki gibi klavyeler çıkartmalarını başka hiçbir uygulamanın okuyamayacağı yerde tutar — onları Dictate ile paylaşın.</string>
+    <string name="prefs__media__sticker_import_whatsapp__summary">Dosya seçiciyi WhatsApp\'ın çıkartma klasöründe açar. Samsung\'unki gibi klavyeler çıkartmalarını başka hiçbir uygulamanın okuyamayacağı yerde tutar — onları Voice Mode ile paylaşın.</string>
     <string name="sticker__import_share_label">Çıkartma olarak kaydet</string>
     <string name="sticker__import_added">{n} eklendi</string>
     <string name="sticker__import_duplicate">{n} zaten vardı</string>
@@ -2370,7 +2369,7 @@
     <string name="sticker__source_downloads">İndirilenler</string>
     <string name="sticker__source_pictures">Resimler</string>
     <string name="sticker__source_dcim">Kamera</string>
-    <string name="sticker__source_hint">Bunlar başlangıç noktalarıdır, garanti değil — klasör yoksa seçici her zamanki gibi açılır. Çıkartmalarını kendine saklayan uygulamalar, örneğin Samsung klavyesi, yalnızca Dictate ile paylaşılabilir.</string>
+    <string name="sticker__source_hint">Bunlar başlangıç noktalarıdır, garanti değil — klasör yoksa seçici her zamanki gibi açılır. Çıkartmalarını kendine saklayan uygulamalar, örneğin Samsung klavyesi, yalnızca Voice Mode ile paylaşılabilir.</string>
     <string name="sticker__import_progress">Kopyalanıyor: {done} / {total}</string>
     <string name="sticker__import_cancel">Durdurmak için dokunun. Kopyalananlar kalır.</string>
     <string name="sticker__refused_declares_nothing">Bu uygulama klavyeden görsel kabul etmiyor — panoya kopyalandı, yapıştırmak için uzun basın</string>

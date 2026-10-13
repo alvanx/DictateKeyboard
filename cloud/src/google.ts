@@ -1,4 +1,4 @@
-import type { Env } from './config';
+import { playPackage, type Env } from './config';
 
 /**
  * Access to the Google Play Developer API.
@@ -111,7 +111,7 @@ export async function verifyPurchase(
   productId: string,
   purchaseToken: string,
 ): Promise<PurchaseFacts | null> {
-  const packageName = env.PACKAGE_NAME ?? 'net.devemperor.dictate';
+  const packageName = playPackage(env);
   const url =
     `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/` +
     `${encodeURIComponent(packageName)}/purchases/products/` +
@@ -166,7 +166,7 @@ export interface OrderFacts {
  * on the strength of the purchase check, and this only enriches the ledger.
  */
 export async function fetchOrder(env: Env, orderId: string): Promise<OrderFacts | null> {
-  const packageName = env.PACKAGE_NAME ?? 'net.devemperor.dictate';
+  const packageName = playPackage(env);
   const url =
     `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/` +
     `${encodeURIComponent(packageName)}/orders/${encodeURIComponent(orderId)}`;
@@ -222,7 +222,7 @@ export async function acknowledgePurchase(
   productId: string,
   purchaseToken: string,
 ): Promise<void> {
-  const packageName = env.PACKAGE_NAME ?? 'net.devemperor.dictate';
+  const packageName = playPackage(env);
   const url =
     `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/` +
     `${encodeURIComponent(packageName)}/purchases/products/` +
@@ -274,7 +274,7 @@ export async function listVoidedPurchases(
   env: Env,
   sinceMs: number,
 ): Promise<Array<{ purchaseToken: string; orderId?: string; voidedTimeMillis?: string }>> {
-  const packageName = env.PACKAGE_NAME ?? 'net.devemperor.dictate';
+  const packageName = playPackage(env);
   const out: Array<{ purchaseToken: string; orderId?: string; voidedTimeMillis?: string }> = [];
   let token: string | null = null;
 

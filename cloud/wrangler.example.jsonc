@@ -26,7 +26,7 @@
 
   // One public address, and one only. The app has it compiled in, so it must never change — unlike
   // a workers.dev address, which hangs off the account subdomain.
-  "routes": [{ "pattern": "api.dictatekeyboard.com", "custom_domain": true }],
+  "routes": [{ "pattern": "api.voicemode.example", "custom_domain": true }],
 
   // Switched off deliberately, not merely as a side effect of the route: otherwise every version
   // would get its own public URL, each one reaching the same database and the same AI account —
@@ -98,7 +98,7 @@
     // and a tablet are the honest case; beyond that a recovery code is not an account any more but a
     // shared password. Adjustable from the dashboard under Betrieb.
     "MAX_DEVICES": "<number>",
-    "PACKAGE_NAME": "net.devemperor.dictate",
+    "PACKAGE_NAME": "com.placeholder.voicemode",
     "DAILY_BUDGET_USD": "<number>",
     // Individual request rows age out; the daily totals stay. See retention.ts.
     "USAGE_RETENTION_DAYS": "<number>",
@@ -114,7 +114,7 @@
     "ALERT_EMAIL_FROM": "alerts@<your-domain>",
     // Hour (UTC) for the daily report. 5 UTC is 6 or 7 in the morning in Germany.
     "DIGEST_HOUR_UTC": "<number>",
-    "ADMIN_URL": "https://api.dictatekeyboard.com/admin",
+    "ADMIN_URL": "https://api.voicemode.example/admin",
 
     // The watchdog's thresholds. The defaults are chosen so an ordinary day stays silent: an alarm
     // that arrives weekly stops being read within a month.

@@ -17,7 +17,7 @@ import { handleBalance, handleRestore, handleRevokeDevice } from './routes/walle
 import { NO_STORE, apiError, json } from './util';
 
 /**
- * Dictate Cloud — the credit proxy.
+ * Voice Mode Cloud — the credit proxy.
  *
  * The three OpenAI-compatible endpoints are no accident: because this service speaks the same
  * paths and formats as OpenAI, the app's existing `OpenAiCompatibleClient` works unchanged —

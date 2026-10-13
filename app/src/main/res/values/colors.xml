@@ -12,7 +12,7 @@
     <color name="colorError">#B00020</color><!-- Red 1000? -->
     <color name="textColorError">#FFFFFF</color><!-- White -->
 
-    <color name="ic_app_icon_background">#4F576D</color><!-- Dictate icon background -->
+    <color name="ic_app_icon_background">#0F766E</color><!-- Placeholder icon background -->
 
     <color name="cardViewBackgroundColor">#FFFFFF</color><!-- White -->
     <color name="navigationBarColor">#000000</color><!-- Black -->
@@ -21,7 +21,7 @@
 
     <color name="florisApp_windowBackground">#FFFFFFFF</color>
 
-    <!-- Dictate floating button (issue #88): idle blue (matches the keyboard accent) and recording red -->
+    <!-- Voice Mode floating button (issue #88): idle blue (matches the keyboard accent) and recording red -->
     <color name="dictate_overlay_accent">#30B7E6</color>
     <color name="dictate_overlay_recording">#EC6A5E</color>
     <color name="dictate_overlay_icon">#FFFFFF</color>

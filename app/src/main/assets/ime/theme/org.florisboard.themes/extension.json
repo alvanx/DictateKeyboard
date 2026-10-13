@@ -3,7 +3,7 @@
   "meta": {
     "id": "org.florisboard.themes",
     "version": "0.4.0",
-    "title": "Dictate Keyboard default themes",
+    "title": "Voice Mode default themes",
     "description": "Default themes (both day and night) for the keyboard UI",
     "maintainers": [
       "patrickgold <patrick@patrickgold.dev>",
@@ -14,85 +14,85 @@
   "themes": [
     {
       "id": "dictate_glass",
-      "label": "Dictate Glass",
+      "label": "Voice Mode Glass",
       "authors": [ "DevEmperor" ],
       "isNight": true
     },
     {
       "id": "dictate_glass_clear",
-      "label": "Dictate Glass Clear",
+      "label": "Voice Mode Glass Clear",
       "authors": [ "DevEmperor" ],
       "isNight": true
     },
     {
       "id": "dictate_sand",
-      "label": "Dictate Sand (Day)",
+      "label": "Voice Mode Sand (Day)",
       "authors": [ "DevEmperor" ],
       "isNight": false
     },
     {
       "id": "dictate_deep",
-      "label": "Dictate Deep (Night)",
+      "label": "Voice Mode Deep (Night)",
       "authors": [ "DevEmperor" ],
       "isNight": true
     },
     {
       "id": "dictate_contrast",
-      "label": "Dictate High Contrast (Day)",
+      "label": "Voice Mode High Contrast (Day)",
       "authors": [ "DevEmperor" ],
       "isNight": false
     },
     {
       "id": "dictate_contrast_night",
-      "label": "Dictate High Contrast (Night)",
+      "label": "Voice Mode High Contrast (Night)",
       "authors": [ "DevEmperor" ],
       "isNight": true
     },
     {
       "id": "dictate_eink",
-      "label": "Dictate E-Ink (Day)",
+      "label": "Voice Mode E-Ink (Day)",
       "authors": [ "DevEmperor" ],
       "isNight": false
     },
     {
       "id": "dictate_eink_night",
-      "label": "Dictate E-Ink (Night)",
+      "label": "Voice Mode E-Ink (Night)",
       "authors": [ "DevEmperor" ],
       "isNight": true
     },
     {
       "id": "floris_day",
-      "label": "Dictate Day",
+      "label": "Voice Mode Day",
       "authors": [ "patrickgold" ],
       "isNight": false
     },
     {
       "id": "floris_day_borderless",
-      "label": "Dictate Day (Borderless)",
+      "label": "Voice Mode Day (Borderless)",
       "authors": [ "patrickgold" ],
       "isNight": false
     },
     {
       "id": "floris_night",
-      "label": "Dictate Night",
+      "label": "Voice Mode Night",
       "authors": [ "patrickgold" ],
       "isNight": true
     },
     {
       "id": "floris_night_borderless",
-      "label": "Dictate Night (Borderless)",
+      "label": "Voice Mode Night (Borderless)",
       "authors": [ "patrickgold" ],
       "isNight": true
     },
     {
       "id": "floris_pure_night",
-      "label": "Dictate Pure Night",
+      "label": "Voice Mode Pure Night",
       "authors": [ "serebit" ],
       "isNight": true
     },
     {
       "id": "floris_pure_night_borderless",
-      "label": "Dictate Pure Night (Borderless)",
+      "label": "Voice Mode Pure Night (Borderless)",
       "authors": [ "serebit" ],
       "isNight": true
     }

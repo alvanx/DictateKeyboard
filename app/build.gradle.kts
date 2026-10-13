@@ -34,6 +34,7 @@ val projectTargetSdk: String by project
 val projectCompileSdk: String by project
 val projectVersionCode: String by project
 val projectVersionName: String by project
+val appId: String by project
 val projectVersionNameSuffix = projectVersionName.substringAfter("-", "").let { suffix ->
     if (suffix.isNotEmpty()) {
         "-$suffix"
@@ -68,7 +69,7 @@ configure<ApplicationExtension> {
     }
 
     defaultConfig {
-        applicationId = "net.devemperor.dictate"
+        applicationId = appId
         minSdk = projectMinSdk.toInt()
         targetSdk = projectTargetSdk.toInt()
         versionCode = projectVersionCode.toInt()
@@ -117,8 +118,8 @@ configure<ApplicationExtension> {
     // is absent (e.g. on CI without secrets, or a contributor's machine) the release build simply has
     // no signing config attached and falls back to an unsigned build, exactly as before.
     //
-    // IMPORTANT: For uploads to Google Play this must be the *upload key* the existing
-    // net.devemperor.dictate listing expects (the old Java app's key) — a fresh key gets rejected.
+    // IMPORTANT: For uploads to Google Play, generate our own upload key and keep it safe: Play ties
+    // the listing to it, and losing it means a support request to reset it.
     val keystorePropsFile = rootProject.file("keystore.properties")
     val keystoreProps = if (keystorePropsFile.exists()) {
         Properties().apply { keystorePropsFile.inputStream().use { load(it) } }

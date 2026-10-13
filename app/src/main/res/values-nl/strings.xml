@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Dictate</string>
+    <string name="app_name">Voice Mode</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Pauze</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Wacht</string>
     <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">Pictogram met drie puntjes. Indien zichtbaar, geeft dit aan dat er meer letters gebruikt kunnen worden als u de toets langer ingedrukt houdt.</string>
@@ -123,8 +123,8 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Standaard</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Systeemstandaard</string>
     <string name="settings__home__title" comment="Title of the Home screen">Welkom bij {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} is niet ingeschakeld in het systeem en zal dus niet beschikbaar zijn als een invoermethode in de invoermethode-kiezer. Klik hier om dit probleem op te lossen.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} is niet geselecteerd als de standaard invoermethode. Klik hier om dit probleem op te lossen.</string>
+    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name} is niet ingeschakeld in het systeem en zal dus niet beschikbaar zijn als een invoermethode in de invoermethode-kiezer. Klik hier om dit probleem op te lossen.</string>
+    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name} is niet geselecteerd als de standaard invoermethode. Klik hier om dit probleem op te lossen.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Instellingen doorzoeken</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Instellingen doorzoeken…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Recente zoekopdrachten</string>
@@ -562,7 +562,7 @@
     <string name="setup__select_ime__description">{app_name} is nu ingeschakeld in uw systeem. Om het actief te gebruiken, schakel over naar {app_name} door het te selecteren in het invoerkeuzedialoogvenster!</string>
     <string name="setup__select_ime__switch_keyboard_btn">Van toetsenbord wisselen</string>
     <string name="setup__grant_notification_permission__title">Meldingen van crashrapporten toestaan</string>
-    <string name="setup__grant_notification_permission__description">Vanaf Android 13+ moeten apps toestemming vragen om meldingen te verzenden. In Dictate wordt dit alleen gebruikt om bij een crash een crashrapportage te openen.
+    <string name="setup__grant_notification_permission__description">Vanaf Android 13+ moeten apps toestemming vragen om meldingen te verzenden. In Voice Mode wordt dit alleen gebruikt om bij een crash een crashrapportage te openen.
 Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.    </string>
     <string name="setup__grant_notification_permission__btn">Toestemming verlenen</string>
     <string name="setup__finish_up__title">Afronden</string>
@@ -585,8 +585,8 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="backup_and_restore__back_up__files">Selecteer waarvan u een back-up wilt maken</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Voorkeuren</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API-sleutels en wachtwoorden</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Dit archief bevat je API-sleutels en wachtwoorden in leesbare tekst, plus je Dictate Cloud-krediet: wie het krijgt, kan op jouw kosten dicteren. Geef het niet door, en als je dat al hebt gedaan, wijzig dan de sleutel bij je aanbieder. Al het andere dat hieronder is aangevinkt gaat mee, ook je transcriptiegeschiedenis en je klembord.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Dit archief bevat geen API-sleutels, wachtwoorden of Dictate Cloud-krediet, dus je kunt het doorgeven, maar het zet die van jou ook niet terug. Al het andere dat hieronder is aangevinkt zit er nog in, ook je transcriptiegeschiedenis en je klembord.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Dit archief bevat je API-sleutels en wachtwoorden in leesbare tekst, plus je Voice Mode Cloud-krediet: wie het krijgt, kan op jouw kosten dicteren. Geef het niet door, en als je dat al hebt gedaan, wijzig dan de sleutel bij je aanbieder. Al het andere dat hieronder is aangevinkt gaat mee, ook je transcriptiegeschiedenis en je klembord.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Dit archief bevat geen API-sleutels, wachtwoorden of Voice Mode Cloud-krediet, dus je kunt het doorgeven, maar het zet die van jou ook niet terug. Al het andere dat hieronder is aangevinkt zit er nog in, ook je transcriptiegeschiedenis en je klembord.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Dit archief bevat geen API-sleutels of wachtwoorden, maar wel alles wat hieronder is aangevinkt: je transcriptiegeschiedenis met bewaarde opnames, je klembord, je prompts en de woorden die het toetsenbord van je heeft geleerd.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Toetsenbordextensies</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Spellingextensies /woordenboeken</string>
@@ -603,7 +603,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="backup_and_restore__restore__metadata">Geselecteerd back-uparchief</string>
     <string name="backup_and_restore__restore__metadata_warn_different_version">Dit back-uparchief is gegenereerd in een andere versie dan de huidige, die over het algemeen wordt ondersteund. Houd er echter rekening mee dat er kleine problemen kunnen optreden of dat sommige voorkeuren mogelijk niet correct worden overgedragen vanwege functieverschillen.</string>
     <string name="backup_and_restore__restore__metadata_warn_different_vendor">Dit back-uparchief is gegenereerd in een app van derden, die over het algemeen niet wordt ondersteund. Gegevensverlies kan optreden, herstel op eigen risico!</string>
-    <string name="backup_and_restore__restore__metadata_note_no_credentials">Dit back-uparchief bevat geen API-sleutels of wachtwoorden. Al het andere wordt teruggezet. Samenvoegen behoudt de sleutels die al op dit apparaat staan; wissen verwijdert ze, ook een Dictate Cloud-herstelcode, die je niet opnieuw kunt intypen.</string>
+    <string name="backup_and_restore__restore__metadata_note_no_credentials">Dit back-uparchief bevat geen API-sleutels of wachtwoorden. Al het andere wordt teruggezet. Samenvoegen behoudt de sleutels die al op dit apparaat staan; wissen verwijdert ze, ook een Voice Mode Cloud-herstelcode, die je niet opnieuw kunt intypen.</string>
     <string name="backup_and_restore__restore__metadata_error_invalid_metadata">Dit back-uparchief bevat ongeldige metadata. Of het is beschadigd of slecht gewijzigd. Herstellen vanuit dit archief is niet mogelijk, selecteer een andere.</string>
     <string name="backup_and_restore__restore__metadata_error_nothing_to_restore">Dit back-uparchief bevat geen bestanden om te herstellen, selecteer een andere.</string>
     <string name="backup_and_restore__restore__mode">Herstelmodus</string>
@@ -612,18 +612,18 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="backup_and_restore__restore__success">Gegevens succesvol hersteld!</string>
     <string name="backup_and_restore__restore__failure">Kan gegevens niet herstellen: {error_message}</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Dictate-foutenrapportage</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">Sorry voor het ongemak, maar Dictate is gecrashed omwille van een onverwachte fout.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Als je deze fout wilt rapporteren, kijk dan eerst in de issuetracker op GitHub of de crash nog niet gerapporteerd is.\nAls dat niet het geval is, kopieer dan de gegenereerde crashlogboek en open een nieuwe issue. Gebruik het \"%s\"-sjabloon en vul de beschrijving in, de stappen om te reproduceren, en plak het gegenereerde crash log aan het eind. Dit helpt om Dictate beter en stabieler te maken voor iedereen. Bedankt!</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Voice Mode-foutenrapportage</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">Sorry voor het ongemak, maar Voice Mode is gecrashed omwille van een onverwachte fout.</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Als je deze fout wilt rapporteren, kijk dan eerst in de issuetracker op GitHub of de crash nog niet gerapporteerd is.\nAls dat niet het geval is, kopieer dan de gegenereerde crashlogboek en open een nieuwe issue. Gebruik het \"%s\"-sjabloon en vul de beschrijving in, de stappen om te reproduceren, en plak het gegenereerde crash log aan het eind. Dit helpt om Voice Mode beter en stabieler te maken voor iedereen. Bedankt!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Kopieer naar systeemklembord</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Gekopieerd naar systeemklembord</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">Kan niet kopiëren naar systeemklembord: Klembordbeheerinstantie niet gevonden</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">Probleemtracker openen (github.com)</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Sluiten</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Foutenrapporten van Dictate</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate is gestopt met werken…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Foutenrapporten van Voice Mode</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode is gestopt met werken…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Tik om foutdetails te bekijken</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Dictate lijkt herhaaldelijk te stoppen met werken…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Voice Mode lijkt herhaaldelijk te stoppen met werken…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Terugvallen op het vorige toetsenbord om oneindige crash-loop te stoppen. Tik om foutdetails te bekijken</string>
     <!-- Clipboard strings -->
     <string name="editing__back_to_keyboard">Terug naar het toetsenbord</string>
@@ -763,7 +763,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="ext__export__failure">Kan extensie niet exporteren: {error_message}</string>
     <string name="ext__import__success">Extensie geïmporteerd!</string>
     <string name="ext__import__failure">Kan extensie niet importeren: {error_message}</string>
-    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Dictate Keyboard extension">Extensie importeren</string>
+    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Voice Mode extension">Extensie importeren</string>
     <string name="ext__import__ext_keyboard" comment="Title of Importer screen for keyboard extension import">Toetsenbordextensie importeren</string>
     <string name="ext__import__ext_theme" comment="Title of Importer screen for theme extension import">Thema-extensie importeren</string>
     <string name="ext__import__ext_languagepack" comment="Title of Importer screen for language pack extension import">Taalpakket-uitbreidingen importeren</string>
@@ -803,7 +803,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="ext__addon_management_box__managing_placeholder">{extensions} beheren</string>
     <string name="ext__addon_management_box__addon_manager_info">Alle taken met betrekking tot het importeren, exporteren, maken, aanpassen en verwijderen van extensies kunnen worden afgehandeld via de gecentraliseerde beheer van add-ons.</string>
     <string name="ext__addon_management_box__go_to_page">Ga naar {ext_home_title}</string>
-    <string name="ext__home__info">Je kunt extensies downloaden en installeren uit de Dictate Addons Store of een extensiebestand importeren dat van internet is gedownload.</string>
+    <string name="ext__home__info">Je kunt extensies downloaden en installeren uit de Voice Mode Addons Store of een extensiebestand importeren dat van internet is gedownload.</string>
     <string name="ext__home__visit_store">Bezoek de Addons Store</string>
     <string name="ext__home__manage_extensions">Geïnstalleerde extensies beheren</string>
     <string name="ext__list__view_details">Details weergeven</string>
@@ -1045,14 +1045,14 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
         <item quantity="one">{v} kandidaat</item>
         <item quantity="other">{v} kandidaten</item>
     </plurals>
-    <!-- Dictate strings -->
+    <!-- Voice Mode strings -->
     <string name="quick_action__ime_ui_mode_editing">Tekst bewerken</string>
     <string name="quick_action__ime_ui_mode_editing__tooltip">Cursor verplaatsen, tekst selecteren en bewerken</string>
     <string name="quick_action__ime_ui_mode_scan">Tekst scannen</string>
     <string name="quick_action__ime_ui_mode_scan__tooltip">Gedrukte tekst fotograferen en invoegen</string>
     <string name="quick_action__translate">Vertalen</string>
     <string name="quick_action__translate__tooltip">Vertalen tijdens het typen, op dit apparaat</string>
-    <string name="quick_action__ime_ui_mode_dictate">Dictate</string>
+    <string name="quick_action__ime_ui_mode_dictate">Voice Mode</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Tik om te dicteren, tik nogmaals om te transcriberen</string>
     <string name="quick_action__dictate_live_prompt">Live-instructie</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Neem een gesproken instructie op en stuur die naar de AI</string>
@@ -1060,15 +1060,14 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="quick_action__dictate_prompts__tooltip">De AI-herformuleringsprompts openen</string>
     <string name="about__based_on_floris__title">Gebaseerd op FlorisBoard</string>
     <string name="about__based_on_floris__summary">Een fork van FlorisBoard door Patrick Goldinger en bijdragers, Apache 2.0. Tik om te openen.</string>
-    <string name="about__made_by">Gemaakt met ❤️ door DevEmperor\nSoli deo gloria ✝️</string>
     <string name="about__feedback__title">Feedback en ondersteuning</string>
     <string name="about__feedback__summary">Stuur een e-mail met vragen, bugs of ideeën</string>
-    <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
-    <string name="setup__provider__title">Kies hoe Dictate transcribeert</string>
-    <string name="setup__provider__choose_intro">Dictate zet je spraak om in tekst met een AI-dienst. Voor de meeste mensen voldoet een van deze twee manieren — en wil je helemaal geen clouddienst gebruiken, dan staan er hieronder nog twee.</string>
+    <string name="about__feedback__email">support@voicemode.example</string>
+    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="setup__provider__title">Kies hoe Voice Mode transcribeert</string>
+    <string name="setup__provider__choose_intro">Voice Mode zet je spraak om in tekst met een AI-dienst. Voor de meeste mensen voldoet een van deze twee manieren — en wil je helemaal geen clouddienst gebruiken, dan staan er hieronder nog twee.</string>
     <string name="setup__provider__choice_cloud_title">Tegoed kopen in de app</string>
-    <string name="setup__provider__choice_cloud_body">Dictate Cloud: nergens een account, geen API-sleutel. Je koopt dicteerminuten via Google Play en ze verlopen nooit. De makkelijke weg — en wat duurder dan rechtstreeks naar een aanbieder gaan.</string>
+    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: nergens een account, geen API-sleutel. Je koopt dicteerminuten via Google Play en ze verlopen nooit. De makkelijke weg — en wat duurder dan rechtstreeks naar een aanbieder gaan.</string>
     <string name="setup__provider__choice_cloud_btn">Tegoedpakketten tonen</string>
     <string name="setup__provider__choice_own_title">Je eigen AI-aanbieder gebruiken</string>
     <string name="setup__provider__choice_own_body">Maak een sleutel aan bij een aanbieder naar keuze — Groq is gratis voor dagelijks dicteren. Je houdt je eigen account en betaalt de aanbieder rechtstreeks tegen diens prijzen. Duurt zo\'n twee minuten.</string>
@@ -1078,15 +1077,15 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="setup__provider__choice_local_title">Op je toestel, offline</string>
     <string name="setup__provider__choice_local_body">Download één keer een spraakmodel. Geen account, geen kosten, en er verlaat geen audio je telefoon.</string>
     <string name="setup__provider__choice_server_title">Je eigen server</string>
-    <string name="setup__provider__choice_server_body">Laat Dictate wijzen naar een spraakserver die je zelf draait, of naar elk OpenAI-compatibel endpoint.</string>
+    <string name="setup__provider__choice_server_body">Laat Voice Mode wijzen naar een spraakserver die je zelf draait, of naar elk OpenAI-compatibel endpoint.</string>
     <string name="setup__provider__local_intro">Spraakherkenning draait dan op je telefoon: er wordt niets verstuurd en het werkt zonder verbinding. Kies nu één model om te downloaden — later kun je modellen toevoegen of wisselen.</string>
     <string name="setup__provider__local_recommended">Aanbevolen voor jouw taal</string>
     <string name="setup__provider__local_bigger">Nauwkeuriger, maar een veel grotere download</string>
     <string name="setup__provider__local_download_btn">Model downloaden</string>
     <string name="setup__provider__local_use_btn">Dit model gebruiken</string>
     <string name="setup__provider__local_all_models">Alle modellen tonen</string>
-    <string name="setup__provider__intro">Dictate zet je spraak om in tekst met behulp van een online AI-dienst. Om het te gebruiken heb je je eigen persoonlijke sleutel voor zo\'n dienst nodig.</string>
-    <string name="setup__provider__what_is_key">Een API-sleutel is als een persoonlijk wachtwoord waarmee Dictate de dienst voor je kan gebruiken. Er een aanmaken is gratis en duurt ongeveer twee minuten.</string>
+    <string name="setup__provider__intro">Voice Mode zet je spraak om in tekst met behulp van een online AI-dienst. Om het te gebruiken heb je je eigen persoonlijke sleutel voor zo\'n dienst nodig.</string>
+    <string name="setup__provider__what_is_key">Een API-sleutel is als een persoonlijk wachtwoord waarmee Voice Mode de dienst voor je kan gebruiken. Er een aanmaken is gratis en duurt ongeveer twee minuten.</string>
     <string name="setup__provider__recommended">We raden <b>Groq</b> aan: snel en gratis voor dagelijks dicteren.</string>
     <string name="setup__provider__steps_groq">1. Tik op de knop hieronder om Groq te openen.\n2. Meld je aan met Google of je e-mailadres.\n3. Tik op «Create API Key», geef hem een willekeurige naam en bevestig.\n4. Kopieer de sleutel (begint met «gsk_»).\n5. Kom hier terug en tik hieronder op «API-sleutel plakken».</string>
     <string name="setup__provider__steps_generic">1. Tik op de knop hieronder om {provider} te openen.\n2. Maak een account aan als je er nog geen hebt.\n3. Maak een nieuwe API-sleutel aan en kopieer hem.\n4. Kom hier terug en tik hieronder op «API-sleutel plakken».</string>
@@ -1100,7 +1099,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="setup__provider__skip_btn">Later instellen</string>
     <string name="setup__provider__other_provider">Een andere AI-aanbieder gebruiken</string>
     <string name="setup__provider__other_provider_hint">Geavanceerd: kies een andere dienst dan Groq. Je hebt een API-sleutel van die aanbieder nodig.</string>
-    <string name="setup__finish_up__add_key_hint">Tip: je hebt nog geen AI-sleutel toegevoegd. Voeg er op elk moment een toe via Instellingen → Dictate → AI-aanbieders om te beginnen met dicteren.</string>
+    <string name="setup__finish_up__add_key_hint">Tip: je hebt nog geen AI-sleutel toegevoegd. Voeg er op elk moment een toe via Instellingen → Voice Mode → AI-aanbieders om te beginnen met dicteren.</string>
     <string name="crash_dialog__bug_report_template">Crashrapport</string>
     <string name="enum__swipe_action__toggle_compact_layout">Compacte lay-out in-/uitschakelen</string>
     <string name="unit__hours__symbol">{v} u</string>
@@ -1110,9 +1109,9 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="unit__percent__symbol">{v} %</string>
     <string name="unit__display_pixel__symbol">{v} dp</string>
     <string name="unit__display_pixel_per_seconds__symbol">{v} dp/s</string>
-    <string name="dictate__accessibility_service_label">Zwevende knop van Dictate</string>
+    <string name="dictate__accessibility_service_label">Zwevende knop van Voice Mode</string>
     <string name="dictate__accessibility_service_summary">Toon een zwevende knop om in elk tekstveld te dicteren.</string>
-    <string name="dictate__accessibility_service_description">Dictate gebruikt deze service voor de zwevende dicteerknop. Wanneer ingeschakeld detecteert deze wanneer een tekstveld de focus heeft in een willekeurige app — zodat de knop kan verschijnen — en voegt je getranscribeerde spraak in dat veld in. Dictate leest alleen het gefocuste veld om je tekst op de cursor te plaatsen; het verzamelt, bewaart of deelt geen andere scherminhoud.</string>
+    <string name="dictate__accessibility_service_description">Voice Mode gebruikt deze service voor de zwevende dicteerknop. Wanneer ingeschakeld detecteert deze wanneer een tekstveld de focus heeft in een willekeurige app — zodat de knop kan verschijnen — en voegt je getranscribeerde spraak in dat veld in. Voice Mode leest alleen het gefocuste veld om je tekst op de cursor te plaatsen; het verzamelt, bewaart of deelt geen andere scherminhoud.</string>
     <string name="dictate__overlay_notification_channel">Zwevende dicteerknop</string>
     <string name="dictate__overlay_notification_recording">Bezig met opnemen — tik op de zwevende knop om te transcriberen</string>
     <string name="dictate__overlay_notification_working">Bezig met transcriberen…</string>
@@ -1124,14 +1123,14 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__floating_button_service_enabled">Ingeschakeld · tik om systeeminstellingen te openen</string>
     <string name="dictate__floating_button_service_disabled">Nog niet ingeschakeld · tik om in te stellen</string>
     <string name="dictate__floating_button_disclosure_title">De zwevende knop inschakelen</string>
-    <string name="dictate__floating_button_disclosure_message">Om de zwevende knop te tonen heeft Dictate de toegankelijkheidsservice nodig. Deze detecteert wanneer een tekstveld de focus heeft in een willekeurige app — zodat de knop kan verschijnen — en voegt je getranscribeerde spraak in dat veld in. Dictate leest alleen het gefocuste veld om je tekst te plaatsen; het verzamelt, bewaart of deelt geen andere scherminhoud.\n\nZoek op het volgende scherm “Zwevende knop van Dictate” en schakel deze in.</string>
+    <string name="dictate__floating_button_disclosure_message">Om de zwevende knop te tonen heeft Voice Mode de toegankelijkheidsservice nodig. Deze detecteert wanneer een tekstveld de focus heeft in een willekeurige app — zodat de knop kan verschijnen — en voegt je getranscribeerde spraak in dat veld in. Voice Mode leest alleen het gefocuste veld om je tekst te plaatsen; het verzamelt, bewaart of deelt geen andere scherminhoud.\n\nZoek op het volgende scherm “Zwevende knop van Voice Mode” en schakel deze in.</string>
     <string name="dictate__floating_button_disclosure_continue">Instellingen openen</string>
     <string name="dictate__floating_button_mic_title">Microfoontoegang</string>
     <string name="dictate__floating_button_mic_summary">Vereist om je stem op te nemen · tik om toe te staan</string>
     <string name="dictate__floating_button_show_when_title">Wanneer tonen</string>
     <string name="dictate__floating_button_show_when_field">Zodra een tekstveld is geselecteerd</string>
     <string name="dictate__floating_button_show_when_keyboard">Alleen bij geopend toetsenbord</string>
-    <string name="dictate__floating_button_show_when_dictate_keyboard">Ook bij het Dictate-toetsenbord</string>
+    <string name="dictate__floating_button_show_when_dictate_keyboard">Ook bij het Voice Mode-toetsenbord</string>
     <string name="dictate__action_continue_recording">Opname voortzetten</string>
     <string name="dictate__a11y_mic_hold_local">Transcriberen op apparaat</string>
     <string name="smartbar__a11y_show_actions">Acties tonen</string>
@@ -1162,7 +1161,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__floating_button_apps_scope_all">Elke app</string>
     <string name="dictate__floating_button_apps_scope_only">Alleen de apps hieronder</string>
     <string name="dictate__floating_button_apps_scope_except">Elke app behalve die hieronder</string>
-    <string name="dictate__floating_button_apps_note">De knop wordt nooit over een app getekend die je weglaat, en Dictate leest daar geen tekstvelden. Een app die toegankelijkheidsdiensten sowieso weigert, ziet nog steeds dat de dienst aanstaat.</string>
+    <string name="dictate__floating_button_apps_note">De knop wordt nooit over een app getekend die je weglaat, en Voice Mode leest daar geen tekstvelden. Een app die toegankelijkheidsdiensten sowieso weigert, ziet nog steeds dat de dienst aanstaat.</string>
     <string name="dictate__floating_button_apps_list_title">Apps</string>
     <string name="dictate__floating_button_apps_search">Apps zoeken</string>
     <string name="dictate__floating_button_apps_none">Geen app gevonden voor ‘{search_term}’</string>
@@ -1170,7 +1169,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__floating_button_haptic_summary_off">Geen trilling bij tikken.</string>
     <string name="dictate__floating_button_haptic_summary_on">Een korte tril wanneer je op de knop tikt.</string>
     <string name="dictate__floating_button_haptic_title">Trillen bij tikken</string>
-    <string name="dictate__floating_button_no_prompts">Nog geen herformuleer-prompts — voeg er enkele toe in de Dictate-instellingen.</string>
+    <string name="dictate__floating_button_no_prompts">Nog geen herformuleer-prompts — voeg er enkele toe in de Voice Mode-instellingen.</string>
     <string name="dictate__floating_button_remember_position_summary_off">Eén gedeelde positie voor alle apps.</string>
     <string name="dictate__floating_button_remember_position_summary_on">Elke app houdt zijn eigen knoppositie.</string>
     <string name="dictate__floating_button_remember_position_title">Positie per app onthouden</string>
@@ -1185,7 +1184,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__providers_summary_both">Transcriptie: {transcription} · Herformulering: {rewording}</string>
     <string name="dictate__remember_last_dictation_summary">Bewaart je laatste dictaat zodat de zwevende knop het ongedaan kan maken en de klassieke lay-out het opnieuw kan invoegen.</string>
     <string name="dictate__remember_last_dictation_title">Laatste dictaat onthouden</string>
-    <string name="changelog__v4_2_0">• NIEUW: zwevende dicteerknop — dicteer rechtstreeks in elke app, zelfs met een ander toetsenbord actief. Kies uit drie stijlen (Pil, Ring, Bol), zie een live golfvorm terwijl je praat, sleep hem overal heen met randmagnetisme, stel kleur en grootte in en houd ingedrukt om te herformuleren. Schakel hem in via Instellingen ▸ Dictate ▸ Zwevende knop.\n• NIEUW: Google Gemini — gebruik je eigen AI Studio-API-sleutel voor transcriptie en herformuleren.\n• Prompts verschijnen nu standaard in een vaste rij boven de toetsen.\n• Betrouwbaardere tekstinvoer in apps, inclusief browsers en andere toetsenborden.</string>
+    <string name="changelog__v4_2_0">• NIEUW: zwevende dicteerknop — dicteer rechtstreeks in elke app, zelfs met een ander toetsenbord actief. Kies uit drie stijlen (Pil, Ring, Bol), zie een live golfvorm terwijl je praat, sleep hem overal heen met randmagnetisme, stel kleur en grootte in en houd ingedrukt om te herformuleren. Schakel hem in via Instellingen ▸ Voice Mode ▸ Zwevende knop.\n• NIEUW: Google Gemini — gebruik je eigen AI Studio-API-sleutel voor transcriptie en herformuleren.\n• Prompts verschijnen nu standaard in een vaste rij boven de toetsen.\n• Betrouwbaardere tekstinvoer in apps, inclusief browsers en andere toetsenborden.</string>
     <string name="dictate__promo_floating_button_message">Nieuw: overal dicteren</string>
     <string name="dictate__promo_floating_button_action">Proberen</string>
     <string name="setup__floating_button__btn">Zwevende knop instellen</string>
@@ -1198,7 +1197,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="setup__floating_button__skip_btn">Overslaan — ik gebruik het toetsenbord</string>
     <string name="dictate__floating_button_badge_new">Nieuw</string>
     <string name="dictate__panel_title">AI-prompts</string>
-    <string name="dictate__panel_no_prompts">Nog geen prompts. Voeg er enkele toe in de Dictate-instellingen onder «Herformulering».</string>
+    <string name="dictate__panel_no_prompts">Nog geen prompts. Voeg er enkele toe in de Voice Mode-instellingen onder «Herformulering».</string>
     <string name="dictate__prompts_layout_title">Prompt-lay-out</string>
     <string name="dictate__prompts_layout_panel_label">Eigen paneel</string>
     <string name="dictate__prompts_layout_panel_description">Open de prompts in een eigen paneel via de toverstaf-knop.</string>
@@ -1216,8 +1215,8 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__voice_input_transcribing">Transcriberen…</string>
     <string name="dictate__voice_input_stop">Klaar</string>
     <string name="dictate__voice_input_hint">Tik om te verzenden</string>
-    <string name="dictate__voice_ime_label">Dictate spraakinvoer</string>
-    <string name="dictate__error_no_api_key">Geen API-sleutel ingesteld – stel deze in via de Dictate-instellingen.</string>
+    <string name="dictate__voice_ime_label">Voice Mode spraakinvoer</string>
+    <string name="dictate__error_no_api_key">Geen API-sleutel ingesteld – stel deze in via de Voice Mode-instellingen.</string>
     <string name="dictate__error_transcription_failed">Transcriptie mislukt.</string>
     <string name="dictate__error_unknown">Onbekende fout tijdens de transcriptie.</string>
     <string name="dictate__error_rewording_failed">Herformulering mislukt.</string>
@@ -1249,13 +1248,13 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__action_dismiss">Negeren</string>
     <string name="dictate__action_yes">Ja</string>
     <string name="dictate__action_no">Nee, bedankt</string>
-    <string name="dictate__promo_rate_message">Vind je Dictate leuk?</string>
-    <string name="dictate__promo_donate_message">Dictate steunen?</string>
+    <string name="dictate__promo_rate_message">Vind je Voice Mode leuk?</string>
+    <string name="dictate__promo_donate_message">Voice Mode steunen?</string>
     <string name="dictate__promo_rate_action">Beoordelen</string>
     <string name="dictate__promo_donate_action">Doneren</string>
-    <string name="dictate__promo_changelog_message">Dictate is bijgewerkt</string>
+    <string name="dictate__promo_changelog_message">Voice Mode is bijgewerkt</string>
     <string name="dictate__promo_changelog_action">Details</string>
-    <string name="dictate__title">Dictate</string>
+    <string name="dictate__title">Voice Mode</string>
     <string name="dictate__provider_title">Transcriptie-aanbieder</string>
     <string name="dictate__provider__openai">OpenAI</string>
     <string name="dictate__provider__groq">Groq</string>
@@ -1488,7 +1487,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__command_word_summary">Dictaten die met “{word}” beginnen, worden als live-instructie uitgevoerd</string>
     <string name="dictate__command_word_placeholder">Jarvis</string>
     <string name="dictate__command_word_info_title">Over het commandowoord</string>
-    <string name="dictate__command_word_info_description">Normaal schrijft Dictate op wat je zegt. Met een ingesteld commandowoord wordt een dictaat dat ermee begint in plaats daarvan een instructie: het woord wordt verwijderd en de rest gaat naar de AI, samen met de geselecteerde tekst als die er is.\n\n“Jarvis, maak dit formeler” herschrijft de selectie. “Jarvis, wat is de hoofdstad van Japan” schrijft het antwoord in het veld. Het is de knop Live-instructie, bereikt door zijn naam te zeggen in plaats van erop te tikken.\n\nHet woord telt alleen helemaal aan het begin van een dictaat en alleen als heel woord — kies dus iets waarmee je zelden een zin begint.</string>
+    <string name="dictate__command_word_info_description">Normaal schrijft Voice Mode op wat je zegt. Met een ingesteld commandowoord wordt een dictaat dat ermee begint in plaats daarvan een instructie: het woord wordt verwijderd en de rest gaat naar de AI, samen met de geselecteerde tekst als die er is.\n\n“Jarvis, maak dit formeler” herschrijft de selectie. “Jarvis, wat is de hoofdstad van Japan” schrijft het antwoord in het veld. Het is de knop Live-instructie, bereikt door zijn naam te zeggen in plaats van erop te tikken.\n\nHet woord telt alleen helemaal aan het begin van een dictaat en alleen als heel woord — kies dus iets waarmee je zelden een zin begint.</string>
     <string name="dictate__auto_formatting_title">Automatische opmaak</string>
     <string name="dictate__auto_formatting_summary">Gesproken opmaakaanwijzingen omzetten naar Markdown (koppen, lijsten, …)</string>
     <string name="dictate__system_prompt_title">Herformuleringsinstructie</string>
@@ -1599,19 +1598,19 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__import_not_audio">Dit bestand bevat geen audio.</string>
     <string name="dictate__import_only_first">Alleen het eerste bestand wordt getranscribeerd – {count} andere zijn overgeslagen.</string>
     <string name="dictate__setup_description">Stel je AI-aanbieder en API-sleutel in zodat je met de microfoon kunt dicteren.</string>
-    <string name="dictate__setup_configure_btn">Dictate instellen</string>
+    <string name="dictate__setup_configure_btn">Voice Mode instellen</string>
     <string name="setup__grant_mic_permission__title">Microfoontoegang</string>
-    <string name="setup__grant_mic_permission__description">Dictate heeft toegang tot de microfoon nodig om je stem op te nemen voor transcriptie.</string>
+    <string name="setup__grant_mic_permission__description">Voice Mode heeft toegang tot de microfoon nodig om je stem op te nemen voor transcriptie.</string>
     <string name="setup__grant_mic_permission__btn">Microfoontoestemming verlenen</string>
     <string name="changelog__dialog_title">Wat is er nieuw</string>
     <string name="changelog__view_all">Alle wijzigingen bekijken</string>
-    <string name="changelog__intro">Dictate is bijgewerkt. Dit is er nieuw:</string>
+    <string name="changelog__intro">Voice Mode is bijgewerkt. Dit is er nieuw:</string>
     <string name="changelog__version_header">Versie {version}</string>
-    <string name="changelog__donate">Vind je Dictate leuk? Tik hier om de ontwikkeling te steunen ♥</string>
-    <string name="changelog__current">• Gloednieuw toetsenbord: Dictate is nu een volwaardig meertalig lay-outtoetsenbord met een eigen microfoontoets die het spraakpaneel opent.\n• Gebruik je eigen AI: kies een willekeurige OpenAI-compatibele aanbieder en voer je API-sleutel in via Instellingen → Dictate.\n• Slimme opmaak en herformulering met het model van jouw keuze.\n• Je instellingen van de vorige Dictate-app worden automatisch geïmporteerd.</string>
+    <string name="changelog__donate">Vind je Voice Mode leuk? Tik hier om de ontwikkeling te steunen ♥</string>
+    <string name="changelog__current">• Gloednieuw toetsenbord: Voice Mode is nu een volwaardig meertalig lay-outtoetsenbord met een eigen microfoontoets die het spraakpaneel opent.\n• Gebruik je eigen AI: kies een willekeurige OpenAI-compatibele aanbieder en voer je API-sleutel in via Instellingen → Voice Mode.\n• Slimme opmaak en herformulering met het model van jouw keuze.\n• Je instellingen van de vorige Voice Mode-app worden automatisch geïmporteerd.</string>
     <string name="changelog__v4_1_0">• Nieuw: zoek emoji\'s rechtstreeks vanaf het toetsenbord.\n• Nieuwe transcriptieprovider: Soniox.\n• Voeg je laatste dictaat opnieuw in en herstel opnames die werden onderbroken toen het toetsenbord sloot.\n• De promptbalk wordt nu live bijgewerkt: houd een prompt ingedrukt om die te bewerken.\n• Het scherm met AI-providers toont nu zowel je actieve transcriptie- als herformuleringsprovider.\n• Grotere opnameknop die makkelijker te raken is.\n• Oplossingen: een ondersteuningsmelding kon blijven hangen en de balk blokkeren in sommige talen; back-up mislukt niet meer wanneer prompts, toetsenbord of thema zijn geselecteerd; opgeslagen API-sleutels blijven behouden bij het updaten.</string>
-    <string name="changelog__v4_1_1">• Oplossing: de accentkleur kon op sommige apparaten groen lijken; toetsen en knoppen zijn weer Dictate-blauw.</string>
-    <!-- Dictate on-device (offline) models -->
+    <string name="changelog__v4_1_1">• Oplossing: de accentkleur kon op sommige apparaten groen lijken; toetsen en knoppen zijn weer Voice Mode-blauw.</string>
+    <!-- Voice Mode on-device (offline) models -->
     <string name="dictate__local_models_header">Draait op je apparaat — er wordt geen audio verzonden. Download een model om te beginnen.</string>
     <string name="dictate__local_models_live_header">Live (streaming)</string>
     <string name="dictate__local_models_live_summary">Ze typen terwijl je praat. Zet “Realtime-transcriptie” aan onder Opname om ze te gebruiken.</string>
@@ -1647,7 +1646,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__floating_button_copy_to_clipboard_summary_on">Elk dictaat wordt ook naar het klembord gekopieerd, zodat je het handmatig kunt plakken als invoegen mislukt. Kan op sommige telefoons een klembordmelding tonen.</string>
     <string name="dictate__floating_button_copy_to_clipboard_summary_off">Dictaten worden alleen ingevoegd, niet naar het klembord gekopieerd.</string>
     <string name="dictate__floating_button_menu_group">Menu bij ingedrukt houden</string>
-    <string name="dictate__floating_button_menu_settings_title">Dictate-instellingen</string>
+    <string name="dictate__floating_button_menu_settings_title">Voice Mode-instellingen</string>
     <string name="dictate__floating_button_undo_summary_off">Geen knop voor ongedaan maken weergegeven.</string>
     <string name="dictate__floating_button_undo_summary_on">Na een dictaat verschijnt er een knop voor ongedaan maken naast de knop om de ingevoegde tekst met één tik te verwijderen.</string>
     <string name="dictate__floating_button_undo_title">Knop voor ongedaan maken</string>
@@ -1696,7 +1695,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__providers_rewording_single_call_note">Wordt nu niet gebruikt — je transcriptieprovider doet de herformulering in zijn enkele aanroep.</string>
     <string name="dictate__wear_title">Wear OS</string>
     <string name="dictate__wear_summary">Opties voor dicteren vanaf een gekoppeld horloge</string>
-    <string name="dictate__wear_install_title">Dictate op je horloge installeren</string>
+    <string name="dictate__wear_install_title">Voice Mode op je horloge installeren</string>
     <string name="dictate__wear_install_summary">Opent de Play Store — kies op een gekoppeld Wear OS 3+-horloge je horloge als doel.</string>
     <string name="dictate__wear_auto_rewording_title">Horlogedictaten automatisch herformuleren</string>
     <string name="dictate__wear_auto_rewording_summary">Herformuleer dictaten vanaf het horloge, net als op de telefoon.</string>
@@ -1704,7 +1703,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="quick_action__system_prev_input_method__tooltip">Terug naar je vorige toetsenbord</string>
     <string name="quick_action__system_input_method_picker">Toetsenbord kiezen</string>
     <string name="quick_action__system_input_method_picker__tooltip">De toetsenbordkiezer van het systeem openen</string>
-    <string name="changelog__v4_3_0">• NIEUW: Transcriptie op het apparaat — dicteer volledig offline. Geen internet nodig en niets verlaat je telefoon. Download eenmalig een spraakmodel via Instellingen ▸ Dictate ▸ Providers. 📴\n• NIEUW: Wear OS-toetsenbord — dicteer rechtstreeks vanaf je horloge, via je telefoon of zelfstandig. ⌚\n• NIEUW: Zoek- en vervangregels — corrigeer automatisch terugkerende woorden, namen of zinnen in elke transcriptie. Stel ze in via Instellingen ▸ Dictate ▸ Aangepaste toewijzingen. 🔁\n• NIEUW: Modus met één aanroep — één capabel AI-model transcribeert en formatteert in één verzoek, sneller en vaak goedkoper. Schakel het per provider in. ⚡\n• NIEUW: Smartbar-acties om terug te gaan naar je vorige toetsenbord of de toetsenbordkiezer van het systeem te openen. ⌨️\n• De accentkleur van het toetsenbord volgt nu de kleur die je kiest in Instellingen ▸ Thema. 🎨\n• Een optionele ongedaan-maken-knop toegevoegd aan de zwevende dicteerknop. ↩️\n• Diverse fixes en stabiliteitsverbeteringen. 🛠️</string>
+    <string name="changelog__v4_3_0">• NIEUW: Transcriptie op het apparaat — dicteer volledig offline. Geen internet nodig en niets verlaat je telefoon. Download eenmalig een spraakmodel via Instellingen ▸ Voice Mode ▸ Providers. 📴\n• NIEUW: Wear OS-toetsenbord — dicteer rechtstreeks vanaf je horloge, via je telefoon of zelfstandig. ⌚\n• NIEUW: Zoek- en vervangregels — corrigeer automatisch terugkerende woorden, namen of zinnen in elke transcriptie. Stel ze in via Instellingen ▸ Voice Mode ▸ Aangepaste toewijzingen. 🔁\n• NIEUW: Modus met één aanroep — één capabel AI-model transcribeert en formatteert in één verzoek, sneller en vaak goedkoper. Schakel het per provider in. ⚡\n• NIEUW: Smartbar-acties om terug te gaan naar je vorige toetsenbord of de toetsenbordkiezer van het systeem te openen. ⌨️\n• De accentkleur van het toetsenbord volgt nu de kleur die je kiest in Instellingen ▸ Thema. 🎨\n• Een optionele ongedaan-maken-knop toegevoegd aan de zwevende dicteerknop. ↩️\n• Diverse fixes en stabiliteitsverbeteringen. 🛠️</string>
     <string name="dictate__audio_source_title">Audio-invoerbron</string>
     <string name="dictate__audio_source_default">Standaardmicrofoon</string>
     <string name="dictate__audio_source_default_summary">Standaardmicrofoon, met de ingebouwde audioverwerking van de telefoon</string>
@@ -1760,7 +1759,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__history_export_all_result">{written} geschreven, {skipped} al aanwezig, {failed} mislukt</string>
     <string name="dictate__history_export_last_failure">Een schrijfpoging is {when} mislukt. “Nu alles exporteren” haalt het ontbrekende alsnog op.</string>
     <string name="dictate__history_export_warning_title">Wat daar belandt</string>
-    <string name="dictate__history_export_warning_message">De map bevat vanaf nu de tekst van elk dictaat dat je maakt, en ook de opnamen als je dat inschakelt. Alles wat de map synchroniseert — een cloudclient, een back-uptool, een andere app — draagt die transcripties van dit apparaat af.\n\nDictate blijft schrijven tot je de map loskoppelt en verwijdert er nooit iets uit: items die uit de geschiedenis vallen, blijven in de map. Wachtwoord- en incognitovelden worden nooit vastgelegd en dus ook nooit geëxporteerd.</string>
+    <string name="dictate__history_export_warning_message">De map bevat vanaf nu de tekst van elk dictaat dat je maakt, en ook de opnamen als je dat inschakelt. Alles wat de map synchroniseert — een cloudclient, een back-uptool, een andere app — draagt die transcripties van dit apparaat af.\n\nVoice Mode blijft schrijven tot je de map loskoppelt en verwijdert er nooit iets uit: items die uit de geschiedenis vallen, blijven in de map. Wachtwoord- en incognitovelden worden nooit vastgelegd en dus ook nooit geëxporteerd.</string>
     <string name="dictate__history_export_needs_history">De mapexport schrijft wat de geschiedenis vastlegt, dus de geschiedenis moet ingeschakeld zijn.</string>
     <string name="dictate__history_export_enable_history">Geschiedenis inschakelen</string>
     <string name="dictate__history_export_pick_failed">Kon geen schrijftoegang tot die map krijgen</string>
@@ -1783,15 +1782,15 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__stats_reset_confirm_title">Statistieken wissen?</string>
     <string name="dictate__stats_reset_confirm_msg">Dit wist permanent al je dicteerstatistieken.</string>
     <string name="dictate__stats_share">Delen</string>
-    <string name="dictate__stats_share_text">Ik heb %1$s bespaard met Dictate — %2$s dictaten, %3$s woorden. 🎤</string>
+    <string name="dictate__stats_share_text">Ik heb %1$s bespaard met Voice Mode — %2$s dictaten, %3$s woorden. 🎤</string>
     <string name="dictate__stats_view">Statistieken bekijken</string>
     <string name="dictate__stats_milestones_title">Mijlpaalvieringen</string>
     <string name="dictate__stats_milestones_summary">Vier één keer bij een mijlpaal voor bespaarde tijd of dictaten</string>
     <string name="dictate__stats_milestone_title">Mijlpaal bereikt 🎉</string>
-    <string name="dictate__stats_milestone_time">Je hebt %s bespaard met Dictate — goed bezig!</string>
-    <string name="dictate__stats_milestone_count">Je hebt %s dictaten bereikt met Dictate!</string>
-    <string name="dictate__promo_milestone_time">%s bespaard met Dictate! 🎉</string>
-    <string name="dictate__promo_milestone_count">%s dictaten met Dictate! 🎉</string>
+    <string name="dictate__stats_milestone_time">Je hebt %s bespaard met Voice Mode — goed bezig!</string>
+    <string name="dictate__stats_milestone_count">Je hebt %s dictaten bereikt met Voice Mode!</string>
+    <string name="dictate__promo_milestone_time">%s bespaard met Voice Mode! 🎉</string>
+    <string name="dictate__promo_milestone_count">%s dictaten met Voice Mode! 🎉</string>
     <string name="dictate__promo_milestone_action">Statistieken</string>
     <string name="dictate__reasoning_effort_title">Redeneerinspanning</string>
     <string name="dictate__reasoning_effort_off">Uit</string>
@@ -1806,7 +1805,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__reasoning_effort_high_summary">Meest nadenken, langzamer</string>
     <string name="dictate__reasoning_effort_custom">Aangepast</string>
     <string name="dictate__action_save_audio">Audio opslaan</string>
-    <string name="dictate__audio_saved">Audio opgeslagen in Downloads/Dictate: %s</string>
+    <string name="dictate__audio_saved">Audio opgeslagen in Downloads/VoiceMode: %s</string>
     <string name="dictate__audio_save_failed">Kan de audio niet opslaan</string>
     <string name="dictate__instant_recording_mode_off">Uit</string>
     <string name="dictate__instant_recording_mode_always">Elke keer als het toetsenbord opent</string>
@@ -1869,11 +1868,11 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour__intro_body">Dit is nieuw in Dictate 5.0 — de hoogtepunten in minder dan een minuut. Tik op elke pagina op ‘Uitproberen’ om meteen naar die instelling te springen.</string>
     <string name="apptour__glide_eyebrow">Toetsenbord</string>
     <string name="apptour__glide_title">Veeg om te typen</string>
-    <string name="apptour__glide_body">Veeg met je vinger van toets naar toets en Dictate maakt van het pad hele woorden. Elke taal heeft een eigen woordenboek dat op verzoek wordt gedownload — zet het aan bij Gebaren.</string>
+    <string name="apptour__glide_body">Veeg met je vinger van toets naar toets en Voice Mode maakt van het pad hele woorden. Elke taal heeft een eigen woordenboek dat op verzoek wordt gedownload — zet het aan bij Gebaren.</string>
     <string name="apptour__glide_cta">Veegtypen instellen</string>
     <string name="apptour__suggestions_eyebrow">Toetsenbord</string>
     <string name="apptour__suggestions_title">Autocorrectie &amp; suggesties</string>
-    <string name="apptour__suggestions_body">Terwijl je typt, stelt Dictate passende woorden voor en corrigeert het typfouten ongemerkt. Het woord dat je echt typte blijft in de suggestiebalk staan, zodat één tik elke correctie ongedaan maakt.</string>
+    <string name="apptour__suggestions_body">Terwijl je typt, stelt Voice Mode passende woorden voor en corrigeert het typfouten ongemerkt. Het woord dat je echt typte blijft in de suggestiebalk staan, zodat één tik elke correctie ongedaan maakt.</string>
     <string name="apptour__suggestions_cta">Suggesties aanpassen</string>
     <string name="apptour__realtime_eyebrow">Transcriptie</string>
     <string name="apptour__realtime_title">Realtime transcriptie</string>
@@ -1906,16 +1905,16 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour51__continue_to">Doorgaan naar {version}</string>
     <string name="apptour51__intro_eyebrow">Version 5.1</string>
     <string name="apptour51__intro_title">Wat is er nieuw in 5.1</string>
-    <string name="apptour51__intro_body">Dictate is sinds 5.0 flink gegroeid. Dit zijn de hoogtepunten van 5.1 — tik op elke pagina op ‘Uitproberen’ om meteen naar die functie te springen.</string>
+    <string name="apptour51__intro_body">Voice Mode is sinds 5.0 flink gegroeid. Dit zijn de hoogtepunten van 5.1 — tik op elke pagina op ‘Uitproberen’ om meteen naar die functie te springen.</string>
     <string name="apptour51__history_eyebrow">Transcriptie</string>
     <string name="apptour51__history_title">Transcriptiegeschiedenis</string>
     <string name="apptour51__history_body">Elk dictaat wordt nu bewaard in een doorzoekbare geschiedenis. Voeg elke eerdere transcriptie met één tik opnieuw in, speel de originele audio af, transcribeer opnieuw of zet degene vast die je het vaakst hergebruikt. Op een apart scherm beheer je alles, inclusief hoelang audio-opnames bewaard blijven.</string>
     <string name="apptour51__longform_eyebrow">Transcriptie</string>
     <string name="apptour51__longform_title">Langdurig dicteren</string>
-    <string name="apptour51__longform_body">Praat zo lang als je wilt. Lange opnames worden automatisch in segmenten gesplitst en op de achtergrond getranscribeerd terwijl je doorgaat, zodat je je tekst sneller krijgt en nooit tegen een lengtelimiet aanloopt. Knip zelf een segment af, of laat Dictate natuurlijke pauzes herkennen.</string>
+    <string name="apptour51__longform_body">Praat zo lang als je wilt. Lange opnames worden automatisch in segmenten gesplitst en op de achtergrond getranscribeerd terwijl je doorgaat, zodat je je tekst sneller krijgt en nooit tegen een lengtelimiet aanloopt. Knip zelf een segment af, of laat Voice Mode natuurlijke pauzes herkennen.</string>
     <string name="apptour51__gif_eyebrow">Toetsenbord</string>
     <string name="apptour51__gif_title">GIF-zoeken</string>
-    <string name="apptour51__gif_body">Vind en verstuur GIFs zonder Dictate ooit te verlaten. Open het GIF-paneel, zoek naar van alles en plaats het meteen in je chat — een snelle kiezer in Gboard-stijl, direct ingebouwd.</string>
+    <string name="apptour51__gif_body">Vind en verstuur GIFs zonder Voice Mode ooit te verlaten. Open het GIF-paneel, zoek naar van alles en plaats het meteen in je chat — een snelle kiezer in Gboard-stijl, direct ingebouwd.</string>
     <string name="apptour51__classic_eyebrow">Klassieke indeling</string>
     <string name="apptour51__classic_title">Klassieke indeling, vernieuwd</string>
     <string name="apptour51__classic_body">Het toetsenbordloze dicteerscherm kreeg een flinke upgrade: een vrij in te delen actiebalk die je met slepen en neerzetten samenstelt, bediening voor langdurige opnames, één of twee promptrijen, een altijd beschikbare backspace, een tekenpop-up op de Enter-toets en een optionele tweede knop ‘toetsenbord wisselen’ voor eenvoudiger bediening met één hand.</string>
@@ -1930,14 +1929,14 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour51__more_body">Ook talloze kleinere verbeteringen: kies de actieve transcriptietaal in de instellingen, de stopknop annuleert nu echt een lopend verzoek, een schakelaar om API-sleutels te tonen/verbergen en meertalig typen zonder autocorrectie tussen talen — plus vele oplossingen in de klassieke indeling, het numerieke toetsenblok en daarbuiten.</string>
     <string name="apptour51__outro_eyebrow">Dat is 5.1</string>
     <string name="apptour51__outro_title">Veel plezier met de update</string>
-    <string name="apptour51__outro_body">Bedankt dat je Dictate gebruikt! Als het je elke dag helpt, houdt een kleine donatie het project draaiende. Je kunt al deze rondleidingen altijd opnieuw bekijken via Instellingen › Over.</string>
+    <string name="apptour51__outro_body">Bedankt dat je Voice Mode gebruikt! Als het je elke dag helpt, houdt een kleine donatie het project draaiende. Je kunt al deze rondleidingen altijd opnieuw bekijken via Instellingen › Over.</string>
     <string name="apptour52__cta_try">Proberen</string>
     <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
     <string name="apptour52__intro_title">Overal dicteren</string>
-    <string name="apptour52__intro_body">Deze versie tilt Dictate voorbij het eigen toetsenbord: als spraakinvoer van je telefoon, voor gesproken opdrachten vanaf elke plek en om lange dictaten netjes op te maken. Dit is nieuw.</string>
+    <string name="apptour52__intro_body">Deze versie tilt Voice Mode voorbij het eigen toetsenbord: als spraakinvoer van je telefoon, voor gesproken opdrachten vanaf elke plek en om lange dictaten netjes op te maken. Dit is nieuw.</string>
     <string name="apptour52__voiceinput_eyebrow">Spraakinvoer van het systeem</string>
-    <string name="apptour52__voiceinput_title">Dictate vanuit elk toetsenbord</string>
-    <string name="apptour52__voiceinput_body">Dictate meldt zich nu aan als systeemspraakinvoer: de microfoontoets van andere toetsenborden en apps transcribeert via Dictate — met jouw provider, jouw prompts en jouw lokale modellen. Zet „Dictate spraakinvoer” aan in je toetsenbordlijst en kies het als spraakinvoermethode. (Gboard houdt zijn microfoon aan Google gekoppeld: gebruik een toetsenbord dat de systeeminstelling respecteert.)</string>
+    <string name="apptour52__voiceinput_title">Voice Mode vanuit elk toetsenbord</string>
+    <string name="apptour52__voiceinput_body">Voice Mode meldt zich nu aan als systeemspraakinvoer: de microfoontoets van andere toetsenborden en apps transcribeert via Voice Mode — met jouw provider, jouw prompts en jouw lokale modellen. Zet „Voice Mode spraakinvoer” aan in je toetsenbordlijst en kies het als spraakinvoermethode. (Gboard houdt zijn microfoon aan Google gekoppeld: gebruik een toetsenbord dat de systeeminstelling respecteert.)</string>
     <string name="apptour52__liveprompt_eyebrow">Vrije spraakopdracht</string>
     <string name="apptour52__liveprompt_title">Zeg de AI wat te doen — overal</string>
     <string name="apptour52__liveprompt_body">Houd de zwevende knop ingedrukt om het menu te openen, tik op „Live prompt” en zeg gewoon wat je wilt: „schrijf een beleefde afzegging voor de afspraak morgen”, „vertaal de tekst hierboven naar het Spaans”. Geselecteerde tekst dient als context; zonder selectie schrijft de AI vanaf nul.</string>
@@ -1949,7 +1948,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour52__trim_body">Even nadenken midden in een zin? Stiltes van meer dan een paar seconden worden vóór het verzenden weggeknipt — elk gesproken woord blijft, alleen de dode tijd verdwijnt. Kortere uploads betekenen minder wachten en lagere kosten.</string>
     <string name="apptour52__paragraphs_eyebrow">Leesbare lange dictaten</string>
     <string name="apptour52__paragraphs_title">Automatische alinea\'s</string>
-    <string name="apptour52__paragraphs_body">Lange dictaten komen niet meer als één muur tekst binnen. Stel een aantal woorden in en Dictate begint bij het volgende zinseinde een nieuwe alinea — deterministisch en alleen bij kale transcripties, nooit bij door AI opgemaakte tekst.</string>
+    <string name="apptour52__paragraphs_body">Lange dictaten komen niet meer als één muur tekst binnen. Stel een aantal woorden in en Voice Mode begint bij het volgende zinseinde een nieuwe alinea — deterministisch en alleen bij kale transcripties, nooit bij door AI opgemaakte tekst.</string>
     <string name="apptour52__smartturn_eyebrow">Slimmer long-form</string>
     <string name="apptour52__smartturn_title">Knipt bij afgeronde gedachten</string>
     <string name="apptour52__smartturn_body">Long-form dicteren kan nu het lokale Smart Turn v3-model gebruiken om te bepalen wanneer je een gedachte echt hebt afgerond, in plaats van bij elke pauze te knippen. Optioneel en op verzoek gedownload.</string>
@@ -1965,7 +1964,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour53__intro_body">Deze versie gaat over de twee dingen die je het vaakst doet: tegen je telefoon praten en erop typen. Allebei sneller, en allebei beter in je niet voor de voeten lopen.</string>
     <string name="apptour53__pushtotalk_eyebrow">Indrukken om te praten</string>
     <string name="apptour53__pushtotalk_title">Houd de microfoon vast, laat los om te versturen</string>
-    <string name="apptour53__pushtotalk_body">Als een spraakbericht: houd de microfoontoets vast en praat, laat los en het gaat weg. Veeg naar links om de opname weg te gooien, of sleep omhoog om hem vast te zetten en je hand vrij te hebben. Een korte tik werkt nog gewoon zoals altijd. Aan te zetten in de Dictate-instellingen.</string>
+    <string name="apptour53__pushtotalk_body">Als een spraakbericht: houd de microfoontoets vast en praat, laat los en het gaat weg. Veeg naar links om de opname weg te gooien, of sleep omhoog om hem vast te zetten en je hand vrij te hebben. Een korte tik werkt nog gewoon zoals altijd. Aan te zetten in de Voice Mode-instellingen.</string>
     <string name="apptour53__autocorrect_eyebrow">Autocorrectie opnieuw gebouwd</string>
     <string name="apptour53__autocorrect_title">Ze leest je vingers, niet je typefouten</string>
     <string name="apptour53__autocorrect_body">Correcties komen nu voort uit waar je de toetsen echt raakte, met een zoektocht door de waarschijnlijke woorden terwijl je typt, in plaats van te gokken op het afgemaakte woord. Op onze testset ging het van 88 % naar 98 % goed — het verschil merk je vooral bij snel en slordig typen.</string>
@@ -1983,7 +1982,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour53__prediction_body">De suggestiebalk biedt nu wat er meestal volgt, geleerd van hoe jij schrijft. En elk woord kun je met een lange druk aan je woordenboek toevoegen, zodat je namen en jargon niet langer worden weggecorrigeerd.</string>
     <string name="apptour53__ownserver_eyebrow">Je eigen server</string>
     <string name="apptour53__ownserver_title">Zelfgehost, nu ook live</string>
-    <string name="apptour53__ownserver_body">Een eigen server kan nu ook live transcriberen, als hij het realtimeprotocol van OpenAI spreekt. En staat er een machine achter die slaapt, dan kan Dictate die vroeg wekken zodat het eerste verzoek niet op het opstarten hoeft te wachten.</string>
+    <string name="apptour53__ownserver_body">Een eigen server kan nu ook live transcriberen, als hij het realtimeprotocol van OpenAI spreekt. En staat er een machine achter die slaapt, dan kan Voice Mode die vroeg wekken zodat het eerste verzoek niet op het opstarten hoeft te wachten.</string>
     <string name="apptour53__outro_eyebrow">Dat was 5.3</string>
     <string name="apptour53__outro_title">Veel dicteerplezier</string>
     <string name="apptour53__outro_body">Plus een hoop kleinere dingen: elke aanbieder draagt zijn eigen logo, de opname-indicator kan stil, pulserend of stemreactief zijn, de promptuitvoer kan de originele transcriptie ernaast houden, en alinea\'s breken niet meer na afkortingen. Elke rondleiding is terug te vinden onder Instellingen › Over.</string>
@@ -1994,7 +1993,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
     <string name="apptour60__intro_title">Tegoed, Chinees, goedkoper dicteren</string>
     <string name="apptour60__intro_body">Deze versie voegt een tweede ingang toe — tegoed kopen in plaats van je eigen API-sleutel meebrengen —, plus pinyin voor Chinees, zeven talen met een nieuw woordenboek en opnames die minder kosten.</string>
-    <string name="apptour60__cloud_eyebrow">Nieuw: Dictate Cloud</string>
+    <string name="apptour60__cloud_eyebrow">Nieuw: Voice Mode Cloud</string>
     <string name="apptour60__cloud_title">Minuten kopen in plaats van een sleutel zoeken</string>
     <string name="apptour60__cloud_body">Wie liever geen account bij een aanbieder aanmaakt, koopt nu gewoon tegoed. Ja, dat loopt via onze server — maar noch je opnames noch je teksten worden daar bewaard, ze gaan direct door. De volledige servercode is openbaar en na te lezen. Je eigen sleutel blijft precies zo werken als voorheen.</string>
     <string name="apptour60__speedup_eyebrow">Minder API-kosten</string>
@@ -2014,7 +2013,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour60__more_body">Stop ingedrukt houden haalt een vastgelopen transcriptie terug. De zwevende knop meldt geen succes meer dat hij niet kon controleren, en gaat mee uit met het scherm. Veegtypen kent nu je eigen toegevoegde woorden. En de crash direct na het bijwerken is verholpen.</string>
     <string name="apptour60__outro_eyebrow">Dat was 6.0</string>
     <string name="apptour60__outro_title">Veel plezier ermee</string>
-    <string name="apptour60__outro_body">Hoe je Dictate ook gebruikt — eigen sleutel, eigen server, een model op het toestel of tegoed —: aan de andere wegen is niets veranderd. Elke rondleiding vind je terug onder Instellingen › Over.</string>
+    <string name="apptour60__outro_body">Hoe je Voice Mode ook gebruikt — eigen sleutel, eigen server, een model op het toestel of tegoed —: aan de andere wegen is niets veranderd. Elke rondleiding vind je terug onder Instellingen › Over.</string>
     <string name="apptour61__cta_try">Uitproberen</string>
     <string name="apptour61__art_folder">Stickers</string>
     <string name="apptour61__art_share">Delen met</string>
@@ -2022,13 +2021,13 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour61__art_fixed">het</string>
     <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
     <string name="apptour61__intro_title">Stickers, spraakberichten en autocorrectie die de typfout eindelijk ziet</string>
-    <string name="apptour61__intro_body">Wijs het toetsenbord een map met je eigen stickers aan, deel een spraakbericht rechtstreeks met Dictate om te weten wat erin staat, en gebruik een autocorrectie die de fout eindelijk opmerkt die ze was gebouwd om te missen.</string>
+    <string name="apptour61__intro_body">Wijs het toetsenbord een map met je eigen stickers aan, deel een spraakbericht rechtstreeks met Voice Mode om te weten wat erin staat, en gebruik een autocorrectie die de fout eindelijk opmerkt die ze was gebouwd om te missen.</string>
     <string name="apptour61__stickers_eyebrow">Nieuw: je eigen stickers</string>
     <string name="apptour61__stickers_title">Een map op je telefoon, op het toetsenbord</string>
-    <string name="apptour61__stickers_body">Wijs Dictate een willekeurige map aan en de afbeeldingen erin worden stickers — submappen worden tabbladen, met eigen favorieten en recent gebruikte. Voeg er een toe vanuit elke app via het deelmenu, verwijder er een zonder het toetsenbord te verlaten. Wat een chat-app werkelijk accepteert is niet wat ze zegt te accepteren: daarom wordt elke sticker bij binnenkomst één keer in vorm gebracht en van daaruit gewoon verstuurd.</string>
-    <string name="apptour61__share_eyebrow">Nieuw: delen met Dictate</string>
+    <string name="apptour61__stickers_body">Wijs Voice Mode een willekeurige map aan en de afbeeldingen erin worden stickers — submappen worden tabbladen, met eigen favorieten en recent gebruikte. Voeg er een toe vanuit elke app via het deelmenu, verwijder er een zonder het toetsenbord te verlaten. Wat een chat-app werkelijk accepteert is niet wat ze zegt te accepteren: daarom wordt elke sticker bij binnenkomst één keer in vorm gebracht en van daaruit gewoon verstuurd.</string>
+    <string name="apptour61__share_eyebrow">Nieuw: delen met Voice Mode</string>
     <string name="apptour61__share_title">Weten wat dat spraakbericht zegt</string>
-    <string name="apptour61__share_body">Dictate staat nu in het deelmenu voor audio en video. Deel er een spraakbericht mee en er opent een scherm dat vanzelf begint te transcriberen — geen veld te zoeken, geen knop in te drukken. De transcriptie is doorzoekbaar, en lange opnames worden in stukken verwerkt in plaats van geweigerd.</string>
+    <string name="apptour61__share_body">Voice Mode staat nu in het deelmenu voor audio en video. Deel er een spraakbericht mee en er opent een scherm dat vanzelf begint te transcriberen — geen veld te zoeken, geen knop in te drukken. De transcriptie is doorzoekbaar, en lange opnames worden in stukken verwerkt in plaats van geweigerd.</string>
     <string name="apptour61__autocorrect_eyebrow">Autocorrectie</string>
     <string name="apptour61__autocorrect_title">De typfout die ze niet kon zien</string>
     <string name="apptour61__autocorrect_body">De regel die bepaalde of een woord gecorrigeerd mocht worden liet een vinger door die bijna tot de buurtoets was gegleden, maar nooit een die er recht op landde — juist de gewone typfout. Dat is opgelost, en hoe stellig er gecorrigeerd wordt stel je nu zelf in. Het woord dat de spatiebalk gaat nemen is gemarkeerd in je accentkleur, en de backspace er direct na geeft precies terug wat je had getypt.</string>
@@ -2057,7 +2056,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour62__learning_body">Typ een naam of vakterm vaak genoeg en het toetsenbord houdt hem: het markeert hem niet langer als fout en gaat hem voorstellen. Deze update zet dat bij iedereen aan, ook bij wie het eerder had uitgezet. In incognitomodus, in wachtwoordvelden en uit alles wat je niet toets voor toets hebt getypt wordt niets geleerd; alles blijft op dit toestel, en de knop hieronder opent de lijst — en de schakelaar.</string>
     <string name="apptour62__themes_eyebrow">Vijf nieuwe thema\'s</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep en een donkere E-Ink</string>
-    <string name="apptour62__themes_body">Dictate Glass laat de app doorschijnen door de kieren tussen de toetsen, terwijl de toetsen zelf dekkend genoeg blijven om erop te lezen; Glass Clear gaat verder en oogt mooier, ten koste van tekst die doorschijnt in apps die achter het toetsenbord doortekenen. Sand is een warm licht thema, Deep een rustig donker thema, en E-Ink heeft eindelijk een nachtversie — zo geeft het automatisch wisselen je na zonsondergang geen wit toetsenbord meer.</string>
+    <string name="apptour62__themes_body">Voice Mode Glass laat de app doorschijnen door de kieren tussen de toetsen, terwijl de toetsen zelf dekkend genoeg blijven om erop te lezen; Glass Clear gaat verder en oogt mooier, ten koste van tekst die doorschijnt in apps die achter het toetsenbord doortekenen. Sand is een warm licht thema, Deep een rustig donker thema, en E-Ink heeft eindelijk een nachtversie — zo geeft het automatisch wisselen je na zonsondergang geen wit toetsenbord meer.</string>
     <string name="apptour62__split_eyebrow">Nieuw: gesplitst toetsenbord</string>
     <string name="apptour62__split_title">Allebei de duimen, zonder rekken</string>
     <string name="apptour62__split_body">Een nieuwe snelle actie, naast eenhandig en zwevend, trekt de rijen uit elkaar zodat elke duim bij zijn eigen helft blijft. Elke indeling splitst, niet alleen QWERTY, omdat de naad uit de toetsbreedtes wordt afgeleid in plaats van per indeling te worden opgeschreven. En liggend blijft de app nu zichtbaar zodra er ruimte is voor allebei.</string>
@@ -2078,7 +2077,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour62__gestures_body">Houd de symbooltoets vast, schuif naar het teken dat je wilt en laat los: het wordt ingevoegd en de letters zijn alweer terug, zonder heen en weer te schakelen. Omhoog vegen over de spatiebalk bereikt nu de regel erboven, niet alleen het vorige woord. En de ruimte tussen de toetsen is in te stellen over een bereik dat je echt ziet.</string>
     <string name="apptour62__export_eyebrow">Nieuw: dictaten als bestanden</string>
     <string name="apptour62__export_title">Elk dictaat in een map die jij kiest</string>
-    <string name="apptour62__export_body">Kies één keer een map en elk afgerond dictaat wordt er ook als plat tekstbestand in geschreven, op het moment dat het klaar is. Wat die map ook in de gaten houdt — een notitie-app, een synchronisatietool, je back-up — krijgt je teksten zonder dat Dictate er de taal van hoeft te leren.</string>
+    <string name="apptour62__export_body">Kies één keer een map en elk afgerond dictaat wordt er ook als plat tekstbestand in geschreven, op het moment dat het klaar is. Wat die map ook in de gaten houdt — een notitie-app, een synchronisatietool, je back-up — krijgt je teksten zonder dat Voice Mode er de taal van hoeft te leren.</string>
     <string name="apptour62__more_eyebrow">Verder</string>
     <string name="apptour62__more_title">Veel kleine dingen</string>
     <string name="apptour62__more_body">Suggesties kijken nu in elke taal naar de twee woorden vóór de cursor, niet alleen in het Engels. Een back-up kan zonder je API-sleutels worden gemaakt, zodat je hem veilig kunt doorgeven. De eigen transcriptiemodellen van Azure zijn bereikbaar, een model voor offline gebruik kiezen schakelt nu ook over naar de offline engine, en elk verzoek heeft een termijn die bij het wachten past. Dictaten verschijnen in de geschiedenis op het moment dat ze worden verstuurd, imports zeggen bij welke stap ze zijn en kunnen worden afgebroken, en tekst komt betrouwbaarder aan in apps die daar moeilijk over deden.</string>
@@ -2091,7 +2090,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour63__intro_body">Richt de camera op gedrukte tekst en die belandt in het veld. Cursor, selectie en klembord delen eindelijk één paneel. Elke Smartbar-knop kan met lang indrukken een tweede actie dragen. En dicteren zonder internet heeft eindelijk modellen die echt op een telefoon passen.</string>
     <string name="apptour63__scan_eyebrow">Nieuw: tekst scannen</string>
     <string name="apptour63__scan_title">Gedrukte tekst, meteen in het veld</string>
-    <string name="apptour63__scan_body">Het IBAN van een brief, het serienummer van een doos, het adres van een pakket: richt de camera erop en de tekst staat waar je aan het typen was, in plaats van overgetikt te worden. De herkenning gebeurt op dit toestel — er wordt niets geüpload en er komt geen aanbieder aan te pas. Dictate vraagt ook nooit om de camerarechten: de systeemcamera maakt de foto en geeft alleen die ene afbeelding terug, die wordt verwijderd zodra ze gelezen is.</string>
+    <string name="apptour63__scan_body">Het IBAN van een brief, het serienummer van een doos, het adres van een pakket: richt de camera erop en de tekst staat waar je aan het typen was, in plaats van overgetikt te worden. De herkenning gebeurt op dit toestel — er wordt niets geüpload en er komt geen aanbieder aan te pas. Voice Mode vraagt ook nooit om de camerarechten: de systeemcamera maakt de foto en geeft alleen die ene afbeelding terug, die wordt verwijderd zodra ze gelezen is.</string>
     <string name="apptour63__editing_eyebrow">Nieuw: bewerkpaneel</string>
     <string name="apptour63__editing_title">Cursor, selectie en klembord op één plek</string>
     <string name="apptour63__editing_body">Het bestond allemaal al, verspreid over elf toetsen waarvan je moest weten. Nu is het één paneel: verplaatsen per teken, woord of regel, selecteren, kopiëren, plakken, ongedaan maken. Een ingedrukte toets herhaalt zichzelf in plaats van elf tikken te vragen. En het numerieke blok kun je nu uitdrukkelijk oproepen, in plaats van het alleen via een gebaar te bereiken dat niemand had ingesteld.</string>
@@ -2162,12 +2161,12 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__legacy_prompt_rows_one">Eén rij</string>
     <string name="dictate__legacy_prompt_rows_two">Twee rijen</string>
     <string name="about__website__title">Website</string>
-    <string name="dictate__cloud_title">Dictate Cloud</string>
+    <string name="dictate__cloud_title">Voice Mode Cloud</string>
     <string name="dictate__cloud_row_summary_none">Dicteertegoed kopen — zonder API-sleutel</string>
     <string name="dictate__cloud_row_summary_balance">Nog {minutes} minuten tegoed</string>
     <string name="dictate__cloud_intro_title">Dicteren zonder API-sleutel</string>
     <string name="dictate__cloud_intro_body">Koop dicteertegoed direct hier in de app. Geen account bij een AI-aanbieder, geen API-sleutel, geen abonnement. Tegoed verloopt niet en wordt alleen verbruikt als je het echt gebruikt: een minuut dicteren kost een minuut, een herformulering ongeveer twee seconden.</string>
-    <string name="dictate__cloud_intro_alternative">Dit is volledig optioneel. Dictate werkt net zo goed met je eigen sleutel bij een aanbieder naar keuze — meerdere zijn gratis — en dan houd je je eigen account en betaal je de aanbieder rechtstreeks tegen diens prijzen.</string>
+    <string name="dictate__cloud_intro_alternative">Dit is volledig optioneel. Voice Mode werkt net zo goed met je eigen sleutel bij een aanbieder naar keuze — meerdere zijn gratis — en dan houd je je eigen account en betaal je de aanbieder rechtstreeks tegen diens prijzen.</string>
     <string name="dictate__cloud_use_own_provider_btn">Liever mijn eigen aanbieder</string>
     <string name="dictate__cloud_balance_label">Resterend tegoed</string>
     <string name="dictate__cloud_balance_minutes">{minutes} min</string>
@@ -2181,7 +2180,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__cloud_shop_unavailable">De tegoedpakketten kunnen hier niet worden getoond. Meestal betekent dat dat de app niet via Google Play is geïnstalleerd, of dat er op dit apparaat geen Play-account is aangemeld. Je eigen API-sleutel werkt in beide gevallen.</string>
     <string name="dictate__cloud_activate_title">Tegoed staat klaar</string>
     <string name="dictate__cloud_activate_body">Je hebt tegoed, maar het dicteren loopt op dit moment via een andere aanbieder. Wissel wanneer je wilt — zonder jou verandert er niets.</string>
-    <string name="dictate__cloud_activate_btn">Dicteren via Dictate Cloud</string>
+    <string name="dictate__cloud_activate_btn">Dicteren via Voice Mode Cloud</string>
     <string name="dictate__cloud_notice_purchased">{minutes} minuten aan je tegoed toegevoegd.</string>
     <string name="dictate__cloud_notice_pending">Je betaling is nog niet afgerond. Het tegoed verschijnt zodra Google die bevestigt.</string>
     <string name="dictate__cloud_notice_not_redeemed">De betaling is gelukt, maar het tegoed kon niet worden opgehaald. Er is niets verloren — open dit scherm opnieuw en het wordt bijgeschreven.</string>
@@ -2191,7 +2190,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__cloud_notice_gone_deleted" comment="Shown when the app finds out that the credit account was deleted elsewhere">Je tegoedaccount bestaat niet meer — het is via de website of op een ander apparaat verwijderd. Nu is het ook van deze telefoon verdwenen.</string>
     <string name="dictate__cloud_notice_gone_signed_out" comment="Shown when this device was signed out of the credit account, which still exists">Dit apparaat is afgemeld bij je tegoedaccount. Het account en het tegoed blijven ongemoeid — voer hieronder je herstelcode in om je weer aan te melden.</string>
     <string name="dictate__cloud_delete_title">Tegoedaccount verwijderen</string>
-    <string name="dictate__cloud_delete_explain">Verwijdert je tegoedaccount en alles wat erover is opgeslagen. Resterend tegoed vervalt en wordt niet terugbetaald. Heb je de app niet meer, dan kan het ook via api.dictatekeyboard.com/delete.</string>
+    <string name="dictate__cloud_delete_explain">Verwijdert je tegoedaccount en alles wat erover is opgeslagen. Resterend tegoed vervalt en wordt niet terugbetaald. Heb je de app niet meer, dan kan het ook via api.voicemode.example/delete.</string>
     <string name="dictate__cloud_delete_btn">Account verwijderen</string>
     <string name="dictate__cloud_delete_dialog_title">Je account verwijderen?</string>
     <string name="dictate__cloud_delete_dialog_body" comment="{minutes} is a number">Je hebt nog {minutes} minuten tegoed. Verwijderen wist je account, je herstelcode en alle aangemelde apparaten.</string>
@@ -2217,7 +2216,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__cloud_devices_last_used">Laatst gebruikt {time}</string>
     <string name="dictate__cloud_devices_never_used">Nog niet gebruikt</string>
     <string name="dictate__cloud_recovery_error">Server niet bereikbaar. Controleer je verbinding en probeer het opnieuw.</string>
-    <string name="dictate__cloud_limits_title">Wat Dictate Cloud niet kan</string>
+    <string name="dictate__cloud_limits_title">Wat Voice Mode Cloud niet kan</string>
     <string name="dictate__cloud_limits_body">Live transcriptie terwijl je spreekt is er niet met tegoed — het kost per minuut ongeveer vier keer zoveel, en de motor op het apparaat doet het offline en gratis. Het AI-model en hoe lang het nadenkt bepaalt de server, dus modelkeuze, denkinspanning en eigen endpoints blijven uit. Al het andere is onveranderd: prompts, geschiedenis, de zwevende knop, lange dictaten en het horloge.</string>
     <string name="dictate__cloud_privacy_title">Wat er wordt opgeslagen</string>
     <string name="dictate__cloud_privacy_body">Je opnamen en teksten worden doorgegeven en nooit naar schijf geschreven. Alleen getallen worden bewaard: welk account, wanneer, hoe lang en of het lukte. Achter een tegoedaccount zit geen naam, geen e-mailadres en geen Google-account — alleen een willekeurige aanduiding.</string>
@@ -2265,9 +2264,9 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="quick_action__ime_ui_mode_sticker">Sticker</string>
     <string name="quick_action__ime_ui_mode_sticker__tooltip">Je eigen stickers invoegen</string>
     <string name="prefs__media__sticker_add">Stickers toevoegen</string>
-    <string name="prefs__media__sticker_add__summary">Kopieer afbeeldingen naar de map. Je kunt een afbeelding ook vanuit elke app naar Dictate delen.</string>
+    <string name="prefs__media__sticker_add__summary">Kopieer afbeeldingen naar de map. Je kunt een afbeelding ook vanuit elke app naar Voice Mode delen.</string>
     <string name="prefs__media__sticker_import_whatsapp">Uit WhatsApp halen</string>
-    <string name="prefs__media__sticker_import_whatsapp__summary">Opent de bestandskiezer in de stickermap van WhatsApp. Toetsenborden zoals dat van Samsung bewaren hun stickers waar geen andere app mag lezen — die deel je naar Dictate.</string>
+    <string name="prefs__media__sticker_import_whatsapp__summary">Opent de bestandskiezer in de stickermap van WhatsApp. Toetsenborden zoals dat van Samsung bewaren hun stickers waar geen andere app mag lezen — die deel je naar Voice Mode.</string>
     <string name="sticker__import_share_label">Opslaan als sticker</string>
     <string name="sticker__import_added">{n} toegevoegd</string>
     <string name="sticker__import_duplicate">{n} stonden er al</string>
@@ -2291,7 +2290,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="sticker__source_downloads">Downloads</string>
     <string name="sticker__source_pictures">Afbeeldingen</string>
     <string name="sticker__source_dcim">Camera</string>
-    <string name="sticker__source_hint">Dit zijn startpunten, geen garanties — is de map er niet, dan opent de kiezer zoals altijd. Apps die hun stickers voor zichzelf houden, zoals het Samsung-toetsenbord, kun je alleen naar Dictate delen.</string>
+    <string name="sticker__source_hint">Dit zijn startpunten, geen garanties — is de map er niet, dan opent de kiezer zoals altijd. Apps die hun stickers voor zichzelf houden, zoals het Samsung-toetsenbord, kun je alleen naar Voice Mode delen.</string>
     <string name="sticker__import_progress">Kopiëren {done} van {total}</string>
     <string name="sticker__import_cancel">Tik om te stoppen. Wat gekopieerd is, blijft.</string>
     <string name="sticker__refused_declares_nothing">Deze app accepteert geen afbeeldingen van het toetsenbord — gekopieerd naar het klembord, lang indrukken om te plakken</string>

@@ -15,7 +15,7 @@ import { json } from '../util';
  *  1. **The app does not use the answer.** It sends `dictate-cloud` as its model and the server
  *     discards that too; this list only has to be non-empty for the connection test to pass.
  *  2. **A name here is a promise.** `@cf/google/gemma-4-26b-a4b-it` in a public response reads as
- *     what Dictate Cloud *is*, and the next model change would then be a broken promise rather
+ *     what Voice Mode Cloud *is*, and the next model change would then be a broken promise rather
  *     than a configuration edit.
  *  3. **It is somebody else's information.** Which model is behind a paid service is exactly the
  *     kind of internal that costs nothing to keep and cannot be taken back once published.

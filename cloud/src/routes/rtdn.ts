@@ -1,5 +1,5 @@
 import { raise } from '../alerts';
-import { LEGACY_REWORD_SECONDS, transcribeCostNano, type Env } from '../config';
+import { LEGACY_REWORD_SECONDS, playPackage, transcribeCostNano, type Env } from '../config';
 import { homeCurrency, usdRate } from '../fx';
 import { walletStub } from '../meter';
 import { alertSettings } from '../settings';
@@ -45,7 +45,7 @@ export async function handleRtdn(request: Request, env: Env, ctx: ExecutionConte
     return json({ ok: true, ignored: 'bad_payload' });
   }
 
-  const expectedPackage = env.PACKAGE_NAME ?? 'net.devemperor.dictate';
+  const expectedPackage = playPackage(env);
   if (notification.packageName && notification.packageName !== expectedPackage) {
     return json({ ok: true, ignored: 'other_package' });
   }

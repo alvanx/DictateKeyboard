@@ -13,7 +13,7 @@
     <string name="wear_cd_resume">Reprendre</string>
     <string name="wear_cd_backspace">Effacer</string>
     <string name="wear_cd_enter">Entrée</string>
-    <string name="wear_err_mic_grant">Autoriser le micro dans Dictate</string>
+    <string name="wear_err_mic_grant">Autoriser le micro dans Voice Mode</string>
     <string name="wear_err_mic_unavailable">Micro indisponible</string>
     <string name="wear_err_transcribe_failed">Échec de transcription</string>
     <string name="wear_err_tap_to_retry">%1$s · Appuyez pour réessayer</string>

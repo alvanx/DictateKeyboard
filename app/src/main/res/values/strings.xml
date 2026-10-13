@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Dictate</string>
+    <string name="app_name">Voice Mode</string>
 
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Pause</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Wait</string>
@@ -88,9 +88,9 @@
     <string name="sticker__copied_to_clipboard" comment="Toast when the target app refuses images and the sticker is copied instead">This app does not accept stickers — copied to clipboard, long-press to paste</string>
     <string name="sticker__insert_failed" comment="Toast when a sticker could not be inserted or copied">Couldn\'t insert the sticker</string>
     <string name="prefs__media__sticker_add" comment="Preference title, opens a picker to copy images into the sticker folder">Add stickers</string>
-    <string name="prefs__media__sticker_add__summary" comment="Preference summary; mentions the share sheet as the other way in">Copy images into the folder. You can also share an image to Dictate from any app.</string>
+    <string name="prefs__media__sticker_add__summary" comment="Preference summary; mentions the share sheet as the other way in">Copy images into the folder. You can also share an image to Voice Mode from any app.</string>
     <string name="prefs__media__sticker_import_whatsapp" comment="Preference title, opens the picker at WhatsApp\'s sticker folder">Fetch from WhatsApp</string>
-    <string name="prefs__media__sticker_import_whatsapp__summary" comment="Preference summary explaining what other apps allow">Opens the file picker at WhatsApp\'s sticker folder. Keyboards such as Samsung\'s keep their stickers where no other app may read them — share those to Dictate instead.</string>
+    <string name="prefs__media__sticker_import_whatsapp__summary" comment="Preference summary explaining what other apps allow">Opens the file picker at WhatsApp\'s sticker folder. Keyboards such as Samsung\'s keep their stickers where no other app may read them — share those to Voice Mode instead.</string>
     <string name="sticker__import_share_label" comment="Label of the app in the Android share sheet">Save as sticker</string>
     <string name="sticker__import_added" comment="Toast after importing; {n} is the number of stickers added">{n} added</string>
     <string name="sticker__import_duplicate" comment="Toast part; {n} images were already in the folder">{n} already there</string>
@@ -120,7 +120,7 @@
     <string name="sticker__source_downloads" comment="Entry in the list of places to fetch stickers from">Downloads</string>
     <string name="sticker__source_pictures" comment="Entry in the list of places to fetch stickers from">Pictures</string>
     <string name="sticker__source_dcim" comment="Entry in the list of places to fetch stickers from">Camera</string>
-    <string name="sticker__source_hint" comment="Note under the list; explains why some apps are missing from it">These are starting points, not guarantees — if a folder is not there, the picker opens as usual. Apps that keep their stickers to themselves, such as the Samsung keyboard, can only be shared to Dictate.</string>
+    <string name="sticker__source_hint" comment="Note under the list; explains why some apps are missing from it">These are starting points, not guarantees — if a folder is not there, the picker opens as usual. Apps that keep their stickers to themselves, such as the Samsung keyboard, can only be shared to Voice Mode.</string>
     <string name="sticker__import_progress" comment="Preference title while copying; {done} of {total} files handled">Copying {done} of {total}</string>
     <string name="sticker__import_cancel" comment="Preference summary while copying; tapping stops it">Tap to stop. What has been copied stays.</string>
     <string name="sticker__refused_declares_nothing" comment="Toast when the target app accepts no rich content at all">This app takes no images from the keyboard — copied to clipboard, long-press to paste</string>
@@ -883,11 +883,11 @@
     <string name="apptour__intro_body">Here’s what’s new in Dictate 5.0 — the highlights in under a minute. Tap “Try it” on any page to jump straight to that setting.</string>
     <string name="apptour__glide_eyebrow">Keyboard</string>
     <string name="apptour__glide_title">Swipe to type</string>
-    <string name="apptour__glide_body">Slide your finger from key to key and Dictate turns the path into whole words. Each language brings its own dictionary that downloads on demand — switch it on under Gestures.</string>
+    <string name="apptour__glide_body">Slide your finger from key to key and Voice Mode turns the path into whole words. Each language brings its own dictionary that downloads on demand — switch it on under Gestures.</string>
     <string name="apptour__glide_cta">Set up glide typing</string>
     <string name="apptour__suggestions_eyebrow">Keyboard</string>
     <string name="apptour__suggestions_title">Autocorrect &amp; suggestions</string>
-    <string name="apptour__suggestions_body">As you type, Dictate suggests fitting words and quietly fixes typos. The word you actually typed stays in the suggestion bar, so a single tap undoes any correction.</string>
+    <string name="apptour__suggestions_body">As you type, Voice Mode suggests fitting words and quietly fixes typos. The word you actually typed stays in the suggestion bar, so a single tap undoes any correction.</string>
     <string name="apptour__suggestions_cta">Adjust suggestions</string>
     <string name="apptour__realtime_eyebrow">Transcription</string>
     <string name="apptour__realtime_title">Real-time transcription</string>
@@ -921,16 +921,16 @@
     <string name="apptour51__continue_to" comment="Button bridging from one tour to the next; {version} is e.g. 5.1">Continue to {version}</string>
     <string name="apptour51__intro_eyebrow">Version 5.1</string>
     <string name="apptour51__intro_title">What’s new in 5.1</string>
-    <string name="apptour51__intro_body">Dictate has grown a lot since 5.0. Here are the highlights of 5.1 — tap “Try it” on any page to jump straight to that feature.</string>
+    <string name="apptour51__intro_body">Voice Mode has grown a lot since 5.0. Here are the highlights of 5.1 — tap “Try it” on any page to jump straight to that feature.</string>
     <string name="apptour51__history_eyebrow">Transcription</string>
     <string name="apptour51__history_title">Transcription history</string>
     <string name="apptour51__history_body">Every dictation is now kept in a searchable history. Re-insert any past transcript with a tap, replay the original audio, re-transcribe it, or pin the ones you reuse most. A dedicated screen lets you manage everything, including how long audio recordings are retained.</string>
     <string name="apptour51__longform_eyebrow">Transcription</string>
     <string name="apptour51__longform_title">Long-form dictation</string>
-    <string name="apptour51__longform_body">Speak for as long as you like. Long recordings are automatically split into segments and transcribed in the background while you keep going, so you get your text sooner and never run into a length limit. Cut a segment yourself, or let Dictate detect natural pauses.</string>
+    <string name="apptour51__longform_body">Speak for as long as you like. Long recordings are automatically split into segments and transcribed in the background while you keep going, so you get your text sooner and never run into a length limit. Cut a segment yourself, or let Voice Mode detect natural pauses.</string>
     <string name="apptour51__gif_eyebrow">Keyboard</string>
     <string name="apptour51__gif_title">GIF search</string>
-    <string name="apptour51__gif_body">Find and send GIFs without ever leaving Dictate. Open the GIF panel, search for anything, and drop it straight into your chat — a fast, Gboard-style picker built right in.</string>
+    <string name="apptour51__gif_body">Find and send GIFs without ever leaving Voice Mode. Open the GIF panel, search for anything, and drop it straight into your chat — a fast, Gboard-style picker built right in.</string>
     <string name="apptour51__classic_eyebrow">Classic layout</string>
     <string name="apptour51__classic_title">Classic layout, reworked</string>
     <string name="apptour51__classic_body">The keyboard-free dictation screen got a big upgrade: a freely arrangeable action row you build by drag &amp; drop, long-form recording controls, one or two prompt rows, an always-available backspace, a character popup on the Enter key, and an optional second “switch keyboard” button for easier one-handed use.</string>
@@ -945,15 +945,15 @@
     <string name="apptour51__more_body">Plenty of smaller upgrades too: choose the active transcription language in settings, the stop button now truly cancels a running request, a show/hide toggle for API keys, and multilingual typing without cross-language autocorrect — plus many fixes across the classic layout, the number pad and beyond.</string>
     <string name="apptour51__outro_eyebrow">That’s 5.1</string>
     <string name="apptour51__outro_title">Enjoy the update</string>
-    <string name="apptour51__outro_body">Thanks for using Dictate! If it helps you every day, a small donation keeps the project going. You can revisit any of these tours anytime under Settings › About.</string>
+    <string name="apptour51__outro_body">Thanks for using Voice Mode! If it helps you every day, a small donation keeps the project going. You can revisit any of these tours anytime under Settings › About.</string>
     <!-- What's new tour 5.2 -->
     <string name="apptour52__cta_try" comment="Button on a 5.2 tour page to jump straight to that feature">Try it</string>
     <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
     <string name="apptour52__intro_title">Dictate everywhere</string>
-    <string name="apptour52__intro_body">This release takes Dictate beyond its own keyboard: use it as your phone\'s voice input, run a spoken command from anywhere, and let it clean up long dictations for you. Here\'s what\'s new.</string>
+    <string name="apptour52__intro_body">This release takes Voice Mode beyond its own keyboard: use it as your phone\'s voice input, run a spoken command from anywhere, and let it clean up long dictations for you. Here\'s what\'s new.</string>
     <string name="apptour52__voiceinput_eyebrow">System-wide voice input</string>
-    <string name="apptour52__voiceinput_title">Use Dictate from any keyboard</string>
-    <string name="apptour52__voiceinput_body">Dictate now registers as a system voice input, so the mic key in other keyboards and apps can transcribe through Dictate — with your provider, your prompts and your on-device models. Enable “Dictate voice input” in your keyboard list and pick it as your voice input method. (Gboard keeps its mic tied to Google, so use a keyboard that honours the system setting.)</string>
+    <string name="apptour52__voiceinput_title">Use Voice Mode from any keyboard</string>
+    <string name="apptour52__voiceinput_body">Voice Mode now registers as a system voice input, so the mic key in other keyboards and apps can transcribe through Voice Mode — with your provider, your prompts and your on-device models. Enable “Voice Mode voice input” in your keyboard list and pick it as your voice input method. (Gboard keeps its mic tied to Google, so use a keyboard that honours the system setting.)</string>
     <string name="apptour52__liveprompt_eyebrow">Freeform voice command</string>
     <string name="apptour52__liveprompt_title">Tell the AI what to do — anywhere</string>
     <string name="apptour52__liveprompt_body">Press and hold the floating button to open its menu, then tap “Live prompt” and just say what you want: “write a polite decline for tomorrow\'s meeting”, “translate the text above to Spanish”. Selected text is used as context; with nothing selected the AI writes from scratch.</string>
@@ -965,7 +965,7 @@
     <string name="apptour52__trim_body">Thinking mid-sentence? Silences longer than a couple of seconds are now cut out before the audio is sent — every spoken word is kept, but the dead air is gone. Shorter uploads mean less waiting and lower cost.</string>
     <string name="apptour52__paragraphs_eyebrow">Readable long dictations</string>
     <string name="apptour52__paragraphs_title">Automatic paragraphs</string>
-    <string name="apptour52__paragraphs_body">Long dictations no longer arrive as one wall of text. Set a word count and Dictate starts a new paragraph at the next sentence end — deterministic, and only for plain transcripts, so AI-formatted text is never second-guessed.</string>
+    <string name="apptour52__paragraphs_body">Long dictations no longer arrive as one wall of text. Set a word count and Voice Mode starts a new paragraph at the next sentence end — deterministic, and only for plain transcripts, so AI-formatted text is never second-guessed.</string>
     <string name="apptour52__smartturn_eyebrow">Smarter long-form</string>
     <string name="apptour52__smartturn_title">Cuts at finished thoughts</string>
     <string name="apptour52__smartturn_body">Long-form dictation can now use the on-device Smart Turn v3 model to decide when you have actually finished a thought, instead of cutting at every pause. Optional and downloaded on demand.</string>
@@ -981,7 +981,7 @@
     <string name="apptour53__intro_body">This release is about the two things you do most: talking to your phone and typing on it. Both got faster, and both got better at staying out of your way.</string>
     <string name="apptour53__pushtotalk_eyebrow">Push to talk</string>
     <string name="apptour53__pushtotalk_title">Hold the mic, release to send</string>
-    <string name="apptour53__pushtotalk_body">Like a voice message: hold the mic key and talk, let go and it is sent. Slide left to throw the recording away, or drag up to lock it hands-free. A quick tap still works the way it always did. Turn it on in the Dictate settings.</string>
+    <string name="apptour53__pushtotalk_body">Like a voice message: hold the mic key and talk, let go and it is sent. Slide left to throw the recording away, or drag up to lock it hands-free. A quick tap still works the way it always did. Turn it on in the Voice Mode settings.</string>
     <string name="apptour53__autocorrect_eyebrow">Autocorrect, rebuilt</string>
     <string name="apptour53__autocorrect_title">It reads your fingers, not your typos</string>
     <string name="apptour53__autocorrect_body">Corrections are now decided from where you actually touched the keys, searching the likely words as you go, instead of guessing from the finished word. On our test set it went from 88% correct to 98% — the difference shows up most on fast, sloppy typing.</string>
@@ -999,7 +999,7 @@
     <string name="apptour53__prediction_body">The suggestion strip now offers what usually comes next, learned from how you write. And any word you long-press can be added to your dictionary, so your names and jargon stop being corrected.</string>
     <string name="apptour53__ownserver_eyebrow">Your own server</string>
     <string name="apptour53__ownserver_title">Self-hosted, now with live transcription</string>
-    <string name="apptour53__ownserver_body">A server of your own can drive live transcription too, if it speaks the OpenAI realtime protocol. And if it sits in front of a machine that sleeps, Dictate can wake it early so the first request is not stuck waiting for it to boot.</string>
+    <string name="apptour53__ownserver_body">A server of your own can drive live transcription too, if it speaks the OpenAI realtime protocol. And if it sits in front of a machine that sleeps, Voice Mode can wake it early so the first request is not stuck waiting for it to boot.</string>
     <string name="apptour53__outro_eyebrow">That\'s 5.3</string>
     <string name="apptour53__outro_title">Happy dictating</string>
     <string name="apptour53__outro_body">Plus plenty of smaller things: every provider now carries its own logo, the recording indicator can be still, pulsing or voice-reactive, prompt output can keep the original transcript beside it, and paragraphs stop breaking after abbreviations. You can revisit any tour under Settings › About.</string>
@@ -1011,7 +1011,7 @@
     <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
     <string name="apptour60__intro_title">Credit, Chinese, cheaper dictation</string>
     <string name="apptour60__intro_body">This release adds a second way in — buy credit instead of bringing your own API key — along with Pinyin for Chinese, seven languages that gained a dictionary, and recordings that cost less to transcribe.</string>
-    <string name="apptour60__cloud_eyebrow">New: Dictate Cloud</string>
+    <string name="apptour60__cloud_eyebrow">New: Voice Mode Cloud</string>
     <string name="apptour60__cloud_title">Buy minutes instead of finding a key</string>
     <string name="apptour60__cloud_body">If you would rather not sign up with a provider, you can now simply buy credit. Yes, that runs through our server — but neither your recordings nor your text are stored there, they are passed straight on. The entire server source is public and can be read. Your own key keeps working exactly as before.</string>
     <string name="apptour60__speedup_eyebrow">Spend less on the API</string>
@@ -1031,7 +1031,7 @@
     <string name="apptour60__more_body">Holding stop takes back a transcription that is hanging. The floating button no longer reports a success it could not verify, and goes down with the screen. Glide typing now knows the words you added yourself. And the crash right after updating is fixed.</string>
     <string name="apptour60__outro_eyebrow">That is 6.0</string>
     <string name="apptour60__outro_title">Have fun with it</string>
-    <string name="apptour60__outro_body">Whichever way you use Dictate — your own key, your own server, a model on the device, or credit — nothing about the other ways has changed. You can revisit any tour under Settings › About.</string>
+    <string name="apptour60__outro_body">Whichever way you use Voice Mode — your own key, your own server, a model on the device, or credit — nothing about the other ways has changed. You can revisit any tour under Settings › About.</string>
     <string name="apptour61__cta_try" comment="Button on a what\'s-new page that opens the settings screen for the feature just described">Try it</string>
     <string name="apptour61__art_folder" comment="Folder name shown on the sticker-grid illustration; a plausible folder someone would point the keyboard at">Stickers</string>
     <string name="apptour61__art_share" comment="Label on the share-sheet card in the illustration, above the app name">Share with</string>
@@ -1039,13 +1039,13 @@
     <string name="apptour61__art_fixed" comment="The correction of apptour61__art_typed, shown replacing it in the illustration">the</string>
     <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
     <string name="apptour61__intro_title">Stickers, voice messages, and an autocorrect that catches the typo</string>
-    <string name="apptour61__intro_body">Point the keyboard at a folder of your own stickers, share a voice message straight to Dictate to find out what it says, and get an autocorrect that finally sees the mistake it was built not to see.</string>
+    <string name="apptour61__intro_body">Point the keyboard at a folder of your own stickers, share a voice message straight to Voice Mode to find out what it says, and get an autocorrect that finally sees the mistake it was built not to see.</string>
     <string name="apptour61__stickers_eyebrow">New: your own stickers</string>
     <string name="apptour61__stickers_title">A folder on your phone, on the keyboard</string>
-    <string name="apptour61__stickers_body">Point Dictate at any folder and its pictures become stickers — subfolders turn into tabs, with favourites and recents of their own. Add one from any app through the share sheet, delete one without leaving the keyboard. What a chat app will actually accept is not what it says it accepts, so each sticker is brought into shape once on the way in and simply sent from there.</string>
-    <string name="apptour61__share_eyebrow">New: share to Dictate</string>
+    <string name="apptour61__stickers_body">Point Voice Mode at any folder and its pictures become stickers — subfolders turn into tabs, with favourites and recents of their own. Add one from any app through the share sheet, delete one without leaving the keyboard. What a chat app will actually accept is not what it says it accepts, so each sticker is brought into shape once on the way in and simply sent from there.</string>
+    <string name="apptour61__share_eyebrow">New: share to Voice Mode</string>
     <string name="apptour61__share_title">Find out what that voice message says</string>
-    <string name="apptour61__share_body">Dictate now appears in the share sheet for audio and video. Share a voice message to it and a screen opens that starts transcribing by itself — no field to find, no button to press. The transcript is searchable, and long recordings are handled in pieces instead of being turned away.</string>
+    <string name="apptour61__share_body">Voice Mode now appears in the share sheet for audio and video. Share a voice message to it and a screen opens that starts transcribing by itself — no field to find, no button to press. The transcript is searchable, and long recordings are handled in pieces instead of being turned away.</string>
     <string name="apptour61__autocorrect_eyebrow">Autocorrect</string>
     <string name="apptour61__autocorrect_title">The typo it was built not to see</string>
     <string name="apptour61__autocorrect_body">The rule deciding whether a word could be corrected let through a finger that slid most of the way to the next key — but never one that landed on it squarely, which is the ordinary typo. That is fixed, and how eagerly it corrects is now yours to set. The word space is about to take is marked in your accent colour, and backspace right after a correction gives back exactly what you typed.</string>
@@ -1074,7 +1074,7 @@
     <string name="apptour62__learning_body">Type a name or a term often enough and the keyboard keeps it, so it stops marking it as a mistake and starts suggesting it. This update switches that on for everyone, including anyone who had it off. Nothing is learned in incognito mode, in password fields or from anything you did not type key by key; it all stays on this device, and the button below opens the list — and the switch.</string>
     <string name="apptour62__themes_eyebrow">Five new designs</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep and a dark E-Ink</string>
-    <string name="apptour62__themes_body">Dictate Glass lets the app show through the gaps between the keys, while the keys themselves stay solid enough to read on; Glass Clear goes further and looks better, at the price of text showing through in apps that draw behind the keyboard. Sand is a warm light theme, Deep a quiet dark one, and E-Ink finally has a night version — so automatic switching no longer hands you a white keyboard after dark.</string>
+    <string name="apptour62__themes_body">Voice Mode Glass lets the app show through the gaps between the keys, while the keys themselves stay solid enough to read on; Glass Clear goes further and looks better, at the price of text showing through in apps that draw behind the keyboard. Sand is a warm light theme, Deep a quiet dark one, and E-Ink finally has a night version — so automatic switching no longer hands you a white keyboard after dark.</string>
     <string name="apptour62__split_eyebrow">New: split keyboard</string>
     <string name="apptour62__split_title">Both thumbs, without the stretch</string>
     <string name="apptour62__split_body">A new quick action, next to one-handed and floating, pulls the rows apart so each thumb keeps to its own half. Every layout splits, not just QWERTY, because the seam is worked out from the key widths rather than written into each layout. And in landscape the app now stays visible whenever there is room for both.</string>
@@ -1095,7 +1095,7 @@
     <string name="apptour62__gestures_body">Hold the symbol key, slide onto the character you want and let go: it is inserted and the letters are back, without switching in and out. Swiping up on the space bar now reaches the line above, not just the word before it. And the gap between the keys can be set across a range you can actually see.</string>
     <string name="apptour62__export_eyebrow">New: dictations as files</string>
     <string name="apptour62__export_title">Every dictation into a folder you choose</string>
-    <string name="apptour62__export_body">Pick a folder once and every finished dictation is also written into it as a plain text file, the moment it is done. Whatever watches that folder — a notes app, a sync tool, your backup — gets your transcripts without Dictate having to learn its language.</string>
+    <string name="apptour62__export_body">Pick a folder once and every finished dictation is also written into it as a plain text file, the moment it is done. Whatever watches that folder — a notes app, a sync tool, your backup — gets your transcripts without Voice Mode having to learn its language.</string>
     <string name="apptour62__more_eyebrow">Also</string>
     <string name="apptour62__more_title">A lot of small things</string>
     <string name="apptour62__more_body">Suggestions now look at the two words before the cursor in every language, not just in English. A backup can be made without your API keys, so it can be passed on safely. Azure\'s own transcription models are reachable, choosing a model for offline use now switches to the offline engine as well, and every request has a time limit that fits the wait. Dictations appear in the history the moment they are sent, imports say which step they are on and can be cancelled, and text lands more reliably in the apps that were fussy about it.</string>
@@ -1108,7 +1108,7 @@
     <string name="apptour63__intro_body">Point the camera at printed text and it lands in the field. The cursor, the selection and the clipboard finally share one panel. Any Smartbar button can carry a second action under a long press. And offline dictation has models that actually fit on a phone.</string>
     <string name="apptour63__scan_eyebrow">New: scan text</string>
     <string name="apptour63__scan_title">Printed text, straight into the field</string>
-    <string name="apptour63__scan_body">An IBAN off a letter, a serial number off a box, an address off a parcel: point the camera at it and the text arrives where you were typing, instead of being read out and typed again. It is recognised on this device — nothing is uploaded and no provider is involved. Dictate never asks for the camera permission either: the system camera takes the photo and hands back that one picture, which is deleted as soon as it has been read.</string>
+    <string name="apptour63__scan_body">An IBAN off a letter, a serial number off a box, an address off a parcel: point the camera at it and the text arrives where you were typing, instead of being read out and typed again. It is recognised on this device — nothing is uploaded and no provider is involved. Voice Mode never asks for the camera permission either: the system camera takes the photo and hands back that one picture, which is deleted as soon as it has been read.</string>
     <string name="apptour63__editing_eyebrow">New: editing panel</string>
     <string name="apptour63__editing_title">Cursor, selection and clipboard in one place</string>
     <string name="apptour63__editing_body">All of it existed already, spread across eleven keys you had to know were there. Now it is one panel: move by character, word or line, select, copy, paste, undo. Holding a key repeats it instead of asking for eleven taps. And the number pad can be asked for by name now, rather than only being stumbled into by a gesture nobody had bound.</string>
@@ -1130,13 +1130,15 @@
     <string name="about__website__title" comment="Preference title linking to the marketing website">Website</string>
     <string name="about__repository__title" comment="Preference title">Repository (GitHub)</string>
     <string name="about__repository__summary" comment="Preference summary">Source code, discussions, issues and info</string>
-    <string name="about__based_on_floris__title" comment="Preference title crediting the upstream project Dictate is forked from">Based on FlorisBoard</string>
+    <string name="about__based_on_floris__title" comment="Preference title crediting the upstream project Voice Mode is forked from">Based on FlorisBoard</string>
+    <string name="about__based_on_dictate__title" comment="Preference title crediting the project this app is built on" translatable="false">Based on Dictate Keyboard</string>
+    <string name="about__based_on_dictate__summary" comment="Preference summary crediting the project this app is built on" translatable="false">Built on Dictate Keyboard by DevEmperor, Apache 2.0. Tap to open it.</string>
     <string name="about__based_on_floris__summary" comment="Preference summary crediting the upstream project">A fork of FlorisBoard by Patrick Goldinger and contributors, Apache 2.0. Tap to open it.</string>
-    <string name="about__made_by" comment="Personal signature shown under the app name in the About header" translatable="false">Made with ❤️ by DevEmperor\nSoli deo gloria ✝️</string>
+    <string name="about__made_by" comment="Personal signature shown under the app name in the About header" translatable="false">Built on Dictate Keyboard by DevEmperor and FlorisBoard</string>
     <string name="about__feedback__title" comment="Preference title">Feedback &amp; support</string>
     <string name="about__feedback__summary" comment="Preference summary">Send an email with questions, bugs or ideas</string>
-    <string name="about__feedback__email" translatable="false">contact@devemperor.net</string>
-    <string name="about__feedback__subject" comment="Default subject line of the feedback email" translatable="false">Dictate Feedback</string>
+    <string name="about__feedback__email" translatable="false">support@voicemode.example</string>
+    <string name="about__feedback__subject" comment="Default subject line of the feedback email" translatable="false">Voice Mode Feedback</string>
     <string name="about__privacy_policy__title" comment="Preference title">Privacy policy</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">The privacy policy for this project</string>
     <string name="about__project_license__title" comment="Preference title">Project license</string>
@@ -1166,18 +1168,18 @@
 
     <string name="setup__grant_notification_permission__title">Permit Crash Report Notifications</string>
     <string name="setup__grant_notification_permission__description">As of Android 13+, apps must ask for permission to
-        send notifications. In Dictate Keyboard, this is only used to open a crash report screen in the event of a crash.
+        send notifications. In Voice Mode, this is only used to open a crash report screen in the event of a crash.
         This permission can be changed at any time in the system settings.
     </string>
     <string name="setup__grant_notification_permission__btn">Grant Permission</string>
 
-    <!-- Setup: connect an AI provider (Dictate onboarding for non-technical users) -->
-    <string name="setup__provider__title">Choose how Dictate transcribes</string>
+    <!-- Setup: connect an AI provider (Voice Mode onboarding for non-technical users) -->
+    <string name="setup__provider__title">Choose how Voice Mode transcribes</string>
     <!-- The two-track choice shown first: buy credit in the app, or bring your own provider key.
          Both are fully supported and the wording must not push either way. -->
-    <string name="setup__provider__choose_intro">Dictate turns your speech into text with an AI service. Two ways suit most people — and if you\'d rather not use a cloud service at all, there are two more below.</string>
+    <string name="setup__provider__choose_intro">Voice Mode turns your speech into text with an AI service. Two ways suit most people — and if you\'d rather not use a cloud service at all, there are two more below.</string>
     <string name="setup__provider__choice_cloud_title">Buy credit in the app</string>
-    <string name="setup__provider__choice_cloud_body">Dictate Cloud: no account anywhere, no API key. You buy dictation minutes through Google Play and they never expire. The convenient way — and somewhat more expensive than going to a provider directly.</string>
+    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: no account anywhere, no API key. You buy dictation minutes through Google Play and they never expire. The convenient way — and somewhat more expensive than going to a provider directly.</string>
     <string name="setup__provider__choice_cloud_btn">Show credit packs</string>
     <string name="setup__provider__choice_own_title">Use your own AI provider</string>
     <string name="setup__provider__choice_own_body">Create a key with a provider of your choice — Groq is free for everyday dictation. You keep your own account and pay the provider directly at their prices. Takes about two minutes.</string>
@@ -1189,15 +1191,15 @@
     <string name="setup__provider__choice_local_title">On your device, offline</string>
     <string name="setup__provider__choice_local_body">Download a speech model once. No account, no costs, and no audio ever leaves your phone.</string>
     <string name="setup__provider__choice_server_title">Your own server</string>
-    <string name="setup__provider__choice_server_body">Point Dictate at a speech server you run yourself, or any OpenAI-compatible endpoint.</string>
+    <string name="setup__provider__choice_server_body">Point Voice Mode at a speech server you run yourself, or any OpenAI-compatible endpoint.</string>
     <string name="setup__provider__local_intro">Speech recognition then runs on your phone: nothing is sent anywhere, and it works without a connection. Pick one model to download now — you can add or change models later.</string>
     <string name="setup__provider__local_recommended" comment="Note under the first offered on-device model">Recommended for your language</string>
     <string name="setup__provider__local_bigger" comment="Note under the second offered on-device model">More accurate, but a much bigger download</string>
     <string name="setup__provider__local_download_btn">Download model</string>
     <string name="setup__provider__local_use_btn" comment="Button on an on-device model that is already downloaded">Use this model</string>
     <string name="setup__provider__local_all_models">Show all models</string>
-    <string name="setup__provider__intro">Dictate turns your speech into text with the help of an online AI service. To use it, you need your own personal key for such a service.</string>
-    <string name="setup__provider__what_is_key">An API key is like a personal password that lets Dictate use the service for you. Creating one is free and takes about two minutes.</string>
+    <string name="setup__provider__intro">Voice Mode turns your speech into text with the help of an online AI service. To use it, you need your own personal key for such a service.</string>
+    <string name="setup__provider__what_is_key">An API key is like a personal password that lets Voice Mode use the service for you. Creating one is free and takes about two minutes.</string>
     <string name="setup__provider__recommended">We recommend <b>Groq</b> — it\'s fast and free for everyday dictation.</string>
     <string name="setup__provider__steps_groq">1. Tap the button below to open Groq.\n2. Sign in with Google or your email address.\n3. Tap “Create API Key”, give it any name, and confirm.\n4. Copy the key (it begins with “gsk_”).\n5. Come back here and tap “Paste API key” below.</string>
     <string name="setup__provider__steps_generic">1. Tap the button below to open {provider}.\n2. Create an account if you don\'t have one yet.\n3. Create a new API key and copy it.\n4. Come back here and tap “Paste API key” below.</string>
@@ -1215,8 +1217,8 @@
     <string name="setup__finish_up__title">You\'re all set!</string>
     <string name="setup__finish_up__description_p1">{app_name} is ready. Switch to it with the keyboard switcher, tap the microphone, and start speaking.</string>
     <string name="setup__finish_up__description_p2">You can change languages, the AI provider and everything else anytime in the settings. If you ever run into a problem or have an idea, reach out from the about screen!</string>
-    <string name="setup__finish_up__add_key_hint">Tip: you haven\'t added an AI key yet. Add one anytime in Settings → Dictate → AI providers to start dictating.</string>
-    <string name="setup__finish_up__finish_btn">Start using Dictate</string>
+    <string name="setup__finish_up__add_key_hint">Tip: you haven\'t added an AI key yet. Add one anytime in Settings → Voice Mode → AI providers to start dictating.</string>
+    <string name="setup__finish_up__finish_btn">Start using Voice Mode</string>
     <string name="setup__floating_button__btn" comment="Onboarding button that opens the floating-button settings">Set up the floating button</string>
     <string name="setup__floating_button__title" comment="Title of the optional floating-button onboarding step">Dictate anywhere (optional)</string>
     <string name="setup__floating_button__intro" comment="Explanation on the optional floating-button onboarding step">The floating button puts a small dictation bubble over any app, so you can speak into any text field without switching keyboards.</string>
@@ -1242,8 +1244,8 @@
     <string name="backup_and_restore__back_up__files">Select what to back up</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Preferences</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API keys and passwords</string>
-    <string name="backup_and_restore__back_up__credentials_warning">This archive contains your API keys and passwords in plain text, along with your Dictate Cloud credit — anyone you give it to can dictate at your expense. Do not pass it on, and if you already have, change the key at your provider. Whatever else is ticked below travels with it, including your transcription history and your clipboard.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">This archive carries no API keys, passwords or Dictate Cloud credit, so it can be passed on — but it will not restore yours either. Whatever else is ticked below is still in it, including your transcription history and your clipboard.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">This archive contains your API keys and passwords in plain text, along with your Voice Mode Cloud credit — anyone you give it to can dictate at your expense. Do not pass it on, and if you already have, change the key at your provider. Whatever else is ticked below travels with it, including your transcription history and your clipboard.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">This archive carries no API keys, passwords or Voice Mode Cloud credit, so it can be passed on — but it will not restore yours either. Whatever else is ticked below is still in it, including your transcription history and your clipboard.</string>
     <string name="backup_and_restore__back_up__personal_content_note">This archive carries no API keys or passwords, but it does carry what is ticked below — your transcription history with any kept recordings, your clipboard, your prompts and the words the keyboard has learned from you.</string>
     <string name="backup_and_restore__back_up__files_dictate_prompts">Saved rewording prompts</string>
     <string name="backup_and_restore__back_up__files_personal_dictionary">Personal dictionary and learned words</string>
@@ -1262,7 +1264,7 @@
     <string name="backup_and_restore__restore__metadata">Selected backup archive</string>
     <string name="backup_and_restore__restore__metadata_warn_different_version">This backup archive was generated in another version than current, which is generally supported. Be aware though that minor issues can occur or some preferences may not get transferred properly due to feature differences.</string>
     <string name="backup_and_restore__restore__metadata_warn_different_vendor">This backup archive was generated in a third-party app, which is generally not supported. Data losses may occur, restore at your own risk!</string>
-    <string name="backup_and_restore__restore__metadata_note_no_credentials">This backup archive contains no API keys or passwords. Everything else is restored. Merging keeps the keys already on this device; erasing removes them — including a Dictate Cloud recovery code, which cannot be typed back in.</string>
+    <string name="backup_and_restore__restore__metadata_note_no_credentials">This backup archive contains no API keys or passwords. Everything else is restored. Merging keeps the keys already on this device; erasing removes them — including a Voice Mode Cloud recovery code, which cannot be typed back in.</string>
     <string name="backup_and_restore__restore__metadata_error_invalid_metadata">This backup archive contains invalid metadata. Either it has been corrupted or poorly modified. Restoring from this archive is not possible, please select another one.</string>
     <string name="backup_and_restore__restore__metadata_error_nothing_to_restore">This backup archive does not contain any files to restore, please select another one.</string>
     <string name="backup_and_restore__restore__mode">Restore mode</string>
@@ -1272,19 +1274,19 @@
     <string name="backup_and_restore__restore__failure">Failed to restore data: {error_message}</string>
 
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Dictate error report</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">Sorry for the inconvenience, but Dictate has crashed due to an unexpected error.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">If you wish to report this error, first check out the issue tracker on GitHub if your crash has not already been reported.\nIf it hasn\'t, copy the generated crash log and open a new issue. Use the \"%s\" template and fill out the description, the steps to reproduce, and paste the generated crash log at the end. This helps in making Dictate better and more stable for everyone. Thank you!</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Voice Mode error report</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">Sorry for the inconvenience, but Voice Mode has crashed due to an unexpected error.</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">If you wish to report this error, first check out the issue tracker on GitHub if your crash has not already been reported.\nIf it hasn\'t, copy the generated crash log and open a new issue. Use the \"%s\" template and fill out the description, the steps to reproduce, and paste the generated crash log at the end. This helps in making Voice Mode better and more stable for everyone. Thank you!</string>
     <string name="crash_dialog__bug_report_template" comment="Name of the template to use in the GitHub issue tracker (is always in English)" translatable="false">Crash report</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Copy to system clipboard</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Copied to system clipboard</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">Cannot copy to system clipboard: Clipboard manager instance not found</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">Open issue tracker (github.com)</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Close</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Dictate error reports</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate has stopped working…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Voice Mode error reports</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode has stopped working…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Tap to view error details</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Dictate seems to stop working repeatedly…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Voice Mode seems to stop working repeatedly…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Falling back to previous keyboard to stop infinite crash loop. Tap to view error details</string>
 
 
@@ -1448,7 +1450,7 @@
     <string name="ext__export__failure">Failed to export extension: {error_message}</string>
     <string name="ext__import__success">Successfully imported extension!</string>
     <string name="ext__import__failure">Failed to import extension: {error_message}</string>
-    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Dictate Keyboard extension">Import extension</string>
+    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Voice Mode extension">Import extension</string>
     <string name="ext__import__ext_keyboard" comment="Title of Importer screen for keyboard extension import">Import keyboard extension</string>
     <string name="ext__import__ext_theme" comment="Title of Importer screen for theme extension import">Import theme extension</string>
     <string name="ext__import__ext_languagepack" comment="Title of Importer screen for language pack extension import">Import language pack extension</string>
@@ -1488,7 +1490,7 @@
     <string name="ext__addon_management_box__managing_placeholder">Managing {extensions}</string>
     <string name="ext__addon_management_box__addon_manager_info">All tasks related to importing, exporting, creating, customizing, and removing extensions can be handled through the centralized addon manager.</string>
     <string name="ext__addon_management_box__go_to_page">Go to {ext_home_title}</string>
-    <string name="ext__home__info">You can download and install extensions from the Dictate Keyboard Addons Store or import any extension file you have downloaded from the internet.</string>
+    <string name="ext__home__info">You can download and install extensions from the Voice Mode Addons Store or import any extension file you have downloaded from the internet.</string>
     <string name="ext__home__visit_store">Visit Addons Store</string>
     <string name="ext__home__manage_extensions">Manage installed extensions</string>
     <string name="ext__list__view_details">View details</string>
@@ -1787,13 +1789,13 @@
         <item quantity="other">{v} candidates</item>
     </plurals>
 
-    <!-- ============================== Dictate ============================== -->
-    <!-- Strings for the Dictate AI voice features (panel, settings, onboarding). -->
+    <!-- ============================== Voice Mode ============================== -->
+    <!-- Strings for the Voice Mode AI voice features (panel, settings, onboarding). -->
 
-    <!-- Dictate floating button / accessibility service (issue #88) -->
-    <string name="dictate__accessibility_service_label" comment="Name of the Dictate accessibility service, shown in the system accessibility settings list">Dictate floating button</string>
+    <!-- Voice Mode floating button / accessibility service (issue #88) -->
+    <string name="dictate__accessibility_service_label" comment="Name of the Voice Mode accessibility service, shown in the system accessibility settings list">Voice Mode floating button</string>
     <string name="dictate__accessibility_service_summary" comment="Short one-line summary of the accessibility service in the system settings">Show a floating button to dictate into any text field.</string>
-    <string name="dictate__accessibility_service_description" comment="Full disclosure shown in the system accessibility settings explaining what the service does and why">Dictate uses this service to power the floating dictation button. When enabled, it detects when a text field is focused in any app — so the button can appear — and inserts your transcribed speech into that field. Dictate only reads the focused field to place your text at the cursor; it does not collect, store or share other screen content.</string>
+    <string name="dictate__accessibility_service_description" comment="Full disclosure shown in the system accessibility settings explaining what the service does and why">Voice Mode uses this service to power the floating dictation button. When enabled, it detects when a text field is focused in any app — so the button can appear — and inserts your transcribed speech into that field. Voice Mode only reads the focused field to place your text at the cursor; it does not collect, store or share other screen content.</string>
     <string name="dictate__overlay_notification_channel" comment="Name of the notification channel for the floating-button recording notification">Floating dictation button</string>
     <string name="dictate__overlay_notification_recording" comment="Text of the ongoing notification shown while the floating button is recording">Recording — tap the floating button to transcribe</string>
     <string name="dictate__overlay_notification_working" comment="Text shown in the notification while the floating-button dictation is being transcribed">Transcribing…</string>
@@ -1805,21 +1807,21 @@
     <string name="dictate__floating_button_service_enabled" comment="Status when the accessibility service is on">Enabled · tap to open system settings</string>
     <string name="dictate__floating_button_service_disabled" comment="Status when the accessibility service is off">Not enabled yet · tap to set up</string>
     <string name="dictate__floating_button_disclosure_title" comment="Title of the prominent-disclosure dialog before enabling the accessibility service">Enable the floating button</string>
-    <string name="dictate__floating_button_disclosure_message" comment="Prominent disclosure shown before sending the user to the accessibility settings">To show the floating button, Dictate needs the accessibility service. It detects when a text field is focused in any app — so the button can appear — and inserts your transcribed speech into that field. Dictate only reads the focused field to place your text; it does not collect, store or share other screen content.\n\nOn the next screen, find “Dictate floating button” and turn it on.</string>
+    <string name="dictate__floating_button_disclosure_message" comment="Prominent disclosure shown before sending the user to the accessibility settings">To show the floating button, Voice Mode needs the accessibility service. It detects when a text field is focused in any app — so the button can appear — and inserts your transcribed speech into that field. Voice Mode only reads the focused field to place your text; it does not collect, store or share other screen content.\n\nOn the next screen, find “Voice Mode floating button” and turn it on.</string>
     <string name="dictate__floating_button_disclosure_continue" comment="Confirm button that opens the system accessibility settings">Open settings</string>
     <string name="dictate__floating_button_mic_title" comment="Row to grant the microphone permission for the floating button">Microphone access</string>
     <string name="dictate__floating_button_mic_summary" comment="Summary of the microphone row when the permission is missing">Required to record your voice · tap to grant</string>
     <string name="dictate__floating_button_show_when_title" comment="Setting title: in which situation the floating dictation button appears; opens a list of three choices">When to show</string>
     <string name="dictate__floating_button_show_when_field" comment="Choice: the floating button appears as soon as a text field is focused, even before any keyboard opens">As soon as a text field is selected</string>
     <string name="dictate__floating_button_show_when_keyboard" comment="Choice: the floating button appears only while an on-screen keyboard (any keyboard) is open">Only while a keyboard is open</string>
-    <string name="dictate__floating_button_show_when_dictate_keyboard" comment="Choice: like “as soon as a text field is selected”, and also while the Dictate keyboard itself is open (normally hidden then, as it has its own mic key)">Also with the Dictate keyboard</string>    <string name="dictate__floating_button_apps_title" comment="Row that opens the per-app visibility screen for the floating button">App visibility</string>
+    <string name="dictate__floating_button_show_when_dictate_keyboard" comment="Choice: like “as soon as a text field is selected”, and also while the Voice Mode keyboard itself is open (normally hidden then, as it has its own mic key)">Also with the Voice Mode keyboard</string>    <string name="dictate__floating_button_apps_title" comment="Row that opens the per-app visibility screen for the floating button">App visibility</string>
     <string name="dictate__floating_button_apps_summary_all" comment="Summary of the app-visibility row when no filter is set">In every app</string>
     <string name="dictate__floating_button_apps_summary_only" comment="Summary of the app-visibility row in allow-list mode; {n} is the number of chosen apps">Only in {n} apps</string>
     <string name="dictate__floating_button_apps_summary_except" comment="Summary of the app-visibility row in block-list mode; {n} is the number of chosen apps">Everywhere except {n} apps</string>
     <string name="dictate__floating_button_apps_scope_all" comment="App-visibility mode: no filter">Every app</string>
     <string name="dictate__floating_button_apps_scope_only" comment="App-visibility mode: allow-list">Only the apps below</string>
     <string name="dictate__floating_button_apps_scope_except" comment="App-visibility mode: block-list">Every app except those below</string>
-    <string name="dictate__floating_button_apps_note" comment="Note explaining what the app filter does and does not hide">The button is never drawn over an app you leave out, and Dictate does not read its text fields. An app that objects to accessibility services as such will still notice the service is switched on.</string>
+    <string name="dictate__floating_button_apps_note" comment="Note explaining what the app filter does and does not hide">The button is never drawn over an app you leave out, and Voice Mode does not read its text fields. An app that objects to accessibility services as such will still notice the service is switched on.</string>
     <string name="dictate__floating_button_apps_list_title" comment="Header above the app list in the app-visibility screen">Apps</string>
     <string name="dictate__floating_button_apps_search" comment="Placeholder in the app-visibility search field">Search apps</string>
     <string name="dictate__floating_button_apps_none" comment="Shown when no installed app matches the search; {search_term} is what was typed">No app found for “{search_term}”</string>
@@ -1862,14 +1864,14 @@
     <string name="dictate__floating_button_copy_to_clipboard_summary_on" comment="Summary when copy-every-dictation is enabled">Each dictation is also copied to the clipboard, so you can paste it manually if inserting ever fails. May show a clipboard notice on some phones.</string>
     <string name="dictate__floating_button_copy_to_clipboard_summary_off" comment="Summary when copy-every-dictation is disabled">Dictations are only inserted, not copied to the clipboard.</string>
     <string name="dictate__floating_button_menu_group" comment="Header above the switches that add entries to the menu opened by holding the floating button">Hold menu</string>
-    <string name="dictate__floating_button_menu_settings_title" comment="Menu entry and switch that opens the Dictate settings from the floating button">Dictate settings</string>
-    <string name="dictate__floating_button_no_prompts" comment="Toast when long-pressing the floating button but no rewording prompts exist">No rewording prompts yet — add some in Dictate settings.</string>
+    <string name="dictate__floating_button_menu_settings_title" comment="Menu entry and switch that opens the Voice Mode settings from the floating button">Voice Mode settings</string>
+    <string name="dictate__floating_button_no_prompts" comment="Toast when long-pressing the floating button but no rewording prompts exist">No rewording prompts yet — add some in Voice Mode settings.</string>
     <string name="dictate__floating_button_retry_hint" comment="Toast after a failed floating-button dictation whose recording was kept; %1$s is the error message. Tapping the button re-sends the recording.">%1$s — tap to retry</string>
     <string name="dictate__floating_button_badge_new" comment="Small 'New' badge on the floating-button settings entry. Keep very short.">New</string>
 
-    <!-- Dictate input panel (IME) -->
-    <string name="dictate__panel_title" comment="Title of the Dictate AI prompt panel inside the keyboard">AI prompts</string>
-    <string name="dictate__panel_no_prompts" comment="Shown in the prompt panel when no prompts exist yet">No prompts yet. Add some in the Dictate settings under Rewording.</string>
+    <!-- Voice Mode input panel (IME) -->
+    <string name="dictate__panel_title" comment="Title of the Voice Mode AI prompt panel inside the keyboard">AI prompts</string>
+    <string name="dictate__panel_no_prompts" comment="Shown in the prompt panel when no prompts exist yet">No prompts yet. Add some in the Voice Mode settings under Rewording.</string>
     <string name="dictate__legacy_record" comment="Label of the big record button in the classic dictation layout">Record</string>
     <string name="dictate__legacy_stop" comment="Label of the record button while recording, in the classic dictation layout">Stop</string>
     <string name="dictate__legacy_switch_keyboard" comment="Content description: switch to the previously used keyboard">Switch keyboard</string>
@@ -1920,13 +1922,13 @@
     <string name="dictate__prompts_layout_panel_description">Open the prompts in their own panel via the magic-wand button.</string>
     <string name="dictate__prompts_layout_row_label">Always-on row</string>
     <string name="dictate__prompts_layout_row_description">Pin the prompts in an extra row above the keyboard.</string>
-    <string name="dictate__status_idle" comment="Status shown on the Dictate panel when ready to record">Tap to dictate</string>
+    <string name="dictate__status_idle" comment="Status shown on the Voice Mode panel when ready to record">Tap to dictate</string>
     <string name="dictate__status_recording" comment="Status shown while recording audio">Recording – tap to stop</string>
     <string name="dictate__status_transcribing" comment="Status shown while the audio is being transcribed">Transcribing…</string>
     <string name="dictate__status_transcribing_local" comment="Status shown while the on-device model is transcribing, instead of a cloud provider (issues #228/#270)">Transcribing on device…</string>
-    <string name="dictate__back_to_keyboard" comment="Content description for the button that returns from the Dictate panel to the typing keyboard">Back to keyboard</string>
+    <string name="dictate__back_to_keyboard" comment="Content description for the button that returns from the Voice Mode panel to the typing keyboard">Back to keyboard</string>
 
-    <!-- Dictate errors. %s is a provider/system error detail. -->
+    <!-- Voice Mode errors. %s is a provider/system error detail. -->
     <string name="dictate__error_recording_failed" comment="Error when audio recording could not be started. %s is the system error detail.">Recording failed – grant the microphone permission. (%s)</string>
     <string name="dictate__error_no_audio" comment="Error when no audio was captured">No recording detected – please speak a little longer.</string>
     <string name="dictate__no_speech_detected" comment="Shown when the on-device VAD found no speech in the recording (issue #93)">No speech detected</string>
@@ -1934,8 +1936,8 @@
     <string name="dictate__voice_input_transcribing" comment="Status in the system voice-input popup while transcribing (issue #67)">Transcribing…</string>
     <string name="dictate__voice_input_stop" comment="Button in the system voice-input popup to stop recording and transcribe now (issue #67)">Done</string>
     <string name="dictate__voice_input_hint" comment="Subtle hint under the orb in the voice-input UI (issue #67)">Tap to send</string>
-    <string name="dictate__voice_ime_label" comment="Name of the Dictate voice input method shown in system keyboard settings (issue #67)">Dictate voice input</string>
-    <string name="dictate__error_no_api_key" comment="Error when no API key is configured">No API key set – configure it in the Dictate settings.</string>
+    <string name="dictate__voice_ime_label" comment="Name of the Voice Mode voice input method shown in system keyboard settings (issue #67)">Voice Mode voice input</string>
+    <string name="dictate__error_no_api_key" comment="Error when no API key is configured">No API key set – configure it in the Voice Mode settings.</string>
     <string name="dictate__error_transcription_failed" comment="Generic transcription failure">Transcription failed.</string>
     <string name="dictate__error_unknown" comment="Unknown transcription error">Unknown error during transcription.</string>
     <string name="dictate__error_rewording_failed" comment="Generic rewording (GPT) failure">Rewording failed.</string>
@@ -1943,7 +1945,7 @@
     <string name="dictate__notice_rewording_failed" comment="Neutral notice (not a failure) shown after the raw transcript was inserted because the rewording step failed. The text is safely in the field – this only says why it was not polished. One line on the keyboard, so keep it short.">Rewording failed – raw text inserted</string>
     <string name="dictate__error_overlay_insert_clipboard" comment="Floating-button error: the app's text field didn't accept the dictation, so it was put on the clipboard to paste manually">This app wouldn\'t take the text. It\'s on your clipboard — long-press the field and paste.</string>
 
-    <!-- Dictate specific provider errors (roadmap 1.12). Kept short to fit the Smartbar; tap shows the full provider detail. -->
+    <!-- Voice Mode specific provider errors (roadmap 1.12). Kept short to fit the Smartbar; tap shows the full provider detail. -->
     <string name="dictate__error_invalid_api_key" comment="Short error: the API key is missing, wrong or rejected">Check your API key</string>
     <string name="dictate__error_quota_exceeded" comment="Short error: the provider quota, rate limit or billing is exhausted">Quota or limit reached</string>
     <string name="dictate__error_content_size_limit" comment="Short error: the audio/request is too large or too long for the provider">Recording too long or too large</string>
@@ -1955,15 +1957,15 @@
     <string name="dictate__error_server" comment="Short error: the provider returned a 5xx server error">Provider unavailable – try again</string>
     <string name="dictate__error_try_on_device" comment="Short error replacing the timeout/no-connection headline when the recording never reached the provider and on-device transcription is not set up yet. Keep it short – it has one line on the keyboard.">No connection – try on-device</string>
     <string name="dictate__error_try_on_device_detail" comment="Longer explanation in the error details popup, shown under the raw provider error. Match the wording of the settings screens: 'AI providers' and 'Offline fallback'.">On-device transcription needs no connection at all — useful where a provider is blocked as well as where there is no signal. Set it up under AI providers, then turn on Offline fallback so it takes over by itself.</string>
-    <string name="dictate__action_settings" comment="Button on a fixable error that opens the Dictate provider settings">Open settings</string>
+    <string name="dictate__action_settings" comment="Button on a fixable error that opens the Voice Mode provider settings">Open settings</string>
     <string name="dictate__action_error_details" comment="Accessibility label: tapping the error shows the full provider error text">Show error details</string>
     <string name="dictate__error_details_title" comment="Title of the popup that shows the full provider error text">Error details</string>
 
-    <!-- Dictate rewording (GPT) status -->
+    <!-- Voice Mode rewording (GPT) status -->
     <string name="dictate__status_rewording" comment="Shown while a rewording prompt is being applied">Rewording…</string>
     <string name="dictate__status_formatting" comment="Shown while the auto-formatting pass runs on a transcript">Formatting…</string>
 
-    <!-- Dictate in-Smartbar recording controls -->
+    <!-- Voice Mode in-Smartbar recording controls -->
     <string name="dictate__status_retrying" comment="Shown while a failed transcription is being retried. {attempt} is the attempt number.">Retrying… ({attempt})</string>
     <string name="dictate__action_cancel" comment="Content description for the button that discards the current recording">Cancel recording</string>
     <string name="dictate__action_pause" comment="Content description for the button that pauses the recording">Pause recording</string>
@@ -1971,9 +1973,9 @@
     <string name="dictate__action_resume" comment="Content description for the button that resumes the recording">Resume recording</string>
     <string name="dictate__action_resend" comment="Content description for the button that retries the last failed audio">Try again</string>
     <string name="dictate__action_save_audio" comment="Content description for the button that saves a failed recording to Downloads">Save audio</string>
-    <string name="dictate__error_out_of_credit" comment="Short error: the Dictate Cloud credit is used up; shown instead of the generic quota error">Credit used up</string>
-    <string name="dictate__action_top_up" comment="Content description for the button that opens Dictate Cloud to buy more credit">Top up credit</string>
-    <string name="dictate__audio_saved" comment="Toast after saving a failed recording; %s is the file name">Audio saved to Downloads/Dictate: %s</string>
+    <string name="dictate__error_out_of_credit" comment="Short error: the Voice Mode Cloud credit is used up; shown instead of the generic quota error">Credit used up</string>
+    <string name="dictate__action_top_up" comment="Content description for the button that opens Voice Mode Cloud to buy more credit">Top up credit</string>
+    <string name="dictate__audio_saved" comment="Toast after saving a failed recording; %s is the file name">Audio saved to Downloads/VoiceMode: %s</string>
     <string name="dictate__audio_save_failed" comment="Toast when saving a failed recording did not work">Couldn\'t save the audio</string>
     <string name="dictate__action_dismiss" comment="Content description for the button that dismisses the resend error">Dismiss</string>
     <string name="dictate__interrupted_recording" comment="Smartbar chip shown when the keyboard was closed mid-recording; {time} is the captured length like 0:42. Kept short for the single-line Smartbar.">Interrupted ({time})</string>
@@ -1985,22 +1987,22 @@
     <string name="smartbar__a11y_hide_more_actions" comment="Spoken by a screen reader for the Smartbar toggle while the second row of action buttons is open: tapping it closes that row">Hide more actions</string>
     <string name="dictate__action_yes" comment="Content description for the accept button of the rate/donate nudge">Yes</string>
     <string name="dictate__action_no" comment="Content description for the decline button of the rate/donate nudge">No, thanks</string>
-    <string name="dictate__promo_rate_message" comment="Smartbar nudge asking the user to rate the app after enough usage. Kept short to fit the single-line Smartbar.">Enjoying Dictate?</string>
-    <string name="dictate__promo_donate_message" comment="Smartbar nudge asking the user to donate after enough usage. Kept short to fit the single-line Smartbar.">Support Dictate?</string>
+    <string name="dictate__promo_rate_message" comment="Smartbar nudge asking the user to rate the app after enough usage. Kept short to fit the single-line Smartbar.">Enjoying Voice Mode?</string>
+    <string name="dictate__promo_donate_message" comment="Smartbar nudge asking the user to donate after enough usage. Kept short to fit the single-line Smartbar.">Support Voice Mode?</string>
     <string name="dictate__promo_rate_action" comment="Label of the accent pill button that opens the Play Store to rate the app">Rate</string>
     <string name="dictate__promo_donate_action" comment="Label of the accent pill button that opens PayPal to donate">Donate</string>
-    <string name="dictate__promo_changelog_message" comment="Smartbar nudge shown after an app update. Kept short to fit the single-line Smartbar.">Dictate was updated</string>
+    <string name="dictate__promo_changelog_message" comment="Smartbar nudge shown after an app update. Kept short to fit the single-line Smartbar.">Voice Mode was updated</string>
     <string name="dictate__promo_changelog_action" comment="Short label of the accent pill button that opens the app's What's new changelog dialog. Must stay short to fit the single-line Smartbar.">Details</string>
     <string name="dictate__promo_floating_button_message" comment="Smartbar spotlight message introducing the floating dictation button. Keep short for one line.">New: dictate in any app</string>
     <string name="dictate__promo_floating_button_action" comment="Short label of the accent pill button that opens the floating-button settings. Must stay short to fit the single-line Smartbar.">Try it</string>
-    <string name="dictate__promo_milestone_time" comment="Smartbar milestone nudge for saved time; %s is a duration. Keep short (single line).">Saved %s with Dictate! 🎉</string>
-    <string name="dictate__promo_milestone_count" comment="Smartbar milestone nudge for dictation count; %s is a number. Keep short (single line).">%s dictations with Dictate! 🎉</string>
+    <string name="dictate__promo_milestone_time" comment="Smartbar milestone nudge for saved time; %s is a duration. Keep short (single line).">Saved %s with Voice Mode! 🎉</string>
+    <string name="dictate__promo_milestone_count" comment="Smartbar milestone nudge for dictation count; %s is a number. Keep short (single line).">%s dictations with Voice Mode! 🎉</string>
     <string name="dictate__promo_milestone_action" comment="Short label of the accent pill that opens the statistics screen. Must stay short to fit the single-line Smartbar.">Stats</string>
-    <string name="dictate__promo_low_credit_message" comment="Smartbar nudge shown once when Dictate Cloud credit is nearly used up">Credit almost gone.</string>
-    <string name="dictate__promo_low_credit_action" comment="Short label of the accent pill that opens Dictate Cloud. Must stay short to fit the single-line Smartbar.">Top up</string>
+    <string name="dictate__promo_low_credit_message" comment="Smartbar nudge shown once when Voice Mode Cloud credit is nearly used up">Credit almost gone.</string>
+    <string name="dictate__promo_low_credit_action" comment="Short label of the accent pill that opens Voice Mode Cloud. Must stay short to fit the single-line Smartbar.">Top up</string>
 
-    <!-- Dictate settings screen -->
-    <string name="dictate__title" comment="Title of the Dictate settings screen and home tile">Dictate</string>
+    <!-- Voice Mode settings screen -->
+    <string name="dictate__title" comment="Title of the Voice Mode settings screen and home tile">Voice Mode</string>
     <string name="dictate__provider_title" comment="Label for the transcription provider selector">Transcription provider</string>
     <string name="dictate__provider__openai" translatable="false">OpenAI</string>
     <string name="dictate__provider__groq" translatable="false">Groq</string>
@@ -2018,7 +2020,7 @@
     <string name="dictate__base_url_required" comment="Summary shown when the custom base URL is not yet set">Required for the custom provider</string>
     <string name="dictate__value_not_set" comment="Generic summary for an unset text setting">Not set</string>
 
-    <!-- Dictate AI providers manager -->
+    <!-- Voice Mode AI providers manager -->
     <string name="dictate__providers_title" comment="Title of the AI providers manager screen and the row linking to it">AI providers</string>
     <string name="dictate__providers_summary" comment="Summary showing the active provider. {provider} is a provider name like OpenAI.">Active: {provider}</string>
     <string name="dictate__providers_summary_both" comment="Summary showing the active transcription and rewording providers when they differ. {transcription} and {rewording} are provider names like OpenAI.">Transcription: {transcription} · Rewording: {rewording}</string>
@@ -2081,13 +2083,13 @@
     <string name="dictate__providers_azure_link_signup" comment="Link next to the Azure endpoint field: the page where a new Azure account is created">Create an Azure account</string>
     <string name="dictate__providers_azure_link_portal" comment="Link next to the Azure endpoint field: the Azure portal, where the key and endpoint are found">Azure portal</string>
     <string name="dictate__providers_azure_link_guide" comment="Link next to the Azure endpoint field: Microsoft's own setup guide and prerequisites for the MAI-Transcribe model">Setup guide</string>
-    <!-- Dictate Cloud: prepaid credit bought in the app, as an alternative to bringing your own API key -->
-    <string name="dictate__cloud_title" comment="Title of the Dictate Cloud screen and the row linking to it">Dictate Cloud</string>
-    <string name="dictate__cloud_row_summary_none" comment="Summary of the Dictate Cloud row when no credit account exists">Buy dictation credit — no API key needed</string>
-    <string name="dictate__cloud_row_summary_balance" comment="Summary of the Dictate Cloud row when credit exists; {minutes} is a number">{minutes} minutes of credit left</string>
+    <!-- Voice Mode Cloud: prepaid credit bought in the app, as an alternative to bringing your own API key -->
+    <string name="dictate__cloud_title" comment="Title of the Voice Mode Cloud screen and the row linking to it">Voice Mode Cloud</string>
+    <string name="dictate__cloud_row_summary_none" comment="Summary of the Voice Mode Cloud row when no credit account exists">Buy dictation credit — no API key needed</string>
+    <string name="dictate__cloud_row_summary_balance" comment="Summary of the Voice Mode Cloud row when credit exists; {minutes} is a number">{minutes} minutes of credit left</string>
     <string name="dictate__cloud_intro_title">Dictate without an API key</string>
     <string name="dictate__cloud_intro_body">Buy dictation credit right here in the app. No account with an AI provider, no API key, no subscription. Credit never expires and is only used up when you actually use it — a minute of dictation costs a minute, a rewording about two seconds.</string>
-    <string name="dictate__cloud_intro_alternative">This is entirely optional. Dictate works just as well with your own key from a provider of your choice — several are free — and then you keep your own account and pay the provider directly, at their prices.</string>
+    <string name="dictate__cloud_intro_alternative">This is entirely optional. Voice Mode works just as well with your own key from a provider of your choice — several are free — and then you keep your own account and pay the provider directly, at their prices.</string>
     <string name="dictate__cloud_use_own_provider_btn">Use my own provider instead</string>
     <string name="dictate__cloud_balance_label">Credit remaining</string>
     <string name="dictate__cloud_balance_minutes" comment="{minutes} is a number">{minutes} min</string>
@@ -2101,7 +2103,7 @@
     <string name="dictate__cloud_shop_unavailable">The credit packs can\'t be shown here. Usually that means the app wasn\'t installed from Google Play, or no Play account is signed in on this device. Your own API key works either way.</string>
     <string name="dictate__cloud_activate_title">Credit is ready</string>
     <string name="dictate__cloud_activate_body">You have credit, but dictation currently runs through a different provider. Switch whenever you like — nothing changes without you.</string>
-    <string name="dictate__cloud_activate_btn">Dictate through Dictate Cloud</string>
+    <string name="dictate__cloud_activate_btn">Dictate through Voice Mode Cloud</string>
     <string name="dictate__cloud_notice_purchased" comment="{minutes} is a number">{minutes} minutes added to your credit.</string>
     <string name="dictate__cloud_notice_pending">Your payment hasn\'t completed yet. The credit appears as soon as Google confirms it.</string>
     <string name="dictate__cloud_notice_not_redeemed">The payment went through, but the credit couldn\'t be fetched. Nothing is lost — open this screen again and it will be added.</string>
@@ -2111,7 +2113,7 @@
     <string name="dictate__cloud_notice_gone_deleted" comment="Shown when the app finds out that the credit account was deleted elsewhere">Your credit account no longer exists — it was deleted on the website or on another device. It has now been removed from this phone as well.</string>
     <string name="dictate__cloud_notice_gone_signed_out" comment="Shown when this device was signed out of the credit account, which still exists">This device was signed out of your credit account. The account and its credit are untouched — enter your recovery code below to sign in again.</string>
     <string name="dictate__cloud_delete_title">Delete credit account</string>
-    <string name="dictate__cloud_delete_explain">Deletes your credit account and everything stored about it. Any remaining credit is forfeited — it isn\'t refunded. You can also do this at api.dictatekeyboard.com/delete if you no longer have the app.</string>
+    <string name="dictate__cloud_delete_explain">Deletes your credit account and everything stored about it. Any remaining credit is forfeited — it isn\'t refunded. You can also do this at api.voicemode.example/delete if you no longer have the app.</string>
     <string name="dictate__cloud_delete_btn">Delete account</string>
     <string name="dictate__cloud_delete_dialog_title">Delete your account?</string>
     <string name="dictate__cloud_delete_dialog_body" comment="{minutes} is a number">You still have {minutes} minutes of credit. Deleting removes your account, your recovery code and every signed-in device.</string>
@@ -2129,7 +2131,7 @@
     <string name="dictate__cloud_recovery_field">Recovery code</string>
     <string name="dictate__cloud_recovery_confirm">Restore</string>
     <string name="dictate__cloud_recovery_not_found">No credit found for this code.</string>
-    <string name="dictate__error_cloud_no_account" comment="Smartbar error when Dictate Cloud is the active provider but this device holds no credit account any more">No credit account on this device</string>
+    <string name="dictate__error_cloud_no_account" comment="Smartbar error when Voice Mode Cloud is the active provider but this device holds no credit account any more">No credit account on this device</string>
     <string name="dictate__cloud_devices_full_title">Too many devices</string>
     <string name="dictate__cloud_devices_full_body" comment="{count} is the number of devices already signed in">Your credit is already in use on {count} devices, which is the most allowed at once. Sign one out to use it here — the credit itself is untouched.</string>
     <string name="dictate__cloud_devices_sign_out">Sign out</string>
@@ -2137,7 +2139,7 @@
     <string name="dictate__cloud_devices_last_used" comment="{time} is a formatted date and time">Last used {time}</string>
     <string name="dictate__cloud_devices_never_used">Never used</string>
     <string name="dictate__cloud_recovery_error">Couldn\'t reach the server. Check your connection and try again.</string>
-    <string name="dictate__cloud_limits_title">What Dictate Cloud can\'t do</string>
+    <string name="dictate__cloud_limits_title">What Voice Mode Cloud can\'t do</string>
     <string name="dictate__cloud_limits_body">Live transcription while you speak isn\'t available on credit — it costs about four times as much per minute, and the on-device engine does it offline and for free. The AI model and how hard it thinks are set by the server, so model choice, reasoning effort and custom endpoints stay off. Everything else is unchanged: prompts, history, the floating button, long-form dictation and the watch.</string>
     <string name="dictate__cloud_privacy_title">What gets stored</string>
     <string name="dictate__cloud_privacy_body">Your recordings and texts are passed straight through and never written to disk. Only numbers are kept: which account, when, how long, and whether it worked. There\'s no name, no email address and no Google account behind a credit account — only a random ID.</string>
@@ -2152,15 +2154,15 @@
     <string name="dictate__request_timeout_summary" comment="Summary under the request timeout slider; {v} is the chosen number of seconds">{v} s · raise this for a slow server of your own</string>
 
     <string name="dictate__wear_title" comment="Title of the Wear OS companion settings screen">Wear OS</string>
-    <string name="dictate__wear_summary" comment="Summary of the Wear OS settings entry on the main Dictate screen">Options for dictating from a paired watch</string>
-    <string name="dictate__wear_install_title" comment="Title of the button that opens the Play Store to install the Wear OS app">Install Dictate on your watch</string>
+    <string name="dictate__wear_summary" comment="Summary of the Wear OS settings entry on the main Voice Mode screen">Options for dictating from a paired watch</string>
+    <string name="dictate__wear_install_title" comment="Title of the button that opens the Play Store to install the Wear OS app">Install Voice Mode on your watch</string>
     <string name="dictate__wear_install_summary" comment="Summary explaining the install button opens the Play Store listing where a paired watch can be chosen">Opens the Play Store — on a paired Wear OS 3+ watch, pick your watch as the target.</string>
     <string name="dictate__wear_auto_rewording_title" comment="Title of the toggle that auto-rewords watch dictations">Auto-reword watch dictations</string>
     <string name="dictate__wear_auto_rewording_summary" comment="Short summary for the auto-rewording-on-watch toggle">Reword dictations made from the watch, like on the phone.</string>
     <string name="dictate__wear_standalone_title" comment="Title of the toggle that lets a paired Wear OS watch transcribe on its own">Sync key to watch</string>
     <string name="dictate__wear_standalone_summary" comment="Short summary for the Wear OS standalone transcription toggle">Send your API key to the watch so it can dictate without the phone nearby.</string>
 
-    <!-- Dictate network proxy -->
+    <!-- Voice Mode network proxy -->
     <string name="dictate__proxy_title" comment="Title of the proxy settings screen / row">Proxy</string>
     <string name="dictate__proxy_summary_off" comment="Summary on the proxy row when no proxy is active">Off · direct connection</string>
     <string name="dictate__proxy_enabled_title" comment="Toggle that routes all API traffic through a proxy">Use a proxy</string>
@@ -2180,7 +2182,7 @@
     <string name="dictate__trust_user_certs_title" comment="Title of the setting to trust user-installed CA certificates">Trust user certificates</string>
     <string name="dictate__trust_user_certs_summary" comment="Summary explaining the user-installed CA trust setting">Trust CA certificates you installed, for self-hosted endpoints behind a private CA.</string>
 
-    <!-- Dictate model picker -->
+    <!-- Voice Mode model picker -->
     <string name="dictate__model_picker_title" comment="Title of the model picker dialog">Choose a model</string>
     <string name="dictate__model_picker_search" comment="Hint for the model search / free-text field">Search or type a model id</string>
     <string name="dictate__model_picker_loading" comment="Status while fetching the model catalog">Loading models…</string>
@@ -2188,7 +2190,7 @@
     <string name="dictate__model_picker_refresh" comment="Button that fetches the live model catalog from the provider">Refresh</string>
     <string name="dictate__model_picker_use_custom" comment="Option to use the typed text as a model id. {model} is the typed text.">Use “{model}”</string>
 
-    <!-- Dictate on-device (offline) models -->
+    <!-- Voice Mode on-device (offline) models -->
     <string name="dictate__local_models_header" comment="Intro text above the on-device model list in the provider editor">Runs on your device — no audio is sent. Download a model to start.</string>
     <string name="dictate__local_models_live_header" comment="Group heading above the on-device models that transcribe while you speak (issue #233)">Live (streaming)</string>
     <string name="dictate__local_models_live_summary" comment="Explainer under the live model group heading: these models need the real-time switch under Recording (issue #233)">These type while you speak. Turn on “Real-time transcription” under Recording to use them.</string>
@@ -2219,7 +2221,7 @@
     <string name="dictate__local_fallback_title" comment="Title of the toggle that enables on-device transcription as an offline fallback">Offline fallback</string>
     <string name="dictate__local_fallback_summary" comment="Explains the offline fallback toggle">When offline, transcribe on-device with the downloaded model after the provider fails</string>
 
-    <!-- Dictate recording settings -->
+    <!-- Voice Mode recording settings -->
     <string name="dictate__recording_group" comment="Group title for recording-related settings">Recording</string>
     <string name="dictate__audio_focus_title" comment="Setting: pause other apps' audio while recording">Pause other audio</string>
     <string name="dictate__audio_focus_summary" comment="Summary for the audio focus setting">Pause music and other apps while recording</string>
@@ -2313,16 +2315,16 @@
     <string name="dictate__remember_last_dictation_title" comment="Setting: keep the last dictation so it can be re-inserted">Remember last dictation</string>
     <string name="dictate__remember_last_dictation_summary" comment="Summary explaining the re-insert safety net">Keep your last dictation so the floating button can undo it and the classic layout can re-insert it.</string>
 
-    <!-- Dictate main screen pipeline groups -->
-    <string name="dictate__transcription_group" comment="Group title for the transcription (speech-to-text) stage on the main Dictate screen">Transcription (speech → text)</string>
+    <!-- Voice Mode main screen pipeline groups -->
+    <string name="dictate__transcription_group" comment="Group title for the transcription (speech-to-text) stage on the main Voice Mode screen">Transcription (speech → text)</string>
     <string name="dictate__formatting_title" comment="Title for the formatting &amp; vocabulary settings sub-screen">Formatting &amp; vocabulary</string>
-    <string name="dictate__formatting_menu_summary" comment="One-line summary for the formatting hub entry on the Dictate settings landing page">Style prompt, custom words, replacements</string>
-    <string name="dictate__recording_menu_summary" comment="One-line summary for the recording hub entry on the Dictate settings landing page">Real-time, audio source, instant recording</string>
-    <string name="dictate__output_menu_summary" comment="One-line summary for the output hub entry on the Dictate settings landing page">Auto-enter, typing speed, resend</string>
+    <string name="dictate__formatting_menu_summary" comment="One-line summary for the formatting hub entry on the Voice Mode settings landing page">Style prompt, custom words, replacements</string>
+    <string name="dictate__recording_menu_summary" comment="One-line summary for the recording hub entry on the Voice Mode settings landing page">Real-time, audio source, instant recording</string>
+    <string name="dictate__output_menu_summary" comment="One-line summary for the output hub entry on the Voice Mode settings landing page">Auto-enter, typing speed, resend</string>
     <string name="dictate__layout_title" comment="Title of the dictation layout settings category (how the dictation keyboard looks)">Dictation layout</string>
-    <string name="dictate__layout_menu_summary" comment="One-line summary for the dictation layout hub entry on the Dictate settings landing page">Classic layout and keyboard appearance</string>
+    <string name="dictate__layout_menu_summary" comment="One-line summary for the dictation layout hub entry on the Voice Mode settings landing page">Classic layout and keyboard appearance</string>
 
-    <!-- Dictate language selection -->
+    <!-- Voice Mode language selection -->
     <string name="dictate__languages_group" comment="Group title for dictation language settings (no longer a hub group; the languages row now lives under the Transcription group)">Languages</string>
     <string name="dictate__languages_title" comment="Setting: pick which dictation languages to cycle through">Transcription languages</string>
     <string name="dictate__languages_summary" comment="Explanation on the language picker screen">Pick the languages you dictate in. Switch between them quickly from the recording bar.</string>
@@ -2332,12 +2334,12 @@
     <string name="dictate__languages_follow_keyboard" comment="Switch title: the dictation language follows the keyboard language">Follow the keyboard language</string>
     <string name="dictate__languages_follow_keyboard_summary" comment="Switch summary. Only languages chosen under “Selected languages” are switched to. Must fit two lines">Switches dictation too, if the language is selected</string>
 
-    <!-- Dictate prompt selection (system & style prompt: none / predefined / custom) -->
+    <!-- Voice Mode prompt selection (system & style prompt: none / predefined / custom) -->
     <string name="dictate__prompt_selection_none" comment="Prompt option: do not send any prompt">None</string>
-    <string name="dictate__prompt_selection_predefined" comment="Prompt option: use Dictate's built-in default prompt">Default</string>
+    <string name="dictate__prompt_selection_predefined" comment="Prompt option: use Voice Mode's built-in default prompt">Default</string>
     <string name="dictate__prompt_selection_custom" comment="Prompt option: use a custom user-written prompt">Custom</string>
 
-    <!-- Dictate style prompt (biases the transcription towards proper punctuation/casing) -->
+    <!-- Voice Mode style prompt (biases the transcription towards proper punctuation/casing) -->
     <string name="dictate__style_prompt_title" comment="Setting: punctuation/style prompt for transcription">Punctuation &amp; style</string>
     <string name="dictate__style_prompt_custom_title" comment="Label for the custom style prompt field">Custom style prompt</string>
     <string name="dictate__style_prompt_custom_placeholder" comment="Placeholder for the custom style prompt field">e.g. Hello. Thank you very much.</string>
@@ -2345,7 +2347,7 @@
     <string name="dictate__style_prompt_info_description" comment="Explanation shown above the default style prompt example">This example sentence is sent with each transcription to nudge the model towards correct capitalization and punctuation. It adapts automatically to the language you dictate in.</string>
     <string name="dictate__style_prompt_info_none" comment="Shown in the style-prompt info box for a language that has no example sentence, so none is sent (issue #275)">This language has no example sentence yet, so none is sent. The transcription still follows the language you selected.</string>
 
-    <!-- Dictate custom words / vocabulary (appended to the transcription prompt, roadmap 11.12) -->
+    <!-- Voice Mode custom words / vocabulary (appended to the transcription prompt, roadmap 11.12) -->
     <string name="dictate__custom_words_title" comment="Setting: custom vocabulary added to the transcription prompt so names/jargon are spelled correctly">Custom words</string>
     <string name="dictate__custom_words_summary_empty" comment="Summary shown when no custom words are set">Add names or technical terms to spell correctly</string>
     <string name="dictate__custom_words_placeholder" comment="Placeholder listing example custom words, comma-separated">e.g. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
@@ -2370,7 +2372,7 @@
     <string name="dictate__file_export_done" comment="Toast after a file was written successfully">File saved</string>
     <string name="dictate__file_export_failed" comment="Toast when a file could not be written">Could not write that file</string>
 
-    <!-- Dictate custom mappings: deterministic find-and-replace on the transcript (issue #129) -->
+    <!-- Voice Mode custom mappings: deterministic find-and-replace on the transcript (issue #129) -->
     <string name="dictate__mappings_title" comment="Title of the custom find-and-replace mappings screen">Custom mappings</string>
     <string name="dictate__mappings_entry_summary" comment="Summary on the row that opens the mappings screen">Find-and-replace rules applied to the transcript</string>
     <string name="dictate__mappings_group" comment="Group title on the mappings screen">Replacement rules</string>
@@ -2401,8 +2403,8 @@
     <string name="dictate__mappings_import_empty" comment="Toast when the chosen file held no usable rules">No rules found in that file</string>
     <string name="dictate__mappings_import_done" comment="Toast after rules were added. Placeholder inserts how many.">Added {count} rules</string>
 
-    <!-- Dictate rewording (AI) settings -->
-    <string name="dictate__rewording_group" comment="Group title for the rewording (AI editing) stage on the main Dictate screen">Rewording (AI editing)</string>
+    <!-- Voice Mode rewording (AI) settings -->
+    <string name="dictate__rewording_group" comment="Group title for the rewording (AI editing) stage on the main Voice Mode screen">Rewording (AI editing)</string>
     <string name="dictate__rewording_title" comment="Title of the rewording settings screen">Rewording (AI)</string>
     <string name="dictate__reasoning_effort_title" comment="Title of the reasoning-effort setting (only affects reasoning models like o-series/GPT-5/Grok)">Reasoning effort</string>
     <string name="dictate__reasoning_effort_off" comment="Reasoning-effort option: off / provider default">Off</string>
@@ -2417,13 +2419,13 @@
     <string name="dictate__reasoning_effort_high_summary" comment="Summary for high reasoning effort">Most thinking, slower</string>
     <string name="dictate__reasoning_effort_custom" comment="Reasoning-effort option: a user-entered custom value">Custom</string>
     <string name="dictate__stats_title" comment="Title of the dictation statistics screen">Statistics</string>
-    <string name="dictate__stats_menu_summary" comment="Summary for the statistics entry in Dictate settings">Words, time saved, streak and more</string>
+    <string name="dictate__stats_menu_summary" comment="Summary for the statistics entry in Voice Mode settings">Words, time saved, streak and more</string>
     <!-- Transcription history / activity log (issue #140) -->
     <string name="dictate__history_title" comment="Title of the transcription history screen and in-keyboard panel">History</string>
     <string name="dictate__history_original" comment="Label above the raw transcript, shown when a prompt rewrote it">Original</string>
     <string name="dictate__history_result" comment="Label above the text produced by a prompt">Result</string>
     <string name="dictate__history_hold_for_original" comment="Hint in the history panel: long-press a row to insert the raw transcript">hold for original</string>
-    <string name="dictate__history_menu_summary" comment="Summary for the history entry in Dictate settings">Replay, re-insert and manage past dictations</string>
+    <string name="dictate__history_menu_summary" comment="Summary for the history entry in Voice Mode settings">Replay, re-insert and manage past dictations</string>
     <string name="dictate__history_empty" comment="Shown when no dictations have been recorded yet">No dictations yet — your recent dictations will appear here.</string>
     <string name="dictate__history_enable_title" comment="Toggle: capture finished dictations into the history">Keep a history</string>
     <string name="dictate__history_enable_summary" comment="Short summary for the keep-a-history toggle">Log dictations to re-insert or review later.</string>
@@ -2462,7 +2464,7 @@
     <string name="dictate__history_export_all_result" comment="Summary after an export-everything run. {written}, {skipped} and {failed} are counts">{written} written, {skipped} already there, {failed} failed</string>
     <string name="dictate__history_export_last_failure" comment="Warning that a dictation could not be written to the folder. {when} is a relative time like 5 minutes ago">A write failed {when}. “Export everything now” puts what is missing back.</string>
     <string name="dictate__history_export_warning_title" comment="Title of the dialog shown before the export folder is picked for the first time">What lands there</string>
-    <string name="dictate__history_export_warning_message" comment="Body of the dialog shown before the export folder is picked for the first time">The folder will hold the text of every dictation you make from now on, and the recordings too if you switch that on. Anything that syncs it — a cloud client, a backup tool, another app — carries those transcripts off this device.\n\nDictate keeps writing until you disconnect the folder, and it never deletes from it: entries that drop out of the history stay in the folder. Password and incognito fields are never recorded, and so are never exported.</string>
+    <string name="dictate__history_export_warning_message" comment="Body of the dialog shown before the export folder is picked for the first time">The folder will hold the text of every dictation you make from now on, and the recordings too if you switch that on. Anything that syncs it — a cloud client, a backup tool, another app — carries those transcripts off this device.\n\nVoice Mode keeps writing until you disconnect the folder, and it never deletes from it: entries that drop out of the history stay in the folder. Password and incognito fields are never recorded, and so are never exported.</string>
     <string name="dictate__history_export_needs_history" comment="Shown when the export is opened while the history is switched off">Folder export writes what the history records, so the history has to be switched on for it.</string>
     <string name="dictate__history_export_enable_history" comment="Button that switches the history on from the export dialog">Turn on history</string>
     <string name="dictate__history_export_pick_failed" comment="Toast shown when Android refused write access to the picked folder">Could not get write access to that folder</string>
@@ -2485,13 +2487,13 @@
     <string name="dictate__stats_reset_confirm_title" comment="Reset-statistics confirmation dialog title">Reset statistics?</string>
     <string name="dictate__stats_reset_confirm_msg" comment="Reset-statistics confirmation dialog message">This permanently clears all your dictation statistics and can\'t be undone.</string>
     <string name="dictate__stats_share" comment="Button to share your statistics">Share</string>
-    <string name="dictate__stats_share_text" comment="Shared text; %1$s time saved, %2$s dictations, %3$s words">I’ve saved %1$s with Dictate — %2$s dictations, %3$s words. 🎤</string>
+    <string name="dictate__stats_share_text" comment="Shared text; %1$s time saved, %2$s dictations, %3$s words">I’ve saved %1$s with Voice Mode — %2$s dictations, %3$s words. 🎤</string>
     <string name="dictate__stats_view" comment="Button that opens the statistics screen">View statistics</string>
     <string name="dictate__stats_milestones_title" comment="Toggle title for one-time milestone celebrations">Milestone celebrations</string>
     <string name="dictate__stats_milestones_summary" comment="Toggle summary for milestone celebrations">Celebrate once when you reach a saved-time or dictation milestone</string>
     <string name="dictate__stats_milestone_title" comment="Milestone celebration dialog title">Milestone reached 🎉</string>
-    <string name="dictate__stats_milestone_time" comment="Milestone dialog body for a saved-time milestone; %s is a duration">You’ve saved %s with Dictate — nice work!</string>
-    <string name="dictate__stats_milestone_count" comment="Milestone dialog body for a dictation-count milestone; %s is a number">You’ve reached %s dictations with Dictate!</string>
+    <string name="dictate__stats_milestone_time" comment="Milestone dialog body for a saved-time milestone; %s is a duration">You’ve saved %s with Voice Mode — nice work!</string>
+    <string name="dictate__stats_milestone_count" comment="Milestone dialog body for a dictation-count milestone; %s is a number">You’ve reached %s dictations with Voice Mode!</string>
     <string name="dictate__rewording_summary_on" comment="Summary when rewording is enabled">On – reword, translate and format with AI</string>
     <string name="dictate__rewording_summary_off" comment="Summary when rewording is disabled">Off</string>
     <string name="dictate__rewording_enabled_title" comment="Setting: master toggle for rewording">Enable rewording</string>
@@ -2509,7 +2511,7 @@
     <string name="dictate__command_word_summary" comment="Summary for the command word setting. {word} is the word the user picked.">Dictations starting with “{word}” run as a live prompt</string>
     <string name="dictate__command_word_placeholder" comment="Example command word shown in the empty input field">Jarvis</string>
     <string name="dictate__command_word_info_title" comment="Title of the info box explaining the command word">About the command word</string>
-    <string name="dictate__command_word_info_description" comment="Info box explaining what the command word does">Normally Dictate writes down what you say. With a command word set, a dictation that begins with it becomes an instruction instead: the word is removed and the rest is sent to the AI, together with the selected text if there is any.\n\n“Jarvis, make this more formal” rewrites the selection. “Jarvis, what is the capital of Japan” writes the answer into the field. It is the Live prompt button, reached by saying its name instead of tapping it.\n\nThe word only counts at the very start of a dictation and only as a whole word, so pick something you rarely begin a sentence with.</string>
+    <string name="dictate__command_word_info_description" comment="Info box explaining what the command word does">Normally Voice Mode writes down what you say. With a command word set, a dictation that begins with it becomes an instruction instead: the word is removed and the rest is sent to the AI, together with the selected text if there is any.\n\n“Jarvis, make this more formal” rewrites the selection. “Jarvis, what is the capital of Japan” writes the answer into the field. It is the Live prompt button, reached by saying its name instead of tapping it.\n\nThe word only counts at the very start of a dictation and only as a whole word, so pick something you rarely begin a sentence with.</string>
     <string name="dictate__auto_formatting_title" comment="Setting: turn spoken formatting cues into Markdown">Auto-formatting</string>
     <string name="dictate__auto_formatting_summary" comment="Summary for the auto-formatting setting">Turn spoken formatting cues into Markdown (headings, lists, …)</string>
     <string name="dictate__system_prompt_title" comment="Setting: base instruction sent with every rewording request">Rewording instruction</string>
@@ -2518,7 +2520,7 @@
     <string name="dictate__system_prompt_info_title" comment="Row that reveals the built-in default rewording instruction">View default instruction</string>
     <string name="dictate__system_prompt_info_description" comment="Explanation shown above the default rewording instruction">This instruction is added to every rewording request so the AI returns only the result you asked for — with no extra text before or after.</string>
 
-    <!-- Dictate prompt management (CRUD) -->
+    <!-- Voice Mode prompt management (CRUD) -->
     <string name="dictate__prompts_title" comment="Title of the prompt management screen">Prompts</string>
     <string name="dictate__prompts_empty" comment="Shown when no prompts exist yet">No prompts yet. Tap the button below to add one.</string>
     <string name="dictate__prompt_add" comment="Title for adding a new prompt">Add prompt</string>
@@ -2579,7 +2581,7 @@
     <string name="dictate__prompts_import_mode_replace" comment="Import-mode dialog button: replace existing prompts">Replace</string>
     <string name="dictate__prompts_import_mode_add" comment="Import-mode dialog button: add to existing prompts">Add</string>
 
-    <!-- Dictate community prompt library (issue #105): browse and import prompts shared by others -->
+    <!-- Voice Mode community prompt library (issue #105): browse and import prompts shared by others -->
     <string name="dictate__prompt_library_title" comment="Title of the community prompt library screen">Community library</string>
     <string name="dictate__prompt_library_menu" comment="Prompts screen menu item that opens the community library">Browse community library</string>
     <string name="dictate__prompt_library_search" comment="Placeholder in the library search field">Search prompts</string>
@@ -2593,7 +2595,7 @@
     <string name="dictate__prompt_library_close" comment="Button that closes the prompt preview dialog">Close</string>
     <string name="dictate__prompt_library_author" comment="Attribution line in the prompt preview; {author} is the author name">by {author}</string>
 
-    <!-- Dictate: contribute one of your own prompts back to the community library (issue #105) -->
+    <!-- Voice Mode: contribute one of your own prompts back to the community library (issue #105) -->
     <string name="dictate__prompt_share_title" comment="Action/dialog title for contributing a prompt to the community">Share to community</string>
     <string name="dictate__prompt_share_message" comment="Explains what happens when the user contributes a prompt">This opens GitHub in your browser with your prompt pre-filled as a submission. Sign in and confirm to open a pull request that adds it to the community library. A free GitHub account is required; nothing is uploaded until you confirm on GitHub.</string>
     <string name="dictate__prompt_share_continue" comment="Confirm button that opens GitHub to submit the prompt">Open GitHub</string>
@@ -2601,16 +2603,16 @@
     <string name="dictate__prompt_share_description" comment="Label for the optional description field in the share dialog">Description (optional)</string>
     <string name="dictate__prompt_share_description_placeholder" comment="Placeholder for the share description field">e.g. Cleans up grammar without changing the meaning</string>
 
-    <!-- Dictate file transcription (long-press the mic to pick an audio/video file) -->
+    <!-- Voice Mode file transcription (long-press the mic to pick an audio/video file) -->
     <string name="dictate__file_preparing" comment="Toast shown while the picked file is copied to the cache">Preparing file…</string>
     <string name="dictate__file_too_large" comment="Toast when the chosen file exceeds the provider upload limit">File is too large – the provider accepts at most 25 MB.</string>
     <string name="dictate__file_read_error" comment="Toast when the chosen file could not be read">Could not read the selected file.</string>
 
-    <!-- Share → Dictate for audio and video (issue #301): a shared voice message is transcribed on a
+    <!-- Share → Voice Mode for audio and video (issue #301): a shared voice message is transcribed on a
          screen of its own, because a share has no text field for the transcript to go into. -->
-    <string name="dictate__import_share_label" comment="Label of the Dictate entry in the system share sheet for audio and video files. One word: the sheet already shows the app name next to it, and another Dictate entry handles images.">Transcribe</string>
+    <string name="dictate__import_share_label" comment="Label of the Voice Mode entry in the system share sheet for audio and video files. One word: the sheet already shows the app name next to it, and another Voice Mode entry handles images.">Transcribe</string>
     <string name="dictate__import_title" comment="Title of the screen that transcribes a shared or picked audio file">Transcribe file</string>
-    <string name="dictate__import_menu" comment="Entry on the Dictate settings home that opens the file picker">Transcribe a file</string>
+    <string name="dictate__import_menu" comment="Entry on the Voice Mode settings home that opens the file picker">Transcribe a file</string>
     <string name="dictate__import_menu_summary" comment="Summary under the \'Transcribe a file\' entry">Pick an audio or video file and read what it says</string>
     <!-- The steps of an import, listed from the start and ticked off as they finish (issue #337). One
          "Preparing…" used to cover four different jobs, which made the longest of them look like a hang. -->
@@ -2639,27 +2641,27 @@
     <string name="dictate__import_not_audio" comment="Shown when the shared file turned out to hold no sound at all">This file contains no audio.</string>
     <string name="dictate__import_only_first" comment="Shown when several files were shared at once; {count} is how many were left out">Only the first file is transcribed – {count} more were left out.</string>
 
-    <!-- Dictate onboarding step -->
-    <string name="dictate__setup_description" comment="Onboarding text inviting the user to set up Dictate">Set up your AI provider and API key so you can start dictating with the mic.</string>
-    <string name="dictate__setup_configure_btn" comment="Onboarding button opening the Dictate settings">Configure Dictate</string>
+    <!-- Voice Mode onboarding step -->
+    <string name="dictate__setup_description" comment="Onboarding text inviting the user to set up Voice Mode">Set up your AI provider and API key so you can start dictating with the mic.</string>
+    <string name="dictate__setup_configure_btn" comment="Onboarding button opening the Voice Mode settings">Configure Voice Mode</string>
     <string name="setup__grant_mic_permission__title" comment="Title of the microphone permission onboarding step">Microphone access</string>
-    <string name="setup__grant_mic_permission__description" comment="Onboarding: ask for microphone permission for dictation">Dictate needs microphone access to record your voice for transcription.</string>
+    <string name="setup__grant_mic_permission__description" comment="Onboarding: ask for microphone permission for dictation">Voice Mode needs microphone access to record your voice for transcription.</string>
     <string name="setup__grant_mic_permission__btn" comment="Onboarding button to grant the microphone permission">Grant microphone permission</string>
 
     <!-- ============================== Changelog ============================== -->
     <string name="changelog__dialog_title" comment="Title of the what's-new dialog shown after an update">What\'s new</string>
     <string name="changelog__view_all" comment="Button that opens the full changelog/releases page online">View all changes</string>
-    <string name="changelog__intro" comment="Brief intro line at the top of the what's-new dialog, before the per-version notes">Dictate has been updated. Here\'s what\'s new:</string>
+    <string name="changelog__intro" comment="Brief intro line at the top of the what's-new dialog, before the per-version notes">Voice Mode has been updated. Here\'s what\'s new:</string>
     <string name="changelog__version_header" comment="Header shown above one release's notes. {version} is e.g. 4.0.0">Version {version}</string>
-    <string name="changelog__donate" comment="Tappable invitation to donate, shown at the bottom of the what's-new dialog">Enjoying Dictate? Tap here to support development ♥</string>
+    <string name="changelog__donate" comment="Tappable invitation to donate, shown at the bottom of the what's-new dialog">Enjoying Voice Mode? Tap here to support development ♥</string>
     <!-- Per-release notes. To announce a new version, add a changelog__vX_Y_Z string here and a matching
          entry in DictateChangelog.kt. changelog__current holds the notes for the initial 4.0.0 release. -->
-    <string name="changelog__current" comment="What's-new text for the 4.0.0 release. One change per line.">• Brand-new keyboard: Dictate now ships as a full multi-language layout keyboard with a dedicated mic key that opens the voice panel.\n• Bring your own AI: pick any OpenAI-compatible provider and enter your API key under Settings → Dictate.\n• Smart formatting and rewording powered by your chosen model.\n• Your settings from the previous Dictate app are imported automatically.</string>
+    <string name="changelog__current" comment="What's-new text for the 4.0.0 release. One change per line.">• Brand-new keyboard: Voice Mode now ships as a full multi-language layout keyboard with a dedicated mic key that opens the voice panel.\n• Bring your own AI: pick any OpenAI-compatible provider and enter your API key under Settings → Voice Mode.\n• Smart formatting and rewording powered by your chosen model.\n• Your settings from the previous Voice Mode app are imported automatically.</string>
     <string name="changelog__v4_1_0" comment="What's-new text for the 4.1.0 release. One change per line.">• New: search emoji right from the keyboard.\n• New transcription provider: Soniox.\n• Re-insert your last dictation, and recover recordings interrupted when the keyboard closed.\n• The prompt bar now refreshes live — long-press a prompt to edit it.\n• The AI providers screen now shows both your active transcription and rewording providers.\n• Bigger, easier-to-hit record button.\n• Fixes: a support prompt could get stuck and block the bar in some languages; backup no longer fails when prompts, keyboard or theme are selected; saved API keys are kept when upgrading.</string>
     <string name="changelog__v5_0_0" comment="What\'s-new text for the 5.0.0 release. One change per line.">• NEW: Glide typing — swipe across the keys to type whole words, with per-language dictionaries that download on demand. 👆\n• NEW: Word suggestions &amp; autocorrect — typos get fixed automatically and the word you typed stays one tap away. ✨\n• NEW: Real-time transcription — watch your words appear as you speak, with OpenAI, Deepgram, Soniox, AssemblyAI and ElevenLabs. ⚡\n• NEW: Three more transcription providers — ElevenLabs Scribe, Deepgram and AssemblyAI. ☁️\n• NEW: Classic dictation layout — the keyboard-free voice screen from Dictate 3 is back, locked or just a swipe away. 🎙️\n• NEW: Community prompt library — browse and share rewording prompts. 📚\n• NEW: Dictation statistics with milestones. 📊\n• NEW: Offline model NVIDIA Parakeet, plus a silence filter that skips empty recordings. 📴\n• More: a steadier floating button, reasoning-effort control, haptic feedback, a new E-Reader theme and dozens of fixes. 🛠️</string>
-    <string name="changelog__v4_3_0" comment="What\'s-new text for the 4.3.0 release. One change per line.">• NEW: On-device transcription — dictate completely offline. No internet needed and nothing leaves your phone. Download a speech model once in Settings ▸ Dictate ▸ Providers. 📴\n• NEW: Wear OS keyboard — dictate straight from your watch, through your phone or fully on its own. ⌚\n• NEW: Find &amp; replace rules — automatically fix recurring words, names or phrases in every transcript. Set them up in Settings ▸ Dictate ▸ Custom mappings. 🔁\n• NEW: Single-call mode — let one capable AI model transcribe and format in a single request, faster and often cheaper. Turn it on per provider. ⚡\n• NEW: Smartbar actions to jump back to your previous keyboard or open the system keyboard picker. ⌨️\n• The keyboard\'s accent color now follows the color you pick in Settings ▸ Theme. 🎨\n• Added an optional undo button to the floating dictation button. ↩️\n• Various fixes and stability improvements. 🛠️</string>
-    <string name="changelog__v4_2_0" comment="What's-new text for the 4.2.0 release. One change per line.">• NEW: Floating dictation button — dictate straight into any app, even when another keyboard is active. Pick from three styles (Pill, Ring, Orb), watch a live waveform while you speak, drag it anywhere with edge-snapping, set its color and size, and long-press to reword. Turn it on in Settings ▸ Dictate ▸ Floating button.\n• NEW: Google Gemini — bring your own AI Studio API key for both transcription and rewording.\n• Prompts now appear in an always-on row above the keys by default.\n• More reliable text insertion across apps, including browsers and other keyboards.</string>
-    <string name="changelog__v4_1_1" comment="What's-new text for the 4.1.1 release. One change per line.">• Fix: the accent color could appear green on some devices — keys and buttons are back to the Dictate blue.</string>
+    <string name="changelog__v4_3_0" comment="What\'s-new text for the 4.3.0 release. One change per line.">• NEW: On-device transcription — dictate completely offline. No internet needed and nothing leaves your phone. Download a speech model once in Settings ▸ Voice Mode ▸ Providers. 📴\n• NEW: Wear OS keyboard — dictate straight from your watch, through your phone or fully on its own. ⌚\n• NEW: Find &amp; replace rules — automatically fix recurring words, names or phrases in every transcript. Set them up in Settings ▸ Voice Mode ▸ Custom mappings. 🔁\n• NEW: Single-call mode — let one capable AI model transcribe and format in a single request, faster and often cheaper. Turn it on per provider. ⚡\n• NEW: Smartbar actions to jump back to your previous keyboard or open the system keyboard picker. ⌨️\n• The keyboard\'s accent color now follows the color you pick in Settings ▸ Theme. 🎨\n• Added an optional undo button to the floating dictation button. ↩️\n• Various fixes and stability improvements. 🛠️</string>
+    <string name="changelog__v4_2_0" comment="What's-new text for the 4.2.0 release. One change per line.">• NEW: Floating dictation button — dictate straight into any app, even when another keyboard is active. Pick from three styles (Pill, Ring, Orb), watch a live waveform while you speak, drag it anywhere with edge-snapping, set its color and size, and long-press to reword. Turn it on in Settings ▸ Voice Mode ▸ Floating button.\n• NEW: Google Gemini — bring your own AI Studio API key for both transcription and rewording.\n• Prompts now appear in an always-on row above the keys by default.\n• More reliable text insertion across apps, including browsers and other keyboards.</string>
+    <string name="changelog__v4_1_1" comment="What's-new text for the 4.1.1 release. One change per line.">• Fix: the accent color could appear green on some devices — keys and buttons are back to the Voice Mode blue.</string>
 
     <!-- On-device translation (issue #424). Language names come from the system and need no strings. -->
     <string name="settings__translation__title" comment="Title of the translation settings screen and its entry on the settings home">Translation</string>

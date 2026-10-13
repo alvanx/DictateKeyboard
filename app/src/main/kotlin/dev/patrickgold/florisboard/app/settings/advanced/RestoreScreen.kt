@@ -94,10 +94,10 @@ import dev.patrickgold.florisboard.lib.FlorisLocale
 
 object Restore {
     const val MIN_VERSION_CODE = 64
-    // Dictate's own application id (base, without the .debug/.beta variant suffixes) — a backup whose
-    // metadata package starts with this is a genuine Dictate backup, not a "third-party" one. Was still
-    // the upstream FlorisBoard id after the fork, which made every Dictate backup falsely warn.
-    const val PACKAGE_NAME = "net.devemperor.dictate"
+    // This app's own application id (base, without the .debug/.beta variant suffixes) — a backup whose
+    // metadata package starts with this is a genuine backup of this app, not a "third-party" one.
+    val PACKAGE_NAME: String = dev.patrickgold.florisboard.BuildConfig.APPLICATION_ID
+        .removeSuffix(".debug").removeSuffix(".beta").removeSuffix(".bench")
     const val BACKUP_ARCHIVE_FILE_NAME = "backup.zip"
 }
 
