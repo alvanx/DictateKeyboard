@@ -1279,7 +1279,6 @@
     <string name="about__feedback__title">反馈与支持</string>
     <string name="about__feedback__summary">发送电子邮件提出问题、漏洞或建议</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">选择 {app_name} 的转写方式</string>
     <string name="setup__provider__choose_intro">{app_name} 借助 AI 服务把语音转成文字。上面两种方式适合大多数人；如果你完全不想用云服务，下面还有两种。</string>
     <string name="setup__provider__choice_cloud_title">在应用内购买额度</string>
@@ -1972,7 +1971,7 @@
     <string name="dictate__history_export_all_result">已写入 {written} 条，已存在 {skipped} 条，失败 {failed} 条</string>
     <string name="dictate__history_export_last_failure">{when}有一次写入失败。“立即导出全部”可以补齐缺失的文件。</string>
     <string name="dictate__history_export_warning_title">文件夹里会有什么</string>
-    <string name="dictate__history_export_warning_message">从现在起，该文件夹会保存你每一段听写的文字；如果开启，还会保存录音。任何同步它的工具 — 云端客户端、备份工具或其他应用 — 都会把这些转写带离本设备。\n\n在你断开该文件夹之前，Dictate 会持续写入，并且从不删除其中的文件：从历史记录中移除的条目仍会留在文件夹里。密码字段和无痕输入从不记录，因此也从不导出。</string>
+    <string name="dictate__history_export_warning_message">从现在起，该文件夹会保存你每一段听写的文字；如果开启，还会保存录音。任何同步它的工具 — 云端客户端、备份工具或其他应用 — 都会把这些转写带离本设备。\n\n在你断开该文件夹之前，Voice Mode 会持续写入，并且从不删除其中的文件：从历史记录中移除的条目仍会留在文件夹里。密码字段和无痕输入从不记录，因此也从不导出。</string>
     <string name="dictate__history_export_needs_history">文件夹导出写入的是历史记录所保存的内容，因此需要开启历史记录。</string>
     <string name="dictate__history_export_enable_history">开启历史记录</string>
     <string name="dictate__history_export_pick_failed">无法获得该文件夹的写入权限</string>

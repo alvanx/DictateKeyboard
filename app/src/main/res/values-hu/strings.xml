@@ -1283,7 +1283,6 @@
     <string name="about__feedback__title">Visszajelzés és támogatás</string>
     <string name="about__feedback__summary">Küldjön e-mailt kérdésekkel, hibákkal vagy ötletekkel</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Válassza ki, hogyan írjon át a {app_name}</string>
     <string name="setup__provider__choose_intro">A {app_name} egy MI-szolgáltatás segítségével alakítja a beszédet szöveggé. A legtöbbeknek megfelel a két fenti mód valamelyike — ha pedig egyáltalán nem szeretne felhőszolgáltatást használni, alább van még kettő.</string>
     <string name="setup__provider__choice_cloud_title">Egyenleg vásárlása az alkalmazásban</string>
@@ -1978,7 +1977,7 @@
     <string name="dictate__history_export_all_result">{written} kiírva, {skipped} már megvolt, {failed} sikertelen</string>
     <string name="dictate__history_export_last_failure">Egy írás {when} meghiúsult. A „Minden exportálása most” pótolja a hiányzókat.</string>
     <string name="dictate__history_export_warning_title">Mi kerül oda</string>
-    <string name="dictate__history_export_warning_message">A mappa mostantól minden diktálásod szövegét tartalmazza, és a felvételeket is, ha bekapcsolod. Bármi, ami szinkronizálja — felhőkliens, biztonsági mentési eszköz, másik alkalmazás — kiviszi ezeket az átiratokat az eszközről.\n\nA Dictate addig ír, amíg le nem választod a mappát, és soha nem töröl belőle: az előzményekből kieső bejegyzések a mappában maradnak. A jelszó- és inkognitómezők soha nem kerülnek rögzítésre, így exportálásra sem.</string>
+    <string name="dictate__history_export_warning_message">A mappa mostantól minden diktálásod szövegét tartalmazza, és a felvételeket is, ha bekapcsolod. Bármi, ami szinkronizálja — felhőkliens, biztonsági mentési eszköz, másik alkalmazás — kiviszi ezeket az átiratokat az eszközről.\n\nA Voice Mode addig ír, amíg le nem választod a mappát, és soha nem töröl belőle: az előzményekből kieső bejegyzések a mappában maradnak. A jelszó- és inkognitómezők soha nem kerülnek rögzítésre, így exportálásra sem.</string>
     <string name="dictate__history_export_needs_history">A mappaexport azt írja ki, amit az előzmények rögzítenek, ezért az előzményeknek bekapcsolva kell lenniük.</string>
     <string name="dictate__history_export_enable_history">Előzmények bekapcsolása</string>
     <string name="dictate__history_export_pick_failed">Nem sikerült írási hozzáférést szerezni ehhez a mappához</string>

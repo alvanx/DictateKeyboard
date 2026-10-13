@@ -687,7 +687,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="setup__finish_up__title">Afronden</string>
     <string name="setup__finish_up__description_p1">{app_name} is nu ingeschakeld in het systeem en kan door jou worden aangepast.</string>
     <string name="setup__finish_up__description_p2">Als je problemen, bugs, crashes tegenkomt of gewoon een suggestie wilt doen, bekijk dan de projectrepository vanaf het about-scherm!</string>
-    <string name="setup__finish_up__finish_btn">Begin met aanpassen</string>
+    <string name="setup__finish_up__finish_btn">Aan de slag met {app_name}</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__title">Fysiek toetsenbord</string>
     <string name="physical_keyboard__system_settings__title">Instellingen fysiek toetsenbord</string>
@@ -1171,7 +1171,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="quick_action__ime_ui_mode_scan__tooltip">Gedrukte tekst fotograferen en invoegen</string>
     <string name="quick_action__translate">Vertalen</string>
     <string name="quick_action__translate__tooltip">Vertalen tijdens het typen, op dit apparaat</string>
-    <string name="quick_action__ime_ui_mode_dictate">Dictate</string>
+    <string name="quick_action__ime_ui_mode_dictate">Dicteren</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Tik om te dicteren, tik nogmaals om te transcriberen</string>
     <string name="quick_action__dictate_live_prompt">Live-instructie</string>
     <string name="dictate__live_prompt_chip">Vraag met je stem</string>
@@ -1184,7 +1184,6 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="about__feedback__title">Feedback en ondersteuning</string>
     <string name="about__feedback__summary">Stuur een e-mail met vragen, bugs of ideeën</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Kies hoe {app_name} transcribeert</string>
     <string name="setup__provider__choose_intro">{app_name} zet je spraak om in tekst met een AI-dienst. Voor de meeste mensen voldoet een van deze twee manieren — en wil je helemaal geen clouddienst gebruiken, dan staan er hieronder nog twee.</string>
     <string name="setup__provider__choice_cloud_title">Tegoed kopen in de app</string>
@@ -1879,7 +1878,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__history_export_all_result">{written} geschreven, {skipped} al aanwezig, {failed} mislukt</string>
     <string name="dictate__history_export_last_failure">Een schrijfpoging is {when} mislukt. “Nu alles exporteren” haalt het ontbrekende alsnog op.</string>
     <string name="dictate__history_export_warning_title">Wat daar belandt</string>
-    <string name="dictate__history_export_warning_message">De map bevat vanaf nu de tekst van elk dictaat dat je maakt, en ook de opnamen als je dat inschakelt. Alles wat de map synchroniseert — een cloudclient, een back-uptool, een andere app — draagt die transcripties van dit apparaat af.\n\nDictate blijft schrijven tot je de map loskoppelt en verwijdert er nooit iets uit: items die uit de geschiedenis vallen, blijven in de map. Wachtwoord- en incognitovelden worden nooit vastgelegd en dus ook nooit geëxporteerd.</string>
+    <string name="dictate__history_export_warning_message">De map bevat vanaf nu de tekst van elk dictaat dat je maakt, en ook de opnamen als je dat inschakelt. Alles wat de map synchroniseert — een cloudclient, een back-uptool, een andere app — draagt die transcripties van dit apparaat af.\n\nVoice Mode blijft schrijven tot je de map loskoppelt en verwijdert er nooit iets uit: items die uit de geschiedenis vallen, blijven in de map. Wachtwoord- en incognitovelden worden nooit vastgelegd en dus ook nooit geëxporteerd.</string>
     <string name="dictate__history_export_needs_history">De mapexport schrijft wat de geschiedenis vastlegt, dus de geschiedenis moet ingeschakeld zijn.</string>
     <string name="dictate__history_export_enable_history">Geschiedenis inschakelen</string>
     <string name="dictate__history_export_pick_failed">Kon geen schrijftoegang tot die map krijgen</string>

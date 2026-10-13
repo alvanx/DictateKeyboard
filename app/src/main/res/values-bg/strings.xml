@@ -1284,7 +1284,6 @@
     <string name="about__feedback__title">Обратна връзка и поддръжка</string>
     <string name="about__feedback__summary">Изпратете имейл с въпроси, грешки или идеи</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Изберете как {app_name} да преобразува речта</string>
     <string name="setup__provider__choose_intro">{app_name} превръща речта ви в текст с помощта на ИИ услуга. На повечето хора им върши работа един от двата начина — а ако предпочитате изобщо да не ползвате облачна услуга, отдолу има още два.</string>
     <string name="setup__provider__choice_cloud_title">Купуване на кредит в приложението</string>
@@ -1979,7 +1978,7 @@
     <string name="dictate__history_export_all_result">Записани: {written}, вече налични: {skipped}, неуспешни: {failed}</string>
     <string name="dictate__history_export_last_failure">Запис се провали {when}. „Експортирай всичко сега“ ще допълни липсващото.</string>
     <string name="dictate__history_export_warning_title">Какво отива там</string>
-    <string name="dictate__history_export_warning_message">Папката ще съдържа текста на всяка ваша диктовка отсега нататък, а ако включите и записите. Всичко, което я синхронизира — облачен клиент, инструмент за резервни копия, друго приложение — изнася тези транскрипции извън устройството.\n\nDictate продължава да записва, докато не прекъснете папката, и никога не изтрива нищо от нея: записите, които отпаднат от историята, остават в папката. Полетата за пароли и инкогнито никога не се записват и затова никога не се експортират.</string>
+    <string name="dictate__history_export_warning_message">Папката ще съдържа текста на всяка ваша диктовка отсега нататък, а ако включите и записите. Всичко, което я синхронизира — облачен клиент, инструмент за резервни копия, друго приложение — изнася тези транскрипции извън устройството.\n\nVoice Mode продължава да записва, докато не прекъснете папката, и никога не изтрива нищо от нея: записите, които отпаднат от историята, остават в папката. Полетата за пароли и инкогнито никога не се записват и затова никога не се експортират.</string>
     <string name="dictate__history_export_needs_history">Експортирането в папка записва това, което историята съхранява, затова историята трябва да е включена.</string>
     <string name="dictate__history_export_enable_history">Включване на историята</string>
     <string name="dictate__history_export_pick_failed">Не можа да бъде получен достъп за запис до тази папка</string>

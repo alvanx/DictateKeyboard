@@ -1301,7 +1301,6 @@
     <string name="about__feedback__title">Opinie i pomoc</string>
     <string name="about__feedback__summary">Wyślij e-mail z pytaniami, błędami lub pomysłami</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Wybierz, jak {app_name} ma transkrybować</string>
     <string name="setup__provider__choose_intro">{app_name} zamienia twoją mowę w tekst przy pomocy usługi AI. Większości osób wystarczy jeden z dwóch powyższych sposobów — a jeśli wolisz w ogóle nie korzystać z usługi w chmurze, poniżej są jeszcze dwa.</string>
     <string name="setup__provider__choice_cloud_title">Kup środki w aplikacji</string>
@@ -1998,7 +1997,7 @@
     <string name="dictate__history_export_all_result">Zapisano: {written}, już były: {skipped}, niepowodzenia: {failed}</string>
     <string name="dictate__history_export_last_failure">Zapis nie powiódł się {when}. „Eksportuj teraz wszystko” uzupełni brakujące pliki.</string>
     <string name="dictate__history_export_warning_title">Co tam trafia</string>
-    <string name="dictate__history_export_warning_message">Folder będzie zawierał tekst każdego dyktowania od teraz, a także nagrania, jeśli to włączysz. Wszystko, co go synchronizuje — klient chmury, narzędzie kopii zapasowych, inna aplikacja — wynosi te transkrypcje poza to urządzenie.\n\nDictate zapisuje, dopóki nie odłączysz folderu, i nigdy niczego z niego nie usuwa: wpisy, które wypadną z historii, zostają w folderze. Pola haseł i trybu incognito nigdy nie są zapisywane, więc nigdy nie są eksportowane.</string>
+    <string name="dictate__history_export_warning_message">Folder będzie zawierał tekst każdego dyktowania od teraz, a także nagrania, jeśli to włączysz. Wszystko, co go synchronizuje — klient chmury, narzędzie kopii zapasowych, inna aplikacja — wynosi te transkrypcje poza to urządzenie.\n\nVoice Mode zapisuje, dopóki nie odłączysz folderu, i nigdy niczego z niego nie usuwa: wpisy, które wypadną z historii, zostają w folderze. Pola haseł i trybu incognito nigdy nie są zapisywane, więc nigdy nie są eksportowane.</string>
     <string name="dictate__history_export_needs_history">Eksport do folderu zapisuje to, co rejestruje historia, więc historia musi być włączona.</string>
     <string name="dictate__history_export_enable_history">Włącz historię</string>
     <string name="dictate__history_export_pick_failed">Nie udało się uzyskać dostępu do zapisu w tym folderze</string>

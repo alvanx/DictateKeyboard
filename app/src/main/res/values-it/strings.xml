@@ -656,7 +656,7 @@
     <string name="setup__finish_up__title">Finisci</string>
     <string name="setup__finish_up__description_p1">{app_name} è stata abilitata nel sistema ed è pronta per essere personalizzata.</string>
     <string name="setup__finish_up__description_p2">Se riscontri problemi, bug, arresti anomali o vuoi semplicemente dare un suggerimento, controlla il repository del progetto dalla schermata informazioni!</string>
-    <string name="setup__finish_up__finish_btn">Inizia la personalizzazione</string>
+    <string name="setup__finish_up__finish_btn">Inizia a usare {app_name}</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__system_settings__title">Impostazioni tastiera fisica</string>
     <!-- Back up & Restore -->
@@ -1054,7 +1054,7 @@
     <string name="quick_action__ime_ui_mode_scan__tooltip">Fotografa un testo stampato e inseriscilo</string>
     <string name="quick_action__translate">Traduci</string>
     <string name="quick_action__translate__tooltip">Traduci mentre scrivi, su questo dispositivo</string>
-    <string name="quick_action__ime_ui_mode_dictate">Dictate</string>
+    <string name="quick_action__ime_ui_mode_dictate">Dettare</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Tocca per dettare, tocca di nuovo per trascrivere</string>
     <string name="quick_action__dictate_live_prompt">Istruzione dal vivo</string>
     <string name="dictate__live_prompt_chip">Chiedi a voce</string>
@@ -1067,7 +1067,6 @@
     <string name="about__feedback__title">Feedback e assistenza</string>
     <string name="about__feedback__summary">Invia un\'email con domande, bug o idee</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Scegli come {app_name} trascrive</string>
     <string name="setup__provider__choose_intro">{app_name} trasforma la tua voce in testo con un servizio di IA. Alla maggior parte delle persone basta uno di questi due modi — e se preferisci fare a meno del cloud, sotto ne trovi altri due.</string>
     <string name="setup__provider__choice_cloud_title">Acquistare credito nell\'app</string>
@@ -1762,7 +1761,7 @@
     <string name="dictate__history_export_all_result">{written} scritte, {skipped} già presenti, {failed} non riuscite</string>
     <string name="dictate__history_export_last_failure">Una scrittura non è riuscita {when}. «Esporta tutto ora» recupera ciò che manca.</string>
     <string name="dictate__history_export_warning_title">Cosa finisce lì</string>
-    <string name="dictate__history_export_warning_message">La cartella conterrà il testo di ogni dettatura che farai da ora in poi, e anche le registrazioni se lo attivi. Tutto ciò che la sincronizza — un client cloud, uno strumento di backup, un\'altra app — porta quelle trascrizioni fuori da questo dispositivo.\n\nDictate continua a scrivere finché non disconnetti la cartella e non vi cancella mai nulla: le voci che escono dalla cronologia restano nella cartella. I campi password e in incognito non vengono mai registrati e quindi mai esportati.</string>
+    <string name="dictate__history_export_warning_message">La cartella conterrà il testo di ogni dettatura che farai da ora in poi, e anche le registrazioni se lo attivi. Tutto ciò che la sincronizza — un client cloud, uno strumento di backup, un\'altra app — porta quelle trascrizioni fuori da questo dispositivo.\n\nVoice Mode continua a scrivere finché non disconnetti la cartella e non vi cancella mai nulla: le voci che escono dalla cronologia restano nella cartella. I campi password e in incognito non vengono mai registrati e quindi mai esportati.</string>
     <string name="dictate__history_export_needs_history">L\'esportazione su cartella scrive ciò che la cronologia registra, quindi la cronologia deve essere attiva.</string>
     <string name="dictate__history_export_enable_history">Attiva cronologia</string>
     <string name="dictate__history_export_pick_failed">Impossibile ottenere l\'accesso in scrittura a quella cartella</string>

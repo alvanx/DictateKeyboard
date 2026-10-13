@@ -1229,7 +1229,6 @@
     <string name="about__feedback__title">Atsauksmes un atbalsts</string>
     <string name="about__feedback__summary">Nosūtiet e-pastu ar jautājumiem, kļūdām vai idejām</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Izvēlieties, kā {app_name} atšifrē runu</string>
     <string name="setup__provider__choose_intro">{app_name} pārvērš jūsu runu tekstā ar MI pakalpojuma palīdzību. Vairumam cilvēku noder kāds no abiem augšējiem veidiem — un, ja nevēlaties izmantot nevienu mākoņpakalpojumu, zemāk ir vēl divi.</string>
     <string name="setup__provider__choice_cloud_title">Pirkt kredītu lietotnē</string>
@@ -1925,7 +1924,7 @@
     <string name="dictate__history_export_all_result">Ierakstīti: {written}, jau bija: {skipped}, neizdevās: {failed}</string>
     <string name="dictate__history_export_last_failure">Ierakstīšana {when} neizdevās. “Eksportēt visu tagad” papildina trūkstošo.</string>
     <string name="dictate__history_export_warning_title">Kas tur nonāk</string>
-    <string name="dictate__history_export_warning_message">Mapē turpmāk būs katra jūsu diktāta teksts, un arī ieraksti, ja to ieslēgsiet. Viss, kas to sinhronizē — mākoņa klients, dublēšanas rīks, cita lietotne — aiznes šos atšifrējumus prom no šīs ierīces.\n\nDictate turpina rakstīt, līdz atvienojat mapi, un nekad neko no tās nedzēš: ieraksti, kas izkrīt no vēstures, paliek mapē. Paroļu un inkognito lauki nekad netiek reģistrēti un tāpēc netiek arī eksportēti.</string>
+    <string name="dictate__history_export_warning_message">Mapē turpmāk būs katra jūsu diktāta teksts, un arī ieraksti, ja to ieslēgsiet. Viss, kas to sinhronizē — mākoņa klients, dublēšanas rīks, cita lietotne — aiznes šos atšifrējumus prom no šīs ierīces.\n\nVoice Mode turpina rakstīt, līdz atvienojat mapi, un nekad neko no tās nedzēš: ieraksti, kas izkrīt no vēstures, paliek mapē. Paroļu un inkognito lauki nekad netiek reģistrēti un tāpēc netiek arī eksportēti.</string>
     <string name="dictate__history_export_needs_history">Mapes eksports ieraksta to, ko reģistrē vēsture, tāpēc vēsturei jābūt ieslēgtai.</string>
     <string name="dictate__history_export_enable_history">Ieslēgt vēsturi</string>
     <string name="dictate__history_export_pick_failed">Neizdevās iegūt rakstīšanas piekļuvi šai mapei</string>

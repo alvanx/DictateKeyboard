@@ -1088,7 +1088,6 @@
     <string name="about__feedback__title">Comentários e suporte</string>
     <string name="about__feedback__summary">Envie um e-mail com perguntas, erros ou ideias</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Escolha como o {app_name} transcreve</string>
     <string name="setup__provider__choose_intro">O {app_name} transforma sua voz em texto com um serviço de IA. Para a maioria das pessoas, um destes dois jeitos resolve — e se você preferir não usar nenhum serviço na nuvem, tem mais dois logo abaixo.</string>
     <string name="setup__provider__choice_cloud_title">Comprar créditos no app</string>
@@ -1783,7 +1782,7 @@
     <string name="dictate__history_export_all_result">{written} gravados, {skipped} já existentes, {failed} com falha</string>
     <string name="dictate__history_export_last_failure">Uma gravação falhou {when}. “Exportar tudo agora” repõe o que falta.</string>
     <string name="dictate__history_export_warning_title">O que vai para lá</string>
-    <string name="dictate__history_export_warning_message">A pasta passará a conter o texto de cada ditado que você fizer, e também as gravações se você ativar isso. Tudo o que a sincronizar — um cliente de nuvem, uma ferramenta de backup, outro aplicativo — leva essas transcrições para fora deste dispositivo.\n\nO Dictate continua gravando até você desconectar a pasta e nunca apaga nada dela: as entradas que saem do histórico permanecem na pasta. Campos de senha e de navegação anônima nunca são registrados e, portanto, nunca são exportados.</string>
+    <string name="dictate__history_export_warning_message">A pasta passará a conter o texto de cada ditado que você fizer, e também as gravações se você ativar isso. Tudo o que a sincronizar — um cliente de nuvem, uma ferramenta de backup, outro aplicativo — leva essas transcrições para fora deste dispositivo.\n\nO Voice Mode continua gravando até você desconectar a pasta e nunca apaga nada dela: as entradas que saem do histórico permanecem na pasta. Campos de senha e de navegação anônima nunca são registrados e, portanto, nunca são exportados.</string>
     <string name="dictate__history_export_needs_history">A exportação para pasta grava o que o histórico registra, então o histórico precisa estar ativado.</string>
     <string name="dictate__history_export_enable_history">Ativar histórico</string>
     <string name="dictate__history_export_pick_failed">Não foi possível obter acesso de escrita a essa pasta</string>

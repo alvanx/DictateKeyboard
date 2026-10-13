@@ -709,7 +709,7 @@
     <string name="setup__finish_up__title">Fertigstellen</string>
     <string name="setup__finish_up__description_p1">{app_name} ist nun im System aktiviert und bereit von dir angepasst zu werden.</string>
     <string name="setup__finish_up__description_p2">Falls dir irgendwelche Probleme, Bugs oder Abstürze begegnen, oder du einfach einen Vorschlag machen möchtest, besuche einfach die GitHub Seite des Projekts (zu finden im About \"Über die App\" Screen)!</string>
-    <string name="setup__finish_up__finish_btn">Anpassung beginnen</string>
+    <string name="setup__finish_up__finish_btn">Los geht\'s mit {app_name}</string>
     <string name="physical_keyboard__system_settings__title">Einstellungen für physische Tastatur</string>
     <string name="setup__floating_button__btn">Floating Button einrichten</string>
     <string name="setup__nav_back">Zurück</string>
@@ -1212,7 +1212,7 @@
     <string name="quick_action__ime_ui_mode_scan__tooltip">Gedruckten Text fotografieren und einfügen</string>
     <string name="quick_action__translate">Übersetzen</string>
     <string name="quick_action__translate__tooltip">Beim Tippen übersetzen, direkt auf dem Gerät</string>
-    <string name="quick_action__ime_ui_mode_dictate">Dictate</string>
+    <string name="quick_action__ime_ui_mode_dictate">Diktieren</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Tippen zum Diktieren, erneut tippen zum Transkribieren</string>
     <string name="quick_action__dictate_live_prompt">Live-Prompt</string>
     <string name="dictate__live_prompt_chip">Per Sprache fragen</string>
@@ -1223,7 +1223,6 @@
     <string name="about__feedback__title">Feedback &amp; Support</string>
     <string name="about__feedback__summary">Eine E-Mail mit Fragen, Fehlern oder Ideen senden</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Wähle, wie {app_name} transkribiert</string>
     <string name="setup__provider__choose_intro">{app_name} wandelt deine Sprache mit einem KI-Dienst in Text um. Für die meisten passt einer der beiden Wege — und wenn du gar keinen Cloud-Dienst nutzen willst, stehen darunter zwei weitere.</string>
     <string name="setup__provider__choice_cloud_title">Guthaben in der App kaufen</string>
@@ -1955,7 +1954,7 @@
     <string name="dictate__history_export_all_result">{written} geschrieben, {skipped} bereits vorhanden, {failed} fehlgeschlagen</string>
     <string name="dictate__history_export_last_failure">Ein Schreibvorgang ist {when} fehlgeschlagen. „Jetzt alles exportieren“ holt das Fehlende nach.</string>
     <string name="dictate__history_export_warning_title">Was dort landet</string>
-    <string name="dictate__history_export_warning_message">Der Ordner enthält ab jetzt den Text jedes Diktats, und auf Wunsch auch die Aufnahmen. Alles, was ihn synchronisiert — ein Cloud-Client, ein Backup-Werkzeug, eine andere App — trägt diese Transkripte vom Gerät.\n\nDictate schreibt weiter, bis du den Ordner trennst, und löscht niemals darin: Einträge, die aus dem Verlauf fallen, bleiben im Ordner. Passwort- und Inkognito-Felder werden nie aufgezeichnet und deshalb auch nie exportiert.</string>
+    <string name="dictate__history_export_warning_message">Der Ordner enthält ab jetzt den Text jedes Diktats, und auf Wunsch auch die Aufnahmen. Alles, was ihn synchronisiert — ein Cloud-Client, ein Backup-Werkzeug, eine andere App — trägt diese Transkripte vom Gerät.\n\nVoice Mode schreibt weiter, bis du den Ordner trennst, und löscht niemals darin: Einträge, die aus dem Verlauf fallen, bleiben im Ordner. Passwort- und Inkognito-Felder werden nie aufgezeichnet und deshalb auch nie exportiert.</string>
     <string name="dictate__history_export_needs_history">Der Ordner-Export schreibt, was der Verlauf aufzeichnet — dafür muss der Verlauf eingeschaltet sein.</string>
     <string name="dictate__history_export_enable_history">Verlauf einschalten</string>
     <string name="dictate__history_export_pick_failed">Kein Schreibzugriff auf diesen Ordner</string>

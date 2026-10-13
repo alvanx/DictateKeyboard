@@ -1154,7 +1154,6 @@
     <string name="about__feedback__title">Comentaris i assistència</string>
     <string name="about__feedback__summary">Envia un correu amb preguntes, errors o idees</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Tria com transcriu {app_name}</string>
     <string name="setup__provider__choose_intro">{app_name} converteix la teva veu en text amb un servei d\'IA. A la majoria de gent li va bé una d\'aquestes dues maneres, i si prefereixes no fer servir cap servei al núvol, a sota en tens dues més.</string>
     <string name="setup__provider__choice_cloud_title">Comprar saldo a l\'aplicació</string>
@@ -1849,7 +1848,7 @@
     <string name="dictate__history_export_all_result">{written} escrits, {skipped} ja hi eren, {failed} fallits</string>
     <string name="dictate__history_export_last_failure">Una escriptura ha fallat {when}. «Exporta-ho tot ara» recupera el que falta.</string>
     <string name="dictate__history_export_warning_title">Què hi acaba</string>
-    <string name="dictate__history_export_warning_message">La carpeta contindrà el text de cada dictat que facis a partir d\'ara, i també els enregistraments si ho actives. Tot el que la sincronitzi — un client al núvol, una eina de còpia de seguretat, una altra aplicació — s\'emporta aquestes transcripcions fora d\'aquest dispositiu.\n\nDictate continua escrivint fins que desconnectis la carpeta i mai no hi esborra res: les entrades que surten de l\'historial es queden a la carpeta. Els camps de contrasenya i d\'incògnit no es registren mai i, per tant, no s\'exporten mai.</string>
+    <string name="dictate__history_export_warning_message">La carpeta contindrà el text de cada dictat que facis a partir d\'ara, i també els enregistraments si ho actives. Tot el que la sincronitzi — un client al núvol, una eina de còpia de seguretat, una altra aplicació — s\'emporta aquestes transcripcions fora d\'aquest dispositiu.\n\nVoice Mode continua escrivint fins que desconnectis la carpeta i mai no hi esborra res: les entrades que surten de l\'historial es queden a la carpeta. Els camps de contrasenya i d\'incògnit no es registren mai i, per tant, no s\'exporten mai.</string>
     <string name="dictate__history_export_needs_history">L\'exportació a carpeta escriu el que registra l\'historial, així que l\'historial ha d\'estar activat.</string>
     <string name="dictate__history_export_enable_history">Activa l\'historial</string>
     <string name="dictate__history_export_pick_failed">No s\'ha pogut obtenir accés d\'escriptura a aquesta carpeta</string>

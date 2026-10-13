@@ -695,7 +695,7 @@
     <string name="setup__finish_up__title">Terminer</string>
     <string name="setup__finish_up__description_p1">{app_name} est maintenant activé dans le système et prêt à être personnalisé par vous.</string>
     <string name="setup__finish_up__description_p2">Si vous rencontrez des problèmes, des bogues, des pannes ou si vous voulez simplement faire une suggestion, consultez le dépôt du projet à partir de l\'écran \" à propos \" !</string>
-    <string name="setup__finish_up__finish_btn">Commencer à personnaliser</string>
+    <string name="setup__finish_up__finish_btn">Commencer à utiliser {app_name}</string>
     <string name="physical_keyboard__system_settings__title">Paramètres du clavier physique</string>
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
@@ -1149,7 +1149,7 @@
     <string name="quick_action__ime_ui_mode_scan__tooltip">Photographier un texte imprimé et l\'insérer</string>
     <string name="quick_action__translate">Traduire</string>
     <string name="quick_action__translate__tooltip">Traduire pendant la saisie, sur cet appareil</string>
-    <string name="quick_action__ime_ui_mode_dictate">Dictate</string>
+    <string name="quick_action__ime_ui_mode_dictate">Dicter</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Touchez pour dicter, touchez à nouveau pour transcrire</string>
     <string name="quick_action__dictate_live_prompt">Instruction en direct</string>
     <string name="dictate__live_prompt_chip">Demander à voix haute</string>
@@ -1162,7 +1162,6 @@
     <string name="about__feedback__title">Commentaires et assistance</string>
     <string name="about__feedback__summary">Envoyez un e-mail avec vos questions, bugs ou idées</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Choisissez comment {app_name} transcrit</string>
     <string name="setup__provider__choose_intro">{app_name} transforme votre voix en texte à l\'aide d\'un service d\'IA. Deux façons conviennent à la plupart des gens — et si vous préférez vous passer complètement d\'un service en ligne, deux autres se trouvent en dessous.</string>
     <string name="setup__provider__choice_cloud_title">Acheter du crédit dans l\'application</string>
@@ -1855,7 +1854,7 @@
     <string name="dictate__history_export_all_result">{written} écrites, {skipped} déjà présentes, {failed} en échec</string>
     <string name="dictate__history_export_last_failure">Une écriture a échoué {when}. « Tout exporter maintenant » rétablit ce qui manque.</string>
     <string name="dictate__history_export_warning_title">Ce qui y arrive</string>
-    <string name="dictate__history_export_warning_message">Le dossier contiendra le texte de chaque dictée que vous ferez désormais, et aussi les enregistrements si vous l\'activez. Tout ce qui le synchronise — un client cloud, un outil de sauvegarde, une autre application — emporte ces transcriptions hors de cet appareil.\n\nDictate continue d\'écrire jusqu\'à ce que vous déconnectiez le dossier, et n\'y supprime jamais rien : les entrées qui sortent de l\'historique restent dans le dossier. Les champs de mot de passe et de navigation privée ne sont jamais enregistrés, donc jamais exportés.</string>
+    <string name="dictate__history_export_warning_message">Le dossier contiendra le texte de chaque dictée que vous ferez désormais, et aussi les enregistrements si vous l\'activez. Tout ce qui le synchronise — un client cloud, un outil de sauvegarde, une autre application — emporte ces transcriptions hors de cet appareil.\n\nVoice Mode continue d\'écrire jusqu\'à ce que vous déconnectiez le dossier, et n\'y supprime jamais rien : les entrées qui sortent de l\'historique restent dans le dossier. Les champs de mot de passe et de navigation privée ne sont jamais enregistrés, donc jamais exportés.</string>
     <string name="dictate__history_export_needs_history">L\'export vers un dossier écrit ce que l\'historique enregistre : l\'historique doit donc être activé.</string>
     <string name="dictate__history_export_enable_history">Activer l\'historique</string>
     <string name="dictate__history_export_pick_failed">Impossible d\'obtenir l\'accès en écriture à ce dossier</string>

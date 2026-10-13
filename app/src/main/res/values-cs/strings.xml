@@ -1300,7 +1300,6 @@
     <string name="about__feedback__title">Zpětná vazba a podpora</string>
     <string name="about__feedback__summary">Pošlete e-mail s dotazy, chybami nebo nápady</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Vyberte, jak má {app_name} přepisovat</string>
     <string name="setup__provider__choose_intro">{app_name} převádí vaši řeč na text pomocí služby AI. Většině lidí vyhoví jeden ze dvou způsobů — a pokud nechcete používat žádnou cloudovou službu, níže najdete další dva.</string>
     <string name="setup__provider__choice_cloud_title">Koupit kredit v aplikaci</string>
@@ -1997,7 +1996,7 @@
     <string name="dictate__history_export_all_result">Zapsáno: {written}, již přítomno: {skipped}, selhalo: {failed}</string>
     <string name="dictate__history_export_last_failure">Zápis {when} selhal. „Exportovat vše nyní“ doplní, co chybí.</string>
     <string name="dictate__history_export_warning_title">Co tam skončí</string>
-    <string name="dictate__history_export_warning_message">Složka bude od nynějška obsahovat text každého vašeho diktování a při zapnutí i nahrávky. Vše, co ji synchronizuje — cloudový klient, zálohovací nástroj, jiná aplikace — odnáší tyto přepisy z tohoto zařízení.\n\nDictate zapisuje, dokud složku neodpojíte, a nikdy z ní nic nemaže: záznamy, které vypadnou z historie, ve složce zůstávají. Pole pro hesla a anonymní režim se nikdy nezaznamenávají, a tedy ani neexportují.</string>
+    <string name="dictate__history_export_warning_message">Složka bude od nynějška obsahovat text každého vašeho diktování a při zapnutí i nahrávky. Vše, co ji synchronizuje — cloudový klient, zálohovací nástroj, jiná aplikace — odnáší tyto přepisy z tohoto zařízení.\n\nVoice Mode zapisuje, dokud složku neodpojíte, a nikdy z ní nic nemaže: záznamy, které vypadnou z historie, ve složce zůstávají. Pole pro hesla a anonymní režim se nikdy nezaznamenávají, a tedy ani neexportují.</string>
     <string name="dictate__history_export_needs_history">Export do složky zapisuje to, co zaznamenává historie, takže historie musí být zapnutá.</string>
     <string name="dictate__history_export_enable_history">Zapnout historii</string>
     <string name="dictate__history_export_pick_failed">K této složce se nepodařilo získat oprávnění k zápisu</string>

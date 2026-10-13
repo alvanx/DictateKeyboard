@@ -1142,7 +1142,6 @@
     <string name="about__feedback__title">الملاحظات والدعم</string>
     <string name="about__feedback__summary">أرسل بريدًا إلكترونيًا بأسئلة أو أخطاء أو أفكار</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">اختر كيف يُفرِّغ {app_name} كلامك</string>
     <string name="setup__provider__choose_intro">يحوِّل {app_name} كلامك إلى نص بمساعدة خدمة ذكاء اصطناعي. الطريقتان أعلاه تناسبان معظم الناس — وإذا كنت تفضّل الاستغناء عن الخدمات السحابية تمامًا، فهناك طريقتان إضافيتان بالأسفل.</string>
     <string name="setup__provider__choice_cloud_title">شراء رصيد داخل التطبيق</string>
@@ -1841,7 +1840,7 @@
     <string name="dictate__history_export_all_result">{written} مكتوبة، {skipped} موجودة مسبقًا، {failed} فاشلة</string>
     <string name="dictate__history_export_last_failure">فشلت عملية كتابة {when}. يعيد «تصدير كل شيء الآن» ما هو ناقص.</string>
     <string name="dictate__history_export_warning_title">ما ينتهي إلى هناك</string>
-    <string name="dictate__history_export_warning_message">سيحتوي المجلد على نص كل إملاءة تجريها من الآن فصاعدًا، والتسجيلات أيضًا إذا فعّلت ذلك. وكل ما يزامن هذا المجلد — عميل سحابي أو أداة نسخ احتياطي أو تطبيق آخر — ينقل تلك النصوص خارج هذا الجهاز.\n\nيواصل Dictate الكتابة حتى تقطع الاتصال بالمجلد، ولا يحذف منه شيئًا أبدًا: تبقى العناصر التي تخرج من السجل موجودة في المجلد. ولا تُسجَّل حقول كلمات المرور والتصفح المتخفي أبدًا، ومن ثم لا تُصدَّر أبدًا.</string>
+    <string name="dictate__history_export_warning_message">سيحتوي المجلد على نص كل إملاءة تجريها من الآن فصاعدًا، والتسجيلات أيضًا إذا فعّلت ذلك. وكل ما يزامن هذا المجلد — عميل سحابي أو أداة نسخ احتياطي أو تطبيق آخر — ينقل تلك النصوص خارج هذا الجهاز.\n\nيواصل Voice Mode الكتابة حتى تقطع الاتصال بالمجلد، ولا يحذف منه شيئًا أبدًا: تبقى العناصر التي تخرج من السجل موجودة في المجلد. ولا تُسجَّل حقول كلمات المرور والتصفح المتخفي أبدًا، ومن ثم لا تُصدَّر أبدًا.</string>
     <string name="dictate__history_export_needs_history">يكتب التصدير إلى مجلد ما يسجّله السجل، لذا يجب تفعيل السجل.</string>
     <string name="dictate__history_export_enable_history">تفعيل السجل</string>
     <string name="dictate__history_export_pick_failed">تعذّر الحصول على إذن الكتابة في هذا المجلد</string>

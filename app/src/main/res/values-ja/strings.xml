@@ -1216,7 +1216,6 @@
     <string name="about__feedback__title">フィードバックとサポート</string>
     <string name="about__feedback__summary">質問・不具合・アイデアをメールで送信</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">文字起こしの方法を選ぶ</string>
     <string name="setup__provider__choose_intro">{app_name} は AI サービスを使って音声を文字にします。ほとんどの方には上の2つの方法が合いますが、クラウドサービスをまったく使いたくない場合は、下にさらに2つあります。</string>
     <string name="setup__provider__choice_cloud_title">アプリ内でクレジットを購入</string>
@@ -1910,7 +1909,7 @@
     <string name="dictate__history_export_all_result">{written} 件を書き出し、{skipped} 件は既存、{failed} 件が失敗</string>
     <string name="dictate__history_export_last_failure">{when}に書き出しが失敗しました。「すべて今すぐ書き出す」で不足分を補えます。</string>
     <string name="dictate__history_export_warning_title">そこに入るもの</string>
-    <string name="dictate__history_export_warning_message">このフォルダーには、これ以降のすべての音声入力の文字が保存されます。設定すれば録音も保存されます。クラウドクライアント、バックアップツール、他のアプリなど、このフォルダーを同期するものはすべて、その文字起こしを端末の外へ持ち出します。\n\n接続を解除するまで Dictate は書き出しを続け、フォルダーから削除することはありません。履歴から消えた項目もフォルダーには残ります。パスワード欄とシークレット入力は記録されないため、書き出されることもありません。</string>
+    <string name="dictate__history_export_warning_message">このフォルダーには、これ以降のすべての音声入力の文字が保存されます。設定すれば録音も保存されます。クラウドクライアント、バックアップツール、他のアプリなど、このフォルダーを同期するものはすべて、その文字起こしを端末の外へ持ち出します。\n\n接続を解除するまで Voice Mode は書き出しを続け、フォルダーから削除することはありません。履歴から消えた項目もフォルダーには残ります。パスワード欄とシークレット入力は記録されないため、書き出されることもありません。</string>
     <string name="dictate__history_export_needs_history">フォルダーへの書き出しは履歴に記録された内容を書き出すため、履歴をオンにする必要があります。</string>
     <string name="dictate__history_export_enable_history">履歴をオンにする</string>
     <string name="dictate__history_export_pick_failed">そのフォルダーへの書き込み権限を取得できませんでした</string>

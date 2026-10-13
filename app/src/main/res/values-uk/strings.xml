@@ -1129,7 +1129,6 @@
     <string name="about__feedback__title">Відгуки та підтримка</string>
     <string name="about__feedback__summary">Надішліть лист із запитаннями, помилками чи ідеями</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Оберіть, як {app_name} розпізнає мовлення</string>
     <string name="setup__provider__choose_intro">{app_name} перетворює ваше мовлення на текст за допомогою сервісу ШІ. Більшості підійде один із двох способів вище — а якщо ви взагалі не хочете користуватися хмарним сервісом, нижче є ще два.</string>
     <string name="setup__provider__choice_cloud_title">Купити баланс у застосунку</string>
@@ -1826,7 +1825,7 @@
     <string name="dictate__history_export_all_result">Записано: {written}, уже було: {skipped}, не вдалося: {failed}</string>
     <string name="dictate__history_export_last_failure">Запис не вдався {when}. «Експортувати все зараз» поверне те, чого бракує.</string>
     <string name="dictate__history_export_warning_title">Що туди потрапляє</string>
-    <string name="dictate__history_export_warning_message">У теці зберігатиметься текст кожного вашого диктування відтепер, а якщо увімкнути — і записи. Усе, що синхронізує цю теку — хмарний клієнт, засіб резервного копіювання, інший застосунок — виносить ці розшифровки з пристрою.\n\nDictate продовжує записувати, доки ви не відʼєднаєте теку, і ніколи нічого з неї не вилучає: записи, що випали з історії, залишаються в теці. Поля паролів та режиму анонімного перегляду ніколи не зберігаються, тож ніколи не експортуються.</string>
+    <string name="dictate__history_export_warning_message">У теці зберігатиметься текст кожного вашого диктування відтепер, а якщо увімкнути — і записи. Усе, що синхронізує цю теку — хмарний клієнт, засіб резервного копіювання, інший застосунок — виносить ці розшифровки з пристрою.\n\nVoice Mode продовжує записувати, доки ви не відʼєднаєте теку, і ніколи нічого з неї не вилучає: записи, що випали з історії, залишаються в теці. Поля паролів та режиму анонімного перегляду ніколи не зберігаються, тож ніколи не експортуються.</string>
     <string name="dictate__history_export_needs_history">Експорт до теки записує те, що фіксує історія, тож історію потрібно увімкнути.</string>
     <string name="dictate__history_export_enable_history">Увімкнути історію</string>
     <string name="dictate__history_export_pick_failed">Не вдалося отримати доступ на запис до цієї теки</string>

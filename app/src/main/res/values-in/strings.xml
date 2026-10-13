@@ -1238,7 +1238,6 @@
     <string name="about__feedback__title">Masukan &amp; dukungan</string>
     <string name="about__feedback__summary">Kirim email berisi pertanyaan, bug, atau ide</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">Pilih cara {app_name} menyalin suara</string>
     <string name="setup__provider__choose_intro">{app_name} mengubah suaramu menjadi teks dengan bantuan layanan AI. Dua cara di atas cocok untuk kebanyakan orang — dan kalau kamu sama sekali tidak ingin memakai layanan awan, ada dua cara lagi di bawah.</string>
     <string name="setup__provider__choice_cloud_title">Beli saldo di dalam aplikasi</string>
@@ -1932,7 +1931,7 @@
     <string name="dictate__history_export_all_result">{written} ditulis, {skipped} sudah ada, {failed} gagal</string>
     <string name="dictate__history_export_last_failure">Sebuah penulisan gagal {when}. “Ekspor semua sekarang” melengkapi yang hilang.</string>
     <string name="dictate__history_export_warning_title">Apa yang masuk</string>
-    <string name="dictate__history_export_warning_message">Folder ini akan berisi teks dari setiap dikte yang kamu buat mulai sekarang, dan juga rekamannya jika kamu mengaktifkannya. Apa pun yang menyinkronkannya — klien cloud, alat pencadangan, aplikasi lain — membawa transkrip itu keluar dari perangkat ini.\n\nDictate terus menulis sampai kamu memutuskan folder itu, dan tidak pernah menghapus isinya: entri yang keluar dari riwayat tetap ada di folder. Kolom sandi dan mode samaran tidak pernah direkam, jadi tidak pernah diekspor.</string>
+    <string name="dictate__history_export_warning_message">Folder ini akan berisi teks dari setiap dikte yang kamu buat mulai sekarang, dan juga rekamannya jika kamu mengaktifkannya. Apa pun yang menyinkronkannya — klien cloud, alat pencadangan, aplikasi lain — membawa transkrip itu keluar dari perangkat ini.\n\nVoice Mode terus menulis sampai kamu memutuskan folder itu, dan tidak pernah menghapus isinya: entri yang keluar dari riwayat tetap ada di folder. Kolom sandi dan mode samaran tidak pernah direkam, jadi tidak pernah diekspor.</string>
     <string name="dictate__history_export_needs_history">Ekspor folder menulis apa yang dicatat riwayat, jadi riwayat harus aktif.</string>
     <string name="dictate__history_export_enable_history">Aktifkan riwayat</string>
     <string name="dictate__history_export_pick_failed">Tidak bisa mendapatkan akses tulis ke folder itu</string>

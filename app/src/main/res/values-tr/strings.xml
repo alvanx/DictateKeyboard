@@ -1263,7 +1263,6 @@
     <string name="about__feedback__title">Geri bildirim ve destek</string>
     <string name="about__feedback__summary">Sorular, hatalar veya fikirlerle bir e-posta gönderin</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
     <string name="setup__provider__title">{app_name}\'un nasıl yazıya dökeceğini seçin</string>
     <string name="setup__provider__choose_intro">{app_name}, konuşmanızı bir yapay zekâ hizmetiyle metne dönüştürür. Çoğu kişiye yukarıdaki iki yoldan biri uyar — hiç bulut hizmeti kullanmak istemiyorsanız aşağıda iki yol daha var.</string>
     <string name="setup__provider__choice_cloud_title">Uygulamada kontör satın alın</string>
@@ -1958,7 +1957,7 @@
     <string name="dictate__history_export_all_result">{written} yazıldı, {skipped} zaten vardı, {failed} başarısız</string>
     <string name="dictate__history_export_last_failure">Bir yazma {when} başarısız oldu. “Şimdi tümünü aktar” eksikleri tamamlar.</string>
     <string name="dictate__history_export_warning_title">Oraya ne gider</string>
-    <string name="dictate__history_export_warning_message">Klasör, bundan sonra yapacağınız her diktenin metnini, açarsanız kayıtları da barındıracak. Onu eşitleyen her şey — bir bulut istemcisi, bir yedekleme aracı, başka bir uygulama — bu dökümleri bu cihazın dışına taşır.\n\nDictate, siz klasörün bağlantısını kesene kadar yazmayı sürdürür ve klasörden asla bir şey silmez: geçmişten düşen kayıtlar klasörde kalır. Parola ve gizli alanlar hiçbir zaman kaydedilmez, dolayısıyla hiç aktarılmaz.</string>
+    <string name="dictate__history_export_warning_message">Klasör, bundan sonra yapacağınız her diktenin metnini, açarsanız kayıtları da barındıracak. Onu eşitleyen her şey — bir bulut istemcisi, bir yedekleme aracı, başka bir uygulama — bu dökümleri bu cihazın dışına taşır.\n\nVoice Mode, siz klasörün bağlantısını kesene kadar yazmayı sürdürür ve klasörden asla bir şey silmez: geçmişten düşen kayıtlar klasörde kalır. Parola ve gizli alanlar hiçbir zaman kaydedilmez, dolayısıyla hiç aktarılmaz.</string>
     <string name="dictate__history_export_needs_history">Klasöre aktarma, geçmişin kaydettiğini yazar; bu yüzden geçmiş açık olmalıdır.</string>
     <string name="dictate__history_export_enable_history">Geçmişi aç</string>
     <string name="dictate__history_export_pick_failed">Bu klasör için yazma izni alınamadı</string>
