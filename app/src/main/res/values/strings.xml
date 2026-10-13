@@ -2690,4 +2690,11 @@
     <string name="translate__missing" comment="{language} is one or more language names">{language} is not downloaded</string>
     <string name="translate__failed">Translation failed</string>
     <string name="translate__unsupported">Translation is not available on this device</string>
+    <string name="dictate__referral_title" comment="Settings row: the invite code of the friend who referred this user">Referral code</string>
+    <string name="dictate__referral_summary_none" comment="Summary when no referral code is stored">None. Tap to enter one.</string>
+    <string name="dictate__referral_hint" comment="Hint in the referral code dialog">3 to 32 letters, digits, - or _</string>
+    <string name="dictate__referral_invalid" comment="Error when the typed referral code is not valid">That code is not valid.</string>
+    <string name="dictate__referral_save" comment="Button: save the referral code">Save</string>
+    <string name="dictate__referral_remove" comment="Button: remove the stored referral code">Remove</string>
+    <string name="dictate__referral_cancel" comment="Button: close the dialog">Cancel</string>
 </resources>

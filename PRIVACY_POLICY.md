@@ -55,6 +55,7 @@ existed: we have no server in your path and no data about you.
   switched on without a purchase you make yourself, and section 4 says exactly
   what it does.
 - Your API keys, prompts, and settings are stored **only on your device**.
+- If you installed the App from a friend's invite link, the App reads the Google Play install referrer **once**, on first launch, and stores the friend's referral code **on your device only**. It is not sent anywhere by this feature. (Draft note: update this line when referral codes are sent with a purchase; see `docs/specs/referrals.md`.)
 - The App contains **no advertising, no tracking, no telemetry, and no
   crash-reporting SDKs**.
 - As a keyboard, the App **does not log your keystrokes or collect what you type**

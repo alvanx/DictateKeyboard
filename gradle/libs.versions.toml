@@ -18,6 +18,7 @@ cache4k = "0.14.0"
 coil = "3.4.0"
 kotlin = "2.3.20"
 android-billing = "8.3.0"
+android-installreferrer = "2.2"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization-json = "1.11.0"
 ksp = "2.3.5"
@@ -41,6 +42,7 @@ turbine = "1.2.1"
 
 [libraries]
 # Main
+android-installreferrer = { module = "com.android.installreferrer:installreferrer", version.ref = "android-installreferrer" }
 android-billing-ktx = { module = "com.android.billingclient:billing-ktx", version.ref = "android-billing" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }

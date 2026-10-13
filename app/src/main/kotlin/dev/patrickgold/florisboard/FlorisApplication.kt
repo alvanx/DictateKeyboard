@@ -151,6 +151,9 @@ class FlorisApplication : Application() {
             // Keep the Wear OS companion's settings snapshot fresh: re-publish whenever a watch-relevant
             // phone setting changes (#106), so the watch reflects accent/provider/key/prompt automatically.
             DictateWearPublisher.startPublishingOnChange(this@FlorisApplication, scope)
+            // First launch only: read the Play install referrer for a friend's invite code. Off the main thread, never throws.
+            dev.patrickgold.florisboard.dictate.referral.Referral.get(this@FlorisApplication)
+                .captureOnce(this@FlorisApplication)
         }
         extensionManager.value.init()
         clipboardManager.value.initializeForContext(this)
