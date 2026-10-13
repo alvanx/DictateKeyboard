@@ -13,7 +13,7 @@
     <string name="wear_cd_resume">Продолжить</string>
     <string name="wear_cd_backspace">Удалить</string>
     <string name="wear_cd_enter">Ввод</string>
-    <string name="wear_err_mic_grant">Разрешите микрофон в Dictate</string>
+    <string name="wear_err_mic_grant">Разрешите микрофон в Voice Mode</string>
     <string name="wear_err_mic_unavailable">Микрофон недоступен</string>
     <string name="wear_err_transcribe_failed">Ошибка расшифровки</string>
     <string name="wear_err_tap_to_retry">%1$s · Нажмите, чтобы повторить</string>

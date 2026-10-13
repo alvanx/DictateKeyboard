@@ -13,7 +13,7 @@
     <string name="wear_cd_resume">Retomar</string>
     <string name="wear_cd_backspace">Apagar</string>
     <string name="wear_cd_enter">Enter</string>
-    <string name="wear_err_mic_grant">Dê microfone na app Dictate</string>
+    <string name="wear_err_mic_grant">Dê microfone na app Voice Mode</string>
     <string name="wear_err_mic_unavailable">Microfone indisponível</string>
     <string name="wear_err_transcribe_failed">Falha na transcrição</string>
     <string name="wear_err_tap_to_retry">%1$s · Toca para tentar de novo</string>

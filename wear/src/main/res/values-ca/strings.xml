@@ -13,7 +13,7 @@
     <string name="wear_cd_resume">Reprèn</string>
     <string name="wear_cd_backspace">Retrocés</string>
     <string name="wear_cd_enter">Retorn</string>
-    <string name="wear_err_mic_grant">Dóna micròfon a Dictate</string>
+    <string name="wear_err_mic_grant">Dóna micròfon a Voice Mode</string>
     <string name="wear_err_mic_unavailable">Micròfon no disponible</string>
     <string name="wear_err_transcribe_failed">Ha fallat la transcripció</string>
     <string name="wear_err_tap_to_retry">%1$s · Toca per reintentar</string>

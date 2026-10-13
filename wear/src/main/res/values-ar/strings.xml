@@ -13,7 +13,7 @@
     <string name="wear_cd_resume">استئناف</string>
     <string name="wear_cd_backspace">مسح</string>
     <string name="wear_cd_enter">إدخال</string>
-    <string name="wear_err_mic_grant">امنح الميكروفون في تطبيق Dictate</string>
+    <string name="wear_err_mic_grant">امنح الميكروفون في تطبيق Voice Mode</string>
     <string name="wear_err_mic_unavailable">الميكروفون غير متاح</string>
     <string name="wear_err_transcribe_failed">فشل النسخ</string>
     <string name="wear_err_tap_to_retry">%1$s · انقر لإعادة المحاولة</string>
