@@ -548,6 +548,17 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             default = false,
         )
 
+        // Consent to the accessibility-service disclosure (Google Play prominent disclosure). Version of the
+        // disclosure text the user agreed to (0 = never) and when, in epoch millis. See AccessibilityConsent.
+        val floatingButtonConsentVersion = int(
+            key = "dictate__floating_button_consent_version",
+            default = 0,
+        )
+        val floatingButtonConsentAt = long(
+            key = "dictate__floating_button_consent_at",
+            default = 0L,
+        )
+
         // Floating dictation button (issue #88): the in-app master toggle. The bubble only shows when
         // this is on AND the DictateAccessibilityService is enabled in the system accessibility settings
         // (the latter is the actual permission; this lets the user hide the bubble without digging into

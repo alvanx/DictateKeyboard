@@ -13,12 +13,16 @@
   caused visible typing jank. Focus never moves on a content change, so nothing is lost by ignoring it.
   notificationTimeout stays at zero: the service itself coalesces the only high-frequency event
   (typeViewTextSelectionChanged), while focus and window changes must reach the bubble immediately.
+  flagReportViewIds was removed: the service never reads a view's resource id.
+  Password fields are skipped in code (never a dictation target). isAccessibilityTool is deliberately
+  not set: this is not an accessibility tool and must not claim to be one.
   The description is shown verbatim in the system Accessibility settings as the user-facing disclosure.
+  See docs/play/accessibility-audit.md.
 -->
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityEventTypes="typeViewFocused|typeViewClicked|typeViewTextSelectionChanged|typeViewTextChanged|typeWindowStateChanged|typeWindowsChanged"
     android:accessibilityFeedbackType="feedbackGeneric"
-    android:accessibilityFlags="flagDefault|flagRetrieveInteractiveWindows|flagReportViewIds|flagInputMethodEditor"
+    android:accessibilityFlags="flagDefault|flagRetrieveInteractiveWindows|flagInputMethodEditor"
     android:canRetrieveWindowContent="true"
     android:notificationTimeout="0"
     android:description="@string/dictate__accessibility_service_description"
