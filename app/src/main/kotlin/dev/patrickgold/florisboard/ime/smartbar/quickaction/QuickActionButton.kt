@@ -86,11 +86,14 @@ import androidx.compose.ui.semantics.onLongClick
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import dev.patrickgold.compose.tooltip.PlainTooltip
+import dev.patrickgold.jetpref.datastore.model.collectAsState as collectPrefAsState
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.dictate.DictateController
+import dev.patrickgold.florisboard.dictate.DictateMicCharm
 import dev.patrickgold.florisboard.dictate.ui.DictateHoldTargets
 import dev.patrickgold.florisboard.dictate.ui.DictateHoldTouch
+import dev.patrickgold.florisboard.dictate.ui.KeyboardMicCharm
 import dev.patrickgold.florisboard.ime.input.LocalInputFeedbackController
 import dev.patrickgold.florisboard.ime.keyboard.FlorisImeSizing
 import dev.patrickgold.florisboard.ime.keyboard.ComputingEvaluator
@@ -533,6 +536,12 @@ fun QuickActionButton(
     type: QuickActionBarType = QuickActionBarType.INTERACTIVE_BUTTON,
     /** What holding this button runs instead of tapping it (issue #385), or null for a plain tap. */
     secondAction: QuickAction? = null,
+    /**
+     * Whether the Dictate mic here wears the look picked on the Style tab, as the floating button does.
+     * Only the button pinned in the Smartbar does: the mic look belongs to "the" mic, not to every copy of
+     * the action in the actions row or the editor.
+     */
+    micLook: Boolean = false,
 ) {
     val context = LocalContext.current
     val prefs by FlorisPreferenceStore
@@ -586,6 +595,11 @@ fun QuickActionButton(
     val ptt by DictateController.pushToTalkVisuals.collectAsState()
     val isDictateKey = action.keyData().code == KeyCode.IME_UI_MODE_DICTATE
     val holdingMic = isDictateKey && ptt.phase.isHolding
+    // The classic look keeps the themed accent circle and its icon; any other look draws itself instead,
+    // with no themed background under it — a daisy on a filled circle would be neither.
+    val charm by prefs.dictate.floatingButtonCharm.collectPrefAsState()
+    val charmLook = micLook && isDictateKey && type == QuickActionBarType.INTERACTIVE_BUTTON &&
+        charm != DictateMicCharm.CLASSIC
 
     // What a screen reader reads for this button and runs on its double-tap (issue #159). The gesture
     // below is raw pointer input, which a screen reader cannot reach: without this the button was skipped
@@ -693,7 +707,7 @@ fun QuickActionButton(
             secondAction == null,
     ) {
         SnyggBox(
-            elementName = elementName,
+            elementName = if (charmLook) null else elementName,
             attributes = attributes,
             selector = selector,
             // Never transformed. Compose maps pointer positions through a layer transform, so scaling
@@ -822,7 +836,9 @@ fun QuickActionButton(
                 modifier = badge?.let { Modifier.fillMaxSize().secondActionGap(it) } ?: Modifier,
                 contentAlignment = Alignment.Center,
             ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                if (charmLook) {
+                    KeyboardMicCharm(charm = charm, modifier = Modifier.fillMaxSize())
+                } else Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     // Render foreground
                     when (action) {
                         is QuickAction.InsertKey -> {

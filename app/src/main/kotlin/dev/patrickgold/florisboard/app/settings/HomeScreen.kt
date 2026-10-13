@@ -65,7 +65,7 @@ import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.LocalNavController
 import dev.patrickgold.florisboard.app.Routes
 import dev.patrickgold.florisboard.app.settings.dictate.copyToClipboard
-import dev.patrickgold.florisboard.app.settings.style.MovingMicCharm
+import dev.patrickgold.florisboard.dictate.ui.MovingMicCharm
 import dev.patrickgold.florisboard.app.settings.style.charmLabel
 import dev.patrickgold.florisboard.dictate.DictateController
 import dev.patrickgold.florisboard.dictate.DictateMicCharm

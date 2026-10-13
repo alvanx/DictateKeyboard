@@ -838,6 +838,7 @@ class KeyboardManager(context: Context) : InputKeyEventReceiver {
         pendingExpansion = null
         pendingAutoCorrection = null
         lastWordCorrection = null
+        dev.patrickgold.florisboard.dictate.DictateController.endAfterDictation()
         // A glide produces a whole word at once, so there are no per-character taps to reason about (#242).
         TouchTrace.reset()
         val text = fixCase(word)
@@ -1976,6 +1977,13 @@ class KeyboardManager(context: Context) : InputKeyEventReceiver {
         if (data.code != KeyCode.DELETE) {
             pendingExpansion = null
             pendingAutoCorrection = null
+        }
+        // Any key but Dictate's own means the user has moved on from the last dictation, so the prompt
+        // chips offered for it give the bar back to the suggestions.
+        if (data.code != KeyCode.IME_UI_MODE_DICTATE && data.code != KeyCode.DICTATE_LIVE_PROMPT &&
+            data.code != KeyCode.DICTATE_PROMPTS
+        ) {
+            dev.patrickgold.florisboard.dictate.DictateController.endAfterDictation()
         }
         val windowController = FlorisImeService.windowControllerOrNull() ?: return@batchEdit
         // The keyboard's own fields (issue #424) — only one is ever open, and it takes the key first.

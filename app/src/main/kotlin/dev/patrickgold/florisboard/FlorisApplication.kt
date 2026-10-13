@@ -140,6 +140,7 @@ class FlorisApplication : Application() {
             DictateLegacyMigrator.removeGeneratorExamplesIfNeeded(this@FlorisApplication)
             DictateLegacyMigrator.migratePromptsActionIfNeeded(this@FlorisApplication)
             DictateLegacyMigrator.migratePromptsLayoutToRowIfNeeded()
+            DictateLegacyMigrator.migratePromptsLayoutToWhenUsefulIfNeeded()
             DictateLegacyMigrator.migratePushToTalkDefaultIfNeeded()
             DictateLegacyMigrator.migrateWordLearningDefaultIfNeeded()
             DictateLegacyMigrator.migrateHindiDefaultsIfNeeded()

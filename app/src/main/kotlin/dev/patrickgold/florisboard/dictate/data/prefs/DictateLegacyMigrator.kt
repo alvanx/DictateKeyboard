@@ -348,16 +348,33 @@ object DictateLegacyMigrator {
     }
 
     /**
-     * One-time switch to the always-on prompt ROW layout, now the default. Existing users who were on the
-     * PANEL layout are moved to ROW once on update so the prompt chips are immediately visible; they can
-     * switch back in settings. A brand-new install is already on ROW (the new default), so this is a no-op
-     * for them. Idempotent via `prefs.dictate.promptsLayoutRowMigrated`.
+     * One-time switch to the always-on prompt ROW layout, the default at the time (since followed by
+     * [migratePromptsLayoutToWhenUsefulIfNeeded]). Existing users who were on the PANEL layout are moved
+     * to ROW once on update so the prompt chips are immediately visible; they can switch back in settings.
+     * It sets ROW on a brand-new install too. Idempotent via `prefs.dictate.promptsLayoutRowMigrated`.
      */
     suspend fun migratePromptsLayoutToRowIfNeeded() {
         val prefs by FlorisPreferenceStore
         if (prefs.dictate.promptsLayoutRowMigrated.get()) return
         prefs.dictate.promptsLayout.set(DictatePromptsLayout.ROW)
         prefs.dictate.promptsLayoutRowMigrated.set(true)
+    }
+
+    /**
+     * One-time move of the prompt chips from the always-on row to "show when useful", now the default:
+     * in the bar right after a dictation and on a selection, out of the way the rest of the time.
+     *
+     * Runs after [migratePromptsLayoutToRowIfNeeded], which put every install on ROW, so ROW is where
+     * nearly everyone is without having chosen it; they move. PANEL can only have been picked by hand
+     * since then, so it stays. Someone who went back to ROW by hand cannot be told apart from the rest and
+     * moves too; they can pick it again in settings, and it is never changed after that. Idempotent via
+     * `prefs.dictate.promptsLayoutWhenUsefulMigrated`.
+     */
+    suspend fun migratePromptsLayoutToWhenUsefulIfNeeded() {
+        val prefs by FlorisPreferenceStore
+        if (prefs.dictate.promptsLayoutWhenUsefulMigrated.get()) return
+        prefs.dictate.promptsLayout.set(DictatePromptsLayout.movedToWhenUseful(prefs.dictate.promptsLayout.get()))
+        prefs.dictate.promptsLayoutWhenUsefulMigrated.set(true)
     }
 
     /**
