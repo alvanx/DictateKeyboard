@@ -52,6 +52,8 @@ import dev.patrickgold.florisboard.dictate.offline.DictateConnectivity
 import dev.patrickgold.florisboard.dictate.offline.OfflineDictationQueue
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloud
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloudApi
+import dev.patrickgold.florisboard.dictate.cloud.Entitlements
+import dev.patrickgold.florisboard.dictate.cloud.PaidFeature
 import dev.patrickgold.florisboard.dictate.data.prompts.CommandTrigger
 import dev.patrickgold.florisboard.dictate.data.prompts.DictatePromptDefaults
 import dev.patrickgold.florisboard.dictate.data.prompts.PromptModel
@@ -111,7 +113,9 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.text.DateFormat
 import java.text.NumberFormat
+import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
@@ -253,7 +257,7 @@ object DictateController {
      * CHANGELOG is shown right after an app update (see [maybePromptChangelog]) and opens the in-app
      * "What's new" dialog instead of a web page.
      */
-    enum class PromoKind { RATE, DONATE, CHANGELOG, FLOATING_BUTTON, MILESTONE, LOW_CREDIT }
+    enum class PromoKind { RATE, DONATE, CHANGELOG, FLOATING_BUTTON, MILESTONE, CLOUD_PAYMENT }
 
     /**
      * Where the active dictation's output goes: the keyboard editor ([OutputTarget.IME]) or the
@@ -1160,12 +1164,22 @@ object DictateController {
         // "Request timed out" is a sentence about a server, and nothing was requested from one.
         onDevice: Boolean = false,
     ): UiState.Error {
-        // Dictate Cloud running out of credit is checked first, and before the resend branches: it is
-        // classified as QUOTA_EXCEEDED like every other provider's rate limit, but unlike those it is
-        // neither worth retrying nor something to go and fix at a provider. Buying more is a button.
-        val outOfCredit = e.code == DictateCloudApi.ErrorCode.INSUFFICIENT_CREDITS
+        // Dictate Cloud refusing for want of Plus is checked first, and before the resend branches: it
+        // is classified as QUOTA_EXCEEDED like every other provider's rate limit, but unlike those it
+        // is neither worth retrying nor something to go and fix at a provider. Subscribing is a button.
+        // The credit-pack server's "insufficient_credits" means the same thing to the user.
+        val notEntitled = e.code == DictateCloudApi.ErrorCode.NOT_ENTITLED ||
+            e.code == DictateCloudApi.ErrorCode.INSUFFICIENT_CREDITS
+        // Plus is active but today's allowance is spent: nothing to buy and nothing to retry until
+        // the reset, so the message names the time and offers no action.
+        val dailyLimit = e.code == DictateCloudApi.ErrorCode.DAILY_LIMIT
+        // The cached entitlement evidently disagrees with the server; bring it up to date so the
+        // subscription screen and the next keyboard open tell the same story.
+        if (notEntitled || dailyLimit) scope.launch { DictateCloud.refreshEntitlement() }
+        val outOfCredit = notEntitled || dailyLimit
         val action = when {
-            outOfCredit -> ErrorAction.TOP_UP
+            notEntitled -> ErrorAction.TOP_UP
+            dailyLimit -> ErrorAction.NONE
             canResend && e.kind in EXPORTABLE_ERROR_KINDS -> ErrorAction.SAVE_AUDIO
             canResend && e.kind.isRetryable -> ErrorAction.RESEND
             e.kind == DictateApiException.Kind.INVALID_API_KEY -> ErrorAction.OPEN_SETTINGS
@@ -1182,7 +1196,11 @@ object DictateController {
         ).joinToString("\n\n").takeIf { it.isNotBlank() }
         return UiState.Error(
             message = when {
-                outOfCredit -> context.getString(R.string.dictate__error_out_of_credit)
+                notEntitled -> context.getString(R.string.dictate__error_cloud_not_entitled)
+                dailyLimit -> context.getString(
+                    R.string.dictate__error_cloud_daily_limit,
+                    DateFormat.getTimeInstance(DateFormat.SHORT).format(Date(cloudAllowanceResetsAt())),
+                )
                 hint -> context.getString(R.string.dictate__error_try_on_device)
                 onDevice && e.kind == DictateApiException.Kind.TIMEOUT ->
                     context.getString(R.string.dictate__error_timeout_on_device)
@@ -3702,9 +3720,9 @@ object DictateController {
      */
     fun maybePromptForReview() {
         if (_state.value !is UiState.Idle) return
-        // Credit running out comes first: it is the only nudge that is about to stop the app working,
+        // A failed Plus payment comes first: it is the only nudge that is about to stop the app working,
         // and asking someone to rate Dictate minutes before it refuses to transcribe is poor timing.
-        if (maybeWarnLowCredit()) return
+        if (maybeWarnCloudPayment()) return
         val total = prefs.dictate.totalAudioSeconds.get()
         val kind = when {
             total > DONATE_THRESHOLD_SECONDS && !prefs.dictate.hasDonated.get() -> PromoKind.DONATE
@@ -3714,42 +3732,47 @@ object DictateController {
         _state.value = UiState.Promo(kind)
     }
 
-    /** Below this much Dictate Cloud credit the Smartbar says so, once per depletion. */
-    private const val LOW_CREDIT_MINUTES = 10
+    /** How often the entitlement may be re-fetched in the background. */
+    private const val ENTITLEMENT_REFRESH_INTERVAL_MS = 15 * 60 * 1000L
 
-    /** How often the balance may be re-fetched in the background. */
-    private const val BALANCE_REFRESH_INTERVAL_MS = 15 * 60 * 1000L
-
-    private var lastBalanceRefreshAt = 0L
+    private var lastEntitlementRefreshAt = 0L
 
     /**
-     * Warns that Dictate Cloud credit is nearly gone, and returns true if it did.
+     * Says once that the Plus payment needs fixing (grace period or account hold), and returns true
+     * if it did. The nudge opens the subscription screen, which links to Play's payment settings.
      *
-     * The balance is read from the cached copy rather than fetched here, because this runs on every
+     * The entitlement is read from the cache rather than fetched here, because this runs on every
      * keyboard open and a network round trip on that path would be felt. A throttled refresh is
-     * kicked off alongside instead, so the cache is at most [BALANCE_REFRESH_INTERVAL_MS] stale — the
-     * warning may therefore arrive one keyboard open late, which is a fair price for not making the
-     * keyboard wait on the network. Running out entirely is caught anyway, by the 402 that follows.
+     * kicked off alongside instead, so the cache is at most [ENTITLEMENT_REFRESH_INTERVAL_MS] stale.
      */
-    private fun maybeWarnLowCredit(): Boolean {
+    private fun maybeWarnCloudPayment(): Boolean {
         if (prefs.dictate.transcriptionProviderId.get() != ProviderRegistry.CLOUD.id) return false
         val account = prefs.dictate.providerAccounts.get().getOrEmpty(ProviderRegistry.CLOUD.id)
         if (!account.hasWallet) return false
 
         val now = SystemClock.elapsedRealtime()
-        if (now - lastBalanceRefreshAt > BALANCE_REFRESH_INTERVAL_MS) {
-            lastBalanceRefreshAt = now
-            scope.launch { DictateCloud.refreshBalance() }
+        if (now - lastEntitlementRefreshAt > ENTITLEMENT_REFRESH_INTERVAL_MS) {
+            lastEntitlementRefreshAt = now
+            scope.launch { DictateCloud.refreshEntitlement() }
         }
 
         if (prefs.dictate.cloudLowCreditNudged.get()) return false
-        // -1 means never fetched; saying "0 minutes left" then would be a lie about a full wallet.
-        val minutesLeft = account.balanceSeconds.takeIf { it >= 0 }?.div(60) ?: return false
-        if (minutesLeft > LOW_CREDIT_MINUTES) return false
+        if (!Entitlements.current.value.needsPaymentFix) return false
 
         scope.launch { prefs.dictate.cloudLowCreditNudged.set(true) }
-        _state.value = UiState.Promo(PromoKind.LOW_CREDIT)
+        _state.value = UiState.Promo(PromoKind.CLOUD_PAYMENT)
         return true
+    }
+
+    /**
+     * When today's Plus allowance comes back: the server's figure if the cache has a future one,
+     * otherwise the next 00:00 UTC, which is when the server resets it (billing spec, section 8).
+     */
+    private fun cloudAllowanceResetsAt(): Long {
+        val now = System.currentTimeMillis()
+        Entitlements.current.value.daily?.resetsAt?.takeIf { it > now }?.let { return it }
+        val day = 24L * 60 * 60 * 1000
+        return (now / day + 1) * day
     }
 
     /**
@@ -3832,7 +3855,7 @@ object DictateController {
                     context,
                     FlorisAppActivity::class.java,
                 ).addCategory(Intent.CATEGORY_BROWSABLE)
-                PromoKind.LOW_CREDIT -> Intent(
+                PromoKind.CLOUD_PAYMENT -> Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse("ui://florisboard/settings/dictate/cloud"),
                     context,
@@ -3869,8 +3892,8 @@ object DictateController {
                 // The milestone was already consumed when shown; nothing further to persist.
                 PromoKind.MILESTONE -> Unit
                 // The flag was already set when shown, so the nudge cannot come back on the next
-                // keyboard open whether it was acted on or waved away. A purchase clears it again.
-                PromoKind.LOW_CREDIT -> Unit
+                // keyboard open whether it was acted on or waved away. Fixing the payment clears it.
+                PromoKind.CLOUD_PAYMENT -> Unit
             }
         }
     }
@@ -4610,8 +4633,32 @@ object DictateController {
     private fun refuseIfNoCredential(context: Context): Boolean {
         val account = prefs.dictate.providerAccounts.get()
             .getOrEmpty(prefs.dictate.transcriptionProviderId.get())
+        if (account.providerId == ProviderRegistry.CLOUD.id && account.hasWallet) {
+            return refuseIfNotEntitled(context)
+        }
         if (account.apiKey.isNotBlank() || !requiresKey(account)) return false
         _state.value = missingCredentialError(context, account)
+        return true
+    }
+
+    /**
+     * Shows the paywall instead of recording when the cached entitlement says Plus is not active —
+     * the "paywall versus dictate button" decision of the billing spec (section 10).
+     *
+     * Only on a record the server actually sent: before the first answer nothing is known, and
+     * recording then costs at most one refusal from the server. The server stays the authority
+     * either way; this only saves someone from dictating a paragraph into a refusal. A refresh goes
+     * out alongside, so a renewal the cache has not heard of yet is picked up on the next tap.
+     */
+    private fun refuseIfNotEntitled(context: Context): Boolean {
+        val entitlement = Entitlements.current.value
+        if (!entitlement.isKnown || Entitlements.has(PaidFeature.MANAGED_TRANSCRIPTION)) return false
+        scope.launch { DictateCloud.refreshEntitlement() }
+        _state.value = UiState.Error(
+            message = context.getString(R.string.dictate__error_cloud_not_entitled),
+            kind = DictateApiException.Kind.QUOTA_EXCEEDED,
+            action = ErrorAction.TOP_UP,
+        )
         return true
     }
 
@@ -4626,7 +4673,7 @@ object DictateController {
     private fun missingCredentialError(context: Context, account: ProviderAccount): UiState.Error =
         if (account.providerId == ProviderRegistry.CLOUD.id) {
             UiState.Error(
-                message = context.getString(R.string.dictate__error_cloud_no_account),
+                message = context.getString(R.string.dictate__error_cloud_no_account_plus),
                 kind = DictateApiException.Kind.INVALID_API_KEY,
                 action = ErrorAction.TOP_UP,
             )

@@ -59,6 +59,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
@@ -85,6 +86,8 @@ import dev.patrickgold.florisboard.app.settings.search.settingsSearchAnchor
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.app.LocalNavController
 import dev.patrickgold.florisboard.app.Routes
+import dev.patrickgold.florisboard.dictate.cloud.Entitlements
+import dev.patrickgold.florisboard.dictate.cloud.PaidFeature
 import dev.patrickgold.florisboard.dictate.dictateProxyConfig
 import dev.patrickgold.florisboard.dictate.provider.ConnectionCheck
 import dev.patrickgold.florisboard.dictate.provider.ConnectionCheckSample
@@ -242,14 +245,18 @@ fun DictateProvidersScreen() = FlorisScreen {
                     null
                 }
             val cloudAccount = accounts.getOrEmpty(ProviderRegistry.CLOUD.id)
-            val cloudNoCredit = stringRes(R.string.dictate__cloud_row_summary_none)
-            val cloudBalance = stringRes(
-                R.string.dictate__cloud_row_summary_balance,
-                "minutes" to (cloudAccount.balanceSeconds.coerceAtLeast(0) / 60).toString(),
+            val cloudEntitlement by Entitlements.current.collectAsState()
+            val cloudSummary = stringRes(
+                when {
+                    !cloudAccount.hasWallet -> R.string.dictate__cloud_plus_row_summary_none
+                    cloudEntitlement.has(PaidFeature.MANAGED_TRANSCRIPTION, System.currentTimeMillis()) ->
+                        R.string.dictate__cloud_plus_row_summary_active
+                    else -> R.string.dictate__cloud_plus_row_summary_inactive
+                },
             )
 
             orderedPresets.forEach { preset ->
-                // Dictate Cloud has no API key to type in — it has a balance, packs and a recovery
+                // Dictate Cloud has no API key to type in — it has a subscription and a recovery
                 // code — so its row opens its own screen instead of the credential editor.
                 if (preset.id == ProviderRegistry.CLOUD.id) {
                     Preference(
@@ -258,7 +265,7 @@ fun DictateProvidersScreen() = FlorisScreen {
                         icon = providerIcon(preset.id),
                         modifier = Modifier.settingsSearchAnchor("dictate__cloud_title"),
                         title = preset.displayName,
-                        summary = if (cloudAccount.hasWallet) cloudBalance else cloudNoCredit,
+                        summary = cloudSummary,
                         trailing = roles(preset.id),
                         onClick = { navController.navigate(Routes.Settings.DictateCloud) },
                     )

@@ -14,7 +14,6 @@ import androidx.annotation.StringRes
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.ui.viewinterop.AndroidView
-import dev.patrickgold.florisboard.dictate.cloud.DictateCloudPack
 import dev.patrickgold.florisboard.dictate.ui.AudioReactiveCloudOrbView
 import dev.patrickgold.florisboard.dictate.ui.DictateAuroraOrbView
 import dev.patrickgold.florisboard.dictate.ui.DictateWaveform
@@ -1255,13 +1254,15 @@ private fun TourDesignOrbs() {
 }
 
 /**
- * A credit pack filling up: the minutes count on and the bar follows.
+ * A day's allowance filling up: the minutes count on and the bar follows.
  *
- * The figure is [DictateCloudPack.PRO]'s own, read from the enum the shop reads, so the picture
- * cannot drift away from what is actually on sale. Deliberately no "x % cheaper" badge: that
- * number is worked out from Play's own prices at runtime and differs by country, so a fixed one
+ * The figure is [TOUR_ART_MINUTES], the server's default daily allowance. Deliberately no price or
+ * "x % cheaper" badge: those come from Play at runtime and differ by country, so a fixed one
  * painted into an illustration would be a claim the tour cannot keep.
  */
+/** The Plus daily allowance the server starts with (billing spec, section 8), for the illustration only. */
+private const val TOUR_ART_MINUTES = 90
+
 @Composable
 private fun TourCreditMeter() {
     val accent = MaterialTheme.colorScheme.primary
@@ -1279,7 +1280,7 @@ private fun TourCreditMeter() {
         Column(modifier = Modifier.width(200.dp).padding(18.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    text = (DictateCloudPack.PRO.minutes * fill).toInt().toString(),
+                    text = (TOUR_ART_MINUTES * fill).toInt().toString(),
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = accent,

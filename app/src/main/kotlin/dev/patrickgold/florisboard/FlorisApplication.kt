@@ -148,6 +148,13 @@ class FlorisApplication : Application() {
             preferenceStoreLoaded.value = true
             // Recordings saved while offline are transcribed by a system job, which a reboot forgets.
             dev.patrickgold.florisboard.dictate.offline.OfflineDictationQueue.rescheduleIfPending(this@FlorisApplication)
+            // Report any Plus subscription Play lists and refresh the cached entitlement. Without a
+            // subscription in Play and no account on the device this never reaches our server.
+            launch {
+                runCatching {
+                    dev.patrickgold.florisboard.dictate.cloud.DictateCloud.syncSubscription(this@FlorisApplication)
+                }.onFailure { flogError { "Dictate Cloud: subscription sync failed: $it" } }
+            }
             // Keep the Wear OS companion's settings snapshot fresh: re-publish whenever a watch-relevant
             // phone setting changes (#106), so the watch reflects accent/provider/key/prompt automatically.
             DictateWearPublisher.startPublishingOnChange(this@FlorisApplication, scope)

@@ -22,29 +22,28 @@ import dev.patrickgold.florisboard.lib.devtools.flogInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.withContext
-import kotlin.math.floor
 
 /**
- * Dictate Cloud, from the app's side: buying a pack, turning purchases into credit, and keeping the
- * balance somewhere the settings can read it.
+ * Dictate Cloud, from the app's side: subscribing to Plus, reporting subscriptions to the server, and
+ * keeping the entitlement somewhere the settings and the keyboard can read it (billing spec, section 9).
  *
- * The order of operations here is the whole point of the file, so it is worth stating plainly:
+ * The order of operations:
  *
  *  1. Play takes the money and hands back a purchase token.
- *  2. The server is asked to redeem it. It checks with Google, grants the minutes and acknowledges.
- *  3. Only then is the purchase **consumed**, which is what lets the same pack be bought again.
+ *  2. The server is asked to verify it. It checks with Google, acknowledges it and attaches it to an
+ *     account, returning a device token the first time.
+ *  3. The entitlement the server reports is cached in [Entitlements].
  *
- * Nothing is consumed before credit is granted. A purchase that Play still lists as owned is the
- * only durable record that money changed hands, so it stays until it has become minutes — every
- * failure in between costs a retry rather than the purchase. [redeemPending] is that retry, and
- * redemption is idempotent server-side precisely so it can be called as often as needed.
+ * Nothing is consumed — a subscription stays in Play's list for as long as it runs, and that list is
+ * both the safety net and the restore path. [syncSubscription] sends whatever Play lists to the
+ * server; verification is idempotent there, so it can run at every start.
  */
 object DictateCloud {
 
     private val prefs by FlorisPreferenceStore
 
     /**
-     * True while the credit screen was opened from the setup flow rather than from settings.
+     * True while the subscription screen was opened from the setup flow rather than from settings.
      *
      * The screen offers a way back to "use my own provider", and where that leads has to differ:
      * during setup it belongs to the step the user is standing in, afterwards it is the provider
@@ -59,7 +58,7 @@ object DictateCloud {
      */
     val ownKeyRequested = MutableStateFlow(false)
 
-    /** Why a credit account stopped being usable on this device. */
+    /** Why an account stopped being usable on this device. */
     enum class Gone {
         /**
          * The account itself no longer exists — deleted from the web page, from another device, or
@@ -77,33 +76,32 @@ object DictateCloud {
 
     /**
      * Raised when a refresh found the account gone, so the screen can say what happened rather than
-     * silently losing a balance the user was looking at. Consumed by the reader.
+     * silently losing a subscription the user was looking at. Consumed by the reader.
      */
     val gone = MutableStateFlow<Gone?>(null)
 
-    /** What settling a single purchase turned into. */
+    /** What reporting a single subscription to the server turned into. */
     sealed interface Settlement {
-        /** Credit granted (or already granted earlier) and the purchase consumed. */
-        data class Granted(val grantedMinutes: Int, val minutesLeft: Int) : Settlement
+        /** The server verified it and this device holds the account's token. */
+        data class Verified(val entitlement: Entitlement?) : Settlement
 
         /** Paid for but not finalised by Google yet. Left alone; it will be picked up later. */
         data object Pending : Settlement
 
         /**
-         * The purchase belongs to an account this device holds no token for — it was redeemed on
-         * another install. Only the recovery code gets the credit back, so the purchase is left
-         * untouched rather than consumed.
+         * The server knows the subscription but gave this device no token, and it has none. Only the
+         * recovery code reaches that account from here.
          */
         data object NeedsRecovery : Settlement
 
-        /** Not one of our packs. */
+        /** Not our product. */
         data object Skipped : Settlement
 
         data class Failed(val error: DictateCloudException) : Settlement
     }
 
     sealed interface PurchaseResult {
-        data class Granted(val grantedMinutes: Int, val minutesLeft: Int) : PurchaseResult
+        data class Subscribed(val entitlement: Entitlement?) : PurchaseResult
         data object Cancelled : PurchaseResult
         data object Pending : PurchaseResult
         data object NeedsRecovery : PurchaseResult
@@ -111,31 +109,30 @@ object DictateCloud {
         /** Billing itself is not usable here — no Play install, sideloaded build, no store account. */
         data class Unavailable(val code: Int) : PurchaseResult
 
-        /** Paid, but the credit could not be fetched. The purchase is kept and retried later. */
-        data class NotRedeemed(val error: DictateCloudException) : PurchaseResult
+        /** Paid, but the server could not confirm it yet. Play keeps it; the next sync retries. */
+        data class NotVerified(val error: DictateCloudException) : PurchaseResult
 
         data class Failed(val code: Int, val message: String) : PurchaseResult
     }
 
-    /** One pack as Play offers it here — localised name and price, ready to show. */
-    data class Offer(
-        val pack: DictateCloudPack,
-        val title: String,
-        val description: String,
-        /** Already in the buyer's own currency and formatting, straight from Play. */
+    /** One plan as Play offers it here — localised price and trial, ready to show. */
+    data class PlanOffer(
+        val plan: DictateCloudPlan,
+        /** The recurring price, already in the buyer's own currency and formatting, from Play. */
         val formattedPrice: String,
-        /**
-         * The same price as a number, for comparing packs against each other. Micros of
-         * [priceCurrency] — never formatted for display, which is what [formattedPrice] is for.
-         */
+        /** The same price in micros of [priceCurrency], for comparing the plans. Never displayed. */
         val priceMicros: Long = 0L,
         val priceCurrency: String = "",
-        /** See [savingsPercent]. Null when there is nothing worth putting on the card. */
+        /** Length of the free trial on the chosen offer, or null when there is none to offer. */
+        val trialDays: Int? = null,
+        /** What [DictateCloudBilling.launch] needs to buy exactly this. */
+        val offerToken: String = "",
+        /** On the yearly plan: how much cheaper a month is than on monthly. See [yearlySavingsPercent]. */
         val savingsPercent: Int? = null,
     )
 
     sealed interface Shop {
-        data class Ready(val offers: List<Offer>) : Shop
+        data class Ready(val plans: List<PlanOffer>) : Shop
 
         /**
          * Billing cannot be used here. Nearly always benign and worth saying plainly: the app was
@@ -144,11 +141,19 @@ object DictateCloud {
         data class Unavailable(val code: Int) : Shop
     }
 
-    /** This device's credit account, or an empty record when there is none yet. */
+    /**
+     * Play's subscription page for Plus — cancel, change payment method, fix a failed payment.
+     * Play has no separate link for payment problems; this page shows them first.
+     */
+    fun manageSubscriptionUrl(packageName: String): String =
+        "https://play.google.com/store/account/subscriptions" +
+            "?sku=${DictateCloudPlan.PRODUCT_ID}&package=$packageName"
+
+    /** This device's Dictate Cloud account, or an empty record when there is none yet. */
     fun account(): ProviderAccount =
         prefs.dictate.providerAccounts.get().getOrEmpty(ProviderRegistry.CLOUD.id)
 
-    /** True once credit can actually be spent from this device. */
+    /** True once this device holds an account token. Says nothing about whether Plus is active. */
     fun isActive(): Boolean = account().hasWallet
 
     /** True when Dictate Cloud is the provider dictation and rewording currently run through. */
@@ -158,7 +163,7 @@ object DictateCloud {
     /**
      * Makes Dictate Cloud the active provider for both dictation and rewording.
      *
-     * Never done as a side effect of a purchase. Someone may buy credit while happily using their
+     * Never done as a side effect of a purchase. Someone may subscribe while happily using their
      * own key — for a spare, or for the phone where the key is not set up — and silently
      * redirecting their dictation would be a decision made on their behalf.
      */
@@ -171,9 +176,8 @@ object DictateCloud {
      * Switches over after a purchase, but only when nothing else was set up.
      *
      * The rule above — never activate as a side effect — protects someone who already has a working
-     * key. It must not be applied to someone who has none: they chose the credit path during setup,
-     * paid, and would otherwise be left holding a balance in front of a keyboard that refuses to use
-     * it. Nobody buys minutes in order to keep dictating through an unconfigured provider.
+     * key. It must not be applied to someone who has none: they chose Dictate Cloud during setup,
+     * subscribed, and would otherwise be left in front of a keyboard that refuses to use it.
      *
      * A keyless endpoint (Ollama, on-device) counts as set up and is left alone — same judgement the
      * onboarding makes when deciding whether the provider step is done.
@@ -187,65 +191,78 @@ object DictateCloud {
         activate()
     }
 
-    /** What Play has on offer, with local prices. */
+    /** True when the subscribe button should pick the referral trial (see [pickOffer]). */
+    private fun hasReferral(): Boolean = prefs.dictate.cloudReferralCode.get().isNotBlank()
+
+    /** What Play has on offer, with local prices and the trial this buyer would get. */
     suspend fun shop(context: Context): Shop {
         val billing = DictateCloudBilling(context)
         try {
             val connection = billing.connect()
             if (connection != BillingResponseCode.OK) return Shop.Unavailable(connection)
             val products = billing.products()
-            if (products.details.isEmpty()) return Shop.Unavailable(products.code)
-            // Ordered by the pack list, not by what Play happened to return, so the shop reads
-            // cheapest-first even if a product is momentarily missing from the answer.
-            val offers = DictateCloudPack.ordered.mapNotNull { pack ->
-                val details = products.find(pack) ?: return@mapNotNull null
-                // A pack with no purchase option cannot be bought at all, so it is left out
-                // rather than shown as a button that would fail.
-                val offer = details.oneTimePurchaseOfferDetailsList?.firstOrNull()
-                    ?: return@mapNotNull null
-                Offer(
-                    pack = pack,
-                    // `name` is the bare product name; `title` appends the app name in brackets,
-                    // which reads oddly inside the app it names.
-                    title = details.name.ifBlank { details.title },
-                    description = details.description,
-                    formattedPrice = offer.formattedPrice,
-                    priceMicros = offer.priceAmountMicros,
-                    priceCurrency = offer.priceCurrencyCode,
+            val details = products.plus ?: return Shop.Unavailable(products.code)
+            val options = DictateCloudBilling.optionsOf(details)
+            val referral = hasReferral()
+            // Ordered by the plan list, not by what Play happened to return. A plan Play does not
+            // offer here is left out rather than shown as a button that would fail.
+            val plans = DictateCloudPlan.ordered.mapNotNull { plan ->
+                val option = pickOffer(options, plan, referral) ?: return@mapNotNull null
+                val offer = DictateCloudBilling.offerDetailsOf(details, option) ?: return@mapNotNull null
+                val phases = offer.pricingPhases.pricingPhaseList
+                // The recurring price is the last phase; a trial, if any, is a free phase before it.
+                val recurring = phases.lastOrNull() ?: return@mapNotNull null
+                val trial = phases.firstOrNull { it.priceAmountMicros == 0L && it !== recurring }
+                PlanOffer(
+                    plan = plan,
+                    formattedPrice = recurring.formattedPrice,
+                    priceMicros = recurring.priceAmountMicros,
+                    priceCurrency = recurring.priceCurrencyCode,
+                    trialDays = trial?.let { periodDays(it.billingPeriod) },
+                    offerToken = option.offerToken,
                 )
             }
-            if (offers.isEmpty()) return Shop.Unavailable(products.code)
-            // The baseline is whatever is actually first, not a named pack: if Play omits the
-            // smallest one, the comparison moves up with it and the badges get smaller rather
-            // than wrong.
-            val baseline = offers.first()
-            return Shop.Ready(offers.map { it.copy(savingsPercent = savingsPercent(baseline, it)) })
+            if (plans.isEmpty()) return Shop.Unavailable(products.code)
+            val monthly = plans.firstOrNull { it.plan == DictateCloudPlan.MONTHLY }
+            return Shop.Ready(
+                plans.map { offer ->
+                    if (offer.plan != DictateCloudPlan.YEARLY || monthly == null) return@map offer
+                    offer.copy(
+                        savingsPercent = yearlySavingsPercent(
+                            monthlyMicros = monthly.priceMicros,
+                            monthlyCurrency = monthly.priceCurrency,
+                            yearlyMicros = offer.priceMicros,
+                            yearlyCurrency = offer.priceCurrency,
+                        ),
+                    )
+                },
+            )
         } finally {
             billing.close()
         }
     }
 
     /**
-     * Buys [pack]: opens Play's sheet, waits for the answer and settles whatever comes back.
+     * Subscribes to [plan]: opens Play's sheet, waits for the answer and reports whatever comes back
+     * to the server.
      *
      * [activity] must be a real, visible activity — Play draws its sheet on top of it.
      */
-    suspend fun purchase(activity: Activity, pack: DictateCloudPack): PurchaseResult {
+    suspend fun purchase(activity: Activity, plan: DictateCloudPlan): PurchaseResult {
         val billing = DictateCloudBilling(activity)
         try {
             val connection = billing.connect()
             if (connection != BillingResponseCode.OK) return PurchaseResult.Unavailable(connection)
 
             val products = billing.products()
-            val details = products.find(pack)
-                ?: return PurchaseResult.Unavailable(products.code)
-            // Since Billing 8 a one-time product is bought through a purchase option, and its offer
-            // token is not optional: without one Play rejects the flow before it opens.
-            val offerToken = DictateCloudBilling.offerTokenOf(details)
+            val details = products.plus ?: return PurchaseResult.Unavailable(products.code)
+            // Picked again here rather than taken from the screen: eligibility can change between
+            // showing the card and tapping it (a trial used up on another device, say).
+            val option = pickOffer(DictateCloudBilling.optionsOf(details), plan, hasReferral())
                 ?: return PurchaseResult.Unavailable(BillingResponseCode.ITEM_UNAVAILABLE)
 
             val launched = withContext(Dispatchers.Main) {
-                billing.launch(activity, details, offerToken, account().walletId)
+                billing.launch(activity, details, option.offerToken, account().walletId)
             }
             if (launched != BillingResponseCode.OK) {
                 return PurchaseResult.Failed(launched, "launchBillingFlow returned $launched")
@@ -256,19 +273,17 @@ object DictateCloud {
                 is DictateCloudBilling.Outcome.Failed ->
                     PurchaseResult.Failed(outcome.code, outcome.message)
                 is DictateCloudBilling.Outcome.Purchased -> {
-                    val mine = outcome.purchases.filter { pack.productId in it.products }
-                    // Play may report purchases that are not the one just made (a leftover from an
-                    // earlier attempt, say). Settle them all, then answer about the one asked for.
-                    val settled = mine.map { settle(billing, it) }
-                    settled.filterIsInstance<Settlement.Granted>().lastOrNull()
-                        ?.let { return PurchaseResult.Granted(it.grantedMinutes, it.minutesLeft) }
+                    val mine = outcome.purchases.filter { DictateCloudPlan.PRODUCT_ID in it.products }
+                    val settled = mine.map { settle(it) }
+                    settled.filterIsInstance<Settlement.Verified>().lastOrNull()
+                        ?.let { return PurchaseResult.Subscribed(it.entitlement) }
                     when (val first = settled.firstOrNull()) {
                         is Settlement.Pending -> PurchaseResult.Pending
                         is Settlement.NeedsRecovery -> PurchaseResult.NeedsRecovery
-                        is Settlement.Failed -> PurchaseResult.NotRedeemed(first.error)
+                        is Settlement.Failed -> PurchaseResult.NotVerified(first.error)
                         else -> PurchaseResult.Failed(
                             BillingResponseCode.ERROR,
-                            "No purchase for ${pack.productId} in the result",
+                            "No purchase for ${DictateCloudPlan.PRODUCT_ID} in the result",
                         )
                     }
                 }
@@ -279,62 +294,55 @@ object DictateCloud {
     }
 
     /**
-     * Settles everything Play still lists as owned.
+     * Sends every subscription Play lists to the server, then refreshes the entitlement.
      *
-     * Cheap and safe to call on any occasion the balance matters — app start, opening the settings,
-     * a failed dictation. It does nothing when there is nothing outstanding, and when there is, it
-     * is the difference between a paid purchase and lost money.
+     * Run at app start, on opening the subscription screen and from its "Restore" button. Free
+     * users with their own key never reach the server from here (rule 3): with no subscription in
+     * Play and no account on the device, this ends after asking Play.
      *
-     * Returns how many purchases became credit on this run.
+     * Returns how many subscriptions the server verified on this run.
      */
-    suspend fun redeemPending(context: Context): Int {
+    suspend fun syncSubscription(context: Context): Int {
+        var verified = 0
         val billing = DictateCloudBilling(context)
         try {
-            if (billing.connect() != BillingResponseCode.OK) return 0
-            val owned = billing.purchases()
-            if (owned.isEmpty()) return 0
-            var granted = 0
-            for (purchase in owned) {
-                when (val settlement = settle(billing, purchase)) {
-                    is Settlement.Granted -> granted++
-                    is Settlement.Failed -> flogError {
-                        "Dictate Cloud: purchase not redeemed (${settlement.error.code}): ${settlement.error.message}"
+            if (billing.connect() == BillingResponseCode.OK) {
+                for (purchase in billing.purchases()) {
+                    when (val settlement = settle(purchase)) {
+                        is Settlement.Verified -> verified++
+                        is Settlement.Failed -> flogError {
+                            "Dictate Cloud: subscription not verified (${settlement.error.code}): ${settlement.error.message}"
+                        }
+                        else -> Unit
                     }
-                    else -> Unit
                 }
             }
-            if (granted > 0) flogInfo { "Dictate Cloud: redeemed $granted outstanding purchase(s)" }
-            return granted
         } finally {
             billing.close()
         }
+        if (verified > 0) flogInfo { "Dictate Cloud: verified $verified subscription(s)" }
+        // Verify already returned an entitlement, but a separate read also covers an account whose
+        // subscription lives on another Play account, and one that has just expired.
+        refreshEntitlement()
+        return verified
     }
 
     /**
-     * Fetches the balance from the server and caches it; null when there is no account or no answer.
+     * Fetches the entitlement from the server and caches it; null when there is no account or no answer.
      *
      * Also the moment this device learns that its account has ended. An account can be deleted from
      * the web page or from a second phone, and a device can be signed out from the dashboard —
-     * neither of which sends anything here. Without this the app would go on showing a balance and a
-     * recovery code for something that no longer exists, and the first sign of trouble would be a
-     * dictation failing. A refused token is therefore acted on rather than merely logged.
+     * neither of which sends anything here. A refused token is therefore acted on rather than logged.
      *
      * Only an outright 401 counts. A blocked account answers 403, an unreachable server 0: both are
-     * states to wait out, not to erase an account over.
+     * states to wait out. The cache is kept then, so a paying user is not shown a paywall because
+     * our server is down (rule 6).
      */
-    suspend fun refreshBalance(): DictateCloudBalance? {
+    suspend fun refreshEntitlement(): Entitlement? {
         val current = account()
         if (!current.hasWallet) return null
         return try {
-            val balance = DictateCloudApi.balance(current.apiKey)
-            edit {
-                it.copy(
-                    balanceSeconds = balance.secondsLeft,
-                    balanceRewords = balance.rewordsLeft,
-                    balanceCheckedAt = System.currentTimeMillis(),
-                )
-            }
-            balance
+            DictateCloudApi.entitlement(current.apiKey).also { Entitlements.store(it) }
         } catch (e: DictateCloudException) {
             if (e.status == 401) {
                 forget(
@@ -346,19 +354,18 @@ object DictateCloud {
                     announce = true,
                 )
             } else {
-                flogError { "Dictate Cloud: balance unavailable (${e.code}): ${e.message}" }
+                flogError { "Dictate Cloud: entitlement unavailable (${e.code}): ${e.message}" }
             }
             null
         }
     }
 
     /**
-     * Clears the credit account from this device.
+     * Clears the account from this device.
      *
      * [reason] decides what survives. A deleted account leaves nothing behind — keeping the recovery
      * code would put a way back on screen that leads nowhere. A signed-out device keeps its code,
-     * because the account is still there and that code is the only way onto it; signing a device out
-     * is meant to be reversible, and destroying the user's only copy of the code would make it not.
+     * because the account is still there and that code is the only way onto it.
      *
      * [announce] is false when the user did this themselves and has already been told.
      */
@@ -368,15 +375,12 @@ object DictateCloud {
                 walletId = "",
                 apiKey = "",
                 walletRecoveryCode = if (reason == Gone.SIGNED_OUT) it.walletRecoveryCode else "",
-                // -1, not 0: the documented "never fetched" value. A stored 0 would read as an
-                // account that has run out, which is a claim about an account that no longer exists.
                 balanceSeconds = -1,
                 balanceRewords = -1,
                 balanceCheckedAt = 0L,
             )
         }
-        // The low-credit nudge is keyed to an account that is no longer here; leaving it armed would
-        // mean the next account inherits a warning it never earned.
+        Entitlements.clear()
         prefs.dictate.cloudLowCreditNudged.set(false)
         if (announce) gone.value = reason
     }
@@ -393,20 +397,15 @@ object DictateCloud {
             it.copy(
                 walletId = restored.walletId,
                 apiKey = restored.token,
-                // Same treatment as a purchase — see below.
                 // The code the user just typed is the one that works — worth keeping so the settings
                 // can show it again rather than asking them to have kept the paper.
                 walletRecoveryCode = code.trim(),
-                balanceSeconds = restored.secondsLeft,
-                balanceRewords = restored.rewordsLeft,
-                balanceCheckedAt = System.currentTimeMillis(),
             )
         }
-        // Recovering credit is the same event as buying it, from the app's point of view: someone
-        // now has minutes and nothing else set up. Whoever types their code during setup expects to
-        // carry on from there, not to go back a screen and skip the step they just completed.
-        prefs.dictate.cloudLowCreditNudged.set(false)
+        // Whoever types their code during setup expects to carry on from there, not to go back a
+        // screen and skip the step they just completed.
         activateIfNothingElseConfigured()
+        refreshEntitlement()
         return restored
     }
 
@@ -420,76 +419,62 @@ object DictateCloud {
         DictateCloudApi.revokeDevice(code.trim(), tokenHash)
 
     /**
-     * Redeems one purchase and, if that worked, consumes it.
+     * Reports one subscription to the server and stores what came back.
      *
-     * The failure branches are the interesting part. A purchase is consumed **only** after credit is
-     * granted — not when Google says it does not know it, and not when verification is merely
-     * unreachable. Both of those may be temporary, and a purchase kept in Play's owned list can be
-     * retried forever, whereas a consumed one is gone. The cost of being wrong in this direction is
-     * that a bogus purchase sits there unredeemed, which costs nobody anything.
+     * A pending payment is not reported: Google has not taken the money yet, and the server would
+     * refuse it anyway. It stays in Play's list and is picked up by a later sync.
      */
-    private suspend fun settle(billing: DictateCloudBilling, purchase: Purchase): Settlement {
-        val productId = purchase.products.firstOrNull() ?: return Settlement.Skipped
-        DictateCloudPack.byProductId(productId) ?: return Settlement.Skipped
+    private suspend fun settle(purchase: Purchase): Settlement {
+        if (DictateCloudPlan.PRODUCT_ID !in purchase.products) return Settlement.Skipped
         if (purchase.purchaseState != Purchase.PurchaseState.PURCHASED) return Settlement.Pending
 
-        val redeemed = try {
-            DictateCloudApi.redeem(
+        val current = account()
+        val verified = try {
+            DictateCloudApi.verifySubscription(
                 purchaseToken = purchase.purchaseToken,
-                productId = productId,
-                walletId = account().walletId.takeIf { it.isNotBlank() },
+                walletId = current.walletId.takeIf { it.isNotBlank() },
                 label = DictateCloudApi.deviceLabel(),
+                token = current.apiKey.takeIf { current.hasWallet },
             )
         } catch (e: DictateCloudException) {
             return Settlement.Failed(e)
         }
 
-        if (!store(redeemed)) return Settlement.NeedsRecovery
+        if (!store(verified)) return Settlement.NeedsRecovery
+        verified.entitlement?.let { Entitlements.store(it) }
         activateIfNothingElseConfigured()
-
-        val consumed = billing.consume(purchase.purchaseToken)
-        if (consumed != BillingResponseCode.OK) {
-            // Harmless: the credit is granted and redemption is idempotent, so the next sweep
-            // redeems again (getting "already redeemed") and consumes then.
-            flogError { "Dictate Cloud: consume failed with $consumed, will retry" }
-        }
-        return Settlement.Granted(redeemed.grantedMinutes, redeemed.minutesLeft)
+        return Settlement.Verified(verified.entitlement)
     }
 
     /**
-     * Persists what a redemption returned. False when the reply carried no usable token and this
-     * device has none either — that is a purchase redeemed by some other install, and only the
-     * recovery code can reach it.
+     * Persists the account a verification returned. False when the reply carried no usable token and
+     * this device has none either — only the recovery code reaches that account.
      *
-     * Token and recovery code are sent exactly once, when the account is created, and the server
-     * keeps only a hash of the code. This write is therefore the single moment they can be captured;
-     * it happens before the purchase is consumed for that reason.
+     * The recovery code is sent exactly once, when the account is created, and the server keeps
+     * only a hash of it. This write is the single moment it can be captured.
      */
-    private suspend fun store(redeemed: DictateCloudRedeem): Boolean {
-        val token = redeemed.token?.takeIf { it.isNotBlank() } ?: account().apiKey
+    private suspend fun store(verified: DictateCloudVerify): Boolean {
+        val current = account()
+        // A token from the reply always wins; the device's own only counts if it is for this account.
+        val token = verified.token?.takeIf { it.isNotBlank() }
+            ?: current.apiKey.takeIf { current.walletId == verified.walletId }.orEmpty()
         if (token.isBlank()) return false
-        // Credit just arrived, so the low-balance nudge is owed again next time it runs out.
-        prefs.dictate.cloudLowCreditNudged.set(false)
         edit {
             it.copy(
-                walletId = redeemed.walletId,
+                walletId = verified.walletId,
                 apiKey = token,
-                walletRecoveryCode = redeemed.recoveryCode?.takeIf { code -> code.isNotBlank() }
-                    ?: it.walletRecoveryCode,
-                balanceSeconds = redeemed.secondsLeft,
-                balanceRewords = redeemed.rewordsLeft,
-                balanceCheckedAt = System.currentTimeMillis(),
+                // A code kept from a signed-out session (empty wallet id) is most likely this very
+                // account's, and it is the user's only copy on screen; one from another account is not.
+                walletRecoveryCode = verified.recoveryCode?.takeIf { code -> code.isNotBlank() }
+                    ?: it.walletRecoveryCode.takeIf { _ ->
+                        it.walletId.isBlank() || it.walletId == verified.walletId
+                    }.orEmpty(),
             )
         }
         return true
     }
 
-    /**
-     * Asks the server what deleting this account would cost, without deleting anything.
-     *
-     * Deliberately not answered from the locally cached balance: that copy can be minutes old, and
-     * the one number the confirmation dialog must get right is how much is about to be destroyed.
-     */
+    /** Asks the server what deleting this account would affect, without deleting anything. */
     suspend fun previewDeletion(): DictateCloudDeletion? {
         val current = account()
         if (!current.hasWallet) return null
@@ -497,16 +482,12 @@ object DictateCloud {
     }
 
     /**
-     * Deletes the credit account on the server and wipes every trace of it from this device.
+     * Deletes the account on the server and wipes every trace of it from this device.
      *
-     * The order matters. The server goes first: if it refuses — no connection, token already gone —
-     * the exception propagates and the local account stays, so the user is not left holding a
-     * phone that has forgotten an account which still exists. Only once the server confirms is the
-     * local copy cleared, and then completely: token, wallet id, recovery code and cached balance.
-     * Leaving the recovery code behind would be the worst of both, since it looks like a way back
-     * to something that no longer exists.
+     * The server goes first: if it refuses, the exception propagates and the local account stays,
+     * so the user is not left holding a phone that has forgotten an account which still exists.
      *
-     * The credit is forfeited. That is stated in the dialog before this ever runs.
+     * This does not cancel a Play subscription — the dialog says so and links to Play first.
      */
     suspend fun deleteAccount(): DictateCloudDeletion {
         val current = account()
@@ -520,35 +501,4 @@ object DictateCloud {
         val accounts = prefs.dictate.providerAccounts.get()
         prefs.dictate.providerAccounts.set(accounts.edit(ProviderRegistry.CLOUD.id, block))
     }
-}
-
-/**
- * Below this, an advertised saving reads as a rounding artefact rather than a reason to buy.
- *
- * The threshold is a judgement about the shop, not about the arithmetic: "5 % cheaper" standing
- * next to "31 % cheaper" makes the smaller pack look considered rather than the larger one look
- * good, and a badge nobody is moved by is a badge that teaches people to ignore badges.
- */
-private const val MIN_SAVINGS_PERCENT = 10
-
-/**
- * How much cheaper a minute is in [offer] than in [baseline], as a whole percentage.
- *
- * Computed from Play's own amounts rather than from a price table in the app, because Play's
- * per-country list is not a conversion of the euro one — a badge derived from our numbers would be
- * wrong in every currency but ours, and wrong in the direction that gets noticed.
- *
- * Rounded **down**, so an advertised saving is never larger than the real one, and null wherever
- * the claim would not hold up: a different currency on the two sides, a missing amount, a pack that
- * is not actually cheaper, or a difference too small to be worth printing.
- */
-internal fun savingsPercent(baseline: DictateCloud.Offer, offer: DictateCloud.Offer): Int? {
-    if (baseline.priceCurrency != offer.priceCurrency) return null
-    if (baseline.priceMicros <= 0L || offer.priceMicros <= 0L) return null
-    if (baseline.pack.minutes <= 0 || offer.pack.minutes <= 0) return null
-    val basePerMinute = baseline.priceMicros.toDouble() / baseline.pack.minutes
-    val perMinute = offer.priceMicros.toDouble() / offer.pack.minutes
-    if (perMinute >= basePerMinute) return null
-    val percent = floor((1.0 - perMinute / basePerMinute) * 100).toInt()
-    return percent.takeIf { it >= MIN_SAVINGS_PERCENT }
 }
