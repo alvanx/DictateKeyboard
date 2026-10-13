@@ -126,7 +126,7 @@
     <string name="home__recent_title" comment="Title of the recent dictations card on the home screen">الإملاءات الأخيرة</string>
     <string name="home__recent_see_all" comment="Button on the recent dictations card that opens the full history">عرض الكل</string>
     <string name="home__recent_copy" comment="Accessibility label of the copy icon on a recent dictation row">نسخ</string>
-    <string name="home__recent_failed" comment="Recent dictations row for a recording whose transcription failed">فشل النسخ. تم حفظ التسجيل.</string>
+    <string name="home__recent_failed" comment="Recent dictations row for a recording whose transcription failed">فشل التفريغ النصي. تم حفظ التسجيل.</string>
     <string name="home__recent_retry" comment="Button on a failed recent dictation that sends its saved recording again">إعادة المحاولة</string>
     <string name="home__transcribe_file" comment="Floating button on the home screen that opens the file picker to transcribe an audio or video file">تفريغ ملف</string>
     <string name="home__ai_model" comment="Settings row that opens the AI providers screen; its second line names the speech model in use">نموذج الذكاء الاصطناعي</string>
@@ -647,7 +647,7 @@
     <string name="setup__finish_up__title">تم انهاء الاعداد</string>
     <string name="setup__finish_up__description_p1">تم تمكين{app_name} في النظام وجاهز للتخصيص بأسلوبك.</string>
     <string name="setup__finish_up__description_p2">إذا واجهت أي مشاكل أو أخطاء أو أعطال أو اذا كنت ترغب فقط في تقديم اقتراح ، تحقق من مستودع المشروع من شاشة \"حول التطبيق\"!</string>
-    <string name="setup__finish_up__finish_btn">أبدأ بالتخصيص</string>
+    <string name="setup__finish_up__finish_btn">ابدأ استخدام {app_name}</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__system_settings__title">إعدادات لوحة المفاتيح الفيزيائية</string>
     <!-- Back up & Restore -->

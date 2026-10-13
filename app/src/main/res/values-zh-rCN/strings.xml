@@ -766,7 +766,7 @@
     <string name="setup__finish_up__title">完成</string>
     <string name="setup__finish_up__description_p1">{app_name} 现在已在系统中启用，可供您自定义。</string>
     <string name="setup__finish_up__description_p2">如果您遇到任何问题、错误、崩溃或只是想提出建议，请从“关于”界面中查看项目源码库！</string>
-    <string name="setup__finish_up__finish_btn">开始自定义</string>
+    <string name="setup__finish_up__finish_btn">开始使用 {app_name}</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__title">实体键盘</string>
     <string name="physical_keyboard__system_settings__title">物理键盘设置</string>

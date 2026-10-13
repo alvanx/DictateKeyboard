@@ -228,7 +228,7 @@
     <string name="style__move_spin" comment="How the mic button moves while recording: the cassette reels turn">Gulungannya berputar saat mendengarkan</string>
     <string name="style__move_tilt" comment="How the mic button moves while recording: leans side to side">Miring saat mendengarkan</string>
     <string name="style__move_twinkle" comment="How the mic button moves while recording: the star sparkles">Berkelip saat mendengarkan</string>
-    <string name="style__move_press" comment="How the mic button moves while recording: the button pushes in">Tertekan saat mendengarkan</string>
+    <string name="style__move_press" comment="How the mic button moves while recording: the button pushes in">Ditekan saat mendengarkan</string>
     <string name="style__move_beat" comment="How the mic button moves while recording: double-thumps like a heartbeat">Berdetak saat mendengarkan</string>
     <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">Berkedip saat mendengarkan</string>
     <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">Bergerak saat mendengarkan</string>
@@ -752,7 +752,7 @@
     <string name="setup__finish_up__title">Selesaikan</string>
     <string name="setup__finish_up__description_p1">{app_name} sekarang sudah diaktifkan di sistem ini dan siap untuk disesuaikan oleh Anda.</string>
     <string name="setup__finish_up__description_p2">Jika Anda mengalami masalah, bug, crash, atau hanya ingin membuat saran, lihat repositori proyek di layar tentang!</string>
-    <string name="setup__finish_up__finish_btn">Mulai Menyesuaikan</string>
+    <string name="setup__finish_up__finish_btn">Mulai menggunakan {app_name}</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__title">Keyboard fisik</string>
     <string name="physical_keyboard__system_settings__title">Pengaturan keyboard fisik</string>
