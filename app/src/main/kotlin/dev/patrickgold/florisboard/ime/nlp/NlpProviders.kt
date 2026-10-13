@@ -198,6 +198,13 @@ interface SuggestionProvider : NlpProvider {
     suspend fun getFrequencyForWord(subtype: Subtype, word: String): Double
 
     /**
+     * Called before glide typing weighs the words of a gesture with [getFrequencyForWord], with the text
+     * the swiped word will follow — so a provider that reads several languages can answer for the one
+     * being written (see LanguageGuess). Does nothing by default.
+     */
+    suspend fun prepareGlide(subtype: Subtype, content: EditorContent) = Unit
+
+    /**
      * When initializing composing text given a new context, the suggestion engine determines the composing range.
      * The default behavior gets the last word according to the current subtype's primaryLocale.
      * @param subtype The current subtype used to determine word or character boundary.

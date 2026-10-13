@@ -1789,7 +1789,7 @@
     <string name="enum__auto_correct_strength__aggressive">قوي</string>
     <string name="enum__auto_correct_strength__aggressive__description">يصحح أيضًا الكلمات الأبعد — ويستبدل أحيانًا كلمة قصدتها.</string>
     <string name="pref__suggestion__multilingual_typing__label">الكتابة متعددة اللغات</string>
-    <string name="pref__suggestion__multilingual_typing__summary">قبول الكلمات من جميع لغات لوحة المفاتيح لديك</string>
+    <string name="pref__suggestion__multilingual_typing__summary">تتبع الاقتراحات والتصحيحات لغة لوحة المفاتيح التي تكتب بها</string>
     <string name="pref__suggestion__next_word_prediction__label">اقتراحات الكلمة التالية</string>
     <string name="pref__suggestion__next_word_prediction__summary">اقتراح الكلمات المحتملة بعد إنهاء كلمة</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">تجاهل التطبيقات التي توقف الاقتراحات</string>

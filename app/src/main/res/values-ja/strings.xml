@@ -1858,7 +1858,7 @@
     <string name="enum__auto_correct_strength__aggressive">積極的</string>
     <string name="enum__auto_correct_strength__aggressive__description">離れた文字の誤りも直します。ただし、意図した語がまれに置き換わります。</string>
     <string name="pref__suggestion__multilingual_typing__label">多言語入力</string>
-    <string name="pref__suggestion__multilingual_typing__summary">すべてのキーボード言語の単語を受け入れます</string>
+    <string name="pref__suggestion__multilingual_typing__summary">入力中のキーボード言語に合わせて候補と修正を切り替えます</string>
     <string name="pref__suggestion__next_word_prediction__label">次の単語の候補</string>
     <string name="pref__suggestion__next_word_prediction__summary">単語を入力し終えると、次に来そうな単語を提案します</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">候補を無効にするアプリを無視する</string>

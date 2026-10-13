@@ -22,26 +22,47 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0   # the build stamps the git commit into the app
+          submodules: recursive
 
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up the Android SDK
-        uses: android-actions/setup-android@v3
+      # Same steps as the earlier "Build APK" workflow, which is known to work on the runner.
+      - name: Install NDK and build tools
+        run: |
+          SDKM=$(find "${ANDROID_HOME:-/usr/local/lib/android/sdk}/cmdline-tools" -name sdkmanager -path '*/bin/*' | head -1)
+          echo "Using $SDKM"
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" "ndk;29.0.14206865" "build-tools;36.0.0" "platforms;android-36" "cmake;$(grep '^cmake ' gradle/tools.versions.toml | sed -E 's/.*"(.*)".*/\1/')"
+
+      # The on-device speech and translation libraries are not committed; they are fetched or built
+      # once and cached.
+      - name: Cache prepared native libraries
+        id: native-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            app/libs
+            app/src/main/jniLibs
+          key: native-${{ hashFiles('tools/fetch-sherpa-onnx.sh', 'tools/bergamot/**', 'gradle/tools.versions.toml') }}
+
+      - name: Fetch speech libraries (sherpa-onnx)
+        if: steps.native-cache.outputs.cache-hit != 'true'
+        run: tools/fetch-sherpa-onnx.sh
+
+      - name: Build translation library (bergamot)
+        if: steps.native-cache.outputs.cache-hit != 'true'
+        run: tools/bergamot/build-android.sh
 
       - uses: gradle/actions/setup-gradle@v4
 
-      # On-device speech libraries are not committed; the build needs them (see the script's header).
-      - name: Fetch on-device speech libraries
-        run: bash tools/fetch-sherpa-onnx.sh
-
       - name: Build the phone and Wear apps
-        run: ./gradlew :app:assembleDebug :wear:assembleDebug --stacktrace
+        run: ./gradlew :app:assembleDebug :wear:assembleDebug --no-daemon --stacktrace
 
       - name: Unit tests
-        run: ./gradlew :app:testDebugUnitTest :lib:dictate-core:testDebugUnitTest --stacktrace
+        run: ./gradlew :app:testDebugUnitTest :lib:dictate-core:testDebugUnitTest --no-daemon --stacktrace
 
       - name: Keep the debug APK
         uses: actions/upload-artifact@v4

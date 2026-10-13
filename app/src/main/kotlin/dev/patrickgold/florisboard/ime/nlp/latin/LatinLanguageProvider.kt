@@ -49,6 +49,7 @@ import org.florisboard.lib.android.readText
 import org.florisboard.lib.kotlin.guardedByLock
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.ln
+import kotlin.math.roundToInt
 
 class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProvider, LearningProvider {
     companion object {
@@ -364,6 +365,26 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
      */
     @Volatile
     private var glideUserWords: Pair<String, Map<String, Int>>? = null
+
+    /**
+     * Which keyboard language a glide is being written in while multilingual typing is on, for the
+     * [locale] it was worked out for: the word data of the [guessed] one, the [others]', and the
+     * [handicap] those have to overcome ([LanguageGuess.glideFrequency]).
+     */
+    private class GlideLanguages(
+        val locale: String,
+        val guessed: Map<String, Int>,
+        val others: List<Map<String, Int>>,
+        val handicap: Int,
+    )
+
+    /**
+     * Written by [prepareGlide] before every gesture is weighed, read by [getFrequencyForWord] for each of
+     * its candidates — the same volatile hand-over as [glideUserWords], and for the same reason. Null while
+     * multilingual typing is off or there is a single keyboard language.
+     */
+    @Volatile
+    private var glideLanguages: GlideLanguages? = null
 
     // Word→frequency dictionaries cached per language (issue #127, glide typing phase 2). Each bundled
     // ime/dict/<lang>.json maps a word to a frequency in [128,255]; languages without a bundled file fall
@@ -783,6 +804,107 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
     }
 
     /**
+     * The user's keyboard languages that have a dictionary, each with a subtype it is typed with, the
+     * active one first — what [mixedLanguageFor] chooses among.
+     *
+     * Empty when the active subtype has no dictionary (#265). Its words would then be unknown to every
+     * language the guess can see, so any text in it would read as "no evidence" and the strip would go to
+     * whichever other language won on its first borrowed word — autocorrect included.
+     */
+    private fun keyboardLanguages(active: Subtype): List<Pair<String, Subtype>> {
+        val activeLang = dictLangFor(active) ?: return emptyList()
+        val languages = LinkedHashMap<String, Subtype>()
+        languages[activeLang] = active
+        runCatching { subtypeManager.subtypes.forEach { s -> dictLangFor(s)?.let { languages.putIfAbsent(it, s) } } }
+        return languages.toList()
+    }
+
+    /**
+     * Which keyboard language the strip should speak while multilingual typing is on, as worked out by
+     * [mixedLanguageFor]: the [subtype] whose dictionary the completions, fixes, auto-correction and
+     * predictions come from, the [others] whose completions are worked in beside them, and the [handicap]
+     * those have to overcome ([LanguageGuess.handicapFor]).
+     */
+    private class MixedLanguage(val subtype: Subtype, val others: List<Subtype>, val handicap: Int)
+
+    /**
+     * The language the text before the cursor is written in, among the user's keyboard languages — or
+     * null when multilingual typing is off or there is only one language to choose from, which leaves the
+     * strip exactly as it was before there was a guess.
+     *
+     * A language that cannot spell the word being typed is left out, both as the guess and as a source of
+     * completions: a Cyrillic sentence followed by a Latin word is no reason to correct that word with a
+     * Russian dictionary, and `groß` typed into an English sentence is German whatever came before it.
+     *
+     * [word] is what is being typed and [textBefore] everything before the cursor, [word] included; a
+     * glide, which has no typed word yet, passes an empty one.
+     */
+    private suspend fun mixedLanguageFor(active: Subtype, textBefore: String, word: String): MixedLanguage? {
+        if (!prefs.suggestion.multilingualTyping.get()) return null
+        val languages = keyboardLanguages(active)
+        if (languages.size < 2) return null
+        val indexes = languages.map { (lang, _) -> lowerIndexForLang(lang) }
+        val usable = languages.indices.filter { i ->
+            val index = indexes[i]
+            index.freq.isNotEmpty() && index.fold(word).all { !DictFold.isWordChar(it) || it in index.alphabet }
+        }
+        if (usable.isEmpty()) return null
+        val context = LanguageGuess.recentWords(textBefore.removeSuffix(word))
+        val guess = LanguageGuess.guess(context, usable.size, activeIndex = usable.indexOf(0)) { language, w ->
+            val index = indexes[usable[language]]
+            index.freq[index.fold(w)]
+        }
+        val chosen = usable[guess.index]
+        return MixedLanguage(
+            subtype = languages[chosen].second,
+            others = usable.filter { it != chosen }.map { languages[it].second },
+            handicap = LanguageGuess.handicapFor(guess.margin),
+        )
+    }
+
+    /**
+     * The words of [others]' dictionaries that extend [word], most frequent first, with their frequency —
+     * the other keyboard languages' share of a blended strip.
+     *
+     * Prefix completions only. Fixes, auto-correction and predictions stay with the guessed language,
+     * which is where the evidence is; running the corrector once per language would also double the work
+     * of every keystroke, the cost issue #381 went to some length to take out.
+     */
+    private suspend fun otherLanguageCompletions(others: List<Subtype>, word: String, max: Int): List<Pair<String, Int>> {
+        val found = ArrayList<Pair<String, Int>>()
+        for (other in others) {
+            currentCoroutineContext().ensureActive()
+            val ranked = rankedWordsFor(other)
+            if (ranked.isEmpty()) continue
+            val data = wordDataFor(other)
+            val rankedKeys = rankedFoldKeysFor(other, ranked)
+            val prefix = if (rankedKeys != null) lowerIndexFor(other).fold(word) else word
+            // The same two ways to the matches the strip's own walk takes, and for the same reason: a rare
+            // prefix by binary search, a common one by reading the ranked list until enough have turned up.
+            val ranks = prefixOrderFor(other, ranked, rankedKeys)
+                ?.ranksStartingWith(prefix, limit = DENSE_PREFIX_MATCHES)
+                ?.asSequence()
+                ?: ranked.indices.asSequence().filter { rank ->
+                    if (rankedKeys != null) {
+                        rankedKeys[rank].startsWith(prefix)
+                    } else {
+                        ranked[rank].startsWith(word, ignoreCase = true)
+                    }
+                }
+            for (rank in ranks.take(max)) found.add(ranked[rank] to (data[ranked[rank]] ?: 0))
+        }
+        return found.sortedByDescending { it.second }
+    }
+
+    /**
+     * The composing word the last guess was made for, and the language it went to — so the capital a
+     * language insists on when that word ends ([standaloneCapitalization]) can follow the writing as well.
+     * Null while there is no guess.
+     */
+    @Volatile
+    private var lastGuessedLanguage: Pair<String, String>? = null
+
+    /**
      * True if [lower] is an ordinary lowercase word in one of the user's *other* keyboard languages, so the
      * active language's noun capitalisation must stand aside (issue #190): an English "hand" typed with the
      * German subtype active should not become "Hand".
@@ -796,8 +918,11 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         return false
     }
 
-    /** True if [word] is a known dictionary word in any accepted language, or in the user dictionary. */
-    private suspend fun isKnownWord(word: String, subtype: Subtype): Boolean {
+    /**
+     * True if [word] is a known dictionary word in any accepted language, or in the user dictionary —
+     * [vocab]'s, which is the active subtype's even while the strip follows another language.
+     */
+    private suspend fun isKnownWord(word: String, subtype: Subtype, vocab: Subtype = subtype): Boolean {
         for (lang in acceptedDictLangs(subtype)) {
             val index = lowerIndexForLang(lang)
             if (index.freq.containsKey(index.fold(word))) return true
@@ -816,7 +941,7 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
                 return true
             }
         }
-        return isInUserDictionary(word, subtype)
+        return isInUserDictionary(word, vocab)
     }
 
     /** Dictionary words closest to (a misspelling of) [word], ranked by frequency. */
@@ -851,9 +976,13 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
      *
      * Never eligible for auto-commit: these are offers about a word the user has not started typing, so
      * nothing may be inserted without a tap.
+     *
+     * The corpus tables are [subtype]'s — the language being written — and the pairs the user wrote are
+     * [vocab]'s, the active subtype's, which is where [learnWordPair] keeps them.
      */
     private suspend fun nextWordPredictions(
         subtype: Subtype,
+        vocab: Subtype,
         content: EditorContent,
         maxCandidateCount: Int,
     ): List<SuggestionCandidate> {
@@ -875,7 +1004,7 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         // failure would be a word the user never typed appearing in place of one they did. Offering a
         // prediction risks nothing — it sits in the strip until it is chosen.
         val learnedPairs = if (prefs.wordLearningIsOn) {
-            dictLangFor(subtype)
+            dictLangFor(vocab)
                 ?.let { lang -> runCatching { LearnedWordsStore.bigrams(appContext, lang) }.getOrNull() }
                 .orEmpty()
                 .asSequence()
@@ -1202,6 +1331,11 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         resolvedDictLang.clear()
         maybeDownloadDict(subtype)
         wordDataFor(subtype)
+        // With multilingual typing on, glide's word list holds the other keyboard languages' words as well
+        // (issue #190), and it is built on the main thread when the keyboard first opens: read them here.
+        if (prefs.suggestion.multilingualTyping.get()) {
+            keyboardLanguages(subtype).drop(1).forEach { (lang, _) -> wordDataForLang(lang) }
+        }
         // Housekeeping for the learned vocabulary (issue #318) rides along here: it is the one moment per
         // language change that is already off the typing path and already expected to touch storage.
         if (prefs.wordLearningIsOn) {
@@ -1270,11 +1404,15 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
      *
      * Strictly English. Polish `i` means *and*, Italian `i` is a plural article; both are among the
      * commonest words in those languages, and capitalising them would be a visible regression rather
-     * than a fix. The language is the active subtype's, which is also the limit of what this can know
-     * while multilingual typing (issue #190) has more than one language in play.
+     * than a fix. The language is the active subtype's — unless multilingual typing guessed another one
+     * for this very word ([lastGuessedLanguage]), so an English `i` gets its capital in an English
+     * sentence typed with German selected, and an Italian one keeps its small letter in an Italian
+     * sentence typed with English selected.
      */
-    override fun standaloneCapitalization(word: String, subtype: Subtype): String? =
-        standaloneCapitalizationIn(word, subtype.primaryLocale.language)
+    override fun standaloneCapitalization(word: String, subtype: Subtype): String? {
+        val guessed = lastGuessedLanguage?.takeIf { it.first == word }?.second
+        return standaloneCapitalizationIn(word, guessed ?: subtype.primaryLocale.language)
+    }
 
     /**
      * The composing region, widened to keep an e-mail or web address in one piece (issue #318).
@@ -1303,6 +1441,12 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         }
     }
 
+    /**
+     * The strip for [content]. With multilingual typing on, in the language being written rather than the
+     * one the keyboard is switched to, with the other keyboard languages' completions worked in beside it
+     * — Gboard's bilingual typing (see [LanguageGuess]). Otherwise, and with a single keyboard language,
+     * exactly [suggestIn] for [subtype].
+     */
     override suspend fun suggest(
         subtype: Subtype,
         content: EditorContent,
@@ -1310,11 +1454,55 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         allowPossiblyOffensive: Boolean,
         isPrivateSession: Boolean,
     ): List<SuggestionCandidate> {
+        val word = content.composingText
+        val mixed = mixedLanguageFor(subtype, content.textBeforeSelection, word)
+        lastGuessedLanguage = mixed?.let { word to it.subtype.primaryLocale.language }
+        if (mixed == null) return suggestIn(subtype, subtype, content, maxCandidateCount)
+        val primary = suggestIn(mixed.subtype, subtype, content, maxCandidateCount)
+        // Predictions stay with the guessed language: after a German word, an English one is no guess.
+        if (word.isEmpty() || mixed.others.isEmpty()) return primary
+        currentCoroutineContext().ensureActive()
+
+        val wantCapitalized = word.first().isUpperCase()
+        val taken = primary.mapTo(HashSet()) { it.text.toString().lowercase() }
+        val secondary = ArrayList<SuggestionCandidate>()
+        for ((dictWord, freq) in otherLanguageCompletions(mixed.others, word, maxCandidateCount)) {
+            val text = if (wantCapitalized && dictWord.firstOrNull()?.isLowerCase() == true) {
+                dictWord.replaceFirstChar { it.uppercaseChar() }
+            } else {
+                dictWord
+            }
+            if (!taken.add(text.lowercase())) continue
+            secondary.add(WordSuggestionCandidate(text = text, confidence = freq / 255.0, sourceProvider = this))
+        }
+        if (secondary.isEmpty()) return primary
+        return LanguageGuess.blend(
+            primary = primary,
+            secondary = secondary,
+            // The typed word, a listed fix and whatever Space is going to take keep their places.
+            rankOf = { c -> if (c.isEligibleForAutoCommit || c.confidence >= 1.0) null else (c.confidence * 255).roundToInt() },
+            handicap = mixed.handicap,
+            max = maxCandidateCount,
+        )
+    }
+
+    /**
+     * The strip for [content] in [subtype]'s language. [vocab] is the subtype whose own words — the
+     * personal dictionary, the learned vocabulary and pairs — are offered: the active one, even while
+     * [subtype] is another keyboard language multilingual typing guessed, because that is where they are
+     * kept and they are the user's in every language they write.
+     */
+    private suspend fun suggestIn(
+        subtype: Subtype,
+        vocab: Subtype,
+        content: EditorContent,
+        maxCandidateCount: Int,
+    ): List<SuggestionCandidate> {
         // Word completion: prefix-match the word being composed against the dictionary, most frequent
         // first (issue #127 follow-up).
         val word = content.composingText
         // Nothing being composed: offer likely continuations of the previous word instead (issue #245).
-        if (word.isEmpty()) return nextWordPredictions(subtype, content, maxCandidateCount)
+        if (word.isEmpty()) return nextWordPredictions(subtype, vocab, content, maxCandidateCount)
 
         val wantCapitalized = word.first().isUpperCase()
         fun cased(dictWord: String): String =
@@ -1328,6 +1516,8 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         // strip), then the user's personal dictionary, then the main dictionary ranked by frequency.
         val out = LinkedHashMap<String, SuggestionCandidate>()
         val index = lowerIndexFor(subtype)
+        // The user's own words are looked up the way they were stored: folded in [vocab]'s language.
+        val vocabIndex = if (vocab === subtype) index else lowerIndexFor(vocab)
         // Whether Space may swap a fix in *silently* — and nothing more. Every fix below is offered in the
         // strip either way; this only ever decides `isEligibleForAutoCommit` (issue #381). It used to gate
         // the fixes themselves, so switching autocorrect off — which the setting describes as "fix typos
@@ -1501,7 +1691,7 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
                 }
                 index.lang == ApostropheForms.ENGLISH -> ApostropheForms.englishAutoCommitFor(typedKey)?.takeIf {
                     it in forms && word.drop(1).none { c -> c.isUpperCase() } &&
-                        !isLowercaseWordInAnotherLanguage(typedKey, subtype) && !isInUserDictionary(word, subtype)
+                        !isLowercaseWordInAnotherLanguage(typedKey, subtype) && !isInUserDictionary(word, vocab)
                 }
                 else -> null
             }
@@ -1599,7 +1789,7 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
 
         // Whether the composed word is valid in any of the user's keyboard languages (multilingual, #190);
         // computed up front because it also decides whether to reserve strip slots for spelling fixes.
-        val isKnown = isKnownWord(word, subtype)
+        val isKnown = isKnownWord(word, subtype, vocab)
         // Whether this word is a candidate for a spelling fix at all. One value rather than the same
         // conditions written twice, because the block that corrects and the slots reserved *for* correcting
         // have to agree — the digit rule (issue #309) was easy to add to one of them and forget in the other.
@@ -1614,7 +1804,7 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
 
         // The learned vocabulary, read once: the strip needs it below, and the ordering of the personal
         // words needs it right here.
-        val learnedSnapshot = learnedSnapshotFor(subtype)
+        val learnedSnapshot = learnedSnapshotFor(vocab)
 
         // The user's own words that extend what is being typed. They used to go into the strip right here,
         // ahead of everything the dictionary had to offer, so a single typed letter put a contact's surname
@@ -1628,14 +1818,14 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         // relative to the dictionary, only the user's own words are put in the order they earned. A word
         // typed into the dictionary by hand has no count and stays at the front, because teaching a word
         // deliberately still outranks anything we merely noticed.
-        val userVocabulary = userVocabularyFor(subtype)
-        val foldedWord = index.fold(word)
+        val userVocabulary = userVocabularyFor(vocab)
+        val foldedWord = vocabIndex.fold(word)
         val personal = userVocabulary?.words.orEmpty()
             .filter { (folded, _) -> folded.startsWith(foldedWord) }
             .map { (_, stored) -> stored }
             .distinctBy { it.lowercase() }
             .sortedByDescending { text ->
-                val score = learnedSnapshot?.scoreOfKey(index.fold(text)) ?: 0.0
+                val score = learnedSnapshot?.scoreOfKey(vocabIndex.fold(text)) ?: 0.0
                 if (score > 0.0) score else Double.MAX_VALUE
             }
 
@@ -1690,14 +1880,14 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         // less the user's word for having graduated into the dictionary.
         val learned = learnedSnapshot
             ?.entriesStartingWith(
-                prefix = index.fold(word),
+                prefix = vocabIndex.fold(word),
                 minScore = WordLearningGate.scoreFloorFor(WordLearningGate.SIGHTINGS_FOR_SUGGESTIONS),
                 limit = LEARNED_MAX,
             )
             .orEmpty()
         var learnedTaken = 0
         fun isLearnedWord(text: String): Boolean =
-            learnedSnapshot != null && learnedSnapshot.scoreOfKey(index.fold(text)) > 0.0
+            learnedSnapshot != null && learnedSnapshot.scoreOfKey(vocabIndex.fold(text)) > 0.0
 
         /** Puts the personal words in as soon as the dictionary walk has dropped to [freq] or below. */
         fun addPersonalDownTo(freq: Int) {
@@ -1933,7 +2123,7 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
             // The user's own words go first among the corrections. They are not in the dictionary index,
             // so they carry no frequency of their own — they are ranked at the same band they occupy as
             // completions, which is what puts them ahead of a rare dictionary word one edit away.
-            val personalFixes = personalCorrectionsFor(word, subtype, index)
+            val personalFixes = personalCorrectionsFor(word, vocab, vocabIndex)
             personalFixes.forEachIndexed { i, correction ->
                 val text = cased(correction)
                 out.putIfAbsent(
@@ -2145,26 +2335,59 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
      * the user added was safe from autocorrect but could not be swiped, which is a strange thing to have to
      * explain. Read fresh from the database on every call, because this runs once per index build and the
      * personal dictionary is the one part of the vocabulary that changes while the app is running.
+     *
+     * With multilingual typing on, every keyboard language's words (issue #190): which of them a swipe
+     * becomes is then decided per gesture, by the language being written — see [prepareGlide].
      */
     override suspend fun getListOfWords(subtype: Subtype): List<String> {
         val bundled = wordDataFor(subtype)
+        val others = if (prefs.suggestion.multilingualTyping.get()) {
+            keyboardLanguages(subtype).drop(1).map { (lang, _) -> wordDataForLang(lang) }
+        } else {
+            emptyList()
+        }
         val personal = userGlideWords(subtype)
         // Remember them for getFrequencyForWord, which is asked about these very words moments later.
         glideUserWords = subtype.primaryLocale.localeTag() to personal
-        flogDebug { "glide vocabulary (${subtype.primaryLocale.localeTag()}): ${bundled.size} + ${personal.size} personal" }
-        if (personal.isEmpty()) return bundled.keys.toList()
-        return buildList(bundled.size + personal.size) {
-            addAll(bundled.keys)
-            for (word in personal.keys) if (!bundled.containsKey(word)) add(word)
+        flogDebug {
+            "glide vocabulary (${subtype.primaryLocale.localeTag()}): ${bundled.size} + " +
+                "${others.sumOf { it.size }} other languages + ${personal.size} personal"
+        }
+        if (personal.isEmpty() && others.isEmpty()) return bundled.keys.toList()
+        val words = LinkedHashSet<String>(bundled.keys)
+        for (data in others) words.addAll(data.keys)
+        words.addAll(personal.keys)
+        return words.toList()
+    }
+
+    /**
+     * Works out which keyboard language the coming glide is written in, from the words before the cursor —
+     * the same guess the strip follows ([mixedLanguageFor]), made with no typed word to go on.
+     */
+    override suspend fun prepareGlide(subtype: Subtype, content: EditorContent) {
+        val mixed = mixedLanguageFor(subtype, content.textBeforeSelection, word = "")
+        glideLanguages = mixed?.let {
+            GlideLanguages(
+                locale = subtype.primaryLocale.localeTag(),
+                guessed = wordDataFor(it.subtype),
+                others = it.others.map { other -> wordDataFor(other) },
+                handicap = it.handicap,
+            )
         }
     }
 
     override suspend fun getFrequencyForWord(subtype: Subtype, word: String): Double {
-        val bundled = wordDataFor(subtype)[word]
-        if (bundled != null) return bundled / 255.0
-        val (locale, personal) = glideUserWords ?: return 0.0
-        if (locale != subtype.primaryLocale.localeTag()) return 0.0
-        return (personal[word] ?: 0) / 255.0
+        val locale = subtype.primaryLocale.localeTag()
+        val personal = glideUserWords?.takeIf { it.first == locale }?.second?.get(word)
+        val languages = glideLanguages?.takeIf { it.locale == locale }
+        val frequency = if (languages != null) {
+            val bundled = LanguageGuess.glideFrequency(word, languages.guessed, languages.others, languages.handicap)
+            // The user's own words are theirs in every language they write: no handicap holds them back.
+            maxOf(bundled ?: 0, personal ?: 0)
+        } else {
+            wordDataFor(subtype)[word] ?: personal ?: 0
+        }
+        return frequency / 255.0
     }
 
     /**

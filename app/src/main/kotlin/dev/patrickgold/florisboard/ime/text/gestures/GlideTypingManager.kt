@@ -26,6 +26,9 @@ import dev.patrickgold.florisboard.subtypeManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.florisboard.lib.kotlin.collectLatestIn
@@ -55,6 +58,19 @@ class GlideTypingManager(context: Context) : GlideTypingGesture.Listener {
         // invalidateWordData is a no-op by design.
         prefs.dictionary.enableFlorisUserDictionary.asFlow().collectLatestIn(scope) { invalidateWordData() }
         prefs.dictionary.enableSystemUserDictionary.asFlow().collectLatestIn(scope) { invalidateWordData() }
+        // With multilingual typing on, glide reads every keyboard language's words (issue #190), so turning it
+        // on or off, or adding or removing a language while it is on, changes the vocabulary too. Changes
+        // only: the first values are what the first build reads anyway.
+        scope.launch {
+            prefs.suggestion.multilingualTyping.asFlow().drop(1).collect { invalidateWordData() }
+        }
+        scope.launch {
+            subtypeManager.subtypesFlow
+                .map { subtypes -> subtypes.mapTo(HashSet()) { it.primaryLocale.language } }
+                .distinctUntilChanged()
+                .drop(1)
+                .collect { if (prefs.suggestion.multilingualTyping.get()) invalidateWordData() }
+        }
     }
 
     override fun onGlideComplete(data: GlideTypingGesture.Detector.PointerData) {
@@ -117,6 +133,8 @@ class GlideTypingManager(context: Context) : GlideTypingGesture.Listener {
         }
 
         scope.launch(Dispatchers.Default) {
+            // Which of the keyboard languages the words before the cursor are in, for multilingual typing.
+            nlpManager.prepareGlide(subtypeManager.activeSubtype)
             val suggestions = glideTypingClassifier.getSuggestions(MAX_SUGGESTION_COUNT, true)
 
             withContext(Dispatchers.Main) {

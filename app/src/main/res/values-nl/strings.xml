@@ -1827,7 +1827,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="enum__auto_correct_strength__aggressive">Agressief</string>
     <string name="enum__auto_correct_strength__aggressive__description">Corrigeert ook woorden die verder afliggen — en vervangt af en toe een woord dat je bedoelde.</string>
     <string name="pref__suggestion__multilingual_typing__label">Meertalig typen</string>
-    <string name="pref__suggestion__multilingual_typing__summary">Woorden uit al je toetsenbordtalen accepteren</string>
+    <string name="pref__suggestion__multilingual_typing__summary">Suggesties en correcties volgen de toetsenbordtaal waarin je typt</string>
     <string name="pref__suggestion__next_word_prediction__label">Suggesties voor volgend woord</string>
     <string name="pref__suggestion__next_word_prediction__summary">Stelt waarschijnlijke volgende woorden voor zodra een woord af is</string>
     <string name="pref__suggestion__ignore_app_suggestion_block__label">Apps negeren die suggesties uitschakelen</string>
