@@ -126,6 +126,127 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Por defecto</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Predeterminado del sistema</string>
     <string name="settings__home__title" comment="Title of the Home screen">Bienvenido a {app_name}</string>
+    <string name="home__recent_title">Dictados recientes</string>
+    <string name="home__recent_see_all">Ver todo</string>
+    <string name="home__recent_copy">Copiar</string>
+    <string name="home__recent_failed">La transcripción falló. Grabación guardada.</string>
+    <string name="home__recent_retry">Reintentar</string>
+    <string name="home__transcribe_file">Transcribir un archivo</string>
+    <string name="home__ai_model">Modelo de IA</string>
+    <string name="home__stats_summary">ahorrado · {count} dictados</string>
+    <string name="settings__all__title">Ajustes</string>
+    <string name="dictionary_hub__title">Diccionario</string>
+    <string name="words__personal_dictionary">Diccionario personal</string>
+    <string name="mywords__subtitle">Nombres y términos que {app_name} siempre debe escribir bien.</string>
+    <string name="mywords__title">Mis palabras</string>
+    <string name="mywords__explanation">Una sola lista para todo. Cada palabra se escribe a tu manera cuando hablas y se sugiere cuando escribes.</string>
+    <string name="mywords__empty">Aún no hay nada. Añade un nombre, un producto o cualquier palabra que uses mucho.</string>
+    <string name="mywords__more">+ {count} más</string>
+    <string name="mywords__see_all">Editar lista</string>
+    <string name="mywords__add_hint">Añade una palabra o un nombre</string>
+    <string name="mywords__add">Añadir palabra</string>
+    <string name="mywords__usage">{count} de {limit} van a la IA de voz</string>
+    <string name="mywords__usage_full">{count} de {total} van a la IA de voz. Todas se usan al escribir.</string>
+    <string name="mywords__fixes">Correcciones</string>
+    <string name="mywords__find_replace">Buscar y reemplazar</string>
+    <string name="mywords__find_replace_none">Corrige las palabras que la IA de voz sigue escribiendo mal</string>
+    <string name="mywords__find_replace_one">1 regla: «{from}» → «{to}»</string>
+    <string name="mywords__find_replace_many">{count} reglas, p. ej. «{from}» → «{to}»</string>
+    <string name="mywords__learned">Aprendidas al escribir</string>
+    <string name="mywords__learned_summary">Recogidas automáticamente. Elimina las que quieras.</string>
+    <string name="mywords__phone_settings">Ajustes de diccionario y aprendizaje del teléfono</string>
+    <string name="mywords__edit_as_text">Editar como texto</string>
+    <string name="mywords__edit_as_text_summary">Pega, importa o exporta la lista completa</string>
+    <string name="mywords__remove">Eliminar {word}</string>
+    <string name="mywords__typing_only">Solo al escribir: no queda espacio para la IA de voz</string>
+    <string name="mywords__budget_over">Tu lista es más larga de lo que lee la IA de voz. Las primeras {fits} de tus {count} palabras van a ella; el resto se sigue sugiriendo al escribir.</string>
+    <string name="mywords__row_summary">{count} palabras, escritas a tu manera y sugeridas al escribir</string>
+    <string name="nav__home">Inicio</string>
+    <string name="nav__style">Estilo</string>
+    <string name="home__mic_title">Tu botón de micrófono</string>
+    <string name="home__mic_on">{charm} · flota en todas las apps</string>
+    <string name="home__mic_off">Sin activar</string>
+    <string name="home__mic_change_look">Cambiar aspecto</string>
+    <string name="home__turn_on">Activar</string>
+    <string name="home__keyboard_title">Teclado {app_name}</string>
+    <string name="home__keyboard_off">Sin activar</string>
+    <string name="home__keyboard_on">Activado · el micrófono está en el teclado</string>
+    <string name="firstrun__title">Dilo.\n{app_name} lo escribe.</string>
+    <string name="firstrun__subtitle">Dos pasos rápidos y ya puedes hablar.</string>
+    <string name="firstrun__step_look">Elige tu botón de micrófono</string>
+    <string name="firstrun__more_looks">Más</string>
+    <string name="firstrun__step_where">Elige dónde aparece</string>
+    <string name="firstrun__floating_title">Micrófono flotante</string>
+    <string name="firstrun__floating_summary">Junto a cualquier campo de texto, con el teclado que ya usas</string>
+    <string name="firstrun__keyboard_summary">Un teclado completo con tu micrófono integrado</string>
+    <string name="firstrun__done">Activado</string>
+    <string name="firstrun__history_hint">Tus dictados aparecerán aquí, listos para copiar.</string>
+    <string name="settings__dictation_group">Dictado</string>
+    <string name="settings__more_group">Teclado y app</string>
+    <string name="settings__floating_button_on">Activado · dónde y cuándo aparece</string>
+    <string name="settings__more_dictation">Más ajustes de dictado</string>
+    <string name="settings__more_dictation_summary">Idiomas, formato, reformulación, grabación</string>
+    <string name="style__subtitle">Haz tuyo el botón de micrófono.</string>
+    <string name="style__preview_message">¿Sigues viniendo esta noche?</string>
+    <string name="style__preview_caption">Escuchando en una app de chat</string>
+    <string name="style__preview_field">Mensaje</string>
+    <string name="style__charm_classic">Clásico</string>
+    <string name="style__charm_daisy">Margarita</string>
+    <string name="style__charm_butterfly">Mariposa</string>
+    <string name="style__charm_heart">Corazón</string>
+    <string name="style__charm_clover">Trébol</string>
+    <string name="style__charm_moon">Luna</string>
+    <string name="style__charm_sunflower">Girasol</string>
+    <string name="style__charm_blossom">Cerezo</string>
+    <string name="style__charm_on_air">On Air</string>
+    <string name="style__charm_gramophone">Gramófono</string>
+    <string name="style__charm_crooner">Crooner</string>
+    <string name="style__charm_mixtape">Casete</string>
+    <string name="style__charm_planet">Planeta</string>
+    <string name="style__charm_shooting_star">Estrella fugaz</string>
+    <string name="style__charm_disco_ball">Bola de discoteca</string>
+    <string name="style__charm_big_red_button">Gran botón rojo</string>
+    <string name="style__charm_pixel_heart">Corazón de 8 bits</string>
+    <string name="style__charm_neon">Neón</string>
+    <string name="style__charm_studio_mic">Micro de estudio</string>
+    <string name="style__collection_garden">Jardín</string>
+    <string name="style__collection_garden_tagline">Suave, luminoso, vivo</string>
+    <string name="style__collection_retro">Retro</string>
+    <string name="style__collection_retro_tagline">Cálido, analógico, con un guiño</string>
+    <string name="style__collection_night_sky">Cielo nocturno</string>
+    <string name="style__collection_night_sky_tagline">Tranquilo y soñador</string>
+    <string name="style__collection_arcade">Arcade</string>
+    <string name="style__collection_arcade_tagline">Enérgico y juguetón</string>
+    <string name="style__collection_simple">Sencillo</string>
+    <string name="style__collection_simple_tagline">El botón redondo de siempre</string>
+    <string name="style__move_bloom">Florece mientras escucha</string>
+    <string name="style__move_flutter">Aletea mientras escucha</string>
+    <string name="style__move_turn">Gira mientras escucha</string>
+    <string name="style__move_sway">Se balancea mientras escucha</string>
+    <string name="style__move_glow">Brilla mientras escucha</string>
+    <string name="style__move_wobble">Se tambalea mientras escucha</string>
+    <string name="style__move_pulse">Palpita mientras escucha</string>
+    <string name="style__move_spin">Gira sus bobinas mientras escucha</string>
+    <string name="style__move_tilt">Se inclina mientras escucha</string>
+    <string name="style__move_twinkle">Centellea mientras escucha</string>
+    <string name="style__move_press">Se hunde mientras escucha</string>
+    <string name="style__move_beat">Late mientras escucha</string>
+    <string name="style__move_flicker">Parpadea mientras escucha</string>
+    <string name="style__move_title">Moverse al escuchar</string>
+    <string name="style__move_off">Se queda quieto</string>
+    <string name="style__color_original">Colores originales</string>
+    <string name="style__color_fixed">{charm} mantiene sus propios colores.</string>
+    <string name="style__color">Color</string>
+    <string name="style__color_cloud">Nube</string>
+    <string name="style__color_blossom">Rosa</string>
+    <string name="style__color_lilac">Lila</string>
+    <string name="style__color_butter">Mantequilla</string>
+    <string name="style__color_mint">Menta</string>
+    <string name="style__color_sky">Cielo</string>
+    <string name="style__more_colors">Más colores</string>
+    <string name="style__motion">Mientras escucha</string>
+    <string name="style__button_off">El botón de micrófono flotante está desactivado, así que de momento solo lo verás aquí.</string>
+    <string name="style__look_summary">{charm} · cámbialo en la pestaña Estilo</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Buscar en los ajustes</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Buscar en los ajustes…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Búsquedas recientes</string>
@@ -629,7 +750,7 @@
     <string name="setup__select_ime__switch_keyboard_btn">Cambiar teclado</string>
     <string name="setup__grant_notification_permission__title">Permitir notificaciones de informes de errores</string>
     <string name="setup__grant_notification_permission__description">A partir de Android 13+, las aplicaciones deben pedir permiso para
-        enviar notificaciones. En Dictate, esto solo se utiliza para abrir una pantalla de informe de error en caso de error.
+        enviar notificaciones. En {app_name}, esto solo se utiliza para abrir una pantalla de informe de error en caso de error.
         Este permiso puede cambiarse en cualquier momento en los ajustes del sistema.
     </string>
     <string name="setup__grant_notification_permission__btn">Conceder permiso</string>
@@ -654,8 +775,8 @@
     <string name="backup_and_restore__back_up__files">Seleccionar que se respaldará</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Preferencias</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">Claves de API y contraseñas</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Este archivo contiene tus claves de API y tus contraseñas en texto plano, además de tu saldo de Dictate Cloud: quien lo reciba puede dictar a tu costa. No lo compartas, y si ya lo has hecho, cambia la clave en tu proveedor. Todo lo demás que esté marcado abajo va con él, incluido tu historial de transcripción y tu portapapeles.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Este archivo no contiene claves de API, contraseñas ni saldo de Dictate Cloud, así que puedes compartirlo, pero tampoco restaurará los tuyos. Todo lo demás que esté marcado abajo sigue incluido, también tu historial de transcripción y tu portapapeles.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Este archivo contiene tus claves de API y tus contraseñas en texto plano, además de tu saldo de Voice Mode Cloud: quien lo reciba puede dictar a tu costa. No lo compartas, y si ya lo has hecho, cambia la clave en tu proveedor. Todo lo demás que esté marcado abajo va con él, incluido tu historial de transcripción y tu portapapeles.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Este archivo no contiene claves de API, contraseñas ni saldo de Voice Mode Cloud, así que puedes compartirlo, pero tampoco restaurará los tuyos. Todo lo demás que esté marcado abajo sigue incluido, también tu historial de transcripción y tu portapapeles.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Este archivo no contiene claves de API ni contraseñas, pero sí todo lo que esté marcado abajo: tu historial de transcripción con las grabaciones conservadas, tu portapapeles, tus prompts y las palabras que el teclado ha aprendido de ti.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Extensiones del teclado</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Extensiones de corrección ortográfica / diccionarios</string>
@@ -672,7 +793,7 @@
     <string name="backup_and_restore__restore__metadata">Fichero de respaldo seleccionado</string>
     <string name="backup_and_restore__restore__metadata_warn_different_version">Este fichero de respaldo fue generado en una versión distinta de la actual, la cual usualmente es compatible. Tenga en cuenta que errores menores pueden suceder o que algunas preferencias no se hayan transferido apropiadamente debido a diferencias en las características.</string>
     <string name="backup_and_restore__restore__metadata_warn_different_vendor">Este fichero de respaldo fue generado por una aplicación de terceros que, por lo general, no es compatible. Se podría incurrir en pérdidas de datos, ¡restaure bajo su propio riesgo!</string>
-    <string name="backup_and_restore__restore__metadata_note_no_credentials">Esta copia de seguridad no contiene claves de API ni contraseñas. Todo lo demás se restaura. Al combinar se conservan las claves que ya están en este dispositivo; al sobrescribir se eliminan, incluido un código de recuperación de Dictate Cloud, que no se puede volver a escribir.</string>
+    <string name="backup_and_restore__restore__metadata_note_no_credentials">Esta copia de seguridad no contiene claves de API ni contraseñas. Todo lo demás se restaura. Al combinar se conservan las claves que ya están en este dispositivo; al sobrescribir se eliminan, incluido un código de recuperación de Voice Mode Cloud, que no se puede volver a escribir.</string>
     <string name="backup_and_restore__restore__metadata_error_invalid_metadata">Este fichero de respaldo contiene metadatos no válidos. O bien ha sido corrompido o erróneamente modificado. Restaurar desde este fichero no es posible. Por favor, seleccione otro.</string>
     <string name="backup_and_restore__restore__metadata_error_nothing_to_restore">Este fichero de respaldo no contiene ningún archivo para restaurar. Por favor, seleccione otro.</string>
     <string name="backup_and_restore__restore__mode">Modo de restauración</string>
@@ -681,18 +802,18 @@
     <string name="backup_and_restore__restore__success">¡Datos restaurados exitosamente!</string>
     <string name="backup_and_restore__restore__failure">Error al restaurar datos: {error_message}</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Informe de errores de Dictate</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">Lamentamos los inconvenientes, pero Dictate se ha cerrado inesperadamente por un error.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Si deseas reportar este fallo, primero comprueba si ya ha sido reportado en el Issue Tracker en GitHub.\nSi no, copie el log del error generado y abre un Issue. Usa la plantilla \"%s\" y rellenala con tu descripción, los pasos para reproducirlo, y pega el log generado al final. Esto ayudará a mejorar Dictate y hacerlo más estable para todo el mundo. ¡Gracias!</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Informe de errores de Voice Mode</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">Lamentamos los inconvenientes, pero Voice Mode se ha cerrado inesperadamente por un error.</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Si deseas reportar este fallo, primero comprueba si ya ha sido reportado en el Issue Tracker en GitHub.\nSi no, copie el log del error generado y abre un Issue. Usa la plantilla \"%s\" y rellenala con tu descripción, los pasos para reproducirlo, y pega el log generado al final. Esto ayudará a mejorar Voice Mode y hacerlo más estable para todo el mundo. ¡Gracias!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Copiar al portapapeles del sistema</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Copiado al portapapeles del sistema</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">No se puede copiar al portapapeles del sistema: Instancia del administrador de portapapeles no encontrada</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">Abrir issue tracker (github.com)</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Cerrar</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Informes de errores de Dictate</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate ha dejado de funcionar…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Informes de errores de Voice Mode</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode ha dejado de funcionar…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Toca para ver detalles</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Parece que Dictate ha dejado de funcionar repetidamente…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Parece que Voice Mode ha dejado de funcionar repetidamente…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Volviendo al teclado anterior para detener el bucle de cierre infinito. Toque para ver los detalles del error</string>
     <!-- Clipboard strings -->
     <string name="editing__back_to_keyboard">Volver al teclado</string>
@@ -877,7 +998,7 @@
     <string name="ext__addon_management_box__managing_placeholder">Gestionando {extensions}</string>
     <string name="ext__addon_management_box__addon_manager_info">Todas las tareas relacionadas con la importación, exportación, creación, personalización y eliminación de extensiones pueden ser manejadas a través del administrador de complementos centralizado.</string>
     <string name="ext__addon_management_box__go_to_page">Ir a {ext_home_title}</string>
-    <string name="ext__home__info">Puede descargar e instalar extensiones de la tienda Dictate Addons o importar cualquier archivo de extensión que haya descargado de internet.</string>
+    <string name="ext__home__info">Puede descargar e instalar extensiones de la tienda Voice Mode Addons o importar cualquier archivo de extensión que haya descargado de internet.</string>
     <string name="ext__home__visit_store">Visita la tienda de complementos</string>
     <string name="ext__home__manage_extensions">Administrar las extensiones instaladas</string>
     <string name="ext__list__view_details">Ver detalles</string>
@@ -1135,6 +1256,7 @@
     <string name="quick_action__ime_ui_mode_dictate">Dictate</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Toca para dictar, toca de nuevo para transcribir</string>
     <string name="quick_action__dictate_live_prompt">Instrucción en vivo</string>
+    <string name="dictate__live_prompt_chip">Pedir por voz</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Graba una instrucción hablada y envíala a la IA</string>
     <string name="quick_action__dictate_prompts">Prompts de IA</string>
     <string name="quick_action__dictate_prompts__tooltip">Abrir los prompts de reformulación con IA</string>
@@ -1145,10 +1267,10 @@
     <string name="about__feedback__summary">Envía un correo con preguntas, errores o ideas</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="about__feedback__subject">Dictate Feedback</string>
-    <string name="setup__provider__title">Elige cómo transcribe Dictate</string>
-    <string name="setup__provider__choose_intro">Dictate convierte tu voz en texto con un servicio de IA. A la mayoría le sirve una de estas dos formas, y si prefieres no usar ningún servicio en la nube, abajo tienes otras dos.</string>
+    <string name="setup__provider__title">Elige cómo transcribe {app_name}</string>
+    <string name="setup__provider__choose_intro">{app_name} convierte tu voz en texto con un servicio de IA. A la mayoría le sirve una de estas dos formas, y si prefieres no usar ningún servicio en la nube, abajo tienes otras dos.</string>
     <string name="setup__provider__choice_cloud_title">Comprar saldo en la app</string>
-    <string name="setup__provider__choice_cloud_body">Dictate Cloud: sin cuenta en ningún sitio, sin clave API. Compras minutos de dictado a través de Google Play y nunca caducan. La vía cómoda, y algo más cara que acudir directamente a un proveedor.</string>
+    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: sin cuenta en ningún sitio, sin clave API. Compras minutos de dictado a través de Google Play y nunca caducan. La vía cómoda, y algo más cara que acudir directamente a un proveedor.</string>
     <string name="setup__provider__choice_cloud_btn">Ver paquetes de saldo</string>
     <string name="setup__provider__choice_own_title">Usar tu propio proveedor de IA</string>
     <string name="setup__provider__choice_own_body">Crea una clave con el proveedor que prefieras: Groq es gratuito para el dictado diario. Conservas tu propia cuenta y pagas directamente al proveedor a sus precios. Tarda unos dos minutos.</string>
@@ -1158,15 +1280,15 @@
     <string name="setup__provider__choice_local_title">En tu dispositivo, sin conexión</string>
     <string name="setup__provider__choice_local_body">Descarga un modelo de voz una sola vez. Sin cuenta, sin costes y ningún audio sale de tu teléfono.</string>
     <string name="setup__provider__choice_server_title">Tu propio servidor</string>
-    <string name="setup__provider__choice_server_body">Apunta Dictate a un servidor de voz que gestiones tú mismo, o a cualquier endpoint compatible con OpenAI.</string>
+    <string name="setup__provider__choice_server_body">Apunta {app_name} a un servidor de voz que gestiones tú mismo, o a cualquier endpoint compatible con OpenAI.</string>
     <string name="setup__provider__local_intro">El reconocimiento de voz se ejecuta entonces en tu teléfono: no se envía nada a ninguna parte y funciona sin conexión. Elige ahora un modelo para descargar; luego puedes añadir o cambiar modelos.</string>
     <string name="setup__provider__local_recommended">Recomendado para tu idioma</string>
     <string name="setup__provider__local_bigger">Más preciso, pero una descarga mucho mayor</string>
     <string name="setup__provider__local_download_btn">Descargar modelo</string>
     <string name="setup__provider__local_use_btn">Usar este modelo</string>
     <string name="setup__provider__local_all_models">Ver todos los modelos</string>
-    <string name="setup__provider__intro">Dictate convierte tu voz en texto con la ayuda de un servicio de IA en línea. Para usarlo, necesitas tu propia clave personal para ese servicio.</string>
-    <string name="setup__provider__what_is_key">Una clave de API es como una contraseña personal que permite a Dictate usar el servicio por ti. Crear una es gratis y tarda unos dos minutos.</string>
+    <string name="setup__provider__intro">Voice Mode convierte tu voz en texto con la ayuda de un servicio de IA en línea. Para usarlo, necesitas tu propia clave personal para ese servicio.</string>
+    <string name="setup__provider__what_is_key">Una clave de API es como una contraseña personal que permite a {app_name} usar el servicio por ti. Crear una es gratis y tarda unos dos minutos.</string>
     <string name="setup__provider__recommended">Recomendamos <b>Groq</b>: es rápido y gratuito para el dictado diario.</string>
     <string name="setup__provider__steps_groq">1. Toca el botón de abajo para abrir Groq.\n2. Inicia sesión con Google o tu correo electrónico.\n3. Toca «Create API Key», ponle cualquier nombre y confirma.\n4. Copia la clave (empieza por «gsk_»).\n5. Vuelve aquí y toca «Pegar clave de API» abajo.</string>
     <string name="setup__provider__steps_generic">1. Toca el botón de abajo para abrir {provider}.\n2. Crea una cuenta si aún no tienes una.\n3. Crea una nueva clave de API y cópiala.\n4. Vuelve aquí y toca «Pegar clave de API» abajo.</string>
@@ -1180,7 +1302,7 @@
     <string name="setup__provider__skip_btn">Configurar más tarde</string>
     <string name="setup__provider__other_provider">Usar otro proveedor de IA</string>
     <string name="setup__provider__other_provider_hint">Avanzado: elige otro servicio en lugar de Groq. Necesitarás una clave de API de ese proveedor.</string>
-    <string name="setup__finish_up__add_key_hint">Consejo: aún no has añadido una clave de IA. Añade una cuando quieras en Ajustes → Dictate → Proveedores de IA para empezar a dictar.</string>
+    <string name="setup__finish_up__add_key_hint">Consejo: aún no has añadido una clave de IA. Añade una cuando quieras en Ajustes → {app_name} → Proveedores de IA para empezar a dictar.</string>
     <string name="crash_dialog__bug_report_template">Informe de fallo</string>
     <string name="enum__swipe_action__toggle_compact_layout">Alternar diseño compacto</string>
     <string name="unit__hours__symbol">{v} h</string>
@@ -1190,9 +1312,9 @@
     <string name="unit__percent__symbol">{v} %</string>
     <string name="unit__display_pixel__symbol">{v} dp</string>
     <string name="unit__display_pixel_per_seconds__symbol">{v} dp/s</string>
-    <string name="dictate__accessibility_service_label">Botón flotante de Dictate</string>
+    <string name="dictate__accessibility_service_label">Botón flotante de Voice Mode</string>
     <string name="dictate__accessibility_service_summary">Muestra un botón flotante para dictar en cualquier campo de texto.</string>
-    <string name="dictate__accessibility_service_description">Dictate usa este servicio para el botón de dictado flotante. Cuando está activado, detecta cuándo un campo de texto tiene el foco en cualquier app — para que el botón pueda aparecer — e inserta tu voz transcrita en ese campo. Dictate solo lee el campo enfocado para colocar tu texto en el cursor; no recopila, almacena ni comparte ningún otro contenido de la pantalla.</string>
+    <string name="dictate__accessibility_service_description">Voice Mode usa este servicio para el botón de dictado flotante. Cuando está activado, detecta cuándo un campo de texto tiene el foco en cualquier app — para que el botón pueda aparecer — e inserta tu voz transcrita en ese campo. Voice Mode solo lee el campo enfocado para colocar tu texto en el cursor; no recopila, almacena ni comparte ningún otro contenido de la pantalla.</string>
     <string name="dictate__overlay_notification_channel">Botón de dictado flotante</string>
     <string name="dictate__overlay_notification_recording">Grabando — toca el botón flotante para transcribir</string>
     <string name="dictate__overlay_notification_working">Transcribiendo…</string>
@@ -1204,14 +1326,14 @@
     <string name="dictate__floating_button_service_enabled">Activado · toca para abrir los ajustes del sistema</string>
     <string name="dictate__floating_button_service_disabled">Aún no activado · toca para configurar</string>
     <string name="dictate__floating_button_disclosure_title">Activar el botón flotante</string>
-    <string name="dictate__floating_button_disclosure_message">Para mostrar el botón flotante, Dictate necesita el servicio de accesibilidad. Detecta cuándo un campo de texto tiene el foco en cualquier app — para que el botón pueda aparecer — e inserta tu voz transcrita en ese campo. Dictate solo lee el campo enfocado para colocar tu texto; no recopila, almacena ni comparte ningún otro contenido de la pantalla.\n\nEn la siguiente pantalla, busca «Botón flotante de Dictate» y actívalo.</string>
+    <string name="dictate__floating_button_disclosure_message">Para mostrar el botón flotante, {app_name} necesita el servicio de accesibilidad. Detecta cuándo un campo de texto tiene el foco en cualquier app — para que el botón pueda aparecer — e inserta tu voz transcrita en ese campo. {app_name} solo lee el campo enfocado para colocar tu texto; no recopila, almacena ni comparte ningún otro contenido de la pantalla.\n\nEn la siguiente pantalla, busca «Botón flotante de {app_name}» y actívalo.</string>
     <string name="dictate__floating_button_disclosure_continue">Abrir ajustes</string>
     <string name="dictate__floating_button_mic_title">Acceso al micrófono</string>
     <string name="dictate__floating_button_mic_summary">Necesario para grabar tu voz · toca para conceder</string>
     <string name="dictate__floating_button_show_when_title">Cuándo mostrarlo</string>
     <string name="dictate__floating_button_show_when_field">En cuanto se selecciona un campo de texto</string>
     <string name="dictate__floating_button_show_when_keyboard">Solo con el teclado abierto</string>
-    <string name="dictate__floating_button_show_when_dictate_keyboard">También con el teclado Dictate</string>
+    <string name="dictate__floating_button_show_when_dictate_keyboard">También con el teclado {app_name}</string>
     <string name="dictate__action_continue_recording">Continuar grabación</string>
     <string name="dictate__a11y_mic_hold_local">Transcribir en el dispositivo</string>
     <string name="smartbar__a11y_show_actions">Mostrar acciones</string>
@@ -1242,7 +1364,7 @@
     <string name="dictate__floating_button_apps_scope_all">Todas las aplicaciones</string>
     <string name="dictate__floating_button_apps_scope_only">Solo las aplicaciones de abajo</string>
     <string name="dictate__floating_button_apps_scope_except">Todas menos las aplicaciones de abajo</string>
-    <string name="dictate__floating_button_apps_note">El botón nunca se dibuja sobre una aplicación que dejes fuera, y Dictate no lee sus campos de texto. Una aplicación que rechaza los servicios de accesibilidad en general seguirá viendo que el servicio está activado.</string>
+    <string name="dictate__floating_button_apps_note">El botón nunca se dibuja sobre una aplicación que dejes fuera, y {app_name} no lee sus campos de texto. Una aplicación que rechaza los servicios de accesibilidad en general seguirá viendo que el servicio está activado.</string>
     <string name="dictate__floating_button_apps_list_title">Aplicaciones</string>
     <string name="dictate__floating_button_apps_search">Buscar aplicaciones</string>
     <string name="dictate__floating_button_apps_none">No se encontró ninguna aplicación para «{search_term}»</string>
@@ -1250,7 +1372,7 @@
     <string name="dictate__floating_button_haptic_summary_off">Sin vibración al tocar.</string>
     <string name="dictate__floating_button_haptic_summary_on">Una breve vibración al tocar el botón.</string>
     <string name="dictate__floating_button_haptic_title">Vibrar al tocar</string>
-    <string name="dictate__floating_button_no_prompts">Aún no hay prompts de reformulación: añade algunos en los ajustes de Dictate.</string>
+    <string name="dictate__floating_button_no_prompts">Aún no hay prompts de reformulación: añade algunos en los ajustes de Voice Mode.</string>
     <string name="dictate__floating_button_remember_position_summary_off">Una posición compartida para todas las apps.</string>
     <string name="dictate__floating_button_remember_position_summary_on">Cada app conserva su propia posición del botón.</string>
     <string name="dictate__floating_button_remember_position_title">Recordar posición por app</string>
@@ -1265,8 +1387,10 @@
     <string name="dictate__providers_summary_both">Transcripción: {transcription} · Reformulación: {rewording}</string>
     <string name="dictate__remember_last_dictation_summary">Conserva tu último dictado para que el botón flotante pueda deshacerlo y el diseño clásico pueda volver a insertarlo.</string>
     <string name="dictate__remember_last_dictation_title">Recordar último dictado</string>
-    <string name="changelog__v4_2_0">• NUEVO: Botón de dictado flotante — dicta directamente en cualquier app, incluso con otro teclado activo. Elige entre tres estilos (Píldora, Anillo, Esfera), ve una onda en vivo mientras hablas, arrástralo a cualquier sitio con ajuste a los bordes, define su color y tamaño, y mantén pulsado para reformular. Actívalo en Ajustes ▸ Dictate ▸ Botón flotante.\n• NUEVO: Google Gemini — usa tu propia clave de API de AI Studio para la transcripción y la reformulación.\n• Las indicaciones ahora aparecen de forma predeterminada en una fila fija sobre las teclas.\n• Inserción de texto más fiable entre apps, incluidos navegadores y otros teclados.</string>
+    <string name="changelog__v4_2_0">• NUEVO: Botón de dictado flotante — dicta directamente en cualquier app, incluso con otro teclado activo. Elige entre tres estilos (Píldora, Anillo, Esfera), ve una onda en vivo mientras hablas, arrástralo a cualquier sitio con ajuste a los bordes, define su color y tamaño, y mantén pulsado para reformular. Actívalo en Ajustes ▸ Voice Mode ▸ Botón flotante.\n• NUEVO: Google Gemini — usa tu propia clave de API de AI Studio para la transcripción y la reformulación.\n• Las indicaciones ahora aparecen de forma predeterminada en una fila fija sobre las teclas.\n• Inserción de texto más fiable entre apps, incluidos navegadores y otros teclados.</string>
     <string name="dictate__promo_floating_button_message">Nuevo: dicta en cualquier app</string>
+    <string name="dictate__promo_keep_button_message">¿Mantener aquí también el micrófono flotante?</string>
+    <string name="dictate__promo_keep_button_action">Mantener</string>
     <string name="dictate__promo_floating_button_action">Probar</string>
     <string name="setup__floating_button__btn">Configurar el botón flotante</string>
     <string name="setup__nav_back">Atrás</string>
@@ -1278,12 +1402,14 @@
     <string name="setup__floating_button__skip_btn">Omitir — usaré el teclado</string>
     <string name="dictate__floating_button_badge_new">Nuevo</string>
     <string name="dictate__panel_title">Prompts de IA</string>
-    <string name="dictate__panel_no_prompts">Aún no hay prompts. Añade algunos en los ajustes de Dictate, en «Reformulación».</string>
+    <string name="dictate__panel_no_prompts">Aún no hay prompts. Añade algunos en los ajustes de {app_name}, en «Reformulación».</string>
     <string name="dictate__prompts_layout_title">Diseño de prompts</string>
     <string name="dictate__prompts_layout_panel_label">Panel propio</string>
     <string name="dictate__prompts_layout_panel_description">Abrir los prompts en su propio panel con el botón de la varita mágica.</string>
     <string name="dictate__prompts_layout_row_label">Fila siempre visible</string>
     <string name="dictate__prompts_layout_row_description">Fija los prompts en una fila adicional sobre el teclado.</string>
+    <string name="dictate__prompts_layout_when_useful_label">Cuando sea útil</string>
+    <string name="dictate__prompts_layout_when_useful_description">Muestra los prompts en la barra superior justo después de dictar o cuando hay texto seleccionado.</string>
     <string name="dictate__status_idle">Toca para dictar</string>
     <string name="dictate__status_recording">Grabando: toca para detener</string>
     <string name="dictate__status_transcribing">Transcribiendo…</string>
@@ -1296,8 +1422,8 @@
     <string name="dictate__voice_input_transcribing">Transcribiendo…</string>
     <string name="dictate__voice_input_stop">Listo</string>
     <string name="dictate__voice_input_hint">Toca para enviar</string>
-    <string name="dictate__voice_ime_label">Entrada de voz de Dictate</string>
-    <string name="dictate__error_no_api_key">No hay clave de API: configúrala en los ajustes de Dictate.</string>
+    <string name="dictate__voice_ime_label">Entrada de voz de Voice Mode</string>
+    <string name="dictate__error_no_api_key">No hay clave de API: configúrala en los ajustes de Voice Mode.</string>
     <string name="dictate__error_transcription_failed">Error en la transcripción.</string>
     <string name="dictate__error_unknown">Error desconocido durante la transcripción.</string>
     <string name="dictate__error_rewording_failed">Error en la reformulación.</string>
@@ -1329,13 +1455,13 @@
     <string name="dictate__action_dismiss">Descartar</string>
     <string name="dictate__action_yes">Sí</string>
     <string name="dictate__action_no">No, gracias</string>
-    <string name="dictate__promo_rate_message">¿Te gusta Dictate?</string>
-    <string name="dictate__promo_donate_message">¿Apoyar a Dictate?</string>
+    <string name="dictate__promo_rate_message">¿Te gusta Voice Mode?</string>
+    <string name="dictate__promo_donate_message">¿Apoyar a Voice Mode?</string>
     <string name="dictate__promo_rate_action">Valorar</string>
     <string name="dictate__promo_donate_action">Donar</string>
-    <string name="dictate__promo_changelog_message">Dictate se ha actualizado</string>
+    <string name="dictate__promo_changelog_message">Voice Mode se ha actualizado</string>
     <string name="dictate__promo_changelog_action">Detalles</string>
-    <string name="dictate__title">Dictate</string>
+    <string name="dictate__title">Voice Mode</string>
     <string name="dictate__provider_title">Proveedor de transcripción</string>
     <string name="dictate__provider__openai">OpenAI</string>
     <string name="dictate__provider__groq">Groq</string>
@@ -1563,7 +1689,7 @@
     <string name="dictate__command_word_summary">Los dictados que empiezan por «{word}» se ejecutan como instrucción en vivo</string>
     <string name="dictate__command_word_placeholder">Jarvis</string>
     <string name="dictate__command_word_info_title">Acerca de la palabra de comando</string>
-    <string name="dictate__command_word_info_description">Normalmente Dictate escribe lo que dices. Si defines una palabra de comando, un dictado que empiece por ella se convierte en una instrucción: la palabra se elimina y el resto se envía a la IA, junto con el texto seleccionado si lo hay.\n\n«Jarvis, hazlo más formal» reescribe la selección. «Jarvis, cuál es la capital de Japón» escribe la respuesta en el campo. Es el botón de instrucción en vivo, al que llegas diciendo su nombre en lugar de tocarlo.\n\nLa palabra solo cuenta al principio del dictado y solo como palabra completa, así que elige algo con lo que rara vez empieces una frase.</string>
+    <string name="dictate__command_word_info_description">Normalmente {app_name} escribe lo que dices. Si defines una palabra de comando, un dictado que empiece por ella se convierte en una instrucción: la palabra se elimina y el resto se envía a la IA, junto con el texto seleccionado si lo hay.\n\n«Jarvis, hazlo más formal» reescribe la selección. «Jarvis, cuál es la capital de Japón» escribe la respuesta en el campo. Es el botón de instrucción en vivo, al que llegas diciendo su nombre en lugar de tocarlo.\n\nLa palabra solo cuenta al principio del dictado y solo como palabra completa, así que elige algo con lo que rara vez empieces una frase.</string>
     <string name="dictate__auto_formatting_title">Formato automático</string>
     <string name="dictate__auto_formatting_summary">Convertir indicaciones de formato habladas en Markdown (títulos, listas, …)</string>
     <string name="dictate__system_prompt_title">Instrucción de reformulación</string>
@@ -1674,18 +1800,18 @@
     <string name="dictate__import_not_audio">Este archivo no contiene audio.</string>
     <string name="dictate__import_only_first">Solo se transcribe el primer archivo: se omitieron {count} más.</string>
     <string name="dictate__setup_description">Configura tu proveedor de IA y la clave de API para empezar a dictar con el micrófono.</string>
-    <string name="dictate__setup_configure_btn">Configurar Dictate</string>
+    <string name="dictate__setup_configure_btn">Configurar Voice Mode</string>
     <string name="setup__grant_mic_permission__title">Acceso al micrófono</string>
-    <string name="setup__grant_mic_permission__description">Dictate necesita acceso al micrófono para grabar tu voz y transcribirla.</string>
+    <string name="setup__grant_mic_permission__description">{app_name} necesita acceso al micrófono para grabar tu voz y transcribirla.</string>
     <string name="setup__grant_mic_permission__btn">Conceder permiso de micrófono</string>
     <string name="changelog__dialog_title">Novedades</string>
     <string name="changelog__view_all">Ver todos los cambios</string>
-    <string name="changelog__intro">Dictate se ha actualizado. Esto es lo nuevo:</string>
+    <string name="changelog__intro">{app_name} se ha actualizado. Esto es lo nuevo:</string>
     <string name="changelog__version_header">Versión {version}</string>
-    <string name="changelog__donate">¿Te gusta Dictate? Toca aquí para apoyar el desarrollo ♥</string>
-    <string name="changelog__current">• Teclado completamente nuevo: Dictate ahora se ofrece como un teclado de diseño completo y multilingüe con una tecla de micrófono dedicada que abre el panel de voz.\n• Usa tu propia IA: elige cualquier proveedor compatible con OpenAI e introduce tu clave de API en Ajustes → Dictate.\n• Formato y reformulación inteligentes con el modelo que elijas.\n• Tus ajustes de la app Dictate anterior se importan automáticamente.</string>
+    <string name="changelog__donate">¿Te gusta {app_name}? Toca aquí para apoyar el desarrollo ♥</string>
+    <string name="changelog__current">• Teclado completamente nuevo: Voice Mode ahora se ofrece como un teclado de diseño completo y multilingüe con una tecla de micrófono dedicada que abre el panel de voz.\n• Usa tu propia IA: elige cualquier proveedor compatible con OpenAI e introduce tu clave de API en Ajustes → Voice Mode.\n• Formato y reformulación inteligentes con el modelo que elijas.\n• Tus ajustes de la app Dictate anterior se importan automáticamente.</string>
     <string name="changelog__v4_1_0">• Nuevo: busca emojis directamente desde el teclado.\n• Nuevo proveedor de transcripción: Soniox.\n• Vuelve a insertar tu último dictado y recupera las grabaciones interrumpidas al cerrar el teclado.\n• La barra de prompts ahora se actualiza en vivo: mantén pulsado un prompt para editarlo.\n• La pantalla de proveedores de IA ahora muestra tanto el proveedor de transcripción como el de reformulación activos.\n• Botón de grabación más grande y fácil de pulsar.\n• Correcciones: un aviso de apoyo podía quedarse bloqueado y tapar la barra en algunos idiomas; la copia de seguridad ya no falla con prompts, teclado o tema seleccionados; las claves de API guardadas se conservan al actualizar.</string>
-    <string name="changelog__v4_1_1">• Corrección: el color de acento podía verse verde en algunos dispositivos; las teclas y los botones vuelven al azul de Dictate.</string>
+    <string name="changelog__v4_1_1">• Corrección: el color de acento podía verse verde en algunos dispositivos; las teclas y los botones vuelven al azul de Voice Mode.</string>
     <!-- Dictate on-device (offline) models -->
     <string name="dictate__local_models_header">Funciona en tu dispositivo — no se envía ningún audio. Descarga un modelo para empezar.</string>
     <string name="dictate__local_models_live_header">En directo (streaming)</string>
@@ -1722,7 +1848,7 @@
     <string name="dictate__floating_button_copy_to_clipboard_summary_on">Cada dictado también se copia al portapapeles, para que puedas pegarlo manualmente si la inserción falla. Puede mostrar un aviso del portapapeles en algunos teléfonos.</string>
     <string name="dictate__floating_button_copy_to_clipboard_summary_off">Los dictados solo se insertan, no se copian al portapapeles.</string>
     <string name="dictate__floating_button_menu_group">Menú al mantener pulsado</string>
-    <string name="dictate__floating_button_menu_settings_title">Ajustes de Dictate</string>
+    <string name="dictate__floating_button_menu_settings_title">Ajustes de Voice Mode</string>
     <string name="dictate__floating_button_undo_summary_off">No se muestra ningún botón para deshacer.</string>
     <string name="dictate__floating_button_undo_summary_on">Tras un dictado, aparece un botón para deshacer junto al botón que permite eliminar el texto insertado con un solo toque.</string>
     <string name="dictate__floating_button_undo_title">Botón para deshacer</string>
@@ -1771,7 +1897,7 @@
     <string name="dictate__providers_rewording_single_call_note">Ahora mismo no se usa: tu proveedor de transcripción hace la reformulación en su llamada única.</string>
     <string name="dictate__wear_title">Wear OS</string>
     <string name="dictate__wear_summary">Opciones para dictar desde un reloj vinculado</string>
-    <string name="dictate__wear_install_title">Instala Dictate en tu reloj</string>
+    <string name="dictate__wear_install_title">Instala Voice Mode en tu reloj</string>
     <string name="dictate__wear_install_summary">Abre la Play Store — en un reloj Wear OS 3+ vinculado, elige tu reloj como destino.</string>
     <string name="dictate__wear_auto_rewording_title">Reformular automáticamente los dictados del reloj</string>
     <string name="dictate__wear_auto_rewording_summary">Reformula los dictados hechos desde el reloj, como en el teléfono.</string>
@@ -1779,7 +1905,7 @@
     <string name="quick_action__system_prev_input_method__tooltip">Volver al teclado anterior</string>
     <string name="quick_action__system_input_method_picker">Elegir teclado</string>
     <string name="quick_action__system_input_method_picker__tooltip">Abrir el selector de teclado del sistema</string>
-    <string name="changelog__v4_3_0">• NUEVO: Transcripción en el dispositivo — dicta totalmente sin conexión. Sin internet y nada sale de tu teléfono. Descarga un modelo de voz una vez en Ajustes ▸ Dictate ▸ Proveedores. 📴\n• NUEVO: Teclado para Wear OS — dicta directamente desde tu reloj, a través del teléfono o por su cuenta. ⌚\n• NUEVO: Reglas de buscar y reemplazar — corrige automáticamente palabras, nombres o frases recurrentes en cada transcripción. Configúralas en Ajustes ▸ Dictate ▸ Asignaciones personalizadas. 🔁\n• NUEVO: Modo de llamada única — un solo modelo de IA capaz transcribe y da formato en una sola petición, más rápido y a menudo más barato. Actívalo por proveedor. ⚡\n• NUEVO: Acciones de la Smartbar para volver al teclado anterior o abrir el selector de teclado del sistema. ⌨️\n• El color de acento del teclado ahora sigue el color que eliges en Ajustes ▸ Tema. 🎨\n• Se añadió un botón de deshacer opcional al botón de dictado flotante. ↩️\n• Varias correcciones y mejoras de estabilidad. 🛠️</string>
+    <string name="changelog__v4_3_0">• NUEVO: Transcripción en el dispositivo — dicta totalmente sin conexión. Sin internet y nada sale de tu teléfono. Descarga un modelo de voz una vez en Ajustes ▸ Voice Mode ▸ Proveedores. 📴\n• NUEVO: Teclado para Wear OS — dicta directamente desde tu reloj, a través del teléfono o por su cuenta. ⌚\n• NUEVO: Reglas de buscar y reemplazar — corrige automáticamente palabras, nombres o frases recurrentes en cada transcripción. Configúralas en Ajustes ▸ Voice Mode ▸ Asignaciones personalizadas. 🔁\n• NUEVO: Modo de llamada única — un solo modelo de IA capaz transcribe y da formato en una sola petición, más rápido y a menudo más barato. Actívalo por proveedor. ⚡\n• NUEVO: Acciones de la Smartbar para volver al teclado anterior o abrir el selector de teclado del sistema. ⌨️\n• El color de acento del teclado ahora sigue el color que eliges en Ajustes ▸ Tema. 🎨\n• Se añadió un botón de deshacer opcional al botón de dictado flotante. ↩️\n• Varias correcciones y mejoras de estabilidad. 🛠️</string>
     <string name="dictate__audio_source_title">Fuente de entrada de audio</string>
     <string name="dictate__audio_source_default">Micrófono predeterminado</string>
     <string name="dictate__audio_source_default_summary">Micrófono estándar, con el procesamiento de audio integrado del teléfono</string>
@@ -1858,15 +1984,15 @@
     <string name="dictate__stats_reset_confirm_title">¿Restablecer estadísticas?</string>
     <string name="dictate__stats_reset_confirm_msg">Esto borra permanentemente todas tus estadísticas de dictado.</string>
     <string name="dictate__stats_share">Compartir</string>
-    <string name="dictate__stats_share_text">He ahorrado %1$s con Dictate — %2$s dictados, %3$s palabras. 🎤</string>
+    <string name="dictate__stats_share_text">He ahorrado %1$s con Voice Mode — %2$s dictados, %3$s palabras. 🎤</string>
     <string name="dictate__stats_view">Ver estadísticas</string>
     <string name="dictate__stats_milestones_title">Celebración de hitos</string>
     <string name="dictate__stats_milestones_summary">Celebra una vez cuando alcances un hito de tiempo ahorrado o de dictados</string>
     <string name="dictate__stats_milestone_title">Hito alcanzado 🎉</string>
-    <string name="dictate__stats_milestone_time">Has ahorrado %s con Dictate — ¡bien hecho!</string>
-    <string name="dictate__stats_milestone_count">¡Has alcanzado %s dictados con Dictate!</string>
-    <string name="dictate__promo_milestone_time">¡%s ahorrado con Dictate! 🎉</string>
-    <string name="dictate__promo_milestone_count">¡%s dictados con Dictate! 🎉</string>
+    <string name="dictate__stats_milestone_time">Has ahorrado %s con Voice Mode — ¡bien hecho!</string>
+    <string name="dictate__stats_milestone_count">¡Has alcanzado %s dictados con Voice Mode!</string>
+    <string name="dictate__promo_milestone_time">¡%s ahorrado con Voice Mode! 🎉</string>
+    <string name="dictate__promo_milestone_count">¡%s dictados con Voice Mode! 🎉</string>
     <string name="dictate__promo_milestone_action">Estadísticas</string>
     <string name="dictate__reasoning_effort_title">Esfuerzo de razonamiento</string>
     <string name="dictate__reasoning_effort_off">Desactivado</string>
@@ -1941,14 +2067,14 @@
     <string name="apptour__badge_highlight">★ Destacado</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">Un recorrido rápido</string>
-    <string name="apptour__intro_body">Esto es lo nuevo en Dictate 5.0 — lo más destacado en menos de un minuto. Toca «Probar» en cualquier página para ir directo a ese ajuste.</string>
+    <string name="apptour__intro_body">Esto es lo nuevo en {app_name} 5.0 — lo más destacado en menos de un minuto. Toca «Probar» en cualquier página para ir directo a ese ajuste.</string>
     <string name="apptour__glide_eyebrow">Teclado</string>
     <string name="apptour__glide_title">Desliza para escribir</string>
-    <string name="apptour__glide_body">Desliza el dedo de tecla en tecla y Dictate convierte el recorrido en palabras completas. Cada idioma trae su propio diccionario que se descarga cuando lo necesitas — actívalo en Gestos.</string>
+    <string name="apptour__glide_body">Desliza el dedo de tecla en tecla y {app_name} convierte el recorrido en palabras completas. Cada idioma trae su propio diccionario que se descarga cuando lo necesitas — actívalo en Gestos.</string>
     <string name="apptour__glide_cta">Configurar escritura deslizante</string>
     <string name="apptour__suggestions_eyebrow">Teclado</string>
     <string name="apptour__suggestions_title">Autocorrección y sugerencias</string>
-    <string name="apptour__suggestions_body">Mientras escribes, Dictate sugiere palabras adecuadas y corrige erratas discretamente. La palabra que realmente escribiste permanece en la barra de sugerencias, así que un solo toque deshace cualquier corrección.</string>
+    <string name="apptour__suggestions_body">Mientras escribes, {app_name} sugiere palabras adecuadas y corrige erratas discretamente. La palabra que realmente escribiste permanece en la barra de sugerencias, así que un solo toque deshace cualquier corrección.</string>
     <string name="apptour__suggestions_cta">Ajustar sugerencias</string>
     <string name="apptour__realtime_eyebrow">Transcripción</string>
     <string name="apptour__realtime_title">Transcripción en tiempo real</string>
@@ -1981,16 +2107,16 @@
     <string name="apptour51__continue_to">Continuar a {version}</string>
     <string name="apptour51__intro_eyebrow">Versión 5.1</string>
     <string name="apptour51__intro_title">Novedades de 5.1</string>
-    <string name="apptour51__intro_body">Dictate ha crecido mucho desde la 5.0. Estos son los aspectos destacados de la 5.1 — toca «Probar» en cualquier página para ir directo a esa función.</string>
+    <string name="apptour51__intro_body">{app_name} ha crecido mucho desde la 5.0. Estos son los aspectos destacados de la 5.1 — toca «Probar» en cualquier página para ir directo a esa función.</string>
     <string name="apptour51__history_eyebrow">Transcripción</string>
     <string name="apptour51__history_title">Historial de transcripciones</string>
     <string name="apptour51__history_body">Cada dictado se guarda ahora en un historial con búsqueda. Vuelve a insertar cualquier transcripción anterior con un toque, reproduce el audio original, vuelve a transcribirlo o fija las que más reutilizas. Una pantalla dedicada te permite gestionarlo todo, incluido cuánto tiempo se conservan las grabaciones de audio.</string>
     <string name="apptour51__longform_eyebrow">Transcripción</string>
     <string name="apptour51__longform_title">Dictado de formato largo</string>
-    <string name="apptour51__longform_body">Habla todo el tiempo que quieras. Las grabaciones largas se dividen automáticamente en segmentos y se transcriben en segundo plano mientras sigues hablando, así obtienes tu texto antes y nunca chocas con un límite de longitud. Corta un segmento tú mismo, o deja que Dictate detecte las pausas naturales.</string>
+    <string name="apptour51__longform_body">Habla todo el tiempo que quieras. Las grabaciones largas se dividen automáticamente en segmentos y se transcriben en segundo plano mientras sigues hablando, así obtienes tu texto antes y nunca chocas con un límite de longitud. Corta un segmento tú mismo, o deja que {app_name} detecte las pausas naturales.</string>
     <string name="apptour51__gif_eyebrow">Teclado</string>
     <string name="apptour51__gif_title">Búsqueda de GIF</string>
-    <string name="apptour51__gif_body">Encuentra y envía GIF sin salir nunca de Dictate. Abre el panel de GIF, busca lo que quieras y colócalo directo en tu chat — un selector rápido al estilo Gboard, integrado de fábrica.</string>
+    <string name="apptour51__gif_body">Encuentra y envía GIF sin salir nunca de {app_name}. Abre el panel de GIF, busca lo que quieras y colócalo directo en tu chat — un selector rápido al estilo Gboard, integrado de fábrica.</string>
     <string name="apptour51__classic_eyebrow">Diseño clásico</string>
     <string name="apptour51__classic_title">Diseño clásico, renovado</string>
     <string name="apptour51__classic_body">La pantalla de dictado sin teclado recibió una gran mejora: una fila de acciones que organizas libremente arrastrando y soltando, controles de grabación de formato largo, una o dos filas de prompts, una tecla de retroceso siempre disponible, un menú emergente de caracteres en la tecla Intro y un segundo botón opcional de «cambiar de teclado» para usarlo más fácil con una mano.</string>
@@ -2005,14 +2131,14 @@
     <string name="apptour51__more_body">También muchas mejoras más pequeñas: elige el idioma de transcripción activo en los ajustes, el botón de detener ahora cancela de verdad una solicitud en curso, un interruptor para mostrar u ocultar las claves API y escritura multilingüe sin autocorrección entre idiomas — además de muchas correcciones en el diseño clásico, el teclado numérico y más allá.</string>
     <string name="apptour51__outro_eyebrow">Esto es 5.1</string>
     <string name="apptour51__outro_title">Disfruta la actualización</string>
-    <string name="apptour51__outro_body">¡Gracias por usar Dictate! Si te ayuda cada día, una pequeña donación mantiene el proyecto en marcha. Puedes volver a ver cualquiera de estos recorridos en cualquier momento en Ajustes › Acerca de.</string>
+    <string name="apptour51__outro_body">¡Gracias por usar {app_name}! Si te ayuda cada día, una pequeña donación mantiene el proyecto en marcha. Puedes volver a ver cualquiera de estos recorridos en cualquier momento en Ajustes › Acerca de.</string>
     <string name="apptour52__cta_try">Probar</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">{app_name} 5.2</string>
     <string name="apptour52__intro_title">Dicta en todas partes</string>
-    <string name="apptour52__intro_body">Esta versión lleva Dictate más allá de su propio teclado: como entrada de voz del teléfono, para dar órdenes habladas desde cualquier sitio y para ordenar tus dictados largos. Esto es lo nuevo.</string>
+    <string name="apptour52__intro_body">Esta versión lleva {app_name} más allá de su propio teclado: como entrada de voz del teléfono, para dar órdenes habladas desde cualquier sitio y para ordenar tus dictados largos. Esto es lo nuevo.</string>
     <string name="apptour52__voiceinput_eyebrow">Entrada de voz del sistema</string>
-    <string name="apptour52__voiceinput_title">Dictate desde cualquier teclado</string>
-    <string name="apptour52__voiceinput_body">Dictate ahora se registra como entrada de voz del sistema: la tecla de micrófono de otros teclados y apps transcribe con Dictate, con tu proveedor, tus prompts y tus modelos locales. Activa «Entrada de voz de Dictate» en tu lista de teclados y elígela como método de entrada de voz. (Gboard mantiene su micrófono ligado a Google: usa un teclado que respete el ajuste del sistema.)</string>
+    <string name="apptour52__voiceinput_title">{app_name} desde cualquier teclado</string>
+    <string name="apptour52__voiceinput_body">{app_name} ahora se registra como entrada de voz del sistema: la tecla de micrófono de otros teclados y apps transcribe con {app_name}, con tu proveedor, tus prompts y tus modelos locales. Activa «Entrada de voz de {app_name}» en tu lista de teclados y elígela como método de entrada de voz. (Gboard mantiene su micrófono ligado a Google: usa un teclado que respete el ajuste del sistema.)</string>
     <string name="apptour52__liveprompt_eyebrow">Orden de voz libre</string>
     <string name="apptour52__liveprompt_title">Dile a la IA qué hacer, desde donde sea</string>
     <string name="apptour52__liveprompt_body">Mantén pulsado el botón flotante para abrir su menú, toca «Live prompt» y di lo que quieras: «escribe una negativa cortés para la reunión de mañana», «traduce el texto de arriba al español». El texto seleccionado sirve de contexto; sin selección, la IA escribe desde cero.</string>
@@ -2024,7 +2150,7 @@
     <string name="apptour52__trim_body">¿Te quedas pensando a media frase? Los silencios de más de un par de segundos se recortan antes de enviar: se conserva cada palabra dicha y solo desaparece el tiempo muerto. Envíos más cortos: menos espera y menos coste.</string>
     <string name="apptour52__paragraphs_eyebrow">Dictados largos legibles</string>
     <string name="apptour52__paragraphs_title">Párrafos automáticos</string>
-    <string name="apptour52__paragraphs_body">Los dictados largos ya no llegan como un muro de texto. Fija un número de palabras y Dictate empezará un párrafo nuevo en el siguiente final de frase: determinista y solo para transcripciones puras, nunca para texto formateado por IA.</string>
+    <string name="apptour52__paragraphs_body">Los dictados largos ya no llegan como un muro de texto. Fija un número de palabras y {app_name} empezará un párrafo nuevo en el siguiente final de frase: determinista y solo para transcripciones puras, nunca para texto formateado por IA.</string>
     <string name="apptour52__smartturn_eyebrow">Formato largo más listo</string>
     <string name="apptour52__smartturn_title">Corta en ideas terminadas</string>
     <string name="apptour52__smartturn_body">El dictado de formato largo puede usar ahora el modelo local Smart Turn v3 para saber cuándo has terminado realmente una idea, en lugar de cortar en cada pausa. Opcional y descargado cuando lo necesites.</string>
@@ -2035,12 +2161,12 @@
     <string name="apptour52__outro_title">Feliz dictado</string>
     <string name="apptour52__outro_body">Además, mucho por dentro: la pantalla se mantiene encendida durante todo el dictado, los modelos locales liberan memoria al quedar inactivos, los dictados en el reloj sobreviven a los cortes y la autocorrección alemana ya entiende las diéresis. Puedes volver a ver cualquier recorrido en Ajustes › Acerca de.</string>
     <string name="apptour53__cta_try">Probar</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">{app_name} 5.3</string>
     <string name="apptour53__intro_title">Mantén, habla, listo</string>
     <string name="apptour53__intro_body">Esta versión va de las dos cosas que más haces: hablarle al móvil y escribir en él. Ambas son más rápidas, y ambas se apartan mejor de tu camino.</string>
     <string name="apptour53__pushtotalk_eyebrow">Pulsar para hablar</string>
     <string name="apptour53__pushtotalk_title">Mantén el micro, suelta para enviar</string>
-    <string name="apptour53__pushtotalk_body">Como un mensaje de voz: mantén la tecla del micro y habla, suelta y se envía. Desliza a la izquierda para descartar la grabación, o arrastra hacia arriba para fijarla y dejar la mano libre. Un toque breve sigue funcionando igual que siempre. Se activa en los ajustes de Dictate.</string>
+    <string name="apptour53__pushtotalk_body">Como un mensaje de voz: mantén la tecla del micro y habla, suelta y se envía. Desliza a la izquierda para descartar la grabación, o arrastra hacia arriba para fijarla y dejar la mano libre. Un toque breve sigue funcionando igual que siempre. Se activa en los ajustes de {app_name}.</string>
     <string name="apptour53__autocorrect_eyebrow">Autocorrección rehecha</string>
     <string name="apptour53__autocorrect_title">Lee tus dedos, no tus erratas</string>
     <string name="apptour53__autocorrect_body">Las correcciones se deciden ahora a partir de dónde tocaste realmente las teclas, explorando las palabras probables sobre la marcha, en vez de adivinar a partir de la palabra terminada. En nuestro conjunto de pruebas pasó del 88 % al 98 % de aciertos: la diferencia se nota sobre todo al escribir rápido y descuidado.</string>
@@ -2058,7 +2184,7 @@
     <string name="apptour53__prediction_body">La barra de sugerencias ofrece ahora lo que suele venir después, aprendido de cómo escribes. Y cualquier palabra se añade a tu diccionario con una pulsación larga, para que tus nombres y tu jerga dejen de corregirse.</string>
     <string name="apptour53__ownserver_eyebrow">Tu propio servidor</string>
     <string name="apptour53__ownserver_title">Autoalojado, ahora también en directo</string>
-    <string name="apptour53__ownserver_body">Un servidor tuyo también puede encargarse de la transcripción en directo, si habla el protocolo realtime de OpenAI. Y si delante hay una máquina que duerme, Dictate puede despertarla antes para que la primera petición no espere a que arranque.</string>
+    <string name="apptour53__ownserver_body">Un servidor tuyo también puede encargarse de la transcripción en directo, si habla el protocolo realtime de OpenAI. Y si delante hay una máquina que duerme, {app_name} puede despertarla antes para que la primera petición no espere a que arranque.</string>
     <string name="apptour53__outro_eyebrow">Esto es 5.3</string>
     <string name="apptour53__outro_title">Feliz dictado</string>
     <string name="apptour53__outro_body">Además, muchos detalles: cada proveedor lleva su propio logotipo, el indicador de grabación puede estar quieto, latir o reaccionar a la voz, la salida de los prompts puede conservar la transcripción original al lado, y los párrafos ya no se cortan tras una abreviatura. Puedes volver a ver cualquier recorrido en Ajustes › Acerca de.</string>
@@ -2066,10 +2192,10 @@
     <string name="apptour60__cta_try">Probar</string>
     <string name="apptour60__art_minutes">minutos</string>
     <string name="apptour60__art_speed">1,5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">{app_name} 6.0</string>
     <string name="apptour60__intro_title">Saldo, chino y dictado más barato</string>
     <string name="apptour60__intro_body">Esta versión añade una segunda vía de entrada — comprar saldo en lugar de traer tu propia clave de API —, además de pinyin para el chino, siete idiomas con diccionario nuevo y grabaciones que cuestan menos.</string>
-    <string name="apptour60__cloud_eyebrow">Nuevo: Dictate Cloud</string>
+    <string name="apptour60__cloud_eyebrow">Nuevo: Voice Mode Cloud</string>
     <string name="apptour60__cloud_title">Comprar minutos en vez de buscar una clave</string>
     <string name="apptour60__cloud_body">Si prefieres no crearte una cuenta con un proveedor, ahora puedes comprar saldo sin más. Sí, eso pasa por nuestro servidor — pero ni tus grabaciones ni tus textos se guardan allí, se reenvían directamente. Todo el código del servidor es público y se puede leer. Tu propia clave sigue funcionando igual que antes.</string>
     <string name="apptour60__speedup_eyebrow">Gastar menos en la API</string>
@@ -2089,21 +2215,21 @@
     <string name="apptour60__more_body">Mantener pulsado el botón de parada recupera una transcripción que se ha quedado colgada. El botón flotante ya no anuncia un éxito que no pudo comprobar y se apaga con la pantalla. La escritura deslizante ya conoce las palabras que añadiste. Y el fallo justo después de actualizar está corregido.</string>
     <string name="apptour60__outro_eyebrow">Esto es 6.0</string>
     <string name="apptour60__outro_title">Que lo disfrutes</string>
-    <string name="apptour60__outro_body">Uses Dictate como lo uses — con tu clave, tu servidor, un modelo en el dispositivo o saldo —, nada ha cambiado en las demás vías. Puedes volver a ver cualquier recorrido en Ajustes › Acerca de.</string>
+    <string name="apptour60__outro_body">Uses {app_name} como lo uses — con tu clave, tu servidor, un modelo en el dispositivo o saldo —, nada ha cambiado en las demás vías. Puedes volver a ver cualquier recorrido en Ajustes › Acerca de.</string>
     <string name="apptour61__cta_try">Probar</string>
     <string name="apptour61__art_folder">Stickers</string>
     <string name="apptour61__art_share">Compartir con</string>
     <string name="apptour61__art_typed">qeu</string>
     <string name="apptour61__art_fixed">que</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">{app_name} 6.1</string>
     <string name="apptour61__intro_title">Stickers, mensajes de voz y una autocorrección que por fin ve la errata</string>
-    <string name="apptour61__intro_body">Señala al teclado una carpeta con tus propios stickers, comparte un mensaje de voz directamente con Dictate para saber qué dice, y estrena una autocorrección que por fin detecta el fallo que estaba construida para no ver.</string>
+    <string name="apptour61__intro_body">Señala al teclado una carpeta con tus propios stickers, comparte un mensaje de voz directamente con {app_name} para saber qué dice, y estrena una autocorrección que por fin detecta el fallo que estaba construida para no ver.</string>
     <string name="apptour61__stickers_eyebrow">Nuevo: tus propios stickers</string>
     <string name="apptour61__stickers_title">Una carpeta del móvil, en el teclado</string>
-    <string name="apptour61__stickers_body">Señala cualquier carpeta a Dictate y sus imágenes se convierten en stickers — las subcarpetas pasan a ser pestañas, con sus propios favoritos y recientes. Añade uno desde cualquier aplicación con el menú de compartir, borra otro sin salir del teclado. Lo que una aplicación de chat acepta de verdad no es lo que dice aceptar: por eso cada sticker se pone en forma una sola vez al entrar y desde ahí simplemente se envía.</string>
-    <string name="apptour61__share_eyebrow">Nuevo: compartir con Dictate</string>
+    <string name="apptour61__stickers_body">Señala cualquier carpeta a {app_name} y sus imágenes se convierten en stickers — las subcarpetas pasan a ser pestañas, con sus propios favoritos y recientes. Añade uno desde cualquier aplicación con el menú de compartir, borra otro sin salir del teclado. Lo que una aplicación de chat acepta de verdad no es lo que dice aceptar: por eso cada sticker se pone en forma una sola vez al entrar y desde ahí simplemente se envía.</string>
+    <string name="apptour61__share_eyebrow">Nuevo: compartir con {app_name}</string>
     <string name="apptour61__share_title">Saber qué dice ese mensaje de voz</string>
-    <string name="apptour61__share_body">Dictate ya aparece en el menú de compartir para audio y vídeo. Comparte ahí un mensaje de voz y se abre una pantalla que empieza a transcribir sola — ningún campo que buscar, ningún botón que pulsar. La transcripción se puede buscar, y las grabaciones largas se procesan por partes en lugar de rechazarse.</string>
+    <string name="apptour61__share_body">{app_name} ya aparece en el menú de compartir para audio y vídeo. Comparte ahí un mensaje de voz y se abre una pantalla que empieza a transcribir sola — ningún campo que buscar, ningún botón que pulsar. La transcripción se puede buscar, y las grabaciones largas se procesan por partes en lugar de rechazarse.</string>
     <string name="apptour61__autocorrect_eyebrow">Autocorrección</string>
     <string name="apptour61__autocorrect_title">La errata que no podía ver</string>
     <string name="apptour61__autocorrect_body">La regla que decidía si una palabra podía corregirse dejaba pasar un dedo que se había deslizado casi hasta la tecla vecina, pero nunca uno que caía limpiamente sobre ella, que es precisamente la errata corriente. Ya está resuelto, y ahora decides tú con cuánta decisión corrige. La palabra que va a tomar el espacio queda marcada en tu color de acento, y la tecla de retroceso justo después devuelve exactamente lo que escribiste.</string>
@@ -2124,7 +2250,7 @@
     <string name="apptour62__art_word">Zoya</string>
     <string name="apptour62__art_emoji_word">pastel</string>
     <string name="apptour62__art_emoji">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">{app_name} 6.2</string>
     <string name="apptour62__intro_title">Aprende tus palabras y estrena cinco aspectos</string>
     <string name="apptour62__intro_body">El teclado puede recordar las palabras que ningún diccionario conoce, las teclas pueden dejar ver la aplicación que hay detrás y cada pulgar puede tener su propia mitad. Además de un puñado de pequeños ayudantes para lo que haces cada día.</string>
     <string name="apptour62__learning_eyebrow">Nuevo: aprende mientras escribes</string>
@@ -2153,7 +2279,7 @@
     <string name="apptour62__gestures_body">Mantén pulsada la tecla de símbolos, desliza hasta el carácter que quieras y suelta: se inserta y las letras ya están de vuelta, sin ir y volver. Deslizar hacia arriba en la barra espaciadora ahora llega a la línea de arriba, no solo a la palabra anterior. Y la separación entre teclas se puede ajustar en un rango que de verdad se ve.</string>
     <string name="apptour62__export_eyebrow">Nuevo: dictados como archivos</string>
     <string name="apptour62__export_title">Cada dictado a una carpeta que elijas</string>
-    <string name="apptour62__export_body">Elige una carpeta una vez y cada dictado terminado se escribe también en ella como archivo de texto plano, en el momento en que está listo. Lo que sea que vigile esa carpeta — una aplicación de notas, una herramienta de sincronización, tu copia de seguridad — recibe tus textos sin que Dictate tenga que aprender su idioma.</string>
+    <string name="apptour62__export_body">Elige una carpeta una vez y cada dictado terminado se escribe también en ella como archivo de texto plano, en el momento en que está listo. Lo que sea que vigile esa carpeta — una aplicación de notas, una herramienta de sincronización, tu copia de seguridad — recibe tus textos sin que {app_name} tenga que aprender su idioma.</string>
     <string name="apptour62__more_eyebrow">Además</string>
     <string name="apptour62__more_title">Muchas cosas pequeñas</string>
     <string name="apptour62__more_body">Las sugerencias ahora miran las dos palabras anteriores al cursor en todos los idiomas, no solo en inglés. Se puede hacer una copia de seguridad sin tus claves API, para poder pasarla sin riesgo. Los modelos de transcripción propios de Azure están disponibles, elegir un modelo para trabajar sin conexión ahora también cambia al motor local, y cada petición tiene un plazo acorde con la espera. Los dictados aparecen en el historial en cuanto se envían, las importaciones dicen en qué paso están y se pueden cancelar, y el texto llega con más fiabilidad a las aplicaciones que se resistían.</string>
@@ -2161,12 +2287,12 @@
     <string name="apptour62__outro_title">El mismo teclado, más tuyo</string>
     <string name="apptour62__outro_body">Nada cambia en tu forma de dictar: tu propia clave, tu propio servidor o un modelo en el dispositivo. Todos los recorridos siguen en Ajustes › Acerca de.</string>
     <string name="apptour63__cta_try">Probarlo</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">{app_name} 6.3</string>
     <string name="apptour63__intro_title">Más teclado, sin salir de él</string>
     <string name="apptour63__intro_body">Apunta la cámara a un texto impreso y aparece en el campo. El cursor, la selección y el portapapeles por fin comparten un panel. Cualquier botón de la Smartbar puede llevar una segunda acción con una pulsación larga. Y el dictado sin conexión ya tiene modelos que caben de verdad en un teléfono.</string>
     <string name="apptour63__scan_eyebrow">Nuevo: escanear texto</string>
     <string name="apptour63__scan_title">Lo impreso, directo al campo</string>
-    <string name="apptour63__scan_body">El IBAN de una carta, el número de serie de una caja, la dirección de un paquete: apunta la cámara y el texto llega donde estabas escribiendo, en vez de teclearlo otra vez. El reconocimiento ocurre en este dispositivo: no se sube nada y no interviene ningún proveedor. Dictate tampoco pide nunca el permiso de cámara; la cámara del sistema hace la foto y devuelve solo esa imagen, que se borra en cuanto se ha leído.</string>
+    <string name="apptour63__scan_body">El IBAN de una carta, el número de serie de una caja, la dirección de un paquete: apunta la cámara y el texto llega donde estabas escribiendo, en vez de teclearlo otra vez. El reconocimiento ocurre en este dispositivo: no se sube nada y no interviene ningún proveedor. {app_name} tampoco pide nunca el permiso de cámara; la cámara del sistema hace la foto y devuelve solo esa imagen, que se borra en cuanto se ha leído.</string>
     <string name="apptour63__editing_eyebrow">Nuevo: panel de edición</string>
     <string name="apptour63__editing_title">Cursor, selección y portapapeles en un solo sitio</string>
     <string name="apptour63__editing_body">Todo esto ya existía, repartido en once teclas que había que conocer. Ahora es un panel: moverse por carácter, palabra o línea, seleccionar, copiar, pegar, deshacer. Mantener una tecla la repite en lugar de exigir once toques. Y el teclado numérico ya se puede pedir de forma explícita, en vez de alcanzarse solo con un gesto que nadie había asignado.</string>
@@ -2237,12 +2363,12 @@
     <string name="dictate__legacy_prompt_rows_one">Una fila</string>
     <string name="dictate__legacy_prompt_rows_two">Dos filas</string>
     <string name="about__website__title">Sitio web</string>
-    <string name="dictate__cloud_title">Dictate Cloud</string>
+    <string name="dictate__cloud_title">Voice Mode Cloud</string>
     <string name="dictate__cloud_row_summary_none">Comprar saldo de dictado, sin clave API</string>
     <string name="dictate__cloud_row_summary_balance">Quedan {minutes} minutos de saldo</string>
     <string name="dictate__cloud_intro_title">Dictar sin clave API</string>
     <string name="dictate__cloud_intro_body">Compra saldo de dictado aquí mismo, en la app. Sin cuenta con un proveedor de IA, sin clave API, sin suscripción. El saldo no caduca y solo se consume cuando lo usas de verdad: un minuto de dictado cuesta un minuto y una reformulación unos dos segundos.</string>
-    <string name="dictate__cloud_intro_alternative">Es totalmente opcional. Dictate funciona igual de bien con tu propia clave del proveedor que elijas —varios son gratuitos— y así conservas tu cuenta y pagas directamente al proveedor a sus precios.</string>
+    <string name="dictate__cloud_intro_alternative">Es totalmente opcional. {app_name} funciona igual de bien con tu propia clave del proveedor que elijas —varios son gratuitos— y así conservas tu cuenta y pagas directamente al proveedor a sus precios.</string>
     <string name="dictate__cloud_use_own_provider_btn">Usar mejor mi propio proveedor</string>
     <string name="dictate__cloud_balance_label">Saldo restante</string>
     <string name="dictate__cloud_balance_minutes">{minutes} min</string>
@@ -2256,7 +2382,7 @@
     <string name="dictate__cloud_shop_unavailable">Aquí no se pueden mostrar los paquetes de saldo. Normalmente significa que la app no se instaló desde Google Play o que no hay ninguna cuenta de Play iniciada en este dispositivo. Tu propia clave API funciona en ambos casos.</string>
     <string name="dictate__cloud_activate_title">El saldo está listo</string>
     <string name="dictate__cloud_activate_body">Tienes saldo, pero el dictado pasa ahora mismo por otro proveedor. Cambia cuando quieras: nada cambia sin ti.</string>
-    <string name="dictate__cloud_activate_btn">Dictar con Dictate Cloud</string>
+    <string name="dictate__cloud_activate_btn">Dictar con Voice Mode Cloud</string>
     <string name="dictate__cloud_notice_purchased">Se han añadido {minutes} minutos a tu saldo.</string>
     <string name="dictate__cloud_notice_pending">Tu pago aún no se ha completado. El saldo aparecerá en cuanto Google lo confirme.</string>
     <string name="dictate__cloud_notice_not_redeemed">El pago se realizó, pero no se pudo obtener el saldo. No se ha perdido nada: vuelve a abrir esta pantalla y se añadirá.</string>
@@ -2292,7 +2418,7 @@
     <string name="dictate__cloud_devices_last_used">Último uso {time}</string>
     <string name="dictate__cloud_devices_never_used">Sin usar todavía</string>
     <string name="dictate__cloud_recovery_error">No se pudo contactar con el servidor. Comprueba tu conexión e inténtalo de nuevo.</string>
-    <string name="dictate__cloud_limits_title">Lo que Dictate Cloud no hace</string>
+    <string name="dictate__cloud_limits_title">Lo que Voice Mode Cloud no hace</string>
     <string name="dictate__cloud_limits_body">La transcripción en vivo mientras hablas no está disponible con saldo: cuesta unas cuatro veces más por minuto, y el motor del dispositivo lo hace sin conexión y gratis. El modelo de IA y cuánto razona los fija el servidor, por lo que la elección de modelo, el esfuerzo de razonamiento y los endpoints propios quedan desactivados. Todo lo demás sigue igual: prompts, historial, botón flotante, dictado largo y el reloj.</string>
     <string name="dictate__cloud_privacy_title">Qué se guarda</string>
     <string name="dictate__cloud_privacy_body">Tus grabaciones y textos se transmiten directamente y nunca se escriben en disco. Solo se guardan números: qué cuenta, cuándo, cuánto tiempo y si funcionó. Detrás de una cuenta de saldo no hay ningún nombre, ni correo, ni cuenta de Google: solo un identificador aleatorio.</string>
@@ -2340,9 +2466,9 @@
     <string name="quick_action__ime_ui_mode_sticker">Adhesivo</string>
     <string name="quick_action__ime_ui_mode_sticker__tooltip">Insertar tus propios adhesivos</string>
     <string name="prefs__media__sticker_add">Añadir adhesivos</string>
-    <string name="prefs__media__sticker_add__summary">Copia imágenes a la carpeta. También puedes compartir una imagen con Dictate desde cualquier aplicación.</string>
+    <string name="prefs__media__sticker_add__summary">Copia imágenes a la carpeta. También puedes compartir una imagen con {app_name} desde cualquier aplicación.</string>
     <string name="prefs__media__sticker_import_whatsapp">Traer de WhatsApp</string>
-    <string name="prefs__media__sticker_import_whatsapp__summary">Abre el selector de archivos en la carpeta de adhesivos de WhatsApp. Teclados como el de Samsung guardan los suyos donde ninguna otra aplicación puede leerlos: esos compártelos con Dictate.</string>
+    <string name="prefs__media__sticker_import_whatsapp__summary">Abre el selector de archivos en la carpeta de adhesivos de WhatsApp. Teclados como el de Samsung guardan los suyos donde ninguna otra aplicación puede leerlos: esos compártelos con Voice Mode.</string>
     <string name="sticker__import_share_label">Guardar como adhesivo</string>
     <string name="sticker__import_added">{n} añadidos</string>
     <string name="sticker__import_duplicate">{n} ya estaban</string>
@@ -2366,7 +2492,7 @@
     <string name="sticker__source_downloads">Descargas</string>
     <string name="sticker__source_pictures">Imágenes</string>
     <string name="sticker__source_dcim">Cámara</string>
-    <string name="sticker__source_hint">Son puntos de partida, no garantías: si la carpeta no está, el selector se abre como siempre. Las aplicaciones que se guardan sus adhesivos, como el teclado de Samsung, solo pueden compartirlos con Dictate.</string>
+    <string name="sticker__source_hint">Son puntos de partida, no garantías: si la carpeta no está, el selector se abre como siempre. Las aplicaciones que se guardan sus adhesivos, como el teclado de Samsung, solo pueden compartirlos con {app_name}.</string>
     <string name="sticker__import_progress">Copiando {done} de {total}</string>
     <string name="sticker__import_cancel">Toca para parar. Lo copiado se queda.</string>
     <string name="sticker__refused_declares_nothing">Esta aplicación no acepta imágenes del teclado: copiado al portapapeles, mantén pulsado para pegar</string>
