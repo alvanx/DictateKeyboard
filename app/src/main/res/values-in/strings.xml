@@ -125,6 +125,127 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Default</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Standar sistem</string>
     <string name="settings__home__title" comment="Title of the Home screen">Selamat datang di {app_name}</string>
+    <string name="home__recent_title" comment="Title of the recent dictations card on the home screen">Dikte terbaru</string>
+    <string name="home__recent_see_all" comment="Button on the recent dictations card that opens the full history">Lihat semua</string>
+    <string name="home__recent_copy" comment="Accessibility label of the copy icon on a recent dictation row">Salin</string>
+    <string name="home__recent_failed" comment="Recent dictations row for a recording whose transcription failed">Transkripsi gagal. Rekaman disimpan.</string>
+    <string name="home__recent_retry" comment="Button on a failed recent dictation that sends its saved recording again">Coba lagi</string>
+    <string name="home__transcribe_file" comment="Floating button on the home screen that opens the file picker to transcribe an audio or video file">Transkripsikan berkas</string>
+    <string name="home__ai_model" comment="Settings row that opens the AI providers screen; its second line names the speech model in use">Model AI</string>
+    <string name="home__stats_summary" comment="Home time-saved strip, after the bold duration. {count} is the number of dictations">dihemat · {count} dikte</string>
+    <string name="settings__all__title" comment="The Settings tab and its title">Setelan</string>
+    <string name="dictionary_hub__title" comment="The Dictionary tab, gathering every word list (dictation words, find-and-replace, the keyboard dictionary)">Kamus</string>
+    <string name="words__personal_dictionary" comment="Dictionary screen row opening the keyboard's own user dictionary">Kamus pribadi</string>
+    <string name="mywords__subtitle" comment="Line under the Dictionary tab title">Nama dan istilah yang harus selalu ditulis benar oleh {app_name}.</string>
+    <string name="mywords__title" comment="Heading of the one word list used for both dictation and typing">Kata-kataku</string>
+    <string name="mywords__explanation" comment="Short explanation at the top of the My words card">Satu daftar untuk semuanya. Setiap kata dieja sesuai caramu saat kamu bicara, dan disarankan saat kamu mengetik.</string>
+    <string name="mywords__empty" comment="Shown in the My words card while the list is empty">Belum ada apa-apa. Tambahkan nama, produk, atau kata apa pun yang sering kamu pakai.</string>
+    <string name="mywords__more" comment="Last chip after the first few words, opening the full list. Placeholder: how many words are not shown.">+ {count} lagi</string>
+    <string name="mywords__see_all" comment="Last chip after the words when all of them are shown; opens the full list to edit or remove words">Edit daftar</string>
+    <string name="mywords__add_hint" comment="Placeholder of the field where a new word is typed">Tambahkan kata atau nama</string>
+    <string name="mywords__add" comment="Accessibility label of the + button next to the field">Tambah kata</string>
+    <string name="mywords__usage" comment="Under the usage bar. Placeholders: words in the list, and about how many fit in what the speech AI reads.">{count} dari {limit} dikirim ke AI suara</string>
+    <string name="mywords__usage_full" comment="Under the full usage bar, once the list is longer than the speech AI reads. Placeholders: how many words go to it, how many words are in the list.">{count} dari {total} dikirim ke AI suara. Semuanya dipakai untuk mengetik.</string>
+    <string name="mywords__fixes" comment="Dictionary tab heading above find-and-replace and learned words">Perbaikan</string>
+    <string name="mywords__find_replace" comment="Dictionary tab row opening the find-and-replace rules for transcripts">Cari dan ganti</string>
+    <string name="mywords__find_replace_none" comment="Summary of the find-and-replace row while there are no rules">Perbaiki kata yang selalu salah ditulis AI suara</string>
+    <string name="mywords__find_replace_one" comment="Summary of the find-and-replace row with one rule. Placeholders: what is found and what it becomes.">1 aturan: “{from}” → “{to}”</string>
+    <string name="mywords__find_replace_many" comment="Summary of the find-and-replace row. Placeholders: how many rules, and the first rule as an example.">{count} aturan, mis. “{from}” → “{to}”</string>
+    <string name="mywords__learned" comment="Dictionary tab row opening the words the keyboard learned on its own">Dipelajari dari ketikanmu</string>
+    <string name="mywords__learned_summary" comment="Summary of the learned words row">Diambil otomatis. Hapus yang mana saja.</string>
+    <string name="mywords__phone_settings" comment="Link at the bottom of the Dictionary tab opening the keyboard dictionary settings">Setelan kamus dan pembelajaran ponsel</string>
+    <string name="mywords__edit_as_text" comment="Row on the full My words list opening a text editor for the whole list">Edit sebagai teks</string>
+    <string name="mywords__edit_as_text_summary" comment="Summary of the Edit as text row">Tempel, impor, atau ekspor seluruh daftar</string>
+    <string name="mywords__remove" comment="Accessibility label of the button that removes one word. Placeholder: the word.">Hapus {word}</string>
+    <string name="mywords__typing_only" comment="Under a word in the full list that the speech AI has no room for">Hanya untuk mengetik: tidak ada ruang lagi untuk AI suara</string>
+    <string name="mywords__budget_over" comment="Note in the text editor once the list is longer than the speech AI reads. Placeholders: how many words go to it, how many words there are.">Daftarmu lebih panjang dari yang dibaca AI suara. {fits} kata pertama dari {count} katamu dikirim ke sana; sisanya tetap disarankan saat kamu mengetik.</string>
+    <string name="mywords__row_summary" comment="Summary of the My words row on the dictation formatting screen. Placeholder: how many words.">{count} kata, dieja sesuai caramu dan disarankan saat kamu mengetik</string>
+    <string name="nav__home" comment="Bottom tab bar: the home tab">Beranda</string>
+    <string name="nav__style" comment="Bottom tab bar: the tab where the mic button's look is picked">Gaya</string>
+    <string name="home__mic_title" comment="Home card showing the floating mic button's current look">Tombol mikrofonmu</string>
+    <string name="home__mic_on" comment="Home mic card, second line while the floating mic button is on. {charm} is the look, e.g. Daisy">{charm} · mengambang di setiap aplikasi</string>
+    <string name="home__mic_off" comment="Home mic card, second line while the floating mic button is off">Belum diaktifkan</string>
+    <string name="home__mic_change_look" comment="Home mic card button that opens the Style tab">Ganti tampilan</string>
+    <string name="home__turn_on" comment="Button that turns on the floating mic button or the keyboard">Aktifkan</string>
+    <string name="home__keyboard_title" comment="Row naming the app's keyboard, on the home screen and at the top of Settings">Keyboard {app_name}</string>
+    <string name="home__keyboard_off" comment="Second line of the keyboard row while the keyboard is not turned on">Belum diaktifkan</string>
+    <string name="home__keyboard_on" comment="Second line of the keyboard row while the keyboard is turned on">Aktif · mikrofon ada di keyboard</string>
+    <string name="firstrun__title" comment="Big heading of the home screen before the first dictation, on two lines">Ucapkan saja.\n{app_name} yang menulis.</string>
+    <string name="firstrun__subtitle" comment="Line under the first-run home heading">Dua langkah cepat dan kamu sudah bisa bicara.</string>
+    <string name="firstrun__step_look" comment="First-run home, step 1 heading: choose the look of the floating mic button">Pilih tombol mikrofonmu</string>
+    <string name="firstrun__more_looks" comment="First-run home, tile after a few mic looks that opens the Style tab with all of them">Lainnya</string>
+    <string name="firstrun__step_where" comment="First-run home, step 2 heading: turn on the floating mic, the keyboard, or both">Pilih di mana tombol muncul</string>
+    <string name="firstrun__floating_title" comment="First-run home, step 2 option: the floating mic button">Mikrofon mengambang</string>
+    <string name="firstrun__floating_summary" comment="First-run home, second line of the floating mic option">Di samping kotak teks mana pun, dengan keyboard yang sudah kamu pakai</string>
+    <string name="firstrun__keyboard_summary" comment="First-run home, second line of the keyboard option">Keyboard lengkap dengan mikrofon bawaan</string>
+    <string name="firstrun__done" comment="Accessibility label of the check mark shown instead of Turn on once an option is on">Aktif</string>
+    <string name="firstrun__history_hint" comment="First-run home, where recent dictations will appear once there are some">Hasil diktemu akan muncul di sini, siap disalin.</string>
+    <string name="settings__dictation_group" comment="Settings tab: the group of dictation settings at the top">Dikte</string>
+    <string name="settings__more_group" comment="Settings tab: the group of every other settings category">Keyboard dan aplikasi</string>
+    <string name="settings__floating_button_on" comment="Settings tab: summary of the floating mic button row while it is on">Aktif · di mana dan kapan muncul</string>
+    <string name="settings__more_dictation" comment="Settings tab: row opening every dictation setting">Setelan dikte lainnya</string>
+    <string name="settings__more_dictation_summary" comment="Summary of the row opening every dictation setting">Bahasa, pemformatan, penyusunan ulang, perekaman</string>
+    <string name="style__subtitle" comment="Line under the Style tab title">Jadikan tombol mikrofon milikmu.</string>
+    <string name="style__preview_message" comment="Sample chat message in the Style tab preview">Kamu jadi datang nanti malam?</string>
+    <string name="style__preview_caption" comment="Caption in the Style tab preview, which shows the mic button listening">Mendengarkan di aplikasi chat</string>
+    <string name="style__preview_field" comment="Placeholder of the sample message field in the Style tab preview">Pesan</string>
+    <string name="style__charm_classic" comment="Mic button look: the plain round button">Klasik</string>
+    <string name="style__charm_daisy" comment="Mic button look: a daisy">Aster</string>
+    <string name="style__charm_butterfly" comment="Mic button look: a butterfly">Kupu-kupu</string>
+    <string name="style__charm_heart" comment="Mic button look: a heart">Hati</string>
+    <string name="style__charm_clover" comment="Mic button look: a four-leaf clover">Semanggi</string>
+    <string name="style__charm_moon" comment="Mic button look: a crescent moon">Bulan</string>
+    <string name="style__charm_sunflower" comment="Mic button look: a sunflower">Bunga matahari</string>
+    <string name="style__charm_blossom" comment="Mic button look: a cherry blossom">Sakura</string>
+    <string name="style__charm_on_air" comment="Mic button look: a lit “On Air” studio sign">On Air</string>
+    <string name="style__charm_gramophone" comment="Mic button look: an old gramophone horn">Gramofon</string>
+    <string name="style__charm_crooner" comment="Mic button look: a vintage stage microphone">Mikrofon panggung</string>
+    <string name="style__charm_mixtape" comment="Mic button look: a cassette tape">Kaset</string>
+    <string name="style__charm_planet" comment="Mic button look: a ringed planet">Planet</string>
+    <string name="style__charm_shooting_star" comment="Mic button look: a shooting star">Bintang jatuh</string>
+    <string name="style__charm_disco_ball" comment="Mic button look: a disco ball">Bola disko</string>
+    <string name="style__charm_big_red_button" comment="Mic button look: a big red arcade button">Tombol merah besar</string>
+    <string name="style__charm_pixel_heart" comment="Mic button look: a pixel-art heart">Hati 8-bit</string>
+    <string name="style__charm_neon" comment="Mic button look: a neon sign of a microphone">Neon</string>
+    <string name="style__charm_studio_mic" comment="Mic button look: a studio microphone">Mikrofon studio</string>
+    <string name="style__collection_garden" comment="Style tab: name of a collection of mic button looks">Taman</string>
+    <string name="style__collection_garden_tagline" comment="Style tab: one-line description of the Garden collection">Lembut, cerah, hidup</string>
+    <string name="style__collection_retro" comment="Style tab: name of a collection of mic button looks">Retro</string>
+    <string name="style__collection_retro_tagline" comment="Style tab: one-line description of the Retro collection">Hangat, analog, sedikit jenaka</string>
+    <string name="style__collection_night_sky" comment="Style tab: name of a collection of mic button looks">Langit malam</string>
+    <string name="style__collection_night_sky_tagline" comment="Style tab: one-line description of the Night sky collection">Tenang dan penuh mimpi</string>
+    <string name="style__collection_arcade" comment="Style tab: name of a collection of mic button looks">Arkade</string>
+    <string name="style__collection_arcade_tagline" comment="Style tab: one-line description of the Arcade collection">Bertenaga dan seru</string>
+    <string name="style__collection_simple" comment="Style tab: name of a collection of mic button looks">Sederhana</string>
+    <string name="style__collection_simple_tagline" comment="Style tab: one-line description of the Simple collection">Tombol bulat polos</string>
+    <string name="style__move_bloom" comment="How the mic button moves while recording: grows and turns like a flower opening">Mekar saat mendengarkan</string>
+    <string name="style__move_flutter" comment="How the mic button moves while recording: flaps like wings">Mengepak saat mendengarkan</string>
+    <string name="style__move_turn" comment="How the mic button moves while recording: spins slowly">Berputar saat mendengarkan</string>
+    <string name="style__move_sway" comment="How the mic button moves while recording: swings gently side to side">Bergoyang saat mendengarkan</string>
+    <string name="style__move_glow" comment="How the mic button moves while recording: lights up and dims">Berpendar saat mendengarkan</string>
+    <string name="style__move_wobble" comment="How the mic button moves while recording: rocks and swells">Bergoyang-goyang saat mendengarkan</string>
+    <string name="style__move_pulse" comment="How the mic button moves while recording: grows and shrinks">Berdenyut saat mendengarkan</string>
+    <string name="style__move_spin" comment="How the mic button moves while recording: the cassette reels turn">Gulungannya berputar saat mendengarkan</string>
+    <string name="style__move_tilt" comment="How the mic button moves while recording: leans side to side">Miring saat mendengarkan</string>
+    <string name="style__move_twinkle" comment="How the mic button moves while recording: the star sparkles">Berkelip saat mendengarkan</string>
+    <string name="style__move_press" comment="How the mic button moves while recording: the button pushes in">Tertekan saat mendengarkan</string>
+    <string name="style__move_beat" comment="How the mic button moves while recording: double-thumps like a heartbeat">Berdetak saat mendengarkan</string>
+    <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">Berkedip saat mendengarkan</string>
+    <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">Bergerak saat mendengarkan</string>
+    <string name="style__move_off" comment="Summary of the movement switch while it is off">Tetap diam</string>
+    <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">Warna asli</string>
+    <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">{charm} mempertahankan warnanya sendiri.</string>
+    <string name="style__color" comment="Style tab heading above the colour swatches">Warna</string>
+    <string name="style__color_cloud" comment="Colour swatch name (white)">Awan</string>
+    <string name="style__color_blossom" comment="Colour swatch name (pink)">Sakura</string>
+    <string name="style__color_lilac" comment="Colour swatch name (light purple)">Lila</string>
+    <string name="style__color_butter" comment="Colour swatch name (yellow)">Mentega</string>
+    <string name="style__color_mint" comment="Colour swatch name (green)">Mint</string>
+    <string name="style__color_sky" comment="Colour swatch name (light blue)">Langit</string>
+    <string name="style__more_colors" comment="Style tab row opening the full colour picker">Warna lainnya</string>
+    <string name="style__motion" comment="Style tab heading above how the mic button moves while recording">Saat mendengarkan</string>
+    <string name="style__button_off" comment="Style tab note while the floating mic button is off">Tombol mikrofon mengambang sedang nonaktif, jadi untuk sementara kamu hanya akan melihatnya di sini.</string>
+    <string name="style__look_summary" comment="Floating button settings: summary of the row opening the Style tab. {charm} is the look">{charm} · ubah di tab Gaya</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Cari pengaturan</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Cari pengaturan…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Pencarian terkini</string>
@@ -624,7 +745,7 @@
     <string name="setup__select_ime__switch_keyboard_btn">Ubah Papan Ketik</string>
     <string name="setup__grant_notification_permission__title">Izinkan Notifikasi Pelaporan Crash</string>
     <string name="setup__grant_notification_permission__description">Per-Android 13+, apl harus meminta izin untuk 
-        mengirim notifikasi. Pada Dictate, izin tersebut hanya digunakan untuk membuka jendela pelaporan crash pada saat terjadi crash.
+        mengirim notifikasi. Pada {app_name}, izin tersebut hanya digunakan untuk membuka jendela pelaporan crash pada saat terjadi crash.
         Izin ini dapat diubah kapanpun pada setelan sistem.
     </string>
     <string name="setup__grant_notification_permission__btn">Izinkan</string>
@@ -647,8 +768,8 @@
     <string name="backup_and_restore__back_up__files">Pilih apa yang akan dicadangkan</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Preferensi</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">Kunci API dan kata sandi</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Arsip ini memuat kunci API dan kata sandi Anda dalam teks biasa, beserta saldo Dictate Cloud Anda — siapa pun yang menerimanya bisa mendikte atas biaya Anda. Jangan meneruskannya, dan jika sudah, gantilah kuncinya di penyedia Anda. Semua hal lain yang dicentang di bawah ikut terbawa, termasuk riwayat transkripsi dan papan klip Anda.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Arsip ini tidak memuat kunci API, kata sandi, maupun saldo Dictate Cloud, jadi boleh diteruskan, tetapi juga tidak akan memulihkan milik Anda. Semua hal lain yang dicentang di bawah tetap ada di dalamnya, termasuk riwayat transkripsi dan papan klip Anda.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Arsip ini memuat kunci API dan kata sandi Anda dalam teks biasa, beserta saldo Voice Mode Cloud Anda — siapa pun yang menerimanya bisa mendikte atas biaya Anda. Jangan meneruskannya, dan jika sudah, gantilah kuncinya di penyedia Anda. Semua hal lain yang dicentang di bawah ikut terbawa, termasuk riwayat transkripsi dan papan klip Anda.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Arsip ini tidak memuat kunci API, kata sandi, maupun saldo Voice Mode Cloud, jadi boleh diteruskan, tetapi juga tidak akan memulihkan milik Anda. Semua hal lain yang dicentang di bawah tetap ada di dalamnya, termasuk riwayat transkripsi dan papan klip Anda.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Arsip ini tidak memuat kunci API dan kata sandi, tetapi memuat semua yang dicentang di bawah: riwayat transkripsi beserta rekaman yang disimpan, papan klip, prompt Anda, dan kata-kata yang dipelajari papan ketik dari Anda.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Ekstensi papan ketik</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Ekstensi / kamus ejaan</string>
@@ -665,7 +786,7 @@
     <string name="backup_and_restore__restore__metadata">Arsip cadangan dipilih</string>
     <string name="backup_and_restore__restore__metadata_warn_different_version">Arsip cadangan ini dibuat di versi lain daripada saat ini, yang biasanya didukung. Dicatat bahwa masalah-masalah minor dapat terjadi atau beberapa preferensi tidak dapat dipindahkan dengan benar karena perbedaan fitur-fitur.</string>
     <string name="backup_and_restore__restore__metadata_warn_different_vendor">Arsip cadangan ini dibuat oleh sebuah aplikasi pihak ketiga, yang biasanya tidak didukung. Kehilangan data mungkin terjadi, hanya pulihkan dengan risiko Anda sendiri!</string>
-    <string name="backup_and_restore__restore__metadata_note_no_credentials">Arsip pencadangan ini tidak memuat kunci API dan kata sandi. Semua yang lain dipulihkan. Penggabungan mempertahankan kunci yang sudah ada di perangkat ini; penimpaan menghapusnya, termasuk kode pemulihan Dictate Cloud, yang tidak dapat dimasukkan kembali.</string>
+    <string name="backup_and_restore__restore__metadata_note_no_credentials">Arsip pencadangan ini tidak memuat kunci API dan kata sandi. Semua yang lain dipulihkan. Penggabungan mempertahankan kunci yang sudah ada di perangkat ini; penimpaan menghapusnya, termasuk kode pemulihan Voice Mode Cloud, yang tidak dapat dimasukkan kembali.</string>
     <string name="backup_and_restore__restore__metadata_error_invalid_metadata">Arsip cadangan ini terdapat metadata yang tidak valid. Arsip cadangannya mungkin telah terkorupsi atau dimodifikasi dengan tidak benar. Memulihkan dari arsip ini tidak memungkinkan, mohon pilih yang lain.</string>
     <string name="backup_and_restore__restore__metadata_error_nothing_to_restore">Arsip cadangan ini tidak mempunyai file apa pun untuk dipulihkan, mohon pilih yang lain.</string>
     <string name="backup_and_restore__restore__mode">Mode pemulihan</string>
@@ -674,18 +795,18 @@
     <string name="backup_and_restore__restore__success">Berhasil memulihkan data!</string>
     <string name="backup_and_restore__restore__failure">Gagal untuk memulihkan data: {error_message}</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Laporan kesalahan Dictate</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">Maaf atas ketidaknyamanan ini, tetapi Dictate mogok karena kesalahan yang tidak terduga.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Jika Anda ingin melaporkan kesalahan ini, periksa dulu pelacak masalah di GitHub jika crash Anda belum dilaporkan.\nJika belum, salin log crash yang dihasilkan dan buka masalah baru. Gunakan template \"%s\" dan isi deskripsi, langkah-langkah untuk mereproduksi, dan tempel log crash yang dihasilkan di bagian akhir. Ini membantu membuat Dictate lebih baik dan lebih stabil untuk semuanya. Terima kasih!</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Laporan kesalahan Voice Mode</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">Maaf atas ketidaknyamanan ini, tetapi Voice Mode mogok karena kesalahan yang tidak terduga.</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Jika Anda ingin melaporkan kesalahan ini, periksa dulu pelacak masalah di GitHub jika crash Anda belum dilaporkan.\nJika belum, salin log crash yang dihasilkan dan buka masalah baru. Gunakan template \"%s\" dan isi deskripsi, langkah-langkah untuk mereproduksi, dan tempel log crash yang dihasilkan di bagian akhir. Ini membantu membuat Voice Mode lebih baik dan lebih stabil untuk semuanya. Terima kasih!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Salin ke papan klip sistem</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Disalin ke papan klip sistem</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">Tidak bisa salin ke papan klip sistem: Instansi pengelola papan klip tidak ditemukan</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">Buka pelacak masalah (github.com)</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Tutup</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Laporan kesalahan Dictate</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate berhenti bekerja…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Laporan kesalahan Voice Mode</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode berhenti bekerja…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Ketuk untuk melihat keterangan kesalahan</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Dictate kelihatannya berhenti bekerja berulang kali…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Voice Mode kelihatannya berhenti bekerja berulang kali…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Mengembalikan ke papan ketik sebelumnya untuk menghentikan pengulangan kesalahan tidak terbatas. Ketuk untuk melihat detail kesalahan</string>
     <!-- Clipboard strings -->
     <string name="editing__back_to_keyboard">Kembali ke papan ketik</string>
@@ -865,7 +986,7 @@
     <string name="ext__addon_management_box__managing_placeholder">Kelola {extensions}</string>
     <string name="ext__addon_management_box__addon_manager_info">Semua tugas yang terkait dengan mengimpor, mengekspor, membuat, menyesuaikan, dan menghapus ekstensi dapat ditangani melalui manajer addon terpusat.</string>
     <string name="ext__addon_management_box__go_to_page">Ke {ext_home_title}</string>
-    <string name="ext__home__info">Anda dapat mengunduh dan menginstal ekstensi dari Dictate Addons Store atau mengimpor file ekstensi apa pun yang telah Anda unduh dari internet.</string>
+    <string name="ext__home__info">Anda dapat mengunduh dan menginstal ekstensi dari Voice Mode Addons Store atau mengimpor file ekstensi apa pun yang telah Anda unduh dari internet.</string>
     <string name="ext__home__visit_store">Kunjungi Add-ons Store</string>
     <string name="ext__home__manage_extensions">Kelola ekstensi terpasang</string>
     <string name="ext__list__view_details">Lihat rincian</string>
@@ -1107,6 +1228,7 @@
     <string name="quick_action__ime_ui_mode_dictate">Dikte</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Ketuk untuk mendikte, ketuk lagi untuk mentranskripsi</string>
     <string name="quick_action__dictate_live_prompt">Perintah suara</string>
+    <string name="dictate__live_prompt_chip" comment="Prompt chip and floating-button menu entry: you speak an instruction (e.g. make this more polite, or write a thank-you note) instead of dictating text, and the AI carries it out">Minta lewat suara</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Rekam instruksi lisan dan kirim ke AI</string>
     <string name="quick_action__dictate_prompts">Perintah AI</string>
     <string name="quick_action__dictate_prompts__tooltip">Buka perintah penyusunan ulang AI</string>
@@ -1117,10 +1239,10 @@
     <string name="about__feedback__summary">Kirim email berisi pertanyaan, bug, atau ide</string>
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="about__feedback__subject">Dictate Feedback</string>
-    <string name="setup__provider__title">Pilih cara Dictate menyalin suara</string>
-    <string name="setup__provider__choose_intro">Dictate mengubah suaramu menjadi teks dengan bantuan layanan AI. Dua cara di atas cocok untuk kebanyakan orang — dan kalau kamu sama sekali tidak ingin memakai layanan awan, ada dua cara lagi di bawah.</string>
+    <string name="setup__provider__title">Pilih cara {app_name} menyalin suara</string>
+    <string name="setup__provider__choose_intro">{app_name} mengubah suaramu menjadi teks dengan bantuan layanan AI. Dua cara di atas cocok untuk kebanyakan orang — dan kalau kamu sama sekali tidak ingin memakai layanan awan, ada dua cara lagi di bawah.</string>
     <string name="setup__provider__choice_cloud_title">Beli saldo di dalam aplikasi</string>
-    <string name="setup__provider__choice_cloud_body">Dictate Cloud: tanpa akun di mana pun, tanpa kunci API. Kamu membeli menit pendiktean lewat Google Play dan saldonya tidak pernah kedaluwarsa. Jalan yang praktis — dan sedikit lebih mahal daripada langsung ke penyedia.</string>
+    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: tanpa akun di mana pun, tanpa kunci API. Kamu membeli menit pendiktean lewat Google Play dan saldonya tidak pernah kedaluwarsa. Jalan yang praktis — dan sedikit lebih mahal daripada langsung ke penyedia.</string>
     <string name="setup__provider__choice_cloud_btn">Tampilkan paket saldo</string>
     <string name="setup__provider__choice_own_title">Pakai penyedia AI sendiri</string>
     <string name="setup__provider__choice_own_body">Buat kunci di penyedia pilihanmu — Groq gratis untuk pendiktean sehari-hari. Kamu tetap memegang akunmu sendiri dan membayar langsung ke penyedia dengan harganya. Perlu sekitar dua menit.</string>
@@ -1130,15 +1252,15 @@
     <string name="setup__provider__choice_local_title">Di perangkatmu, luring</string>
     <string name="setup__provider__choice_local_body">Unduh satu model suara sekali saja. Tanpa akun, tanpa biaya, dan tidak ada audio yang meninggalkan ponselmu.</string>
     <string name="setup__provider__choice_server_title">Server milikmu sendiri</string>
-    <string name="setup__provider__choice_server_body">Arahkan Dictate ke server suara yang kamu jalankan sendiri, atau ke endpoint apa pun yang kompatibel dengan OpenAI.</string>
+    <string name="setup__provider__choice_server_body">Arahkan {app_name} ke server suara yang kamu jalankan sendiri, atau ke endpoint apa pun yang kompatibel dengan OpenAI.</string>
     <string name="setup__provider__local_intro">Pengenalan suara lalu berjalan di ponselmu: tidak ada yang dikirim ke mana pun, dan tetap bekerja tanpa koneksi. Pilih satu model untuk diunduh sekarang — kamu bisa menambah atau mengganti model nanti.</string>
     <string name="setup__provider__local_recommended">Disarankan untuk bahasamu</string>
     <string name="setup__provider__local_bigger">Lebih akurat, tetapi unduhannya jauh lebih besar</string>
     <string name="setup__provider__local_download_btn">Unduh model</string>
     <string name="setup__provider__local_use_btn">Gunakan model ini</string>
     <string name="setup__provider__local_all_models">Tampilkan semua model</string>
-    <string name="setup__provider__intro">Dictate mengubah ucapan Anda menjadi teks dengan bantuan layanan AI online. Untuk menggunakannya, Anda memerlukan kunci pribadi Anda sendiri untuk layanan tersebut.</string>
-    <string name="setup__provider__what_is_key">Kunci API seperti kata sandi pribadi yang memungkinkan Dictate menggunakan layanan untuk Anda. Membuatnya gratis dan memakan waktu sekitar dua menit.</string>
+    <string name="setup__provider__intro">Voice Mode mengubah ucapan Anda menjadi teks dengan bantuan layanan AI online. Untuk menggunakannya, Anda memerlukan kunci pribadi Anda sendiri untuk layanan tersebut.</string>
+    <string name="setup__provider__what_is_key">Kunci API seperti kata sandi pribadi yang memungkinkan {app_name} menggunakan layanan untuk Anda. Membuatnya gratis dan memakan waktu sekitar dua menit.</string>
     <string name="setup__provider__recommended">Kami merekomendasikan <b>Groq</b> — cepat dan gratis untuk dikte sehari-hari.</string>
     <string name="setup__provider__steps_groq">1. Ketuk tombol di bawah untuk membuka Groq.\n2. Masuk dengan Google atau alamat email Anda.\n3. Ketuk “Create API Key”, beri nama apa saja, lalu konfirmasi.\n4. Salin kuncinya (diawali dengan “gsk_”).\n5. Kembali ke sini dan ketuk “Tempel kunci API” di bawah.</string>
     <string name="setup__provider__steps_generic">1. Ketuk tombol di bawah untuk membuka {provider}.\n2. Buat akun jika Anda belum punya.\n3. Buat kunci API baru dan salin.\n4. Kembali ke sini dan ketuk “Tempel kunci API” di bawah.</string>
@@ -1152,7 +1274,7 @@
     <string name="setup__provider__skip_btn">Atur nanti</string>
     <string name="setup__provider__other_provider">Gunakan penyedia AI lain</string>
     <string name="setup__provider__other_provider_hint">Lanjutan: pilih layanan lain daripada Groq. Anda memerlukan kunci API dari penyedia tersebut.</string>
-    <string name="setup__finish_up__add_key_hint">Tips: Anda belum menambahkan kunci AI. Tambahkan kapan saja di Pengaturan → Dictate → Penyedia AI untuk mulai mendikte.</string>
+    <string name="setup__finish_up__add_key_hint">Tips: Anda belum menambahkan kunci AI. Tambahkan kapan saja di Pengaturan → {app_name} → Penyedia AI untuk mulai mendikte.</string>
     <string name="crash_dialog__bug_report_template">Laporan kerusakan</string>
     <string name="enum__swipe_action__toggle_compact_layout">Alihkan tata letak ringkas</string>
     <string name="unit__hours__symbol">{v} j</string>
@@ -1162,9 +1284,9 @@
     <string name="unit__percent__symbol">{v}%</string>
     <string name="unit__display_pixel__symbol">{v} dp</string>
     <string name="unit__display_pixel_per_seconds__symbol">{v} dp/dtk</string>
-    <string name="dictate__accessibility_service_label">Tombol mengambang Dictate</string>
+    <string name="dictate__accessibility_service_label">Tombol mengambang Voice Mode</string>
     <string name="dictate__accessibility_service_summary">Tampilkan tombol mengambang untuk mendikte ke kolom teks mana pun.</string>
-    <string name="dictate__accessibility_service_description">Dictate menggunakan layanan ini untuk tombol dikte mengambang. Saat diaktifkan, layanan ini mendeteksi ketika kolom teks mendapat fokus di aplikasi mana pun — agar tombol dapat muncul — dan menyisipkan ucapan Anda yang ditranskripsikan ke kolom tersebut. Dictate hanya membaca kolom yang difokuskan untuk menempatkan teks pada kursor; layanan ini tidak mengumpulkan, menyimpan, atau membagikan konten layar lainnya.</string>
+    <string name="dictate__accessibility_service_description">Voice Mode menggunakan layanan ini untuk tombol dikte mengambang. Saat diaktifkan, layanan ini mendeteksi ketika kolom teks mendapat fokus di aplikasi mana pun — agar tombol dapat muncul — dan menyisipkan ucapan Anda yang ditranskripsikan ke kolom tersebut. Voice Mode hanya membaca kolom yang difokuskan untuk menempatkan teks pada kursor; layanan ini tidak mengumpulkan, menyimpan, atau membagikan konten layar lainnya.</string>
     <string name="dictate__overlay_notification_channel">Tombol dikte mengambang</string>
     <string name="dictate__overlay_notification_recording">Merekam — ketuk tombol mengambang untuk mentranskripsi</string>
     <string name="dictate__overlay_notification_working">Mentranskripsi…</string>
@@ -1176,14 +1298,14 @@
     <string name="dictate__floating_button_service_enabled">Aktif · ketuk untuk membuka pengaturan sistem</string>
     <string name="dictate__floating_button_service_disabled">Belum aktif · ketuk untuk menyiapkan</string>
     <string name="dictate__floating_button_disclosure_title">Aktifkan tombol mengambang</string>
-    <string name="dictate__floating_button_disclosure_message">Untuk menampilkan tombol mengambang, Dictate memerlukan layanan aksesibilitas. Layanan ini mendeteksi ketika kolom teks mendapat fokus di aplikasi mana pun — agar tombol dapat muncul — dan menyisipkan ucapan Anda yang ditranskripsikan ke kolom tersebut. Dictate hanya membaca kolom yang difokuskan untuk menempatkan teks Anda; layanan ini tidak mengumpulkan, menyimpan, atau membagikan konten layar lainnya.\n\nDi layar berikutnya, temukan “Tombol mengambang Dictate” dan aktifkan.</string>
+    <string name="dictate__floating_button_disclosure_message">Untuk menampilkan tombol mengambang, {app_name} memerlukan layanan aksesibilitas. Layanan ini mendeteksi ketika kolom teks mendapat fokus di aplikasi mana pun — agar tombol dapat muncul — dan menyisipkan ucapan Anda yang ditranskripsikan ke kolom tersebut. {app_name} hanya membaca kolom yang difokuskan untuk menempatkan teks Anda; layanan ini tidak mengumpulkan, menyimpan, atau membagikan konten layar lainnya.\n\nDi layar berikutnya, temukan “Tombol mengambang {app_name}” dan aktifkan.</string>
     <string name="dictate__floating_button_disclosure_continue">Buka pengaturan</string>
     <string name="dictate__floating_button_mic_title">Akses mikrofon</string>
     <string name="dictate__floating_button_mic_summary">Diperlukan untuk merekam suara Anda · ketuk untuk memberikan</string>
     <string name="dictate__floating_button_show_when_title">Kapan ditampilkan</string>
     <string name="dictate__floating_button_show_when_field">Segera setelah kolom teks dipilih</string>
     <string name="dictate__floating_button_show_when_keyboard">Hanya saat keyboard terbuka</string>
-    <string name="dictate__floating_button_show_when_dictate_keyboard">Juga dengan keyboard Dictate</string>
+    <string name="dictate__floating_button_show_when_dictate_keyboard">Juga dengan keyboard {app_name}</string>
     <string name="dictate__action_continue_recording">Lanjutkan rekaman</string>
     <string name="dictate__a11y_mic_hold_local">Transkripsikan di perangkat</string>
     <string name="smartbar__a11y_show_actions">Tampilkan tindakan</string>
@@ -1214,7 +1336,7 @@
     <string name="dictate__floating_button_apps_scope_all">Semua aplikasi</string>
     <string name="dictate__floating_button_apps_scope_only">Hanya aplikasi di bawah</string>
     <string name="dictate__floating_button_apps_scope_except">Semua kecuali aplikasi di bawah</string>
-    <string name="dictate__floating_button_apps_note">Tombol tidak pernah digambar di atas aplikasi yang Anda kecualikan, dan Dictate tidak membaca kolom teks di dalamnya. Aplikasi yang memang menolak layanan aksesibilitas tetap akan melihat bahwa layanan ini aktif.</string>
+    <string name="dictate__floating_button_apps_note">Tombol tidak pernah digambar di atas aplikasi yang Anda kecualikan, dan {app_name} tidak membaca kolom teks di dalamnya. Aplikasi yang memang menolak layanan aksesibilitas tetap akan melihat bahwa layanan ini aktif.</string>
     <string name="dictate__floating_button_apps_list_title">Aplikasi</string>
     <string name="dictate__floating_button_apps_search">Cari aplikasi</string>
     <string name="dictate__floating_button_apps_none">Tidak ada aplikasi untuk “{search_term}”</string>
@@ -1222,7 +1344,7 @@
     <string name="dictate__floating_button_haptic_summary_off">Tanpa getaran saat diketuk.</string>
     <string name="dictate__floating_button_haptic_summary_on">Getaran singkat saat Anda mengetuk tombol.</string>
     <string name="dictate__floating_button_haptic_title">Getar saat diketuk</string>
-    <string name="dictate__floating_button_no_prompts">Belum ada prompt penyusunan ulang — tambahkan di pengaturan Dictate.</string>
+    <string name="dictate__floating_button_no_prompts">Belum ada prompt penyusunan ulang — tambahkan di pengaturan Voice Mode.</string>
     <string name="dictate__floating_button_remember_position_summary_off">Satu posisi bersama untuk semua aplikasi.</string>
     <string name="dictate__floating_button_remember_position_summary_on">Setiap aplikasi menyimpan posisi tombolnya sendiri.</string>
     <string name="dictate__floating_button_remember_position_title">Ingat posisi per aplikasi</string>
@@ -1237,8 +1359,10 @@
     <string name="dictate__providers_summary_both">Transkripsi: {transcription} · Penyusunan ulang: {rewording}</string>
     <string name="dictate__remember_last_dictation_summary">Menyimpan dikte terakhir Anda agar tombol mengambang dapat membatalkannya dan tata letak klasik dapat menyisipkannya kembali.</string>
     <string name="dictate__remember_last_dictation_title">Ingat dikte terakhir</string>
-    <string name="changelog__v4_2_0">• BARU: tombol dikte mengambang — dikte langsung ke aplikasi apa pun, bahkan saat keyboard lain aktif. Pilih dari tiga gaya (Pil, Cincin, Bola), lihat gelombang langsung saat Anda berbicara, seret ke mana saja dengan pengancingan tepi, atur warna dan ukurannya, dan tekan lama untuk menyusun ulang. Aktifkan di Setelan ▸ Dictate ▸ Tombol mengambang.\n• BARU: Google Gemini — gunakan kunci API AI Studio Anda sendiri untuk transkripsi dan penulisan ulang.\n• Prompt kini muncul secara bawaan dalam baris tetap di atas tombol.\n• Penyisipan teks yang lebih andal di seluruh aplikasi, termasuk peramban dan keyboard lain.</string>
+    <string name="changelog__v4_2_0">• BARU: tombol dikte mengambang — dikte langsung ke aplikasi apa pun, bahkan saat keyboard lain aktif. Pilih dari tiga gaya (Pil, Cincin, Bola), lihat gelombang langsung saat Anda berbicara, seret ke mana saja dengan pengancingan tepi, atur warna dan ukurannya, dan tekan lama untuk menyusun ulang. Aktifkan di Setelan ▸ Voice Mode ▸ Tombol mengambang.\n• BARU: Google Gemini — gunakan kunci API AI Studio Anda sendiri untuk transkripsi dan penulisan ulang.\n• Prompt kini muncul secara bawaan dalam baris tetap di atas tombol.\n• Penyisipan teks yang lebih andal di seluruh aplikasi, termasuk peramban dan keyboard lain.</string>
     <string name="dictate__promo_floating_button_message">Baru: dikte di app mana pun</string>
+    <string name="dictate__promo_keep_button_message" comment="One-time Smartbar question to people who mostly dictate with the floating mic button: should it also show while this keyboard is open? Keep short for one line.">Tetap tampilkan mikrofon mengambang di sini?</string>
+    <string name="dictate__promo_keep_button_action" comment="Short label of the accent pill that keeps the floating mic button showing over this keyboard. Must stay short to fit the single-line Smartbar.">Tampilkan</string>
     <string name="dictate__promo_floating_button_action">Coba</string>
     <string name="setup__floating_button__btn">Siapkan tombol mengambang</string>
     <string name="setup__nav_back">Kembali</string>
@@ -1250,12 +1374,14 @@
     <string name="setup__floating_button__skip_btn">Lewati — saya akan pakai keyboard</string>
     <string name="dictate__floating_button_badge_new">Baru</string>
     <string name="dictate__panel_title">Perintah AI</string>
-    <string name="dictate__panel_no_prompts">Belum ada perintah. Tambahkan beberapa di pengaturan Dictate pada bagian Penyusunan ulang.</string>
+    <string name="dictate__panel_no_prompts">Belum ada perintah. Tambahkan beberapa di pengaturan {app_name} pada bagian Penyusunan ulang.</string>
     <string name="dictate__prompts_layout_title">Tata letak perintah</string>
     <string name="dictate__prompts_layout_panel_label">Panel terpisah</string>
     <string name="dictate__prompts_layout_panel_description">Buka perintah di panelnya sendiri melalui tombol tongkat ajaib.</string>
     <string name="dictate__prompts_layout_row_label">Baris selalu aktif</string>
     <string name="dictate__prompts_layout_row_description">Sematkan perintah di baris tambahan di atas papan ketik.</string>
+    <string name="dictate__prompts_layout_when_useful_label" comment="Prompt layout option: the rewrite chips appear in the keyboard's top bar only right after dictating or while text is selected">Saat berguna</string>
+    <string name="dictate__prompts_layout_when_useful_description">Tampilkan perintah di bilah atas tepat setelah kamu mendikte atau saat teks dipilih.</string>
     <string name="dictate__status_idle">Ketuk untuk mendikte</string>
     <string name="dictate__status_recording">Merekam – ketuk untuk berhenti</string>
     <string name="dictate__status_transcribing">Mentranskripsi…</string>
@@ -1268,8 +1394,8 @@
     <string name="dictate__voice_input_transcribing">Mentranskripsi…</string>
     <string name="dictate__voice_input_stop">Selesai</string>
     <string name="dictate__voice_input_hint">Ketuk untuk kirim</string>
-    <string name="dictate__voice_ime_label">Input suara Dictate</string>
-    <string name="dictate__error_no_api_key">Kunci API belum diatur – konfigurasikan di pengaturan Dictate.</string>
+    <string name="dictate__voice_ime_label">Input suara Voice Mode</string>
+    <string name="dictate__error_no_api_key">Kunci API belum diatur – konfigurasikan di pengaturan Voice Mode.</string>
     <string name="dictate__error_transcription_failed">Transkripsi gagal.</string>
     <string name="dictate__error_unknown">Kesalahan tidak diketahui saat transkripsi.</string>
     <string name="dictate__error_rewording_failed">Penyusunan ulang gagal.</string>
@@ -1301,13 +1427,13 @@
     <string name="dictate__action_dismiss">Tutup</string>
     <string name="dictate__action_yes">Ya</string>
     <string name="dictate__action_no">Tidak, terima kasih</string>
-    <string name="dictate__promo_rate_message">Suka dengan Dictate?</string>
-    <string name="dictate__promo_donate_message">Dukung Dictate?</string>
+    <string name="dictate__promo_rate_message">Suka dengan Voice Mode?</string>
+    <string name="dictate__promo_donate_message">Dukung Voice Mode?</string>
     <string name="dictate__promo_rate_action">Beri nilai</string>
     <string name="dictate__promo_donate_action">Donasi</string>
-    <string name="dictate__promo_changelog_message">Dictate telah diperbarui</string>
+    <string name="dictate__promo_changelog_message">Voice Mode telah diperbarui</string>
     <string name="dictate__promo_changelog_action">Detail</string>
-    <string name="dictate__title">Dictate</string>
+    <string name="dictate__title">Voice Mode</string>
     <string name="dictate__provider_title">Penyedia transkripsi</string>
     <string name="dictate__provider__openai">OpenAI</string>
     <string name="dictate__provider__groq">Groq</string>
@@ -1535,7 +1661,7 @@
     <string name="dictate__command_word_summary">Dikte yang diawali “{word}” dijalankan sebagai perintah suara</string>
     <string name="dictate__command_word_placeholder">Jarvis</string>
     <string name="dictate__command_word_info_title">Tentang kata perintah</string>
-    <string name="dictate__command_word_info_description">Biasanya Dictate menuliskan apa yang Anda ucapkan. Jika kata perintah diatur, dikte yang diawali kata itu justru menjadi sebuah instruksi: katanya dihapus dan sisanya dikirim ke AI, beserta teks yang dipilih jika ada.\n\n“Jarvis, buat ini lebih formal” menulis ulang teks terpilih. “Jarvis, apa ibu kota Jepang” menuliskan jawabannya ke kolom. Ini tombol perintah suara yang sama, hanya dipanggil dengan menyebut namanya alih-alih mengetuknya.\n\nKata itu hanya berlaku di awal dikte dan hanya sebagai kata utuh, jadi pilih sesuatu yang jarang Anda pakai untuk memulai kalimat.</string>
+    <string name="dictate__command_word_info_description">Biasanya {app_name} menuliskan apa yang Anda ucapkan. Jika kata perintah diatur, dikte yang diawali kata itu justru menjadi sebuah instruksi: katanya dihapus dan sisanya dikirim ke AI, beserta teks yang dipilih jika ada.\n\n“Jarvis, buat ini lebih formal” menulis ulang teks terpilih. “Jarvis, apa ibu kota Jepang” menuliskan jawabannya ke kolom. Ini tombol perintah suara yang sama, hanya dipanggil dengan menyebut namanya alih-alih mengetuknya.\n\nKata itu hanya berlaku di awal dikte dan hanya sebagai kata utuh, jadi pilih sesuatu yang jarang Anda pakai untuk memulai kalimat.</string>
     <string name="dictate__auto_formatting_title">Pemformatan otomatis</string>
     <string name="dictate__auto_formatting_summary">Ubah isyarat pemformatan lisan menjadi Markdown (judul, daftar, …)</string>
     <string name="dictate__system_prompt_title">Instruksi penyusunan ulang</string>
@@ -1646,18 +1772,18 @@
     <string name="dictate__import_not_audio">Berkas ini tidak berisi audio.</string>
     <string name="dictate__import_only_first">Hanya berkas pertama yang ditranskripsikan – {count} lainnya dilewati.</string>
     <string name="dictate__setup_description">Atur penyedia AI dan kunci API Anda agar dapat mulai mendikte dengan mikrofon.</string>
-    <string name="dictate__setup_configure_btn">Konfigurasikan Dictate</string>
+    <string name="dictate__setup_configure_btn">Konfigurasikan Voice Mode</string>
     <string name="setup__grant_mic_permission__title">Akses mikrofon</string>
-    <string name="setup__grant_mic_permission__description">Dictate memerlukan akses mikrofon untuk merekam suara Anda guna transkripsi.</string>
+    <string name="setup__grant_mic_permission__description">{app_name} memerlukan akses mikrofon untuk merekam suara Anda guna transkripsi.</string>
     <string name="setup__grant_mic_permission__btn">Berikan izin mikrofon</string>
     <string name="changelog__dialog_title">Yang baru</string>
     <string name="changelog__view_all">Lihat semua perubahan</string>
-    <string name="changelog__intro">Dictate telah diperbarui. Inilah yang baru:</string>
+    <string name="changelog__intro">{app_name} telah diperbarui. Inilah yang baru:</string>
     <string name="changelog__version_header">Versi {version}</string>
-    <string name="changelog__donate">Suka dengan Dictate? Ketuk di sini untuk mendukung pengembangan ♥</string>
-    <string name="changelog__current">• Papan ketik yang sama sekali baru: Dictate kini hadir sebagai papan ketik tata letak multibahasa lengkap dengan tombol mikrofon khusus yang membuka panel suara.\n• Bawa AI Anda sendiri: pilih penyedia apa pun yang kompatibel dengan OpenAI dan masukkan kunci API Anda di Pengaturan → Dictate.\n• Pemformatan dan penyusunan ulang cerdas yang didukung oleh model pilihan Anda.\n• Pengaturan Anda dari aplikasi Dictate sebelumnya diimpor secara otomatis.</string>
+    <string name="changelog__donate">Suka dengan {app_name}? Ketuk di sini untuk mendukung pengembangan ♥</string>
+    <string name="changelog__current">• Papan ketik yang sama sekali baru: Voice Mode kini hadir sebagai papan ketik tata letak multibahasa lengkap dengan tombol mikrofon khusus yang membuka panel suara.\n• Bawa AI Anda sendiri: pilih penyedia apa pun yang kompatibel dengan OpenAI dan masukkan kunci API Anda di Pengaturan → Voice Mode.\n• Pemformatan dan penyusunan ulang cerdas yang didukung oleh model pilihan Anda.\n• Pengaturan Anda dari aplikasi Dictate sebelumnya diimpor secara otomatis.</string>
     <string name="changelog__v4_1_0">• Baru: cari emoji langsung dari keyboard.\n• Penyedia transkripsi baru: Soniox.\n• Sisipkan kembali dikte terakhir Anda, dan pulihkan rekaman yang terputus saat keyboard ditutup.\n• Bilah prompt kini diperbarui secara langsung: tekan lama sebuah prompt untuk mengeditnya.\n• Layar penyedia AI kini menampilkan penyedia transkripsi dan pengubahan kata yang aktif.\n• Tombol rekam lebih besar dan lebih mudah ditekan.\n• Perbaikan: pesan dukungan bisa macet dan menutupi bilah dalam beberapa bahasa; pencadangan tidak lagi gagal saat prompt, keyboard, atau tema dipilih; kunci API yang tersimpan dipertahankan saat memperbarui.</string>
-    <string name="changelog__v4_1_1">• Perbaikan: warna aksen bisa tampak hijau di beberapa perangkat; tombol dan tuts kembali ke biru Dictate.</string>
+    <string name="changelog__v4_1_1">• Perbaikan: warna aksen bisa tampak hijau di beberapa perangkat; tombol dan tuts kembali ke biru Voice Mode.</string>
     <!-- Dictate on-device (offline) models -->
     <string name="dictate__local_models_header">Berjalan di perangkat Anda — tidak ada audio yang dikirim. Unduh model untuk memulai.</string>
     <string name="dictate__local_models_live_header">Langsung (streaming)</string>
@@ -1693,7 +1819,7 @@
     <string name="dictate__floating_button_copy_to_clipboard_summary_on">Setiap dikte juga disalin ke papan klip, sehingga kamu bisa menempelkannya secara manual jika penyisipan gagal. Dapat menampilkan pemberitahuan papan klip di beberapa ponsel.</string>
     <string name="dictate__floating_button_copy_to_clipboard_summary_off">Dikte hanya disisipkan, tidak disalin ke papan klip.</string>
     <string name="dictate__floating_button_menu_group">Menu saat ditahan</string>
-    <string name="dictate__floating_button_menu_settings_title">Pengaturan Dictate</string>
+    <string name="dictate__floating_button_menu_settings_title">Pengaturan Voice Mode</string>
     <string name="dictate__floating_button_undo_summary_off">Tidak ada tombol urungkan yang ditampilkan.</string>
     <string name="dictate__floating_button_undo_summary_on">Setelah dikte, tombol urungkan muncul di samping tombol untuk menghapus teks yang disisipkan dengan satu ketukan.</string>
     <string name="dictate__floating_button_undo_title">Tombol urungkan</string>
@@ -1742,7 +1868,7 @@
     <string name="dictate__providers_rewording_single_call_note">Sedang tidak digunakan — penyedia transkripsi Anda melakukan penyusunan ulang dalam panggilan tunggalnya.</string>
     <string name="dictate__wear_title">Wear OS</string>
     <string name="dictate__wear_summary">Opsi untuk mendikte dari jam tangan yang dipasangkan</string>
-    <string name="dictate__wear_install_title">Instal Dictate di jam tangan Anda</string>
+    <string name="dictate__wear_install_title">Instal Voice Mode di jam tangan Anda</string>
     <string name="dictate__wear_install_summary">Membuka Play Store — pada jam tangan Wear OS 3+ yang dipasangkan, pilih jam tangan Anda sebagai tujuan.</string>
     <string name="dictate__wear_auto_rewording_title">Susun ulang otomatis dikte dari jam tangan</string>
     <string name="dictate__wear_auto_rewording_summary">Susun ulang dikte dari jam tangan, seperti di ponsel.</string>
@@ -1750,7 +1876,7 @@
     <string name="quick_action__system_prev_input_method__tooltip">Kembali ke keyboard sebelumnya</string>
     <string name="quick_action__system_input_method_picker">Pilih keyboard</string>
     <string name="quick_action__system_input_method_picker__tooltip">Buka pemilih keyboard sistem</string>
-    <string name="changelog__v4_3_0">• BARU: Transkripsi di perangkat — mendikte sepenuhnya offline. Tanpa internet dan tidak ada yang keluar dari ponsel Anda. Unduh model suara sekali di Pengaturan ▸ Dictate ▸ Penyedia. 📴\n• BARU: Keyboard Wear OS — mendikte langsung dari jam tangan Anda, melalui ponsel atau secara mandiri. ⌚\n• BARU: Aturan cari dan ganti — perbaiki otomatis kata, nama, atau frasa yang berulang di setiap transkrip. Atur di Pengaturan ▸ Dictate ▸ Pemetaan khusus. 🔁\n• BARU: Mode panggilan tunggal — satu model AI yang mumpuni mentranskripsi dan memformat dalam satu permintaan, lebih cepat dan sering lebih murah. Aktifkan per penyedia. ⚡\n• BARU: Tindakan Smartbar untuk kembali ke keyboard sebelumnya atau membuka pemilih keyboard sistem. ⌨️\n• Warna aksen keyboard kini mengikuti warna yang Anda pilih di Pengaturan ▸ Tema. 🎨\n• Menambahkan tombol urungkan opsional ke tombol dikte mengambang. ↩️\n• Berbagai perbaikan dan peningkatan stabilitas. 🛠️</string>
+    <string name="changelog__v4_3_0">• BARU: Transkripsi di perangkat — mendikte sepenuhnya offline. Tanpa internet dan tidak ada yang keluar dari ponsel Anda. Unduh model suara sekali di Pengaturan ▸ Voice Mode ▸ Penyedia. 📴\n• BARU: Keyboard Wear OS — mendikte langsung dari jam tangan Anda, melalui ponsel atau secara mandiri. ⌚\n• BARU: Aturan cari dan ganti — perbaiki otomatis kata, nama, atau frasa yang berulang di setiap transkrip. Atur di Pengaturan ▸ Voice Mode ▸ Pemetaan khusus. 🔁\n• BARU: Mode panggilan tunggal — satu model AI yang mumpuni mentranskripsi dan memformat dalam satu permintaan, lebih cepat dan sering lebih murah. Aktifkan per penyedia. ⚡\n• BARU: Tindakan Smartbar untuk kembali ke keyboard sebelumnya atau membuka pemilih keyboard sistem. ⌨️\n• Warna aksen keyboard kini mengikuti warna yang Anda pilih di Pengaturan ▸ Tema. 🎨\n• Menambahkan tombol urungkan opsional ke tombol dikte mengambang. ↩️\n• Berbagai perbaikan dan peningkatan stabilitas. 🛠️</string>
     <string name="dictate__audio_source_title">Sumber input audio</string>
     <string name="dictate__audio_source_default">Mikrofon default</string>
     <string name="dictate__audio_source_default_summary">Mikrofon standar dengan pemrosesan audio bawaan ponsel</string>
@@ -1829,15 +1955,15 @@
     <string name="dictate__stats_reset_confirm_title">Setel ulang statistik?</string>
     <string name="dictate__stats_reset_confirm_msg">Ini menghapus permanen semua statistik dikte kamu.</string>
     <string name="dictate__stats_share">Bagikan</string>
-    <string name="dictate__stats_share_text">Saya menghemat %1$s dengan Dictate — %2$s dikte, %3$s kata. 🎤</string>
+    <string name="dictate__stats_share_text">Saya menghemat %1$s dengan Voice Mode — %2$s dikte, %3$s kata. 🎤</string>
     <string name="dictate__stats_view">Lihat statistik</string>
     <string name="dictate__stats_milestones_title">Perayaan tonggak</string>
     <string name="dictate__stats_milestones_summary">Rayakan sekali saat mencapai tonggak waktu hemat atau dikte</string>
     <string name="dictate__stats_milestone_title">Tonggak tercapai 🎉</string>
-    <string name="dictate__stats_milestone_time">Kamu menghemat %s dengan Dictate — kerja bagus!</string>
-    <string name="dictate__stats_milestone_count">Kamu mencapai %s dikte dengan Dictate!</string>
-    <string name="dictate__promo_milestone_time">Hemat %s dengan Dictate! 🎉</string>
-    <string name="dictate__promo_milestone_count">%s dikte dengan Dictate! 🎉</string>
+    <string name="dictate__stats_milestone_time">Kamu menghemat %s dengan Voice Mode — kerja bagus!</string>
+    <string name="dictate__stats_milestone_count">Kamu mencapai %s dikte dengan Voice Mode!</string>
+    <string name="dictate__promo_milestone_time">Hemat %s dengan Voice Mode! 🎉</string>
+    <string name="dictate__promo_milestone_count">%s dikte dengan Voice Mode! 🎉</string>
     <string name="dictate__promo_milestone_action">Statistik</string>
     <string name="dictate__reasoning_effort_title">Upaya penalaran</string>
     <string name="dictate__reasoning_effort_off">Mati</string>
@@ -1912,14 +2038,14 @@
     <string name="apptour__badge_highlight">★ Sorotan</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">Tur singkat</string>
-    <string name="apptour__intro_body">Inilah yang baru di Dictate 5.0 — sorotannya dalam waktu kurang dari semenit. Ketuk «Coba» di halaman mana pun untuk langsung menuju pengaturan tersebut.</string>
+    <string name="apptour__intro_body">Inilah yang baru di {app_name} 5.0 — sorotannya dalam waktu kurang dari semenit. Ketuk «Coba» di halaman mana pun untuk langsung menuju pengaturan tersebut.</string>
     <string name="apptour__glide_eyebrow">Keyboard</string>
     <string name="apptour__glide_title">Geser untuk mengetik</string>
-    <string name="apptour__glide_body">Geser jarimu dari tombol ke tombol dan Dictate mengubah jejaknya menjadi kata-kata utuh. Setiap bahasa membawa kamusnya sendiri yang diunduh sesuai kebutuhan — aktifkan di Gerakan.</string>
+    <string name="apptour__glide_body">Geser jarimu dari tombol ke tombol dan {app_name} mengubah jejaknya menjadi kata-kata utuh. Setiap bahasa membawa kamusnya sendiri yang diunduh sesuai kebutuhan — aktifkan di Gerakan.</string>
     <string name="apptour__glide_cta">Siapkan ketik geser</string>
     <string name="apptour__suggestions_eyebrow">Keyboard</string>
     <string name="apptour__suggestions_title">Koreksi otomatis &amp; saran</string>
-    <string name="apptour__suggestions_body">Saat kamu mengetik, Dictate menyarankan kata yang pas dan diam-diam memperbaiki salah ketik. Kata yang benar-benar kamu ketik tetap ada di bilah saran, jadi satu ketukan membatalkan koreksi apa pun.</string>
+    <string name="apptour__suggestions_body">Saat kamu mengetik, {app_name} menyarankan kata yang pas dan diam-diam memperbaiki salah ketik. Kata yang benar-benar kamu ketik tetap ada di bilah saran, jadi satu ketukan membatalkan koreksi apa pun.</string>
     <string name="apptour__suggestions_cta">Sesuaikan saran</string>
     <string name="apptour__realtime_eyebrow">Transkripsi</string>
     <string name="apptour__realtime_title">Transkripsi waktu nyata</string>
@@ -1952,16 +2078,16 @@
     <string name="apptour51__continue_to">Lanjut ke {version}</string>
     <string name="apptour51__intro_eyebrow">Versi 5.1</string>
     <string name="apptour51__intro_title">Yang baru di 5.1</string>
-    <string name="apptour51__intro_body">Dictate telah berkembang pesat sejak 5.0. Inilah sorotan 5.1 — ketuk «Coba» di halaman mana pun untuk langsung menuju fitur tersebut.</string>
+    <string name="apptour51__intro_body">{app_name} telah berkembang pesat sejak 5.0. Inilah sorotan 5.1 — ketuk «Coba» di halaman mana pun untuk langsung menuju fitur tersebut.</string>
     <string name="apptour51__history_eyebrow">Transkripsi</string>
     <string name="apptour51__history_title">Riwayat transkripsi</string>
     <string name="apptour51__history_body">Setiap dikte kini disimpan dalam riwayat yang dapat dicari. Sisipkan kembali transkrip lama dengan satu ketukan, putar ulang audio aslinya, transkripsikan ulang, atau sematkan yang paling sering kamu pakai. Layar khusus memungkinkanmu mengelola semuanya, termasuk berapa lama rekaman audio disimpan.</string>
     <string name="apptour51__longform_eyebrow">Transkripsi</string>
     <string name="apptour51__longform_title">Dikte bentuk panjang</string>
-    <string name="apptour51__longform_body">Bicaralah selama yang kamu mau. Rekaman panjang otomatis dipecah menjadi segmen dan ditranskripsikan di latar belakang selagi kamu terus berbicara, jadi teksmu datang lebih cepat dan tidak pernah terbentur batas durasi. Potong segmen sendiri, atau biarkan Dictate mendeteksi jeda alami.</string>
+    <string name="apptour51__longform_body">Bicaralah selama yang kamu mau. Rekaman panjang otomatis dipecah menjadi segmen dan ditranskripsikan di latar belakang selagi kamu terus berbicara, jadi teksmu datang lebih cepat dan tidak pernah terbentur batas durasi. Potong segmen sendiri, atau biarkan {app_name} mendeteksi jeda alami.</string>
     <string name="apptour51__gif_eyebrow">Keyboard</string>
     <string name="apptour51__gif_title">Pencarian GIF</string>
-    <string name="apptour51__gif_body">Temukan dan kirim GIF tanpa pernah keluar dari Dictate. Buka panel GIF, cari apa saja, dan langsung jatuhkan ke obrolanmu — pemilih cepat bergaya Gboard yang sudah terpasang di dalamnya.</string>
+    <string name="apptour51__gif_body">Temukan dan kirim GIF tanpa pernah keluar dari {app_name}. Buka panel GIF, cari apa saja, dan langsung jatuhkan ke obrolanmu — pemilih cepat bergaya Gboard yang sudah terpasang di dalamnya.</string>
     <string name="apptour51__classic_eyebrow">Tata letak klasik</string>
     <string name="apptour51__classic_title">Tata letak klasik, dirombak</string>
     <string name="apptour51__classic_body">Layar dikte tanpa keyboard mendapat peningkatan besar: baris tindakan yang dapat kamu susun bebas dengan seret &amp; lepas, kontrol rekaman bentuk panjang, satu atau dua baris prompt, tombol hapus yang selalu tersedia, popup karakter pada tombol Enter, dan tombol «ganti keyboard» kedua opsional agar lebih mudah dipakai dengan satu tangan.</string>
@@ -1976,14 +2102,14 @@
     <string name="apptour51__more_body">Banyak juga peningkatan kecil: pilih bahasa transkripsi aktif di pengaturan, tombol berhenti kini benar-benar membatalkan permintaan yang sedang berjalan, sakelar tampilkan/sembunyikan untuk kunci API, dan mengetik multibahasa tanpa koreksi otomatis antarbahasa — plus banyak perbaikan di tata letak klasik, papan angka, dan lainnya.</string>
     <string name="apptour51__outro_eyebrow">Itulah 5.1</string>
     <string name="apptour51__outro_title">Selamat menikmati pembaruan</string>
-    <string name="apptour51__outro_body">Terima kasih telah menggunakan Dictate! Jika ini membantumu setiap hari, donasi kecil membuat proyek ini terus berjalan. Kamu dapat mengunjungi kembali tur mana pun kapan saja di Pengaturan › Tentang.</string>
+    <string name="apptour51__outro_body">Terima kasih telah menggunakan {app_name}! Jika ini membantumu setiap hari, donasi kecil membuat proyek ini terus berjalan. Kamu dapat mengunjungi kembali tur mana pun kapan saja di Pengaturan › Tentang.</string>
     <string name="apptour52__cta_try">Coba</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">{app_name} 5.2</string>
     <string name="apptour52__intro_title">Dikte di mana saja</string>
-    <string name="apptour52__intro_body">Rilis ini membawa Dictate melampaui papan ketiknya sendiri: sebagai input suara ponsel, untuk perintah lisan dari mana pun, dan untuk merapikan dikte panjang. Ini yang baru.</string>
+    <string name="apptour52__intro_body">Rilis ini membawa {app_name} melampaui papan ketiknya sendiri: sebagai input suara ponsel, untuk perintah lisan dari mana pun, dan untuk merapikan dikte panjang. Ini yang baru.</string>
     <string name="apptour52__voiceinput_eyebrow">Input suara sistem</string>
-    <string name="apptour52__voiceinput_title">Dictate dari papan ketik mana pun</string>
-    <string name="apptour52__voiceinput_body">Dictate kini terdaftar sebagai input suara sistem: tombol mikrofon di papan ketik dan aplikasi lain akan mentranskripsi lewat Dictate — dengan penyedia, prompt, dan model lokalmu. Aktifkan „Input suara Dictate“ di daftar papan ketik dan pilih sebagai metode input suara. (Gboard mengunci mikrofonnya ke Google — gunakan papan ketik yang menghormati pengaturan sistem.)</string>
+    <string name="apptour52__voiceinput_title">{app_name} dari papan ketik mana pun</string>
+    <string name="apptour52__voiceinput_body">{app_name} kini terdaftar sebagai input suara sistem: tombol mikrofon di papan ketik dan aplikasi lain akan mentranskripsi lewat {app_name} — dengan penyedia, prompt, dan model lokalmu. Aktifkan „Input suara {app_name}“ di daftar papan ketik dan pilih sebagai metode input suara. (Gboard mengunci mikrofonnya ke Google — gunakan papan ketik yang menghormati pengaturan sistem.)</string>
     <string name="apptour52__liveprompt_eyebrow">Perintah suara bebas</string>
     <string name="apptour52__liveprompt_title">Katakan pada AI apa yang harus dilakukan — di mana saja</string>
     <string name="apptour52__liveprompt_body">Tahan tombol mengambang untuk membuka menunya, ketuk „Live prompt“, lalu katakan saja maumu: „tulis penolakan sopan untuk rapat besok“, „terjemahkan teks di atas ke bahasa Spanyol“. Teks yang dipilih menjadi konteks; tanpa pilihan, AI menulis dari nol.</string>
@@ -1995,7 +2121,7 @@
     <string name="apptour52__trim_body">Berpikir di tengah kalimat? Keheningan lebih dari beberapa detik kini dipotong sebelum dikirim — setiap kata yang diucapkan tetap ada, hanya waktu kosong yang hilang. Unggahan lebih pendek berarti menunggu lebih sedikit dan biaya lebih rendah.</string>
     <string name="apptour52__paragraphs_eyebrow">Dikte panjang yang terbaca</string>
     <string name="apptour52__paragraphs_title">Paragraf otomatis</string>
-    <string name="apptour52__paragraphs_body">Dikte panjang tak lagi datang sebagai dinding teks. Tetapkan jumlah kata dan Dictate akan memulai paragraf baru di akhir kalimat berikutnya — deterministik dan hanya untuk transkrip murni, tak pernah untuk teks yang diformat AI.</string>
+    <string name="apptour52__paragraphs_body">Dikte panjang tak lagi datang sebagai dinding teks. Tetapkan jumlah kata dan {app_name} akan memulai paragraf baru di akhir kalimat berikutnya — deterministik dan hanya untuk transkrip murni, tak pernah untuk teks yang diformat AI.</string>
     <string name="apptour52__smartturn_eyebrow">Mode panjang lebih cerdas</string>
     <string name="apptour52__smartturn_title">Memotong saat pikiran selesai</string>
     <string name="apptour52__smartturn_body">Dikte format panjang kini dapat memakai model lokal Smart Turn v3 untuk mengenali kapan kamu benar-benar menyelesaikan sebuah gagasan, alih-alih memotong di setiap jeda. Opsional dan diunduh saat dibutuhkan.</string>
@@ -2006,12 +2132,12 @@
     <string name="apptour52__outro_title">Selamat mendikte</string>
     <string name="apptour52__outro_body">Ditambah banyak hal di balik layar: layar tetap menyala sepanjang dikte, model lokal melepas memori saat menganggur, dikte dari jam tangan bertahan dari putusnya koneksi, dan koreksi otomatis bahasa Jerman kini paham umlaut. Semua tur bisa dilihat lagi di Pengaturan › Tentang.</string>
     <string name="apptour53__cta_try">Coba</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">{app_name} 5.3</string>
     <string name="apptour53__intro_title">Tahan, bicara, selesai</string>
     <string name="apptour53__intro_body">Versi ini tentang dua hal yang paling sering kamu lakukan: berbicara ke ponsel dan mengetik di atasnya. Keduanya jadi lebih cepat, dan keduanya lebih pandai menyingkir.</string>
     <string name="apptour53__pushtotalk_eyebrow">Tekan lalu bicara</string>
     <string name="apptour53__pushtotalk_title">Tahan mikrofon, lepas untuk mengirim</string>
-    <string name="apptour53__pushtotalk_body">Seperti pesan suara: tahan tombol mikrofon lalu bicara, lepaskan dan terkirim. Geser ke kiri untuk membuang rekaman, atau tarik ke atas untuk menguncinya agar tanganmu bebas. Ketukan singkat tetap bekerja seperti biasa. Aktifkan di pengaturan Dictate.</string>
+    <string name="apptour53__pushtotalk_body">Seperti pesan suara: tahan tombol mikrofon lalu bicara, lepaskan dan terkirim. Geser ke kiri untuk membuang rekaman, atau tarik ke atas untuk menguncinya agar tanganmu bebas. Ketukan singkat tetap bekerja seperti biasa. Aktifkan di pengaturan {app_name}.</string>
     <string name="apptour53__autocorrect_eyebrow">Koreksi otomatis dibangun ulang</string>
     <string name="apptour53__autocorrect_title">Ia membaca jarimu, bukan salah ketikmu</string>
     <string name="apptour53__autocorrect_body">Koreksi kini berangkat dari titik yang benar-benar kamu sentuh pada tombol, menelusuri kata-kata yang mungkin sambil kamu mengetik, bukan menebak dari kata yang sudah jadi. Pada set uji kami, ketepatannya naik dari 88 % ke 98 % — bedanya paling terasa saat mengetik cepat dan asal.</string>
@@ -2029,7 +2155,7 @@
     <string name="apptour53__prediction_body">Bilah saran kini menawarkan apa yang biasanya menyusul, dipelajari dari cara kamu menulis. Dan kata apa pun bisa masuk ke kamusmu dengan tekan lama, agar nama dan istilahmu berhenti dikoreksi.</string>
     <string name="apptour53__ownserver_eyebrow">Server milikmu sendiri</string>
     <string name="apptour53__ownserver_title">Swa-inang, kini juga langsung</string>
-    <string name="apptour53__ownserver_body">Server milikmu juga bisa menangani transkripsi langsung, asalkan berbicara protokol realtime OpenAI. Dan bila di depannya ada mesin yang tidur, Dictate bisa membangunkannya lebih awal agar permintaan pertama tak menunggu proses boot.</string>
+    <string name="apptour53__ownserver_body">Server milikmu juga bisa menangani transkripsi langsung, asalkan berbicara protokol realtime OpenAI. Dan bila di depannya ada mesin yang tidur, {app_name} bisa membangunkannya lebih awal agar permintaan pertama tak menunggu proses boot.</string>
     <string name="apptour53__outro_eyebrow">Itulah 5.3</string>
     <string name="apptour53__outro_title">Selamat mendikte</string>
     <string name="apptour53__outro_body">Ditambah banyak hal kecil: setiap penyedia membawa logonya sendiri, indikator rekaman bisa diam, berdenyut, atau bereaksi pada suara, keluaran prompt bisa menyimpan transkrip aslinya di samping, dan paragraf tak lagi terpotong setelah singkatan. Semua tur bisa dilihat lagi di Pengaturan › Tentang.</string>
@@ -2037,10 +2163,10 @@
     <string name="apptour60__cta_try">Coba</string>
     <string name="apptour60__art_minutes">menit</string>
     <string name="apptour60__art_speed">1,5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">{app_name} 6.0</string>
     <string name="apptour60__intro_title">Saldo, bahasa Mandarin, dikte lebih murah</string>
     <string name="apptour60__intro_body">Versi ini menambah jalan masuk kedua — membeli saldo alih-alih membawa kunci API sendiri —, ditambah pinyin untuk bahasa Mandarin, tujuh bahasa dengan kamus baru, dan rekaman yang lebih murah.</string>
-    <string name="apptour60__cloud_eyebrow">Baru: Dictate Cloud</string>
+    <string name="apptour60__cloud_eyebrow">Baru: Voice Mode Cloud</string>
     <string name="apptour60__cloud_title">Beli menit alih-alih mencari kunci</string>
     <string name="apptour60__cloud_body">Jika Anda lebih suka tidak membuat akun di penyedia, kini Anda cukup membeli saldo. Ya, itu melewati server kami — tetapi rekaman maupun teks Anda tidak disimpan di sana, semuanya diteruskan langsung. Seluruh kode server bersifat publik dan dapat dibaca. Kunci Anda sendiri tetap bekerja persis seperti sebelumnya.</string>
     <string name="apptour60__speedup_eyebrow">Hemat biaya API</string>
@@ -2060,21 +2186,21 @@
     <string name="apptour60__more_body">Menahan tombol berhenti membatalkan transkripsi yang menggantung. Tombol mengambang tidak lagi melaporkan keberhasilan yang tak dapat diverifikasinya, dan padam bersama layar. Mengetik geser kini mengenal kata-kata yang Anda tambahkan sendiri. Dan mogok tepat setelah pembaruan sudah diperbaiki.</string>
     <string name="apptour60__outro_eyebrow">Itulah 6.0</string>
     <string name="apptour60__outro_title">Selamat menikmati</string>
-    <string name="apptour60__outro_body">Bagaimanapun Anda memakai Dictate — kunci sendiri, server sendiri, model di perangkat, atau saldo —, tidak ada yang berubah pada jalan lainnya. Setiap tur dapat dilihat lagi di Setelan › Tentang.</string>
+    <string name="apptour60__outro_body">Bagaimanapun Anda memakai {app_name} — kunci sendiri, server sendiri, model di perangkat, atau saldo —, tidak ada yang berubah pada jalan lainnya. Setiap tur dapat dilihat lagi di Setelan › Tentang.</string>
     <string name="apptour61__cta_try">Coba</string>
     <string name="apptour61__art_folder">Stiker</string>
     <string name="apptour61__art_share">Bagikan dengan</string>
     <string name="apptour61__art_typed">yagn</string>
     <string name="apptour61__art_fixed">yang</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">{app_name} 6.1</string>
     <string name="apptour61__intro_title">Stiker, pesan suara, dan koreksi otomatis yang akhirnya melihat salah ketik</string>
-    <string name="apptour61__intro_body">Tunjukkan kepada papan ketik sebuah folder berisi stiker milikmu sendiri, bagikan pesan suara langsung ke Dictate untuk tahu isinya, dan gunakan koreksi otomatis yang akhirnya menyadari kesalahan yang dulu memang dibangun untuk tidak dilihat.</string>
+    <string name="apptour61__intro_body">Tunjukkan kepada papan ketik sebuah folder berisi stiker milikmu sendiri, bagikan pesan suara langsung ke {app_name} untuk tahu isinya, dan gunakan koreksi otomatis yang akhirnya menyadari kesalahan yang dulu memang dibangun untuk tidak dilihat.</string>
     <string name="apptour61__stickers_eyebrow">Baru: stiker milikmu sendiri</string>
     <string name="apptour61__stickers_title">Sebuah folder di ponsel, di papan ketik</string>
-    <string name="apptour61__stickers_body">Tunjukkan folder mana pun kepada Dictate dan gambar di dalamnya menjadi stiker — subfolder berubah menjadi tab, lengkap dengan favorit dan riwayatnya sendiri. Tambahkan dari aplikasi mana pun lewat menu berbagi, hapus tanpa meninggalkan papan ketik. Apa yang sebenarnya diterima aplikasi obrolan bukanlah apa yang ia klaim diterima: karena itu setiap stiker dibentuk sekali saja saat masuk, lalu tinggal dikirim dari sana.</string>
-    <string name="apptour61__share_eyebrow">Baru: bagikan ke Dictate</string>
+    <string name="apptour61__stickers_body">Tunjukkan folder mana pun kepada {app_name} dan gambar di dalamnya menjadi stiker — subfolder berubah menjadi tab, lengkap dengan favorit dan riwayatnya sendiri. Tambahkan dari aplikasi mana pun lewat menu berbagi, hapus tanpa meninggalkan papan ketik. Apa yang sebenarnya diterima aplikasi obrolan bukanlah apa yang ia klaim diterima: karena itu setiap stiker dibentuk sekali saja saat masuk, lalu tinggal dikirim dari sana.</string>
+    <string name="apptour61__share_eyebrow">Baru: bagikan ke {app_name}</string>
     <string name="apptour61__share_title">Cari tahu apa isi pesan suara itu</string>
-    <string name="apptour61__share_body">Dictate kini muncul di menu berbagi untuk audio dan video. Bagikan pesan suara ke sana dan sebuah layar terbuka yang mulai menuliskan sendiri — tak perlu mencari kolom, tak perlu menekan tombol. Hasilnya dapat dicari, dan rekaman panjang diproses per bagian alih-alih ditolak.</string>
+    <string name="apptour61__share_body">{app_name} kini muncul di menu berbagi untuk audio dan video. Bagikan pesan suara ke sana dan sebuah layar terbuka yang mulai menuliskan sendiri — tak perlu mencari kolom, tak perlu menekan tombol. Hasilnya dapat dicari, dan rekaman panjang diproses per bagian alih-alih ditolak.</string>
     <string name="apptour61__autocorrect_eyebrow">Koreksi otomatis</string>
     <string name="apptour61__autocorrect_title">Salah ketik yang tak bisa ia lihat</string>
     <string name="apptour61__autocorrect_body">Aturan yang menentukan boleh tidaknya sebuah kata dikoreksi meloloskan jari yang tergelincir hampir sampai tombol sebelah, tetapi tidak pernah jari yang mendarat tepat di atasnya — padahal justru itulah salah ketik yang biasa. Itu sudah diperbaiki, dan seberapa tegas koreksinya kini kamu sendiri yang mengatur. Kata yang akan diambil spasi ditandai dengan warna aksenmu, dan tombol hapus tepat sesudahnya mengembalikan persis apa yang kamu ketik.</string>
@@ -2095,7 +2221,7 @@
     <string name="apptour62__art_word">Zoya</string>
     <string name="apptour62__art_emoji_word">kue</string>
     <string name="apptour62__art_emoji">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">{app_name} 6.2</string>
     <string name="apptour62__intro_title">Ia belajar kata-katamu, dan punya lima tampilan baru</string>
     <string name="apptour62__intro_body">Papan ketik kini bisa mengingat kata yang tak dikenal kamus mana pun, tombolnya bisa membiarkan aplikasi di belakangnya tampak, dan kedua ibu jari bisa punya separuhnya sendiri. Ditambah segenggam penolong kecil untuk hal yang kamu lakukan setiap hari.</string>
     <string name="apptour62__learning_eyebrow">Baru: belajar sambil kamu mengetik</string>
@@ -2124,7 +2250,7 @@
     <string name="apptour62__gestures_body">Tahan tombol simbol, geser ke karakter yang kamu mau, lalu lepas: karakternya masuk dan huruf-hurufnya sudah kembali, tanpa berpindah bolak-balik. Mengusap ke atas pada bilah spasi kini mencapai baris di atasnya, bukan cuma kata sebelumnya. Dan jarak antartombol bisa diatur dalam rentang yang benar-benar terlihat.</string>
     <string name="apptour62__export_eyebrow">Baru: dikte sebagai berkas</string>
     <string name="apptour62__export_title">Setiap dikte ke folder pilihanmu</string>
-    <string name="apptour62__export_body">Pilih satu folder sekali saja dan setiap dikte yang selesai juga ditulis ke sana sebagai berkas teks biasa, pada saat ia selesai. Apa pun yang mengawasi folder itu — aplikasi catatan, alat sinkronisasi, cadanganmu — mendapat teksmu tanpa Dictate perlu belajar bahasanya.</string>
+    <string name="apptour62__export_body">Pilih satu folder sekali saja dan setiap dikte yang selesai juga ditulis ke sana sebagai berkas teks biasa, pada saat ia selesai. Apa pun yang mengawasi folder itu — aplikasi catatan, alat sinkronisasi, cadanganmu — mendapat teksmu tanpa {app_name} perlu belajar bahasanya.</string>
     <string name="apptour62__more_eyebrow">Selain itu</string>
     <string name="apptour62__more_title">Banyak hal kecil</string>
     <string name="apptour62__more_body">Saran kini melihat dua kata sebelum kursor dalam setiap bahasa, bukan hanya bahasa Inggris. Cadangan bisa dibuat tanpa kunci API-mu, sehingga aman diteruskan. Model transkripsi milik Azure kini terjangkau, memilih model untuk penggunaan luring kini sekaligus beralih ke mesin luring, dan setiap permintaan punya tenggat yang sepadan dengan penantiannya. Dikte muncul di riwayat begitu dikirim, impor menyebutkan sedang di langkah mana dan bisa dibatalkan, dan teks lebih andal mendarat di aplikasi yang dulu rewel soal itu.</string>
@@ -2132,12 +2258,12 @@
     <string name="apptour62__outro_title">Papan ketik yang sama, lebih banyak miliknya jadi milikmu</string>
     <string name="apptour62__outro_body">Tidak ada yang berubah dari cara kamu mendikte — kunci sendiri, server sendiri, atau model di perangkat. Semua panduan bisa kamu buka lagi di Setelan › Tentang.</string>
     <string name="apptour63__cta_try">Coba</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">{app_name} 6.3</string>
     <string name="apptour63__intro_title">Lebih banyak papan ketik, tanpa meninggalkannya</string>
     <string name="apptour63__intro_body">Arahkan kamera ke teks cetak dan teksnya mendarat di kolom. Kursor, seleksi, dan papan klip akhirnya berbagi satu panel. Setiap tombol Smartbar bisa membawa aksi kedua lewat tekan lama. Dan dikte luring akhirnya punya model yang benar-benar muat di ponsel.</string>
     <string name="apptour63__scan_eyebrow">Baru: pindai teks</string>
     <string name="apptour63__scan_title">Teks cetak langsung ke kolom</string>
-    <string name="apptour63__scan_body">IBAN dari surat, nomor seri dari kardus, alamat dari paket: arahkan kamera dan teksnya muncul di tempat kamu sedang mengetik, bukan diketik ulang. Pengenalan berlangsung di perangkat ini — tidak ada yang diunggah dan tidak ada penyedia yang terlibat. Dictate juga tidak pernah meminta izin kamera: foto diambil oleh kamera sistem dan hanya gambar itu yang dikembalikan, lalu dihapus begitu selesai dibaca.</string>
+    <string name="apptour63__scan_body">IBAN dari surat, nomor seri dari kardus, alamat dari paket: arahkan kamera dan teksnya muncul di tempat kamu sedang mengetik, bukan diketik ulang. Pengenalan berlangsung di perangkat ini — tidak ada yang diunggah dan tidak ada penyedia yang terlibat. {app_name} juga tidak pernah meminta izin kamera: foto diambil oleh kamera sistem dan hanya gambar itu yang dikembalikan, lalu dihapus begitu selesai dibaca.</string>
     <string name="apptour63__editing_eyebrow">Baru: panel pengeditan</string>
     <string name="apptour63__editing_title">Kursor, seleksi, dan papan klip di satu tempat</string>
     <string name="apptour63__editing_body">Semuanya sudah ada, tersebar di sebelas tombol yang harus kamu ketahui dulu. Sekarang jadi satu panel: berpindah per karakter, kata, atau baris, menyeleksi, menyalin, menempel, membatalkan. Tombol yang ditahan akan mengulang, bukan menuntut sebelas ketukan. Dan papan angka kini bisa dipanggil secara tegas, bukan hanya ditemukan lewat gestur yang tak pernah ada yang menetapkannya.</string>
@@ -2208,12 +2334,12 @@
     <string name="dictate__legacy_prompt_rows_one">Satu baris</string>
     <string name="dictate__legacy_prompt_rows_two">Dua baris</string>
     <string name="about__website__title">Situs web</string>
-    <string name="dictate__cloud_title">Dictate Cloud</string>
+    <string name="dictate__cloud_title">Voice Mode Cloud</string>
     <string name="dictate__cloud_row_summary_none">Beli saldo pendiktean — tanpa kunci API</string>
     <string name="dictate__cloud_row_summary_balance">Sisa {minutes} menit saldo</string>
     <string name="dictate__cloud_intro_title">Mendikte tanpa kunci API</string>
     <string name="dictate__cloud_intro_body">Beli saldo pendiktean langsung di sini, di dalam aplikasi. Tanpa akun di penyedia AI, tanpa kunci API, tanpa langganan. Saldo tidak kedaluwarsa dan hanya terpakai saat benar-benar dipakai: satu menit pendiktean menghabiskan satu menit, satu penulisan ulang sekitar dua detik.</string>
-    <string name="dictate__cloud_intro_alternative">Ini sepenuhnya pilihan. Dictate bekerja sama baiknya dengan kuncimu sendiri di penyedia pilihanmu — beberapa di antaranya gratis — dan dengan begitu kamu tetap memegang akunmu dan membayar langsung ke penyedia dengan harganya.</string>
+    <string name="dictate__cloud_intro_alternative">Ini sepenuhnya pilihan. {app_name} bekerja sama baiknya dengan kuncimu sendiri di penyedia pilihanmu — beberapa di antaranya gratis — dan dengan begitu kamu tetap memegang akunmu dan membayar langsung ke penyedia dengan harganya.</string>
     <string name="dictate__cloud_use_own_provider_btn">Pakai penyedia saya saja</string>
     <string name="dictate__cloud_balance_label">Sisa saldo</string>
     <string name="dictate__cloud_balance_minutes">{minutes} mnt</string>
@@ -2227,7 +2353,7 @@
     <string name="dictate__cloud_shop_unavailable">Paket saldo tidak dapat ditampilkan di sini. Biasanya itu berarti aplikasi tidak dipasang dari Google Play, atau tidak ada akun Play yang masuk di perangkat ini. Kunci API milikmu tetap berfungsi pada kedua kasus tersebut.</string>
     <string name="dictate__cloud_activate_title">Saldo sudah siap</string>
     <string name="dictate__cloud_activate_body">Kamu punya saldo, tetapi pendiktean saat ini berjalan lewat penyedia lain. Pindah kapan saja — tanpa kamu, tidak ada yang berubah.</string>
-    <string name="dictate__cloud_activate_btn">Mendikte lewat Dictate Cloud</string>
+    <string name="dictate__cloud_activate_btn">Mendikte lewat Voice Mode Cloud</string>
     <string name="dictate__cloud_notice_purchased">{minutes} menit ditambahkan ke saldomu.</string>
     <string name="dictate__cloud_notice_pending">Pembayaranmu belum selesai. Saldo akan muncul begitu Google mengonfirmasinya.</string>
     <string name="dictate__cloud_notice_not_redeemed">Pembayaran berhasil, tetapi saldo belum bisa diambil. Tidak ada yang hilang — buka lagi layar ini dan saldo akan ditambahkan.</string>
@@ -2263,7 +2389,7 @@
     <string name="dictate__cloud_devices_last_used">Terakhir dipakai {time}</string>
     <string name="dictate__cloud_devices_never_used">Belum pernah dipakai</string>
     <string name="dictate__cloud_recovery_error">Server tidak dapat dihubungi. Periksa koneksimu dan coba lagi.</string>
-    <string name="dictate__cloud_limits_title">Yang tidak dilakukan Dictate Cloud</string>
+    <string name="dictate__cloud_limits_title">Yang tidak dilakukan Voice Mode Cloud</string>
     <string name="dictate__cloud_limits_body">Transkripsi langsung sambil berbicara tidak tersedia dengan saldo — biayanya sekitar empat kali lipat per menit, sedangkan mesin di perangkat melakukannya luring dan gratis. Model AI dan seberapa lama ia berpikir ditentukan oleh server, jadi pemilihan model, tingkat penalaran, dan endpoint sendiri tetap nonaktif. Selebihnya tidak berubah: prompt, riwayat, tombol mengambang, pendiktean panjang, dan jam tangan.</string>
     <string name="dictate__cloud_privacy_title">Yang disimpan</string>
     <string name="dictate__cloud_privacy_body">Rekaman dan teksmu hanya diteruskan dan tidak pernah ditulis ke disk. Yang disimpan hanya angka: akun mana, kapan, berapa lama, dan apakah berhasil. Di balik akun saldo tidak ada nama, alamat email, maupun akun Google — hanya sebuah pengenal acak.</string>
@@ -2311,9 +2437,9 @@
     <string name="quick_action__ime_ui_mode_sticker">Stiker</string>
     <string name="quick_action__ime_ui_mode_sticker__tooltip">Sisipkan stiker milikmu sendiri</string>
     <string name="prefs__media__sticker_add">Tambah stiker</string>
-    <string name="prefs__media__sticker_add__summary">Salin gambar ke folder. Kamu juga bisa membagikan gambar ke Dictate dari aplikasi mana pun.</string>
+    <string name="prefs__media__sticker_add__summary">Salin gambar ke folder. Kamu juga bisa membagikan gambar ke {app_name} dari aplikasi mana pun.</string>
     <string name="prefs__media__sticker_import_whatsapp">Ambil dari WhatsApp</string>
-    <string name="prefs__media__sticker_import_whatsapp__summary">Membuka pemilih berkas di folder stiker WhatsApp. Papan ketik seperti milik Samsung menyimpan stikernya di tempat yang tidak boleh dibaca aplikasi lain — bagikan yang itu ke Dictate.</string>
+    <string name="prefs__media__sticker_import_whatsapp__summary">Membuka pemilih berkas di folder stiker WhatsApp. Papan ketik seperti milik Samsung menyimpan stikernya di tempat yang tidak boleh dibaca aplikasi lain — bagikan yang itu ke Voice Mode.</string>
     <string name="sticker__import_share_label">Simpan sebagai stiker</string>
     <string name="sticker__import_added">{n} ditambahkan</string>
     <string name="sticker__import_duplicate">{n} sudah ada</string>
@@ -2337,7 +2463,7 @@
     <string name="sticker__source_downloads">Unduhan</string>
     <string name="sticker__source_pictures">Gambar</string>
     <string name="sticker__source_dcim">Kamera</string>
-    <string name="sticker__source_hint">Ini titik awal, bukan jaminan — kalau foldernya tidak ada, pemilih terbuka seperti biasa. Aplikasi yang menyimpan stikernya sendiri, seperti papan ketik Samsung, hanya bisa dibagikan ke Dictate.</string>
+    <string name="sticker__source_hint">Ini titik awal, bukan jaminan — kalau foldernya tidak ada, pemilih terbuka seperti biasa. Aplikasi yang menyimpan stikernya sendiri, seperti papan ketik Samsung, hanya bisa dibagikan ke {app_name}.</string>
     <string name="sticker__import_progress">Menyalin {done} dari {total}</string>
     <string name="sticker__import_cancel">Ketuk untuk berhenti. Yang sudah tersalin tetap ada.</string>
     <string name="sticker__refused_declares_nothing">Aplikasi ini tidak menerima gambar dari papan ketik — disalin ke papan klip, tekan lama untuk menempel</string>
