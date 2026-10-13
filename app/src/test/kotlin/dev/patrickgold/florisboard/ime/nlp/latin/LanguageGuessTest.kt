@@ -10,13 +10,15 @@
 
 package dev.patrickgold.florisboard.ime.nlp.latin
 
+import java.text.Normalizer
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Bilingual typing: which keyboard language a sentence is being written in, and how the other one's
- * completions are worked into the strip (see [LanguageGuess]).
+ * Bilingual typing: which keyboard language a sentence is being written in, how the other one's
+ * completions are worked into the strip, and which word a swipe becomes (see [LanguageGuess]).
  *
  * The guess is measured against the shipped English and German dictionaries on hand-written sentences —
  * everyday messages in both languages, a switch from one to the other, and German sentences full of the
@@ -87,11 +89,60 @@ class LanguageGuessTest {
             "Okay dann sehen wir uns später im Office",
         )
 
-        fun guess(words: List<String>, active: String): String {
-            val g = LanguageGuess.guess(words, LANGUAGES.size, LANGUAGES.indexOf(active)) { language, word ->
+        /** Exact spelling → frequency, the way glide reads the word lists. */
+        val WORD_DATA: List<Map<String, Int>> = LANGUAGES.map { EvalKeyboard.readDict("$it.json") }
+
+        fun guessOf(words: List<String>, active: String): LanguageGuess.Guess =
+            LanguageGuess.guess(words, LANGUAGES.size, LANGUAGES.indexOf(active)) { language, word ->
                 FREQUENCIES[language][DictFold.foldKey(LANGUAGES[language], word)]
             }
-            return LANGUAGES[g.index]
+
+        fun guess(words: List<String>, active: String): String = LANGUAGES[guessOf(words, active).index]
+
+        /**
+         * The keys a swipe for [word] passes over on a Latin keyboard, the way the glide classifier draws a
+         * word's ideal path: lowercase, accents on their base letter's key, a letter with no key left out.
+         * Two words with the same path are the same gesture, told apart by their frequency alone.
+         */
+        fun swipePath(word: String): String = buildString {
+            for (c in word.lowercase()) {
+                val base = Normalizer.normalize(c.toString(), Normalizer.Form.NFD)[0]
+                if (base in 'a'..'z') append(base)
+            }
+        }
+
+        /** The 20,000 commonest words of each language, grouped by the path a swipe for them takes. */
+        val SAME_PATH: Map<String, Set<String>> = buildMap<String, MutableSet<String>> {
+            for (data in WORD_DATA) {
+                for ((word, _) in data.entries.sortedByDescending { it.value }.take(20_000)) {
+                    getOrPut(swipePath(word)) { HashSet() }.add(word)
+                }
+            }
+        }
+
+        /**
+         * Every path an English and a German word share where the two languages' commonest words for it
+         * differ — the swipes where which language is being written decides the word: English first.
+         */
+        val SHARED_PATHS: List<Triple<String, String, String>> = SAME_PATH.mapNotNull { (path, words) ->
+            val english = words.filter { it in WORD_DATA[0] }.maxByOrNull { WORD_DATA[0].getValue(it) }
+            val german = words.filter { it in WORD_DATA[1] }.maxByOrNull { WORD_DATA[1].getValue(it) }
+            if (english == null || german == null || english == german) null else Triple(path, english, german)
+        }
+
+        /** The word a swipe along [path] becomes in a sentence written in [lang], with [handicap]. */
+        fun swiped(path: String, lang: String, handicap: Int): String {
+            val written = LANGUAGES.indexOf(lang)
+            val others = WORD_DATA.filterIndexed { i, _ -> i != written }
+            return SAME_PATH.getValue(path).maxBy { word ->
+                LanguageGuess.glideFrequency(word, WORD_DATA[written], others, handicap) ?: Int.MIN_VALUE
+            }
+        }
+
+        /** The word a swipe for [word] becomes after [sentence], with [active] the keyboard's language. */
+        fun swipedAfter(sentence: String, word: String, active: String): String {
+            val g = guessOf(sentence.split(' '), active)
+            return swiped(swipePath(word), LANGUAGES[g.index], LanguageGuess.handicapFor(g.margin))
         }
 
         /** Every prefix of every sentence, guessed with each language active: the share guessed right. */
@@ -207,5 +258,54 @@ class LanguageGuessTest {
         assertEquals(listOf("x", "a", "b", "c"), blend(primary, other, handicap = 10, max = 4))
         assertEquals(listOf("a", "b"), blend(primary, other, handicap = 80, max = 2))
         assertEquals(listOf("x", "y"), blend(emptyList(), other, handicap = 60, max = 2))
+    }
+
+    @Test
+    fun `a swipe weighs the language being written, and another needs the handicap more`() {
+        val german = mapOf("für" to 234, "Not" to 180, "Team" to 195)
+        val english = mapOf("fur" to 204, "für" to 181, "not" to 254, "team" to 248)
+        assertEquals(234, LanguageGuess.glideFrequency("für", german, listOf(english), handicap = 60))
+        assertEquals(144, LanguageGuess.glideFrequency("fur", german, listOf(english), handicap = 60))
+        assertEquals(194, LanguageGuess.glideFrequency("für", english, listOf(german), handicap = 40))
+        assertNull(LanguageGuess.glideFrequency("Haus", english, listOf(emptyMap()), handicap = 10))
+        // German writes `Not`: in a German sentence English `not` stays behind it, whatever its frequency.
+        assertEquals(179, LanguageGuess.glideFrequency("not", german, listOf(english), handicap = 10))
+        // And English writes `team`, even with no handicap at all.
+        assertEquals(248, LanguageGuess.glideFrequency("team", english, listOf(german), handicap = 0))
+        assertEquals(195, LanguageGuess.glideFrequency("Team", english, listOf(german), handicap = 0))
+        assertEquals(247, LanguageGuess.glideFrequency("Team", mapOf("team" to 248), listOf(mapOf("Team" to 250)), 0))
+    }
+
+    @Test
+    fun `swipes that trace the same path in both languages become the word of the language being written`() {
+        val caseOnly = SHARED_PATHS.filter { (_, en, de) -> en.lowercase() == de.lowercase() }
+        val different = SHARED_PATHS - caseOnly.toSet()
+        fun share(pairs: List<Triple<String, String, String>>, lang: String, handicap: Int): Double =
+            pairs.count { (path, en, de) -> swiped(path, lang, handicap) == if (lang == "en") en else de }
+                .toDouble() / pairs.size
+        println("Same-path pairs among the 20,000 commonest words: ${caseOnly.size} that differ in case, ${different.size} that are different words")
+        for (handicap in listOf(LanguageGuess.HANDICAP_BASE, 40, LanguageGuess.HANDICAP_MAX)) {
+            println(
+                "handicap $handicap — case: English ${"%.3f".format(share(caseOnly, "en", handicap))}, " +
+                    "German ${"%.3f".format(share(caseOnly, "de", handicap))}; different words: English " +
+                    "${"%.3f".format(share(different, "en", handicap))}, German ${"%.3f".format(share(different, "de", handicap))}",
+            )
+        }
+        // The capitalisation is the language being written's, from the first word on.
+        for (lang in LANGUAGES) assertTrue(share(caseOnly, lang, LanguageGuess.HANDICAP_BASE) >= 0.99, lang)
+        // Different words: once a sentence has made its language plain.
+        for (lang in LANGUAGES) assertTrue(share(different, lang, LanguageGuess.HANDICAP_MAX) >= 0.9, lang)
+    }
+
+    @Test
+    fun `a swipe follows the sentence it is written into, whichever keyboard is active`() {
+        for (active in LANGUAGES) {
+            assertEquals("fur", swipedAfter("The cat has really soft", "fur", active))
+            assertEquals("für", swipedAfter("Vielen Dank", "für", active))
+            assertEquals("team", swipedAfter("I will ask the", "team", active))
+            assertEquals("Team", swipedAfter("Ich frage gleich das", "team", active))
+            assertEquals("not", swipedAfter("I do", "not", active))
+            assertEquals("Not", swipedAfter("Das war eine echte", "not", active))
+        }
     }
 }

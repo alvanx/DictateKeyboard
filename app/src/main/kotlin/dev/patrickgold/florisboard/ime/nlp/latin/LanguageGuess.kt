@@ -19,7 +19,8 @@ package dev.patrickgold.florisboard.ime.nlp.latin
  * away, but every completion, fix and prediction still came from whichever language the keyboard happened
  * to be switched to. Someone writing English with German selected got German completions for every
  * English word, German umlauts restored into English ones (`fur` → `für`) and German next-word guesses
- * after English sentences. The guess here is what lets all of that follow the writing instead.
+ * after English sentences. The guess here is what lets all of that follow the writing instead — glide
+ * typing included ([glideFrequency]).
  *
  * Pure, so the rule is measured on real sentences rather than argued — see `LanguageGuessTest`.
  */
@@ -176,5 +177,45 @@ internal object LanguageGuess {
         }
         while (next < secondary.size && out.size < max) out.add(secondary[next++])
         return out
+    }
+
+    /**
+     * What glide typing weighs [word] by: its frequency in [guessed], the word data of the language being
+     * written, or in one of [others], the other keyboard languages', less [handicap] — whichever is higher.
+     * Null when none of them knows the word.
+     *
+     * A swipe has no typed letters to tell the languages apart, only a shape, and words that trace the same
+     * path — `fur` and `für`, `team` and `Team` — are decided by this alone. So it follows the strip's rule:
+     * another language needs [handicap] more to go ahead.
+     *
+     * With one exception: a spelling the language being written does not use, where it has the same word in
+     * another case, never goes ahead of that one. German writes `Not`, `Team` and `Kind`, and a swipe in a
+     * German sentence is the German word however much commoner English `not` is — the handicap alone, even
+     * at its largest, left `not` ahead of `Not` (194 to 180) and with it one in seven of such pairs among
+     * the 20,000 commonest words of each language. An English sentence keeps its `team` the same way.
+     */
+    fun glideFrequency(word: String, guessed: Map<String, Int>, others: List<Map<String, Int>>, handicap: Int): Int? {
+        val own = guessed[word]
+        var foreign: Int? = null
+        for (data in others) {
+            val frequency = data[word] ?: continue
+            if (foreign == null || frequency - handicap > foreign) foreign = frequency - handicap
+        }
+        if (foreign == null) return own
+        if (own != null) return maxOf(own, foreign)
+        val ownSpelling = otherCaseIn(guessed, word) ?: return foreign
+        return minOf(foreign, ownSpelling - 1)
+    }
+
+    /** The highest frequency [data] has [word] at in another case — lower, capitalised or all caps. */
+    private fun otherCaseIn(data: Map<String, Int>, word: String): Int? {
+        val lower = word.lowercase()
+        var best: Int? = null
+        for (form in arrayOf(lower, lower.replaceFirstChar { it.titlecase() }, word.uppercase())) {
+            if (form == word) continue
+            val frequency = data[form] ?: continue
+            if (best == null || frequency > best) best = frequency
+        }
+        return best
     }
 }

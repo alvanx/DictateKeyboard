@@ -659,6 +659,11 @@ class NlpManager(context: Context) {
         return runBlocking { getSuggestionProvider(subtype).getFrequencyForWord(subtype, word) }
     }
 
+    /** Lets the provider see the text a glide is about to be written after — see [SuggestionProvider.prepareGlide]. */
+    fun prepareGlide(subtype: Subtype) {
+        runBlocking { getSuggestionProvider(subtype).prepareGlide(subtype, editorInstance.activeContent) }
+    }
+
     /**
      * The answer to a sum standing at the cursor, or an empty list (issues #329, #440).
      *

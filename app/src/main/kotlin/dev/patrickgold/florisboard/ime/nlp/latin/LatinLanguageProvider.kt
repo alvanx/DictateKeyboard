@@ -366,6 +366,26 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
     @Volatile
     private var glideUserWords: Pair<String, Map<String, Int>>? = null
 
+    /**
+     * Which keyboard language a glide is being written in while multilingual typing is on, for the
+     * [locale] it was worked out for: the word data of the [guessed] one, the [others]', and the
+     * [handicap] those have to overcome ([LanguageGuess.glideFrequency]).
+     */
+    private class GlideLanguages(
+        val locale: String,
+        val guessed: Map<String, Int>,
+        val others: List<Map<String, Int>>,
+        val handicap: Int,
+    )
+
+    /**
+     * Written by [prepareGlide] before every gesture is weighed, read by [getFrequencyForWord] for each of
+     * its candidates — the same volatile hand-over as [glideUserWords], and for the same reason. Null while
+     * multilingual typing is off or there is a single keyboard language.
+     */
+    @Volatile
+    private var glideLanguages: GlideLanguages? = null
+
     // Word→frequency dictionaries cached per language (issue #127, glide typing phase 2). Each bundled
     // ime/dict/<lang>.json maps a word to a frequency in [128,255]; languages without a bundled file fall
     // back to English.
@@ -815,19 +835,21 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
      * A language that cannot spell the word being typed is left out, both as the guess and as a source of
      * completions: a Cyrillic sentence followed by a Latin word is no reason to correct that word with a
      * Russian dictionary, and `groß` typed into an English sentence is German whatever came before it.
+     *
+     * [word] is what is being typed and [textBefore] everything before the cursor, [word] included; a
+     * glide, which has no typed word yet, passes an empty one.
      */
-    private suspend fun mixedLanguageFor(active: Subtype, content: EditorContent): MixedLanguage? {
+    private suspend fun mixedLanguageFor(active: Subtype, textBefore: String, word: String): MixedLanguage? {
         if (!prefs.suggestion.multilingualTyping.get()) return null
         val languages = keyboardLanguages(active)
         if (languages.size < 2) return null
         val indexes = languages.map { (lang, _) -> lowerIndexForLang(lang) }
-        val word = content.composingText
         val usable = languages.indices.filter { i ->
             val index = indexes[i]
             index.freq.isNotEmpty() && index.fold(word).all { !DictFold.isWordChar(it) || it in index.alphabet }
         }
         if (usable.isEmpty()) return null
-        val context = LanguageGuess.recentWords(content.textBeforeSelection.removeSuffix(word))
+        val context = LanguageGuess.recentWords(textBefore.removeSuffix(word))
         val guess = LanguageGuess.guess(context, usable.size, activeIndex = usable.indexOf(0)) { language, w ->
             val index = indexes[usable[language]]
             index.freq[index.fold(w)]
@@ -1309,6 +1331,11 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         resolvedDictLang.clear()
         maybeDownloadDict(subtype)
         wordDataFor(subtype)
+        // With multilingual typing on, glide's word list holds the other keyboard languages' words as well
+        // (issue #190), and it is built on the main thread when the keyboard first opens: read them here.
+        if (prefs.suggestion.multilingualTyping.get()) {
+            keyboardLanguages(subtype).drop(1).forEach { (lang, _) -> wordDataForLang(lang) }
+        }
         // Housekeeping for the learned vocabulary (issue #318) rides along here: it is the one moment per
         // language change that is already off the typing path and already expected to touch storage.
         if (prefs.wordLearningIsOn) {
@@ -1428,7 +1455,7 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
         isPrivateSession: Boolean,
     ): List<SuggestionCandidate> {
         val word = content.composingText
-        val mixed = mixedLanguageFor(subtype, content)
+        val mixed = mixedLanguageFor(subtype, content.textBeforeSelection, word)
         lastGuessedLanguage = mixed?.let { word to it.subtype.primaryLocale.language }
         if (mixed == null) return suggestIn(subtype, subtype, content, maxCandidateCount)
         val primary = suggestIn(mixed.subtype, subtype, content, maxCandidateCount)
@@ -2308,26 +2335,59 @@ class LatinLanguageProvider(context: Context) : SpellingProvider, SuggestionProv
      * the user added was safe from autocorrect but could not be swiped, which is a strange thing to have to
      * explain. Read fresh from the database on every call, because this runs once per index build and the
      * personal dictionary is the one part of the vocabulary that changes while the app is running.
+     *
+     * With multilingual typing on, every keyboard language's words (issue #190): which of them a swipe
+     * becomes is then decided per gesture, by the language being written — see [prepareGlide].
      */
     override suspend fun getListOfWords(subtype: Subtype): List<String> {
         val bundled = wordDataFor(subtype)
+        val others = if (prefs.suggestion.multilingualTyping.get()) {
+            keyboardLanguages(subtype).drop(1).map { (lang, _) -> wordDataForLang(lang) }
+        } else {
+            emptyList()
+        }
         val personal = userGlideWords(subtype)
         // Remember them for getFrequencyForWord, which is asked about these very words moments later.
         glideUserWords = subtype.primaryLocale.localeTag() to personal
-        flogDebug { "glide vocabulary (${subtype.primaryLocale.localeTag()}): ${bundled.size} + ${personal.size} personal" }
-        if (personal.isEmpty()) return bundled.keys.toList()
-        return buildList(bundled.size + personal.size) {
-            addAll(bundled.keys)
-            for (word in personal.keys) if (!bundled.containsKey(word)) add(word)
+        flogDebug {
+            "glide vocabulary (${subtype.primaryLocale.localeTag()}): ${bundled.size} + " +
+                "${others.sumOf { it.size }} other languages + ${personal.size} personal"
+        }
+        if (personal.isEmpty() && others.isEmpty()) return bundled.keys.toList()
+        val words = LinkedHashSet<String>(bundled.keys)
+        for (data in others) words.addAll(data.keys)
+        words.addAll(personal.keys)
+        return words.toList()
+    }
+
+    /**
+     * Works out which keyboard language the coming glide is written in, from the words before the cursor —
+     * the same guess the strip follows ([mixedLanguageFor]), made with no typed word to go on.
+     */
+    override suspend fun prepareGlide(subtype: Subtype, content: EditorContent) {
+        val mixed = mixedLanguageFor(subtype, content.textBeforeSelection, word = "")
+        glideLanguages = mixed?.let {
+            GlideLanguages(
+                locale = subtype.primaryLocale.localeTag(),
+                guessed = wordDataFor(it.subtype),
+                others = it.others.map { other -> wordDataFor(other) },
+                handicap = it.handicap,
+            )
         }
     }
 
     override suspend fun getFrequencyForWord(subtype: Subtype, word: String): Double {
-        val bundled = wordDataFor(subtype)[word]
-        if (bundled != null) return bundled / 255.0
-        val (locale, personal) = glideUserWords ?: return 0.0
-        if (locale != subtype.primaryLocale.localeTag()) return 0.0
-        return (personal[word] ?: 0) / 255.0
+        val locale = subtype.primaryLocale.localeTag()
+        val personal = glideUserWords?.takeIf { it.first == locale }?.second?.get(word)
+        val languages = glideLanguages?.takeIf { it.locale == locale }
+        val frequency = if (languages != null) {
+            val bundled = LanguageGuess.glideFrequency(word, languages.guessed, languages.others, languages.handicap)
+            // The user's own words are theirs in every language they write: no handicap holds them back.
+            maxOf(bundled ?: 0, personal ?: 0)
+        } else {
+            wordDataFor(subtype)[word] ?: personal ?: 0
+        }
+        return frequency / 255.0
     }
 
     /**
