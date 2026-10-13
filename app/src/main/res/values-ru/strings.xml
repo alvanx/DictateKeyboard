@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Dictate</string>
+    <string name="app_name">Voice Mode</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">Пауза</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">Ожидание</string>
     <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">Значок троеточия. Если отображается, показывает, что можно использовать больше знаков при долгом нажатии.</string>
@@ -128,8 +128,8 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">По умолчанию</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Как в системе</string>
     <string name="settings__home__title" comment="Title of the Home screen">Приветствуем в {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name} не включена в системе и поэтому не будет доступна в качестве метода ввода. Нажмите здесь, чтобы исправить эту проблему.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name} не выбрана в качестве метода ввода по умолчанию. Нажмите здесь, чтобы исправить эту проблему.</string>
+    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name} не включена в системе и поэтому не будет доступна в качестве метода ввода. Нажмите здесь, чтобы исправить эту проблему.</string>
+    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name} не выбрана в качестве метода ввода по умолчанию. Нажмите здесь, чтобы исправить эту проблему.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Поиск по настройкам</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Поиск по настройкам…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Недавние запросы</string>
@@ -635,7 +635,7 @@
     <string name="setup__select_ime__switch_keyboard_btn">Переключить клавиатуру</string>
     <string name="setup__grant_notification_permission__title">Разрешить уведомления об ошибках</string>
     <string name="setup__grant_notification_permission__description">Начиная с Android 13, приложения должны
-        запрашивать разрешение для отправки уведомлений. Dictate будет использовать это только для отправки отчёта о сбое при вылете приложения.
+        запрашивать разрешение для отправки уведомлений. Voice Mode будет использовать это только для отправки отчёта о сбое при вылете приложения.
         Данное разрешение всегда можно отозвать в настройках устройства.
     </string>
     <string name="setup__grant_notification_permission__btn">Предоставить разрешение</string>
@@ -660,8 +660,8 @@
     <string name="backup_and_restore__back_up__files">Выберите сохраняемые данные</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Настройки</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">Ключи API и пароли</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Этот архив содержит ваши ключи API и пароли в открытом виде, а также баланс Dictate Cloud — любой, кто его получит, сможет диктовать за ваш счёт. Не передавайте его, а если уже передали, смените ключ у провайдера. Всё остальное, что отмечено ниже, уезжает вместе с ним, включая историю расшифровок и буфер обмена.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">В этом архиве нет ни ключей API, ни паролей, ни баланса Dictate Cloud, поэтому его можно передать, но и ваши он не восстановит. Всё остальное, что отмечено ниже, в нём остаётся, включая историю расшифровок и буфер обмена.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Этот архив содержит ваши ключи API и пароли в открытом виде, а также баланс Voice Mode Cloud — любой, кто его получит, сможет диктовать за ваш счёт. Не передавайте его, а если уже передали, смените ключ у провайдера. Всё остальное, что отмечено ниже, уезжает вместе с ним, включая историю расшифровок и буфер обмена.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">В этом архиве нет ни ключей API, ни паролей, ни баланса Voice Mode Cloud, поэтому его можно передать, но и ваши он не восстановит. Всё остальное, что отмечено ниже, в нём остаётся, включая историю расшифровок и буфер обмена.</string>
     <string name="backup_and_restore__back_up__personal_content_note">В этом архиве нет ключей API и паролей, но есть всё, что отмечено ниже: история расшифровок вместе с сохранёнными записями, буфер обмена, ваши промпты и слова, которые клавиатура выучила у вас.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Клавиатурные расширения</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Расширения для правописания / словари</string>
@@ -678,7 +678,7 @@
     <string name="backup_and_restore__restore__metadata">Выберите файл резервной копии</string>
     <string name="backup_and_restore__restore__metadata_warn_different_version">Этот файл резервной копии был создан в версии приложения, отличной от текущей поддерживаемой. Имейте в виду, что могут возникнуть незначительные проблемы или некоторые настройки могут быть восстановлены неправильно из-за различий в функционале.</string>
     <string name="backup_and_restore__restore__metadata_warn_different_vendor">Файл резервной копии был создан в стороннем приложении, которое поддерживается не полностью. Возможна потеря данных, восстанавливайте на свой страх и риск!</string>
-    <string name="backup_and_restore__restore__metadata_note_no_credentials">В этом архиве резервной копии нет ключей API и паролей. Всё остальное восстанавливается. При объединении ключи, уже имеющиеся на устройстве, сохраняются; при перезаписи они удаляются — вместе с кодом восстановления Dictate Cloud, который нельзя ввести заново.</string>
+    <string name="backup_and_restore__restore__metadata_note_no_credentials">В этом архиве резервной копии нет ключей API и паролей. Всё остальное восстанавливается. При объединении ключи, уже имеющиеся на устройстве, сохраняются; при перезаписи они удаляются — вместе с кодом восстановления Voice Mode Cloud, который нельзя ввести заново.</string>
     <string name="backup_and_restore__restore__metadata_error_invalid_metadata">Этот файл резервной копии содержит недопустимые метаданные. Либо он повреждён, либо неправильно изменён. Восстановление из этого файла невозможно, выберите другой.</string>
     <string name="backup_and_restore__restore__metadata_error_nothing_to_restore">Этот файл резервной копии не содержит данных для восстановления, выберите другой.</string>
     <string name="backup_and_restore__restore__mode">Режим восстановления</string>
@@ -687,18 +687,18 @@
     <string name="backup_and_restore__restore__success">Данные восстановлены!</string>
     <string name="backup_and_restore__restore__failure">Невозможно восстановить данные: {error_message}</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Сообщение об ошибке Dictate</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">Извините за неудобства, но в Dictate произошёл сбой из-за непредвиденной ошибки.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Если хотите сообщить об этой ошибке, сначала проверьте трекер проблем на GitHub, не сообщалось ли уже о вашем сбое.\nЕсли нет, скопируйте сгенерированный журнал ошибки и откройте новую проблему. Используйте шаблон \"%s\" и заполните описание, шаги для воспроизведения ошибки и вставьте сгенерированный журнал в конце. Это поможет сделать Dictate лучше и стабильнее для всех. Спасибо!</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Сообщение об ошибке Voice Mode</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">Извините за неудобства, но в Voice Mode произошёл сбой из-за непредвиденной ошибки.</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Если хотите сообщить об этой ошибке, сначала проверьте трекер проблем на GitHub, не сообщалось ли уже о вашем сбое.\nЕсли нет, скопируйте сгенерированный журнал ошибки и откройте новую проблему. Используйте шаблон \"%s\" и заполните описание, шаги для воспроизведения ошибки и вставьте сгенерированный журнал в конце. Это поможет сделать Voice Mode лучше и стабильнее для всех. Спасибо!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Копировать в системный буфер обмена</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Скопировано в системный буфер обмена</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">Невозможно скопировать в системный буфер обмена: компонент менеджера буфера обмена не найден</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">Открыть трекер проблем (GitHub)</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">Закрыть</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Отчёты об ошибках Dictate</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate перестал работать…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Отчёты об ошибках Voice Mode</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode перестал работать…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">Нажмите для подробностей</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Кажется, Dictate постоянно перестаёт работать…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Кажется, Voice Mode постоянно перестаёт работать…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">Возвращение к предыдущей клавиатуре, чтобы остановить бесконечный цикл сбоя. Нажмите, чтобы просмотреть детали об ошибке.</string>
     <!-- Clipboard strings -->
     <string name="editing__back_to_keyboard">Назад к клавиатуре</string>
@@ -843,7 +843,7 @@
     <string name="ext__export__failure">Ошибка экспорта расширения: {error_message}</string>
     <string name="ext__import__success">Расширение успешно импортировано!</string>
     <string name="ext__import__failure">Ошибка импорта расширения: {error_message}</string>
-    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Dictate Keyboard extension">Импорт расширения</string>
+    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Voice Mode extension">Импорт расширения</string>
     <string name="ext__import__ext_keyboard" comment="Title of Importer screen for keyboard extension import">Импорт расширения клавиатуры</string>
     <string name="ext__import__ext_theme" comment="Title of Importer screen for theme extension import">Импорт расширения темы</string>
     <string name="ext__import__ext_languagepack" comment="Title of Importer screen for language pack extension import">Импорт расширения языкового пакета</string>
@@ -883,7 +883,7 @@
     <string name="ext__addon_management_box__managing_placeholder">Управление {extensions}</string>
     <string name="ext__addon_management_box__addon_manager_info">Все задачи, связанные с импортом, экспортом, созданием, персонализацией и удалением расширений могут быть выполнены через централизованный менеджер расширений.</string>
     <string name="ext__addon_management_box__go_to_page">Перейти к {ext_home_title}</string>
-    <string name="ext__home__info">Вы можете скачать и установить расширения через магазин расширений Dictate или импортировать любые файлы расширений, скачанные из интернета.</string>
+    <string name="ext__home__info">Вы можете скачать и установить расширения через магазин расширений Voice Mode или импортировать любые файлы расширений, скачанные из интернета.</string>
     <string name="ext__home__visit_store">Магазин расширений</string>
     <string name="ext__home__manage_extensions">Установленные расширения</string>
     <string name="ext__list__view_details">Подробности</string>
@@ -1151,14 +1151,14 @@
         <item quantity="many">{v} предложений</item>
         <item quantity="other">{v} предложений</item>
     </plurals>
-    <!-- Dictate strings -->
+    <!-- Voice Mode strings -->
     <string name="quick_action__ime_ui_mode_editing">Правка текста</string>
     <string name="quick_action__ime_ui_mode_editing__tooltip">Перемещение курсора, выделение и правка текста</string>
     <string name="quick_action__ime_ui_mode_scan">Сканировать текст</string>
     <string name="quick_action__ime_ui_mode_scan__tooltip">Сфотографировать печатный текст и вставить его</string>
     <string name="quick_action__translate">Перевести</string>
     <string name="quick_action__translate__tooltip">Переводить во время набора, прямо на устройстве</string>
-    <string name="quick_action__ime_ui_mode_dictate">Dictate</string>
+    <string name="quick_action__ime_ui_mode_dictate">Voice Mode</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Нажмите, чтобы диктовать, нажмите ещё раз для транскрибирования</string>
     <string name="quick_action__dictate_live_prompt">Голосовая инструкция</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Запишите устную инструкцию и отправьте её ИИ</string>
@@ -1166,15 +1166,14 @@
     <string name="quick_action__dictate_prompts__tooltip">Открыть промпты переформулирования ИИ</string>
     <string name="about__based_on_floris__title">На основе FlorisBoard</string>
     <string name="about__based_on_floris__summary">Форк FlorisBoard от Patrick Goldinger и участников, Apache 2.0. Нажмите, чтобы открыть.</string>
-    <string name="about__made_by">Сделано с ❤️ DevEmperor\nSoli deo gloria ✝️</string>
     <string name="about__feedback__title">Отзывы и поддержка</string>
     <string name="about__feedback__summary">Отправьте письмо с вопросами, ошибками или идеями</string>
-    <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
-    <string name="setup__provider__title">Выберите, как Dictate распознаёт речь</string>
-    <string name="setup__provider__choose_intro">Dictate превращает вашу речь в текст с помощью сервиса ИИ. Большинству подойдёт один из двух способов выше — а если вы вообще не хотите пользоваться облачным сервисом, ниже есть ещё два.</string>
+    <string name="about__feedback__email">support@voicemode.example</string>
+    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="setup__provider__title">Выберите, как Voice Mode распознаёт речь</string>
+    <string name="setup__provider__choose_intro">Voice Mode превращает вашу речь в текст с помощью сервиса ИИ. Большинству подойдёт один из двух способов выше — а если вы вообще не хотите пользоваться облачным сервисом, ниже есть ещё два.</string>
     <string name="setup__provider__choice_cloud_title">Купить баланс в приложении</string>
-    <string name="setup__provider__choice_cloud_body">Dictate Cloud: нигде не нужен аккаунт, не нужен ключ API. Вы покупаете минуты диктовки через Google Play, и они не сгорают. Удобный путь — и немного дороже, чем идти к провайдеру напрямую.</string>
+    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: нигде не нужен аккаунт, не нужен ключ API. Вы покупаете минуты диктовки через Google Play, и они не сгорают. Удобный путь — и немного дороже, чем идти к провайдеру напрямую.</string>
     <string name="setup__provider__choice_cloud_btn">Показать пакеты</string>
     <string name="setup__provider__choice_own_title">Использовать своего провайдера ИИ</string>
     <string name="setup__provider__choice_own_body">Создайте ключ у провайдера на ваш выбор — Groq бесплатен для повседневной диктовки. Вы сохраняете свой аккаунт и платите провайдеру напрямую по его ценам. Займёт около двух минут.</string>
@@ -1184,15 +1183,15 @@
     <string name="setup__provider__choice_local_title">На вашем устройстве, офлайн</string>
     <string name="setup__provider__choice_local_body">Один раз скачайте речевую модель. Без учётной записи, без затрат, и ни одна запись не покидает телефон.</string>
     <string name="setup__provider__choice_server_title">Свой сервер</string>
-    <string name="setup__provider__choice_server_body">Направьте Dictate на речевой сервер, который держите сами, или на любую конечную точку, совместимую с OpenAI.</string>
+    <string name="setup__provider__choice_server_body">Направьте Voice Mode на речевой сервер, который держите сами, или на любую конечную точку, совместимую с OpenAI.</string>
     <string name="setup__provider__local_intro">Распознавание речи тогда работает на вашем телефоне: ничего никуда не отправляется, и всё работает без связи. Выберите сейчас одну модель для загрузки — позже можно добавить или сменить.</string>
     <string name="setup__provider__local_recommended">Рекомендуется для вашего языка</string>
     <string name="setup__provider__local_bigger">Точнее, но загрузка заметно больше</string>
     <string name="setup__provider__local_download_btn">Скачать модель</string>
     <string name="setup__provider__local_use_btn">Использовать эту модель</string>
     <string name="setup__provider__local_all_models">Показать все модели</string>
-    <string name="setup__provider__intro">Dictate превращает вашу речь в текст с помощью онлайн-сервиса ИИ. Чтобы им пользоваться, нужен собственный личный ключ для такого сервиса.</string>
-    <string name="setup__provider__what_is_key">Ключ API — это как личный пароль, позволяющий Dictate пользоваться сервисом от вашего имени. Создать его бесплатно и занимает около двух минут.</string>
+    <string name="setup__provider__intro">Voice Mode превращает вашу речь в текст с помощью онлайн-сервиса ИИ. Чтобы им пользоваться, нужен собственный личный ключ для такого сервиса.</string>
+    <string name="setup__provider__what_is_key">Ключ API — это как личный пароль, позволяющий Voice Mode пользоваться сервисом от вашего имени. Создать его бесплатно и занимает около двух минут.</string>
     <string name="setup__provider__recommended">Рекомендуем <b>Groq</b> — быстрый и бесплатный для повседневной диктовки.</string>
     <string name="setup__provider__steps_groq">1. Нажмите кнопку ниже, чтобы открыть Groq.\n2. Войдите через Google или по адресу эл. почты.\n3. Нажмите «Create API Key», задайте любое имя и подтвердите.\n4. Скопируйте ключ (начинается с «gsk_»).\n5. Вернитесь сюда и нажмите «Вставить ключ API» ниже.</string>
     <string name="setup__provider__steps_generic">1. Нажмите кнопку ниже, чтобы открыть {provider}.\n2. Создайте аккаунт, если у вас его ещё нет.\n3. Создайте новый ключ API и скопируйте его.\n4. Вернитесь сюда и нажмите «Вставить ключ API» ниже.</string>
@@ -1206,7 +1205,7 @@
     <string name="setup__provider__skip_btn">Настроить позже</string>
     <string name="setup__provider__other_provider">Использовать другого поставщика ИИ</string>
     <string name="setup__provider__other_provider_hint">Дополнительно: выберите другой сервис вместо Groq. Вам понадобится ключ API этого поставщика.</string>
-    <string name="setup__finish_up__add_key_hint">Совет: вы ещё не добавили ключ ИИ. Добавьте его в любой момент в Настройки → Dictate → Поставщики ИИ, чтобы начать диктовать.</string>
+    <string name="setup__finish_up__add_key_hint">Совет: вы ещё не добавили ключ ИИ. Добавьте его в любой момент в Настройки → Voice Mode → Поставщики ИИ, чтобы начать диктовать.</string>
     <string name="crash_dialog__bug_report_template">Отчёт о сбое</string>
     <string name="enum__swipe_action__toggle_compact_layout">Переключить компактную раскладку</string>
     <string name="unit__hours__symbol">{v} ч</string>
@@ -1216,9 +1215,9 @@
     <string name="unit__percent__symbol">{v} %</string>
     <string name="unit__display_pixel__symbol">{v} dp</string>
     <string name="unit__display_pixel_per_seconds__symbol">{v} dp/с</string>
-    <string name="dictate__accessibility_service_label">Плавающая кнопка Dictate</string>
+    <string name="dictate__accessibility_service_label">Плавающая кнопка Voice Mode</string>
     <string name="dictate__accessibility_service_summary">Показывать плавающую кнопку для диктовки в любое текстовое поле.</string>
-    <string name="dictate__accessibility_service_description">Dictate использует эту службу для плавающей кнопки диктовки. Когда она включена, служба определяет, что текстовое поле получило фокус в любом приложении — чтобы кнопка могла появиться — и вставляет распознанную речь в это поле. Dictate читает только поле в фокусе, чтобы поместить текст в позицию курсора; служба не собирает, не хранит и не передаёт другое содержимое экрана.</string>
+    <string name="dictate__accessibility_service_description">Voice Mode использует эту службу для плавающей кнопки диктовки. Когда она включена, служба определяет, что текстовое поле получило фокус в любом приложении — чтобы кнопка могла появиться — и вставляет распознанную речь в это поле. Voice Mode читает только поле в фокусе, чтобы поместить текст в позицию курсора; служба не собирает, не хранит и не передаёт другое содержимое экрана.</string>
     <string name="dictate__overlay_notification_channel">Плавающая кнопка диктовки</string>
     <string name="dictate__overlay_notification_recording">Запись — нажмите плавающую кнопку, чтобы расшифровать</string>
     <string name="dictate__overlay_notification_working">Расшифровка…</string>
@@ -1230,14 +1229,14 @@
     <string name="dictate__floating_button_service_enabled">Включена · нажмите, чтобы открыть системные настройки</string>
     <string name="dictate__floating_button_service_disabled">Ещё не включена · нажмите, чтобы настроить</string>
     <string name="dictate__floating_button_disclosure_title">Включить плавающую кнопку</string>
-    <string name="dictate__floating_button_disclosure_message">Чтобы показать плавающую кнопку, Dictate нужна служба специальных возможностей. Она определяет, что текстовое поле получило фокус в любом приложении — чтобы кнопка могла появиться — и вставляет распознанную речь в это поле. Dictate читает только поле в фокусе, чтобы поместить ваш текст; служба не собирает, не хранит и не передаёт другое содержимое экрана.\n\nНа следующем экране найдите «Плавающая кнопка Dictate» и включите её.</string>
+    <string name="dictate__floating_button_disclosure_message">Чтобы показать плавающую кнопку, Voice Mode нужна служба специальных возможностей. Она определяет, что текстовое поле получило фокус в любом приложении — чтобы кнопка могла появиться — и вставляет распознанную речь в это поле. Voice Mode читает только поле в фокусе, чтобы поместить ваш текст; служба не собирает, не хранит и не передаёт другое содержимое экрана.\n\nНа следующем экране найдите «Плавающая кнопка Voice Mode» и включите её.</string>
     <string name="dictate__floating_button_disclosure_continue">Открыть настройки</string>
     <string name="dictate__floating_button_mic_title">Доступ к микрофону</string>
     <string name="dictate__floating_button_mic_summary">Нужен для записи вашего голоса · нажмите, чтобы предоставить</string>
     <string name="dictate__floating_button_show_when_title">Когда показывать</string>
     <string name="dictate__floating_button_show_when_field">Как только выбрано текстовое поле</string>
     <string name="dictate__floating_button_show_when_keyboard">Только при открытой клавиатуре</string>
-    <string name="dictate__floating_button_show_when_dictate_keyboard">И с клавиатурой Dictate</string>
+    <string name="dictate__floating_button_show_when_dictate_keyboard">И с клавиатурой Voice Mode</string>
     <string name="dictate__action_continue_recording">Продолжить запись</string>
     <string name="dictate__a11y_mic_hold_local">Транскрибировать на устройстве</string>
     <string name="smartbar__a11y_show_actions">Показать действия</string>
@@ -1268,7 +1267,7 @@
     <string name="dictate__floating_button_apps_scope_all">Все приложения</string>
     <string name="dictate__floating_button_apps_scope_only">Только приложения ниже</string>
     <string name="dictate__floating_button_apps_scope_except">Все, кроме приложений ниже</string>
-    <string name="dictate__floating_button_apps_note">Поверх исключённого приложения кнопка не рисуется никогда, и Dictate не читает в нём текстовые поля. Приложение, которое возражает против служб специальных возможностей как таковых, всё равно увидит, что служба включена.</string>
+    <string name="dictate__floating_button_apps_note">Поверх исключённого приложения кнопка не рисуется никогда, и Voice Mode не читает в нём текстовые поля. Приложение, которое возражает против служб специальных возможностей как таковых, всё равно увидит, что служба включена.</string>
     <string name="dictate__floating_button_apps_list_title">Приложения</string>
     <string name="dictate__floating_button_apps_search">Поиск приложений</string>
     <string name="dictate__floating_button_apps_none">Приложение по запросу «{search_term}» не найдено</string>
@@ -1276,7 +1275,7 @@
     <string name="dictate__floating_button_haptic_summary_off">Без вибрации при касании.</string>
     <string name="dictate__floating_button_haptic_summary_on">Короткая вибрация при касании кнопки.</string>
     <string name="dictate__floating_button_haptic_title">Вибрация при касании</string>
-    <string name="dictate__floating_button_no_prompts">Пока нет подсказок для переформулирования — добавьте их в настройках Dictate.</string>
+    <string name="dictate__floating_button_no_prompts">Пока нет подсказок для переформулирования — добавьте их в настройках Voice Mode.</string>
     <string name="dictate__floating_button_remember_position_summary_off">Одна общая позиция для всех приложений.</string>
     <string name="dictate__floating_button_remember_position_summary_on">Каждое приложение хранит собственную позицию кнопки.</string>
     <string name="dictate__floating_button_remember_position_title">Запоминать позицию для каждого приложения</string>
@@ -1291,7 +1290,7 @@
     <string name="dictate__providers_summary_both">Расшифровка: {transcription} · Переформулирование: {rewording}</string>
     <string name="dictate__remember_last_dictation_summary">Сохраняет последнюю диктовку, чтобы плавающая кнопка могла её отменить, а классическая раскладка — вставить снова.</string>
     <string name="dictate__remember_last_dictation_title">Запоминать последнюю диктовку</string>
-    <string name="changelog__v4_2_0">• НОВОЕ: плавающая кнопка диктовки — диктуйте прямо в любом приложении, даже когда активна другая клавиатура. Выберите один из трёх стилей (Капсула, Кольцо, Сфера), смотрите живую форму волны во время речи, перетаскивайте куда угодно с прилипанием к краям, задавайте цвет и размер и удерживайте для переформулирования. Включите в Настройках ▸ Dictate ▸ Плавающая кнопка.\n• НОВОЕ: Google Gemini — используйте свой ключ API из AI Studio для транскрипции и переформулирования.\n• Запросы теперь по умолчанию отображаются в постоянной строке над клавишами.\n• Более надёжная вставка текста в приложениях, включая браузеры и другие клавиатуры.</string>
+    <string name="changelog__v4_2_0">• НОВОЕ: плавающая кнопка диктовки — диктуйте прямо в любом приложении, даже когда активна другая клавиатура. Выберите один из трёх стилей (Капсула, Кольцо, Сфера), смотрите живую форму волны во время речи, перетаскивайте куда угодно с прилипанием к краям, задавайте цвет и размер и удерживайте для переформулирования. Включите в Настройках ▸ Voice Mode ▸ Плавающая кнопка.\n• НОВОЕ: Google Gemini — используйте свой ключ API из AI Studio для транскрипции и переформулирования.\n• Запросы теперь по умолчанию отображаются в постоянной строке над клавишами.\n• Более надёжная вставка текста в приложениях, включая браузеры и другие клавиатуры.</string>
     <string name="dictate__promo_floating_button_message">Новое: диктуйте везде</string>
     <string name="dictate__promo_floating_button_action">Попробовать</string>
     <string name="setup__floating_button__btn">Настроить плавающую кнопку</string>
@@ -1304,7 +1303,7 @@
     <string name="setup__floating_button__skip_btn">Пропустить — буду использовать клавиатуру</string>
     <string name="dictate__floating_button_badge_new">Новое</string>
     <string name="dictate__panel_title">Промпты ИИ</string>
-    <string name="dictate__panel_no_prompts">Промптов пока нет. Добавьте их в настройках Dictate в разделе «Переформулирование».</string>
+    <string name="dictate__panel_no_prompts">Промптов пока нет. Добавьте их в настройках Voice Mode в разделе «Переформулирование».</string>
     <string name="dictate__prompts_layout_title">Раскладка промптов</string>
     <string name="dictate__prompts_layout_panel_label">Отдельная панель</string>
     <string name="dictate__prompts_layout_panel_description">Открывать промпты в отдельной панели кнопкой с волшебной палочкой.</string>
@@ -1322,8 +1321,8 @@
     <string name="dictate__voice_input_transcribing">Расшифровка…</string>
     <string name="dictate__voice_input_stop">Готово</string>
     <string name="dictate__voice_input_hint">Нажмите для отправки</string>
-    <string name="dictate__voice_ime_label">Голосовой ввод Dictate</string>
-    <string name="dictate__error_no_api_key">Ключ API не задан — настройте его в настройках Dictate.</string>
+    <string name="dictate__voice_ime_label">Голосовой ввод Voice Mode</string>
+    <string name="dictate__error_no_api_key">Ключ API не задан — настройте его в настройках Voice Mode.</string>
     <string name="dictate__error_transcription_failed">Не удалось выполнить транскрибирование.</string>
     <string name="dictate__error_unknown">Неизвестная ошибка при транскрибировании.</string>
     <string name="dictate__error_rewording_failed">Не удалось переформулировать.</string>
@@ -1355,13 +1354,13 @@
     <string name="dictate__action_dismiss">Закрыть</string>
     <string name="dictate__action_yes">Да</string>
     <string name="dictate__action_no">Нет, спасибо</string>
-    <string name="dictate__promo_rate_message">Нравится Dictate?</string>
-    <string name="dictate__promo_donate_message">Поддержать Dictate?</string>
+    <string name="dictate__promo_rate_message">Нравится Voice Mode?</string>
+    <string name="dictate__promo_donate_message">Поддержать Voice Mode?</string>
     <string name="dictate__promo_rate_action">Оценить</string>
     <string name="dictate__promo_donate_action">Поддержать</string>
-    <string name="dictate__promo_changelog_message">Dictate обновлён</string>
+    <string name="dictate__promo_changelog_message">Voice Mode обновлён</string>
     <string name="dictate__promo_changelog_action">Подробнее</string>
-    <string name="dictate__title">Dictate</string>
+    <string name="dictate__title">Voice Mode</string>
     <string name="dictate__provider_title">Поставщик транскрибирования</string>
     <string name="dictate__provider__openai">OpenAI</string>
     <string name="dictate__provider__groq">Groq</string>
@@ -1594,7 +1593,7 @@
     <string name="dictate__command_word_summary">Диктовки, начинающиеся с «{word}», выполняются как голосовая инструкция</string>
     <string name="dictate__command_word_placeholder">Джарвис</string>
     <string name="dictate__command_word_info_title">О командном слове</string>
-    <string name="dictate__command_word_info_description">Обычно Dictate записывает то, что вы говорите. Если задано командное слово, диктовка, начинающаяся с него, становится инструкцией: слово убирается, а остальное отправляется ИИ вместе с выделенным текстом, если он есть.\n\n«Джарвис, сделай это официальнее» перепишет выделение. «Джарвис, какая столица Японии» впишет ответ в поле. Это та же кнопка голосовой инструкции, только вызванная словом, а не нажатием.\n\nСлово считается только в самом начале диктовки и только как целое слово — выберите то, с чего вы редко начинаете фразу.</string>
+    <string name="dictate__command_word_info_description">Обычно Voice Mode записывает то, что вы говорите. Если задано командное слово, диктовка, начинающаяся с него, становится инструкцией: слово убирается, а остальное отправляется ИИ вместе с выделенным текстом, если он есть.\n\n«Джарвис, сделай это официальнее» перепишет выделение. «Джарвис, какая столица Японии» впишет ответ в поле. Это та же кнопка голосовой инструкции, только вызванная словом, а не нажатием.\n\nСлово считается только в самом начале диктовки и только как целое слово — выберите то, с чего вы редко начинаете фразу.</string>
     <string name="dictate__auto_formatting_title">Автоформатирование</string>
     <string name="dictate__auto_formatting_summary">Преобразовывать произнесённые указания по форматированию в Markdown (заголовки, списки, …)</string>
     <string name="dictate__system_prompt_title">Инструкция переформулирования</string>
@@ -1705,19 +1704,19 @@
     <string name="dictate__import_not_audio">В этом файле нет звука.</string>
     <string name="dictate__import_only_first">Расшифровывается только первый файл — пропущено ещё: {count}.</string>
     <string name="dictate__setup_description">Настройте поставщика ИИ и ключ API, чтобы начать диктовать с микрофона.</string>
-    <string name="dictate__setup_configure_btn">Настроить Dictate</string>
+    <string name="dictate__setup_configure_btn">Настроить Voice Mode</string>
     <string name="setup__grant_mic_permission__title">Доступ к микрофону</string>
-    <string name="setup__grant_mic_permission__description">Dictate требуется доступ к микрофону, чтобы записывать ваш голос для транскрибирования.</string>
+    <string name="setup__grant_mic_permission__description">Voice Mode требуется доступ к микрофону, чтобы записывать ваш голос для транскрибирования.</string>
     <string name="setup__grant_mic_permission__btn">Предоставить разрешение на доступ к микрофону</string>
     <string name="changelog__dialog_title">Что нового</string>
     <string name="changelog__view_all">Посмотреть все изменения</string>
-    <string name="changelog__intro">Dictate обновлён. Вот что нового:</string>
+    <string name="changelog__intro">Voice Mode обновлён. Вот что нового:</string>
     <string name="changelog__version_header">Версия {version}</string>
-    <string name="changelog__donate">Нравится Dictate? Нажмите здесь, чтобы поддержать разработку ♥</string>
-    <string name="changelog__current">• Совершенно новая клавиатура: Dictate теперь полноценная многоязычная клавиатура с раскладкой и отдельной клавишей микрофона, открывающей голосовую панель.\n• Собственный ИИ: выберите любого поставщика, совместимого с OpenAI, и введите ключ API в Настройки → Dictate.\n• Умное форматирование и переформулирование с выбранной вами моделью.\n• Настройки из предыдущего приложения Dictate импортируются автоматически.</string>
+    <string name="changelog__donate">Нравится Voice Mode? Нажмите здесь, чтобы поддержать разработку ♥</string>
+    <string name="changelog__current">• Совершенно новая клавиатура: Voice Mode теперь полноценная многоязычная клавиатура с раскладкой и отдельной клавишей микрофона, открывающей голосовую панель.\n• Собственный ИИ: выберите любого поставщика, совместимого с OpenAI, и введите ключ API в Настройки → Voice Mode.\n• Умное форматирование и переформулирование с выбранной вами моделью.\n• Настройки из предыдущего приложения Voice Mode импортируются автоматически.</string>
     <string name="changelog__v4_1_0">• Новое: поиск эмодзи прямо с клавиатуры.\n• Новый провайдер транскрипции: Soniox.\n• Повторно вставляйте последнюю диктовку и восстанавливайте записи, прерванные при закрытии клавиатуры.\n• Панель промптов теперь обновляется в реальном времени: удерживайте промпт, чтобы изменить его.\n• На экране провайдеров ИИ теперь показаны и активный провайдер транскрипции, и провайдер переформулировки.\n• Более крупная кнопка записи, по которой проще попасть.\n• Исправления: подсказка о поддержке могла зависнуть и перекрыть панель на некоторых языках; резервное копирование больше не падает при выбранных промптах, клавиатуре или теме; сохранённые API-ключи сохраняются при обновлении.</string>
-    <string name="changelog__v4_1_1">• Исправление: на некоторых устройствах акцентный цвет мог отображаться зелёным — клавиши и кнопки снова синие, как в Dictate.</string>
-    <!-- Dictate on-device (offline) models -->
+    <string name="changelog__v4_1_1">• Исправление: на некоторых устройствах акцентный цвет мог отображаться зелёным — клавиши и кнопки снова синие, как в Voice Mode.</string>
+    <!-- Voice Mode on-device (offline) models -->
     <string name="dictate__local_models_header">Работает на вашем устройстве — аудио не отправляется. Скачайте модель, чтобы начать.</string>
     <string name="dictate__local_models_live_header">В реальном времени (потоково)</string>
     <string name="dictate__local_models_live_summary">Печатают, пока вы говорите. Включите «Транскрипция в реальном времени» в разделе Запись, чтобы использовать их.</string>
@@ -1755,7 +1754,7 @@
     <string name="dictate__floating_button_copy_to_clipboard_summary_on">Каждая диктовка также копируется в буфер обмена, чтобы вы могли вставить её вручную, если вставка не удалась. На некоторых телефонах может показываться уведомление буфера обмена.</string>
     <string name="dictate__floating_button_copy_to_clipboard_summary_off">Диктовки только вставляются, но не копируются в буфер обмена.</string>
     <string name="dictate__floating_button_menu_group">Меню при удержании</string>
-    <string name="dictate__floating_button_menu_settings_title">Настройки Dictate</string>
+    <string name="dictate__floating_button_menu_settings_title">Настройки Voice Mode</string>
     <string name="dictate__floating_button_undo_summary_off">Кнопка отмены не показывается.</string>
     <string name="dictate__floating_button_undo_summary_on">После диктовки рядом с кнопкой появляется кнопка отмены, позволяющая удалить вставленный текст одним нажатием.</string>
     <string name="dictate__floating_button_undo_title">Кнопка отмены</string>
@@ -1804,7 +1803,7 @@
     <string name="dictate__providers_rewording_single_call_note">Сейчас не используется — ваш провайдер транскрипции выполняет переформулирование в своём едином запросе.</string>
     <string name="dictate__wear_title">Wear OS</string>
     <string name="dictate__wear_summary">Параметры диктовки с сопряжённых часов</string>
-    <string name="dictate__wear_install_title">Установите Dictate на часы</string>
+    <string name="dictate__wear_install_title">Установите Voice Mode на часы</string>
     <string name="dictate__wear_install_summary">Открывает Play Store — на сопряжённых часах Wear OS 3+ выберите часы как цель.</string>
     <string name="dictate__wear_auto_rewording_title">Авто-переформулирование диктовок с часов</string>
     <string name="dictate__wear_auto_rewording_summary">Переформулируйте диктовки с часов, как на телефоне.</string>
@@ -1812,7 +1811,7 @@
     <string name="quick_action__system_prev_input_method__tooltip">Вернуться к предыдущей клавиатуре</string>
     <string name="quick_action__system_input_method_picker">Выбрать клавиатуру</string>
     <string name="quick_action__system_input_method_picker__tooltip">Открыть системный выбор клавиатуры</string>
-    <string name="changelog__v4_3_0">• НОВОЕ: Распознавание на устройстве — диктуйте полностью офлайн. Интернет не нужен, и ничего не покидает ваш телефон. Один раз загрузите речевую модель в Настройки ▸ Dictate ▸ Провайдеры. 📴\n• НОВОЕ: Клавиатура Wear OS — диктуйте прямо с часов, через телефон или автономно. ⌚\n• НОВОЕ: Правила поиска и замены — автоматически исправляйте повторяющиеся слова, имена или фразы в каждой расшифровке. Настройте их в Настройки ▸ Dictate ▸ Свои замены. 🔁\n• НОВОЕ: Режим одного вызова — одна способная ИИ-модель расшифровывает и форматирует за один запрос, быстрее и часто дешевле. Включается для каждого провайдера. ⚡\n• НОВОЕ: Действия Smartbar для возврата к предыдущей клавиатуре или открытия системного выбора клавиатуры. ⌨️\n• Акцентный цвет клавиатуры теперь следует за цветом, выбранным в Настройки ▸ Тема. 🎨\n• Добавлена необязательная кнопка отмены к плавающей кнопке диктовки. ↩️\n• Различные исправления и улучшения стабильности. 🛠️</string>
+    <string name="changelog__v4_3_0">• НОВОЕ: Распознавание на устройстве — диктуйте полностью офлайн. Интернет не нужен, и ничего не покидает ваш телефон. Один раз загрузите речевую модель в Настройки ▸ Voice Mode ▸ Провайдеры. 📴\n• НОВОЕ: Клавиатура Wear OS — диктуйте прямо с часов, через телефон или автономно. ⌚\n• НОВОЕ: Правила поиска и замены — автоматически исправляйте повторяющиеся слова, имена или фразы в каждой расшифровке. Настройте их в Настройки ▸ Voice Mode ▸ Свои замены. 🔁\n• НОВОЕ: Режим одного вызова — одна способная ИИ-модель расшифровывает и форматирует за один запрос, быстрее и часто дешевле. Включается для каждого провайдера. ⚡\n• НОВОЕ: Действия Smartbar для возврата к предыдущей клавиатуре или открытия системного выбора клавиатуры. ⌨️\n• Акцентный цвет клавиатуры теперь следует за цветом, выбранным в Настройки ▸ Тема. 🎨\n• Добавлена необязательная кнопка отмены к плавающей кнопке диктовки. ↩️\n• Различные исправления и улучшения стабильности. 🛠️</string>
     <string name="dictate__audio_source_title">Источник аудиовхода</string>
     <string name="dictate__audio_source_default">Микрофон по умолчанию</string>
     <string name="dictate__audio_source_default_summary">Стандартный микрофон со встроенной обработкой звука телефона</string>
@@ -1868,7 +1867,7 @@
     <string name="dictate__history_export_all_result">Записано: {written}, уже были: {skipped}, не удалось: {failed}</string>
     <string name="dictate__history_export_last_failure">Запись не удалась {when}. «Экспортировать всё сейчас» восполнит недостающее.</string>
     <string name="dictate__history_export_warning_title">Что туда попадает</string>
-    <string name="dictate__history_export_warning_message">В папке будет храниться текст каждой вашей диктовки с этого момента, а если включить — и записи. Всё, что синхронизирует эту папку — облачный клиент, средство резервного копирования, другое приложение — уносит эти расшифровки с устройства.\n\nDictate продолжает записывать, пока вы не отключите папку, и никогда ничего из неё не удаляет: записи, выпавшие из истории, остаются в папке. Поля паролей и режима инкогнито никогда не сохраняются и потому никогда не экспортируются.</string>
+    <string name="dictate__history_export_warning_message">В папке будет храниться текст каждой вашей диктовки с этого момента, а если включить — и записи. Всё, что синхронизирует эту папку — облачный клиент, средство резервного копирования, другое приложение — уносит эти расшифровки с устройства.\n\nVoice Mode продолжает записывать, пока вы не отключите папку, и никогда ничего из неё не удаляет: записи, выпавшие из истории, остаются в папке. Поля паролей и режима инкогнито никогда не сохраняются и потому никогда не экспортируются.</string>
     <string name="dictate__history_export_needs_history">Экспорт в папку записывает то, что сохраняет история, поэтому история должна быть включена.</string>
     <string name="dictate__history_export_enable_history">Включить историю</string>
     <string name="dictate__history_export_pick_failed">Не удалось получить доступ на запись в эту папку</string>
@@ -1891,15 +1890,15 @@
     <string name="dictate__stats_reset_confirm_title">Сбросить статистику?</string>
     <string name="dictate__stats_reset_confirm_msg">Это безвозвратно удалит всю вашу статистику диктовки.</string>
     <string name="dictate__stats_share">Поделиться</string>
-    <string name="dictate__stats_share_text">Я сэкономил %1$s с Dictate — %2$s диктовок, %3$s слов. 🎤</string>
+    <string name="dictate__stats_share_text">Я сэкономил %1$s с Voice Mode — %2$s диктовок, %3$s слов. 🎤</string>
     <string name="dictate__stats_view">Посмотреть статистику</string>
     <string name="dictate__stats_milestones_title">Празднование этапов</string>
     <string name="dictate__stats_milestones_summary">Отпразднуйте один раз при достижении этапа по времени или диктовкам</string>
     <string name="dictate__stats_milestone_title">Этап достигнут 🎉</string>
-    <string name="dictate__stats_milestone_time">Вы сэкономили %s с Dictate — отлично!</string>
-    <string name="dictate__stats_milestone_count">Вы достигли %s диктовок с Dictate!</string>
-    <string name="dictate__promo_milestone_time">Сэкономлено %s с Dictate! 🎉</string>
-    <string name="dictate__promo_milestone_count">%s диктовок с Dictate! 🎉</string>
+    <string name="dictate__stats_milestone_time">Вы сэкономили %s с Voice Mode — отлично!</string>
+    <string name="dictate__stats_milestone_count">Вы достигли %s диктовок с Voice Mode!</string>
+    <string name="dictate__promo_milestone_time">Сэкономлено %s с Voice Mode! 🎉</string>
+    <string name="dictate__promo_milestone_count">%s диктовок с Voice Mode! 🎉</string>
     <string name="dictate__promo_milestone_action">Статистика</string>
     <string name="dictate__reasoning_effort_title">Усилие рассуждения</string>
     <string name="dictate__reasoning_effort_off">Выкл.</string>
@@ -1914,7 +1913,7 @@
     <string name="dictate__reasoning_effort_high_summary">Больше всего размышлений, медленнее</string>
     <string name="dictate__reasoning_effort_custom">Пользовательский</string>
     <string name="dictate__action_save_audio">Сохранить аудио</string>
-    <string name="dictate__audio_saved">Аудио сохранено в Downloads/Dictate: %s</string>
+    <string name="dictate__audio_saved">Аудио сохранено в Downloads/VoiceMode: %s</string>
     <string name="dictate__audio_save_failed">Не удалось сохранить аудио</string>
     <string name="dictate__instant_recording_mode_off">Выключено</string>
     <string name="dictate__instant_recording_mode_always">При каждом открытии клавиатуры</string>
@@ -1977,11 +1976,11 @@
     <string name="apptour__intro_body">Вот что нового в Dictate 5.0 — главное меньше чем за минуту. Нажмите «Попробовать» на любой странице, чтобы сразу перейти к нужной настройке.</string>
     <string name="apptour__glide_eyebrow">Клавиатура</string>
     <string name="apptour__glide_title">Печать свайпом</string>
-    <string name="apptour__glide_body">Проведите пальцем от клавиши к клавише, и Dictate превратит этот путь в целые слова. У каждого языка свой словарь, который загружается по требованию — включите его в разделе «Жесты».</string>
+    <string name="apptour__glide_body">Проведите пальцем от клавиши к клавише, и Voice Mode превратит этот путь в целые слова. У каждого языка свой словарь, который загружается по требованию — включите его в разделе «Жесты».</string>
     <string name="apptour__glide_cta">Настроить печать свайпом</string>
     <string name="apptour__suggestions_eyebrow">Клавиатура</string>
     <string name="apptour__suggestions_title">Автокоррекция и подсказки</string>
-    <string name="apptour__suggestions_body">По мере набора Dictate предлагает подходящие слова и незаметно исправляет опечатки. Слово, которое вы действительно набрали, остаётся в строке подсказок, так что одно касание отменяет любую правку.</string>
+    <string name="apptour__suggestions_body">По мере набора Voice Mode предлагает подходящие слова и незаметно исправляет опечатки. Слово, которое вы действительно набрали, остаётся в строке подсказок, так что одно касание отменяет любую правку.</string>
     <string name="apptour__suggestions_cta">Настроить подсказки</string>
     <string name="apptour__realtime_eyebrow">Транскрипция</string>
     <string name="apptour__realtime_title">Транскрипция в реальном времени</string>
@@ -2014,16 +2013,16 @@
     <string name="apptour51__continue_to">Перейти к {version}</string>
     <string name="apptour51__intro_eyebrow">Версия 5.1</string>
     <string name="apptour51__intro_title">Что нового в 5.1</string>
-    <string name="apptour51__intro_body">Dictate заметно вырос со времён 5.0. Вот главное в 5.1 — нажмите «Попробовать» на любой странице, чтобы сразу перейти к нужной функции.</string>
+    <string name="apptour51__intro_body">Voice Mode заметно вырос со времён 5.0. Вот главное в 5.1 — нажмите «Попробовать» на любой странице, чтобы сразу перейти к нужной функции.</string>
     <string name="apptour51__history_eyebrow">Транскрипция</string>
     <string name="apptour51__history_title">История транскрипций</string>
     <string name="apptour51__history_body">Теперь каждая диктовка сохраняется в истории с поиском. Вставьте любую прошлую расшифровку одним касанием, воспроизведите исходный звук, перетранскрибируйте его или закрепите те, что используете чаще всего. Отдельный экран позволяет управлять всем, включая срок хранения аудиозаписей.</string>
     <string name="apptour51__longform_eyebrow">Транскрипция</string>
     <string name="apptour51__longform_title">Длинная диктовка</string>
-    <string name="apptour51__longform_body">Говорите сколько угодно. Длинные записи автоматически разбиваются на сегменты и транскрибируются в фоне, пока вы продолжаете, — так вы получаете текст быстрее и не упираетесь в ограничение длины. Обрежьте сегмент сами или позвольте Dictate определять естественные паузы.</string>
+    <string name="apptour51__longform_body">Говорите сколько угодно. Длинные записи автоматически разбиваются на сегменты и транскрибируются в фоне, пока вы продолжаете, — так вы получаете текст быстрее и не упираетесь в ограничение длины. Обрежьте сегмент сами или позвольте Voice Mode определять естественные паузы.</string>
     <string name="apptour51__gif_eyebrow">Клавиатура</string>
     <string name="apptour51__gif_title">Поиск GIF</string>
-    <string name="apptour51__gif_body">Находите и отправляйте GIF, не покидая Dictate. Откройте панель GIF, найдите что угодно и вставьте это прямо в чат — быстрый выбор в стиле Gboard, встроенный прямо здесь.</string>
+    <string name="apptour51__gif_body">Находите и отправляйте GIF, не покидая Voice Mode. Откройте панель GIF, найдите что угодно и вставьте это прямо в чат — быстрый выбор в стиле Gboard, встроенный прямо здесь.</string>
     <string name="apptour51__classic_eyebrow">Классический макет</string>
     <string name="apptour51__classic_title">Классический макет, переработанный</string>
     <string name="apptour51__classic_body">Экран диктовки без клавиатуры получил большое обновление: свободно настраиваемый ряд действий, который вы собираете перетаскиванием, элементы управления длинной записью, один или два ряда промптов, всегда доступный backspace, всплывающий выбор символа на клавише Enter и дополнительная вторая кнопка «переключить клавиатуру» для удобства работы одной рукой.</string>
@@ -2038,14 +2037,14 @@
     <string name="apptour51__more_body">Много и мелких улучшений: выбор активного языка транскрипции в настройках, кнопка остановки теперь действительно отменяет запущенный запрос, переключатель показа/скрытия для ключей API, а также многоязычный набор без межъязыковой автокоррекции — плюс множество исправлений в классическом макете, цифровой панели и не только.</string>
     <string name="apptour51__outro_eyebrow">Это 5.1</string>
     <string name="apptour51__outro_title">Наслаждайтесь обновлением</string>
-    <string name="apptour51__outro_body">Спасибо, что пользуетесь Dictate! Если он помогает вам каждый день, небольшое пожертвование поддержит проект. Вы можете вернуться к любому из этих туров в любое время в разделе «Настройки › О приложении».</string>
+    <string name="apptour51__outro_body">Спасибо, что пользуетесь Voice Mode! Если он помогает вам каждый день, небольшое пожертвование поддержит проект. Вы можете вернуться к любому из этих туров в любое время в разделе «Настройки › О приложении».</string>
     <string name="apptour52__cta_try">Попробовать</string>
     <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
     <string name="apptour52__intro_title">Диктуйте где угодно</string>
-    <string name="apptour52__intro_body">Этот выпуск выводит Dictate за пределы собственной клавиатуры: как голосовой ввод телефона, для устных команд откуда угодно и для оформления длинных диктовок. Вот что нового.</string>
+    <string name="apptour52__intro_body">Этот выпуск выводит Voice Mode за пределы собственной клавиатуры: как голосовой ввод телефона, для устных команд откуда угодно и для оформления длинных диктовок. Вот что нового.</string>
     <string name="apptour52__voiceinput_eyebrow">Системный голосовой ввод</string>
-    <string name="apptour52__voiceinput_title">Dictate из любой клавиатуры</string>
-    <string name="apptour52__voiceinput_body">Dictate теперь регистрируется как системный голосовой ввод: кнопка микрофона в других клавиатурах и приложениях распознаёт через Dictate — с вашим провайдером, вашими промптами и вашими локальными моделями. Включите «Голосовой ввод Dictate» в списке клавиатур и выберите его методом голосового ввода. (Gboard жёстко привязывает микрофон к Google — используйте клавиатуру, которая уважает системную настройку.)</string>
+    <string name="apptour52__voiceinput_title">Voice Mode из любой клавиатуры</string>
+    <string name="apptour52__voiceinput_body">Voice Mode теперь регистрируется как системный голосовой ввод: кнопка микрофона в других клавиатурах и приложениях распознаёт через Voice Mode — с вашим провайдером, вашими промптами и вашими локальными моделями. Включите «Голосовой ввод Voice Mode» в списке клавиатур и выберите его методом голосового ввода. (Gboard жёстко привязывает микрофон к Google — используйте клавиатуру, которая уважает системную настройку.)</string>
     <string name="apptour52__liveprompt_eyebrow">Свободная голосовая команда</string>
     <string name="apptour52__liveprompt_title">Скажите ИИ, что сделать — где угодно</string>
     <string name="apptour52__liveprompt_body">Удерживайте плавающую кнопку, чтобы открыть меню, нажмите «Live prompt» и просто скажите, чего хотите: «напиши вежливый отказ от завтрашней встречи», «переведи текст выше на испанский». Выделенный текст служит контекстом; без выделения ИИ пишет с нуля.</string>
@@ -2057,7 +2056,7 @@
     <string name="apptour52__trim_body">Задумались посреди фразы? Паузы дольше пары секунд теперь вырезаются перед отправкой — каждое сказанное слово остаётся, исчезает только пустота. Короче загрузка — меньше ожидания и ниже стоимость.</string>
     <string name="apptour52__paragraphs_eyebrow">Читаемые длинные диктовки</string>
     <string name="apptour52__paragraphs_title">Автоматические абзацы</string>
-    <string name="apptour52__paragraphs_body">Длинные диктовки больше не приходят сплошной стеной текста. Задайте количество слов, и Dictate начнёт новый абзац на следующем конце предложения — детерминированно и только для чистых расшифровок, никогда для текста, отформатированного ИИ.</string>
+    <string name="apptour52__paragraphs_body">Длинные диктовки больше не приходят сплошной стеной текста. Задайте количество слов, и Voice Mode начнёт новый абзац на следующем конце предложения — детерминированно и только для чистых расшифровок, никогда для текста, отформатированного ИИ.</string>
     <string name="apptour52__smartturn_eyebrow">Умнее длинный режим</string>
     <string name="apptour52__smartturn_title">Режет на законченных мыслях</string>
     <string name="apptour52__smartturn_body">Длинная диктовка теперь может использовать локальную модель Smart Turn v3, чтобы понять, когда вы действительно закончили мысль, вместо нарезки на каждой паузе. Опционально и загружается по требованию.</string>
@@ -2073,7 +2072,7 @@
     <string name="apptour53__intro_body">Этот выпуск — про две вещи, которые ты делаешь чаще всего: говоришь с телефоном и печатаешь на нём. И то и другое стало быстрее и лучше уходит с дороги.</string>
     <string name="apptour53__pushtotalk_eyebrow">Нажми и говори</string>
     <string name="apptour53__pushtotalk_title">Удерживай микрофон, отпусти — отправится</string>
-    <string name="apptour53__pushtotalk_body">Как голосовое сообщение: удерживай клавишу микрофона и говори, отпусти — и запись уходит. Смахни влево, чтобы выбросить её, или потяни вверх, чтобы зафиксировать и освободить руку. Короткое нажатие работает как прежде. Включается в настройках Dictate.</string>
+    <string name="apptour53__pushtotalk_body">Как голосовое сообщение: удерживай клавишу микрофона и говори, отпусти — и запись уходит. Смахни влево, чтобы выбросить её, или потяни вверх, чтобы зафиксировать и освободить руку. Короткое нажатие работает как прежде. Включается в настройках Voice Mode.</string>
     <string name="apptour53__autocorrect_eyebrow">Автозамена, собранная заново</string>
     <string name="apptour53__autocorrect_title">Она читает твои пальцы, а не твои опечатки</string>
     <string name="apptour53__autocorrect_body">Исправления теперь исходят из того, куда ты на самом деле попадал по клавишам, перебирая вероятные слова по ходу набора, а не угадывая по готовому слову. На нашем тестовом наборе точность выросла с 88 % до 98 % — разница заметнее всего при быстром небрежном наборе.</string>
@@ -2091,7 +2090,7 @@
     <string name="apptour53__prediction_body">Строка подсказок теперь предлагает то, что обычно идёт дальше, — по тому, как пишешь именно ты. А любое слово добавляется в словарь долгим нажатием, чтобы имена и профессиональные термины перестали исправляться.</string>
     <string name="apptour53__ownserver_eyebrow">Свой сервер</string>
     <string name="apptour53__ownserver_title">Собственный хостинг — теперь и вживую</string>
-    <string name="apptour53__ownserver_body">Твой сервер может вести и живую расшифровку, если говорит по протоколу realtime от OpenAI. А если за ним стоит спящая машина, Dictate разбудит её заранее, чтобы первый запрос не ждал загрузки.</string>
+    <string name="apptour53__ownserver_body">Твой сервер может вести и живую расшифровку, если говорит по протоколу realtime от OpenAI. А если за ним стоит спящая машина, Voice Mode разбудит её заранее, чтобы первый запрос не ждал загрузки.</string>
     <string name="apptour53__outro_eyebrow">Это 5.3</string>
     <string name="apptour53__outro_title">Приятной диктовки</string>
     <string name="apptour53__outro_body">И множество мелочей: у каждого провайдера свой логотип, индикатор записи может быть неподвижным, пульсирующим или реагирующим на голос, вывод промпта может сохранять рядом исходную расшифровку, а абзацы больше не рвутся после сокращений. Любой тур можно пересмотреть в Настройках › О приложении.</string>
@@ -2102,7 +2101,7 @@
     <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
     <string name="apptour60__intro_title">Баланс, китайский, дешевле диктовка</string>
     <string name="apptour60__intro_body">В этой версии появился второй путь — купить баланс вместо собственного ключа API, — а также пиньинь для китайского, семь языков с новым словарём и записи, которые обходятся дешевле.</string>
-    <string name="apptour60__cloud_eyebrow">Новое: Dictate Cloud</string>
+    <string name="apptour60__cloud_eyebrow">Новое: Voice Mode Cloud</string>
     <string name="apptour60__cloud_title">Купить минуты вместо поиска ключа</string>
     <string name="apptour60__cloud_body">Если вы не хотите заводить аккаунт у провайдера, теперь можно просто купить баланс. Да, это идёт через наш сервер — но ни записи, ни тексты там не сохраняются, они передаются дальше сразу. Весь код сервера открыт, его можно прочитать. Ваш собственный ключ работает ровно как прежде.</string>
     <string name="apptour60__speedup_eyebrow">Меньше трат на API</string>
@@ -2122,7 +2121,7 @@
     <string name="apptour60__more_body">Удержание кнопки остановки отменяет зависшую расшифровку. Плавающая кнопка больше не сообщает об успехе, который не смогла проверить, и гаснет вместе с экраном. Свайп-ввод теперь знает добавленные вами слова. И сбой сразу после обновления исправлен.</string>
     <string name="apptour60__outro_eyebrow">Это 6.0</string>
     <string name="apptour60__outro_title">Приятного пользования</string>
-    <string name="apptour60__outro_body">Как бы вы ни пользовались Dictate — свой ключ, свой сервер, модель на устройстве или баланс, — в остальных путях ничего не изменилось. Любой тур можно пересмотреть в Настройки › О приложении.</string>
+    <string name="apptour60__outro_body">Как бы вы ни пользовались Voice Mode — свой ключ, свой сервер, модель на устройстве или баланс, — в остальных путях ничего не изменилось. Любой тур можно пересмотреть в Настройки › О приложении.</string>
     <string name="apptour61__cta_try">Попробовать</string>
     <string name="apptour61__art_folder">Стикеры</string>
     <string name="apptour61__art_share">Поделиться через</string>
@@ -2130,13 +2129,13 @@
     <string name="apptour61__art_fixed">что</string>
     <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
     <string name="apptour61__intro_title">Стикеры, голосовые сообщения и автозамена, которая наконец видит опечатку</string>
-    <string name="apptour61__intro_body">Укажите клавиатуре папку с собственными стикерами, отправьте голосовое сообщение прямо в Dictate, чтобы узнать, что в нём, и получите автозамену, которая наконец замечает ошибку, для незамечания которой её и построили.</string>
+    <string name="apptour61__intro_body">Укажите клавиатуре папку с собственными стикерами, отправьте голосовое сообщение прямо в Voice Mode, чтобы узнать, что в нём, и получите автозамену, которая наконец замечает ошибку, для незамечания которой её и построили.</string>
     <string name="apptour61__stickers_eyebrow">Новое: свои стикеры</string>
     <string name="apptour61__stickers_title">Папка на телефоне — на клавиатуре</string>
-    <string name="apptour61__stickers_body">Укажите Dictate любую папку, и её картинки станут стикерами: вложенные папки превращаются во вкладки со своими избранными и недавними. Добавляйте из любого приложения через меню «Поделиться», удаляйте не выходя из клавиатуры. То, что мессенджер принимает на самом деле, — не то, что он заявляет: поэтому каждый стикер приводится в нужный вид один раз при добавлении, а дальше просто отправляется.</string>
-    <string name="apptour61__share_eyebrow">Новое: поделиться с Dictate</string>
+    <string name="apptour61__stickers_body">Укажите Voice Mode любую папку, и её картинки станут стикерами: вложенные папки превращаются во вкладки со своими избранными и недавними. Добавляйте из любого приложения через меню «Поделиться», удаляйте не выходя из клавиатуры. То, что мессенджер принимает на самом деле, — не то, что он заявляет: поэтому каждый стикер приводится в нужный вид один раз при добавлении, а дальше просто отправляется.</string>
+    <string name="apptour61__share_eyebrow">Новое: поделиться с Voice Mode</string>
     <string name="apptour61__share_title">Узнать, что говорит это голосовое</string>
-    <string name="apptour61__share_body">Dictate теперь есть в меню «Поделиться» для аудио и видео. Отправьте туда голосовое сообщение — откроется экран, который начнёт расшифровку сам: не нужно искать поле и нажимать кнопку. По расшифровке можно искать, а длинные записи обрабатываются по частям, а не отклоняются.</string>
+    <string name="apptour61__share_body">Voice Mode теперь есть в меню «Поделиться» для аудио и видео. Отправьте туда голосовое сообщение — откроется экран, который начнёт расшифровку сам: не нужно искать поле и нажимать кнопку. По расшифровке можно искать, а длинные записи обрабатываются по частям, а не отклоняются.</string>
     <string name="apptour61__autocorrect_eyebrow">Автозамена</string>
     <string name="apptour61__autocorrect_title">Опечатка, которую она не могла увидеть</string>
     <string name="apptour61__autocorrect_body">Правило, решавшее, можно ли исправить слово, пропускало палец, соскользнувший почти до соседней клавиши, но никогда — попавший точно по ней, а это и есть обычная опечатка. Это исправлено, и решительность замены вы теперь настраиваете сами. Слово, которое возьмёт пробел, отмечено вашим акцентным цветом, а Backspace сразу после возвращает ровно то, что вы набрали.</string>
@@ -2165,7 +2164,7 @@
     <string name="apptour62__learning_body">Наберите имя или термин достаточно часто — и клавиатура его оставит себе: перестанет отмечать как ошибку и начнёт предлагать. Это обновление включает функцию у всех, в том числе у тех, кто раньше её выключил. В режиме инкогнито, в полях пароля и из всего, что вы не набрали клавиша за клавишей, не запоминается ничего; всё остаётся на этом устройстве, а кнопка ниже открывает список — и переключатель.</string>
     <string name="apptour62__themes_eyebrow">Пять новых обликов</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep и тёмный E-Ink</string>
-    <string name="apptour62__themes_body">Dictate Glass пропускает приложение сквозь зазоры между клавишами, при этом сами клавиши остаются достаточно плотными, чтобы на них читалось; Glass Clear идёт дальше и выглядит лучше — ценой того, что в приложениях, рисующих за клавиатурой, сквозь неё проступает их текст. Sand — тёплая светлая тема, Deep — спокойная тёмная, а у E-Ink наконец появился ночной вариант, так что автоматическое переключение больше не подсовывает вам белую клавиатуру после наступления темноты.</string>
+    <string name="apptour62__themes_body">Voice Mode Glass пропускает приложение сквозь зазоры между клавишами, при этом сами клавиши остаются достаточно плотными, чтобы на них читалось; Glass Clear идёт дальше и выглядит лучше — ценой того, что в приложениях, рисующих за клавиатурой, сквозь неё проступает их текст. Sand — тёплая светлая тема, Deep — спокойная тёмная, а у E-Ink наконец появился ночной вариант, так что автоматическое переключение больше не подсовывает вам белую клавиатуру после наступления темноты.</string>
     <string name="apptour62__split_eyebrow">Новое: разделённая клавиатура</string>
     <string name="apptour62__split_title">Оба больших пальца, без дотягивания</string>
     <string name="apptour62__split_body">Новое быстрое действие рядом с одноручным и плавающим режимами раздвигает ряды, чтобы каждый палец оставался на своей половине. Делится любая раскладка, не только QWERTY, потому что шов вычисляется из ширины клавиш, а не прописан в каждой раскладке. А в альбомной ориентации приложение теперь остаётся видимым всякий раз, когда места хватает обоим.</string>
@@ -2186,7 +2185,7 @@
     <string name="apptour62__gestures_body">Удерживайте клавишу символов, доведите палец до нужного знака и отпустите: он вставлен, а буквы уже вернулись — без переключений туда и обратно. Свайп вверх по пробелу теперь достаёт до строки выше, а не только до предыдущего слова. А расстояние между клавишами настраивается в диапазоне, который действительно видно.</string>
     <string name="apptour62__export_eyebrow">Новое: диктовки как файлы</string>
     <string name="apptour62__export_title">Каждая диктовка — в выбранную вами папку</string>
-    <string name="apptour62__export_body">Выберите папку один раз, и каждая завершённая диктовка дополнительно запишется в неё простым текстовым файлом — в тот момент, когда она готова. Что бы ни следило за этой папкой — заметки, средство синхронизации, ваш бэкап — оно получит ваши тексты, а Dictate не придётся учить его язык.</string>
+    <string name="apptour62__export_body">Выберите папку один раз, и каждая завершённая диктовка дополнительно запишется в неё простым текстовым файлом — в тот момент, когда она готова. Что бы ни следило за этой папкой — заметки, средство синхронизации, ваш бэкап — оно получит ваши тексты, а Voice Mode не придётся учить его язык.</string>
     <string name="apptour62__more_eyebrow">А ещё</string>
     <string name="apptour62__more_title">Много мелочей</string>
     <string name="apptour62__more_body">Подсказки теперь смотрят на два слова перед курсором на любом языке, а не только на английском. Резервную копию можно сделать без ваших API-ключей, чтобы её можно было спокойно передать. Собственные модели транскрипции Azure доступны, выбор модели для работы офлайн теперь переключает и на офлайн-движок, а у каждого запроса есть срок, соразмерный ожиданию. Диктовки появляются в истории в момент отправки, импорт сообщает, на каком он шаге, и его можно отменить, а текст надёжнее доходит до приложений, которым это давалось тяжело.</string>
@@ -2199,7 +2198,7 @@
     <string name="apptour63__intro_body">Наведите камеру на печатный текст — и он окажется в поле. Курсор, выделение и буфер обмена наконец делят одну панель. Любая кнопка Smartbar может нести вторую команду по долгому нажатию. А у диктовки без сети наконец есть модели, которые действительно помещаются в телефон.</string>
     <string name="apptour63__scan_eyebrow">Новое: сканирование текста</string>
     <string name="apptour63__scan_title">Печатный текст сразу в поле</string>
-    <string name="apptour63__scan_body">IBAN с письма, серийный номер с коробки, адрес с посылки: наведите камеру — и текст окажется там, где вы печатали, вместо того чтобы набирать его заново. Распознавание идёт на этом устройстве: ничего не загружается и никакой провайдер не участвует. Dictate также никогда не просит разрешение на камеру: снимок делает системная камера и возвращает только это одно изображение, которое удаляется, как только было прочитано.</string>
+    <string name="apptour63__scan_body">IBAN с письма, серийный номер с коробки, адрес с посылки: наведите камеру — и текст окажется там, где вы печатали, вместо того чтобы набирать его заново. Распознавание идёт на этом устройстве: ничего не загружается и никакой провайдер не участвует. Voice Mode также никогда не просит разрешение на камеру: снимок делает системная камера и возвращает только это одно изображение, которое удаляется, как только было прочитано.</string>
     <string name="apptour63__editing_eyebrow">Новое: панель редактирования</string>
     <string name="apptour63__editing_title">Курсор, выделение и буфер обмена в одном месте</string>
     <string name="apptour63__editing_body">Всё это уже было — разбросано по одиннадцати клавишам, о которых нужно было знать. Теперь это одна панель: движение по символу, слову или строке, выделение, копирование, вставка, отмена. Удержанная клавиша повторяется вместо одиннадцати нажатий. А цифровой блок наконец можно вызвать явно, а не только жестом, который никто не назначал.</string>
@@ -2270,12 +2269,12 @@
     <string name="dictate__legacy_prompt_rows_one">Одна строка</string>
     <string name="dictate__legacy_prompt_rows_two">Две строки</string>
     <string name="about__website__title">Веб-сайт</string>
-    <string name="dictate__cloud_title">Dictate Cloud</string>
+    <string name="dictate__cloud_title">Voice Mode Cloud</string>
     <string name="dictate__cloud_row_summary_none">Купить баланс для диктовки — без ключа API</string>
     <string name="dictate__cloud_row_summary_balance">Осталось {minutes} минут</string>
     <string name="dictate__cloud_intro_title">Диктовка без ключа API</string>
     <string name="dictate__cloud_intro_body">Купите баланс для диктовки прямо здесь, в приложении. Не нужен аккаунт у провайдера ИИ, не нужен ключ API, нет подписки. Баланс не сгорает и расходуется только тогда, когда вы им действительно пользуетесь: минута диктовки стоит минуту, переформулировка — около двух секунд.</string>
-    <string name="dictate__cloud_intro_alternative">Это полностью по желанию. Dictate так же хорошо работает с вашим собственным ключом у провайдера на ваш выбор — некоторые бесплатны — и тогда вы сохраняете свой аккаунт и платите провайдеру напрямую по его ценам.</string>
+    <string name="dictate__cloud_intro_alternative">Это полностью по желанию. Voice Mode так же хорошо работает с вашим собственным ключом у провайдера на ваш выбор — некоторые бесплатны — и тогда вы сохраняете свой аккаунт и платите провайдеру напрямую по его ценам.</string>
     <string name="dictate__cloud_use_own_provider_btn">Лучше свой провайдер</string>
     <string name="dictate__cloud_balance_label">Остаток баланса</string>
     <string name="dictate__cloud_balance_minutes">{minutes} мин</string>
@@ -2289,7 +2288,7 @@
     <string name="dictate__cloud_shop_unavailable">Пакеты здесь показать не удалось. Обычно это значит, что приложение установлено не из Google Play или на устройстве нет входа в аккаунт Play. Ваш собственный ключ API работает в обоих случаях.</string>
     <string name="dictate__cloud_activate_title">Баланс готов</string>
     <string name="dictate__cloud_activate_body">У вас есть баланс, но диктовка сейчас идёт через другого провайдера. Переключитесь, когда захотите — без вас ничего не меняется.</string>
-    <string name="dictate__cloud_activate_btn">Диктовать через Dictate Cloud</string>
+    <string name="dictate__cloud_activate_btn">Диктовать через Voice Mode Cloud</string>
     <string name="dictate__cloud_notice_purchased">К балансу добавлено {minutes} минут.</string>
     <string name="dictate__cloud_notice_pending">Платёж ещё не завершён. Баланс появится, как только Google его подтвердит.</string>
     <string name="dictate__cloud_notice_not_redeemed">Платёж прошёл, но баланс получить не удалось. Ничего не потеряно — откройте этот экран снова, и он будет начислен.</string>
@@ -2299,7 +2298,7 @@
     <string name="dictate__cloud_notice_gone_deleted" comment="Shown when the app finds out that the credit account was deleted elsewhere">Вашего счёта с балансом больше нет — он был удалён на сайте или на другом устройстве. Теперь он исчез и с этого телефона.</string>
     <string name="dictate__cloud_notice_gone_signed_out" comment="Shown when this device was signed out of the credit account, which still exists">Это устройство отключено от вашего счёта. Сам счёт и баланс не изменились — введите код восстановления ниже, чтобы войти снова.</string>
     <string name="dictate__cloud_delete_title">Удалить счёт с балансом</string>
-    <string name="dictate__cloud_delete_explain">Удаляет ваш счёт и все связанные с ним записи. Остаток сгорает и не возвращается. Если приложения уже нет, это можно сделать на api.dictatekeyboard.com/delete.</string>
+    <string name="dictate__cloud_delete_explain">Удаляет ваш счёт и все связанные с ним записи. Остаток сгорает и не возвращается. Если приложения уже нет, это можно сделать на api.voicemode.example/delete.</string>
     <string name="dictate__cloud_delete_btn">Удалить счёт</string>
     <string name="dictate__cloud_delete_dialog_title">Удалить ваш счёт?</string>
     <string name="dictate__cloud_delete_dialog_body" comment="{minutes} is a number">У вас ещё {minutes} минут баланса. Удаление уберёт счёт, код восстановления и все подключённые устройства.</string>
@@ -2325,7 +2324,7 @@
     <string name="dictate__cloud_devices_last_used">Последнее использование {time}</string>
     <string name="dictate__cloud_devices_never_used">Ещё не использовалось</string>
     <string name="dictate__cloud_recovery_error">Сервер недоступен. Проверьте соединение и попробуйте снова.</string>
-    <string name="dictate__cloud_limits_title">Чего Dictate Cloud не делает</string>
+    <string name="dictate__cloud_limits_title">Чего Voice Mode Cloud не делает</string>
     <string name="dictate__cloud_limits_body">Живой расшифровки во время речи с балансом нет — она стоит примерно вчетверо дороже за минуту, а движок на устройстве делает это офлайн и бесплатно. Модель ИИ и то, сколько она размышляет, задаёт сервер, поэтому выбор модели, глубина рассуждения и собственные адреса остаются выключенными. Всё остальное без изменений: промпты, история, плавающая кнопка, длинная диктовка и часы.</string>
     <string name="dictate__cloud_privacy_title">Что сохраняется</string>
     <string name="dictate__cloud_privacy_body">Ваши записи и тексты передаются насквозь и никогда не пишутся на диск. Сохраняются только числа: какой счёт, когда, как долго и удалось ли. За счётом нет ни имени, ни адреса почты, ни аккаунта Google — только случайный идентификатор.</string>
@@ -2373,9 +2372,9 @@
     <string name="quick_action__ime_ui_mode_sticker">Стикер</string>
     <string name="quick_action__ime_ui_mode_sticker__tooltip">Вставить свои стикеры</string>
     <string name="prefs__media__sticker_add">Добавить стикеры</string>
-    <string name="prefs__media__sticker_add__summary">Скопируйте изображения в папку. Изображение также можно отправить в Dictate через «Поделиться» из любого приложения.</string>
+    <string name="prefs__media__sticker_add__summary">Скопируйте изображения в папку. Изображение также можно отправить в Voice Mode через «Поделиться» из любого приложения.</string>
     <string name="prefs__media__sticker_import_whatsapp">Забрать из WhatsApp</string>
-    <string name="prefs__media__sticker_import_whatsapp__summary">Открывает выбор файлов в папке стикеров WhatsApp. Клавиатуры вроде самсунговской хранят свои стикеры там, куда другим приложениям читать нельзя — такие отправляйте в Dictate через «Поделиться».</string>
+    <string name="prefs__media__sticker_import_whatsapp__summary">Открывает выбор файлов в папке стикеров WhatsApp. Клавиатуры вроде самсунговской хранят свои стикеры там, куда другим приложениям читать нельзя — такие отправляйте в Voice Mode через «Поделиться».</string>
     <string name="sticker__import_share_label">Сохранить как стикер</string>
     <string name="sticker__import_added">Добавлено: {n}</string>
     <string name="sticker__import_duplicate">{n} уже были</string>
@@ -2399,7 +2398,7 @@
     <string name="sticker__source_downloads">Загрузки</string>
     <string name="sticker__source_pictures">Изображения</string>
     <string name="sticker__source_dcim">Камера</string>
-    <string name="sticker__source_hint">Это отправные точки, а не гарантии: если папки нет, выбор откроется как обычно. Приложения, которые держат стикеры при себе — например, клавиатура Samsung, — могут только отправить их в Dictate через «Поделиться».</string>
+    <string name="sticker__source_hint">Это отправные точки, а не гарантии: если папки нет, выбор откроется как обычно. Приложения, которые держат стикеры при себе — например, клавиатура Samsung, — могут только отправить их в Voice Mode через «Поделиться».</string>
     <string name="sticker__import_progress">Копирование {done} из {total}</string>
     <string name="sticker__import_cancel">Нажмите, чтобы остановить. Скопированное останется.</string>
     <string name="sticker__refused_declares_nothing">Это приложение не принимает изображения с клавиатуры — скопировано в буфер обмена, удерживайте для вставки</string>

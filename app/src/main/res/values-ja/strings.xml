@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Dictate</string>
+    <string name="app_name">Voice Mode</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">一時停止</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">待機</string>
     <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">3点リーダーアイコン。表示されている場合、長押しで他の文字が利用できることを示します。</string>
@@ -123,8 +123,8 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">デフォルト</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">システムのデフォルト</string>
     <string name="settings__home__title" comment="Title of the Home screen">{app_name}へようこそ</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name}がシステムで有効になっていないため、入力方法として使用できません。この問題を解決するには、ここをタップしてください。</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name}は、デフォルトの入力方法として選択されていません。この問題を解決するには、ここをタップしてください。</string>
+    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name}がシステムで有効になっていないため、入力方法として使用できません。この問題を解決するには、ここをタップしてください。</string>
+    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name}は、デフォルトの入力方法として選択されていません。この問題を解決するには、ここをタップしてください。</string>
     <string name="settings__search__title" comment="Title of the settings search screen">設定を検索</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">設定を検索…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">最近の検索</string>
@@ -611,7 +611,7 @@
     <string name="setup__select_ime__description">{app_name}はシステムで有効になりました。アクティブに使用するには、入力セレクターダイアログで{app_name}を選択して切り替えてください！</string>
     <string name="setup__select_ime__switch_keyboard_btn">キーボードを切り替える</string>
     <string name="setup__grant_notification_permission__title">クラッシュレポート通知を許可</string>
-    <string name="setup__grant_notification_permission__description">Android 13以降、アプリは通知を送信するために許可を求める必要があります。\n Dictateでは、これはクラッシュ発生時にクラッシュレポート画面を開くためにのみ使用されます。\n この許可はシステム設定でいつでも変更できます。\n </string>
+    <string name="setup__grant_notification_permission__description">Android 13以降、アプリは通知を送信するために許可を求める必要があります。\n Voice Modeでは、これはクラッシュ発生時にクラッシュレポート画面を開くためにのみ使用されます。\n この許可はシステム設定でいつでも変更できます。\n </string>
     <string name="setup__grant_notification_permission__btn">許可を与える</string>
     <string name="setup__finish_up__title">完了</string>
     <string name="setup__finish_up__description_p1">{app_name}はシステムで有効になり、カスタマイズの準備ができました。</string>
@@ -629,8 +629,8 @@
     <string name="backup_and_restore__back_up__files">バックアップするものを選択</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">設定</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API キーとパスワード</string>
-    <string name="backup_and_restore__back_up__credentials_warning">このアーカイブには API キーとパスワードが平文で入っており、Dictate Cloud の残高も含まれます。受け取った人は誰でもあなたの負担で音声入力できます。他人に渡さないでください。すでに渡してしまった場合は、プロバイダー側でキーを変更してください。下でチェックされているものはすべて一緒に入ります。文字起こしの履歴やクリップボードも含まれます。</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">このアーカイブには API キー、パスワード、Dictate Cloud の残高は含まれていないので、他人に渡せます。ただし、あなたのキーも復元されません。下でチェックされているものはそのまま入っており、文字起こしの履歴やクリップボードも含まれます。</string>
+    <string name="backup_and_restore__back_up__credentials_warning">このアーカイブには API キーとパスワードが平文で入っており、Voice Mode Cloud の残高も含まれます。受け取った人は誰でもあなたの負担で音声入力できます。他人に渡さないでください。すでに渡してしまった場合は、プロバイダー側でキーを変更してください。下でチェックされているものはすべて一緒に入ります。文字起こしの履歴やクリップボードも含まれます。</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">このアーカイブには API キー、パスワード、Voice Mode Cloud の残高は含まれていないので、他人に渡せます。ただし、あなたのキーも復元されません。下でチェックされているものはそのまま入っており、文字起こしの履歴やクリップボードも含まれます。</string>
     <string name="backup_and_restore__back_up__personal_content_note">このアーカイブに API キーとパスワードは含まれていませんが、下でチェックされているものはすべて入ります。保存された録音を含む文字起こしの履歴、クリップボード、プロンプト、キーボードがあなたから学習した単語です。</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">キーボード拡張機能</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">スペル拡張機能 / 辞書</string>
@@ -647,7 +647,7 @@
     <string name="backup_and_restore__restore__metadata">選択されたバックアップアーカイブ</string>
     <string name="backup_and_restore__restore__metadata_warn_different_version">このバックアップアーカイブは、通常サポートされている現在のバージョンとは異なるバージョンで生成されました。機能の違いにより、軽微な問題が発生したり、一部の設定が正しく転送されない場合があることに注意してください。</string>
     <string name="backup_and_restore__restore__metadata_warn_different_vendor">このバックアップアーカイブはサードパーティ製アプリで生成されたものであり、通常はサポートされていません。データ損失が発生する可能性があります。自己責任で復元してください！</string>
-    <string name="backup_and_restore__restore__metadata_note_no_credentials">このバックアップに API キーとパスワードは含まれていません。それ以外はすべて復元されます。結合ではこの端末にあるキーがそのまま残り、上書きでは削除されます。入力し直せない Dictate Cloud の復旧コードも失われます。</string>
+    <string name="backup_and_restore__restore__metadata_note_no_credentials">このバックアップに API キーとパスワードは含まれていません。それ以外はすべて復元されます。結合ではこの端末にあるキーがそのまま残り、上書きでは削除されます。入力し直せない Voice Mode Cloud の復旧コードも失われます。</string>
     <string name="backup_and_restore__restore__metadata_error_invalid_metadata">このバックアップアーカイブには無効なメタデータが含まれています。破損しているか、不適切に変更された可能性があります。このアーカイブからの復元はできません。別のものを選択してください。</string>
     <string name="backup_and_restore__restore__metadata_error_nothing_to_restore">このバックアップアーカイブには復元するファイルが含まれていません。別のものを選択してください。</string>
     <string name="backup_and_restore__restore__mode">復元モード</string>
@@ -656,18 +656,18 @@
     <string name="backup_and_restore__restore__success">データの復元に成功しました！</string>
     <string name="backup_and_restore__restore__failure">データの復元に失敗しました: {error_message}</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Dictateエラーレポート</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">ご不便をおかけして申し訳ありませんが、予期しないエラーによりDictateがクラッシュしました。</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">このエラーを報告する場合、まずGitHubの課題トラッカーでクラッシュがまだ報告されていないか確認してください。\n報告されていない場合は、生成されたクラッシュログをコピーして新しい課題を開き、「%s」テンプレートを使用して説明と再現手順を入力し、最後に生成されたクラッシュログを貼り付けてください。これにより、Dictateをより良く、より安定させるのに役立ちます。ご協力ありがとうございます！</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Voice Modeエラーレポート</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">ご不便をおかけして申し訳ありませんが、予期しないエラーによりVoice Modeがクラッシュしました。</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">このエラーを報告する場合、まずGitHubの課題トラッカーでクラッシュがまだ報告されていないか確認してください。\n報告されていない場合は、生成されたクラッシュログをコピーして新しい課題を開き、「%s」テンプレートを使用して説明と再現手順を入力し、最後に生成されたクラッシュログを貼り付けてください。これにより、Voice Modeをより良く、より安定させるのに役立ちます。ご協力ありがとうございます！</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">システムクリップボードにコピー</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">システムクリップボードにコピーしました</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">システムクリップボードにコピーできません：クリップボードマネージャーのインスタンスが見つかりません</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">課題トラッカーを開く (github.com)</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">閉じる</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Dictateエラーレポート</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictateの動作が停止しました…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Voice Modeエラーレポート</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Modeの動作が停止しました…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">タップしてエラー詳細を表示</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Dictateが繰り返し動作を停止しているようです…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Voice Modeが繰り返し動作を停止しているようです…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">無限クラッシュループを停止するため、以前のキーボードにフォールバックしています。タップしてエラー詳細を表示</string>
     <!-- Clipboard strings -->
     <string name="editing__back_to_keyboard">キーボードに戻る</string>
@@ -806,7 +806,7 @@
     <string name="ext__export__failure">拡張機能の書き出しに失敗しました: {error_message}</string>
     <string name="ext__import__success">拡張機能の取り込みに成功しました！</string>
     <string name="ext__import__failure">拡張機能の取り込みに失敗しました: {error_message}</string>
-    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Dictate Keyboard extension">拡張機能を取り込む</string>
+    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Voice Mode extension">拡張機能を取り込む</string>
     <string name="ext__import__ext_keyboard" comment="Title of Importer screen for keyboard extension import">キーボード拡張機能を取り込む</string>
     <string name="ext__import__ext_theme" comment="Title of Importer screen for theme extension import">テーマ拡張機能を取り込む</string>
     <string name="ext__import__ext_languagepack" comment="Title of Importer screen for language pack extension import">言語パック拡張機能を取り込む</string>
@@ -846,7 +846,7 @@
     <string name="ext__addon_management_box__managing_placeholder">{extensions}を管理中</string>
     <string name="ext__addon_management_box__addon_manager_info">拡張機能のインポート、エクスポート、作成、カスタマイズ、削除に関連するすべてのタスクは、集中管理されたアドオンマネージャーを通じて処理できます。</string>
     <string name="ext__addon_management_box__go_to_page">{ext_home_title} に移動</string>
-    <string name="ext__home__info">Dictateアドオンストアから拡張機能をダウンロードしてインストールしたり、インターネットからダウンロードした拡張機能ファイルをインポートしたりできます。</string>
+    <string name="ext__home__info">Voice Modeアドオンストアから拡張機能をダウンロードしてインストールしたり、インターネットからダウンロードした拡張機能ファイルをインポートしたりできます。</string>
     <string name="ext__home__visit_store">アドオンストアにアクセス</string>
     <string name="ext__home__manage_extensions">インストール済み拡張機能を管理</string>
     <string name="ext__list__view_details">詳細を表示</string>
@@ -1077,7 +1077,7 @@
     <plurals name="unit__candidates__written">
         <item quantity="other">{v}候補</item>
     </plurals>
-    <!-- Dictate strings -->
+    <!-- Voice Mode strings -->
     <string name="quick_action__ime_ui_mode_editing">テキスト編集</string>
     <string name="quick_action__ime_ui_mode_editing__tooltip">カーソル移動、選択、テキスト編集</string>
     <string name="quick_action__ime_ui_mode_scan">テキストをスキャン</string>
@@ -1092,15 +1092,14 @@
     <string name="quick_action__dictate_prompts__tooltip">AIの言い換えプロンプトを開きます</string>
     <string name="about__based_on_floris__title">FlorisBoardベース</string>
     <string name="about__based_on_floris__summary">Patrick Goldinger 氏と貢献者による FlorisBoard のフォーク、Apache 2.0。タップして開きます。</string>
-    <string name="about__made_by">DevEmperorが❤️を込めて制作\nSoli deo gloria ✝️</string>
     <string name="about__feedback__title">フィードバックとサポート</string>
     <string name="about__feedback__summary">質問・不具合・アイデアをメールで送信</string>
-    <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
+    <string name="about__feedback__email">support@voicemode.example</string>
+    <string name="about__feedback__subject">Voice Mode Feedback</string>
     <string name="setup__provider__title">文字起こしの方法を選ぶ</string>
-    <string name="setup__provider__choose_intro">Dictate は AI サービスを使って音声を文字にします。ほとんどの方には上の2つの方法が合いますが、クラウドサービスをまったく使いたくない場合は、下にさらに2つあります。</string>
+    <string name="setup__provider__choose_intro">Voice Mode は AI サービスを使って音声を文字にします。ほとんどの方には上の2つの方法が合いますが、クラウドサービスをまったく使いたくない場合は、下にさらに2つあります。</string>
     <string name="setup__provider__choice_cloud_title">アプリ内でクレジットを購入</string>
-    <string name="setup__provider__choice_cloud_body">Dictate Cloud：どこにもアカウント不要、API キーも不要。Google Play で音声入力の分数を購入でき、有効期限はありません。手軽な方法ですが、プロバイダーに直接申し込むより少し割高です。</string>
+    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud：どこにもアカウント不要、API キーも不要。Google Play で音声入力の分数を購入でき、有効期限はありません。手軽な方法ですが、プロバイダーに直接申し込むより少し割高です。</string>
     <string name="setup__provider__choice_cloud_btn">クレジットパックを見る</string>
     <string name="setup__provider__choice_own_title">自分の AI プロバイダーを使う</string>
     <string name="setup__provider__choice_own_body">お好きなプロバイダーでキーを作成します。Groq は日常的な音声入力なら無料です。ご自身のアカウントのまま、プロバイダーの料金で直接支払います。2分ほどで終わります。</string>
@@ -1110,15 +1109,15 @@
     <string name="setup__provider__choice_local_title">端末上で、オフライン</string>
     <string name="setup__provider__choice_local_body">音声モデルを一度ダウンロードするだけ。アカウントも費用も不要で、音声が端末から出ることはありません。</string>
     <string name="setup__provider__choice_server_title">自分のサーバー</string>
-    <string name="setup__provider__choice_server_body">自分で動かしている音声サーバー、または OpenAI 互換の任意のエンドポイントに Dictate を向けます。</string>
+    <string name="setup__provider__choice_server_body">自分で動かしている音声サーバー、または OpenAI 互換の任意のエンドポイントに Voice Mode を向けます。</string>
     <string name="setup__provider__local_intro">音声認識は端末上で動きます。どこにも送信されず、接続がなくても使えます。まずはモデルを1つ選んでダウンロードしてください。あとから追加や変更もできます。</string>
     <string name="setup__provider__local_recommended">あなたの言語におすすめ</string>
     <string name="setup__provider__local_bigger">より高精度ですが、ダウンロードはかなり大きくなります</string>
     <string name="setup__provider__local_download_btn">モデルをダウンロード</string>
     <string name="setup__provider__local_use_btn">このモデルを使う</string>
     <string name="setup__provider__local_all_models">すべてのモデルを表示</string>
-    <string name="setup__provider__intro">Dictateは、オンラインのAIサービスを利用して音声をテキストに変換します。利用するには、そのサービスのご自身の個人キーが必要です。</string>
-    <string name="setup__provider__what_is_key">APIキーは、Dictateがあなたに代わってサービスを利用できるようにする個人用パスワードのようなものです。作成は無料で、約2分で済みます。</string>
+    <string name="setup__provider__intro">Voice Modeは、オンラインのAIサービスを利用して音声をテキストに変換します。利用するには、そのサービスのご自身の個人キーが必要です。</string>
+    <string name="setup__provider__what_is_key">APIキーは、Voice Modeがあなたに代わってサービスを利用できるようにする個人用パスワードのようなものです。作成は無料で、約2分で済みます。</string>
     <string name="setup__provider__recommended"><b>Groq</b>をおすすめします。日常の音声入力に高速で無料です。</string>
     <string name="setup__provider__steps_groq">1. 下のボタンをタップしてGroqを開きます。\n2. Googleまたはメールアドレスでサインインします。\n3. 「Create API Key」をタップし、任意の名前を付けて確定します。\n4. キー（「gsk_」で始まります）をコピーします。\n5. ここに戻り、下の「APIキーを貼り付け」をタップします。</string>
     <string name="setup__provider__steps_generic">1. 下のボタンをタップして{provider}を開きます。\n2. アカウントがなければ作成します。\n3. 新しいAPIキーを作成してコピーします。\n4. ここに戻り、下の「APIキーを貼り付け」をタップします。</string>
@@ -1132,7 +1131,7 @@
     <string name="setup__provider__skip_btn">後で設定</string>
     <string name="setup__provider__other_provider">別のAIプロバイダーを使用</string>
     <string name="setup__provider__other_provider_hint">詳細設定: Groq以外のサービスを選択します。そのプロバイダーのAPIキーが必要です。</string>
-    <string name="setup__finish_up__add_key_hint">ヒント: まだAIキーを追加していません。設定 → Dictate → AIプロバイダーでいつでも追加して、音声入力を始められます。</string>
+    <string name="setup__finish_up__add_key_hint">ヒント: まだAIキーを追加していません。設定 → Voice Mode → AIプロバイダーでいつでも追加して、音声入力を始められます。</string>
     <string name="crash_dialog__bug_report_template">クラッシュレポート</string>
     <string name="enum__swipe_action__toggle_compact_layout">コンパクトレイアウトの切り替え</string>
     <string name="unit__hours__symbol">{v}時間</string>
@@ -1142,9 +1141,9 @@
     <string name="unit__percent__symbol">{v}%</string>
     <string name="unit__display_pixel__symbol">{v} dp</string>
     <string name="unit__display_pixel_per_seconds__symbol">{v} dp/秒</string>
-    <string name="dictate__accessibility_service_label">Dictate のフローティングボタン</string>
+    <string name="dictate__accessibility_service_label">Voice Mode のフローティングボタン</string>
     <string name="dictate__accessibility_service_summary">任意のテキスト欄に音声入力するためのフローティングボタンを表示します。</string>
-    <string name="dictate__accessibility_service_description">Dictate はフローティング音声入力ボタンにこのサービスを使用します。有効にすると、任意のアプリでテキスト欄がフォーカスされたことを検出し（ボタンを表示できるように）、文字起こしした音声をその欄に挿入します。Dictate はカーソル位置にテキストを配置するためにフォーカス中の欄のみを読み取り、その他の画面の内容を収集・保存・共有することはありません。</string>
+    <string name="dictate__accessibility_service_description">Voice Mode はフローティング音声入力ボタンにこのサービスを使用します。有効にすると、任意のアプリでテキスト欄がフォーカスされたことを検出し（ボタンを表示できるように）、文字起こしした音声をその欄に挿入します。Voice Mode はカーソル位置にテキストを配置するためにフォーカス中の欄のみを読み取り、その他の画面の内容を収集・保存・共有することはありません。</string>
     <string name="dictate__overlay_notification_channel">フローティング音声入力ボタン</string>
     <string name="dictate__overlay_notification_recording">録音中 — フローティングボタンをタップして文字起こし</string>
     <string name="dictate__overlay_notification_working">文字起こし中…</string>
@@ -1156,14 +1155,14 @@
     <string name="dictate__floating_button_service_enabled">有効 · タップしてシステム設定を開く</string>
     <string name="dictate__floating_button_service_disabled">まだ有効ではありません · タップして設定</string>
     <string name="dictate__floating_button_disclosure_title">フローティングボタンを有効にする</string>
-    <string name="dictate__floating_button_disclosure_message">フローティングボタンを表示するには、Dictate にユーザー補助サービスが必要です。任意のアプリでテキスト欄がフォーカスされたことを検出し（ボタンを表示できるように）、文字起こしした音声をその欄に挿入します。Dictate はテキストを配置するためにフォーカス中の欄のみを読み取り、その他の画面の内容を収集・保存・共有することはありません。\n\n次の画面で「Dictate のフローティングボタン」を見つけてオンにしてください。</string>
+    <string name="dictate__floating_button_disclosure_message">フローティングボタンを表示するには、Voice Mode にユーザー補助サービスが必要です。任意のアプリでテキスト欄がフォーカスされたことを検出し（ボタンを表示できるように）、文字起こしした音声をその欄に挿入します。Voice Mode はテキストを配置するためにフォーカス中の欄のみを読み取り、その他の画面の内容を収集・保存・共有することはありません。\n\n次の画面で「Voice Mode のフローティングボタン」を見つけてオンにしてください。</string>
     <string name="dictate__floating_button_disclosure_continue">設定を開く</string>
     <string name="dictate__floating_button_mic_title">マイクへのアクセス</string>
     <string name="dictate__floating_button_mic_summary">音声の録音に必要です · タップして許可</string>
     <string name="dictate__floating_button_show_when_title">表示するタイミング</string>
     <string name="dictate__floating_button_show_when_field">テキスト欄を選択したとき</string>
     <string name="dictate__floating_button_show_when_keyboard">キーボード表示中のみ</string>
-    <string name="dictate__floating_button_show_when_dictate_keyboard">Dictate キーボードでも表示</string>
+    <string name="dictate__floating_button_show_when_dictate_keyboard">Voice Mode キーボードでも表示</string>
     <string name="dictate__action_continue_recording">録音を続ける</string>
     <string name="dictate__a11y_mic_hold_local">端末で文字起こし</string>
     <string name="smartbar__a11y_show_actions">アクションを表示</string>
@@ -1194,7 +1193,7 @@
     <string name="dictate__floating_button_apps_scope_all">すべてのアプリ</string>
     <string name="dictate__floating_button_apps_scope_only">下で選んだアプリのみ</string>
     <string name="dictate__floating_button_apps_scope_except">下で選んだアプリ以外すべて</string>
-    <string name="dictate__floating_button_apps_note">選ばなかったアプリの上にボタンが描画されることはなく、Dictate がそのアプリのテキスト欄を読むこともありません。ユーザー補助サービス自体を拒むアプリには、サービスが有効であること自体は引き続き分かります。</string>
+    <string name="dictate__floating_button_apps_note">選ばなかったアプリの上にボタンが描画されることはなく、Voice Mode がそのアプリのテキスト欄を読むこともありません。ユーザー補助サービス自体を拒むアプリには、サービスが有効であること自体は引き続き分かります。</string>
     <string name="dictate__floating_button_apps_list_title">アプリ</string>
     <string name="dictate__floating_button_apps_search">アプリを検索</string>
     <string name="dictate__floating_button_apps_none">「{search_term}」に一致するアプリはありません</string>
@@ -1202,7 +1201,7 @@
     <string name="dictate__floating_button_haptic_summary_off">タップ時に振動しません。</string>
     <string name="dictate__floating_button_haptic_summary_on">ボタンをタップすると短く振動します。</string>
     <string name="dictate__floating_button_haptic_title">タップ時に振動</string>
-    <string name="dictate__floating_button_no_prompts">言い換えプロンプトがまだありません。Dictate の設定で追加してください。</string>
+    <string name="dictate__floating_button_no_prompts">言い換えプロンプトがまだありません。Voice Mode の設定で追加してください。</string>
     <string name="dictate__floating_button_remember_position_summary_off">すべてのアプリで共通の位置。</string>
     <string name="dictate__floating_button_remember_position_summary_on">アプリごとにボタンの位置を保持します。</string>
     <string name="dictate__floating_button_remember_position_title">アプリごとに位置を記憶</string>
@@ -1217,7 +1216,7 @@
     <string name="dictate__providers_summary_both">文字起こし: {transcription} · 言い換え: {rewording}</string>
     <string name="dictate__remember_last_dictation_summary">直前の音声入力を保持し、フローティングボタンで取り消したり、クラシックレイアウトで再挿入したりできるようにします。</string>
     <string name="dictate__remember_last_dictation_title">最後の音声入力を記憶</string>
-    <string name="changelog__v4_2_0">• 新機能: フローティング音声入力ボタン — 別のキーボードが有効でも、どのアプリにも直接音声入力できます。3つのスタイル（ピル、リング、オーブ）から選び、話すとライブ波形が表示され、端に吸着させながらどこへでもドラッグでき、色とサイズを設定し、長押しで言い換えられます。設定 ▸ Dictate ▸ フローティングボタンでオンにできます。\n• 新機能：Google Gemini — 文字起こしと書き換えに自分の AI Studio API キーを使えます。\n• プロンプトがデフォルトでキーの上の常時表示の行に表示されるようになりました。\n• ブラウザーや他のキーボードを含む、アプリ全体でのより確実なテキスト挿入。</string>
+    <string name="changelog__v4_2_0">• 新機能: フローティング音声入力ボタン — 別のキーボードが有効でも、どのアプリにも直接音声入力できます。3つのスタイル（ピル、リング、オーブ）から選び、話すとライブ波形が表示され、端に吸着させながらどこへでもドラッグでき、色とサイズを設定し、長押しで言い換えられます。設定 ▸ Voice Mode ▸ フローティングボタンでオンにできます。\n• 新機能：Google Gemini — 文字起こしと書き換えに自分の AI Studio API キーを使えます。\n• プロンプトがデフォルトでキーの上の常時表示の行に表示されるようになりました。\n• ブラウザーや他のキーボードを含む、アプリ全体でのより確実なテキスト挿入。</string>
     <string name="dictate__promo_floating_button_message">新機能：どのアプリでも音声入力</string>
     <string name="dictate__promo_floating_button_action">試す</string>
     <string name="setup__floating_button__btn">フローティングボタンを設定</string>
@@ -1230,7 +1229,7 @@
     <string name="setup__floating_button__skip_btn">スキップ — キーボードを使います</string>
     <string name="dictate__floating_button_badge_new">新着</string>
     <string name="dictate__panel_title">AIプロンプト</string>
-    <string name="dictate__panel_no_prompts">まだプロンプトがありません。Dictate設定の「言い換え」で追加してください。</string>
+    <string name="dictate__panel_no_prompts">まだプロンプトがありません。Voice Mode設定の「言い換え」で追加してください。</string>
     <string name="dictate__prompts_layout_title">プロンプトのレイアウト</string>
     <string name="dictate__prompts_layout_panel_label">別パネル</string>
     <string name="dictate__prompts_layout_panel_description">魔法の杖ボタンから専用パネルでプロンプトを開きます。</string>
@@ -1248,8 +1247,8 @@
     <string name="dictate__voice_input_transcribing">文字起こし中…</string>
     <string name="dictate__voice_input_stop">完了</string>
     <string name="dictate__voice_input_hint">タップで送信</string>
-    <string name="dictate__voice_ime_label">Dictate 音声入力</string>
-    <string name="dictate__error_no_api_key">APIキーが設定されていません – Dictate設定で構成してください。</string>
+    <string name="dictate__voice_ime_label">Voice Mode 音声入力</string>
+    <string name="dictate__error_no_api_key">APIキーが設定されていません – Voice Mode設定で構成してください。</string>
     <string name="dictate__error_transcription_failed">文字起こしに失敗しました。</string>
     <string name="dictate__error_unknown">文字起こし中に不明なエラーが発生しました。</string>
     <string name="dictate__error_rewording_failed">言い換えに失敗しました。</string>
@@ -1281,13 +1280,13 @@
     <string name="dictate__action_dismiss">閉じる</string>
     <string name="dictate__action_yes">はい</string>
     <string name="dictate__action_no">いいえ、結構です</string>
-    <string name="dictate__promo_rate_message">Dictateはいかがですか？</string>
-    <string name="dictate__promo_donate_message">Dictateを応援しませんか？</string>
+    <string name="dictate__promo_rate_message">Voice Modeはいかがですか？</string>
+    <string name="dictate__promo_donate_message">Voice Modeを応援しませんか？</string>
     <string name="dictate__promo_rate_action">評価する</string>
     <string name="dictate__promo_donate_action">寄付する</string>
-    <string name="dictate__promo_changelog_message">Dictateが更新されました</string>
+    <string name="dictate__promo_changelog_message">Voice Modeが更新されました</string>
     <string name="dictate__promo_changelog_action">詳細</string>
-    <string name="dictate__title">Dictate</string>
+    <string name="dictate__title">Voice Mode</string>
     <string name="dictate__provider_title">文字起こしプロバイダー</string>
     <string name="dictate__provider__openai">OpenAI</string>
     <string name="dictate__provider__groq">Groq</string>
@@ -1520,7 +1519,7 @@
     <string name="dictate__command_word_summary">「{word}」で始まる音声入力は音声指示として実行されます</string>
     <string name="dictate__command_word_placeholder">ジャービス</string>
     <string name="dictate__command_word_info_title">コマンドワードについて</string>
-    <string name="dictate__command_word_info_description">Dictate は通常、話した内容をそのまま書き取ります。コマンドワードを設定すると、その語で始まる音声入力は指示として扱われます。語は取り除かれ、残りが（選択中のテキストがあればそれと一緒に）AI へ送られます。\n\n「ジャービス、もっと丁寧にして」は選択範囲を書き換えます。「ジャービス、日本の首都はどこ」は答えを入力欄に書き込みます。つまり、タップする代わりに名前を呼んで使う音声指示ボタンです。\n\nこの語は音声入力のいちばん最初にあるときだけ、しかも単独の語としてのみ有効です。文の書き出しにめったに使わない語を選んでください。</string>
+    <string name="dictate__command_word_info_description">Voice Mode は通常、話した内容をそのまま書き取ります。コマンドワードを設定すると、その語で始まる音声入力は指示として扱われます。語は取り除かれ、残りが（選択中のテキストがあればそれと一緒に）AI へ送られます。\n\n「ジャービス、もっと丁寧にして」は選択範囲を書き換えます。「ジャービス、日本の首都はどこ」は答えを入力欄に書き込みます。つまり、タップする代わりに名前を呼んで使う音声指示ボタンです。\n\nこの語は音声入力のいちばん最初にあるときだけ、しかも単独の語としてのみ有効です。文の書き出しにめったに使わない語を選んでください。</string>
     <string name="dictate__auto_formatting_title">自動書式設定</string>
     <string name="dictate__auto_formatting_summary">話した書式の指示をMarkdown（見出し、リストなど）に変換します</string>
     <string name="dictate__system_prompt_title">言い換えの指示</string>
@@ -1631,19 +1630,19 @@
     <string name="dictate__import_not_audio">このファイルには音声が含まれていません。</string>
     <string name="dictate__import_only_first">最初のファイルのみ文字起こしします。他の {count} 件は対象外です。</string>
     <string name="dictate__setup_description">マイクで音声入力を始められるように、AIプロバイダーとAPIキーを設定してください。</string>
-    <string name="dictate__setup_configure_btn">Dictateを設定</string>
+    <string name="dictate__setup_configure_btn">Voice Modeを設定</string>
     <string name="setup__grant_mic_permission__title">マイクへのアクセス</string>
-    <string name="setup__grant_mic_permission__description">Dictateは、文字起こしのために音声を録音するマイクへのアクセスが必要です。</string>
+    <string name="setup__grant_mic_permission__description">Voice Modeは、文字起こしのために音声を録音するマイクへのアクセスが必要です。</string>
     <string name="setup__grant_mic_permission__btn">マイクの権限を許可</string>
     <string name="changelog__dialog_title">新着情報</string>
     <string name="changelog__view_all">すべての変更を表示</string>
-    <string name="changelog__intro">Dictateが更新されました。新着情報はこちら:</string>
+    <string name="changelog__intro">Voice Modeが更新されました。新着情報はこちら:</string>
     <string name="changelog__version_header">バージョン{version}</string>
-    <string name="changelog__donate">Dictateはいかがですか？ ここをタップして開発を応援してください ♥</string>
-    <string name="changelog__current">• まったく新しいキーボード: Dictateは、音声パネルを開く専用マイクキーを備えた本格的な多言語レイアウトキーボードとして提供されるようになりました。\n• 自分のAIを使用: OpenAI互換の任意のプロバイダーを選び、設定 → DictateでAPIキーを入力します。\n• 選択したモデルによるスマートな書式設定と言い換え。\n• 以前のDictateアプリの設定が自動的にインポートされます。</string>
+    <string name="changelog__donate">Voice Modeはいかがですか？ ここをタップして開発を応援してください ♥</string>
+    <string name="changelog__current">• まったく新しいキーボード: Voice Modeは、音声パネルを開く専用マイクキーを備えた本格的な多言語レイアウトキーボードとして提供されるようになりました。\n• 自分のAIを使用: OpenAI互換の任意のプロバイダーを選び、設定 → Voice ModeでAPIキーを入力します。\n• 選択したモデルによるスマートな書式設定と言い換え。\n• 以前のVoice Modeアプリの設定が自動的にインポートされます。</string>
     <string name="changelog__v4_1_0">• 新機能: キーボードから直接絵文字を検索できます。\n• 新しい文字起こしプロバイダー: Soniox。\n• 直前のディクテーションを再挿入し、キーボードを閉じたときに中断された録音を復元できます。\n• プロンプトバーがライブ更新されるようになりました。プロンプトを長押しすると編集できます。\n• AIプロバイダー画面に、有効な文字起こしプロバイダーと言い換えプロバイダーの両方が表示されるようになりました。\n• 録音ボタンが大きくなり、タップしやすくなりました。\n• 修正: 一部の言語でサポートの案内が固まってバーを覆ってしまう問題を修正しました。プロンプト・キーボード・テーマを選択した状態でバックアップが失敗しなくなりました。保存したAPIキーがアップデート後も保持されます。</string>
-    <string name="changelog__v4_1_1">• 修正: 一部の端末でアクセントカラーが緑色に表示されることがありました。キーやボタンが本来のDictateブルーに戻りました。</string>
-    <!-- Dictate on-device (offline) models -->
+    <string name="changelog__v4_1_1">• 修正: 一部の端末でアクセントカラーが緑色に表示されることがありました。キーやボタンが本来のVoice Modeブルーに戻りました。</string>
+    <!-- Voice Mode on-device (offline) models -->
     <string name="dictate__local_models_header">端末上で動作します — 音声は送信されません。開始するにはモデルをダウンロードしてください。</string>
     <string name="dictate__local_models_live_header">ライブ（ストリーミング）</string>
     <string name="dictate__local_models_live_summary">話しながら文字が入力されます。使うには「録音」の「リアルタイム文字起こし」をオンにしてください。</string>
@@ -1678,7 +1677,7 @@
     <string name="dictate__floating_button_copy_to_clipboard_summary_on">各口述はクリップボードにもコピーされ、挿入が失敗しても手動で貼り付けられます。一部の端末ではクリップボードの通知が表示される場合があります。</string>
     <string name="dictate__floating_button_copy_to_clipboard_summary_off">口述は挿入されるだけで、クリップボードにはコピーされません。</string>
     <string name="dictate__floating_button_menu_group">長押しメニュー</string>
-    <string name="dictate__floating_button_menu_settings_title">Dictate の設定</string>
+    <string name="dictate__floating_button_menu_settings_title">Voice Mode の設定</string>
     <string name="dictate__floating_button_undo_summary_off">元に戻すボタンを表示しません。</string>
     <string name="dictate__floating_button_undo_summary_on">音声入力後、ボタンの横に元に戻すボタンが表示され、ワンタップで挿入したテキストを削除できます。</string>
     <string name="dictate__floating_button_undo_title">元に戻すボタン</string>
@@ -1727,7 +1726,7 @@
     <string name="dictate__providers_rewording_single_call_note">現在は使用されていません。文字起こしプロバイダーがシングルコール内で書き換えを行います。</string>
     <string name="dictate__wear_title">Wear OS</string>
     <string name="dictate__wear_summary">ペアリングした時計から音声入力するためのオプション</string>
-    <string name="dictate__wear_install_title">時計に Dictate をインストール</string>
+    <string name="dictate__wear_install_title">時計に Voice Mode をインストール</string>
     <string name="dictate__wear_install_summary">Play Store を開きます — ペアリングした Wear OS 3+ の時計で、時計をインストール先に選びます。</string>
     <string name="dictate__wear_auto_rewording_title">時計の音声入力を自動で書き換える</string>
     <string name="dictate__wear_auto_rewording_summary">時計からの音声入力を、スマートフォンと同じように書き換えます。</string>
@@ -1735,7 +1734,7 @@
     <string name="quick_action__system_prev_input_method__tooltip">前のキーボードに戻す</string>
     <string name="quick_action__system_input_method_picker">キーボード選択</string>
     <string name="quick_action__system_input_method_picker__tooltip">システムのキーボード選択を開く</string>
-    <string name="changelog__v4_3_0">• 新機能: オンデバイス文字起こし — 完全オフラインで音声入力。インターネット不要で、データはスマートフォンの外に出ません。設定 ▸ Dictate ▸ プロバイダー で音声モデルを一度ダウンロードしてください。📴\n• 新機能: Wear OS キーボード — スマートフォン経由でも単独でも、時計から直接音声入力。⌚\n• 新機能: 検索と置換ルール — すべての文字起こしで繰り返し現れる単語・名前・フレーズを自動修正。設定 ▸ Dictate ▸ カスタムマッピング で設定。🔁\n• 新機能: シングルコールモード — 1つの高性能 AI モデルが1回のリクエストで文字起こしと整形を実行。より速く、多くの場合より安価。プロバイダーごとに有効化できます。⚡\n• 新機能: 前のキーボードに戻る、またはシステムのキーボード選択を開く Smartbar アクション。⌨️\n• キーボードのアクセントカラーが、設定 ▸ テーマ で選んだ色に追従するようになりました。🎨\n• フローティング音声入力ボタンに任意の取り消しボタンを追加。↩️\n• さまざまな修正と安定性の向上。🛠️</string>
+    <string name="changelog__v4_3_0">• 新機能: オンデバイス文字起こし — 完全オフラインで音声入力。インターネット不要で、データはスマートフォンの外に出ません。設定 ▸ Voice Mode ▸ プロバイダー で音声モデルを一度ダウンロードしてください。📴\n• 新機能: Wear OS キーボード — スマートフォン経由でも単独でも、時計から直接音声入力。⌚\n• 新機能: 検索と置換ルール — すべての文字起こしで繰り返し現れる単語・名前・フレーズを自動修正。設定 ▸ Voice Mode ▸ カスタムマッピング で設定。🔁\n• 新機能: シングルコールモード — 1つの高性能 AI モデルが1回のリクエストで文字起こしと整形を実行。より速く、多くの場合より安価。プロバイダーごとに有効化できます。⚡\n• 新機能: 前のキーボードに戻る、またはシステムのキーボード選択を開く Smartbar アクション。⌨️\n• キーボードのアクセントカラーが、設定 ▸ テーマ で選んだ色に追従するようになりました。🎨\n• フローティング音声入力ボタンに任意の取り消しボタンを追加。↩️\n• さまざまな修正と安定性の向上。🛠️</string>
     <string name="dictate__audio_source_title">音声入力ソース</string>
     <string name="dictate__audio_source_default">デフォルトのマイク</string>
     <string name="dictate__audio_source_default_summary">標準のマイク（スマートフォンの音声処理あり）</string>
@@ -1791,7 +1790,7 @@
     <string name="dictate__history_export_all_result">{written} 件を書き出し、{skipped} 件は既存、{failed} 件が失敗</string>
     <string name="dictate__history_export_last_failure">{when}に書き出しが失敗しました。「すべて今すぐ書き出す」で不足分を補えます。</string>
     <string name="dictate__history_export_warning_title">そこに入るもの</string>
-    <string name="dictate__history_export_warning_message">このフォルダーには、これ以降のすべての音声入力の文字が保存されます。設定すれば録音も保存されます。クラウドクライアント、バックアップツール、他のアプリなど、このフォルダーを同期するものはすべて、その文字起こしを端末の外へ持ち出します。\n\n接続を解除するまで Dictate は書き出しを続け、フォルダーから削除することはありません。履歴から消えた項目もフォルダーには残ります。パスワード欄とシークレット入力は記録されないため、書き出されることもありません。</string>
+    <string name="dictate__history_export_warning_message">このフォルダーには、これ以降のすべての音声入力の文字が保存されます。設定すれば録音も保存されます。クラウドクライアント、バックアップツール、他のアプリなど、このフォルダーを同期するものはすべて、その文字起こしを端末の外へ持ち出します。\n\n接続を解除するまで Voice Mode は書き出しを続け、フォルダーから削除することはありません。履歴から消えた項目もフォルダーには残ります。パスワード欄とシークレット入力は記録されないため、書き出されることもありません。</string>
     <string name="dictate__history_export_needs_history">フォルダーへの書き出しは履歴に記録された内容を書き出すため、履歴をオンにする必要があります。</string>
     <string name="dictate__history_export_enable_history">履歴をオンにする</string>
     <string name="dictate__history_export_pick_failed">そのフォルダーへの書き込み権限を取得できませんでした</string>
@@ -1814,15 +1813,15 @@
     <string name="dictate__stats_reset_confirm_title">統計をリセットしますか？</string>
     <string name="dictate__stats_reset_confirm_msg">音声入力の統計をすべて完全に削除します。取り消せません。</string>
     <string name="dictate__stats_share">共有</string>
-    <string name="dictate__stats_share_text">Dictate で %1$s 節約しました — %2$s 回、%3$s 語。🎤</string>
+    <string name="dictate__stats_share_text">Voice Mode で %1$s 節約しました — %2$s 回、%3$s 語。🎤</string>
     <string name="dictate__stats_view">統計を見る</string>
     <string name="dictate__stats_milestones_title">マイルストーンのお祝い</string>
     <string name="dictate__stats_milestones_summary">節約時間や回数のマイルストーン到達時に一度お祝い</string>
     <string name="dictate__stats_milestone_title">マイルストーン達成 🎉</string>
-    <string name="dictate__stats_milestone_time">Dictate で %s 節約しました — お見事!</string>
-    <string name="dictate__stats_milestone_count">Dictate で %s 回の音声入力に到達！</string>
-    <string name="dictate__promo_milestone_time">Dictate で %s 節約! 🎉</string>
-    <string name="dictate__promo_milestone_count">Dictate で %s 回! 🎉</string>
+    <string name="dictate__stats_milestone_time">Voice Mode で %s 節約しました — お見事!</string>
+    <string name="dictate__stats_milestone_count">Voice Mode で %s 回の音声入力に到達！</string>
+    <string name="dictate__promo_milestone_time">Voice Mode で %s 節約! 🎉</string>
+    <string name="dictate__promo_milestone_count">Voice Mode で %s 回! 🎉</string>
     <string name="dictate__promo_milestone_action">統計</string>
     <string name="dictate__reasoning_effort_title">推論の労力</string>
     <string name="dictate__reasoning_effort_off">オフ</string>
@@ -1837,7 +1836,7 @@
     <string name="dictate__reasoning_effort_high_summary">最も思考、低速</string>
     <string name="dictate__reasoning_effort_custom">カスタム</string>
     <string name="dictate__action_save_audio">音声を保存</string>
-    <string name="dictate__audio_saved">音声を Downloads/Dictate に保存しました: %s</string>
+    <string name="dictate__audio_saved">音声を Downloads/VoiceMode に保存しました: %s</string>
     <string name="dictate__audio_save_failed">音声を保存できませんでした</string>
     <string name="dictate__instant_recording_mode_off">オフ</string>
     <string name="dictate__instant_recording_mode_always">キーボードを開くたびに</string>
@@ -1900,11 +1899,11 @@
     <string name="apptour__intro_body">Dictate 5.0 の新機能をご紹介します。要点を 1 分以内で。どのページでも「試す」をタップすれば、その設定に直接ジャンプできます。</string>
     <string name="apptour__glide_eyebrow">キーボード</string>
     <string name="apptour__glide_title">スワイプで入力</string>
-    <string name="apptour__glide_body">指をキーからキーへ滑らせると、Dictate がその軌跡を単語全体に変換します。言語ごとに専用の辞書があり、必要に応じてダウンロードされます。ジェスチャーからオンにしてください。</string>
+    <string name="apptour__glide_body">指をキーからキーへ滑らせると、Voice Mode がその軌跡を単語全体に変換します。言語ごとに専用の辞書があり、必要に応じてダウンロードされます。ジェスチャーからオンにしてください。</string>
     <string name="apptour__glide_cta">グライド入力を設定</string>
     <string name="apptour__suggestions_eyebrow">キーボード</string>
     <string name="apptour__suggestions_title">自動修正と候補</string>
-    <string name="apptour__suggestions_body">入力中、Dictate は適切な単語を提案し、打ち間違いをさりげなく直します。実際に入力した単語は候補バーに残るので、ワンタップでどんな修正も取り消せます。</string>
+    <string name="apptour__suggestions_body">入力中、Voice Mode は適切な単語を提案し、打ち間違いをさりげなく直します。実際に入力した単語は候補バーに残るので、ワンタップでどんな修正も取り消せます。</string>
     <string name="apptour__suggestions_cta">候補を調整</string>
     <string name="apptour__realtime_eyebrow">文字起こし</string>
     <string name="apptour__realtime_title">リアルタイム文字起こし</string>
@@ -1937,16 +1936,16 @@
     <string name="apptour51__continue_to">{version} へ進む</string>
     <string name="apptour51__intro_eyebrow">バージョン 5.1</string>
     <string name="apptour51__intro_title">5.1 の新機能</string>
-    <string name="apptour51__intro_body">Dictate は 5.0 から大きく成長しました。ここでは 5.1 の要点をご紹介します。どのページでも「試す」をタップすれば、その機能に直接ジャンプできます。</string>
+    <string name="apptour51__intro_body">Voice Mode は 5.0 から大きく成長しました。ここでは 5.1 の要点をご紹介します。どのページでも「試す」をタップすれば、その機能に直接ジャンプできます。</string>
     <string name="apptour51__history_eyebrow">文字起こし</string>
     <string name="apptour51__history_title">文字起こし履歴</string>
     <string name="apptour51__history_body">すべての音声入力が、検索可能な履歴に保存されるようになりました。過去の文字起こしをワンタップで再挿入したり、元の音声を再生したり、再度文字起こししたり、よく使うものをピン留めしたりできます。専用画面ですべてを管理でき、音声録音を保持する期間も設定できます。</string>
     <string name="apptour51__longform_eyebrow">文字起こし</string>
     <string name="apptour51__longform_title">長文の音声入力</string>
-    <string name="apptour51__longform_body">好きなだけ話してください。長い録音は自動的にセグメントに分割され、話し続けている間にバックグラウンドで文字起こしされます。だからテキストがより早く手に入り、長さの制限にぶつかることもありません。自分でセグメントを区切ることも、Dictate に自然な区切りを検出させることもできます。</string>
+    <string name="apptour51__longform_body">好きなだけ話してください。長い録音は自動的にセグメントに分割され、話し続けている間にバックグラウンドで文字起こしされます。だからテキストがより早く手に入り、長さの制限にぶつかることもありません。自分でセグメントを区切ることも、Voice Mode に自然な区切りを検出させることもできます。</string>
     <string name="apptour51__gif_eyebrow">キーボード</string>
     <string name="apptour51__gif_title">GIF 検索</string>
-    <string name="apptour51__gif_body">Dictate を離れることなく GIF を見つけて送信できます。GIF パネルを開き、何でも検索して、そのままチャットに挿入できます。Gboard 風の高速なピッカーが組み込まれています。</string>
+    <string name="apptour51__gif_body">Voice Mode を離れることなく GIF を見つけて送信できます。GIF パネルを開き、何でも検索して、そのままチャットに挿入できます。Gboard 風の高速なピッカーが組み込まれています。</string>
     <string name="apptour51__classic_eyebrow">クラシックレイアウト</string>
     <string name="apptour51__classic_title">クラシックレイアウトを刷新</string>
     <string name="apptour51__classic_body">キーボードなしの音声入力画面が大きく進化しました：ドラッグ＆ドロップで自由に配置できるアクション行、長文録音のコントロール、1 行または 2 行のプロンプト、常に使えるバックスペース、Enter キーの文字ポップアップ、そして片手でも使いやすい任意の 2 つ目の「キーボード切り替え」ボタン。</string>
@@ -1961,14 +1960,14 @@
     <string name="apptour51__more_body">小さな改良もたくさんあります：設定で使用する文字起こしの言語を選べる、停止ボタンが実行中のリクエストを本当にキャンセルするようになった、API キーの表示/非表示切り替え、言語をまたぐ自動修正のない多言語入力 — さらにクラシックレイアウトや数字パッドなど、さまざまな修正も。</string>
     <string name="apptour51__outro_eyebrow">これが 5.1</string>
     <string name="apptour51__outro_title">アップデートをお楽しみください</string>
-    <string name="apptour51__outro_body">Dictate をご利用いただきありがとうございます！ 毎日役立っているなら、少しの寄付がこのプロジェクトを支えます。これらのツアーはいつでも「設定 › アプリについて」から見直せます。</string>
+    <string name="apptour51__outro_body">Voice Mode をご利用いただきありがとうございます！ 毎日役立っているなら、少しの寄付がこのプロジェクトを支えます。これらのツアーはいつでも「設定 › アプリについて」から見直せます。</string>
     <string name="apptour52__cta_try">試す</string>
     <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
     <string name="apptour52__intro_title">どこでも音声入力</string>
-    <string name="apptour52__intro_body">今回のリリースで Dictate は自前のキーボードを超えます。スマホの音声入力として、どこからでも話しかける指示として、そして長い音声入力を整えるために。新機能はこちらです。</string>
+    <string name="apptour52__intro_body">今回のリリースで Voice Mode は自前のキーボードを超えます。スマホの音声入力として、どこからでも話しかける指示として、そして長い音声入力を整えるために。新機能はこちらです。</string>
     <string name="apptour52__voiceinput_eyebrow">システム全体の音声入力</string>
-    <string name="apptour52__voiceinput_title">どのキーボードからでも Dictate</string>
-    <string name="apptour52__voiceinput_body">Dictate がシステムの音声入力として登録されるようになりました。他のキーボードやアプリのマイクボタンが Dictate 経由で文字起こしします — あなたのプロバイダー、プロンプト、端末内モデルで。キーボード一覧で「Dictate 音声入力」を有効にし、音声入力方式として選んでください。（Gboard はマイクを Google に固定しているため、システム設定に従うキーボードをお使いください。）</string>
+    <string name="apptour52__voiceinput_title">どのキーボードからでも Voice Mode</string>
+    <string name="apptour52__voiceinput_body">Voice Mode がシステムの音声入力として登録されるようになりました。他のキーボードやアプリのマイクボタンが Voice Mode 経由で文字起こしします — あなたのプロバイダー、プロンプト、端末内モデルで。キーボード一覧で「Voice Mode 音声入力」を有効にし、音声入力方式として選んでください。（Gboard はマイクを Google に固定しているため、システム設定に従うキーボードをお使いください。）</string>
     <string name="apptour52__liveprompt_eyebrow">自由な音声コマンド</string>
     <string name="apptour52__liveprompt_title">AI にやることを伝える — どこでも</string>
     <string name="apptour52__liveprompt_body">フローティングボタンを長押しでメニューを開き、「Live prompt」をタップして話すだけ。「明日の打ち合わせを丁寧に断る文を書いて」「上のテキストをスペイン語に訳して」。選択中のテキストは文脈として使われ、未選択なら AI がゼロから書きます。</string>
@@ -1980,7 +1979,7 @@
     <string name="apptour52__trim_body">文の途中で考え込みましたか？ 数秒を超える無音は送信前にカットされます — 話した言葉はすべて残り、無駄な時間だけが消えます。アップロードが短くなるので待ち時間もコストも減ります。</string>
     <string name="apptour52__paragraphs_eyebrow">読みやすい長文</string>
     <string name="apptour52__paragraphs_title">自動で段落分け</string>
-    <string name="apptour52__paragraphs_body">長い音声入力が一続きの文章の壁になりません。語数を設定すると、Dictate は次の文末で新しい段落を始めます — 決定論的で、素の文字起こしのみに適用され、AI が整形したテキストには手を加えません。</string>
+    <string name="apptour52__paragraphs_body">長い音声入力が一続きの文章の壁になりません。語数を設定すると、Voice Mode は次の文末で新しい段落を始めます — 決定論的で、素の文字起こしのみに適用され、AI が整形したテキストには手を加えません。</string>
     <string name="apptour52__smartturn_eyebrow">より賢い長文モード</string>
     <string name="apptour52__smartturn_title">考えがまとまった所で区切る</string>
     <string name="apptour52__smartturn_body">長文モードで端末内の Smart Turn v3 モデルを使い、単なる無音ではなく「本当に話し終えたか」で区切れるようになりました。任意で、必要なときにダウンロードされます。</string>
@@ -1996,7 +1995,7 @@
     <string name="apptour53__intro_body">今回は、いちばんよく使う 2 つ ― スマホに話すことと、スマホで打つこと ― が主役です。どちらも速くなり、どちらも前より邪魔をしなくなりました。</string>
     <string name="apptour53__pushtotalk_eyebrow">押して話す</string>
     <string name="apptour53__pushtotalk_title">マイクを押さえて、離すと送信</string>
-    <string name="apptour53__pushtotalk_body">ボイスメッセージのように、マイクキーを押さえたまま話し、離すと送信されます。左へスワイプすれば録音を破棄、上へドラッグすれば固定されて手が自由になります。短いタップはこれまでどおりです。Dictate の設定でオンにできます。</string>
+    <string name="apptour53__pushtotalk_body">ボイスメッセージのように、マイクキーを押さえたまま話し、離すと送信されます。左へスワイプすれば録音を破棄、上へドラッグすれば固定されて手が自由になります。短いタップはこれまでどおりです。Voice Mode の設定でオンにできます。</string>
     <string name="apptour53__autocorrect_eyebrow">作り直した自動修正</string>
     <string name="apptour53__autocorrect_title">打ち間違いではなく、指の動きを読みます</string>
     <string name="apptour53__autocorrect_body">修正は、打ち終えた単語からの推測ではなく、実際にキーのどこに触れたかを起点に、入力しながら候補語を探索して決まるようになりました。当社のテストセットでは正解率が 88 % から 98 % へ。速く雑に打つときほど差が出ます。</string>
@@ -2014,7 +2013,7 @@
     <string name="apptour53__prediction_body">候補バーが、あなたの書き方から学んだ「次に来やすい語」を出すようになりました。どの語も長押しで辞書に追加できるので、固有名詞や専門用語が勝手に直されることもなくなります。</string>
     <string name="apptour53__ownserver_eyebrow">自分のサーバー</string>
     <string name="apptour53__ownserver_title">セルフホストでもリアルタイムに</string>
-    <string name="apptour53__ownserver_body">OpenAI の realtime プロトコルを話すなら、自分のサーバーでもリアルタイム文字起こしができます。その先に休止中のマシンがあるなら、Dictate が早めに起こすので、最初のリクエストが起動を待たされません。</string>
+    <string name="apptour53__ownserver_body">OpenAI の realtime プロトコルを話すなら、自分のサーバーでもリアルタイム文字起こしができます。その先に休止中のマシンがあるなら、Voice Mode が早めに起こすので、最初のリクエストが起動を待たされません。</string>
     <string name="apptour53__outro_eyebrow">以上が 5.3 です</string>
     <string name="apptour53__outro_title">よい音声入力を</string>
     <string name="apptour53__outro_body">ほかにも細かな改善が多数：各プロバイダーに固有のロゴ、録音インジケーターは静止・脈動・音声反応から選択可、プロンプト出力は元の文字起こしを併記可能、段落は略語の後で切れなくなりました。各ツアーは設定 › このアプリについて から見直せます。</string>
@@ -2025,7 +2024,7 @@
     <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
     <string name="apptour60__intro_title">クレジット、中国語、より安い音声入力</string>
     <string name="apptour60__intro_body">このバージョンでは2つ目の入口が加わりました。自分のAPIキーを用意する代わりにクレジットを購入できます。さらに中国語のピンイン入力、辞書が増えた7言語、そして費用が下がる録音処理も。</string>
-    <string name="apptour60__cloud_eyebrow">新登場: Dictate Cloud</string>
+    <string name="apptour60__cloud_eyebrow">新登場: Voice Mode Cloud</string>
     <string name="apptour60__cloud_title">キーを探す代わりに分数を買う</string>
     <string name="apptour60__cloud_body">プロバイダーのアカウントを作りたくない方は、これからはクレジットを買うだけで済みます。はい、これは私たちのサーバーを経由します。ですが録音もテキストもそこには保存されず、そのまま転送されます。サーバーのソースコードはすべて公開されていて読むことができます。ご自分のキーはこれまでどおり動きます。</string>
     <string name="apptour60__speedup_eyebrow">API費用を抑える</string>
@@ -2045,7 +2044,7 @@
     <string name="apptour60__more_body">停止ボタンの長押しで、止まったままの文字起こしを取り消せます。フローティングボタンは確認できていない成功をもう報告せず、画面と一緒に消えます。グライド入力が自分で追加した単語を認識するようになりました。更新直後のクラッシュも修正済みです。</string>
     <string name="apptour60__outro_eyebrow">以上が6.0です</string>
     <string name="apptour60__outro_title">どうぞお楽しみください</string>
-    <string name="apptour60__outro_body">Dictateをどう使っていても — 自分のキー、自分のサーバー、端末内モデル、クレジットのどれでも — ほかの方法に変更はありません。各ツアーは設定 › このアプリについて から見直せます。</string>
+    <string name="apptour60__outro_body">Voice Modeをどう使っていても — 自分のキー、自分のサーバー、端末内モデル、クレジットのどれでも — ほかの方法に変更はありません。各ツアーは設定 › このアプリについて から見直せます。</string>
     <string name="apptour61__cta_try">試す</string>
     <string name="apptour61__art_folder">ステッカー</string>
     <string name="apptour61__art_share">共有先</string>
@@ -2053,13 +2052,13 @@
     <string name="apptour61__art_fixed">こんにちは</string>
     <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
     <string name="apptour61__intro_title">ステッカー、音声メッセージ、そしてついに打ち間違いを見つける自動修正</string>
-    <string name="apptour61__intro_body">自分のステッカーが入ったフォルダをキーボードに教え、音声メッセージを Dictate に直接共有して内容を確かめ、見逃すように作られていた間違いをついに見つける自動修正を使えます。</string>
+    <string name="apptour61__intro_body">自分のステッカーが入ったフォルダをキーボードに教え、音声メッセージを Voice Mode に直接共有して内容を確かめ、見逃すように作られていた間違いをついに見つける自動修正を使えます。</string>
     <string name="apptour61__stickers_eyebrow">新機能: 自分のステッカー</string>
     <string name="apptour61__stickers_title">スマホのフォルダを、キーボードに</string>
-    <string name="apptour61__stickers_body">Dictate に任意のフォルダを教えると、その中の画像がステッカーになります。サブフォルダはタブになり、お気に入りと履歴もそれぞれ持ちます。どのアプリからでも共有メニューで追加でき、キーボードを離れずに削除できます。チャットアプリが実際に受け取るものは、受け取ると称しているものとは違います。だから各ステッカーは取り込み時に一度だけ整えられ、あとはそこから送られるだけです。</string>
-    <string name="apptour61__share_eyebrow">新機能: Dictate に共有</string>
+    <string name="apptour61__stickers_body">Voice Mode に任意のフォルダを教えると、その中の画像がステッカーになります。サブフォルダはタブになり、お気に入りと履歴もそれぞれ持ちます。どのアプリからでも共有メニューで追加でき、キーボードを離れずに削除できます。チャットアプリが実際に受け取るものは、受け取ると称しているものとは違います。だから各ステッカーは取り込み時に一度だけ整えられ、あとはそこから送られるだけです。</string>
+    <string name="apptour61__share_eyebrow">新機能: Voice Mode に共有</string>
     <string name="apptour61__share_title">その音声メッセージの内容を知る</string>
-    <string name="apptour61__share_body">Dictate が音声と動画の共有メニューに並ぶようになりました。音声メッセージを共有すると画面が開き、自動で文字起こしを始めます。入力欄を探す必要も、ボタンを押す必要もありません。文字起こしは検索でき、長い録音は断られる代わりに分割して処理されます。</string>
+    <string name="apptour61__share_body">Voice Mode が音声と動画の共有メニューに並ぶようになりました。音声メッセージを共有すると画面が開き、自動で文字起こしを始めます。入力欄を探す必要も、ボタンを押す必要もありません。文字起こしは検索でき、長い録音は断られる代わりに分割して処理されます。</string>
     <string name="apptour61__autocorrect_eyebrow">自動修正</string>
     <string name="apptour61__autocorrect_title">見えないように作られていた打ち間違い</string>
     <string name="apptour61__autocorrect_body">単語を修正してよいか決める規則は、隣のキーの手前まで滑った指は通すのに、隣のキーにきちんと着地した指は決して通しませんでした。ところが普通の打ち間違いはまさにそれです。これを直し、どれくらい積極的に直すかを自分で設定できるようにしました。スペースキーが選ぼうとしている語はアクセントカラーで示され、その直後のバックスペースは入力した通りの文字を返します。</string>
@@ -2088,7 +2087,7 @@
     <string name="apptour62__learning_body">名前や専門用語を何度か入力すると、キーボードがそれを覚え、誤りとして印を付けるのをやめて候補に出すようになります。この更新で、以前オフにしていた方も含め、全員で有効になります。シークレットモード、パスワード欄、キーを一つずつ打っていないものからは何も覚えません。すべてこの端末の中だけに残り、下のボタンから一覧と切り替えスイッチを開けます。</string>
     <string name="apptour62__themes_eyebrow">5つの新しいテーマ</string>
     <string name="apptour62__themes_title">Glass、Sand、Deep、そして暗い E-Ink</string>
-    <string name="apptour62__themes_body">Dictate Glass はキーとキーのすき間からアプリを透かせつつ、キー自体は文字が読める程度の不透明さを保ちます。Glass Clear はさらに透かし、見た目は上ですが、キーボードの背後まで描くアプリではその文字が透けてしまいます。Sand は暖かい明るいテーマ、Deep は落ち着いた暗いテーマ、そして E-Ink にようやく夜版ができました。自動切り替えが暗くなってから白いキーボードを出すことはもうありません。</string>
+    <string name="apptour62__themes_body">Voice Mode Glass はキーとキーのすき間からアプリを透かせつつ、キー自体は文字が読める程度の不透明さを保ちます。Glass Clear はさらに透かし、見た目は上ですが、キーボードの背後まで描くアプリではその文字が透けてしまいます。Sand は暖かい明るいテーマ、Deep は落ち着いた暗いテーマ、そして E-Ink にようやく夜版ができました。自動切り替えが暗くなってから白いキーボードを出すことはもうありません。</string>
     <string name="apptour62__split_eyebrow">新機能: 分割キーボード</string>
     <string name="apptour62__split_title">手を伸ばさずに、両方の親指で</string>
     <string name="apptour62__split_body">片手モードやフローティングの隣に加わった新しいクイック操作が、各行を左右に引き離し、それぞれの親指が自分の側だけで済むようにします。QWERTY だけでなくすべての配列が分割されます。継ぎ目はキーの幅から計算されるので、配列ごとに書き込む必要がないからです。横向きでは、両方に余裕があるかぎりアプリが見えたままになります。</string>
@@ -2109,7 +2108,7 @@
     <string name="apptour62__gestures_body">記号キーを押したまま目当ての文字へ滑らせて離すと、その文字が入り、文字キーはもう戻っています。行き来の切り替えは要りません。スペースキーの上方向のスワイプは、直前の単語ではなく一つ上の行に届くようになりました。キーどうしの間隔も、違いがはっきり見える幅で調節できます。</string>
     <string name="apptour62__export_eyebrow">新機能: 口述をファイルに</string>
     <string name="apptour62__export_title">すべての口述を、選んだフォルダーへ</string>
-    <string name="apptour62__export_body">フォルダーを一度選んでおけば、終わった口述はその瞬間に、プレーンテキストのファイルとしてそこにも書き出されます。そのフォルダーを見ているもの——メモアプリ、同期ツール、バックアップ——が、Dictate がその言葉を覚えなくてもあなたの文章を受け取れます。</string>
+    <string name="apptour62__export_body">フォルダーを一度選んでおけば、終わった口述はその瞬間に、プレーンテキストのファイルとしてそこにも書き出されます。そのフォルダーを見ているもの——メモアプリ、同期ツール、バックアップ——が、Voice Mode がその言葉を覚えなくてもあなたの文章を受け取れます。</string>
     <string name="apptour62__more_eyebrow">さらに</string>
     <string name="apptour62__more_title">細かな改善がたくさん</string>
     <string name="apptour62__more_body">候補は英語だけでなくどの言語でも、カーソルの前の2語を見るようになりました。バックアップは API キーを含めずに作れるので、そのまま渡せます。Azure 自身の文字起こしモデルに届くようになり、オフライン用のモデルを選ぶとオフラインエンジンにも切り替わり、どの要求にも待ち時間に見合った制限時間が付きました。口述は送信した時点で履歴に現れ、取り込みは今どの段階かを示し、途中で中止できます。これまで扱いにくかったアプリにも、文字がより確実に届きます。</string>
@@ -2193,12 +2192,12 @@
     <string name="dictate__legacy_prompt_rows_one">1行</string>
     <string name="dictate__legacy_prompt_rows_two">2行</string>
     <string name="about__website__title">ウェブサイト</string>
-    <string name="dictate__cloud_title">Dictate Cloud</string>
+    <string name="dictate__cloud_title">Voice Mode Cloud</string>
     <string name="dictate__cloud_row_summary_none">音声入力クレジットを購入 — API キー不要</string>
     <string name="dictate__cloud_row_summary_balance">残り {minutes} 分</string>
     <string name="dictate__cloud_intro_title">API キーなしで音声入力</string>
     <string name="dictate__cloud_intro_body">音声入力のクレジットをこのアプリ内で購入できます。AI プロバイダーのアカウントも、API キーも、サブスクリプションも不要です。クレジットに有効期限はなく、実際に使ったときだけ減ります。音声入力 1 分は 1 分ぶん、言い換えは約 2 秒ぶんです。</string>
-    <string name="dictate__cloud_intro_alternative">これは完全に任意です。Dictate はお好きなプロバイダーのご自身のキーでも同じように動きます（無料のものもいくつかあります）。その場合はご自身のアカウントのまま、プロバイダーの料金で直接支払います。</string>
+    <string name="dictate__cloud_intro_alternative">これは完全に任意です。Voice Mode はお好きなプロバイダーのご自身のキーでも同じように動きます（無料のものもいくつかあります）。その場合はご自身のアカウントのまま、プロバイダーの料金で直接支払います。</string>
     <string name="dictate__cloud_use_own_provider_btn">自分のプロバイダーを使う</string>
     <string name="dictate__cloud_balance_label">残りのクレジット</string>
     <string name="dictate__cloud_balance_minutes">{minutes} 分</string>
@@ -2212,7 +2211,7 @@
     <string name="dictate__cloud_shop_unavailable">ここではクレジットパックを表示できません。多くの場合、アプリが Google Play 経由でインストールされていないか、この端末に Play アカウントでログインしていないことが原因です。ご自身の API キーはどちらの場合でも使えます。</string>
     <string name="dictate__cloud_activate_title">クレジットの準備ができました</string>
     <string name="dictate__cloud_activate_body">クレジットはありますが、音声入力は現在ほかのプロバイダー経由で動いています。いつでも切り替えられます。あなたが操作しない限り何も変わりません。</string>
-    <string name="dictate__cloud_activate_btn">Dictate Cloud で音声入力する</string>
+    <string name="dictate__cloud_activate_btn">Voice Mode Cloud で音声入力する</string>
     <string name="dictate__cloud_notice_purchased">クレジットに {minutes} 分を追加しました。</string>
     <string name="dictate__cloud_notice_pending">支払いがまだ完了していません。Google が確認しだいクレジットが表示されます。</string>
     <string name="dictate__cloud_notice_not_redeemed">支払いは完了しましたが、クレジットを取得できませんでした。失われてはいません。この画面をもう一度開けば加算されます。</string>
@@ -2222,7 +2221,7 @@
     <string name="dictate__cloud_notice_gone_deleted" comment="Shown when the app finds out that the credit account was deleted elsewhere">クレジットアカウントはもう存在しません。ウェブサイトまたは別の端末で削除されました。この端末からも消えました。</string>
     <string name="dictate__cloud_notice_gone_signed_out" comment="Shown when this device was signed out of the credit account, which still exists">この端末はクレジットアカウントからサインアウトされました。アカウントと残高はそのままです。下の復元コードを入力すると、また使えるようになります。</string>
     <string name="dictate__cloud_delete_title">クレジットアカウントを削除</string>
-    <string name="dictate__cloud_delete_explain">クレジットアカウントと、それに関して保存されているすべてを削除します。残高は失効し、返金されません。アプリがもう手元にない場合は api.dictatekeyboard.com/delete でも行えます。</string>
+    <string name="dictate__cloud_delete_explain">クレジットアカウントと、それに関して保存されているすべてを削除します。残高は失効し、返金されません。アプリがもう手元にない場合は api.voicemode.example/delete でも行えます。</string>
     <string name="dictate__cloud_delete_btn">アカウントを削除</string>
     <string name="dictate__cloud_delete_dialog_title">アカウントを削除しますか？</string>
     <string name="dictate__cloud_delete_dialog_body" comment="{minutes} is a number">まだ {minutes} 分の残高があります。削除するとアカウント、復元コード、ログイン済みのすべての端末が消えます。</string>
@@ -2248,7 +2247,7 @@
     <string name="dictate__cloud_devices_last_used">最終利用 {time}</string>
     <string name="dictate__cloud_devices_never_used">未使用</string>
     <string name="dictate__cloud_recovery_error">サーバーに接続できませんでした。接続を確認してもう一度お試しください。</string>
-    <string name="dictate__cloud_limits_title">Dictate Cloud でできないこと</string>
+    <string name="dictate__cloud_limits_title">Voice Mode Cloud でできないこと</string>
     <string name="dictate__cloud_limits_body">話しながらのリアルタイム文字起こしはクレジットでは利用できません。1分あたりの費用が約4倍になるうえ、端末内エンジンならオフラインで無料で行えるためです。AI モデルと思考の深さはサーバー側で決まるため、モデル選択、推論の深さ、独自エンドポイントは無効のままです。それ以外はすべてこれまでどおり動きます — プロンプト、履歴、フローティングボタン、長文の音声入力、そして時計。</string>
     <string name="dictate__cloud_privacy_title">保存される内容</string>
     <string name="dictate__cloud_privacy_body">録音とテキストはそのまま中継され、ディスクに書き込まれることはありません。保存されるのは数値だけです。どのアカウントか、いつ、どれくらいの長さか、成功したかどうか。クレジットアカウントの背後に名前もメールアドレスも Google アカウントもありません。あるのはランダムな識別子だけです。</string>
@@ -2296,9 +2295,9 @@
     <string name="quick_action__ime_ui_mode_sticker">ステッカー</string>
     <string name="quick_action__ime_ui_mode_sticker__tooltip">自分のステッカーを挿入</string>
     <string name="prefs__media__sticker_add">ステッカーを追加</string>
-    <string name="prefs__media__sticker_add__summary">画像をフォルダにコピーします。どのアプリからでも画像を Dictate に共有できます。</string>
+    <string name="prefs__media__sticker_add__summary">画像をフォルダにコピーします。どのアプリからでも画像を Voice Mode に共有できます。</string>
     <string name="prefs__media__sticker_import_whatsapp">WhatsApp から取り込む</string>
-    <string name="prefs__media__sticker_import_whatsapp__summary">WhatsApp のステッカーフォルダでファイル選択を開きます。Samsung のキーボードなどは他のアプリが読めない場所にステッカーを保存しているため、そちらは Dictate に共有してください。</string>
+    <string name="prefs__media__sticker_import_whatsapp__summary">WhatsApp のステッカーフォルダでファイル選択を開きます。Samsung のキーボードなどは他のアプリが読めない場所にステッカーを保存しているため、そちらは Voice Mode に共有してください。</string>
     <string name="sticker__import_share_label">ステッカーとして保存</string>
     <string name="sticker__import_added">{n} 件追加</string>
     <string name="sticker__import_duplicate">{n} 件は既存</string>
@@ -2322,7 +2321,7 @@
     <string name="sticker__source_downloads">ダウンロード</string>
     <string name="sticker__source_pictures">画像</string>
     <string name="sticker__source_dcim">カメラ</string>
-    <string name="sticker__source_hint">これは出発点であって保証ではありません — フォルダがなければ、選択画面はいつもの場所で開きます。Samsung のキーボードのようにステッカーを外に出さないアプリは、Dictate に共有するしかありません。</string>
+    <string name="sticker__source_hint">これは出発点であって保証ではありません — フォルダがなければ、選択画面はいつもの場所で開きます。Samsung のキーボードのようにステッカーを外に出さないアプリは、Voice Mode に共有するしかありません。</string>
     <string name="sticker__import_progress">コピー中 {done} / {total}</string>
     <string name="sticker__import_cancel">タップで停止します。コピー済みのものは残ります。</string>
     <string name="sticker__refused_declares_nothing">このアプリはキーボードからの画像を受け付けません — クリップボードにコピーしました。長押しで貼り付けられます</string>

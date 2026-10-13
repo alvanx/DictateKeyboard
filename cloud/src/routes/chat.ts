@@ -49,7 +49,7 @@ export async function handleChat(
     logRefusal(env, session, 'reword', 413, started, ctx);
     return apiError(
       413,
-      'The text is too long to reword through Dictate Cloud.',
+      'The text is too long to reword through Voice Mode Cloud.',
       'input_too_long',
       'invalid_request_error',
     );
@@ -62,7 +62,7 @@ export async function handleChat(
     logRefusal(env, session, 'reword', 503, started, ctx);
     return apiError(
       503,
-      'Dictate Cloud is unavailable right now. Please try again later.',
+      'Voice Mode Cloud is unavailable right now. Please try again later.',
       'service_paused',
       'server_error',
     );
@@ -132,7 +132,7 @@ export async function handleChat(
     state = await wallet.adjust(actualSeconds - reservedSeconds);
   }
 
-  // Dictate Cloud does not think. Rewriting a sentence needs no deliberation, thinking tokens are
+  // Voice Mode Cloud does not think. Rewriting a sentence needs no deliberation, thinking tokens are
   // billed to the buyer's balance like any other output, and one request on the old provider once
   // spent 116 seconds and twelve thousand tokens on it before running out of room to answer.
   //
@@ -304,7 +304,7 @@ async function reportReasoning(env: Env, tokensOut: number, answer: string, mode
     detail:
       `\`${model}\` hat ${tokensOut} Ausgabe-Token verbraucht, in der Antwort stehen aber nur etwa ${expected}. ` +
       `Die Differenz sind Denk-Token: Sie werden wie jede andere Ausgabe abgerechnet und gehen damit vom ` +
-      `Guthaben des Käufers ab, ohne dass er etwas davon bekommt. Bei Dictate Cloud soll nicht gedacht werden — ` +
+      `Guthaben des Käufers ab, ohne dass er etwas davon bekommt. Bei Voice Mode Cloud soll nicht gedacht werden — ` +
       `zu prüfen ist, ob \`chat_template_kwargs.enable_thinking\` noch gesetzt wird bzw. das Modell den Schalter ` +
       `noch kennt. Ein Modellwechsel in CHAT_MODEL ist die häufigste Ursache.`,
     // Per model and hour: it is a state of the configuration, not a property of one request.
@@ -319,7 +319,7 @@ async function reportReasoning(env: Env, tokensOut: number, answer: string, mode
  * the app's own parser expects it. Workers AI answers in that shape already — its binding is typed
  * `ChatCompletionsInput` in, `ChatCompletionsOutput` out — so what happens below is not a
  * translation but a trim: only the choice and the usage go back, not the `@cf/…` model name, which
- * would publish what is behind Dictate Cloud for no one's benefit.
+ * would publish what is behind Voice Mode Cloud for no one's benefit.
  */
 type Upstream =
   | { kind: 'ok'; body: string; neurons: number }

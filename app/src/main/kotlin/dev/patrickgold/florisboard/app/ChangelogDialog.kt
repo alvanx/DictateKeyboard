@@ -38,8 +38,6 @@ import kotlinx.coroutines.launch
 import org.florisboard.lib.compose.florisDialogScroll
 import org.florisboard.lib.compose.stringRes
 
-/** PayPal donation link, kept in sync with the in-keyboard donate promo (see DictateController). */
-private const val DONATE_URL = "https://paypal.me/DevEmperor"
 
 /**
  * Temporary debug switch to preview the dialog. When true, the dialog is shown on every launch
@@ -105,16 +103,6 @@ fun ChangelogDialog() {
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(text = stringRes(entry.notes))
             }
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { context.launchUrl(DONATE_URL) }
-                    .padding(vertical = 4.dp),
-                text = stringRes(R.string.changelog__donate),
-                color = MaterialTheme.colorScheme.primary,
-                fontWeight = FontWeight.Medium,
-            )
         }
     }
 }

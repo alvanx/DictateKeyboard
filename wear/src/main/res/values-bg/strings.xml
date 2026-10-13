@@ -13,7 +13,7 @@
     <string name="wear_cd_resume">Продължи</string>
     <string name="wear_cd_backspace">Изтрий</string>
     <string name="wear_cd_enter">Enter</string>
-    <string name="wear_err_mic_grant">Дайте микрофон в Dictate</string>
+    <string name="wear_err_mic_grant">Дайте микрофон в Voice Mode</string>
     <string name="wear_err_mic_unavailable">Микрофонът е недостъпен</string>
     <string name="wear_err_transcribe_failed">Транскрипцията пропадна</string>
     <string name="wear_err_tap_to_retry">%1$s · Докоснете за нов опит</string>

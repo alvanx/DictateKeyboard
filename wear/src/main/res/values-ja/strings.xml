@@ -13,7 +13,7 @@
     <string name="wear_cd_resume">再開</string>
     <string name="wear_cd_backspace">削除</string>
     <string name="wear_cd_enter">改行</string>
-    <string name="wear_err_mic_grant">Dictateアプリでマイクを許可</string>
+    <string name="wear_err_mic_grant">Voice Modeアプリでマイクを許可</string>
     <string name="wear_err_mic_unavailable">マイクを使えません</string>
     <string name="wear_err_transcribe_failed">文字起こしに失敗</string>
     <string name="wear_err_tap_to_retry">%1$s · タップで再試行</string>

@@ -13,7 +13,7 @@
     <string name="wear_cd_resume">Folytatás</string>
     <string name="wear_cd_backspace">Törlés</string>
     <string name="wear_cd_enter">Enter</string>
-    <string name="wear_err_mic_grant">Add meg a mikrofont a Dictate-ben</string>
+    <string name="wear_err_mic_grant">Add meg a mikrofont a Voice Mode-ben</string>
     <string name="wear_err_mic_unavailable">Mikrofon nem elérhető</string>
     <string name="wear_err_transcribe_failed">Az átírás sikertelen</string>
     <string name="wear_err_tap_to_retry">%1$s · Koppints az újrapróbáláshoz</string>

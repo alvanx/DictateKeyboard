@@ -193,8 +193,10 @@ object ProviderRegistry {
      */
     val CLOUD = ProviderPreset(
         id = "cloud",
-        displayName = "Dictate Cloud",
-        baseUrl = "https://api.dictatekeyboard.com/v1/",
+        displayName = "Voice Mode Cloud",
+        // Placeholder on a reserved domain that never resolves, so no build of this app can send
+        // audio to anyone else's server. Replace it with our own server's address (docs/rebrand.md).
+        baseUrl = "https://api.voicemode.example/v1/",
         capabilities = CHAT_AND_STT,
         supportsDynamicModels = false,
         apiKeyUrl = null,

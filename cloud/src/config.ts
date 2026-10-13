@@ -468,3 +468,13 @@ function num(value: string | undefined, fallback: number): number {
   const parsed = Number(value);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
+
+/**
+ * The Play package this server sells for. There is deliberately no default: a server that quietly
+ * fell back to another app's package name would verify the wrong app's purchases.
+ */
+export function playPackage(env: Env): string {
+  const name = env.PACKAGE_NAME?.trim();
+  if (!name) throw new Error('PACKAGE_NAME is not set');
+  return name;
+}

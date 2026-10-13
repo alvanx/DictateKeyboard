@@ -6,7 +6,7 @@ import type { Env } from '../config';
  *
  * Written for the two seconds someone gives a notification on a phone at night. The subject alone
  * has to answer "is this money leaving": it leads with the severity and the one number that
- * matters, because a subject that reads "Dictate Cloud alert" makes you open the mail to find out
+ * matters, because a subject that reads "Voice Mode Cloud alert" makes you open the mail to find out
  * whether you can go back to sleep.
  *
  * Both a text and an HTML part, and the text one is not an afterthought — it is what a watch and a
@@ -14,7 +14,7 @@ import type { Env } from '../config';
  */
 
 export function adminUrl(env: Env): string {
-  return (env.ADMIN_URL ?? 'https://api.dictatekeyboard.com/admin').replace(/\/+$/, '');
+  return (env.ADMIN_URL ?? 'https://api.voicemode.example/admin').replace(/\/+$/, '');
 }
 
 const LABEL: Record<Severity, string> = { critical: 'KRITISCH', notice: 'Hinweis' };
@@ -81,7 +81,7 @@ export function renderAlertMail(env: Env, alert: Alert) {
   ] as Array<[string, string]>;
 
   return {
-    subject: `${alert.severity === 'critical' ? '🔴' : '🟡'} Dictate Cloud — ${alert.title}`,
+    subject: `${alert.severity === 'critical' ? '🔴' : '🟡'} Voice Mode Cloud — ${alert.title}`,
     text,
     html: shell({
       severity: alert.severity,
@@ -111,7 +111,7 @@ export function renderDigestMail(env: Env, digest: DigestInput) {
     : `${digest.alerts.length} Meldung${digest.alerts.length === 1 ? '' : 'en'}${critical ? `, davon ${critical} kritisch` : ''}`;
 
   const text = [
-    `Dictate Cloud — Tagesbericht ${digest.day}`,
+    `Voice Mode Cloud — Tagesbericht ${digest.day}`,
     '',
     ...digest.figures.map((f) => `${f.label}: ${f.value}`),
     '',
@@ -122,7 +122,7 @@ export function renderDigestMail(env: Env, digest: DigestInput) {
   ].join('\n');
 
   return {
-    subject: `Dictate Cloud — Tagesbericht ${digest.day}${critical ? ` (${critical} kritisch)` : ''}`,
+    subject: `Voice Mode Cloud — Tagesbericht ${digest.day}${critical ? ` (${critical} kritisch)` : ''}`,
     text,
     html: shell({
       severity: critical ? 'critical' : 'notice',
@@ -171,7 +171,7 @@ function shell({ severity, preheader, body }: {
 <tr><td style="height:4px;background:${TONE[severity]};font-size:0;line-height:0">&nbsp;</td></tr>
 <tr><td style="padding:22px 26px 12px">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse"><tr>
-    <td style="font-size:13px;font-weight:700;color:#30B7E6;letter-spacing:.02em">Dictate&nbsp;Cloud</td>
+    <td style="font-size:13px;font-weight:700;color:#30B7E6;letter-spacing:.02em">Voice Mode&nbsp;Cloud</td>
     <td align="right">${badge(severity)}</td>
   </tr></table>
 </td></tr>

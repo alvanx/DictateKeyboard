@@ -3157,7 +3157,7 @@ object DictateController {
     }
 
     /**
-     * Copies [src] into Downloads/Dictate via MediaStore (API 29+) or the public dir. Returns the file
+     * Copies [src] into Downloads/VoiceMode via MediaStore (API 29+) or the public dir. Returns the file
      * name, or null on failure.
      *
      * Name and MIME follow what is actually in the file (#322). This used to say `.wav` and `audio/wav`
@@ -3174,7 +3174,7 @@ object DictateController {
             val values = ContentValues().apply {
                 put(MediaStore.Downloads.DISPLAY_NAME, name)
                 put(MediaStore.Downloads.MIME_TYPE, container.mimeType)
-                put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/Dictate")
+                put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/VoiceMode")
                 put(MediaStore.Downloads.IS_PENDING, 1)
             }
             val resolver = context.contentResolver
@@ -3183,7 +3183,7 @@ object DictateController {
             resolver.update(uri, ContentValues().apply { put(MediaStore.Downloads.IS_PENDING, 0) }, null, null)
         } else {
             @Suppress("DEPRECATION")
-            val dir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Dictate")
+            val dir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "VoiceMode")
             dir.mkdirs()
             src.inputStream().use { input -> File(dir, name).outputStream().use { input.copyTo(it) } }
         }
@@ -3593,7 +3593,7 @@ object DictateController {
         )
     }
 
-    /** Exports a history entry's retained audio to Downloads/Dictate (issue #140), toasting the result. */
+    /** Exports a history entry's retained audio to Downloads/VoiceMode (issue #140), toasting the result. */
     fun exportHistoryAudio(context: Context, entry: DictateHistoryEntry) {
         val path = entry.audioPath ?: return
         val src = File(path)
@@ -3682,8 +3682,9 @@ object DictateController {
         if (maybeWarnLowCredit()) return
         val total = prefs.dictate.totalAudioSeconds.get()
         val kind = when {
-            total > DONATE_THRESHOLD_SECONDS && !prefs.dictate.hasDonated.get() -> PromoKind.DONATE
-            total > RATE_THRESHOLD_SECONDS && total <= DONATE_THRESHOLD_SECONDS && !prefs.dictate.hasRated.get() -> PromoKind.RATE
+            // No donation nudge: the app is funded by its subscription, and the old PayPal link
+            // belonged to the upstream project. PromoKind.DONATE stays in the enum but is never raised.
+            total > RATE_THRESHOLD_SECONDS && !prefs.dictate.hasRated.get() -> PromoKind.RATE
             else -> return
         }
         _state.value = UiState.Promo(kind)
@@ -3791,9 +3792,8 @@ object DictateController {
         val kind = (_state.value as? UiState.Promo)?.kind ?: return
         runCatching {
             val intent = when (kind) {
-                PromoKind.RATE -> Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=net.devemperor.dictate"))
-                PromoKind.DONATE -> Intent(Intent.ACTION_VIEW, Uri.parse("https://paypal.me/DevEmperor"))
+                PromoKind.RATE, PromoKind.DONATE -> Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"))
                 PromoKind.CHANGELOG -> Intent(context, FlorisAppActivity::class.java)
                 PromoKind.FLOATING_BUTTON -> Intent(
                     Intent.ACTION_VIEW,

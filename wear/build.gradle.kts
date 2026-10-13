@@ -27,6 +27,7 @@ val projectTargetSdk: String by project
 val projectCompileSdk: String by project
 val projectVersionCode: String by project
 val projectVersionName: String by project
+val appId: String by project
 
 // Wear OS 3 (API 30) is the floor: standard third-party IMEs only work reliably from here on,
 // and Wear Compose targets it. The phone app's minSdk (26) is intentionally NOT reused.
@@ -57,7 +58,7 @@ configure<ApplicationExtension> {
         // Same applicationId as the phone app so Play delivers this as the "Wear OS" APK of the
         // same listing. Play still requires a unique versionCode per APK across the form factors;
         // we keep the Wear codes in a separate high band (see versionCode below).
-        applicationId = "net.devemperor.dictate"
+        applicationId = appId
         minSdk = wearMinSdk
         targetSdk = projectTargetSdk.toInt()
         // Offset the Wear versionCode into its own band so it never collides with the phone APK

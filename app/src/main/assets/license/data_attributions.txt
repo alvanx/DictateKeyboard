@@ -1,7 +1,7 @@
 DICTATE — THIRD-PARTY DATA & MODEL ATTRIBUTIONS
 ==============================================
 
-Dictate bundles and/or downloads language data and neural models from the following
+Voice Mode bundles and/or downloads language data and neural models from the following
 freely licensed sources. Of the language corpora, only aggregate frequency data (word
 and word-pair counts) is redistributed — never the underlying source texts. Every model
 listed here runs on your device; none of them send audio or text anywhere.
@@ -174,7 +174,7 @@ from English only, so a pair of two other languages is translated through Englis
     https://github.com/mozilla/translations
   - Marian NMT (the Bergamot fork), MIT License. https://github.com/marian-nmt/marian-dev
   - SentencePiece, © Google, Apache License 2.0 (one line changed to compile with NDK 29, see
-    tools/bergamot/patches in the Dictate repository). https://github.com/google/sentencepiece
+    tools/bergamot/patches in this repository). https://github.com/google/sentencepiece
   - ruy, © Google, Apache License 2.0; cpuinfo, BSD 2-Clause; simd_utils, BSD 2-Clause;
     PCRE2, BSD 3-Clause; yaml-cpp and pathie-cpp, MIT / BSD 2-Clause; ssplit-cpp, Apache License 2.0.
 

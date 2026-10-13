@@ -70,7 +70,7 @@ function buildMime(from: string, to: string, mail: Mail): string {
   const date = new Date().toUTCString();
 
   return [
-    `From: Dictate Cloud <${from}>`,
+    `From: Voice Mode Cloud <${from}>`,
     `To: ${to}`,
     `Subject: ${encodeHeader(mail.subject)}`,
     `Date: ${date}`,

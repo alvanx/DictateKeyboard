@@ -1,5 +1,5 @@
 <!--
-  Monochrome layer for themed (Android 13+) launcher icons. Dictate's classic mic glyph; the
+  Monochrome layer for themed (Android 13+) launcher icons. Plain microphone glyph; the
   system applies its own tint based on the shape's alpha, so the fill color is irrelevant.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"

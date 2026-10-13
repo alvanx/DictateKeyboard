@@ -28,7 +28,7 @@ export const DELETE_PAGE_HTML = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0B0F14">
-<title>Dictate Cloud — Delete your credit account</title>
+<title>Voice Mode Cloud — Delete your credit account</title>
 <style>
   :root {
     color-scheme: dark;
@@ -82,12 +82,12 @@ export const DELETE_PAGE_HTML = `<!doctype html>
 </head>
 <body>
 <main>
-  <div class="brand"><span class="dot"></span>Dictate&nbsp;Cloud</div>
+  <div class="brand"><span class="dot"></span>Voice Mode&nbsp;Cloud</div>
 
   <section id="step1">
     <h1>Delete your credit account</h1>
-    <p class="muted">This permanently deletes your Dictate Cloud credit. You will need your recovery
-      code — you can find it in the app under <strong>Settings → Dictate Cloud</strong>. It is the
+    <p class="muted">This permanently deletes your Voice Mode Cloud credit. You will need your recovery
+      code — you can find it in the app under <strong>Settings → Voice Mode Cloud</strong>. It is the
       only way we can identify your account: we store no name, no email address and no login.</p>
     <div class="card">
       <label for="code">Recovery code</label>
@@ -105,7 +105,7 @@ export const DELETE_PAGE_HTML = `<!doctype html>
       <ul>
         <li>Your credit account and any remaining balance</li>
         <li>Your recovery code</li>
-        <li>Every signed-in device — the app can no longer dictate through Dictate Cloud</li>
+        <li>Every signed-in device — the app can no longer dictate through Voice Mode Cloud</li>
         <li>Your usage log: when you dictated, for how long, and whether it worked</li>
       </ul>
       <p style="margin:14px 0 0"><strong>What is kept, and for how long</strong></p>
@@ -132,7 +132,7 @@ export const DELETE_PAGE_HTML = `<!doctype html>
     </div>
 
     <p class="muted">Still have the app installed? It is easier there — the same option sits under
-      Dictate Cloud.</p>
+      Voice Mode Cloud.</p>
   </section>
 
   <section id="step2" hidden>
@@ -151,7 +151,7 @@ export const DELETE_PAGE_HTML = `<!doctype html>
       <p style="margin:0"><strong>What goes</strong></p>
       <ul>
         <li>Your credit and your recovery code</li>
-        <li>Every signed-in device — the app will no longer be able to dictate through Dictate Cloud</li>
+        <li>Every signed-in device — the app will no longer be able to dictate through Voice Mode Cloud</li>
         <li>Your usage log</li>
       </ul>
       <p style="margin:14px 0 0"><strong>What stays</strong></p>

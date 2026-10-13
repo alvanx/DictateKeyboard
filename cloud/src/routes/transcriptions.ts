@@ -85,7 +85,7 @@ export async function handleTranscription(
     logRefusal(env, session, 'transcribe', 503, started, ctx);
     return apiError(
       503,
-      'Dictate Cloud is unavailable right now. Please try again later.',
+      'Voice Mode Cloud is unavailable right now. Please try again later.',
       'service_paused',
       'server_error',
     );
@@ -286,7 +286,7 @@ function upstreamFailure(status: number): Response {
  *
  * `body` is what the client receives: a `{ "text": … }` built from the answer. The app reads nothing
  * but `text` (its `TranscriptionResponseDto` has one field), and handing back segments, word counts
- * and a `vtt` track would publish which model is behind Dictate Cloud for no one's benefit.
+ * and a `vtt` track would publish which model is behind Voice Mode Cloud for no one's benefit.
  */
 type Upstream =
   | { kind: 'ok'; body: string; reportedSeconds: number | null; neurons: number }

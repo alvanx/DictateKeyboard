@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Dictate</string>
+    <string name="app_name">Voice Mode</string>
     <string name="key__phone_pause" comment="Label for the Pause key in the telephone keyboard layout">暂停</string>
     <string name="key__phone_wait" comment="Label for the Wait key in the telephone keyboard layout">等待</string>
     <string name="key_popup__threedots_alt" comment="Content description for the three-dots icon in a key popup">三点图标。如果可见，表明长按后可使用更多字符。</string>
@@ -130,8 +130,8 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">默认</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">系统默认</string>
     <string name="settings__home__title" comment="Title of the Home screen">欢迎使用{app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Dictate Keyboard is not enabled in the system">{app_name}没有在系统中被启用，因此在输入法选择界面中不会出现。点击这里解决这一问题。</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Dictate Keyboard is not selected as the default keyboard">{app_name}没有被设置为默认输入法。点击这里解决这一问题。</string>
+    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name}没有在系统中被启用，因此在输入法选择界面中不会出现。点击这里解决这一问题。</string>
+    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name}没有被设置为默认输入法。点击这里解决这一问题。</string>
     <string name="settings__search__title" comment="Title of the settings search screen">搜索设置</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">搜索设置…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">最近搜索</string>
@@ -640,7 +640,7 @@
     <string name="setup__select_ime__switch_keyboard_btn">切换键盘</string>
     <string name="setup__grant_notification_permission__title">允许崩溃报告消息通知</string>
     <string name="setup__grant_notification_permission__description">自安卓 13 以来，应用在发送通知前
-    必须向用户申请权限。在 Dictate 中，这一权限仅用于在崩溃时打开一个崩溃报告页面。
+    必须向用户申请权限。在 Voice Mode 中，这一权限仅用于在崩溃时打开一个崩溃报告页面。
     这一权限可以随时在系统设置中更改。
     </string>
     <string name="setup__grant_notification_permission__btn">授予权限</string>
@@ -665,8 +665,8 @@
     <string name="backup_and_restore__back_up__files">选择要备份的内容</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">选项</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API 密钥和密码</string>
-    <string name="backup_and_restore__back_up__credentials_warning">该归档以明文保存你的 API 密钥和密码，还包含你的 Dictate Cloud 余额——拿到它的人都能用你的账户来听写。不要转交；如果已经转交过，请在服务商处更换密钥。下面勾选的其他内容也会一同带走，包括听写历史和剪贴板。</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">该归档不含 API 密钥、密码和 Dictate Cloud 余额，因此可以转交——但也不会恢复你的密钥。下面勾选的其他内容仍在其中，包括听写历史和剪贴板。</string>
+    <string name="backup_and_restore__back_up__credentials_warning">该归档以明文保存你的 API 密钥和密码，还包含你的 Voice Mode Cloud 余额——拿到它的人都能用你的账户来听写。不要转交；如果已经转交过，请在服务商处更换密钥。下面勾选的其他内容也会一同带走，包括听写历史和剪贴板。</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">该归档不含 API 密钥、密码和 Voice Mode Cloud 余额，因此可以转交——但也不会恢复你的密钥。下面勾选的其他内容仍在其中，包括听写历史和剪贴板。</string>
     <string name="backup_and_restore__back_up__personal_content_note">该归档不含 API 密钥和密码，但包含下面勾选的一切：听写历史及保留的录音、剪贴板、你的提示词，以及键盘从你这里学到的词。</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">键盘扩展</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">拼写扩展 / 词典</string>
@@ -683,7 +683,7 @@
     <string name="backup_and_restore__restore__metadata">选定的备份档案</string>
     <string name="backup_and_restore__restore__metadata_warn_different_version">这个备份档案是在其他版本中生成的，本应用一般支持这一操作。但请注意，这样可能会出现一些小问题，或者可能由于功能差异某些偏好设置无法正确导入。</string>
     <string name="backup_and_restore__restore__metadata_warn_different_vendor">这个备份档案是在第三方应用中生成的，本应用一般不支持这一操作。可能会发生数据丢失，进行还原需要您自担风险！</string>
-    <string name="backup_and_restore__restore__metadata_note_no_credentials">该备份归档不含 API 密钥和密码。其他内容都会恢复。合并会保留本机已有的密钥；覆盖则会删除它们——包括无法重新输入的 Dictate Cloud 恢复码。</string>
+    <string name="backup_and_restore__restore__metadata_note_no_credentials">该备份归档不含 API 密钥和密码。其他内容都会恢复。合并会保留本机已有的密钥；覆盖则会删除它们——包括无法重新输入的 Voice Mode Cloud 恢复码。</string>
     <string name="backup_and_restore__restore__metadata_error_invalid_metadata">这个备份档案包含无效的元数据。可能它已损坏，或者修改不当。无法从这个档案还原，请选择其他档案。</string>
     <string name="backup_and_restore__restore__metadata_error_nothing_to_restore">这个备份档案不包含任何可以还原的文件，请选择其他档案。</string>
     <string name="backup_and_restore__restore__mode">还原模式</string>
@@ -692,18 +692,18 @@
     <string name="backup_and_restore__restore__success">成功还原备份！</string>
     <string name="backup_and_restore__restore__failure">还原数据失败：{error_message}</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Dictate 错误报告</string>
-    <string name="crash_dialog__description" comment="Description of crash dialog">很抱歉给您带来不便，但 Dictate 因意外错误而崩溃。</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">如果您希望报告此错误，请先查看 GitHub 上的问题跟踪器（如果尚未报告您的崩溃）。\n如果没有，请复制生成的崩溃日志并打开一个新问题。使用“%s”模板，填写描述、重现崩溃的步骤，最后粘贴生成的崩溃日志。这有助于让 Dictate 对每个用户都更好、更稳定。谢谢！</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Voice Mode 错误报告</string>
+    <string name="crash_dialog__description" comment="Description of crash dialog">很抱歉给您带来不便，但 Voice Mode 因意外错误而崩溃。</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">如果您希望报告此错误，请先查看 GitHub 上的问题跟踪器（如果尚未报告您的崩溃）。\n如果没有，请复制生成的崩溃日志并打开一个新问题。使用“%s”模板，填写描述、重现崩溃的步骤，最后粘贴生成的崩溃日志。这有助于让 Voice Mode 对每个用户都更好、更稳定。谢谢！</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">复制到系统剪贴板</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">已复制到系统剪贴板</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">无法复制到系统剪贴板：找不到剪贴板管理器实例</string>
     <string name="crash_dialog__open_issue_tracker" comment="Label of Open issue tracker button in crash dialog">打开问题跟踪器（github.com）</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">关闭</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Dictate 错误报告</string>
-    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Dictate 已停止工作…</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Voice Mode 错误报告</string>
+    <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode 已停止工作…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">点击查看错误详情</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Dictate 似乎反复停止工作…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">Voice Mode 似乎反复停止工作…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">回退到上一个键盘以停止无限崩溃循环。点击查看错误详情</string>
     <!-- Clipboard strings -->
     <string name="editing__back_to_keyboard">返回键盘</string>
@@ -855,7 +855,7 @@
     <string name="ext__export__failure">导出扩展失败：{error_message}</string>
     <string name="ext__import__success">成功导入扩展！</string>
     <string name="ext__import__failure">导入扩展失败：{error_message}</string>
-    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Dictate Keyboard extension">导入扩展</string>
+    <string name="ext__import__ext_any" comment="Title of Importer screen for import of any supported Voice Mode extension">导入扩展</string>
     <string name="ext__import__ext_keyboard" comment="Title of Importer screen for keyboard extension import">导入键盘扩展</string>
     <string name="ext__import__ext_theme" comment="Title of Importer screen for theme extension import">导入主题扩展</string>
     <string name="ext__import__ext_languagepack" comment="Title of Importer screen for language pack extension import">导入语言包扩展</string>
@@ -895,7 +895,7 @@
     <string name="ext__addon_management_box__managing_placeholder">管理 {extensions}</string>
     <string name="ext__addon_management_box__addon_manager_info">所有与导入、导出、创建、自定义和删除扩展相关的任务都可以通过集中的插件管理器来处理。</string>
     <string name="ext__addon_management_box__go_to_page">跳转到{ext_home_title}</string>
-    <string name="ext__home__info">您可以从 Dictate 插件商店下载并安装扩展，或者导入您从互联网上下载的任何匹配和兼容的扩展文件。</string>
+    <string name="ext__home__info">您可以从 Voice Mode 插件商店下载并安装扩展，或者导入您从互联网上下载的任何匹配和兼容的扩展文件。</string>
     <string name="ext__home__visit_store">访问插件商店</string>
     <string name="ext__home__manage_extensions">管理已安装的扩展</string>
     <string name="ext__list__view_details">查看详细信息</string>
@@ -1140,7 +1140,7 @@
     <plurals name="unit__candidates__written">
         <item quantity="other">候选</item>
     </plurals>
-    <!-- Dictate strings -->
+    <!-- Voice Mode strings -->
     <string name="quick_action__ime_ui_mode_editing">文本编辑</string>
     <string name="quick_action__ime_ui_mode_editing__tooltip">移动光标、选择和编辑文本</string>
     <string name="quick_action__ime_ui_mode_scan">扫描文字</string>
@@ -1155,15 +1155,14 @@
     <string name="quick_action__dictate_prompts__tooltip">打开 AI 改写提示词</string>
     <string name="about__based_on_floris__title">基于 FlorisBoard</string>
     <string name="about__based_on_floris__summary">由 Patrick Goldinger 及贡献者开发的 FlorisBoard 分支，Apache 2.0。点按可打开。</string>
-    <string name="about__made_by">由 DevEmperor 用 ❤️ 制作\nSoli deo gloria ✝️</string>
     <string name="about__feedback__title">反馈与支持</string>
     <string name="about__feedback__summary">发送电子邮件提出问题、漏洞或建议</string>
-    <string name="about__feedback__email">contact@devemperor.net</string>
-    <string name="about__feedback__subject">Dictate Feedback</string>
-    <string name="setup__provider__title">选择 Dictate 的转写方式</string>
-    <string name="setup__provider__choose_intro">Dictate 借助 AI 服务把语音转成文字。上面两种方式适合大多数人；如果你完全不想用云服务，下面还有两种。</string>
+    <string name="about__feedback__email">support@voicemode.example</string>
+    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="setup__provider__title">选择 Voice Mode 的转写方式</string>
+    <string name="setup__provider__choose_intro">Voice Mode 借助 AI 服务把语音转成文字。上面两种方式适合大多数人；如果你完全不想用云服务，下面还有两种。</string>
     <string name="setup__provider__choice_cloud_title">在应用内购买额度</string>
-    <string name="setup__provider__choice_cloud_body">Dictate Cloud：不用在任何地方注册账号，也不用 API 密钥。你通过 Google Play 购买听写分钟数，且永不过期。这是省事的方式——比直接找服务商略贵一些。</string>
+    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud：不用在任何地方注册账号，也不用 API 密钥。你通过 Google Play 购买听写分钟数，且永不过期。这是省事的方式——比直接找服务商略贵一些。</string>
     <string name="setup__provider__choice_cloud_btn">查看额度套餐</string>
     <string name="setup__provider__choice_own_title">使用你自己的 AI 服务商</string>
     <string name="setup__provider__choice_own_body">在你选定的服务商处创建密钥——Groq 用于日常听写是免费的。你保留自己的账号，按服务商的价格直接付费。大约需要两分钟。</string>
@@ -1173,15 +1172,15 @@
     <string name="setup__provider__choice_local_title">在你的设备上，离线</string>
     <string name="setup__provider__choice_local_body">只需下载一次语音模型。无需账号、没有费用，音频也不会离开你的手机。</string>
     <string name="setup__provider__choice_server_title">你自己的服务器</string>
-    <string name="setup__provider__choice_server_body">把 Dictate 指向你自己运行的语音服务器，或任何兼容 OpenAI 的端点。</string>
+    <string name="setup__provider__choice_server_body">把 Voice Mode 指向你自己运行的语音服务器，或任何兼容 OpenAI 的端点。</string>
     <string name="setup__provider__local_intro">语音识别随后在你的手机上运行：不会发送到任何地方，没有网络也能用。先选一个模型下载——以后可以随时添加或更换。</string>
     <string name="setup__provider__local_recommended">推荐给你的语言</string>
     <string name="setup__provider__local_bigger">更准确，但下载大得多</string>
     <string name="setup__provider__local_download_btn">下载模型</string>
     <string name="setup__provider__local_use_btn">使用此模型</string>
     <string name="setup__provider__local_all_models">显示全部模型</string>
-    <string name="setup__provider__intro">Dictate 借助在线 AI 服务将您的语音转换为文字。要使用它，您需要拥有该服务的个人密钥。</string>
-    <string name="setup__provider__what_is_key">API 密钥就像一个个人密码，让 Dictate 代您使用该服务。创建它是免费的，大约需要两分钟。</string>
+    <string name="setup__provider__intro">Voice Mode 借助在线 AI 服务将您的语音转换为文字。要使用它，您需要拥有该服务的个人密钥。</string>
+    <string name="setup__provider__what_is_key">API 密钥就像一个个人密码，让 Voice Mode 代您使用该服务。创建它是免费的，大约需要两分钟。</string>
     <string name="setup__provider__recommended">我们推荐 <b>Groq</b>——它快速且对日常听写免费。</string>
     <string name="setup__provider__steps_groq">1. 点按下方按钮打开 Groq。\n2. 使用 Google 或您的电子邮箱登录。\n3. 点按“Create API Key”，任意命名并确认。\n4. 复制密钥（以“gsk_”开头）。\n5. 返回此处，点按下方的“粘贴 API 密钥”。</string>
     <string name="setup__provider__steps_generic">1. 点按下方按钮打开 {provider}。\n2. 如果还没有账户，请先创建。\n3. 创建一个新的 API 密钥并复制。\n4. 返回此处，点按下方的“粘贴 API 密钥”。</string>
@@ -1195,7 +1194,7 @@
     <string name="setup__provider__skip_btn">稍后设置</string>
     <string name="setup__provider__other_provider">使用其他 AI 服务商</string>
     <string name="setup__provider__other_provider_hint">高级：选择 Groq 以外的其他服务。您需要该服务商的 API 密钥。</string>
-    <string name="setup__finish_up__add_key_hint">提示：您尚未添加 AI 密钥。可随时在设置 → Dictate → AI 服务商中添加，即可开始听写。</string>
+    <string name="setup__finish_up__add_key_hint">提示：您尚未添加 AI 密钥。可随时在设置 → Voice Mode → AI 服务商中添加，即可开始听写。</string>
     <string name="crash_dialog__bug_report_template">崩溃报告</string>
     <string name="enum__swipe_action__toggle_compact_layout">切换紧凑布局</string>
     <string name="unit__hours__symbol">{v} 小时</string>
@@ -1205,9 +1204,9 @@
     <string name="unit__percent__symbol">{v}%</string>
     <string name="unit__display_pixel__symbol">{v} dp</string>
     <string name="unit__display_pixel_per_seconds__symbol">{v} dp/秒</string>
-    <string name="dictate__accessibility_service_label">Dictate 悬浮按钮</string>
+    <string name="dictate__accessibility_service_label">Voice Mode 悬浮按钮</string>
     <string name="dictate__accessibility_service_summary">显示一个悬浮按钮，可向任意文本框听写。</string>
-    <string name="dictate__accessibility_service_description">Dictate 使用此服务来提供悬浮听写按钮。启用后，它会检测任意应用中文本框何时获得焦点（以便按钮可以出现），并将转写的语音插入该文本框。Dictate 仅读取获得焦点的文本框，以便将文本放置在光标处；它不会收集、存储或分享任何其他屏幕内容。</string>
+    <string name="dictate__accessibility_service_description">Voice Mode 使用此服务来提供悬浮听写按钮。启用后，它会检测任意应用中文本框何时获得焦点（以便按钮可以出现），并将转写的语音插入该文本框。Voice Mode 仅读取获得焦点的文本框，以便将文本放置在光标处；它不会收集、存储或分享任何其他屏幕内容。</string>
     <string name="dictate__overlay_notification_channel">悬浮听写按钮</string>
     <string name="dictate__overlay_notification_recording">正在录音 — 点按悬浮按钮进行转写</string>
     <string name="dictate__overlay_notification_working">正在转写…</string>
@@ -1219,14 +1218,14 @@
     <string name="dictate__floating_button_service_enabled">已启用 · 点按以打开系统设置</string>
     <string name="dictate__floating_button_service_disabled">尚未启用 · 点按以设置</string>
     <string name="dictate__floating_button_disclosure_title">启用悬浮按钮</string>
-    <string name="dictate__floating_button_disclosure_message">若要显示悬浮按钮，Dictate 需要无障碍服务。它会检测任意应用中文本框何时获得焦点（以便按钮可以出现），并将转写的语音插入该文本框。Dictate 仅读取获得焦点的文本框，以便放置您的文本；它不会收集、存储或分享任何其他屏幕内容。\n\n在下一个屏幕中，找到“Dictate 悬浮按钮”并将其开启。</string>
+    <string name="dictate__floating_button_disclosure_message">若要显示悬浮按钮，Voice Mode 需要无障碍服务。它会检测任意应用中文本框何时获得焦点（以便按钮可以出现），并将转写的语音插入该文本框。Voice Mode 仅读取获得焦点的文本框，以便放置您的文本；它不会收集、存储或分享任何其他屏幕内容。\n\n在下一个屏幕中，找到“Voice Mode 悬浮按钮”并将其开启。</string>
     <string name="dictate__floating_button_disclosure_continue">打开设置</string>
     <string name="dictate__floating_button_mic_title">麦克风权限</string>
     <string name="dictate__floating_button_mic_summary">录制语音所必需 · 点按以授予</string>
     <string name="dictate__floating_button_show_when_title">显示时机</string>
     <string name="dictate__floating_button_show_when_field">选中文本框时</string>
     <string name="dictate__floating_button_show_when_keyboard">仅在键盘打开时</string>
-    <string name="dictate__floating_button_show_when_dictate_keyboard">Dictate 键盘打开时也显示</string>
+    <string name="dictate__floating_button_show_when_dictate_keyboard">Voice Mode 键盘打开时也显示</string>
     <string name="dictate__action_continue_recording">继续录音</string>
     <string name="dictate__a11y_mic_hold_local">在设备上转录</string>
     <string name="smartbar__a11y_show_actions">显示操作</string>
@@ -1257,7 +1256,7 @@
     <string name="dictate__floating_button_apps_scope_all">所有应用</string>
     <string name="dictate__floating_button_apps_scope_only">仅下列应用</string>
     <string name="dictate__floating_button_apps_scope_except">除下列应用外的所有应用</string>
-    <string name="dictate__floating_button_apps_note">被排除的应用上方永远不会绘制按钮，Dictate 也不会读取其中的文本框。但对于本身就抵触无障碍服务的应用，它仍然能看出该服务已开启。</string>
+    <string name="dictate__floating_button_apps_note">被排除的应用上方永远不会绘制按钮，Voice Mode 也不会读取其中的文本框。但对于本身就抵触无障碍服务的应用，它仍然能看出该服务已开启。</string>
     <string name="dictate__floating_button_apps_list_title">应用</string>
     <string name="dictate__floating_button_apps_search">搜索应用</string>
     <string name="dictate__floating_button_apps_none">未找到与“{search_term}”匹配的应用</string>
@@ -1265,7 +1264,7 @@
     <string name="dictate__floating_button_haptic_summary_off">点按时不振动。</string>
     <string name="dictate__floating_button_haptic_summary_on">点按按钮时短暂振动。</string>
     <string name="dictate__floating_button_haptic_title">点按时振动</string>
-    <string name="dictate__floating_button_no_prompts">暂无改写提示词——请在 Dictate 设置中添加。</string>
+    <string name="dictate__floating_button_no_prompts">暂无改写提示词——请在 Voice Mode 设置中添加。</string>
     <string name="dictate__floating_button_remember_position_summary_off">所有应用共用一个位置。</string>
     <string name="dictate__floating_button_remember_position_summary_on">每个应用保留各自的按钮位置。</string>
     <string name="dictate__floating_button_remember_position_title">按应用记住位置</string>
@@ -1280,7 +1279,7 @@
     <string name="dictate__providers_summary_both">转写：{transcription} · 改写：{rewording}</string>
     <string name="dictate__remember_last_dictation_summary">保留你最近一次的听写，以便悬浮按钮可以撤销它、经典布局可以重新插入它。</string>
     <string name="dictate__remember_last_dictation_title">记住上次听写</string>
-    <string name="changelog__v4_2_0">• 新功能：悬浮听写按钮——即使其他键盘处于激活状态，也能直接在任何应用中听写。可从三种样式（胶囊、圆环、光球）中选择，说话时显示实时波形，可拖到任意位置并吸附到边缘，设置颜色和大小，长按即可改写。在 设置 ▸ Dictate ▸ 悬浮按钮 中开启。\n• 新功能：Google Gemini — 使用你自己的 AI Studio API 密钥进行转录和改写。\n• 提示词现在默认显示在按键上方的常驻行中。\n• 跨应用的文本插入更可靠，包括浏览器和其他键盘。</string>
+    <string name="changelog__v4_2_0">• 新功能：悬浮听写按钮——即使其他键盘处于激活状态，也能直接在任何应用中听写。可从三种样式（胶囊、圆环、光球）中选择，说话时显示实时波形，可拖到任意位置并吸附到边缘，设置颜色和大小，长按即可改写。在 设置 ▸ Voice Mode ▸ 悬浮按钮 中开启。\n• 新功能：Google Gemini — 使用你自己的 AI Studio API 密钥进行转录和改写。\n• 提示词现在默认显示在按键上方的常驻行中。\n• 跨应用的文本插入更可靠，包括浏览器和其他键盘。</string>
     <string name="dictate__promo_floating_button_message">新功能：在任何应用中听写</string>
     <string name="dictate__promo_floating_button_action">试用</string>
     <string name="setup__floating_button__btn">设置悬浮按钮</string>
@@ -1293,7 +1292,7 @@
     <string name="setup__floating_button__skip_btn">跳过 — 我用键盘</string>
     <string name="dictate__floating_button_badge_new">新</string>
     <string name="dictate__panel_title">AI 提示词</string>
-    <string name="dictate__panel_no_prompts">暂无提示词。请在 Dictate 设置的“改写”中添加。</string>
+    <string name="dictate__panel_no_prompts">暂无提示词。请在 Voice Mode 设置的“改写”中添加。</string>
     <string name="dictate__prompts_layout_title">提示词布局</string>
     <string name="dictate__prompts_layout_panel_label">独立面板</string>
     <string name="dictate__prompts_layout_panel_description">通过魔杖按钮在独立面板中打开提示词。</string>
@@ -1311,8 +1310,8 @@
     <string name="dictate__voice_input_transcribing">正在转写…</string>
     <string name="dictate__voice_input_stop">完成</string>
     <string name="dictate__voice_input_hint">点按发送</string>
-    <string name="dictate__voice_ime_label">Dictate 语音输入</string>
-    <string name="dictate__error_no_api_key">未设置 API 密钥——请在 Dictate 设置中配置。</string>
+    <string name="dictate__voice_ime_label">Voice Mode 语音输入</string>
+    <string name="dictate__error_no_api_key">未设置 API 密钥——请在 Voice Mode 设置中配置。</string>
     <string name="dictate__error_transcription_failed">转录失败。</string>
     <string name="dictate__error_unknown">转录时发生未知错误。</string>
     <string name="dictate__error_rewording_failed">改写失败。</string>
@@ -1344,13 +1343,13 @@
     <string name="dictate__action_dismiss">关闭</string>
     <string name="dictate__action_yes">是</string>
     <string name="dictate__action_no">不用了，谢谢</string>
-    <string name="dictate__promo_rate_message">喜欢 Dictate 吗？</string>
-    <string name="dictate__promo_donate_message">支持 Dictate？</string>
+    <string name="dictate__promo_rate_message">喜欢 Voice Mode 吗？</string>
+    <string name="dictate__promo_donate_message">支持 Voice Mode？</string>
     <string name="dictate__promo_rate_action">评分</string>
     <string name="dictate__promo_donate_action">捐赠</string>
-    <string name="dictate__promo_changelog_message">Dictate 已更新</string>
+    <string name="dictate__promo_changelog_message">Voice Mode 已更新</string>
     <string name="dictate__promo_changelog_action">详情</string>
-    <string name="dictate__title">Dictate</string>
+    <string name="dictate__title">Voice Mode</string>
     <string name="dictate__provider_title">转录服务商</string>
     <string name="dictate__provider__openai">OpenAI</string>
     <string name="dictate__provider__groq">Groq</string>
@@ -1583,7 +1582,7 @@
     <string name="dictate__command_word_summary">以“{word}”开头的听写将作为实时指令执行</string>
     <string name="dictate__command_word_placeholder">贾维斯</string>
     <string name="dictate__command_word_info_title">关于指令唤醒词</string>
-    <string name="dictate__command_word_info_description">Dictate 通常会把你说的话原样写下来。设置唤醒词后，以它开头的听写会改为按指令处理：该词被去掉，其余内容连同选中的文本（如果有）一起发送给 AI。\n\n“贾维斯，把这段改得正式一点”会改写选中的文本；“贾维斯，日本的首都是哪里”会把答案写进输入框。也就是把实时指令按钮从“点一下”变成“叫一声”。\n\n该词只有位于听写最开头、且作为完整词出现时才生效，所以请挑一个你很少用来起头的词。</string>
+    <string name="dictate__command_word_info_description">Voice Mode 通常会把你说的话原样写下来。设置唤醒词后，以它开头的听写会改为按指令处理：该词被去掉，其余内容连同选中的文本（如果有）一起发送给 AI。\n\n“贾维斯，把这段改得正式一点”会改写选中的文本；“贾维斯，日本的首都是哪里”会把答案写进输入框。也就是把实时指令按钮从“点一下”变成“叫一声”。\n\n该词只有位于听写最开头、且作为完整词出现时才生效，所以请挑一个你很少用来起头的词。</string>
     <string name="dictate__auto_formatting_title">自动格式化</string>
     <string name="dictate__auto_formatting_summary">将口述的格式提示转换为 Markdown（标题、列表等）</string>
     <string name="dictate__system_prompt_title">改写指令</string>
@@ -1694,19 +1693,19 @@
     <string name="dictate__import_not_audio">此文件不含音频。</string>
     <string name="dictate__import_only_first">只转写第一个文件，另外 {count} 个已跳过。</string>
     <string name="dictate__setup_description">设置您的 AI 服务商和 API 密钥，即可用麦克风开始听写。</string>
-    <string name="dictate__setup_configure_btn">配置 Dictate</string>
+    <string name="dictate__setup_configure_btn">配置 Voice Mode</string>
     <string name="setup__grant_mic_permission__title">麦克风访问权限</string>
-    <string name="setup__grant_mic_permission__description">Dictate 需要麦克风访问权限来录制您的语音以进行转录。</string>
+    <string name="setup__grant_mic_permission__description">Voice Mode 需要麦克风访问权限来录制您的语音以进行转录。</string>
     <string name="setup__grant_mic_permission__btn">授予麦克风权限</string>
     <string name="changelog__dialog_title">新功能</string>
     <string name="changelog__view_all">查看所有更改</string>
-    <string name="changelog__intro">Dictate 已更新。以下是新功能：</string>
+    <string name="changelog__intro">Voice Mode 已更新。以下是新功能：</string>
     <string name="changelog__version_header">版本 {version}</string>
-    <string name="changelog__donate">喜欢 Dictate 吗？点按此处支持开发 ♥</string>
-    <string name="changelog__current">• 全新键盘：Dictate 现在作为完整的多语言布局键盘提供，带有专用麦克风键以打开语音面板。\n• 自带 AI：选择任何兼容 OpenAI 的服务商，并在设置 → Dictate 中输入您的 API 密钥。\n• 由您选择的模型驱动的智能格式化和改写。\n• 您在旧版 Dictate 应用中的设置会自动导入。</string>
+    <string name="changelog__donate">喜欢 Voice Mode 吗？点按此处支持开发 ♥</string>
+    <string name="changelog__current">• 全新键盘：Voice Mode 现在作为完整的多语言布局键盘提供，带有专用麦克风键以打开语音面板。\n• 自带 AI：选择任何兼容 OpenAI 的服务商，并在设置 → Voice Mode 中输入您的 API 密钥。\n• 由您选择的模型驱动的智能格式化和改写。\n• 您在旧版 Voice Mode 应用中的设置会自动导入。</string>
     <string name="changelog__v4_1_0">• 新增：直接从键盘搜索表情符号。\n• 新的转录服务商：Soniox。\n• 重新插入上一次的听写，并恢复键盘关闭时中断的录音。\n• 提示词栏现在会实时刷新：长按某个提示词即可编辑。\n• AI 服务商界面现在会同时显示当前启用的转录服务商和改写服务商。\n• 录音按钮更大，更容易点按。\n• 修复：在某些语言下，支持提示可能卡住并遮挡操作栏；选择了提示词、键盘或主题时备份不再失败；升级后会保留已保存的 API 密钥。</string>
-    <string name="changelog__v4_1_1">• 修复：在某些设备上强调色可能显示为绿色；按键和按钮已恢复为 Dictate 蓝色。</string>
-    <!-- Dictate on-device (offline) models -->
+    <string name="changelog__v4_1_1">• 修复：在某些设备上强调色可能显示为绿色；按键和按钮已恢复为 Voice Mode 蓝色。</string>
+    <!-- Voice Mode on-device (offline) models -->
     <string name="dictate__local_models_header">在您的设备上运行 — 不会发送任何音频。下载模型即可开始。</string>
     <string name="dictate__local_models_live_header">实时（流式）</string>
     <string name="dictate__local_models_live_summary">说话时即时输入文字。请在“录音”中开启“实时转录”后使用。</string>
@@ -1741,7 +1740,7 @@
     <string name="dictate__floating_button_copy_to_clipboard_summary_on">每次听写也会复制到剪贴板，这样即使插入失败也能手动粘贴。在某些手机上可能会显示剪贴板提示。</string>
     <string name="dictate__floating_button_copy_to_clipboard_summary_off">听写仅插入，不复制到剪贴板。</string>
     <string name="dictate__floating_button_menu_group">长按菜单</string>
-    <string name="dictate__floating_button_menu_settings_title">Dictate 设置</string>
+    <string name="dictate__floating_button_menu_settings_title">Voice Mode 设置</string>
     <string name="dictate__floating_button_undo_summary_off">不显示撤销按钮。</string>
     <string name="dictate__floating_button_undo_summary_on">听写完成后，按钮旁会出现撤销按钮，轻点一下即可删除已插入的文本。</string>
     <string name="dictate__floating_button_undo_title">撤销按钮</string>
@@ -1789,7 +1788,7 @@
     <string name="dictate__providers_rewording_single_call_note">当前未使用 — 你的转录服务商在其单次调用中完成改写。</string>
     <string name="dictate__wear_title">Wear OS</string>
     <string name="dictate__wear_summary">从已配对手表听写的选项</string>
-    <string name="dictate__wear_install_title">在手表上安装 Dictate</string>
+    <string name="dictate__wear_install_title">在手表上安装 Voice Mode</string>
     <string name="dictate__wear_install_summary">打开 Play Store——在已配对的 Wear OS 3+ 手表上，选择手表作为安装目标。</string>
     <string name="dictate__wear_auto_rewording_title">自动改写手表听写</string>
     <string name="dictate__wear_auto_rewording_summary">像在手机上一样改写手表听写。</string>
@@ -1797,7 +1796,7 @@
     <string name="quick_action__system_prev_input_method__tooltip">切换回上一个键盘</string>
     <string name="quick_action__system_input_method_picker">选择键盘</string>
     <string name="quick_action__system_input_method_picker__tooltip">打开系统键盘选择器</string>
-    <string name="changelog__v4_3_0">• 新功能：设备端转录 — 完全离线听写。无需联网，数据不会离开你的手机。在 设置 ▸ Dictate ▸ 服务商 中下载一次语音模型。📴\n• 新功能：Wear OS 键盘 — 直接从手表听写，通过手机或独立使用。⌚\n• 新功能：查找和替换规则 — 自动修正每条转录中反复出现的词语、名称或短语。在 设置 ▸ Dictate ▸ 自定义映射 中设置。🔁\n• 新功能：单次调用模式 — 一个强大的 AI 模型在一次请求中完成转录和格式化，更快且通常更便宜。可按服务商开启。⚡\n• 新功能：Smartbar 操作，可切换回上一个键盘或打开系统键盘选择器。⌨️\n• 键盘的强调色现在跟随你在 设置 ▸ 主题 中选择的颜色。🎨\n• 为悬浮听写按钮添加了可选的撤销按钮。↩️\n• 多项修复与稳定性改进。🛠️</string>
+    <string name="changelog__v4_3_0">• 新功能：设备端转录 — 完全离线听写。无需联网，数据不会离开你的手机。在 设置 ▸ Voice Mode ▸ 服务商 中下载一次语音模型。📴\n• 新功能：Wear OS 键盘 — 直接从手表听写，通过手机或独立使用。⌚\n• 新功能：查找和替换规则 — 自动修正每条转录中反复出现的词语、名称或短语。在 设置 ▸ Voice Mode ▸ 自定义映射 中设置。🔁\n• 新功能：单次调用模式 — 一个强大的 AI 模型在一次请求中完成转录和格式化，更快且通常更便宜。可按服务商开启。⚡\n• 新功能：Smartbar 操作，可切换回上一个键盘或打开系统键盘选择器。⌨️\n• 键盘的强调色现在跟随你在 设置 ▸ 主题 中选择的颜色。🎨\n• 为悬浮听写按钮添加了可选的撤销按钮。↩️\n• 多项修复与稳定性改进。🛠️</string>
     <string name="dictate__audio_source_title">音频输入源</string>
     <string name="dictate__audio_source_default">默认麦克风</string>
     <string name="dictate__audio_source_default_summary">标准麦克风，带手机内置的音频处理</string>
@@ -1853,7 +1852,7 @@
     <string name="dictate__history_export_all_result">已写入 {written} 条，已存在 {skipped} 条，失败 {failed} 条</string>
     <string name="dictate__history_export_last_failure">{when}有一次写入失败。“立即导出全部”可以补齐缺失的文件。</string>
     <string name="dictate__history_export_warning_title">文件夹里会有什么</string>
-    <string name="dictate__history_export_warning_message">从现在起，该文件夹会保存你每一段听写的文字；如果开启，还会保存录音。任何同步它的工具 — 云端客户端、备份工具或其他应用 — 都会把这些转写带离本设备。\n\n在你断开该文件夹之前，Dictate 会持续写入，并且从不删除其中的文件：从历史记录中移除的条目仍会留在文件夹里。密码字段和无痕输入从不记录，因此也从不导出。</string>
+    <string name="dictate__history_export_warning_message">从现在起，该文件夹会保存你每一段听写的文字；如果开启，还会保存录音。任何同步它的工具 — 云端客户端、备份工具或其他应用 — 都会把这些转写带离本设备。\n\n在你断开该文件夹之前，Voice Mode 会持续写入，并且从不删除其中的文件：从历史记录中移除的条目仍会留在文件夹里。密码字段和无痕输入从不记录，因此也从不导出。</string>
     <string name="dictate__history_export_needs_history">文件夹导出写入的是历史记录所保存的内容，因此需要开启历史记录。</string>
     <string name="dictate__history_export_enable_history">开启历史记录</string>
     <string name="dictate__history_export_pick_failed">无法获得该文件夹的写入权限</string>
@@ -1876,15 +1875,15 @@
     <string name="dictate__stats_reset_confirm_title">重置统计？</string>
     <string name="dictate__stats_reset_confirm_msg">这将永久清除你所有的听写统计，无法撤销。</string>
     <string name="dictate__stats_share">分享</string>
-    <string name="dictate__stats_share_text">我用 Dictate 节省了 %1$s — %2$s 次听写，%3$s 字。🎤</string>
+    <string name="dictate__stats_share_text">我用 Voice Mode 节省了 %1$s — %2$s 次听写，%3$s 字。🎤</string>
     <string name="dictate__stats_view">查看统计</string>
     <string name="dictate__stats_milestones_title">里程碑庆祝</string>
     <string name="dictate__stats_milestones_summary">达到节省时间或听写次数里程碑时庆祝一次</string>
     <string name="dictate__stats_milestone_title">达成里程碑 🎉</string>
-    <string name="dictate__stats_milestone_time">你用 Dictate 节省了 %s — 干得好！</string>
-    <string name="dictate__stats_milestone_count">你用 Dictate 达到了 %s 次听写！</string>
-    <string name="dictate__promo_milestone_time">用 Dictate 节省了 %s！🎉</string>
-    <string name="dictate__promo_milestone_count">用 Dictate 达成 %s 次！🎉</string>
+    <string name="dictate__stats_milestone_time">你用 Voice Mode 节省了 %s — 干得好！</string>
+    <string name="dictate__stats_milestone_count">你用 Voice Mode 达到了 %s 次听写！</string>
+    <string name="dictate__promo_milestone_time">用 Voice Mode 节省了 %s！🎉</string>
+    <string name="dictate__promo_milestone_count">用 Voice Mode 达成 %s 次！🎉</string>
     <string name="dictate__promo_milestone_action">统计</string>
     <string name="dictate__reasoning_effort_title">推理力度</string>
     <string name="dictate__reasoning_effort_off">关闭</string>
@@ -1899,7 +1898,7 @@
     <string name="dictate__reasoning_effort_high_summary">思考最多，更慢</string>
     <string name="dictate__reasoning_effort_custom">自定义</string>
     <string name="dictate__action_save_audio">保存音频</string>
-    <string name="dictate__audio_saved">音频已保存到 Downloads/Dictate：%s</string>
+    <string name="dictate__audio_saved">音频已保存到 Downloads/VoiceMode：%s</string>
     <string name="dictate__audio_save_failed">无法保存音频</string>
     <string name="dictate__instant_recording_mode_off">关闭</string>
     <string name="dictate__instant_recording_mode_always">每次打开键盘时</string>
@@ -1962,11 +1961,11 @@
     <string name="apptour__intro_body">这是 Dictate 5.0 的新变化——精华内容，一分钟内看完。在任意页面点按「试一试」即可直接跳到该设置。</string>
     <string name="apptour__glide_eyebrow">键盘</string>
     <string name="apptour__glide_title">滑动输入</string>
-    <string name="apptour__glide_body">手指在按键之间滑动，Dictate 就会把轨迹变成完整的词语。每种语言都有各自的词典，按需下载——在「手势」中开启它。</string>
+    <string name="apptour__glide_body">手指在按键之间滑动，Voice Mode 就会把轨迹变成完整的词语。每种语言都有各自的词典，按需下载——在「手势」中开启它。</string>
     <string name="apptour__glide_cta">设置滑动输入</string>
     <string name="apptour__suggestions_eyebrow">键盘</string>
     <string name="apptour__suggestions_title">自动更正与建议</string>
-    <string name="apptour__suggestions_body">输入时，Dictate 会推荐合适的词语并悄悄纠正拼写错误。你实际输入的词会保留在建议栏中，因此轻点一下即可撤销任何更正。</string>
+    <string name="apptour__suggestions_body">输入时，Voice Mode 会推荐合适的词语并悄悄纠正拼写错误。你实际输入的词会保留在建议栏中，因此轻点一下即可撤销任何更正。</string>
     <string name="apptour__suggestions_cta">调整建议</string>
     <string name="apptour__realtime_eyebrow">转录</string>
     <string name="apptour__realtime_title">实时转录</string>
@@ -1999,16 +1998,16 @@
     <string name="apptour51__continue_to">继续前往 {version}</string>
     <string name="apptour51__intro_eyebrow">版本 5.1</string>
     <string name="apptour51__intro_title">5.1 新功能</string>
-    <string name="apptour51__intro_body">自 5.0 以来，Dictate 有了长足的进步。以下是 5.1 的亮点——在任意页面点按「试一试」即可直接跳到该功能。</string>
+    <string name="apptour51__intro_body">自 5.0 以来，Voice Mode 有了长足的进步。以下是 5.1 的亮点——在任意页面点按「试一试」即可直接跳到该功能。</string>
     <string name="apptour51__history_eyebrow">转录</string>
     <string name="apptour51__history_title">转录历史</string>
     <string name="apptour51__history_body">现在每次口述都会保存在可搜索的历史记录中。轻点一下即可重新插入任何过往的转录，重放原始音频，重新转录，或把最常用的置顶。专门的页面让你管理一切，包括音频录音的保留时长。</string>
     <string name="apptour51__longform_eyebrow">转录</string>
     <string name="apptour51__longform_title">长篇口述</string>
-    <string name="apptour51__longform_body">想说多久就说多久。长录音会自动分段，并在你继续说话时于后台转录，因此你能更快拿到文字，也永远不会撞上长度上限。你可以自己切分某一段，也可以让 Dictate 检测自然停顿。</string>
+    <string name="apptour51__longform_body">想说多久就说多久。长录音会自动分段，并在你继续说话时于后台转录，因此你能更快拿到文字，也永远不会撞上长度上限。你可以自己切分某一段，也可以让 Voice Mode 检测自然停顿。</string>
     <string name="apptour51__gif_eyebrow">键盘</string>
     <string name="apptour51__gif_title">GIF 搜索</string>
-    <string name="apptour51__gif_body">无需离开 Dictate 即可查找并发送 GIF。打开 GIF 面板，搜索任何内容，直接放进你的聊天——一个内置于此、Gboard 风格的快捷选择器。</string>
+    <string name="apptour51__gif_body">无需离开 Voice Mode 即可查找并发送 GIF。打开 GIF 面板，搜索任何内容，直接放进你的聊天——一个内置于此、Gboard 风格的快捷选择器。</string>
     <string name="apptour51__classic_eyebrow">经典布局</string>
     <string name="apptour51__classic_title">经典布局，全新改造</string>
     <string name="apptour51__classic_body">无键盘的听写界面迎来重大升级：一个通过拖放自行搭建、可随意排列的操作行，长篇录音控件，一或两行提示词，始终可用的退格键，Enter 键上的字符弹出菜单，以及一个可选的第二个「切换键盘」按钮，方便单手操作。</string>
@@ -2023,14 +2022,14 @@
     <string name="apptour51__more_body">还有许多较小的升级：在设置中选择当前的转录语言，停止按钮现在能真正取消正在运行的请求，API 密钥的显示/隐藏开关，以及不会跨语言自动更正的多语言输入——此外还有经典布局、数字键盘等诸多修复。</string>
     <string name="apptour51__outro_eyebrow">这就是 5.1</string>
     <string name="apptour51__outro_title">尽情享受此次更新</string>
-    <string name="apptour51__outro_body">感谢你使用 Dictate！如果它每天都在帮助你，一笔小额捐赠就能让项目继续下去。你随时可以在「设置 › 关于」中重新查看这些导览。</string>
+    <string name="apptour51__outro_body">感谢你使用 Voice Mode！如果它每天都在帮助你，一笔小额捐赠就能让项目继续下去。你随时可以在「设置 › 关于」中重新查看这些导览。</string>
     <string name="apptour52__cta_try">试试</string>
     <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
     <string name="apptour52__intro_title">随处口述</string>
-    <string name="apptour52__intro_body">这个版本让 Dictate 走出自家键盘：作为手机的语音输入、随时随地的语音指令，并帮你整理长篇口述。以下是新功能。</string>
+    <string name="apptour52__intro_body">这个版本让 Voice Mode 走出自家键盘：作为手机的语音输入、随时随地的语音指令，并帮你整理长篇口述。以下是新功能。</string>
     <string name="apptour52__voiceinput_eyebrow">系统级语音输入</string>
-    <string name="apptour52__voiceinput_title">从任意键盘使用 Dictate</string>
-    <string name="apptour52__voiceinput_body">Dictate 现在注册为系统语音输入：其他键盘和应用的麦克风按键将通过 Dictate 转写——使用你的服务商、你的提示词和你的设备端模型。在键盘列表中启用「Dictate 语音输入」并将其选为语音输入方式。（Gboard 的麦克风固定绑定 Google，请使用遵循系统设置的键盘。）</string>
+    <string name="apptour52__voiceinput_title">从任意键盘使用 Voice Mode</string>
+    <string name="apptour52__voiceinput_body">Voice Mode 现在注册为系统语音输入：其他键盘和应用的麦克风按键将通过 Voice Mode 转写——使用你的服务商、你的提示词和你的设备端模型。在键盘列表中启用「Voice Mode 语音输入」并将其选为语音输入方式。（Gboard 的麦克风固定绑定 Google，请使用遵循系统设置的键盘。）</string>
     <string name="apptour52__liveprompt_eyebrow">自由语音指令</string>
     <string name="apptour52__liveprompt_title">随时告诉 AI 该做什么</string>
     <string name="apptour52__liveprompt_body">长按悬浮按钮打开菜单，点按「Live prompt」，然后直接说出需求：「写一封婉拒明天会议的回复」「把上面的文字翻译成西班牙语」。选中的文字会作为上下文；未选中时 AI 从零开始撰写。</string>
@@ -2042,7 +2041,7 @@
     <string name="apptour52__trim_body">说到一半停下来思考？超过几秒的静音会在发送前被剪掉——每个说出的字都保留，只去掉空白时间。上传更短意味着等待更少、花费更低。</string>
     <string name="apptour52__paragraphs_eyebrow">长篇也易读</string>
     <string name="apptour52__paragraphs_title">自动分段</string>
-    <string name="apptour52__paragraphs_body">长篇口述不再是一整块文字。设定字数后，Dictate 会在下一个句末开始新段落——确定性处理，且仅用于纯转写文本，绝不改动 AI 已格式化的内容。</string>
+    <string name="apptour52__paragraphs_body">长篇口述不再是一整块文字。设定字数后，Voice Mode 会在下一个句末开始新段落——确定性处理，且仅用于纯转写文本，绝不改动 AI 已格式化的内容。</string>
     <string name="apptour52__smartturn_eyebrow">更聪明的长篇模式</string>
     <string name="apptour52__smartturn_title">在想法说完时切分</string>
     <string name="apptour52__smartturn_body">长篇口述现在可使用设备端 Smart Turn v3 模型判断你是否真的说完了一个想法，而不是一停顿就切分。可选，按需下载。</string>
@@ -2058,7 +2057,7 @@
     <string name="apptour53__intro_body">这一版围绕你最常做的两件事：对着手机说话，以及在手机上打字。两者都更快了，也都更懂得让路。</string>
     <string name="apptour53__pushtotalk_eyebrow">按住说话</string>
     <string name="apptour53__pushtotalk_title">按住麦克风，松手即发送</string>
-    <string name="apptour53__pushtotalk_body">就像语音消息：按住麦克风键说话，松手就发出去。向左滑丢弃这段录音，向上拖则锁定，腾出你的手。轻点仍和从前一样。可在 Dictate 设置中开启。</string>
+    <string name="apptour53__pushtotalk_body">就像语音消息：按住麦克风键说话，松手就发出去。向左滑丢弃这段录音，向上拖则锁定，腾出你的手。轻点仍和从前一样。可在 Voice Mode 设置中开启。</string>
     <string name="apptour53__autocorrect_eyebrow">重写的自动更正</string>
     <string name="apptour53__autocorrect_title">它读的是你的手指，不是你的错字</string>
     <string name="apptour53__autocorrect_body">更正现在依据你实际触到键盘的位置，边打边搜索可能的词，而不是从打完的词去猜。在我们的测试集上，准确率从 88 % 升到 98 %——打得越快越潦草，差别越明显。</string>
@@ -2076,7 +2075,7 @@
     <string name="apptour53__prediction_body">候选栏现在会给出通常接下来的词，来自它对你写法的学习。任意词长按即可加入词典，你的人名与行话从此不再被改掉。</string>
     <string name="apptour53__ownserver_eyebrow">你自己的服务器</string>
     <string name="apptour53__ownserver_title">自建服务器，现在也能实时</string>
-    <string name="apptour53__ownserver_body">只要会说 OpenAI 的 realtime 协议，你自己的服务器也能承担实时转写。若它前面是一台会休眠的机器，Dictate 可以提前把它叫醒，第一次请求就不必干等开机。</string>
+    <string name="apptour53__ownserver_body">只要会说 OpenAI 的 realtime 协议，你自己的服务器也能承担实时转写。若它前面是一台会休眠的机器，Voice Mode 可以提前把它叫醒，第一次请求就不必干等开机。</string>
     <string name="apptour53__outro_eyebrow">这就是 5.3</string>
     <string name="apptour53__outro_title">口述愉快</string>
     <string name="apptour53__outro_body">另有许多小改进：每个服务商都有自己的标志，录音指示可选静止、脉动或随声音变化，提示词输出可在旁保留原始转写，段落也不再在缩写后断开。你可以在设置 › 关于中重温任意导览。</string>
@@ -2087,7 +2086,7 @@
     <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
     <string name="apptour60__intro_title">额度、中文与更省钱的听写</string>
     <string name="apptour60__intro_body">这个版本增加了第二条入口——购买额度，而不必自备 API 密钥；还带来中文拼音输入、七种新增词库的语言，以及成本更低的录音处理。</string>
-    <string name="apptour60__cloud_eyebrow">全新：Dictate Cloud</string>
+    <string name="apptour60__cloud_eyebrow">全新：Voice Mode Cloud</string>
     <string name="apptour60__cloud_title">买分钟，而不是找密钥</string>
     <string name="apptour60__cloud_body">如果你不想在服务商那里注册账号，现在直接买额度就行。是的，这会经过我们的服务器——但你的录音和文字都不会存放在那里，而是直接转发出去。服务器的全部源码都是公开的，可以自己查看。你自己的密钥仍然照常可用。</string>
     <string name="apptour60__speedup_eyebrow">节省 API 开销</string>
@@ -2107,7 +2106,7 @@
     <string name="apptour60__more_body">长按停止键可以撤回卡住的转写。悬浮按钮不再报告它无法核实的成功，并会随屏幕一起熄灭。滑行输入现在认识你自己添加的词。更新后立即闪退的问题也已修复。</string>
     <string name="apptour60__outro_eyebrow">这就是 6.0</string>
     <string name="apptour60__outro_title">用得愉快</string>
-    <string name="apptour60__outro_body">无论你怎么使用 Dictate——自己的密钥、自己的服务器、设备上的模型，还是额度——其他方式都没有任何变化。所有导览都可以在 设置 › 关于 中重新查看。</string>
+    <string name="apptour60__outro_body">无论你怎么使用 Voice Mode——自己的密钥、自己的服务器、设备上的模型，还是额度——其他方式都没有任何变化。所有导览都可以在 设置 › 关于 中重新查看。</string>
     <string name="apptour61__cta_try">试一试</string>
     <string name="apptour61__art_folder">贴纸</string>
     <string name="apptour61__art_share">分享到</string>
@@ -2115,13 +2114,13 @@
     <string name="apptour61__art_fixed">账号</string>
     <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
     <string name="apptour61__intro_title">贴纸、语音消息，以及终于看得见错字的自动更正</string>
-    <string name="apptour61__intro_body">把一个装着你自己贴纸的文件夹指给键盘，把语音消息直接分享给 Dictate 就能知道里面说了什么，还有一个终于能发现它本来被设计为看不见的那类错误的自动更正。</string>
+    <string name="apptour61__intro_body">把一个装着你自己贴纸的文件夹指给键盘，把语音消息直接分享给 Voice Mode 就能知道里面说了什么，还有一个终于能发现它本来被设计为看不见的那类错误的自动更正。</string>
     <string name="apptour61__stickers_eyebrow">新功能：你自己的贴纸</string>
     <string name="apptour61__stickers_title">手机里的一个文件夹，搬到键盘上</string>
-    <string name="apptour61__stickers_body">把任意文件夹指给 Dictate，里面的图片就成了贴纸——子文件夹变成标签页，各有自己的收藏和最近使用。从任何应用通过分享菜单添加，不离开键盘就能删除。聊天应用真正接受的东西，和它声称接受的并不一样，所以每张贴纸在放进来时就被整理成合适的样子，之后只管发送。</string>
-    <string name="apptour61__share_eyebrow">新功能：分享给 Dictate</string>
+    <string name="apptour61__stickers_body">把任意文件夹指给 Voice Mode，里面的图片就成了贴纸——子文件夹变成标签页，各有自己的收藏和最近使用。从任何应用通过分享菜单添加，不离开键盘就能删除。聊天应用真正接受的东西，和它声称接受的并不一样，所以每张贴纸在放进来时就被整理成合适的样子，之后只管发送。</string>
+    <string name="apptour61__share_eyebrow">新功能：分享给 Voice Mode</string>
     <string name="apptour61__share_title">弄清那条语音消息说了什么</string>
-    <string name="apptour61__share_body">Dictate 现在会出现在音频和视频的分享菜单里。把语音消息分享过去，就会打开一个自己开始转写的界面——不用找输入框，也不用按按钮。转写结果可以搜索，长录音会分段处理，而不是被拒绝。</string>
+    <string name="apptour61__share_body">Voice Mode 现在会出现在音频和视频的分享菜单里。把语音消息分享过去，就会打开一个自己开始转写的界面——不用找输入框，也不用按按钮。转写结果可以搜索，长录音会分段处理，而不是被拒绝。</string>
     <string name="apptour61__autocorrect_eyebrow">自动更正</string>
     <string name="apptour61__autocorrect_title">它本来看不见的那个错字</string>
     <string name="apptour61__autocorrect_body">决定一个词能否被更正的规则，会放过滑到相邻按键附近的手指，却从不放过端端正正落在相邻按键上的手指——而后者恰恰是最常见的错字。这一点已经修好，更正得多果断也由你自己设定。空格键将要采用的那个词会用你的强调色标出，而紧接着按退格会原样还给你刚才输入的内容。</string>
@@ -2150,7 +2149,7 @@
     <string name="apptour62__learning_body">把一个名字或术语输入足够多次，键盘就会把它留下：不再标成错误，而是开始推荐它。这次更新会为所有人打开它，包括此前把它关掉的人。在无痕模式、密码输入框，以及任何不是你一键一键敲出来的内容里都不会学到东西；所有内容都只留在这台设备上，下面的按钮会打开这份清单——以及那个开关。</string>
     <string name="apptour62__themes_eyebrow">五套新外观</string>
     <string name="apptour62__themes_title">Glass、Sand、Deep，以及深色 E-Ink</string>
-    <string name="apptour62__themes_body">Dictate Glass 让应用从按键之间的缝隙透出来，而按键本身仍然足够不透明，字看得清；Glass Clear 更通透、更好看，代价是在那些会画到键盘后面的应用里，它们的文字会透过来。Sand 是温暖的浅色主题，Deep 是沉静的深色主题，E-Ink 终于有了夜间版本——自动切换在天黑之后不会再递给你一块白色键盘。</string>
+    <string name="apptour62__themes_body">Voice Mode Glass 让应用从按键之间的缝隙透出来，而按键本身仍然足够不透明，字看得清；Glass Clear 更通透、更好看，代价是在那些会画到键盘后面的应用里，它们的文字会透过来。Sand 是温暖的浅色主题，Deep 是沉静的深色主题，E-Ink 终于有了夜间版本——自动切换在天黑之后不会再递给你一块白色键盘。</string>
     <string name="apptour62__split_eyebrow">新功能：分体键盘</string>
     <string name="apptour62__split_title">两个拇指都够得着，不必伸手</string>
     <string name="apptour62__split_body">在单手模式和悬浮模式旁边新增的快捷操作，会把每一行拉开，让每个拇指都待在自己那一半。所有布局都能分开，不只是 QWERTY，因为分界点是从键宽算出来的，而不是写进每套布局里。横屏时，只要空间够，应用现在会一直保持可见。</string>
@@ -2171,7 +2170,7 @@
     <string name="apptour62__gestures_body">按住符号键，滑到想要的字符再松手：字符就输入了，字母也已经回来，不用来回切换。在空格键上向上滑，现在能够到上面一行，而不只是前一个词。按键之间的间距也能在真正看得出差别的范围内调整。</string>
     <string name="apptour62__export_eyebrow">新功能：口述存成文件</string>
     <string name="apptour62__export_title">每次口述都写进你选的文件夹</string>
-    <string name="apptour62__export_body">选定一个文件夹之后，每段完成的口述在完成的那一刻都会额外以纯文本文件写进去。不论是什么在盯着那个文件夹——记事应用、同步工具、你的备份——都能拿到你的文字，而 Dictate 不必去学它的那套规矩。</string>
+    <string name="apptour62__export_body">选定一个文件夹之后，每段完成的口述在完成的那一刻都会额外以纯文本文件写进去。不论是什么在盯着那个文件夹——记事应用、同步工具、你的备份——都能拿到你的文字，而 Voice Mode 不必去学它的那套规矩。</string>
     <string name="apptour62__more_eyebrow">此外</string>
     <string name="apptour62__more_title">许多小改进</string>
     <string name="apptour62__more_body">候选词现在在每种语言里都会看光标前的两个词，而不只是英语。备份可以不带你的 API 密钥生成，因而可以放心转交。Azure 自家的转写模型已经可用，为离线使用选择模型时现在也会一并切换到离线引擎，每个请求也都有与等待时间相称的期限。口述在送出的那一刻就出现在历史记录里，导入会说明自己正处在哪一步并且可以取消，文字进入那些一向挑剔的应用时也更可靠了。</string>
@@ -2184,7 +2183,7 @@
     <string name="apptour63__intro_body">把相机对准印刷文字，它就会落进输入框。光标、选择和剪贴板终于共用一个面板。智能栏上的任何按钮都能在长按时承载第二个操作。离线听写也终于有了真正装得下手机的模型。</string>
     <string name="apptour63__scan_eyebrow">新功能：扫描文字</string>
     <string name="apptour63__scan_title">印刷文字，直接进入输入框</string>
-    <string name="apptour63__scan_body">信上的 IBAN、盒子上的序列号、包裹上的地址：把相机对准它，文字就出现在你正在输入的位置，而不必重新敲一遍。识别在本机完成——不上传任何内容，也没有任何服务商参与。Dictate 也从不索取相机权限：照片由系统相机拍摄，只交回那一张，读取完就删除。</string>
+    <string name="apptour63__scan_body">信上的 IBAN、盒子上的序列号、包裹上的地址：把相机对准它，文字就出现在你正在输入的位置，而不必重新敲一遍。识别在本机完成——不上传任何内容，也没有任何服务商参与。Voice Mode 也从不索取相机权限：照片由系统相机拍摄，只交回那一张，读取完就删除。</string>
     <string name="apptour63__editing_eyebrow">新功能：编辑面板</string>
     <string name="apptour63__editing_title">光标、选择和剪贴板在同一个地方</string>
     <string name="apptour63__editing_body">这些其实早就有了，只是分散在十一个你得先知道的按键上。现在是一个面板：按字符、按词或按行移动，选择、复制、粘贴、撤销。按住一个键会重复，而不是要你点十一下。数字键盘现在也能明确调出，不必再靠一个谁也没绑定过的手势偶然撞见。</string>
@@ -2255,12 +2254,12 @@
     <string name="dictate__legacy_prompt_rows_one">一行</string>
     <string name="dictate__legacy_prompt_rows_two">两行</string>
     <string name="about__website__title">网站</string>
-    <string name="dictate__cloud_title">Dictate Cloud</string>
+    <string name="dictate__cloud_title">Voice Mode Cloud</string>
     <string name="dictate__cloud_row_summary_none">购买听写额度——无需 API 密钥</string>
     <string name="dictate__cloud_row_summary_balance">还剩 {minutes} 分钟额度</string>
     <string name="dictate__cloud_intro_title">无需 API 密钥即可听写</string>
     <string name="dictate__cloud_intro_body">直接在应用内购买听写额度。不用在 AI 服务商处注册账号，不用 API 密钥，也没有订阅。额度不会过期，只在你真正使用时才消耗：听写一分钟花一分钟，改写约花两秒。</string>
-    <string name="dictate__cloud_intro_alternative">这完全是可选的。用你自己在任意服务商处的密钥，Dictate 同样好用——其中好几家是免费的——那样你保留自己的账号，按服务商的价格直接付费。</string>
+    <string name="dictate__cloud_intro_alternative">这完全是可选的。用你自己在任意服务商处的密钥，Voice Mode 同样好用——其中好几家是免费的——那样你保留自己的账号，按服务商的价格直接付费。</string>
     <string name="dictate__cloud_use_own_provider_btn">还是用我自己的服务商</string>
     <string name="dictate__cloud_balance_label">剩余额度</string>
     <string name="dictate__cloud_balance_minutes">{minutes} 分钟</string>
@@ -2274,7 +2273,7 @@
     <string name="dictate__cloud_shop_unavailable">这里无法显示额度套餐。通常是因为应用不是从 Google Play 安装的，或者此设备上没有登录 Play 账号。这两种情况下，你自己的 API 密钥都能正常使用。</string>
     <string name="dictate__cloud_activate_title">额度已就绪</string>
     <string name="dictate__cloud_activate_body">你有额度，但听写目前走的是另一个服务商。随时可以切换——你不动手就什么都不会变。</string>
-    <string name="dictate__cloud_activate_btn">通过 Dictate Cloud 听写</string>
+    <string name="dictate__cloud_activate_btn">通过 Voice Mode Cloud 听写</string>
     <string name="dictate__cloud_notice_purchased">已向你的额度添加 {minutes} 分钟。</string>
     <string name="dictate__cloud_notice_pending">你的付款尚未完成。Google 确认后额度就会出现。</string>
     <string name="dictate__cloud_notice_not_redeemed">付款已完成，但额度未能取回。什么都没丢——重新打开此页面就会入账。</string>
@@ -2284,7 +2283,7 @@
     <string name="dictate__cloud_notice_gone_deleted" comment="Shown when the app finds out that the credit account was deleted elsewhere">你的余额账户已不存在——它在网站上或在另一台设备上被删除了。现在它也从这部手机上消失了。</string>
     <string name="dictate__cloud_notice_gone_signed_out" comment="Shown when this device was signed out of the credit account, which still exists">此设备已退出你的余额账户。账户和余额没有变化——在下方输入恢复码即可重新登录。</string>
     <string name="dictate__cloud_delete_title">删除余额账户</string>
-    <string name="dictate__cloud_delete_explain">删除你的余额账户及其所有存储信息。剩余余额将作废，不予退款。如果你已卸载应用，也可以在 api.dictatekeyboard.com/delete 操作。</string>
+    <string name="dictate__cloud_delete_explain">删除你的余额账户及其所有存储信息。剩余余额将作废，不予退款。如果你已卸载应用，也可以在 api.voicemode.example/delete 操作。</string>
     <string name="dictate__cloud_delete_btn">删除账户</string>
     <string name="dictate__cloud_delete_dialog_title">确定删除账户？</string>
     <string name="dictate__cloud_delete_dialog_body" comment="{minutes} is a number">你还有 {minutes} 分钟余额。删除后账户、恢复码和所有已登录设备都会消失。</string>
@@ -2310,7 +2309,7 @@
     <string name="dictate__cloud_devices_last_used">最近使用 {time}</string>
     <string name="dictate__cloud_devices_never_used">尚未使用</string>
     <string name="dictate__cloud_recovery_error">无法连接服务器。请检查网络后重试。</string>
-    <string name="dictate__cloud_limits_title">Dictate Cloud 做不到的事</string>
+    <string name="dictate__cloud_limits_title">Voice Mode Cloud 做不到的事</string>
     <string name="dictate__cloud_limits_body">用额度无法边说边实时转写——每分钟费用约为四倍，而设备端引擎可以离线且免费地完成。AI 模型及其思考深度由服务器决定，因此模型选择、推理强度和自定义端点保持关闭。其余一切照旧：提示词、历史记录、悬浮按钮、长篇听写以及手表。</string>
     <string name="dictate__cloud_privacy_title">会存储什么</string>
     <string name="dictate__cloud_privacy_body">你的录音和文本只是被转发，绝不会写入磁盘。保存的只有数字：哪个账户、何时、多长时间、是否成功。额度账户背后没有姓名、没有邮箱、也没有 Google 账号——只有一个随机标识。</string>
@@ -2358,9 +2357,9 @@
     <string name="quick_action__ime_ui_mode_sticker">贴纸</string>
     <string name="quick_action__ime_ui_mode_sticker__tooltip">插入你自己的贴纸</string>
     <string name="prefs__media__sticker_add">添加贴纸</string>
-    <string name="prefs__media__sticker_add__summary">把图片复制到文件夹。你也可以从任意应用把图片分享到 Dictate。</string>
+    <string name="prefs__media__sticker_add__summary">把图片复制到文件夹。你也可以从任意应用把图片分享到 Voice Mode。</string>
     <string name="prefs__media__sticker_import_whatsapp">从 WhatsApp 获取</string>
-    <string name="prefs__media__sticker_import_whatsapp__summary">在 WhatsApp 的贴纸文件夹中打开文件选择器。三星键盘等把自己的贴纸存放在其他应用无法读取的位置 — 那些请分享到 Dictate。</string>
+    <string name="prefs__media__sticker_import_whatsapp__summary">在 WhatsApp 的贴纸文件夹中打开文件选择器。三星键盘等把自己的贴纸存放在其他应用无法读取的位置 — 那些请分享到 Voice Mode。</string>
     <string name="sticker__import_share_label">保存为贴纸</string>
     <string name="sticker__import_added">已添加 {n} 个</string>
     <string name="sticker__import_duplicate">{n} 个已存在</string>
@@ -2384,7 +2383,7 @@
     <string name="sticker__source_downloads">下载</string>
     <string name="sticker__source_pictures">图片</string>
     <string name="sticker__source_dcim">相机</string>
-    <string name="sticker__source_hint">这些只是起点，不是保证 — 文件夹不存在时，选择器会照常打开。像三星键盘这类把贴纸留给自己的应用，只能分享到 Dictate。</string>
+    <string name="sticker__source_hint">这些只是起点，不是保证 — 文件夹不存在时，选择器会照常打开。像三星键盘这类把贴纸留给自己的应用，只能分享到 Voice Mode。</string>
     <string name="sticker__import_progress">正在复制 {done} / {total}</string>
     <string name="sticker__import_cancel">点按即可停止。已复制的会保留。</string>
     <string name="sticker__refused_declares_nothing">此应用不接受来自键盘的图片 — 已复制到剪贴板，长按即可粘贴</string>
