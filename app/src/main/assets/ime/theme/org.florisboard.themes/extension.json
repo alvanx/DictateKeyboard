@@ -61,6 +61,18 @@
       "isNight": true
     },
     {
+      "id": "dictate_garden",
+      "label": "Garden",
+      "authors": [ "DevEmperor" ],
+      "isNight": false
+    },
+    {
+      "id": "dictate_studio",
+      "label": "Studio",
+      "authors": [ "DevEmperor" ],
+      "isNight": true
+    },
+    {
       "id": "floris_day",
       "label": "Dictate Day",
       "authors": [ "patrickgold" ],
