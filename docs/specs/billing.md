@@ -36,7 +36,8 @@ Out of scope for this spec (but the design must leave room for them):
 
 ## 4. Play Console setup (manual, not code)
 
-1. Create the app under its final package ID (permanent; do this only after the brand name clears).
+0. **Staging first.** Real Play billing cannot be tested without an app in a Play Console, and the organization account may take weeks. Use a personal developer account as an unpublished test lab: upload builds to internal testing under a separate package ID (final ID plus `.staging`), create the same products, and point a staging copy of the server at it (`PACKAGE_NAME` and the Google service account are environment settings). Never publish from the staging account.
+1. Create the production app under its final package ID in the organization account (permanent; do this only after the brand name clears). The setup below is identical in both accounts.
 2. Subscription product `plus` with two auto-renewing base plans:
    - `monthly`: $3.99
    - `yearly`: $29.99
