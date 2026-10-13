@@ -62,6 +62,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import dev.patrickgold.florisboard.R
+import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.app.LocalNavController
 import dev.patrickgold.florisboard.app.Routes
 import dev.patrickgold.florisboard.app.settings.dictate.copyToClipboard
@@ -89,16 +90,26 @@ private const val RETRY_WINDOW_MS = 7L * 24 * 60 * 60 * 1000
  * The Home tab, built around what people come back for: the mic button and their recent dictations.
  * The other tabs hold the rest — Style the button's look, Dictionary the word lists, Settings everything
  * else — so this page stays short. Transcribing a file is the one action with a button of its own.
+ * Until the first dictation it shows [FirstRunHome] instead.
  */
 @Composable
 fun HomeScreen() = FlorisScreen {
-    title = stringRes(R.string.settings__home__title)
+    val prefs by FlorisPreferenceStore
+    val navController = LocalNavController.current
+    val context = LocalContext.current
+
+    // Null until loaded, so the first-run page never flashes up for somebody who has dictated.
+    val entries: List<DictateHistoryEntry>? by remember { DictateHistoryStore.flow(context) }
+        .collectFlowAsState(initial = null)
+    val statDictations by prefs.dictate.statsDictations.collectAsState()
+    // Before the first dictation Home is a short "two steps and you're talking" page with a heading of
+    // its own (HomeFirstRun.kt), so the app bar stays empty then.
+    val firstRun = isFirstRunHome(entries, statDictations)
+
+    title = if (firstRun) "" else stringRes(R.string.settings__home__title)
     navigationIconVisible = false
     // The keyboard test field lives with the settings: the keyboard is the secondary way in.
     previewFieldVisible = false
-
-    val navController = LocalNavController.current
-    val context = LocalContext.current
 
     // "Transcribe a file" (issue #301): the page's one action, so it gets the floating button.
     floatingActionButton {
@@ -120,6 +131,30 @@ fun HomeScreen() = FlorisScreen {
         val charmColor by prefs.dictate.floatingButtonCharmColor.collectAsState()
         val animated by prefs.dictate.floatingButtonCharmAnimated.collectAsState()
         val buttonOn = rememberMicButtonOn()
+        val keyboardOn = rememberKeyboardOn()
+        if (firstRun) {
+            FirstRunHome(
+                charm = charm,
+                colorOf = { look ->
+                    if (look == DictateMicCharm.CLASSIC) classicColor.toArgb()
+                    else look.resolveColor(charmColor.toArgb())
+                },
+                buttonOn = buttonOn,
+                keyboardOn = keyboardOn,
+                onPickLook = { prefs.dictate.floatingButtonCharm.set(it) },
+                onMoreLooks = { navController.navigateToTab(MainTab.STYLE) },
+                // "Turn on" switches the button on here; the floating-button screen then asks for the
+                // accessibility permission, with its disclosure, as it does from the normal Home.
+                onTurnOnButton = {
+                    prefs.dictate.floatingButtonEnabled.set(true)
+                    navController.navigate(Routes.Settings.DictateFloatingButton)
+                },
+                onTurnOnKeyboard = { InputMethodUtils.showImeEnablerActivity(context) },
+            )
+            // Room for the floating button, so it never covers the last line.
+            Spacer(modifier = Modifier.height(88.dp))
+            return@content
+        }
         MicButtonCard(
             charm = charm,
             color = if (charm == DictateMicCharm.CLASSIC) classicColor.toArgb()
@@ -129,11 +164,10 @@ fun HomeScreen() = FlorisScreen {
             onChangeLook = { navController.navigateToTab(MainTab.STYLE) },
             onTurnOn = { navController.navigate(Routes.Settings.DictateFloatingButton) },
         )
-        if (!rememberKeyboardOn()) {
+        if (!keyboardOn) {
             KeyboardRow(onTurnOn = { InputMethodUtils.showImeEnablerActivity(context) })
         }
 
-        val entries by remember { DictateHistoryStore.flow(context) }.collectFlowAsState(initial = emptyList())
         // While a dictation is in flight its placeholder row already reads as failed (issue #358); no
         // retry is offered then, the same rule DictateController.retranscribeHistoryEntry applies.
         val dictateState by DictateController.state.collectFlowAsState()
@@ -141,7 +175,7 @@ fun HomeScreen() = FlorisScreen {
             dictateState is DictateController.UiState.Transcribing ||
             dictateState is DictateController.UiState.Rewording
         RecentDictationsCard(
-            entries = remember(entries) { recentEntries(entries, System.currentTimeMillis()) },
+            entries = remember(entries) { recentEntries(entries.orEmpty(), System.currentTimeMillis()) },
             canRetry = !busy,
             onCopy = { entry ->
                 copyToClipboard(context, entry.text)
@@ -157,7 +191,6 @@ fun HomeScreen() = FlorisScreen {
 
         // Passive dictation-stats summary (issue #142): appears once the user has dictated, taps through
         // to the full statistics screen. No interruption — just a glanceable "time saved".
-        val statDictations by prefs.dictate.statsDictations.collectAsState()
         val statWords by prefs.dictate.statsWords.collectAsState()
         val statSpoken by prefs.dictate.statsSpokenSeconds.collectAsState()
         if (statDictations > 0L) {

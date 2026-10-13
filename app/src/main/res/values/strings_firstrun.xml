@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Home, before the first dictation: two steps to get going (HomeFirstRun.kt) -->
+    <string name="firstrun__title" comment="Big heading of the home screen before the first dictation, on two lines">Say it.\n{app_name} writes it.</string>
+    <string name="firstrun__subtitle" comment="Line under the first-run home heading">Two quick steps and you\'re talking.</string>
+    <string name="firstrun__step_look" comment="First-run home, step 1 heading: choose the look of the floating mic button">Pick your mic button</string>
+    <string name="firstrun__more_looks" comment="First-run home, tile after a few mic looks that opens the Style tab with all of them">More</string>
+    <string name="firstrun__step_where" comment="First-run home, step 2 heading: turn on the floating mic, the keyboard, or both">Choose where it shows up</string>
+    <string name="firstrun__floating_title" comment="First-run home, step 2 option: the floating mic button">Floating mic</string>
+    <string name="firstrun__floating_summary" comment="First-run home, second line of the floating mic option">Next to any text box, with the keyboard you already use</string>
+    <string name="firstrun__keyboard_summary" comment="First-run home, second line of the keyboard option">A full keyboard with your mic built in</string>
+    <string name="firstrun__done" comment="Accessibility label of the check mark shown instead of Turn on once an option is on">On</string>
+    <string name="firstrun__history_hint" comment="First-run home, where recent dictations will appear once there are some">Your dictations will show up here, ready to copy.</string>
+</resources>
