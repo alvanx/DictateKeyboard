@@ -132,15 +132,17 @@ class AutocorrectEvalTest {
             }
         }
 
-        // Population 2 — must not be touched. German words the English dictionary does not know, plus
-        // names, all typed dead-centre.
+        // Population 2 — must not be touched. Every German word the English dictionary does not know,
+        // plus names, all typed dead-centre. All of them, not a sample: harm is a rate of about one in a
+        // hundred, so a 1 500-word draw swings between 0.5 % and 1.7 %, and removing a single word from
+        // either dictionary reshuffles the draw. That is how "wich" leaving en.json once flipped this
+        // test without the gate changing at all.
         val foreign = de.keys.filter { it !in en && typeable(it) }.sorted()
         val names = listOf(
             "jannis", "sarahs", "pete", "dads", "linus", "mira", "tobi", "nadja", "lars", "svenja",
         ).filter { it !in en }
         val mustKeep = ArrayList<Pair<String, Decision?>>()
-        val keepSample = (foreign.shuffled(Random(SEED)).take(SAMPLE_SIZE) + names)
-        for (word in keepSample) {
+        for (word in foreign + names) {
             mustKeep.add(word to decide(tapsFor(word), word, index, en))
         }
 
@@ -238,7 +240,7 @@ class AutocorrectEvalTest {
             val verdict = buildString {
                 append(if (d.freq >= MIN_FREQ) "" else "below min-freq; ")
                 append("shipped=${if (d.cost <= 0.8f) "swap" else "offer only"}")
-                append(", mean≤0.30=${if (mean <= 0.30f) "swap" else "offer only"}")
+                append(", mean≤0.25=${if (mean <= 0.25f) "swap" else "offer only"}")
             }
             println("%-10s %-10s %-10s %6.2f %6.2f   %s".format(typed, wanted, d.word, d.cost, mean, verdict))
         }
