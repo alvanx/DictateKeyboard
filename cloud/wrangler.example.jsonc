@@ -10,6 +10,10 @@
 //
 //   npx wrangler secret put GOOGLE_SERVICE_ACCOUNT   # the service account's entire JSON key
 //   npx wrangler secret put RTDN_SECRET
+//   npx wrangler secret put GROQ_API_KEY             # from console.groq.com, pay-as-you-go tier
+//
+// Runs on Cloudflare's **free** plan as long as AI_PROVIDER is "groq": nothing here needs the paid
+// plan's CPU time. Switching to "workers-ai" does — see AI_PROVIDER below.
 //
 // The dashboard at /admin additionally needs ACCESS_TEAM_DOMAIN and ACCESS_AUD from Cloudflare
 // Access. Without them it answers 404 rather than 403 — see src/admin/auth.ts.
@@ -44,9 +48,8 @@
     }
   ],
 
-  // Workers AI. No key and no secret: the binding bills the account this Worker belongs to, which
-  // is the whole point — the models run inside the same service this Worker lives in, so nothing
-  // has to leave for an outside one.
+  // Workers AI, for AI_PROVIDER "workers-ai". No key and no secret: the binding bills the account
+  // this Worker belongs to. Harmless to keep while Groq is in use — it costs nothing unless called.
   "ai": {
     "binding": "AI"
   },
@@ -85,11 +88,16 @@
   // in the configuration rather than in the code so that the source can be published without giving
   // the limits away with it.
   "vars": {
-    // Which Workers AI model does the work. Changeable here plus `wrangler deploy`, with no code
-    // change — a name that is not a `@cf/…` model is ignored in favour of the default, so a typo
-    // costs a wrong entry in the ledger's `model` column rather than every request of the day.
-    "TRANSCRIBE_MODEL": "@cf/openai/whisper-large-v3-turbo",
-    "CHAT_MODEL": "@cf/google/gemma-4-26b-a4b-it",
+    // Who runs the models. "groq" (default): pay per use, no floor, works on Cloudflare's free plan.
+    // "workers-ai": Cloudflare's own models — about as cheap per minute, but needs the $5 paid plan
+    // for the CPU time the audio conversion takes. Worth it once traffic covers the $5.
+    "AI_PROVIDER": "groq",
+    // Which model does the work, by the provider's own name. Leave unset for the defaults — Groq:
+    // whisper-large-v3-turbo and llama-3.1-8b-instant; Workers AI: @cf/openai/whisper-large-v3-turbo
+    // and @cf/google/gemma-4-26b-a4b-it. A name from the other provider is ignored in favour of the
+    // default, so a typo costs a wrong entry in the ledger's `model` column rather than every request.
+    // "TRANSCRIBE_MODEL": "whisper-large-v3-turbo",
+    // "CHAT_MODEL": "llama-3.1-8b-instant",
     "MAX_AUDIO_SECONDS": "<number>",
     "MAX_CHAT_INPUT_TOKENS": "<number>",
     "MAX_CHAT_OUTPUT_TOKENS": "<number>",

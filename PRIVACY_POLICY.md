@@ -175,19 +175,20 @@ described above.
 
 Voice Mode Cloud exists for people who do not want to create an account with an AI
 provider. You buy dictation minutes through Google Play, and your recordings are
-sent to a server we operate, which has them transcribed on **Cloudflare Workers
-AI** and returns the text. Rewording works the same way.
+sent to a server we operate, which has them transcribed by **Groq** and returns
+the text. Rewording and cleanup work the same way.
 
 ### 4.1 What we process
 
 **Recordings and text.** Your recording is sent to our server, **not stored
-there**, and passed straight on to Cloudflare Workers AI for transcription. The
-same applies to text you have reworded. We keep none of it — no audio, no
+there**, and passed straight on to Groq for transcription. The same applies to
+text you have reworded or cleaned up. We keep none of it — no audio, no
 transcript, no prompt.
 
-**Nothing is retained at the other end either.** Workers AI runs the request and
-keeps nothing afterwards: there is no copy to delete, because none is made. Your
-recordings and text are not used to train any model.
+**At Groq.** [TO CONFIRM BEFORE LAUNCH: Groq's retention of API inputs and
+outputs, and the data-retention setting chosen for our account. State here how
+long Groq keeps them, if at all, and that they are not used to train models —
+only once Groq's terms and the account setting say so.]
 
 **Your credit account.** We store a random identifier, your balance, a hash of
 your recovery code and hashes of your access keys. There is no account in the
@@ -223,26 +224,20 @@ have deleted your credit account, carries nothing at all.
 
 ### 4.3 Recipients and where the data is
 
-- **Cloudflare, Inc.**, USA — **one processor in two roles**: it operates our
-  server and database, *and* it transcribes and rewords your text on Workers AI.
-  Both rest on Cloudflare's data processing addendum, which forms part of its
-  terms, and that transfer relies on the European Commission's **standard
-  contractual clauses**.
-  - For Workers AI, Cloudflare names two sub-processors of its own:
-    **CoreWeave, Inc.** (United States) and **Nebius BV** (England). The
-    inference does not run on Cloudflare's own hardware. Transfers to CoreWeave
-    rest on the same standard contractual clauses; England is covered by an
-    adequacy decision under Art. 45 GDPR.
+- **Cloudflare, Inc.**, USA — operates our server and database. This rests on
+  Cloudflare's data processing addendum, which forms part of its terms, and the
+  transfer relies on the European Commission's **standard contractual clauses**.
+- **Groq, Inc.**, USA — transcribes your recordings and rewords and cleans up
+  your text. [TO CONFIRM BEFORE LAUNCH: Groq's data processing addendum and the
+  transfer mechanism it relies on.]
 
 **Where your data actually is — and the part we cannot promise.** Our database
 and your balance are held in the **European Union** (Western Europe); we pinned
 them there deliberately.
 
-**That pinning does not extend to transcription and rewording.** On our plan the
-location of the inference cannot be chosen — Cloudflare offers that only to
-enterprise customers — so a request runs wherever there is capacity, which may be
-the United States or England. We would rather say so plainly than let the
-sentence about the database be read as covering everything.
+**That pinning does not extend to transcription and rewording.** These run at
+Groq, in the United States. We would rather say so plainly than let the sentence
+about the database be read as covering everything.
 
 Pinning would not be the whole answer in any case: Cloudflare is a US company,
 and access from the United States is itself a transfer under data protection law
@@ -254,7 +249,7 @@ anyone to reach into.
 
 | What | How long |
 | --- | --- |
-| Recordings, transcripts, prompts | not at all — neither with us nor at Cloudflare |
+| Recordings, transcripts, prompts | not at all with us; at Groq: [TO CONFIRM BEFORE LAUNCH] |
 | Usage log (individual rows) | 90 days |
 | Daily totals | indefinitely, with no link to an account |
 | Credit account, access keys | until you delete it |

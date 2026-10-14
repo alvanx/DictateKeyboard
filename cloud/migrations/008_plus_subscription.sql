@@ -1,7 +1,7 @@
--- Migration 008 — the Plus subscription
+-- Migration 008 — the Plus subscription, and Groq
 --
--- Adds the subscription ledger and the grants table (billing spec, section 5), and one column on
--- usage_log for the cleanup route. Nothing is removed: the credit columns on `wallets` and the
+-- Adds the subscription ledger and the grants table (billing spec, section 5), one column on
+-- usage_log for the cleanup route, and one on daily_totals for what Groq bills. Nothing is removed: the credit columns on `wallets` and the
 -- `purchases` receipts stay, so the dashboard keeps working and seconds bought as packs stay
 -- spendable.
 --
@@ -43,3 +43,4 @@ CREATE INDEX IF NOT EXISTS idx_grants_wallet ON grants(wallet_id);
 
 -- Not idempotent, unlike the rest: SQLite has no ADD COLUMN IF NOT EXISTS. Run the file once.
 ALTER TABLE usage_log ADD COLUMN formatted_as TEXT;
+ALTER TABLE daily_totals ADD COLUMN other_cost_nano INTEGER NOT NULL DEFAULT 0;

@@ -201,7 +201,11 @@ CREATE TABLE IF NOT EXISTS daily_totals (
   -- Separate from the money, like its neighbours — but it has to be added *back* for the free
   -- allowance. Cloudflare's 10 000 neurons a day are account-wide and do not care whose request it
   -- was, so anything reading the allowance sums both neuron columns.
-  test_neurons_micro INTEGER NOT NULL DEFAULT 0
+  test_neurons_micro INTEGER NOT NULL DEFAULT 0,
+  -- What every provider other than Workers AI (Groq) will bill for this day, test traffic
+  -- included. Added to the Workers AI bill wherever "what it cost" is shown: there is no free
+  -- allowance to take off, so the list price is the bill.
+  other_cost_nano INTEGER NOT NULL DEFAULT 0
 );
 
 -- Anything worth waking up for. One row per occurrence; `dedupe_key` plus a cooldown keeps a

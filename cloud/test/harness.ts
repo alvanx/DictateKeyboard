@@ -5,7 +5,8 @@
  *  - **Durable Objects** by the real `Wallet` and `GlobalGuard` classes over a Map-backed storage.
  *  - **Google** by a fake answering the OAuth, `subscriptionsv2`, acknowledge and voided-purchase
  *    endpoints from a table the test fills in. The service-account JWT is really signed.
- *  - **Workers AI** by a handler the test sets.
+ *  - **Groq** and **Workers AI** by one handler the test sets. Groq's HTTP calls are routed to it
+ *    the same way the binding is, so a test reads the same whichever provider is configured.
  *
  * Only the parts that cannot run outside Cloudflare are faked; every route, rule and query is the
  * one that ships.
@@ -171,6 +172,7 @@ export async function makeHarness(vars: Record<string, string> = {}): Promise<Ha
       },
     },
     GOOGLE_SERVICE_ACCOUNT: cachedAccount,
+    GROQ_API_KEY: 'test-groq',
     PACKAGE_NAME: 'app.dictate.test',
     RTDN_SECRET: 'sekret',
     DAILY_BUDGET_USD: '25',
@@ -187,6 +189,7 @@ export async function makeHarness(vars: Record<string, string> = {}): Promise<Ha
       new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } });
 
     if (url.hostname === 'oauth2.googleapis.com') return json({ access_token: 'test-access', expires_in: 3600 });
+    if (url.hostname === 'api.groq.com') return groq(url, init);
     if (url.hostname !== 'androidpublisher.googleapis.com') return new Response('not found', { status: 404 });
     if (google.down) return json({ error: 'unavailable' }, 503);
 
@@ -208,6 +211,37 @@ export async function makeHarness(vars: Record<string, string> = {}): Promise<Ha
     if (url.pathname.endsWith('/purchases/voidedpurchases')) return json({ voidedPurchases: google.voided });
     return json({ error: 'not found' }, 404);
   }) as typeof fetch;
+
+  /** Groq's two endpoints, answered by the same handler as the binding, in Groq's own shapes. */
+  async function groq(url: URL, init?: RequestInit): Promise<Response> {
+    const reply = (body: unknown, status = 200) =>
+      new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } });
+    if (new Headers(init?.headers).get('authorization') !== 'Bearer test-groq') return reply({ error: 'bad key' }, 401);
+    try {
+      if (url.pathname.endsWith('/audio/transcriptions')) {
+        const form = init?.body as FormData;
+        const file = form.get('file');
+        const input: Record<string, unknown> = {
+          audio: file instanceof Blob ? file.size : 0,
+          language: form.get('language') ?? undefined,
+          prompt: form.get('prompt') ?? undefined,
+          response_format: form.get('response_format'),
+        };
+        const model = String(form.get('model'));
+        ai.calls.push({ model, input });
+        const out = (await ai.handler(model, input)) as { text?: string; duration?: number; transcription_info?: { duration?: number } };
+        return reply({ text: out.text, duration: out.duration ?? out.transcription_info?.duration });
+      }
+      if (url.pathname.endsWith('/chat/completions')) {
+        const body = JSON.parse(String(init?.body)) as Record<string, unknown>;
+        ai.calls.push({ model: String(body.model), input: body });
+        return reply(await ai.handler(String(body.model), body));
+      }
+    } catch {
+      return reply({ error: 'model failed' }, 500);
+    }
+    return reply({ error: 'not found' }, 404);
+  }
 
   let pending: Promise<unknown>[] = [];
   const ctx = {

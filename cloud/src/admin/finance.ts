@@ -184,11 +184,12 @@ export async function summary(env: Env) {
   // exactly like a customer's request does, and once the day is over the allowance, that testing
   // costs real money.
   const costRows = await env.DB.prepare(
-    `SELECT neurons_micro + test_neurons_micro AS neuronsMicro, cost_nano AS costNano
+    `SELECT neurons_micro + test_neurons_micro AS neuronsMicro, cost_nano AS costNano,
+            other_cost_nano AS otherNano
        FROM daily_totals`,
-  ).all<{ neuronsMicro: number; costNano: number }>();
+  ).all<{ neuronsMicro: number; costNano: number; otherNano: number }>();
   const days = costRows.results ?? [];
-  const costUsd = days.reduce((sum, r) => sum + billedNanoForDay(num(r.neuronsMicro)), 0) / NANO_PER_USD;
+  const costUsd = days.reduce((sum, r) => sum + billedNanoForDay(num(r.neuronsMicro), num(r.otherNano)), 0) / NANO_PER_USD;
   /** The same traffic before the allowance — what the margin is calculated against. */
   const listUsd = days.reduce((sum, r) => sum + num(r.costNano), 0) / NANO_PER_USD;
   const costHome = costUsd * fx.rate;
@@ -240,7 +241,7 @@ export async function history(env: Env, days = 365) {
     env.DB.prepare(
       `SELECT day, requests, seconds, rewords, cost_nano AS costNano, errors,
               test_requests AS testRequests, test_cost_nano AS testCostNano,
-              neurons_micro + test_neurons_micro AS neuronsMicro
+              neurons_micro + test_neurons_micro AS neuronsMicro, other_cost_nano AS otherNano
          FROM daily_totals WHERE day >= date('now', ?) ORDER BY day ASC`,
     ).bind(`-${days} days`).all(),
     env.DB.prepare(
@@ -269,7 +270,7 @@ export async function history(env: Env, days = 365) {
     e.requests = num(r.requests); e.seconds = num(r.seconds); e.rewords = num(r.rewords);
     // Was der Tag gekostet hat, ist was er *berechnet* bekommt — das Freikontingent lässt sich hier
     // exakt anwenden, weil eine Zeile genau einen Tag ist. Der Listenpreis bleibt daneben stehen.
-    e.costUsd = billedNanoForDay(num(r.neuronsMicro)) / NANO_PER_USD;
+    e.costUsd = billedNanoForDay(num(r.neuronsMicro), num(r.otherNano)) / NANO_PER_USD;
     e.listUsd = num(r.costNano) / NANO_PER_USD; e.errors = num(r.errors);
     e.testRequests = num(r.testRequests);
   }
@@ -293,7 +294,7 @@ export async function months(env: Env, count = 24) {
       // ist der Monat die Summe der Tagesergebnisse und niemals eine Rechnung auf den
       // Monatsneuronen. Andersherum bekäme jeder Monat nur ein einziges Kontingent abgezogen.
       `SELECT day, substr(day, 1, 7) AS month, requests, seconds, cost_nano AS costNano, errors,
-              neurons_micro + test_neurons_micro AS neuronsMicro
+              neurons_micro + test_neurons_micro AS neuronsMicro, other_cost_nano AS otherNano
          FROM daily_totals ORDER BY day DESC`,
     ).all(),
     env.DB.prepare(
@@ -315,7 +316,7 @@ export async function months(env: Env, count = 24) {
     e.requests += num(r.requests);
     e.seconds += num(r.seconds);
     e.errors += num(r.errors);
-    e.costUsd += billedNanoForDay(num(r.neuronsMicro)) / NANO_PER_USD;
+    e.costUsd += billedNanoForDay(num(r.neuronsMicro), num(r.otherNano)) / NANO_PER_USD;
     e.listUsd += num(r.costNano) / NANO_PER_USD;
   }
   for (const r of (sales.results ?? []) as Array<Record<string, unknown>>) {

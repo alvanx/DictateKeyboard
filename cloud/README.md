@@ -1,13 +1,21 @@
 # Voice Mode Cloud
 
-The credit server behind the app's optional "buy minutes instead of bringing your own API key"
-path. A single Cloudflare Worker: it verifies a Google Play purchase, keeps a balance, and passes
-dictation and rewording to Cloudflare's own Workers AI while metering what they cost.
+The server behind the app's optional Plus subscription — "subscribe instead of bringing your own
+API key". A single Cloudflare Worker: it verifies a Google Play subscription, meters a daily
+allowance, and passes dictation, rewording and one-tap cleanup to Groq (Whisper Large v3 Turbo and a
+small Llama) while metering what they cost. The specs it is built from are `docs/specs/billing.md`
+and `docs/specs/cleanup.md`.
 
-The models run inside the same platform the Worker does, reached through a binding rather than over
-the network — so there is no API key for them, and nothing has to leave for an outside service.
-Which model does the work is `TRANSCRIBE_MODEL`, `CHAT_MODEL` and `CLEANUP_MODEL`, changeable without
-a code change.
+**Why Groq first, and why it runs on Cloudflare's free plan.** Groq bills per request with no
+monthly floor, so a service with few users costs next to nothing. Cloudflare's own Workers AI is
+about as cheap per minute but only usable on the $5-a-month plan: it wants audio as a base64 string,
+which costs far more CPU than the free plan's 10 ms per request. Sent to Groq, the audio is passed on
+as it arrived, and the whole service fits the free plan. Once traffic covers the $5, switching is
+`AI_PROVIDER = "workers-ai"` plus the paid plan — no code change. Which model does the work is
+`TRANSCRIBE_MODEL`, `CHAT_MODEL` and `CLEANUP_MODEL`.
+
+Groq bills **at least ten seconds per dictation**. Users are charged real seconds against their
+allowance; the floor is a cost to the operator, visible in the ledger.
 
 Using the app does not require any of this. Bring an API key from a provider of your choice and the
 app never speaks to this server at all — see the app's provider settings. This exists so that
@@ -31,9 +39,9 @@ the watchdog uses. The thresholds guard nothing on their own — they only decid
 sent — but knowing them tells you exactly how to stay underneath. `wrangler.example.jsonc` has the
 same structure with the values removed.
 
-**Secrets**, of course. The Play service account and the notification secret live in Cloudflare's
-secret store and never in a file. There is no key for the models: the binding bills the account this
-Worker runs on. The source is written so that publishing it gives nothing away.
+**Secrets**, of course. The Play service account, the notification secret and the Groq key live in
+Cloudflare's secret store and never in a file. The source is written so that publishing it gives
+nothing away.
 
 **The business papers.** Record of processing, technical and organisational measures, the tax notes,
 the third-country documentation, the abuse test plan. They belong to the operator, not to the code.
@@ -88,6 +96,7 @@ src/
   cleanup.ts        the cleanup rules around the model, including the never-invent check
   guard.ts          the daily spend ceiling and the code-guessing counter, one object for all
   meter.ts          the ledger; the only thing that writes usage
+  ai.ts             the two model calls, for Groq and for Workers AI
   routes/           transcriptions, chat, cleanup, subscription, restore, delete, notifications
   config.ts         prices, limits — and the neuron table the reported figures are checked against
   admin/            the dashboard behind Cloudflare Access
@@ -104,6 +113,7 @@ test/               end-to-end tests under Node (`npm test`)
 npm install
 cp wrangler.example.jsonc wrangler.jsonc   # then fill in the placeholders
 npx wrangler secret put GOOGLE_SERVICE_ACCOUNT
+npx wrangler secret put GROQ_API_KEY
 npx wrangler d1 create dictate-cloud --location weur
 npx wrangler d1 execute dictate-cloud --remote --file schema.sql
 npx tsc --noEmit && npm test && npx wrangler deploy
@@ -123,8 +133,8 @@ What it cannot cover is the model itself. `npm run eval:cleanup` asks the deploy
 spec's table in six languages — run it before each release and before switching `CLEANUP_MODEL`.
 
 The database is created in Western Europe and the Durable Objects are pinned to the EU
-(`meter.ts`, `eu()`), so the balances stay there. That is about where the bytes sit; it does not
-remove the transfer to Cloudflare as a processor, which the standard contractual clauses carry.
+(`meter.ts`, `eu()`), so the balances stay there. That is about where the bytes sit; recordings and
+text go to Groq in the United States, and both Cloudflare and Groq are processors.
 
 ## The one rule worth repeating
 

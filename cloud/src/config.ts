@@ -25,6 +25,13 @@ export interface Env {
    */
   AI: Ai;
 
+  /**
+   * Who runs the models: `groq` (the default) or `workers-ai` (the binding above). See [AiProvider].
+   */
+  AI_PROVIDER?: string;
+  /** Secret. Groq's API key, for `AI_PROVIDER = groq`. */
+  GROQ_API_KEY?: string;
+
   /** Secret. The full JSON key file of the Play service account. */
   GOOGLE_SERVICE_ACCOUNT: string;
   /** Secret. Guards the notification endpoint Google calls from outside. */
@@ -75,7 +82,7 @@ export interface Env {
   ALERT_SLOW_SHORT_MS?: string;
   ALERT_MIN_LOSS?: string;
 
-  /** Which Workers AI model each service uses. Swappable without a deploy; see `modelFor`. */
+  /** Which model each service uses, by the provider's own name. Swappable without a deploy; see `modelFor`. */
   TRANSCRIBE_MODEL?: string;
   CHAT_MODEL?: string;
   MAX_AUDIO_SECONDS?: string;
@@ -206,9 +213,42 @@ export const FREE_NEURONS_PER_DAY = 10_000;
  * Worth at most $0.11 a day, $40 a year. Small enough that the cost figure is deliberately shown
  * without it (see the dashboard) — a cost that errs upwards is the right kind of wrong.
  */
-export function billedNanoForDay(neuronsMicro: number): number {
+export function billedNanoForDay(neuronsMicro: number, otherNano = 0): number {
   const billable = Math.max(0, neuronsMicro - FREE_NEURONS_PER_DAY * 1_000_000);
-  return Math.round((billable / 1_000_000) * NANO_PER_NEURON);
+  // Everything not bought from Workers AI (Groq) has no allowance: its list price is its bill.
+  return Math.round((billable / 1_000_000) * NANO_PER_NEURON) + Math.max(0, Math.round(otherNano));
+}
+
+/**
+ * Groq's prices, in nano-dollars: per audio second for speech, per token for text.
+ *
+ * Groq reports token counts and audio length but no price, so unlike the neurons above these are
+ * multiplied rather than read — and a price change at Groq makes them wrong silently. Stand
+ * 14.10.2026 from <https://groq.com/pricing> as quoted by third-party listings (the page itself
+ * could not be reached from the build environment): **VERIFY** before relying on the margin.
+ *
+ * Speech has a floor: Groq bills **at least ten seconds per request**, so a two-second dictation
+ * costs what a ten-second one does. That is a cost to us, not to the user — the allowance is booked
+ * in real seconds — and it is why short dictations are the expensive ones here.
+ */
+export const GROQ_PRICES: Record<string, { perAudioSecond?: number; minSeconds?: number; perTokenIn?: number; perTokenOut?: number }> = {
+  // $0.04 an hour transcribed.
+  'whisper-large-v3-turbo': { perAudioSecond: 40_000_000 / 3600, minSeconds: 10 },
+  // $0.111 an hour transcribed.
+  'whisper-large-v3': { perAudioSecond: 111_000_000 / 3600, minSeconds: 10 },
+  // $0.05 / $0.08 per million tokens in / out.
+  'llama-3.1-8b-instant': { perTokenIn: 50, perTokenOut: 80 },
+  'meta-llama/llama-4-scout-17b-16e-instruct': { perTokenIn: 110, perTokenOut: 340 },
+  'llama-3.3-70b-versatile': { perTokenIn: 590, perTokenOut: 790 },
+};
+
+/** A Groq text model this table does not know is estimated as the dearest one it does. */
+const GROQ_UNKNOWN_CHAT = GROQ_PRICES['llama-3.3-70b-versatile']!;
+const GROQ_UNKNOWN_SPEECH = GROQ_PRICES['whisper-large-v3']!;
+
+/** Whether [model] is a Workers AI model rather than one called by name over HTTP. */
+export function isWorkersAiModel(model: string): boolean {
+  return model.startsWith('@cf/');
 }
 
 /**
@@ -230,6 +270,27 @@ const CF_DEFAULT_TRANSCRIBE = '@cf/openai/whisper-large-v3-turbo';
 const CF_DEFAULT_CHAT = '@cf/google/gemma-4-26b-a4b-it';
 
 /**
+ * Groq's defaults. Whisper Large v3 Turbo for speech. For text the cheapest model Groq offers —
+ * cleanup and rewording are short, plain jobs — and the one to try instead if `npm run eval:cleanup`
+ * finds it lacking is `meta-llama/llama-4-scout-17b-16e-instruct`: one line in wrangler.jsonc.
+ */
+const GROQ_DEFAULT_TRANSCRIBE = 'whisper-large-v3-turbo';
+const GROQ_DEFAULT_CHAT = 'llama-3.1-8b-instant';
+
+/**
+ * Who runs the models.
+ *
+ * `groq` is the default because it has no floor: Groq bills per request, while Workers AI only makes
+ * sense on Cloudflare's $5-a-month plan — the free plan allows 10 ms of CPU per request, and the
+ * binding wants audio as a base64 string, which costs far more than that to build. Sending the audio
+ * to Groq as it came keeps a request inside the free plan.
+ *
+ * `workers-ai` stays fully wired: once traffic makes the paid plan worth it, it is one setting and
+ * a pair of model names. Each costs about the same per minute; the difference is the floor.
+ */
+export type AiProvider = 'groq' | 'workers-ai';
+
+/**
  * What a request costs to buy, in **nano-dollars** (1e-9 $), so everything stays integer and
  * nothing rounds away across millions of requests.
  *
@@ -241,13 +302,21 @@ const CF_DEFAULT_CHAT = '@cf/google/gemma-4-26b-a4b-it';
  * Purchase prices. What a second is worth when it is *sold* is `SECOND_VALUE_NANO`, and the two are
  * deliberately not connected — see the note there.
  */
-export function transcribeCostNano(seconds: number): number {
+export function transcribeCostNano(seconds: number, model: string = CF_DEFAULT_TRANSCRIBE): number {
+  if (!isWorkersAiModel(model)) {
+    const price = GROQ_PRICES[model]?.perAudioSecond !== undefined ? GROQ_PRICES[model]! : GROQ_UNKNOWN_SPEECH;
+    return Math.ceil(Math.max(seconds, price.minSeconds ?? 0) * price.perAudioSecond!);
+  }
   const perMinute = NEURONS['@cf/openai/whisper-large-v3-turbo'].perAudioMinute;
   return Math.ceil((seconds / 60) * perMinute * NANO_PER_NEURON);
 }
 
 /** The same for a rewording. An unknown model estimates as the default one rather than as nothing. */
 export function chatCostNano(model: string, tokensIn: number, tokensOut: number): number {
+  if (!isWorkersAiModel(model)) {
+    const price = GROQ_PRICES[model]?.perTokenIn !== undefined ? GROQ_PRICES[model]! : GROQ_UNKNOWN_CHAT;
+    return Math.ceil(tokensIn * price.perTokenIn! + tokensOut * price.perTokenOut!);
+  }
   const neurons = expectedNeurons(model, { tokensIn, tokensOut })
     ?? expectedNeurons(CF_DEFAULT_CHAT, { tokensIn, tokensOut })
     ?? 0;
@@ -361,6 +430,7 @@ export const WORST_COST_PER_SECOND_NANO = Math.max(
 
 /** The resolved limits for one request — read from the environment once per call. */
 export interface Limits {
+  aiProvider: AiProvider;
   transcribeModel: string;
   chatModel: string;
   maxAudioSeconds: number;
@@ -386,22 +456,31 @@ export interface Limits {
 
 
 /**
- * The model to use, refusing one that does not belong here.
+ * The model to use, refusing one that does not belong to the provider.
  *
- * `TRANSCRIBE_MODEL` and `CHAT_MODEL` exist so a model can be swapped without a deploy. A name left
- * that is not a `@cf/…` model would fail every request for as long as it took
- * someone to notice, so it is corrected to the default instead. Nothing is hidden by that: the wrong
- * name is still whatever the configuration says, and what actually ran is in the ledger's `model`
- * column.
+ * `TRANSCRIBE_MODEL`, `CHAT_MODEL` and `CLEANUP_MODEL` exist so a model can be swapped without a
+ * code change. A name that belongs to the other provider — a `@cf/…` name with Groq, or a bare name
+ * with Workers AI — would fail every request for as long as it took someone to notice, so it is
+ * corrected to the default instead. Nothing is hidden by that: what actually ran is in the
+ * ledger's `model` column.
  */
 function modelFor(configured: string | undefined, fallback: string): string {
-  return configured?.startsWith('@cf/') ? configured : fallback;
+  const name = configured?.trim();
+  if (!name) return fallback;
+  return isWorkersAiModel(name) === isWorkersAiModel(fallback) ? name : fallback;
+}
+
+export function aiProviderOf(env: Env): AiProvider {
+  return env.AI_PROVIDER?.trim() === 'workers-ai' ? 'workers-ai' : 'groq';
 }
 
 export function limitsFrom(env: Env): Limits {
-  const chatModel = modelFor(env.CHAT_MODEL, CF_DEFAULT_CHAT);
+  const aiProvider = aiProviderOf(env);
+  const groq = aiProvider === 'groq';
+  const chatModel = modelFor(env.CHAT_MODEL, groq ? GROQ_DEFAULT_CHAT : CF_DEFAULT_CHAT);
   return {
-    transcribeModel: modelFor(env.TRANSCRIBE_MODEL, CF_DEFAULT_TRANSCRIBE),
+    aiProvider,
+    transcribeModel: modelFor(env.TRANSCRIBE_MODEL, groq ? GROQ_DEFAULT_TRANSCRIBE : CF_DEFAULT_TRANSCRIBE),
     chatModel,
     maxAudioSeconds: num(env.MAX_AUDIO_SECONDS, 600),
     maxChatInputTokens: num(env.MAX_CHAT_INPUT_TOKENS, 8000),
@@ -410,7 +489,7 @@ export function limitsFrom(env: Env): Limits {
     dailyBudgetNano: Math.round(num(env.DAILY_BUDGET_USD, 25) * 1_000_000_000),
     maxDevices: num(env.MAX_DEVICES, 3),
     dailyAllowanceSeconds: num(env.DAILY_ALLOWANCE_SECONDS, 5400),
-    // The rewording model unless one step down has been shown to pass the cleanup suite
+    // The rewording model unless another has been shown to pass the cleanup suite
     // (`npm run eval:cleanup`); then it is one line in wrangler.jsonc.
     cleanupModel: modelFor(env.CLEANUP_MODEL, chatModel),
     cleanupMaxChars: num(env.CLEANUP_MAX_CHARS, 9000),

@@ -15,7 +15,8 @@ import { budgetAllows, logUsage, settleBudget, walletStub } from '../meter';
 import { debitPaid } from '../subscriptions';
 import { NO_STORE, apiError, estimateTokens } from '../util';
 import type { WalletState } from '../wallet';
-import { answerTextOf, parseUsage, reportReasoning, runWorkersAi, wasTruncated, type Upstream } from './chat';
+import { chatComplete, type Upstream } from '../ai';
+import { answerTextOf, parseUsage, reportReasoning, wasTruncated } from './chat';
 import { debitError, logRefusal, usageHeaders } from './transcriptions';
 import INSTRUCTIONS from '../../prompts/cleanup.txt';
 
@@ -94,7 +95,7 @@ export async function handleCleanup(
   }
 
   const upstream = await withTimeout(
-    runWorkersAi(env, limits, messages, maxTokens, model),
+    chatComplete(env, messages, maxTokens, model),
     limits.cleanupTimeoutMs,
   );
 

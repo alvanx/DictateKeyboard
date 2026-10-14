@@ -1,4 +1,5 @@
 import { raise } from '../alerts';
+import { chatComplete } from '../ai';
 import { authenticate, touch } from '../auth';
 import { chatCostNano, costToSeconds, neuronsToNano, type Env, type Limits } from '../config';
 import { budgetAllows, logUsage, settleBudget, walletStub } from '../meter';
@@ -87,7 +88,7 @@ export async function handleChat(
     limits.maxChatOutputTokens,
   );
 
-  const upstream = await runWorkersAi(env, limits, messages, maxTokens);
+  const upstream = await chatComplete(env, messages, maxTokens, limits.chatModel);
 
   if (upstream.kind === 'unreachable') {
     await wallet.refund(reservedSeconds, debit.booking);
@@ -308,73 +309,4 @@ export async function reportReasoning(env: Env, tokensOut: number, answer: strin
     // Per model and hour: it is a state of the configuration, not a property of one request.
     dedupeKey: `reasoning_leak:${model}:${new Date().toISOString().slice(0, 13)}`,
   });
-}
-
-/**
- * One rewording.
- *
- * `body` is the OpenAI chat-completion shape, because `wasTruncated` and `parseUsage` read it and
- * the app's own parser expects it. Workers AI answers in that shape already — its binding is typed
- * `ChatCompletionsInput` in, `ChatCompletionsOutput` out — so what happens below is not a
- * translation but a trim: only the choice and the usage go back, not the `@cf/…` model name, which
- * would publish what is behind Voice Mode Cloud for no one's benefit.
- */
-export type Upstream =
-  | { kind: 'ok'; body: string; neurons: number }
-  | { kind: 'failed'; status: number }
-  | { kind: 'unreachable' };
-
-/**
- * The rewording itself, over the binding, and it does not think.
- *
- * `reasoning_effort` is deliberately **not** sent. Workers AI accepts only `low | medium | high`
- * for it — `minimal`, the value the gpt-5 family understood, does not exist here, so sending it
- * would at best be ignored. The switch that works is `chat_template_kwargs`, and the
- * type definition spells out why it has to be set rather than left alone: *"Whether to enable
- * reasoning, enabled by default."* Sending nothing means thinking.
- *
- * Measured on 30.08.2026, same sentence, same model: 20 output tokens against 777, 1.06 s against
- * 7.70, 1.43 neurons against 22.10 — for an answer that was the same either way. Whether it stays
- * off is not trusted to this line; every response is checked against the length of its own answer
- * (see `reportReasoning`).
- */
-export async function runWorkersAi(
-  env: Env,
-  limits: Limits,
-  messages: unknown[],
-  maxTokens: number,
-  model: string = limits.chatModel,
-): Promise<Upstream> {
-  let result: {
-    choices?: { message?: { content?: string | null }; finish_reason?: string }[];
-    usage?: { prompt_tokens?: number; completion_tokens?: number; neurons?: number };
-  };
-  try {
-    result = await env.AI.run(model as keyof AiModels, {
-      messages,
-      max_completion_tokens: maxTokens,
-      chat_template_kwargs: { enable_thinking: false },
-    } as never) as typeof result;
-  } catch (error) {
-    // The binding throws instead of answering with a status, so there is nothing to map: anything
-    // that is not an answer refunds and returns 502.
-    console.log(`workers-ai chat failed: ${String(error).slice(0, 200)}`);
-    return { kind: 'unreachable' };
-  }
-
-  const choice = result.choices?.[0];
-  return {
-    kind: 'ok',
-    body: JSON.stringify({
-      choices: [{
-        message: { role: 'assistant', content: choice?.message?.content ?? '' },
-        finish_reason: choice?.finish_reason ?? 'stop',
-      }],
-      usage: {
-        prompt_tokens: result.usage?.prompt_tokens ?? 0,
-        completion_tokens: result.usage?.completion_tokens ?? 0,
-      },
-    }),
-    neurons: typeof result.usage?.neurons === 'number' ? result.usage.neurons : 0,
-  };
 }

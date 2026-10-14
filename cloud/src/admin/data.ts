@@ -137,13 +137,16 @@ export async function overview(env: Env) {
   // your own testing eats it exactly like a customer's request does; keeping test traffic out here
   // would understate what is left of it, which is the one number this section exists to show.
   const neuronDays = (await env.DB.prepare(
-    `SELECT day, neurons_micro + test_neurons_micro AS neuronsMicro, cost_nano AS costNano
+    `SELECT day, neurons_micro + test_neurons_micro AS neuronsMicro, cost_nano AS costNano,
+            other_cost_nano AS otherNano
        FROM daily_totals ORDER BY day DESC`,
-  ).all<{ day: string; neuronsMicro: number; costNano: number }>()).results ?? [];
+  ).all<{ day: string; neuronsMicro: number; costNano: number; otherNano: number }>()).results ?? [];
 
   const neuronsOn = (d: string) => num(neuronDays.find((r) => r.day === d)?.neuronsMicro);
+  const otherOn = (d: string) => num(neuronDays.find((r) => r.day === d)?.otherNano);
+  // Workers AI after its daily allowance, plus Groq at list price — see `billedNanoForDay`.
   const billedSum = (rows: typeof neuronDays) =>
-    rows.reduce((sum, r) => sum + billedNanoForDay(num(r.neuronsMicro)), 0);
+    rows.reduce((sum, r) => sum + billedNanoForDay(num(r.neuronsMicro), num(r.otherNano)), 0);
   const yesterday = new Date(dayStartMs - 86_400_000).toISOString().slice(0, 10);
   // The seven days before today, so today is judged against a week it is not part of.
   const lastSeven = neuronDays.filter((r) => r.day < day).slice(0, 7);
@@ -197,7 +200,7 @@ export async function overview(env: Env) {
       todayUsd: round6(num(todayRow?.cost_nano) / NANO_PER_USD),
       monthUsd: round6(num(monthCost?.costNano) / NANO_PER_USD),
       totalUsd: round6(num(totals?.costNano) / NANO_PER_USD),
-      billedTodayUsd: round6(billedNanoForDay(neuronsToday) / NANO_PER_USD),
+      billedTodayUsd: round6(billedNanoForDay(neuronsToday, otherOn(day)) / NANO_PER_USD),
       billedMonthUsd: round6(billedSum(neuronDays.filter((r) => r.day.startsWith(monthPrefix))) / NANO_PER_USD),
       billedTotalUsd: round6(billedSum(neuronDays) / NANO_PER_USD),
       /** Your own testing, kept apart so it never quietly inflates the cost of the business. */

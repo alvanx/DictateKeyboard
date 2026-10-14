@@ -1,5 +1,5 @@
 import { raise } from './alerts';
-import { limitsFrom, type Env, type Limits } from './config';
+import { isWorkersAiModel, limitsFrom, type Env, type Limits } from './config';
 import { alertSettings } from './settings';
 import { today } from './util';
 import type { Wallet } from './wallet';
@@ -218,12 +218,13 @@ export function logUsage(env: Env, entry: UsageEntry, ctx: ExecutionContext): vo
   const now = Date.now();
   const day = today(now);
   const limits = limitsFrom(env);
-  const provider = entry.provider ?? 'workers-ai';
   const model = entry.model ?? (
     entry.kind === 'transcribe' ? limits.transcribeModel
       : entry.kind === 'cleanup' ? limits.cleanupModel
         : limits.chatModel
   );
+  // Derived from the model's name, the same way ai.ts decides where a call goes.
+  const provider = entry.provider ?? (isWorkersAiModel(model) ? 'workers-ai' : 'groq');
   const neuronsMicro = Math.round(entry.neuronsMicro ?? 0);
   const statements: D1PreparedStatement[] = [
     env.DB.prepare(
@@ -249,8 +250,8 @@ export function logUsage(env: Env, entry: UsageEntry, ctx: ExecutionContext): vo
     env.DB.prepare(
       `INSERT INTO daily_totals (day, requests, seconds, rewords, cost_nano, cost_nano_cf, errors,
                                  neurons_micro, test_requests, test_seconds, test_cost_nano,
-                                 test_neurons_micro)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                                 test_neurons_micro, other_cost_nano)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
        ON CONFLICT(day) DO UPDATE SET
          requests           = requests           + excluded.requests,
          seconds            = seconds            + excluded.seconds,
@@ -262,7 +263,8 @@ export function logUsage(env: Env, entry: UsageEntry, ctx: ExecutionContext): vo
          test_requests      = test_requests      + excluded.test_requests,
          test_seconds       = test_seconds       + excluded.test_seconds,
          test_cost_nano     = test_cost_nano     + excluded.test_cost_nano,
-         test_neurons_micro = test_neurons_micro + excluded.test_neurons_micro`,
+         test_neurons_micro = test_neurons_micro + excluded.test_neurons_micro,
+         other_cost_nano    = other_cost_nano    + excluded.other_cost_nano`,
     ).bind(
       day,
       // Every request lands in exactly one of the two sets of columns, never both — so the two
@@ -286,6 +288,9 @@ export function logUsage(env: Env, entry: UsageEntry, ctx: ExecutionContext): vo
       // Cloudflare's 10 000 neurons a day are account-wide and do not care whose request it was.
       // Anything reading the allowance therefore has to sum both columns, not just the first.
       entry.isTest ? neuronsMicro : 0,
+      // What Groq will bill for, test traffic included: like the neurons, the bill does not care
+      // whose request it was, and unlike them there is no daily allowance to take off.
+      provider === 'workers-ai' ? 0 : entry.costNano,
     ),
   ];
 

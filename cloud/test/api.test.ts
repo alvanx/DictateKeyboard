@@ -282,7 +282,7 @@ test('cleanup: a spoken list becomes a numbered list, charged at its real cost',
   assert.equal(res.body.items, 3);
   assert.equal(res.body.text, 'For the trip we need:\n1. Passports\n2. Chargers\n3. Tickets');
   assert.ok(res.body.usage.seconds_charged >= 1);
-  assert.equal(h.ai.calls[0]!.input.chat_template_kwargs && (h.ai.calls[0]!.input.chat_template_kwargs as any).enable_thinking, false);
+  assert.equal(h.ai.calls[0]!.model, 'llama-3.1-8b-instant');
   const [log] = h.sql<{ kind: string; formatted_as: string; status: number }>('SELECT kind, formatted_as, status FROM usage_log');
   assert.deepEqual({ ...log }, { kind: 'cleanup', formatted_as: 'list', status: 200 });
 });
@@ -349,4 +349,56 @@ test('deleting with a running subscription warns and links to Play; a later veri
   assert.notEqual(back.body.wallet_id, wallet);
   assert.equal(back.body.entitlement.plan, 'plus');
   assert.match(back.body.recovery_code, /^DICT-/);
+});
+
+// --- Providers ----------------------------------------------------------------------------------
+
+test('Groq by default: Whisper Turbo gets the file as it came, and its cost has the ten-second floor', async () => {
+  const h = await makeHarness();
+  whisper(h);
+  const { device } = await subscribe(h);
+  const res = await h.call('POST', '/v1/audio/transcriptions', { token: device, body: transcribeForm(2) });
+  assert.equal(res.status, 200);
+  assert.deepEqual(res.body, { text: 'hello world' });
+  assert.equal(h.ai.calls[0]!.model, 'whisper-large-v3-turbo');
+  assert.equal(h.ai.calls[0]!.input.audio, 44 + 2 * 32_000);
+  assert.equal(h.ai.calls[0]!.input.response_format, 'verbose_json');
+  const [log] = h.sql<{ provider: string; model: string; seconds: number; cost_nano: number }>(
+    'SELECT provider, model, seconds, cost_nano FROM usage_log');
+  // Two seconds booked against the allowance, ten seconds paid to Groq at $0.04 an hour.
+  assert.deepEqual({ ...log }, { provider: 'groq', model: 'whisper-large-v3-turbo', seconds: 2, cost_nano: 111_112 });
+  const [day] = h.sql<{ other_cost_nano: number; cost_nano_cf: number }>('SELECT other_cost_nano, cost_nano_cf FROM daily_totals');
+  assert.equal(day!.other_cost_nano, 111_112);
+  assert.equal(day!.cost_nano_cf, 0);
+});
+
+test('Groq refusing or unreachable refunds the seconds', async () => {
+  const h = await makeHarness({ GROQ_API_KEY: 'wrong' });
+  whisper(h);
+  const { device } = await subscribe(h);
+  assert.equal((await h.call('POST', '/v1/audio/transcriptions', { token: device, body: transcribeForm(2) })).status, 502);
+  assert.equal((await h.call('GET', '/v1/entitlement', { token: device })).body.daily.used_seconds, 0);
+});
+
+test('Workers AI is one setting away: the same routes run on the binding', async () => {
+  const h = await makeHarness({ AI_PROVIDER: 'workers-ai' });
+  const { device } = await subscribe(h);
+  h.ai.handler = async (model, input) => 'audio' in input
+    ? { text: 'hello', transcription_info: { duration: 2 }, usage: { neurons: 1.5 } }
+    : { choices: [{ message: { content: 'Hello.' }, finish_reason: 'stop' }], usage: { prompt_tokens: 10, completion_tokens: 2, neurons: 0.2 } };
+  assert.equal((await h.call('POST', '/v1/audio/transcriptions', { token: device, body: transcribeForm(2) })).status, 200);
+  assert.equal((await h.call('POST', '/v1/chat/completions', { token: device, json: { messages: [{ role: 'user', content: 'hello' }] } })).status, 200);
+  assert.equal(h.ai.calls[0]!.model, '@cf/openai/whisper-large-v3-turbo');
+  assert.equal(typeof h.ai.calls[0]!.input.audio, 'string');
+  assert.equal(h.ai.calls[1]!.model, '@cf/google/gemma-4-26b-a4b-it');
+  assert.equal((h.ai.calls[1]!.input.chat_template_kwargs as { enable_thinking: boolean }).enable_thinking, false);
+  const providers = h.sql<{ provider: string }>('SELECT DISTINCT provider FROM usage_log').map((r) => r.provider);
+  assert.deepEqual(providers, ['workers-ai']);
+});
+
+test('a model name from the other provider falls back to the default instead of failing every request', async () => {
+  const { limitsFrom } = await import('../src/config');
+  assert.equal(limitsFrom({ CHAT_MODEL: '@cf/google/gemma-4-26b-a4b-it' } as never).chatModel, 'llama-3.1-8b-instant');
+  assert.equal(limitsFrom({ AI_PROVIDER: 'workers-ai', CHAT_MODEL: 'llama-3.1-8b-instant' } as never).chatModel, '@cf/google/gemma-4-26b-a4b-it');
+  assert.equal(limitsFrom({ CLEANUP_MODEL: 'meta-llama/llama-4-scout-17b-16e-instruct' } as never).cleanupModel, 'meta-llama/llama-4-scout-17b-16e-instruct');
 });
