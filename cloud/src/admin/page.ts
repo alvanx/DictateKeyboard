@@ -763,6 +763,7 @@ export const DASHBOARD_HTML = `<!doctype html>
         <input id="exDate" type="date" style="width:auto">
         <select id="exKind" style="width:auto">
           <option value="cloudflare">Cloudflare (inkl. Workers AI)</option>
+          <option value="groq">Groq</option>
           <option value="domain">Domain</option>
           <option value="other">Sonstiges</option>
         </select>
@@ -2240,7 +2241,7 @@ var GRAPH = ${GRAPH_JSON};
 
   var taxData = null;
   var KIND_LABEL = {
-    cloudflare: 'Cloudflare (inkl. Workers AI)', domain: 'Domain', other: 'Sonstiges',
+    cloudflare: 'Cloudflare (inkl. Workers AI)', groq: 'Groq', domain: 'Domain', other: 'Sonstiges',
   };
 
   function renderReconcile(r) {

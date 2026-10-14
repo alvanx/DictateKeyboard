@@ -90,10 +90,14 @@ export const ZONES: GraphZone[] = [
       'Last aus einzelnen kurzen Anfragen besteht und dessen Betreiber nachts schlafen will, ist das ' +
       'die passende Bauform. Der Preis dafür steht in der Übertragungs-Dokumentation: Cloudflare, Inc. ' +
       'sitzt in den USA, Datenbank und Kontostände sind deshalb ausdrücklich auf die EU festgelegt.</p>' +
-      '<p><strong>Für die Modelle in dieser Spalte gilt das ausdrücklich nicht.</strong> Die ' +
-      'Festlegung auf Westeuropa greift für den Speicher, nicht für die Rechenzeit: Workers AI läuft, ' +
-      'wo gerade Kapazität ist, und lässt sich ohne Enterprise-Zusatz nicht festlegen. Wer aus „alles ' +
-      'bei Cloudflare" liest „alles in der EU", liest an dieser einen Stelle falsch.</p>',
+      '<p><strong>Die Modelle laufen nicht hier, sondern bei Groq.</strong> Das hält den Dienst im ' +
+      'kostenlosen Tarif: Cloudflare gibt dort 10 ms Rechenzeit je Anfrage, und die reichen, solange ' +
+      'das Audio nur weitergereicht wird. Workers AI bleibt als Reserve angeschlossen — es will das ' +
+      'Audio als Base64-Zeichenkette, und die zu bauen braucht den Bezahltarif für 5 $ im Monat. ' +
+      'Umschalten ist eine Einstellung (<code>AI_PROVIDER</code>), kein Umbau.</p>' +
+      '<p>Die Festlegung auf Westeuropa greift für den Speicher, nicht für die Modelle: Diktate und ' +
+      'Texte werden bei Groq in den USA verarbeitet. Wer aus „alles bei Cloudflare" liest „alles in ' +
+      'der EU", liest an dieser Stelle falsch.</p>',
   },
   {
     id: 'google', label: 'Google', sub: 'Play, Cloud, Identität', tone: 'google',
@@ -114,6 +118,16 @@ export const ZONES: GraphZone[] = [
       '<p>Die Zone existiert trotzdem als eigene: Eine Abhängigkeit, die von außen kommt, gehört ' +
       'sichtbar hingeschrieben, auch wenn sie klein ist. Fällt sie aus, fehlt eine Umrechnung — kein ' +
       'Guthaben, keine Anfrage, kein Konto. Genau das soll das Bild auf einen Blick zeigen.</p>',
+  },
+  {
+    id: 'groq', label: 'Groq', sub: 'Modelle · mit Vertrag und Schlüssel', tone: 'ext',
+    long:
+      '<p>Der einzige Dienst außerhalb von Cloudflare und Google, der Inhalte zu sehen bekommt: ' +
+      'Aufnahmen zum Diktieren, Texte zum Umformulieren und Aufräumen. <strong>Auftragsverarbeiter, ' +
+      'Groq, Inc., USA.</strong></p>' +
+      '<p>Abgerechnet wird je Anfrage, ohne Grundgebühr. Das ist der ganze Grund für die Wahl: Ein ' +
+      'Dienst mit wenig Kundschaft kostet so fast nichts. Pro Minute ist Workers AI ähnlich günstig, ' +
+      'braucht aber den Bezahltarif von Cloudflare — siehe dort.</p>',
   },
 ];
 
@@ -260,12 +274,17 @@ export const NODES: GraphNode[] = [
   },
 
   {
-    id: 'workersai', zone: 'cf', label: 'Workers AI', sub: 'Whisper · Gemma',
+    id: 'workersai', zone: 'cf', label: 'Workers AI · Reserve', sub: 'nur mit AI_PROVIDER=workers-ai',
     col: 1, row: 2,
-    guards: ['kein Schlüssel — Bindung statt Netzweg', 'Denkmodus ausdrücklich aus', 'Modell ohne Deployment wechselbar'],
-    detail: 'Diktat und Umformulierung, beides hier. Rechnet über <em>dieses</em> Konto ab, es gibt also kein Geheimnis, das leaken könnte. Meldet je Antwort die verbrauchten Neuronen zurück; genau die stehen im Hauptbuch. Welches Modell, sagt <code>TRANSCRIBE_MODEL</code> bzw. <code>CHAT_MODEL</code> — eine Konfigurationszeile, kein Deployment.',
+    guards: ['kein Schlüssel — Bindung statt Netzweg', 'Denkmodus ausdrücklich aus', 'braucht den Bezahltarif'],
+    detail: '<strong>Zurzeit nicht in Gebrauch</strong> — die Modelle laufen bei Groq. Bleibt angeschlossen für den Tag, an dem der Verkehr die 5 $ im Monat für den Bezahltarif trägt: dann <code>AI_PROVIDER = "workers-ai"</code>, und Diktat wie Umformulierung laufen hier. Rechnet über <em>dieses</em> Konto ab und meldet je Antwort die verbrauchten Neuronen zurück.',
     long:
-      '<p>Seit dem Umzug der einzige Ort, an dem Inhalte verarbeitet werden. Die Modelle laufen bei ' +
+      '<p><strong>Die Reserve, nicht der Normalbetrieb.</strong> Solange <code>AI_PROVIDER</code> auf ' +
+      '<code>groq</code> steht, geht hier keine Anfrage hin. Warum es trotzdem angeschlossen bleibt: ' +
+      'Pro Minute ist es so günstig wie Groq, und mit 10 000 Neuronen am Tag frei sogar günstiger — ' +
+      'es braucht nur den Bezahltarif von Cloudflare für 5 $ im Monat, weil das Audio für das Modell ' +
+      'erst in eine Zeichenkette umgebaut werden muss. Ab einigen Dutzend zahlenden Konten lohnt das.</p>' +
+      '<p>Die Modelle laufen bei ' +
       'Cloudflare selbst, erreichbar über eine Bindung statt über HTTPS: ' +
       '<strong>kein API-Schlüssel, kein Netzweg nach draußen.</strong> Was der Worker schickt, verlässt ' +
       'das Haus nicht — es war nie draußen.</p>' +
@@ -289,9 +308,9 @@ export const NODES: GraphNode[] = [
   {
     id: 'worker', zone: 'cf', label: 'Worker', sub: 'api.voicemode.example',
     col: 1, row: 1,
-    // Kein Schlüssel für die Modelle: Workers AI läuft über die Bindung und rechnet über dasselbe
-    // Konto ab wie dieser Worker.
-    holds: ['GOOGLE_SERVICE_ACCOUNT', 'RTDN_SECRET', 'ACCESS_AUD'],
+    // Der Groq-Schlüssel liegt als Secret hier. Workers AI (Reserve) bräuchte keinen: Es läuft über
+    // die Bindung und rechnet über dasselbe Konto ab wie dieser Worker.
+    holds: ['GOOGLE_SERVICE_ACCOUNT', 'RTDN_SECRET', 'GROQ_API_KEY', 'ACCESS_AUD'],
     guards: ['Rate-Limit je Konto (20/min)', 'Tagesbudget', 'Not-Aus', 'Audio ≤ 10 min', 'Chat ≤ 8k/2k Token', 'höchstens 3 Geräte', 'Codeversuche gedrosselt'],
     detail: 'Prüft das Token gegen den SHA-256-Abzug, liest die Audiodauer aus dem Dateikopf — WAV, FLAC, Ogg/Opus, MP4/M4A und MP3 sagen sie selbst —, bucht ab und reicht erst dann weiter. Nur ein unbekannter Container wird nach Größe geschätzt, und dann nur zum Zurücklegen. Abgerechnet wird alles in Sekunden, Diktat wie Umformulierung. Speichert niemals Audio oder Text.',
     long:
@@ -631,6 +650,29 @@ export const NODES: GraphNode[] = [
       'davon betroffen.</p>',
     source: 'src/fx.ts',
   },
+
+  {
+    id: 'groq', zone: 'groq', label: 'Groq', sub: 'Whisper Turbo · Llama 8B',
+    col: 3, row: 6.8,
+    guards: ['Abrechnung je Anfrage, ohne Grundgebühr', 'Modell und Länge setzt der Server', 'nichts gespeichert bei uns'],
+    detail: 'Diktat (Whisper Large v3 Turbo, 0,04 $ je Stunde, <strong>mindestens 10 s je Anfrage</strong>), Umformulierung und Aufräumen (Llama 3.1 8B). Groq meldet Längen und Token, aber keinen Preis — die Kosten im Hauptbuch sind Menge mal Preistabelle (<code>GROQ_PRICES</code>), und eine Preisänderung bei Groq macht sie still falsch.',
+    long:
+      '<p><strong>Hier laufen die Modelle.</strong> Der Worker reicht die Aufnahme so weiter, wie sie ' +
+      'kam — ohne sie zu dekodieren oder umzukodieren. Genau das hält eine Anfrage in den 10 ms ' +
+      'Rechenzeit, die der kostenlose Tarif von Cloudflare erlaubt.</p>' +
+      '<p><strong>Die Zehn-Sekunden-Untergrenze</strong> ist der eine Haken: Groq rechnet jedes Diktat ' +
+      'mit mindestens zehn Sekunden ab. Die Kundschaft bezahlt trotzdem echte Sekunden von ihrem ' +
+      'Tageskontingent; die Differenz trägt der Betreiber und sie steht im Hauptbuch. Viele sehr kurze ' +
+      'Diktate sind deshalb die teuren.</p>' +
+      '<p><strong>Die Kosten sind gerechnet, nicht abgelesen.</strong> Anders als Workers AI nennt Groq ' +
+      'keinen Verbrauch in Geld. Die Preistabelle steht in <code>config.ts</code> und ist mit Datum ' +
+      'versehen; ändert Groq die Preise, stimmen die Zahlen hier erst nach einer Anpassung wieder. ' +
+      'Verbindlich ist die Rechnung von Groq.</p>' +
+      '<p>Welches Modell, sagen <code>TRANSCRIBE_MODEL</code>, <code>CHAT_MODEL</code> und ' +
+      '<code>CLEANUP_MODEL</code> — eine Konfigurationszeile. Ein Name, der zu Workers AI gehört, wird ' +
+      'zugunsten des Standards ignoriert, statt jede Anfrage scheitern zu lassen.</p>',
+    source: 'src/ai.ts, src/config.ts',
+  },
 ];
 
 export const EDGES: GraphEdge[] = [
@@ -849,15 +891,16 @@ export const EDGES: GraphEdge[] = [
 
   {
     from: 'worker', to: 'workersai', kind: 'data',
-    label: 'Bindung · Audio & Text, ohne Netzweg',
+    label: 'Bindung · nur wenn umgeschaltet',
     guard: 'kein Schlüssel, nichts gespeichert',
     long:
-      '<p>Die einzige Linie, auf der Inhalte den Worker verlassen — und sie verlässt das Haus nicht. ' +
+      '<p><strong>Zurzeit ohne Verkehr</strong> — die Modelle laufen bei Groq. Diese Linie trägt erst, ' +
+      'wenn <code>AI_PROVIDER</code> auf <code>workers-ai</code> steht.</p>' +
+      '<p>Dann ist sie die einzige Linie, auf der Inhalte den Worker verlassen — und sie verlässt das Haus nicht. ' +
       'Die Bindung ist ein Aufruf innerhalb der Laufzeit: kein HTTPS, kein Schlüssel, keine ' +
       'Gegenstelle, die man erreichen können muss. Gespeichert wird nichts, in keine Richtung.</p>' +
-      '<p><strong>Es gibt nur diese eine Linie.</strong> Diktat und Umformulierung gehen beide über ' +
-      'dieselbe Bindung: ein Auftragsverarbeiter, kein Schlüssel in der Umgebung, und keine zweite ' +
-      'Verbindung, an der jemand mitlesen könnte.</p>' +
+      '<p>Diktat und Umformulierung gehen dann beide über dieselbe Bindung: kein Schlüssel in der ' +
+      'Umgebung, und keine zweite Verbindung, an der jemand mitlesen könnte.</p>' +
       '<p><strong>Was diese Linie kostet, bevor sie überhaupt anfängt:</strong> Das Modell will das ' +
       'Audio als Zeichenkette, also wird es kodiert — aus 19 MB werden 26,5 MB und rund zwei Sekunden ' +
       'Rechenzeit. Gegen die Fünf-Minuten-Grenze unkritisch, aber wer annimmt, der Weg ohne Netzsprung ' +
@@ -865,6 +908,21 @@ export const EDGES: GraphEdge[] = [
       '<p>Was zurückkommt, wird auf das Nötige gekürzt: der Text, beziehungsweise die eine Antwort und ' +
       'ihr Verbrauch. Segmente, Wortzahlen, ein VTT-Spur und der <code>@cf/…</code>-Modellname bleiben ' +
       'hier — sie helfen niemandem und verraten, was hinter Voice Mode Cloud steht.</p>',
+  },
+
+  {
+    from: 'worker', to: 'groq', kind: 'data',
+    label: 'HTTPS · Audio & Text', token: 'Bearer GROQ_API_KEY', guard: 'Modell und Länge vom Server',
+    long:
+      '<p>Die Linie, auf der Inhalte den Worker verlassen: Aufnahmen zum Diktieren, Texte zum ' +
+      'Umformulieren und Aufräumen. HTTPS mit dem Groq-Schlüssel als Bearer-Token; der Schlüssel liegt ' +
+      'als Worker-Secret und sonst nirgends.</p>' +
+      '<p><strong>Das Audio geht so weiter, wie es ankam.</strong> Kein Dekodieren, kein Base64 — ' +
+      'deshalb passt eine Anfrage in den kostenlosen Tarif. Modell, Antwortformat und Antwortlänge ' +
+      'setzt der Server; was die App dazu mitschickt, wird verworfen.</p>' +
+      '<p>Was zurückkommt, wird auf das Nötige gekürzt: der Text, beziehungsweise die eine Antwort und ' +
+      'ihr Verbrauch. Gespeichert wird beim Worker nichts davon. Was Groq selbst aufbewahrt, regeln ' +
+      'die Vertragsbedingungen und die Einstellung des Kontos — vor dem Start zu prüfen.</p>',
   },
 
   {
