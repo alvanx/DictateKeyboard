@@ -5,12 +5,15 @@ import { maybeSendDigest } from './notify/digest';
 import { evaluateRules } from './notify/rules';
 import { syncOrderFigures } from './orders';
 import { handleChat } from './routes/chat';
+import { handleCleanup } from './routes/cleanup';
 import { handleDelete, handleDeleteByCode } from './routes/delete';
 import { DELETE_PAGE_HTML } from './routes/delete-page';
 import { handleModels } from './routes/models';
 import { handleRedeem } from './routes/redeem';
 import { handleRtdn } from './routes/rtdn';
+import { handleEntitlement, handleVerify } from './routes/subscription';
 import { pruneDeletedWallets, pruneUsageLog } from './retention';
+import { reconcileSubscriptions } from './subscriptions';
 import { sweepVoidedPurchases } from './sweep';
 import { handleTranscription } from './routes/transcriptions';
 import { handleBalance, handleRestore, handleRevokeDevice } from './routes/wallet';
@@ -47,6 +50,17 @@ export default {
     }
     if (request.method === 'POST' && path === '/v1/chat/completions') {
       return handleChat(request, env, ctx, limits);
+    }
+    // One-tap cleanup that formats spoken lists — see docs/specs/cleanup.md.
+    if (request.method === 'POST' && path === '/v1/cleanup') {
+      return handleCleanup(request, env, ctx, limits);
+    }
+    // Plus: the app reports a Play subscription here, and reads what it unlocks.
+    if (request.method === 'POST' && path === '/v1/subscription/verify') {
+      return handleVerify(request, env, ctx);
+    }
+    if (request.method === 'GET' && path === '/v1/entitlement') {
+      return handleEntitlement(request, env, ctx);
     }
     if (request.method === 'GET' && path === '/v1/models') {
       return handleModels();
@@ -96,7 +110,9 @@ export default {
    * burned through — happens on the scale of minutes, and an hour late is a report rather than a
    * warning.
    *
-   * **Every hour** the question Google answers late: what a sale was actually worth. Settlement is
+   * **Every hour** the subscriptions whose state can change unannounced are re-read from Google —
+   * grace, hold, pending, unacknowledged, or running out within a day — so a lost notification is
+   * at worst an hour late. And the question Google answers late: what a sale was actually worth. Settlement is
    * a matter of hours, so a sale made this morning had its figure sitting there ready to be
    * collected while the ledger went on reading 0,00 € until the small hours of the next day. Hourly
    * is the cadence of the thing being waited for; nightly was the cadence of the job.
@@ -107,6 +123,13 @@ export default {
    */
   async scheduled(event: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
     if (event.cron === HOURLY_CRON) {
+      ctx.waitUntil(
+        reconcileSubscriptions(env, Date.now())
+          .then(({ checked, failed }) => {
+            if (checked > 0 || failed) console.log(`subscriptions: re-read ${checked}${failed ? ', stopped: Google unreachable' : ''}`);
+          })
+          .catch((error) => console.log(`subscription reconcile failed: ${String(error).slice(0, 200)}`)),
+      );
       // The same chain as the nightly one, with one difference: the rates may not stop the money.
       // Fetching them hourly is safe because a stored rate is stamped with the ECB's own publication
       // date, not with the day it was fetched — asking again therefore rewrites the same rows with

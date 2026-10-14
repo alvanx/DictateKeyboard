@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS usage_log (
   -- It is a pseudonym, not an identity: the hash says "the same device as before", nothing more.
   token_hash  TEXT,
   ts          INTEGER NOT NULL,
-  kind        TEXT NOT NULL,                     -- transcribe | reword
+  kind        TEXT NOT NULL,                     -- transcribe | reword | cleanup
   -- Who the request was routed to, and with which model. Both, because they answer different
   -- questions: the provider says where the content went, the model says at which price. Swapping
   -- one Workers AI model for another moves the second and not the first. NULL only on rows written
@@ -153,7 +153,10 @@ CREATE TABLE IF NOT EXISTS usage_log (
   neurons_micro INTEGER NOT NULL DEFAULT 0,
   cost_nano   INTEGER NOT NULL DEFAULT 0,        -- upstream cost in nano-USD, at list price
   status      INTEGER NOT NULL,                  -- HTTP status the client received
-  ms          INTEGER                            -- request duration
+  ms          INTEGER,                           -- request duration
+  -- Cleanup only (kind = 'cleanup'): plain | list. The one fact about the text that is kept, so
+  -- the dashboard can say how often lists are made without anything of the text being stored.
+  formatted_as TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_usage_wallet_ts ON usage_log(wallet_id, ts);
 CREATE INDEX IF NOT EXISTS idx_usage_ts ON usage_log(ts);
@@ -266,3 +269,45 @@ CREATE TABLE IF NOT EXISTS settings (
   updated_by TEXT NOT NULL
 );
 
+-- Plus subscriptions (billing spec, section 5). One row per Google purchase token.
+--
+-- The ledger, not the hot path: what a request is checked against is the wallet's own copy of
+-- "entitled until", recomputed from these rows and `grants` by every event that changes them.
+-- See src/subscriptions.ts.
+--
+-- Kept when an account is deleted, like `purchases` and for the same reason: they are receipts.
+CREATE TABLE IF NOT EXISTS subscriptions (
+  purchase_token  TEXT PRIMARY KEY,              -- Google's token
+  wallet_id       TEXT NOT NULL REFERENCES wallets(id),
+  source          TEXT NOT NULL DEFAULT 'google_play',  -- google_play | web (reserved)
+  product_id      TEXT NOT NULL,                 -- 'plus'
+  base_plan_id    TEXT NOT NULL,                 -- monthly | yearly
+  offer_id        TEXT,                          -- trial7 | trial30 | NULL
+  -- trial | active | canceled_active | grace | on_hold | expired | pending, as mapped from Google's
+  -- own state — plus voided (refunded) and replaced (an upgrade made a new token). Those two are
+  -- terminal: nothing Google says later about the same token moves them back.
+  state           TEXT NOT NULL,
+  expires_at      INTEGER NOT NULL,              -- unix ms, end of the current paid or trial period
+  auto_renewing   INTEGER NOT NULL,
+  linked_purchase_token TEXT,                    -- upgrade or resubscribe chain
+  latest_order_id TEXT,
+  acknowledged    INTEGER NOT NULL DEFAULT 0,
+  is_test         INTEGER NOT NULL DEFAULT 0,
+  created_at      INTEGER NOT NULL,
+  updated_at      INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_subscriptions_wallet ON subscriptions(wallet_id);
+CREATE INDEX IF NOT EXISTS idx_subscriptions_expiry ON subscriptions(expires_at);
+
+-- Free time that is not a purchase: referral rewards, welcome offers, gifts. Nothing writes these
+-- yet; they count towards "entitled until" already, so the referral spec only has to add rows.
+CREATE TABLE IF NOT EXISTS grants (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  wallet_id  TEXT NOT NULL REFERENCES wallets(id),
+  kind       TEXT NOT NULL,                      -- referral_reward | referral_welcome | gift
+  starts_at  INTEGER NOT NULL,
+  ends_at    INTEGER NOT NULL,
+  note       TEXT,
+  created_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_grants_wallet ON grants(wallet_id);

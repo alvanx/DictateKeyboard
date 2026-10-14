@@ -100,6 +100,13 @@
     "MAX_DEVICES": "<number>",
     "PACKAGE_NAME": "com.placeholder.voicemode",
     "DAILY_BUDGET_USD": "<number>",
+    // Plus: cost-weighted seconds each subscriber may use per UTC day (billing spec, section 8).
+    // 5400 is 90 minutes. Tune from usage_log after the beta; no migration needed.
+    "DAILY_ALLOWANCE_SECONDS": "5400",
+    // One-tap cleanup (/v1/cleanup). Leave CLEANUP_MODEL unset to use CHAT_MODEL; set it to a
+    // cheaper @cf/… model only once `npm run eval:cleanup` passes with it.
+    "CLEANUP_MAX_CHARS": "9000",
+    "CLEANUP_TIMEOUT_MS": "10000",
     // Individual request rows age out; the daily totals stay. See retention.ts.
     "USAGE_RETENTION_DAYS": "<number>",
     // Payout currency. The rate now arrives nightly from the ECB (src/fx.ts); the value here is only

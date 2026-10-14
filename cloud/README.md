@@ -6,7 +6,8 @@ dictation and rewording to Cloudflare's own Workers AI while metering what they 
 
 The models run inside the same platform the Worker does, reached through a binding rather than over
 the network — so there is no API key for them, and nothing has to leave for an outside service.
-Which model does the work is `TRANSCRIBE_MODEL` and `CHAT_MODEL`, changeable without a code change.
+Which model does the work is `TRANSCRIBE_MODEL`, `CHAT_MODEL` and `CLEANUP_MODEL`, changeable without
+a code change.
 
 Using the app does not require any of this. Bring an API key from a provider of your choice and the
 app never speaks to this server at all — see the app's provider settings. This exists so that
@@ -53,20 +54,48 @@ in `notify/`, `rules.ts`, `rtdn.ts`, `throttle.ts`, `meter.ts`, `sweep.ts`, `red
 `transcriptions.ts` and `wallet.ts` are German; their comments, and everything else, are not. Anything
 that can reach an app user is English wherever it lives.
 
+## Plus, in one paragraph
+
+The app reports a Play subscription to `POST /v1/subscription/verify`; the server asks Google
+(`subscriptionsv2`), acknowledges it, records it in `subscriptions` and works out "entitled until".
+That one number is copied into the account's Durable Object, which is what every paid request checks:
+entitled means today's allowance (`DAILY_ALLOWANCE_SECONDS`, reset at 00:00 UTC) is booked; not
+entitled means `402 not_entitled`; allowance used means `429 daily_limit`. Google's notifications,
+an hourly re-read of anything that can change unannounced, and a recheck on every refusal keep the
+number current — and if Google is unreachable at the moment of renewal, the paying user is let
+through rather than locked out. Seconds bought as credit packs before Plus stay spendable.
+
+## Endpoints
+
+| Route | What it does |
+| --- | --- |
+| `POST /v1/subscription/verify` | A Play subscription becomes an account with Plus, or finds its account again |
+| `GET /v1/entitlement` | Plan, state, expiry, today's allowance and the unlocked features |
+| `POST /v1/audio/transcriptions` | Dictation (OpenAI format) |
+| `POST /v1/chat/completions` | The user's own rewording prompts (OpenAI format) |
+| `POST /v1/cleanup` | One-tap cleanup that turns spoken lists into lists; fails soft to the original text |
+| `POST /v1/rtdn` | Google's notifications: refunds and subscription changes |
+| `/v1/wallet/*`, `/delete` | Restore by recovery code, sign a device out, delete the account |
+
 ## Layout
 
 ```
 src/
-  index.ts        the router, and the three cron rhythms
-  wallet.ts       one credit account, as a Durable Object — where "check and deduct" is atomic
-  guard.ts        the daily spend ceiling and the code-guessing counter, one object for all
-  meter.ts        the ledger; the only thing that writes
-  routes/         transcriptions, chat, redeem, restore, delete, Google's notifications
-  config.ts       prices, packages, limits — and the neuron table the reported figures are checked against
-  admin/          the dashboard behind Cloudflare Access
-  notify/         alert rules, digest, the mails
-migrations/       applied by hand, in order — see the note in each file
-schema.sql        the shape of a fresh database
+  index.ts          the router, and the three cron rhythms
+  wallet.ts         one account, as a Durable Object — where "check and book" is atomic
+  entitlement.ts    subscription states, "entitled until", the daily bucket — pure rules
+  subscriptions.ts  Google ↔ ledger ↔ wallet: verify, refresh, void, reconcile, recheck
+  cleanup.ts        the cleanup rules around the model, including the never-invent check
+  guard.ts          the daily spend ceiling and the code-guessing counter, one object for all
+  meter.ts          the ledger; the only thing that writes usage
+  routes/           transcriptions, chat, cleanup, subscription, restore, delete, notifications
+  config.ts         prices, limits — and the neuron table the reported figures are checked against
+  admin/            the dashboard behind Cloudflare Access
+  notify/           alert rules, digest, the mails
+prompts/cleanup.txt the cleanup instructions — one file, meant to be shared with the app
+migrations/         applied by hand, in order — see the note in each file
+schema.sql          the shape of a fresh database
+test/               end-to-end tests under Node (`npm test`)
 ```
 
 ## Running it
@@ -77,8 +106,21 @@ cp wrangler.example.jsonc wrangler.jsonc   # then fill in the placeholders
 npx wrangler secret put GOOGLE_SERVICE_ACCOUNT
 npx wrangler d1 create dictate-cloud --location weur
 npx wrangler d1 execute dictate-cloud --remote --file schema.sql
-npx tsc --noEmit && npx wrangler deploy
+npx tsc --noEmit && npm test && npx wrangler deploy
 ```
+
+An existing database needs `npm run db:migrate8:remote` once, before the Plus code is deployed.
+
+## Tests
+
+`npm test` runs the real routes, SQL and Durable Object classes under Node, against an in-memory
+SQLite loaded from `schema.sql`, a fake Google (the service-account token is really signed, with a
+throwaway key) and a fake model. It covers every subscription state, verify being idempotent,
+duplicate and out-of-order notifications, the midnight reset, the 402 and 429 shapes, refunds, and
+the cleanup route's fail-soft paths.
+
+What it cannot cover is the model itself. `npm run eval:cleanup` asks the deployed one, with the
+spec's table in six languages — run it before each release and before switching `CLEANUP_MODEL`.
 
 The database is created in Western Europe and the Durable Objects are pinned to the EU
 (`meter.ts`, `eu()`), so the balances stay there. That is about where the bytes sit; it does not

@@ -814,7 +814,7 @@ export const DASHBOARD_HTML = `<!doctype html>
         <span class="hint" tabindex="0" data-tip="Eine Zeile je Anfrage — ausschließlich Metadaten. Inhalte, also Audio und Text, werden nie gespeichert. Einzelzeilen werden nach 90 Tagen gelöscht, die Tagessummen bleiben. Eine gelb markierte Dauer heißt: ein kurzes Diktat (bis 30 s Audio) über der Schwelle, die im Betrieb unter „Kurze Diktate langsam ab“ steht."></span>
       </h2>
       <div class="row">
-        <select id="tKind" style="width:auto"><option value="">Alle Arten</option><option value="transcribe">Diktat</option><option value="reword">Umformulierung</option></select>
+        <select id="tKind" style="width:auto"><option value="">Alle Arten</option><option value="transcribe">Diktat</option><option value="reword">Umformulierung</option><option value="cleanup">Aufräumen</option></select>
         <label class="row" style="gap:6px"><input type="checkbox" id="tFail" style="width:auto"> nur Fehler</label>
         <label class="row" style="gap:6px"><input type="checkbox" id="tTest" style="width:auto" checked> Testkonten</label>
       </div>

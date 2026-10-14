@@ -84,6 +84,18 @@ export interface Env {
   RATE_LIMIT_PER_MINUTE?: string;
   DAILY_BUDGET_USD?: string;
   MAX_DEVICES?: string;
+  /**
+   * Plus: cost-weighted seconds per UTC day (billing spec, section 8). Default 5400, 90 minutes.
+   * Not a secret in the way the thresholds are — the app shows it — but kept with them so it can be
+   * tuned from `usage_log` without a code change.
+   */
+  DAILY_ALLOWANCE_SECONDS?: string;
+  /** One-tap cleanup (cleanup spec, section 5). Defaults to `CHAT_MODEL`. */
+  CLEANUP_MODEL?: string;
+  /** Longest text `/v1/cleanup` accepts, in characters. Refused with 413 above it, never truncated. */
+  CLEANUP_MAX_CHARS?: string;
+  /** How long the cleanup model may take before the original text is returned instead. */
+  CLEANUP_TIMEOUT_MS?: string;
   /** How long individual request rows are kept. Daily totals are unaffected — see retention.ts. */
   USAGE_RETENTION_DAYS?: string;
 }
@@ -365,6 +377,11 @@ export interface Limits {
    * the balance simply drains faster than one person could manage.
    */
   maxDevices: number;
+  /** Plus: cost-weighted seconds per UTC day. */
+  dailyAllowanceSeconds: number;
+  cleanupModel: string;
+  cleanupMaxChars: number;
+  cleanupTimeoutMs: number;
 }
 
 
@@ -382,15 +399,22 @@ function modelFor(configured: string | undefined, fallback: string): string {
 }
 
 export function limitsFrom(env: Env): Limits {
+  const chatModel = modelFor(env.CHAT_MODEL, CF_DEFAULT_CHAT);
   return {
     transcribeModel: modelFor(env.TRANSCRIBE_MODEL, CF_DEFAULT_TRANSCRIBE),
-    chatModel: modelFor(env.CHAT_MODEL, CF_DEFAULT_CHAT),
+    chatModel,
     maxAudioSeconds: num(env.MAX_AUDIO_SECONDS, 600),
     maxChatInputTokens: num(env.MAX_CHAT_INPUT_TOKENS, 8000),
     maxChatOutputTokens: num(env.MAX_CHAT_OUTPUT_TOKENS, 2000),
     rateLimitPerMinute: num(env.RATE_LIMIT_PER_MINUTE, 20),
     dailyBudgetNano: Math.round(num(env.DAILY_BUDGET_USD, 25) * 1_000_000_000),
     maxDevices: num(env.MAX_DEVICES, 3),
+    dailyAllowanceSeconds: num(env.DAILY_ALLOWANCE_SECONDS, 5400),
+    // The rewording model unless one step down has been shown to pass the cleanup suite
+    // (`npm run eval:cleanup`); then it is one line in wrangler.jsonc.
+    cleanupModel: modelFor(env.CLEANUP_MODEL, chatModel),
+    cleanupMaxChars: num(env.CLEANUP_MAX_CHARS, 9000),
+    cleanupTimeoutMs: num(env.CLEANUP_TIMEOUT_MS, 10_000),
   };
 }
 

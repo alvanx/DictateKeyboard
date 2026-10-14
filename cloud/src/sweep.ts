@@ -2,6 +2,7 @@ import { raise } from './alerts';
 import type { Env } from './config';
 import { listVoidedPurchases } from './google';
 import { revoke } from './routes/rtdn';
+import { voidSubscription } from './subscriptions';
 
 /**
  * The nightly check that nothing was missed.
@@ -35,7 +36,10 @@ export async function sweepVoidedPurchases(env: Env, ctx: ExecutionContext): Pro
 
   let repaired = 0;
   for (const entry of voided) {
+    // Credit packs and Plus subscriptions alike: Google lists both, and each ledger ignores the
+    // tokens that are not its own.
     if (await revoke(env, entry.purchaseToken, ctx)) repaired++;
+    else if (await voidSubscription(env, entry.purchaseToken, 'void-sweep', Date.now())) repaired++;
   }
 
   if (repaired > 0) {

@@ -2,8 +2,9 @@ import { raise } from '../alerts';
 import { authenticate, touch } from '../auth';
 import { chatCostNano, costToSeconds, neuronsToNano, type Env, type Limits } from '../config';
 import { budgetAllows, logUsage, settleBudget, walletStub } from '../meter';
+import { debitPaid } from '../subscriptions';
 import { NO_STORE, apiError, estimateTokens } from '../util';
-import { debitError, logRefusal } from './transcriptions';
+import { debitError, logRefusal, usageHeaders } from './transcriptions';
 
 /**
  * `POST /v1/chat/completions` — the rewording.
@@ -71,12 +72,10 @@ export async function handleChat(
   const wallet = walletStub(env, session.walletId);
   const reservedSeconds = costToSeconds(worstCaseNano);
 
-  const debit = await wallet.debit(reservedSeconds, limits.rateLimitPerMinute);
+  const debit = await debitPaid(env, session.walletId, reservedSeconds, limits);
   if (!debit.ok) {
     settleBudget(env, -worstCaseNano, ctx);
-    const refusal = debit.reason === 'insufficient'
-      ? apiError(402, 'Out of credit.', 'insufficient_credits', 'insufficient_quota')
-      : debitError(debit.reason);
+    const refusal = debitError(debit.reason, debit.state);
     logRefusal(env, session, 'reword', refusal.status, started, ctx, debit.state);
     return refusal;
   }
@@ -91,13 +90,13 @@ export async function handleChat(
   const upstream = await runWorkersAi(env, limits, messages, maxTokens);
 
   if (upstream.kind === 'unreachable') {
-    await wallet.refund(reservedSeconds);
+    await wallet.refund(reservedSeconds, debit.booking);
     settleBudget(env, -worstCaseNano, ctx);
     return apiError(502, 'The service is unreachable.', 'upstream_unreachable', 'server_error');
   }
 
   if (upstream.kind === 'failed') {
-    const state = await wallet.refund(reservedSeconds);
+    const state = await wallet.refund(reservedSeconds, debit.booking);
     settleBudget(env, -worstCaseNano, ctx);
     logUsage(env, {
       walletId: session.walletId,
@@ -129,7 +128,7 @@ export async function handleChat(
 
   let state = debit.state;
   if (actualSeconds !== reservedSeconds) {
-    state = await wallet.adjust(actualSeconds - reservedSeconds);
+    state = await wallet.adjust(actualSeconds - reservedSeconds, debit.booking);
   }
 
   // Voice Mode Cloud does not think. Rewriting a sentence needs no deliberation, thinking tokens are
@@ -215,8 +214,7 @@ export async function handleChat(
     headers: {
       'content-type': 'application/json; charset=utf-8',
       ...NO_STORE,
-      'x-dictate-seconds-left': String(state.secondsLeft),
-      'x-dictate-rewords-left': String(state.rewordsLeft),
+      ...usageHeaders(state),
     },
   });
 }
@@ -247,7 +245,7 @@ function textOf(content: unknown): string {
  * symptom — a reasoning model that spends its whole budget thinking returns the second without
  * always setting the first.
  */
-function wasTruncated(body: string): boolean {
+export function wasTruncated(body: string): boolean {
   try {
     const parsed = JSON.parse(body) as {
       choices?: Array<{ finish_reason?: string; message?: { content?: string | null } }>;
@@ -261,7 +259,7 @@ function wasTruncated(body: string): boolean {
   }
 }
 
-function parseUsage(body: string): { in: number; out: number } {
+export function parseUsage(body: string): { in: number; out: number } {
   try {
     const parsed = JSON.parse(body) as {
       usage?: { prompt_tokens?: number; completion_tokens?: number };
@@ -276,7 +274,7 @@ function parseUsage(body: string): { in: number; out: number } {
 }
 
 /** The visible reply, for measuring the token count against. Empty when the shape is unexpected. */
-function answerTextOf(body: string): string {
+export function answerTextOf(body: string): string {
   try {
     const parsed = JSON.parse(body) as { choices?: { message?: { content?: string } }[] };
     return parsed.choices?.[0]?.message?.content ?? '';
@@ -293,7 +291,7 @@ function answerTextOf(body: string): string {
  * factor of tens, so the slack costs nothing in sensitivity. The floor keeps one-word answers —
  * where an estimate of four tokens against a real twelve is noise — from ringing it.
  */
-async function reportReasoning(env: Env, tokensOut: number, answer: string, model: string): Promise<void> {
+export async function reportReasoning(env: Env, tokensOut: number, answer: string, model: string): Promise<void> {
   const expected = Math.max(estimateTokens(answer), 16);
   if (tokensOut <= expected * 3) return;
   await raise(env, {
@@ -321,7 +319,7 @@ async function reportReasoning(env: Env, tokensOut: number, answer: string, mode
  * translation but a trim: only the choice and the usage go back, not the `@cf/…` model name, which
  * would publish what is behind Voice Mode Cloud for no one's benefit.
  */
-type Upstream =
+export type Upstream =
   | { kind: 'ok'; body: string; neurons: number }
   | { kind: 'failed'; status: number }
   | { kind: 'unreachable' };
@@ -340,13 +338,19 @@ type Upstream =
  * off is not trusted to this line; every response is checked against the length of its own answer
  * (see `reportReasoning`).
  */
-async function runWorkersAi(env: Env, limits: Limits, messages: unknown[], maxTokens: number): Promise<Upstream> {
+export async function runWorkersAi(
+  env: Env,
+  limits: Limits,
+  messages: unknown[],
+  maxTokens: number,
+  model: string = limits.chatModel,
+): Promise<Upstream> {
   let result: {
     choices?: { message?: { content?: string | null }; finish_reason?: string }[];
     usage?: { prompt_tokens?: number; completion_tokens?: number; neurons?: number };
   };
   try {
-    result = await env.AI.run(limits.chatModel as keyof AiModels, {
+    result = await env.AI.run(model as keyof AiModels, {
       messages,
       max_completion_tokens: maxTokens,
       chat_template_kwargs: { enable_thinking: false },

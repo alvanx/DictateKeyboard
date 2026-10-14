@@ -105,3 +105,4 @@ cloud/.wrangler/
 .wrangler/
 cloud/.dev.vars
 cloud/dist/
+cloud/.test-build/

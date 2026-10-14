@@ -1,5 +1,14 @@
 import { DurableObject } from 'cloudflare:workers';
-import { LEGACY_REWORD_SECONDS, TYPICAL_REWORD_SECONDS, type Env } from './config';
+import { LEGACY_REWORD_SECONDS, TYPICAL_REWORD_SECONDS, limitsFrom, type Env } from './config';
+import {
+  allowanceLeft,
+  bookDaily,
+  correctDaily,
+  nextUtcMidnight,
+  usedToday,
+  utcDay,
+  type DailyBucket,
+} from './entitlement';
 
 /**
  * One credit account.
@@ -17,6 +26,13 @@ import { LEGACY_REWORD_SECONDS, TYPICAL_REWORD_SECONDS, type Env } from './confi
  * account could not say what it was worth — a rewording deducted one unit whether it cost a fifth
  * of a second or sixteen. One balance, and every service priced into it, makes the remaining
  * seconds an exact statement about money: see `SECOND_VALUE_NANO` in config.ts.
+ *
+ * **Plus (billing spec, sections 5 and 8).** With the subscription the account also carries
+ * `entitledUntil` — the one number a paid request is checked against, written here by every event
+ * that changes it (verify, notification, reconcile, grant) — and a daily bucket that resets at
+ * 00:00 UTC. A request is booked against the bucket while the account is entitled. Seconds bought
+ * as credit packs before the subscription existed stay spendable once Plus is not active: they were
+ * paid for, and the migration that introduced the subscription took nothing away.
  */
 
 /** What is written to storage. */
@@ -27,6 +43,9 @@ interface StoredState {
   status: 'active' | 'blocked';
   /** Only ever present on accounts last written before rewordings were priced. See [read]. */
   rewordsLeft?: number;
+  /** Unix ms. Absent or past: no Plus. */
+  entitledUntil?: number;
+  daily?: DailyBucket;
 }
 
 export interface WalletState {
@@ -40,11 +59,33 @@ export interface WalletState {
    * now than when it was a counter, because it follows what a rewording actually costs.
    */
   rewordsLeft: number;
+  /** Unix ms; 0 when the account was never entitled. */
+  entitledUntil: number;
+  plan: 'plus' | 'free';
+  /** Seconds booked against today's allowance. */
+  dailyUsedSeconds: number;
+  dailyAllowanceSeconds: number;
+  /** 00:00 UTC after now. */
+  dailyResetsAt: number;
 }
 
+/**
+ * Which counter a request was booked on — the daily allowance or the credit balance — and on which
+ * day. A refund or correction has to go back where the charge came from.
+ */
+export interface Booking {
+  source: 'daily' | 'balance';
+  day: string;
+}
+
+export type DebitReason = 'blocked' | 'rate_limited' | 'not_entitled' | 'daily_limit';
+
 export type DebitResult =
-  | { ok: true; state: WalletState }
-  | { ok: false; reason: 'blocked' | 'insufficient' | 'rate_limited'; state: WalletState };
+  | { ok: true; state: WalletState; booking: Booking }
+  | { ok: false; reason: DebitReason; state: WalletState };
+
+/** What older callers meant before there were two counters: the credit balance. */
+const BALANCE: Booking = { source: 'balance', day: '' };
 
 const EMPTY: StoredState = {
   secondsLeft: 0,
@@ -93,15 +134,26 @@ export class Wallet extends DurableObject<Env> {
     await this.ctx.storage.put('state', state);
   }
 
-  /** The stored balance plus the derived rewording estimate — what every caller sees. */
-  private view(state: StoredState): WalletState {
+  /** The stored balance plus the derived figures — what every caller sees. */
+  private view(state: StoredState, now = Date.now()): WalletState {
+    const entitledUntil = state.entitledUntil ?? 0;
     return {
       secondsLeft: state.secondsLeft,
       secondsBought: state.secondsBought,
       secondsUsed: state.secondsUsed,
       status: state.status,
       rewordsLeft: Math.max(0, Math.floor(state.secondsLeft / TYPICAL_REWORD_SECONDS)),
+      entitledUntil,
+      plan: entitledUntil > now ? 'plus' : 'free',
+      dailyUsedSeconds: usedToday(state.daily, now),
+      dailyAllowanceSeconds: this.allowance(),
+      dailyResetsAt: nextUtcMidnight(now),
     };
+  }
+
+  /** Read per call, so changing `DAILY_ALLOWANCE_SECONDS` needs no migration of any account. */
+  private allowance(): number {
+    return limitsFrom(this.env).dailyAllowanceSeconds;
   }
 
   async state(): Promise<WalletState> {
@@ -109,40 +161,60 @@ export class Wallet extends DurableObject<Env> {
   }
 
   /**
-   * Deducts if there is enough. The only way credit is ever spent.
+   * Books a request, if the account may make one. The only way anything is ever spent.
    *
    * Happens **before** the model is called, not after: bill last and every dropped connection
-   * is a giveaway. If the call fails, [refund] puts the credit back.
+   * is a giveaway. If the call fails, [refund] puts it back.
+   *
+   * The order of the checks is the order of the answers the app can act on: blocked first, then
+   * too fast, then Plus — today's allowance while it is active, the old credit balance when it is
+   * not — and only then "subscribe".
    */
   async debit(seconds: number, rateLimitPerMinute: number): Promise<DebitResult> {
     const state = await this.read();
-    if (state.status === 'blocked') return { ok: false, reason: 'blocked', state: this.view(state) };
-
     const now = Date.now();
+    if (state.status === 'blocked') return { ok: false, reason: 'blocked', state: this.view(state, now) };
+
     this.hits = this.hits.filter((t) => now - t < 60_000);
     if (this.hits.length >= rateLimitPerMinute) {
-      return { ok: false, reason: 'rate_limited', state: this.view(state) };
+      return { ok: false, reason: 'rate_limited', state: this.view(state, now) };
     }
 
     const wantSeconds = Math.ceil(seconds);
-    if (state.secondsLeft < wantSeconds) {
-      return { ok: false, reason: 'insufficient', state: this.view(state) };
+
+    if ((state.entitledUntil ?? 0) > now) {
+      if (!allowanceLeft(state.daily, this.allowance(), now)) {
+        return { ok: false, reason: 'daily_limit', state: this.view(state, now) };
+      }
+      this.hits.push(now);
+      const next: StoredState = { ...state, daily: bookDaily(state.daily, wantSeconds, now) };
+      await this.write(next);
+      return { ok: true, state: this.view(next, now), booking: { source: 'daily', day: utcDay(now) } };
     }
 
-    this.hits.push(now);
-    const next: StoredState = {
-      ...state,
-      secondsLeft: state.secondsLeft - wantSeconds,
-      secondsUsed: state.secondsUsed + wantSeconds,
-    };
-    await this.write(next);
-    return { ok: true, state: this.view(next) };
+    if (state.secondsLeft >= wantSeconds && wantSeconds > 0) {
+      this.hits.push(now);
+      const next: StoredState = {
+        ...state,
+        secondsLeft: state.secondsLeft - wantSeconds,
+        secondsUsed: state.secondsUsed + wantSeconds,
+      };
+      await this.write(next);
+      return { ok: true, state: this.view(next, now), booking: BALANCE };
+    }
+
+    return { ok: false, reason: 'not_entitled', state: this.view(state, now) };
   }
 
-  /** Puts a deduction back — for when the model never answered at all. */
-  async refund(seconds: number): Promise<WalletState> {
+  /** Puts a booking back — for when the model never answered at all. */
+  async refund(seconds: number, booking: Booking = BALANCE): Promise<WalletState> {
     const state = await this.read();
     const back = Math.ceil(seconds);
+    if (booking.source === 'daily') {
+      const next: StoredState = { ...state, daily: correctDaily(state.daily, booking.day, -back) };
+      await this.write(next);
+      return this.view(next);
+    }
     const next: StoredState = {
       ...state,
       secondsLeft: state.secondsLeft + back,
@@ -158,9 +230,14 @@ export class Wallet extends DurableObject<Env> {
    * Only needed for non-WAV files, which are estimated generously up front. A negative
    * [deltaSeconds] gives back what was over-charged.
    */
-  async adjust(deltaSeconds: number): Promise<WalletState> {
+  async adjust(deltaSeconds: number, booking: Booking = BALANCE): Promise<WalletState> {
     const state = await this.read();
     const delta = Math.round(deltaSeconds);
+    if (booking.source === 'daily') {
+      const next: StoredState = { ...state, daily: correctDaily(state.daily, booking.day, delta) };
+      await this.write(next);
+      return this.view(next);
+    }
     const next: StoredState = {
       ...state,
       // Floored at zero: a correction must never push an account into the red.
@@ -192,6 +269,19 @@ export class Wallet extends DurableObject<Env> {
   async claw(seconds: number): Promise<WalletState> {
     const state = await this.read();
     const next: StoredState = { ...state, secondsLeft: state.secondsLeft - seconds };
+    await this.write(next);
+    return this.view(next);
+  }
+
+  /**
+   * Writes the new "entitled until" (unix ms; 0 for none).
+   *
+   * The ledger in D1 decides the value — see `refreshWalletEntitlement` — and this is the copy the
+   * hot path reads, so a paid request costs one call instead of a query over subscriptions.
+   */
+  async setEntitlement(entitledUntil: number): Promise<WalletState> {
+    const state = await this.read();
+    const next: StoredState = { ...state, entitledUntil: Math.max(0, Math.round(entitledUntil)) };
     await this.write(next);
     return this.view(next);
   }

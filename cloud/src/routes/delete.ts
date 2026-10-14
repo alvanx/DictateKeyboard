@@ -1,4 +1,5 @@
-import type { Env } from '../config';
+import { playPackage, type Env } from '../config';
+import { ACCESS_STATES, PLUS_PRODUCT_ID, type SubState } from '../entitlement';
 import { walletStub } from '../meter';
 import { guardCodeAttempts, noteCodeFailure } from '../throttle';
 import { apiError, json, normalizeRecoveryCode, sha256 } from '../util';
@@ -14,6 +15,11 @@ import { apiError, json, normalizeRecoveryCode, sha256 } from '../util';
  * before anything happens. A deletion that pays money back would be a refund channel outside Google
  * Play — with no purchase to reverse, no way to reclaim the compute already bought and paid for,
  * and an obvious way to launder a refund past Play's own rules.
+ *
+ * **A Plus subscription is not cancelled by this.** Only Google can cancel it, so the preview says
+ * when one is still running and hands over Play's cancel link; the app and the web page show it
+ * before the button. The subscription rows stay, like the receipts below, and a later verify from
+ * the same Play account moves the subscription onto a fresh account rather than a dead one.
  *
  * **What survives, and why it must.** The purchase records stay: § 147 AO obliges a business to
  * keep them for ten years, and Art. 17 Abs. 3 lit. b DSGVO makes room for exactly that. What they
@@ -39,6 +45,47 @@ export interface DeletionPreview {
   secondsLeft: number;
   rewordsLeft: number;
   purchases: number;
+  /**
+   * A Plus subscription that is still running. Deleting the account does **not** cancel it — only
+   * Google can — so the confirmation has to say so and point at Play (billing spec, section 6).
+   */
+  subscriptionActive: boolean;
+  subscriptionExpiresAt: number;
+}
+
+/** Play's own page for cancelling Plus. */
+export function manageSubscriptionUrl(env: Env): string {
+  return `https://play.google.com/store/account/subscriptions?sku=${PLUS_PRODUCT_ID}` +
+    `&package=${encodeURIComponent(playPackage(env))}`;
+}
+
+async function runningSubscription(env: Env, walletId: string): Promise<{ active: boolean; expiresAt: number }> {
+  const rows = await env.DB.prepare(
+    'SELECT state, expires_at AS expiresAt, auto_renewing AS autoRenewing FROM subscriptions WHERE wallet_id = ?',
+  ).bind(walletId).all<{ state: SubState; expiresAt: number; autoRenewing: number }>();
+  // "Still running" means Google will charge again or access has not ended: what the user would be
+  // surprised to find continuing after the account is gone.
+  const running = (rows.results ?? []).filter((r) =>
+    ACCESS_STATES.has(r.state) || r.state === 'on_hold' || Number(r.autoRenewing) === 1);
+  return {
+    active: running.length > 0,
+    expiresAt: running.reduce((max, r) => Math.max(max, Number(r.expiresAt)), 0),
+  };
+}
+
+function previewJson(env: Env, preview: DeletionPreview): Record<string, unknown> {
+  return {
+    confirmed: false,
+    wallet_id: preview.walletId,
+    seconds_left: preview.secondsLeft,
+    minutes_left: Math.floor(preview.secondsLeft / 60),
+    rewords_left: preview.rewordsLeft,
+    purchases: preview.purchases,
+    subscription_active: preview.subscriptionActive,
+    ...(preview.subscriptionActive
+      ? { subscription_expires_at: preview.subscriptionExpiresAt, manage_subscription_url: manageSubscriptionUrl(env) }
+      : {}),
+  };
 }
 
 /** What is about to be lost — so the confirmation can name a number instead of a vague warning. */
@@ -48,10 +95,11 @@ export async function previewDeletion(env: Env, walletId: string): Promise<Delet
     .first<{ id: string }>();
   if (!row) return null;
 
-  const [state, purchases] = await Promise.all([
+  const [state, purchases, subscription] = await Promise.all([
     walletStub(env, walletId).state().catch(() => null),
     env.DB.prepare("SELECT COUNT(*) AS n FROM purchases WHERE wallet_id = ? AND state = 'granted'")
       .bind(walletId).first<{ n: number }>(),
+    runningSubscription(env, walletId),
   ]);
 
   return {
@@ -59,6 +107,8 @@ export async function previewDeletion(env: Env, walletId: string): Promise<Delet
     secondsLeft: Math.max(0, state?.secondsLeft ?? 0),
     rewordsLeft: Math.max(0, state?.rewordsLeft ?? 0),
     purchases: Number(purchases?.n ?? 0),
+    subscriptionActive: subscription.active,
+    subscriptionExpiresAt: subscription.expiresAt,
   };
 }
 
@@ -80,6 +130,7 @@ export async function deleteWallet(
   ).bind(walletId).first<{ n: number }>();
 
   const secondsLeft = Math.max(0, state?.secondsLeft ?? 0);
+  const subscription = await runningSubscription(env, walletId);
   const now = Date.now();
 
   await env.DB.batch([
@@ -127,6 +178,8 @@ export async function deleteWallet(
     secondsLeft,
     rewordsLeft: Math.max(0, state?.rewordsLeft ?? 0),
     purchases: Number(purchases?.n ?? 0),
+    subscriptionActive: subscription.active,
+    subscriptionExpiresAt: subscription.expiresAt,
   };
 }
 
@@ -164,14 +217,7 @@ export async function handleDelete(request: Request, env: Env): Promise<Response
   if (!payload.confirm) {
     const preview = await previewDeletion(env, session.walletId);
     if (!preview) return apiError(404, 'No such account.', 'wallet_not_found', 'invalid_request_error');
-    return json({
-      confirmed: false,
-      wallet_id: preview.walletId,
-      seconds_left: preview.secondsLeft,
-      minutes_left: Math.floor(preview.secondsLeft / 60),
-      rewords_left: preview.rewordsLeft,
-      purchases: preview.purchases,
-    });
+    return json(previewJson(env, preview));
   }
 
   const result = await deleteWallet(env, session.walletId, 'app');
@@ -182,6 +228,9 @@ export async function handleDelete(request: Request, env: Env): Promise<Response
     deleted: true,
     forfeited_minutes: Math.floor(result.secondsLeft / 60),
     purchases_retained: result.purchases,
+    // Said once more after the fact: the account is gone, the Play subscription is not.
+    subscription_active: result.subscriptionActive,
+    ...(result.subscriptionActive ? { manage_subscription_url: manageSubscriptionUrl(env) } : {}),
   });
 }
 
@@ -217,13 +266,9 @@ export async function handleDeleteByCode(request: Request, env: Env): Promise<Re
     if (!preview) {
       return apiError(404, 'No credit account matches this code.', 'wallet_not_found', 'invalid_request_error');
     }
-    return json({
-      confirmed: false,
-      seconds_left: preview.secondsLeft,
-      minutes_left: Math.floor(preview.secondsLeft / 60),
-      rewords_left: preview.rewordsLeft,
-      purchases: preview.purchases,
-    });
+    // No wallet id on the web: the visitor proved a code, not that they should learn the id.
+    const { wallet_id: _omit, ...body } = previewJson(env, preview);
+    return json(body);
   }
 
   const result = await deleteWallet(env, walletId, 'web');
@@ -236,5 +281,8 @@ export async function handleDeleteByCode(request: Request, env: Env): Promise<Re
     deleted: true,
     forfeited_minutes: Math.floor(result.secondsLeft / 60),
     purchases_retained: result.purchases,
+    // Said once more after the fact: the account is gone, the Play subscription is not.
+    subscription_active: result.subscriptionActive,
+    ...(result.subscriptionActive ? { manage_subscription_url: manageSubscriptionUrl(env) } : {}),
   });
 }

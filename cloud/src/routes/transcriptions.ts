@@ -3,7 +3,9 @@ import { estimateSeconds, probeDuration, shortestPossibleSeconds } from '../audi
 import { authenticate, touch } from '../auth';
 import { neuronsToNano, transcribeCostNano, type Env, type Limits } from '../config';
 import { budgetAllows, logUsage, settleBudget, walletStub } from '../meter';
+import { debitPaid } from '../subscriptions';
 import { NO_STORE, apiError } from '../util';
+import type { DebitReason, WalletState } from '../wallet';
 
 /**
  * `POST /v1/audio/transcriptions` — the path the money flows down.
@@ -12,7 +14,8 @@ import { NO_STORE, apiError } from '../util';
  *   1. Who are you            → otherwise 401
  *   2. How long is the audio  → from the WAV header, not from a client claim
  *   3. May the service still  → daily cap
- *   4. Deduct                 → **before** the model, or every abort is on the operator
+ *   4. Deduct                 → **before** the model, or every abort is on the operator: from
+ *                               today's Plus allowance, or from credit bought before Plus existed
  *   5. Forward
  *   6. Refund on failure, correct to the real duration on success
  *
@@ -92,10 +95,10 @@ export async function handleTranscription(
   }
 
   const wallet = walletStub(env, session.walletId);
-  const debit = await wallet.debit(chargedSeconds, limits.rateLimitPerMinute);
+  const debit = await debitPaid(env, session.walletId, chargedSeconds, limits);
   if (!debit.ok) {
     settleBudget(env, -estimateNano, ctx);
-    const refusal = debitError(debit.reason);
+    const refusal = debitError(debit.reason, debit.state);
     logRefusal(env, session, 'transcribe', refusal.status, started, ctx, debit.state);
     return refusal;
   }
@@ -103,14 +106,14 @@ export async function handleTranscription(
   const upstream = await runWorkersAi(env, limits, file, form);
 
   if (upstream.kind === 'unreachable') {
-    await wallet.refund(chargedSeconds);
+    await wallet.refund(chargedSeconds, debit.booking);
     settleBudget(env, -estimateNano, ctx);
     return apiError(502, 'The transcription service is unreachable.', 'upstream_unreachable', 'server_error');
   }
 
   if (upstream.kind === 'failed') {
     // Nothing delivered, nothing charged.
-    const state = await wallet.refund(chargedSeconds);
+    const state = await wallet.refund(chargedSeconds, debit.booking);
     settleBudget(env, -estimateNano, ctx);
     logUsage(env, {
       walletId: session.walletId,
@@ -140,7 +143,7 @@ export async function handleTranscription(
       const actual = Math.ceil(reported);
       const delta = actual - chargedSeconds;
       if (delta !== 0) {
-        state = await wallet.adjust(delta);
+        state = await wallet.adjust(delta, debit.booking);
         finalSeconds = actual;
       }
     } else {
@@ -203,8 +206,7 @@ export async function handleTranscription(
       'content-type': 'application/json; charset=utf-8',
       ...NO_STORE,
       // So the app can show the balance later without asking separately.
-      'x-dictate-seconds-left': String(state.secondsLeft),
-      'x-dictate-rewords-left': String(state.rewordsLeft),
+      ...usageHeaders(state),
     },
   });
 }
@@ -230,7 +232,7 @@ function reportedSeconds(body: string): number | null {
 export function logRefusal(
   env: Env,
   session: { walletId: string; tokenHash: string; isTest: boolean },
-  kind: 'transcribe' | 'reword',
+  kind: 'transcribe' | 'reword' | 'cleanup',
   status: number,
   started: number,
   ctx: ExecutionContext,
@@ -251,17 +253,64 @@ export function logRefusal(
   }, ctx);
 }
 
-export function debitError(reason: 'blocked' | 'insufficient' | 'rate_limited'): Response {
+export function debitError(reason: DebitReason, state?: WalletState): Response {
   switch (reason) {
     case 'blocked':
       return apiError(403, 'This credit account is blocked.', 'wallet_blocked', 'invalid_request_error');
     case 'rate_limited':
       return apiError(429, 'Too many requests in a short time.', 'rate_limited', 'rate_limit_error');
-    case 'insufficient':
-      // The app turns 402 into QUOTA_EXCEEDED; the distinct `code` lets it offer "top up"
-      // rather than "quota reached" later on.
-      return apiError(402, 'Out of credit.', 'insufficient_credits', 'insufficient_quota');
+    case 'not_entitled':
+      // 402 as before, so older apps still read it as QUOTA_EXCEEDED; the code is what tells a
+      // current one to open the subscription screen rather than say "quota reached".
+      return apiError(
+        402,
+        'Dictate Cloud needs an active Plus subscription.',
+        'not_entitled',
+        'insufficient_quota',
+      );
+    case 'daily_limit': {
+      // Nothing to buy and nothing to retry until midnight UTC, so the reply says when that is —
+      // in the body for the app's message, and as Retry-After for anything generic in between.
+      const now = Date.now();
+      const resetsAt = state?.dailyResetsAt ?? (Math.floor(now / 86_400_000) + 1) * 86_400_000;
+      return new Response(
+        JSON.stringify({
+          error: {
+            message: "Today's Dictate Cloud allowance is used up. It resets at 00:00 UTC.",
+            type: 'rate_limit_error',
+            code: 'daily_limit',
+          },
+          resets_at: resetsAt,
+        }),
+        {
+          status: 429,
+          headers: {
+            'content-type': 'application/json; charset=utf-8',
+            ...NO_STORE,
+            'retry-after': String(Math.max(1, Math.ceil((resetsAt - now) / 1000))),
+          },
+        },
+      );
+    }
   }
+}
+
+/**
+ * What every paid route reports alongside its answer, so the app can show the balance or the day's
+ * allowance without asking separately. The `daily` trio only while Plus is active.
+ */
+export function usageHeaders(state: WalletState): Record<string, string> {
+  return {
+    'x-dictate-seconds-left': String(state.secondsLeft),
+    'x-dictate-rewords-left': String(state.rewordsLeft),
+    ...(state.plan === 'plus'
+      ? {
+          'x-dictate-daily-used': String(state.dailyUsedSeconds),
+          'x-dictate-daily-allowance': String(state.dailyAllowanceSeconds),
+          'x-dictate-daily-resets-at': String(state.dailyResetsAt),
+        }
+      : {}),
+  };
 }
 
 /**

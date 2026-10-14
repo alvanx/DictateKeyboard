@@ -3,6 +3,7 @@ import { LEGACY_REWORD_SECONDS, playPackage, transcribeCostNano, type Env } from
 import { homeCurrency, usdRate } from '../fx';
 import { walletStub } from '../meter';
 import { alertSettings } from '../settings';
+import { refreshFromGoogle, voidSubscription } from '../subscriptions';
 import { json } from '../util';
 
 /**
@@ -52,12 +53,34 @@ export async function handleRtdn(request: Request, env: Env, ctx: ExecutionConte
 
   const voided = notification.voidedPurchaseNotification;
   if (voided?.purchaseToken) {
-    ctx.waitUntil(revoke(env, voided.purchaseToken, ctx));
+    const token = voided.purchaseToken;
+    // A credit pack or a subscription — whichever ledger knows the token. Neither does harm if it
+    // does not: both return false for a token that is not theirs or was already handled.
+    ctx.waitUntil(
+      revoke(env, token, ctx).then((done) => done || voidSubscription(env, token, 'google-rtdn', Date.now())),
+    );
   }
 
-  // Everything else (test messages, purchase notifications) is only acknowledged: credit is
-  // created solely through /v1/wallet/redeem, where the purchase is additionally verified
-  // with Google directly.
+  // Plus (billing spec, section 6). The notification type is not trusted for the state — it only
+  // says that something changed, and Google is asked what. Which is also why a duplicate or a
+  // notification that arrives out of order changes nothing: the answer is always the current state.
+  //
+  // Awaited, unlike the void above, so that Google being unreachable becomes a 503 and Pub/Sub
+  // delivers again later instead of the change being acknowledged and lost. The hourly reconcile is
+  // the second net under it.
+  const sub = notification.subscriptionNotification;
+  if (sub?.purchaseToken) {
+    try {
+      const outcome = await refreshFromGoogle(env, sub.purchaseToken, Date.now());
+      return json({ ok: true, subscription: outcome });
+    } catch {
+      return json({ ok: false, retry: true }, 503);
+    }
+  }
+
+  // Everything else (test messages, one-time purchase notifications) is only acknowledged:
+  // credit and subscriptions are created solely through the app's own calls, where the purchase
+  // is verified with Google directly.
   return json({ ok: true });
 }
 
@@ -268,6 +291,16 @@ interface PlayNotification {
     notificationType?: number;
     purchaseToken?: string;
     sku?: string;
+  };
+  /**
+   * `notificationType` (renewed, recovered, canceled, on hold, in grace, expired, …) is read by
+   * nobody here: the state is fetched from Google instead. See `handleRtdn`.
+   */
+  subscriptionNotification?: {
+    version?: string;
+    notificationType?: number;
+    purchaseToken?: string;
+    subscriptionId?: string;
   };
   testNotification?: { version?: string };
 }

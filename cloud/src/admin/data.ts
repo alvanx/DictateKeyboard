@@ -362,7 +362,7 @@ export async function walletDetail(env: Env, id: string) {
     env.DB.prepare(
       `SELECT date(ts / 1000, 'unixepoch') AS day,
               SUM(CASE WHEN kind = 'transcribe' THEN seconds ELSE 0 END) AS dictationSeconds,
-              SUM(CASE WHEN kind = 'reword' THEN 1 ELSE 0 END) AS rewords,
+              SUM(CASE WHEN kind IN ('reword', 'cleanup') THEN 1 ELSE 0 END) AS rewords,
               COUNT(*) AS requests,
               SUM(cost_nano) AS costNano
          FROM usage_log WHERE wallet_id = ?

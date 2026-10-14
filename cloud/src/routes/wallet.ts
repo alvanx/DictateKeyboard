@@ -132,59 +132,9 @@ export async function handleRestore(request: Request, env: Env, ctx?: ExecutionC
     return apiError(404, 'No credit found for this code.', 'wallet_not_found', 'invalid_request_error');
   }
 
-  // Three at once is a phone, a watch and a tablet — the honest case, and the one a code has to
-  // keep serving. Beyond that it stops being a person's set of devices and starts being a shared
-  // password, which drains a personal pack at a speed one person could not manage.
-  //
-  // Refused rather than resolved by evicting the oldest device. Evicting sounds friendlier but
-  // hands the win to the wrong side: whoever passed the code around would push the owner out and
-  // carry on. The reply carries the devices instead, so the app can offer to sign one out — the
-  // way back for a phone that was lost, broken or reset, which is the case a bare refusal would
-  // otherwise strand.
-  const limit = (await alertSettings(env)).maxDevices;
-  const devices = await env.DB.prepare(
-    `SELECT token_hash AS tokenHash, label, created_at AS createdAt, last_seen_at AS lastSeenAt
-       FROM tokens WHERE wallet_id = ? AND revoked_at IS NULL
-      ORDER BY COALESCE(last_seen_at, created_at) ASC`,
-  ).bind(row.id).all<{ tokenHash: string; label: string | null; createdAt: number; lastSeenAt: number | null }>();
-  const active = devices.results ?? [];
-
-  if (active.length >= limit) {
-    ctx?.waitUntil(raise(env, {
-      kind: 'device_limit',
-      severity: 'notice',
-      walletId: row.id,
-      value: active.length,
-      title: `Gerätegrenze erreicht (${active.length} von ${limit})`,
-      detail:
-        `Jemand hat den Wiederherstellungscode dieses Kontos auf einem weiteren Gerät eingegeben, ` +
-        `während bereits ${active.length} angemeldet sind. Abgewiesen — in der App lässt sich ein ` +
-        `Gerät abmelden und dann fortfahren. Einmal ist das ein Gerätewechsel. Häufen sich die ` +
-        `Versuche auf demselben Konto, ist der Code weitergegeben worden, und dann hilft nur ein ` +
-        `neuer Code (im Konto unter „Neuen Code ausgeben").`,
-      dedupeKey: `device_limit:${row.id}`,
-    }, ctx).then(() => undefined));
-
-    return json({
-      error: {
-        message: `This account is already signed in on ${active.length} devices.`,
-        type: 'invalid_request_error',
-        code: 'device_limit',
-      },
-      limit,
-      devices: active.map((d) => ({
-        token_hash: d.tokenHash,
-        label: d.label,
-        created_at: d.createdAt,
-        last_seen_at: d.lastSeenAt,
-      })),
-    }, 409);
-  }
-
-  const token = newToken();
-  await env.DB.prepare(
-    'INSERT INTO tokens (token_hash, wallet_id, created_at, label) VALUES (?, ?, ?, ?)',
-  ).bind(await sha256(token), row.id, Date.now(), payload.label?.slice(0, 60) ?? null).run();
+  const issued = await issueDeviceToken(env, row.id, payload.label, ctx);
+  if ('refusal' in issued) return issued.refusal;
+  const token = issued.token;
 
   const state = await walletStub(env, row.id).state();
   return json({
@@ -247,4 +197,73 @@ export async function handleRevokeDevice(request: Request, env: Env): Promise<Re
   ).bind(row.id).first<{ n: number }>();
 
   return json({ revoked: true, devices_left: Number(remaining?.n ?? 0) });
+}
+
+/**
+ * A new access token for [walletId], unless the account already holds as many devices as it may.
+ *
+ * Shared by every path that signs a device into an existing account: the recovery code, and a
+ * Play subscription found again after a reinstall.
+ */
+export async function issueDeviceToken(
+  env: Env,
+  walletId: string,
+  label: string | undefined,
+  ctx?: ExecutionContext,
+): Promise<{ token: string } | { refusal: Response }> {
+  // Three at once is a phone, a watch and a tablet — the honest case, and the one a code has to
+  // keep serving. Beyond that it stops being a person's set of devices and starts being a shared
+  // password, which drains a personal pack at a speed one person could not manage.
+  //
+  // Refused rather than resolved by evicting the oldest device. Evicting sounds friendlier but
+  // hands the win to the wrong side: whoever passed the code around would push the owner out and
+  // carry on. The reply carries the devices instead, so the app can offer to sign one out — the
+  // way back for a phone that was lost, broken or reset, which is the case a bare refusal would
+  // otherwise strand.
+  const limit = (await alertSettings(env)).maxDevices;
+  const devices = await env.DB.prepare(
+    `SELECT token_hash AS tokenHash, label, created_at AS createdAt, last_seen_at AS lastSeenAt
+       FROM tokens WHERE wallet_id = ? AND revoked_at IS NULL
+      ORDER BY COALESCE(last_seen_at, created_at) ASC`,
+  ).bind(walletId).all<{ tokenHash: string; label: string | null; createdAt: number; lastSeenAt: number | null }>();
+  const active = devices.results ?? [];
+
+  if (active.length >= limit) {
+    ctx?.waitUntil(raise(env, {
+      kind: 'device_limit',
+      severity: 'notice',
+      walletId,
+      value: active.length,
+      title: `Gerätegrenze erreicht (${active.length} von ${limit})`,
+      detail:
+        `Jemand wollte dieses Konto (per Wiederherstellungscode oder wiedergefundenem Abo) auf einem ` +
+        `weiteren Gerät anmelden, während bereits ${active.length} angemeldet sind. Abgewiesen — in der App lässt sich ein ` +
+        `Gerät abmelden und dann fortfahren. Einmal ist das ein Gerätewechsel. Häufen sich die ` +
+        `Versuche auf demselben Konto, ist der Code weitergegeben worden, und dann hilft nur ein ` +
+        `neuer Code (im Konto unter „Neuen Code ausgeben").`,
+      dedupeKey: `device_limit:${walletId}`,
+    }, ctx).then(() => undefined));
+
+    return { refusal: json({
+      error: {
+        message: `This account is already signed in on ${active.length} devices.`,
+        type: 'invalid_request_error',
+        code: 'device_limit',
+      },
+      limit,
+      devices: active.map((d) => ({
+        token_hash: d.tokenHash,
+        label: d.label,
+        created_at: d.createdAt,
+        last_seen_at: d.lastSeenAt,
+      })),
+    }, 409) };
+  }
+
+  const token = newToken();
+  await env.DB.prepare(
+    'INSERT INTO tokens (token_hash, wallet_id, created_at, label) VALUES (?, ?, ?, ?)',
+  ).bind(await sha256(token), walletId, Date.now(), label?.slice(0, 60) ?? null).run();
+
+  return { token };
 }

@@ -155,7 +155,10 @@ export interface UsageEntry {
    * tell the two apart can never be corrected afterwards.
    */
   isTest?: boolean;
-  kind: 'transcribe' | 'reword';
+  /** `cleanup` is the one-tap cleanup route: a chat-model call like a rewording, counted with them. */
+  kind: 'transcribe' | 'reword' | 'cleanup';
+  /** Cleanup only: `plain` or `list`. The one fact about the text that is kept (cleanup spec, rule 3). */
+  formattedAs?: 'plain' | 'list';
   /**
    * Who handled it, and with what. Left out here, the model is read from the environment and the
    * provider is what it can only be.
@@ -216,13 +219,17 @@ export function logUsage(env: Env, entry: UsageEntry, ctx: ExecutionContext): vo
   const day = today(now);
   const limits = limitsFrom(env);
   const provider = entry.provider ?? 'workers-ai';
-  const model = entry.model ?? (entry.kind === 'transcribe' ? limits.transcribeModel : limits.chatModel);
+  const model = entry.model ?? (
+    entry.kind === 'transcribe' ? limits.transcribeModel
+      : entry.kind === 'cleanup' ? limits.cleanupModel
+        : limits.chatModel
+  );
   const neuronsMicro = Math.round(entry.neuronsMicro ?? 0);
   const statements: D1PreparedStatement[] = [
     env.DB.prepare(
       `INSERT INTO usage_log (wallet_id, token_hash, ts, kind, provider, model, seconds, tokens_in, tokens_out,
-                              neurons_micro, cost_nano, status, ms)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                              neurons_micro, cost_nano, status, ms, formatted_as)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     ).bind(
       entry.walletId,
       entry.tokenHash ?? null,
@@ -237,6 +244,7 @@ export function logUsage(env: Env, entry: UsageEntry, ctx: ExecutionContext): vo
       entry.costNano,
       entry.status,
       entry.ms,
+      entry.formattedAs ?? null,
     ),
     env.DB.prepare(
       `INSERT INTO daily_totals (day, requests, seconds, rewords, cost_nano, cost_nano_cf, errors,
@@ -261,7 +269,7 @@ export function logUsage(env: Env, entry: UsageEntry, ctx: ExecutionContext): vo
       // can be added together for "all traffic" and the real ones read on their own.
       entry.isTest ? 0 : 1,
       entry.isTest ? 0 : Math.round(entry.seconds ?? 0),
-      entry.isTest || entry.kind !== 'reword' ? 0 : 1,
+      entry.isTest || entry.kind === 'transcribe' ? 0 : 1,
       entry.isTest ? 0 : entry.costNano,
       // The Workers AI share of the line above, so a mixed day can still be split once usage_log
       // has been pruned. Once both services have moved this equals cost_nano; during the changeover

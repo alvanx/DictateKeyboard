@@ -1,4 +1,5 @@
 import { playPackage, type Env } from './config';
+import type { GoogleSubscription } from './entitlement';
 
 /**
  * Access to the Google Play Developer API.
@@ -238,6 +239,66 @@ export async function acknowledgePurchase(
   });
 }
 
+/**
+ * Asks Google for a subscription's current state (`purchases.subscriptionsv2.get`).
+ *
+ * The only source of truth for Plus. The app's claim, the notification's type and our own stored
+ * row are all just reasons to ask this again.
+ *
+ * Throws on network trouble or a server error, so the caller can tell "Google is down" (keep what
+ * we know, rule 6) from "Google does not know it". Returns null for the second: 404 for an invented
+ * token, 410 for one that expired long enough ago that Google has forgotten it, 400 for a token
+ * that is not even well-formed.
+ */
+export async function fetchSubscription(env: Env, purchaseToken: string): Promise<GoogleSubscription | null> {
+  const packageName = playPackage(env);
+  const url =
+    `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/` +
+    `${encodeURIComponent(packageName)}/purchases/subscriptionsv2/tokens/${encodeURIComponent(purchaseToken)}`;
+
+  const response = await fetch(url, {
+    headers: { authorization: `Bearer ${await playAccessToken(env)}` },
+  });
+
+  if (response.status === 404 || response.status === 410 || response.status === 400) return null;
+  if (!response.ok) throw new Error(`Play Developer API answered ${response.status}`);
+  return (await response.json()) as GoogleSubscription;
+}
+
+/**
+ * Acknowledges a subscription purchase (`purchases.subscriptions.acknowledge`).
+ *
+ * Google refunds any subscription left unacknowledged for three days. The app no longer consumes or
+ * acknowledges anything — the server does it once it has verified the purchase (billing spec,
+ * section 6, step 4), and the hourly reconcile retries any that are still open.
+ *
+ * **VERIFY** that the v1 acknowledge endpoint is still the one for subscriptions bought through
+ * base plans; at the time of writing there is no v2 counterpart.
+ */
+export async function acknowledgeSubscription(
+  env: Env,
+  productId: string,
+  purchaseToken: string,
+): Promise<boolean> {
+  const packageName = playPackage(env);
+  const url =
+    `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/` +
+    `${encodeURIComponent(packageName)}/purchases/subscriptions/` +
+    `${encodeURIComponent(productId)}/tokens/${encodeURIComponent(purchaseToken)}:acknowledge`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      authorization: `Bearer ${await playAccessToken(env)}`,
+      'content-type': 'application/json',
+    },
+    body: '{}',
+  });
+  // Only a plain yes counts. Anything else is left for the reconcile, which reads Google's own
+  // `acknowledgementState` before trying again, so a repeat is never based on a guess.
+  return response.ok;
+}
+
 async function importPrivateKey(pem: string): Promise<CryptoKey> {
   const body = pem
     .replace('-----BEGIN PRIVATE KEY-----', '')
@@ -284,8 +345,8 @@ export async function listVoidedPurchases(
       `${encodeURIComponent(packageName)}/purchases/voidedpurchases`,
     );
     url.searchParams.set('startTime', String(sinceMs));
-    // 0 = only user-initiated voids, 1 = those plus the ones Google voided itself. We want both:
-    // a chargeback the bank forced is exactly as expensive as a refund the customer asked for.
+    // 0 = one-time products only (Google's default), 1 = those and subscriptions. 1 is what makes a
+    // refunded Plus subscription show up here at all.
     url.searchParams.set('type', '1');
     url.searchParams.set('maxResults', '1000');
     if (token) url.searchParams.set('token', token);

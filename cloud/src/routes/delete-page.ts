@@ -143,6 +143,9 @@ export const DELETE_PAGE_HTML = `<!doctype html>
         <dt>Rewordings</dt><dd id="rewords">—</dd>
         <dt>Purchases</dt><dd id="purchases">—</dd>
       </dl>
+      <p id="subWarn" hidden style="margin-top:14px"><strong>Your Plus subscription keeps renewing.</strong>
+        Deleting this account does not cancel it — only Google Play can.
+        <a id="subLink" href="#" target="_blank" rel="noopener">Cancel it in Google Play</a> first.</p>
       <p style="margin-top:14px"><strong>This credit is forfeited.</strong> It is not refunded and
         cannot be restored — not by you and not by us. If you want your money back, contact Google
         Play first, before deleting here.</p>
@@ -222,6 +225,8 @@ export const DELETE_PAGE_HTML = `<!doctype html>
       $('minutes').textContent = res.data.minutes_left;
       $('rewords').textContent = res.data.rewords_left;
       $('purchases').textContent = res.data.purchases;
+      $('subWarn').hidden = !res.data.subscription_active;
+      if (res.data.manage_subscription_url) $('subLink').href = res.data.manage_subscription_url;
       show(2);
     }).catch(function () {
       $('check').disabled = false;
