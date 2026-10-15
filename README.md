@@ -75,7 +75,7 @@ from us and are not going anywhere.
   - A searchable clipboard that offers what you just copied, tracking parameters stripped from pasted links, an inline calculator, a selection counter, jumps to the start and end of the field, and an incognito mode that remembers nothing
   - A **text editing panel** — a cursor pad that repeats when held, a *Select* key that turns the arrows into a selection, and cut/copy/paste next to them, so fixing a typo in the middle of a paragraph does not mean aiming at it with a fingertip
   - One-handed / compact mode, a **split keyboard** for two thumbs on a tablet or an unfolded foldable, gesture actions, customizable key sound & haptic feedback
-- **Privacy-respecting by design** — no tracking, and your audio goes only to the provider you configure. Choose a key, a server of your own or an on-device model and Voice Mode never talks to us at all; choose Voice Mode Cloud and nothing you say or write is stored on the way through.
+- **Privacy-respecting by design** — no tracking, and your audio goes only to the provider you configure. Choose a key, a server of your own or an on-device model and Voice Mode talks to us only if you agree to share anonymous usage statistics: how long dictation took, in which language and with which engine, never audio or text. Choose Voice Mode Cloud and nothing you say or write is stored on the way through.
 
 <p align="center"><i>Bring your own API key — Voice Mode works with:</i></p>
 <p align="center">

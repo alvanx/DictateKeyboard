@@ -22,18 +22,23 @@ very differently.
 
 **The free way does not involve us at all.** You bring your own API key from a provider you choose,
 or you use on-device recognition. Your audio goes from your phone straight to that provider, or never
-leaves the phone. We run no server in that path. We receive nothing and store nothing about you.
+leaves the phone. We run no server in that path. We receive nothing and store nothing about you,
+unless you agree to the anonymous usage statistics described below.
 
 **Plus is optional.** Plus is a subscription you buy through Google Play. Only if you subscribe do
 your recordings pass through a server we run, called Voice Mode Cloud. Section 4 describes exactly
 what happens then.
+
+**Usage statistics are optional too.** The App asks once whether it may send us an anonymous daily
+summary of how well dictation works. If you say no, or never answer, it sends nothing. Section 5 lists
+exactly what the summary contains.
 
 ---
 
 ## 1. The short version
 
 - **Unless you subscribe to Plus, we receive none of your data.** No server of ours in your path, no
-  database about you, no analytics.
+  database about you, and no usage statistics unless you say yes to them (section 5).
 - To turn speech into text, the App sends your recording to **an AI provider you choose** (for
   example OpenAI, Groq, or your own server). It goes **directly from your phone to that provider**,
   never through us.
@@ -43,10 +48,11 @@ what happens then.
 - Your API keys, prompts and settings are stored **on your phone**, and we never receive them. Copies
   can exist in two other places, and only if you use them: Android's own backup, where they are
   end-to-end encrypted (section 2.6), and your watch, if you use the Wear OS app (section 3.5).
-- The App has **no ads, no tracking, no telemetry and no crash-reporting tools**.
+- The App has **no ads, no tracking, and no third-party analytics or crash-reporting tools**. The only
+  statistics it can send are an anonymous daily summary, and only if you say yes (section 5).
 - The App is a keyboard, but it **does not log your keystrokes** or collect what you type in other
   apps. It only handles audio you record on purpose, by pressing the dictation button.
-- **You can check all of this.** The App and the Voice Mode Cloud server are open source (section 8).
+- **You can check all of this.** The App and the Voice Mode Cloud server are open source (section 9).
 
 ---
 
@@ -358,12 +364,40 @@ to collect more information just to be able to do that (Art. 12(2)).
 
 ---
 
-## 5. Permissions and why the App uses them
+## 5. Usage statistics (only if you say yes)
+
+**Off unless you agree.** The App asks you once whether it may send us usage statistics. If you say
+no, or never answer, it sends nothing. You can change your answer at any time in the App's settings.
+
+**What it sends.** At most once a day, a summary of the dictations you made with your own API key or
+with on-device recognition:
+
+- how long transcription took,
+- which language you dictated in,
+- which engine did the work, such as a provider's name or an on-device model.
+
+Plus dictations are not part of this summary. Section 4 covers what the server records for them.
+
+**What it never sends.** No audio, no transcript, no text you typed or reworded, no API key, no name,
+no email address, and no account or device identifier. We do not store your IP address with the
+summary, so it cannot be traced back to you.
+
+**Why.** To find where dictation is slow, and which languages need more work.
+
+**Where it goes.** Only to our own server, Voice Mode Cloud (section 4.3). No third-party analytics
+service is involved.
+
+**Legal basis.** Your consent (Art. 6(1)(a) GDPR). You can withdraw it at any time by switching the
+statistics off, and the App then sends nothing more.
+
+---
+
+## 6. Permissions and why the App uses them
 
 | Permission | Why |
 | --- | --- |
 | `RECORD_AUDIO` | To record your voice when you press the dictation button. |
-| `INTERNET` | To send audio or text to the provider you chose and get the result back. |
+| `INTERNET` | To send audio or text to the provider you chose and get the result back, and, only if you agreed, the usage summary in section 5. |
 | `ACCESS_NETWORK_STATE` | To tell whether the phone is online, so a recording made offline is kept and transcribed once the connection is back. It only says whether a network is available, never which one or where. |
 | `MODIFY_AUDIO_SETTINGS` / `BLUETOOTH` | To record through the right microphone, including Bluetooth headsets. |
 | `VIBRATE` | Optional vibration feedback. |
@@ -385,20 +419,21 @@ settings.
 
 ---
 
-## 6. Where your data is kept, and for how long
+## 7. Where your data is kept, and for how long
 
 - **On your phone:** API keys, settings, prompts and your dictation history stay on your phone until
   you delete them in the App or uninstall it. If you use Android's own backup, it holds a copy of the
   settings (section 2.6). Temporary recordings are deleted automatically after transcription.
 - **With your provider:** how long your audio or text is kept is up to that provider's policy, not us.
-- **With us:** nothing, unless you subscribe to Plus. Then section 4.4 applies.
+- **With us:** nothing, unless you subscribe to Plus (then section 4.4 applies) or agree to usage
+  statistics, which identify no one (section 5).
 
 To erase everything stored on your phone, clear the App's keys, history and settings in its settings,
 or uninstall the App.
 
 ---
 
-## 7. We do not collect what you type
+## 8. We do not collect what you type
 
 Voice Mode is a keyboard, but it does **not** record, log, store or send your typing. It only handles
 audio you record on purpose for dictation, and only to give you a transcript. Password fields, PIN
@@ -407,7 +442,7 @@ the App cannot tell what kind of field it is.
 
 ---
 
-## 8. You do not have to take our word for it
+## 9. You do not have to take our word for it
 
 The App is open source, and so is the Voice Mode Cloud server. Both are in the same public repository:
 
@@ -432,7 +467,7 @@ Two honest limits:
 
 ---
 
-## 9. Data security
+## 10. Data security
 
 Data sent to AI providers and to Voice Mode Cloud travels over encrypted HTTPS connections. The one
 exception is a plain `http://` address you enter yourself for a server of your own. The App allows
@@ -446,14 +481,14 @@ storing data is 100% secure.
 
 ---
 
-## 10. Children's privacy
+## 11. Children's privacy
 
 The App is not meant for children under 13 (or the minimum age where you live), and we do not
 knowingly handle children's data. AI providers may set their own age limits.
 
 ---
 
-## 11. Data sent to other countries
+## 12. Data sent to other countries
 
 The providers you choose may run servers in other countries, for example the United States. When you
 send them audio or text, it may be processed where they operate, under their policies. SiliconFlow
@@ -464,9 +499,10 @@ For Voice Mode Cloud, see section 4.3.
 
 ---
 
-## 12. Your choices and rights
+## 13. Your choices and rights
 
 - You decide whether to use an AI provider and which one, or none at all with on-device recognition.
+- You can say no to usage statistics, or switch them off later in the App's settings (section 5).
 - You can change or delete your API keys at any time in the App's settings.
 - You can delete your dictation history and your prompts, and reset your settings, in the App.
 - You can delete your Voice Mode Cloud account (section 4.5).
@@ -480,14 +516,14 @@ For Voice Mode Cloud, see section 4.3.
 
 ---
 
-## 13. Changes to this policy
+## 14. Changes to this policy
 
 We may update this policy. When we make a real change, we update the "Last updated" date above and
 publish the new version here. If you keep using the App after an update, the new version applies.
 
 ---
 
-## 14. Contact
+## 15. Contact
 
 Questions or requests about this policy:
 
