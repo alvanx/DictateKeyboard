@@ -51,7 +51,7 @@ export default {
     if (request.method === 'POST' && path === '/v1/chat/completions') {
       return handleChat(request, env, ctx, limits);
     }
-    // One-tap cleanup that formats spoken lists — see docs/specs/cleanup.md.
+    // One-tap cleanup that formats spoken lists.
     if (request.method === 'POST' && path === '/v1/cleanup') {
       return handleCleanup(request, env, ctx, limits);
     }

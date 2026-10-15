@@ -141,8 +141,6 @@ claims can be checked: [`cloud/src/meter.ts`](cloud/src/meter.ts) is the only fi
 writes anything, and it stores numbers (timestamps, durations, token counts, status codes), never
 audio or text. An account is an anonymous id with a recovery code; there is no name or email.
 
-The subscription design is in [`docs/specs/billing.md`](docs/specs/billing.md).
-
 <br>
 
 ## 🧱 Built on
@@ -182,9 +180,9 @@ published as the project matures. Thank you! 🙏
 The keyboard app is released under the terms of the
 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-The Plus subscription server (`cloud/`) and its specs (`docs/specs/`) are **source-available**
+The Plus subscription server (`cloud/`) is **source-available**
 under the [Functional Source License](cloud/LICENSE.md) (FSL-1.1-Apache-2.0): you can read, run and
-modify them for your own use, but you can't offer them as a competing product or service. Each
+modify it for your own use, but you can't offer it as a competing product or service. Each
 version becomes Apache 2.0 two years after it is published.
 
 - This project is built on **Dictate Keyboard** (Copyright © DevEmperor, Apache-2.0), itself a fork of **FlorisBoard** — Copyright © The FlorisBoard Contributors,

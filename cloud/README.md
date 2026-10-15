@@ -3,8 +3,7 @@
 The server behind the app's optional Plus subscription — "subscribe instead of bringing your own
 API key". A single Cloudflare Worker: it verifies a Google Play subscription, meters a daily
 allowance, and passes dictation, rewording and one-tap cleanup to Groq (Whisper Large v3 Turbo and a
-small Llama) while metering what they cost. The specs it is built from are `docs/specs/billing.md`
-and `docs/specs/cleanup.md`.
+small Llama) while metering what they cost.
 
 **Why Groq first, and why it runs on Cloudflare's free plan.** Groq bills per request with no
 monthly floor, so a service with few users costs next to nothing. Cloudflare's own Workers AI is

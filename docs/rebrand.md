@@ -9,7 +9,7 @@ package ID, domain and operator details below are still placeholders.
 | --- | --- | --- |
 | `com.placeholder.voicemode` (Play package ID) | `gradle.properties` (`appId`), `app/src/androidTest/.../ExampleInstrumentedTest.kt`, `cloud/wrangler.example.jsonc` (`PACKAGE_NAME`),  `PRIVACY_POLICY.md`  | The final package ID, built from our domain (for example `com.<domain>.voicemode`). **Permanent once the app exists in the Play Console.** Staging builds use the same ID plus `.staging` |
 | `voicemode.example` (domain) | Website, privacy and deletion links in strings (all languages), `AboutScreen.kt`, `ProviderRegistry.kt` (`api.voicemode.example`, the server address), `cloud/wrangler.example.jsonc`, support email `support@voicemode.example` | Our domain. `.example` is reserved and never resolves, so no build can talk to anyone else's server by accident |
-| `alvanx` (copyright holder) | `NOTICE`, `cloud/LICENSE.md`, `docs/specs/LICENSE.md` | Legal name or company, if different |
+| `alvanx` (copyright holder) | `NOTICE`, `cloud/LICENSE.md` | Legal name or company, if different |
 | `[OPERATOR NAME]`, `[OPERATOR ADDRESS]`, `[SUPPORT EMAIL]` |  `PRIVACY_POLICY.md`  | The real operator's details |
 | Teal microphone icon | `app/src/main/res/drawable/ic_app_icon_foreground.xml`, `values/colors.xml` (`ic_app_icon_background`), and the same two in `wear/src/main/res/` | Our own mark. Play also needs a 512 px listing icon |
 
@@ -43,7 +43,7 @@ package ID, domain and operator details below are still placeholders.
    `./gradlew assembleDebug testDebugUnitTest` before relying on it. The server was type-checked
    (`npx tsc --noEmit` in `cloud/`).
 2. **The Cloud option still appears in the app** although no server exists at the placeholder
-   address. Hide or gate it until the subscription server is deployed (`docs/specs/billing.md`).
+   address. Hide or gate it until the subscription server is deployed.
 3. **Downloads still come from the upstream author's GitHub releases:** on-device models and
    dictionaries (`LocalModelCatalog.kt`, `GlideDictionaryCatalog.kt`, `BigramCatalog.kt`,
    `TrigramCatalog.kt`, `PinyinPackManager.kt`). Mirror them to our own releases before launch; the
