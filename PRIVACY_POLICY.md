@@ -346,7 +346,7 @@ entirely.
 The App is open source, and so is the server behind Voice Mode Cloud. Both live in
 the same public repository:
 
-**<https://github.com/alvanx/DictateKeyboard>** — the App under `app/` and
+**<https://github.com/alvanx/voice-mode>** — the App under `app/` and
 `lib/`, the Voice Mode Cloud server under `cloud/`.
 
 You can read every line, including the parts this policy describes: what is sent
@@ -434,4 +434,4 @@ If you have questions or requests regarding this Privacy Policy, contact:
 **[OPERATOR NAME]** — [SUPPORT EMAIL]
 [OPERATOR ADDRESS]
 
-Project repository: https://github.com/alvanx/DictateKeyboard
+Project repository: https://github.com/alvanx/voice-mode

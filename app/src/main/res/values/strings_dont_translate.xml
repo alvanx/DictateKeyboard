@@ -8,20 +8,20 @@
         valid. The website and privacy policy use a reserved placeholder domain until ours exists
         (docs/rebrand.md). TODO(wiki): the help links point at the repo root; there are no wiki pages yet.
     -->
-    <string name="florisboard__repo_url" translatable="false">https://github.com/alvanx/DictateKeyboard</string>
+    <string name="florisboard__repo_url" translatable="false">https://github.com/alvanx/voice-mode</string>
     <!-- Marketing website -->
     <string name="florisboard__website_url" translatable="false">https://voicemode.example</string>
     <!-- Upstream project Dictate is forked from (attribution); stays pointed at the original FlorisBoard repo. -->
     <string name="florisboard__upstream_repo_url" translatable="false">https://github.com/florisboard/florisboard</string>
     <!-- The Dictate Keyboard project this app is built on (attribution; Apache-2.0 notice). -->
     <string name="florisboard__dictate_upstream_repo_url" translatable="false">https://github.com/DevEmperor/DictateKeyboard</string>
-    <string name="florisboard__issue_tracker_url" translatable="false">https://github.com/alvanx/DictateKeyboard/issues</string>
+    <string name="florisboard__issue_tracker_url" translatable="false">https://github.com/alvanx/voice-mode/issues</string>
     <string name="florisboard__privacy_policy_url" translatable="false">https://voicemode.example/privacy</string>
-    <string name="florisboard__changelog_url" translatable="false">https://github.com/alvanx/DictateKeyboard/releases</string>
-    <string name="florisboard__commit_by_hash_url" translatable="false">https://github.com/alvanx/DictateKeyboard/commit/{hash}</string>
-    <string name="florisboard__spell_checker_wiki_url" translatable="false">https://github.com/alvanx/DictateKeyboard</string>
-    <string name="florisboard__theme_editor_wiki_url" translatable="false">https://github.com/alvanx/DictateKeyboard</string>
-    <string name="florisboard__internal_key_codes_url" translatable="false">https://github.com/alvanx/DictateKeyboard/blob/main/app/src/main/kotlin/dev/patrickgold/florisboard/ime/text/key/KeyCode.kt</string>
+    <string name="florisboard__changelog_url" translatable="false">https://github.com/alvanx/voice-mode/releases</string>
+    <string name="florisboard__commit_by_hash_url" translatable="false">https://github.com/alvanx/voice-mode/commit/{hash}</string>
+    <string name="florisboard__spell_checker_wiki_url" translatable="false">https://github.com/alvanx/voice-mode</string>
+    <string name="florisboard__theme_editor_wiki_url" translatable="false">https://github.com/alvanx/voice-mode</string>
+    <string name="florisboard__internal_key_codes_url" translatable="false">https://github.com/alvanx/voice-mode/blob/main/app/src/main/kotlin/dev/patrickgold/florisboard/ime/text/key/KeyCode.kt</string>
     <string name="florisboard__character_key_codes_url" translatable="false">https://unicode-table.com/en</string>
 
     <string name="general__system_string_placeholder" translatable="false">%s</string>

@@ -168,12 +168,12 @@ see [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE) for full attribution.
 
 ## 🤝 Contributing
 
-The best way to help right now is to **[open an issue](https://github.com/alvanx/DictateKeyboard/issues)**
+The best way to help right now is to **[open an issue](https://github.com/alvanx/voice-mode/issues)**
 with bug reports, ideas or feedback. Full contribution and community guidelines will be
 published as the project matures. Thank you! 🙏
 
 **Found a security problem?** Please don't open a public issue for it — use
-[GitHub's private advisory form](https://github.com/alvanx/DictateKeyboard/security/advisories/new).
+[GitHub's private advisory form](https://github.com/alvanx/voice-mode/security/advisories/new).
 [`SECURITY.md`](SECURITY.md) says what is in scope, what isn't, and what to expect.
 
 <br>
