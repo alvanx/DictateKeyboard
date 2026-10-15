@@ -64,6 +64,7 @@ import dev.patrickgold.florisboard.dictate.data.history.DictateHistoryEntry
 import dev.patrickgold.florisboard.dictate.data.history.DictateHistorySource
 import dev.patrickgold.florisboard.dictate.data.history.DictateHistoryStore
 import dev.patrickgold.florisboard.dictate.data.stats.DictateStats
+import dev.patrickgold.florisboard.dictate.field.TranscriptHandover
 import dev.patrickgold.florisboard.dictate.provider.ChatRequest
 import dev.patrickgold.florisboard.dictate.provider.DictateApiException
 import dev.patrickgold.florisboard.dictate.provider.LocalModelCatalog
@@ -113,6 +114,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.yield
 import java.io.File
 import java.text.DateFormat
 import java.text.NumberFormat
@@ -222,7 +224,10 @@ object DictateController {
 
     /** Why an audio file is being kept for a one-tap re-send (drives the unified resend chip copy/tint). */
     enum class RetainReason {
-        /** A transcription/rewording failed; the kept audio can be retried (in-memory, cache file). */
+        /**
+         * A transcription/rewording failed, or the user stopped one that was still waiting (#437); the kept
+         * audio can be retried (in-memory, cache file).
+         */
         FAILED,
 
         /** The keyboard closed mid-recording; the finalized audio was persisted to survive process death. */
@@ -291,8 +296,8 @@ object DictateController {
     /** The user's saved prompts (shared `prompts.db`), refreshed via [refreshPrompts]; drives the Smartbar prompt chips. */
     val prompts: StateFlow<List<PromptModel>> = _prompts.asStateFlow()
 
-    /** When a sleeping rewording server was last poked awake (#189); see [warmUpRewordingServer]. */
-    private var lastWarmUpAtMs = 0L
+    /** When each sleeping self-hosted server was last poked awake (#189), by base URL; see [warmUp]. */
+    private val lastWarmUpAtMs = mutableMapOf<String, Long>()
 
     private val _pendingPrompts = MutableStateFlow<List<PromptModel>>(emptyList())
     /**
@@ -339,6 +344,28 @@ object DictateController {
     private var realtimeClosed: CompletableDeferred<Unit>? = null
     private var realtimeContext: Context? = null     // app context to edit the field's provisional text
     private val realtimeShown = StringBuilder()       // text currently committed to the field this session
+    /** The transcript [realtimeShown] was last written from: what the user sees, and takes over by editing it. */
+    private var realtimeShownTranscript = ""
+
+    /**
+     * What the user has taken over of this realtime dictation by editing it in the field (issue #421) —
+     * empty until they do. It is theirs from then on: the preview never revises it again and writes only
+     * what the transcript says after it ([TranscriptHandover.continuation]), and the finished text at the
+     * stop replaces only that rest. See [handOverIfEdited].
+     */
+    private var realtimeHandedOver = ""
+
+    /**
+     * The separator decided for the dictation currently in the field — a space or nothing (issue #443),
+     * see [leadFor]. Decided once, at the dictation's first write: by its second, the text in front of the
+     * cursor is our own. While [realtimeShown] holds a preview it begins with this, so the diff, the
+     * finalize and the cancel all carry the separator along without knowing about it.
+     */
+    private var dictationLead = ""
+
+    /** The separator in front of the last committed dictation, so the bubble's undo takes it back too. */
+    private var lastDictationLead = ""
+
     /**
      * Everything the stream has produced so far, whether or not any of it was put into the field (#345).
      *
@@ -366,6 +393,10 @@ object DictateController {
     private val segmentMutex = Mutex()        // orders index assignment + rotate + the commit drain
     private var segmentInFlightCount = 0      // segments cut but not yet committed
     private var segmentStopped = false        // stop requested; finish once the queue drains
+    // Moves on whenever a session ends or gives up on its pending segments. A segment job carries the
+    // value it was cut under, and a result from another one is dropped: it belongs to a dictation that is
+    // over, and the maps and the field it would write into now belong to the next one (#172).
+    private var segmentGeneration = 0
     private var segmentRecordedSeconds = 0L
     private var segmentVad: LiveSpeechSplitter? = null  // live VAD auto-split, when enabled (Phase 2)
     private val segmentAudioFiles = HashMap<Int, File>()  // kept segment WAVs (index -> file) for history merge
@@ -643,6 +674,26 @@ object DictateController {
      */
     private var inFlightAudio: File? = null
 
+    /**
+     * What a tap on the stop button keeps of the transcription in flight (#437), shaped as the resend chip
+     * wants it: the recording, whether it was a live prompt, its length, and the history row a resend has to
+     * finish, i.e. the entry a replay came from or the row this request wrote when it sent the audio (#358).
+     * The on-device engine's recording counts too. There is nothing to rescue it to, but a stop keeps it.
+     *
+     * Null while nothing would be kept. That is the case for a password or incognito field, which never
+     * keeps anything (#383), and also for the first moment of a request, until it has asked the field.
+     */
+    private var inFlightResend: RetainedAudio? = null
+
+    /**
+     * A transcription that was cancelled but may still be unwinding. Cancelling interrupts a network wait at
+     * once, but not the audio work around it (speed-up, packing, the on-device engine), which runs on to its
+     * end and then deletes its scratch files. Those have fixed names, so the next request waits for it rather
+     * than lose its own copies to that cleanup. A resend tapped right after a stop (#437) is the case this
+     * exists for.
+     */
+    private var unwindingTranscribeJob: Job? = null
+
     /** Recorded seconds of [inFlightAudio], so a rescued dictation still counts for the right length. */
     private var inFlightSeconds = 0L
 
@@ -719,7 +770,7 @@ object DictateController {
      */
     internal const val AUDIO_LEVEL_SAMPLE_MS = 50L
 
-    /** Shortest gap between two wake-up pokes at a sleeping rewording server (#189). */
+    /** Shortest gap between two wake-up pokes at the same sleeping server (#189). */
     private const val WARM_UP_THROTTLE_MS = 60_000L
 
     /** Cumulative recorded audio (seconds) after which the rate / donate nudges appear (roadmap 9.7/9.8). */
@@ -886,8 +937,9 @@ object DictateController {
         when (_state.value) {
             is UiState.Recording -> stopAndTranscribe(context)
             // Tapping the mic while transcribing or rewording aborts it (the button shows a stop icon,
-            // see the ComputingEvaluator) — e.g. after accidentally sending a prompt (issue #192).
-            is UiState.Transcribing -> cancelTranscription()
+            // see the ComputingEvaluator) — e.g. after accidentally sending a prompt (issue #192). A
+            // transcription keeps its recording for a resend (#437).
+            is UiState.Transcribing -> stopTranscription(context)
             is UiState.Rewording -> cancelRewording()
             else -> {
                 outputTarget = target
@@ -1249,16 +1301,27 @@ object DictateController {
      * the normal pipeline but latch [OutputTarget.RECOGNITION_SERVICE], so the finished text is handed back
      * to the calling app through the recognition callback instead of being written into a field. Always
      * plain batch (no realtime/segmented) — see [openRealtimeSession] / [isSegmentedMode].
+     *
+     * [sensitiveField] keeps the dictation out of the history (#383). Only the voice IME can say so, because
+     * it is the one entry point that sees the caller's field.
      */
-    fun startRecognition(context: Context) {
+    fun startRecognition(context: Context, sensitiveField: Boolean = false) {
         // Busy with another dictation → ignore; the service will time out and report an error.
         if (_state.value is UiState.Recording ||
             _state.value is UiState.Transcribing ||
             _state.value is UiState.Rewording
         ) return
         outputTarget = OutputTarget.RECOGNITION_SERVICE
+        recognitionFieldSensitive = sensitiveField
         startRecording(context)
     }
+
+    /**
+     * Whether the field the current voice-input request is for must stay out of the history: set by
+     * [startRecognition], kept for a resend of the same request.
+     */
+    @Volatile
+    private var recognitionFieldSensitive = false
 
     /** Stops the recognition recording and transcribes it; the result flows to the recognition callback. */
     fun stopRecognition(context: Context) {
@@ -1283,8 +1346,7 @@ object DictateController {
      */
     fun resendRecognition(context: Context): Boolean {
         if (!hasRetainedAudio()) return false
-        outputTarget = OutputTarget.RECOGNITION_SERVICE
-        sendRetainedAudio(context)
+        sendRetainedAudio(context, OutputTarget.RECOGNITION_SERVICE)
         return true
     }
 
@@ -1398,16 +1460,85 @@ object DictateController {
     }
 
     /**
-     * Aborts an in-flight transcription (stop button shown on the mic while transcribing). Cancels the
-     * network coroutine, drops the audio (handled in the job's finally) and returns to idle. No-op
-     * outside the transcribing state, so a tap can never interrupt a rewording request.
+     * Abandons an in-flight transcription and returns to idle, without keeping its recording: for callers
+     * that hand the recording on themselves ([cancelAndTranscribeLocal]) or have nobody left to give it to
+     * ([cancelRecognition]). The stop button is [stopTranscription]. The audio is dropped in the job's
+     * finally, but the history row written when it was sent (#358) stays. No-op outside the transcribing
+     * state, so this can never interrupt a rewording request.
      */
     fun cancelTranscription() {
         if (_state.value !is UiState.Transcribing) return
-        transcribeJob?.cancel()
-        transcribeJob = null
-        _pendingPrompts.value = emptyList()
+        // A stopped long-form dictation has no transcribeJob to cancel; its work is the segment jobs.
+        val segmentContext = realtimeContext
+        if (segmentedActive && segmentContext != null) {
+            abandonPendingSegments(segmentContext)
+            return
+        }
+        abandonTranscribeJob()
         _state.value = UiState.Idle
+    }
+
+    /** Cancels the transcription job and forgets what it was carrying. Leaves the state to the caller. */
+    private fun abandonTranscribeJob() {
+        transcribeJob?.cancel()
+        unwindingTranscribeJob = transcribeJob
+        transcribeJob = null
+        // Cleared here, not left to the job's finally: that runs only once the job has unwound, and by then a
+        // request started in the meantime may have set them for itself.
+        inFlightAudio = null
+        inFlightHistoryId = null
+        inFlightResend = null
+        _pendingPrompts.value = emptyList()
+    }
+
+    /**
+     * The stop button while a transcription is in flight (#437). The request is given up, the recording is
+     * not: it stays on a chip that sends it again, the same resend chip a failure gets, and with the same
+     * history row behind it, so a resend finishes that entry instead of adding a second one.
+     *
+     * Stopping used to end in plain idle. The row written when the audio was sent (#358) did survive, but
+     * nothing said so, and with the history off nothing survived at all. A stop looked exactly like a
+     * discard, and someone who stopped a request that hung through a phone call took it for one.
+     *
+     * The recording is not kept when the field is a password or incognito field, which never keeps anything
+     * (#383), or when the resend button is switched off. That switch hides the chip, so with it off a
+     * recording that is in the history gets a notice pointing there, and one that is not is dropped as before.
+     */
+    fun stopTranscription(context: Context) {
+        if (_state.value !is UiState.Transcribing) return
+        if (segmentedActive && realtimeContext != null) {
+            cancelTranscription()
+            return
+        }
+        // Read before the cancel, which clears it.
+        val resend = inFlightResend?.takeIf { it.file.exists() && it.file.length() > 0L }
+        val kept = resend?.takeIf { prefs.dictate.resendButton.get() }
+        // Claimed before the cancel. The job's finally deletes its recording unless the resend chip holds it,
+        // and this is what makes the chip hold it. A rename or a copy would do the same, but a copy of a long
+        // dictation is tens of megabytes on the main thread.
+        if (kept != null) {
+            if (retained?.file != kept.file) discardRetainedAudio()
+            retained = kept
+        }
+        abandonTranscribeJob()
+        // Straight from Transcribing to where the stop ends, never through Idle. An observer that sees
+        // Transcribing → Idle reads a finished dictation: the floating button flashed its green check and then
+        // no longer counted the chip as its own (seen on the emulator). The success buzz listens for the same
+        // transition.
+        val appContext = context.applicationContext
+        _state.value = when {
+            kept != null -> UiState.Error(
+                message = appContext.getString(R.string.dictate__transcription_stopped),
+                action = ErrorAction.RESEND,
+                // The user's own decision, not a failure: themed like "no speech detected", not red.
+                neutral = true,
+            )
+            resend?.historyId != null -> UiState.Error(
+                message = appContext.getString(R.string.dictate__transcription_stopped_in_history),
+                neutral = true,
+            )
+            else -> UiState.Idle
+        }
     }
 
     /**
@@ -1447,6 +1578,9 @@ object DictateController {
         // a screen reader has to speak (#159), and the observer only hears what happens once it runs.
         ensureHapticObserver(appContext)
         if (refuseIfNoCredential(context)) return
+        // Measured from here to the recorder running and to its first frame (#447): whatever is said
+        // before that frame is not in the recording at all.
+        val startRequestedAt = SystemClock.elapsedRealtime()
         // Starting a fresh recording supersedes any kept audio (a failed retry or an interrupted
         // recording the user chose not to send), so drop it instead of leaving a stale offer behind.
         // A continuation keeps its carry-over (seeded above), so only drop it for a normal start.
@@ -1454,7 +1588,10 @@ object DictateController {
             discardRetainedAudio()
             discardCarryOver()
         }
-        // A rewording server that has to be woken (#189) gets the length of this dictation to do it in.
+        // A server that has to be woken (#189) gets the length of this dictation to do it in: the
+        // transcription server whenever its own switch is on, the rewording server when a rewording
+        // will follow.
+        warmUp(transcriptionAccount())
         if (rewordingWillFollow()) warmUpRewordingServer()
         startJob = scope.launch {
             try {
@@ -1496,8 +1633,13 @@ object DictateController {
                 recorder = RecordingController(appContext).also {
                     it.start(audioSource, pcmSink, onCaptureLost = { reason ->
                         onCaptureRouteLost(appContext, reason)
-                    })
+                    }, startRequestedAt = startRequestedAt)
                 }
+                Log.i(
+                    LATENCY_LOG_TAG,
+                    "phase=captureStarted phaseMs=${SystemClock.elapsedRealtime() - startRequestedAt} " +
+                        "realtime=${realtimeSession != null} segmented=$segmented",
+                )
                 if (prefs.dictate.skipSilentRecordings.get()) {
                     // Hide the one-time native VAD/session setup behind the user's recording time.
                     scope.launch { SpeechGate.prewarm(appContext) }
@@ -1583,8 +1725,8 @@ object DictateController {
      * True while a cloud transcription is in flight that could still be handed to the on-device model
      * (issue #270): the request is waiting on a network we cannot hurry, and its recording is still here.
      *
-     * The stop button's ordinary tap cancels — and cancelling throws the recording away. This is the same
-     * button, held, doing the opposite: keeping the dictation and finishing it here.
+     * The stop button's ordinary tap gives up on the request and keeps the recording for later (#437). This
+     * is the same button, held, finishing the dictation here and now instead.
      */
     fun canCancelToLocalModel(): Boolean =
         _state.value is UiState.Transcribing && inFlightAudio != null
@@ -1769,6 +1911,8 @@ object DictateController {
         // engine mid-flight.
         adoptHistoryId: Long? = null,
         latencyTrace: BatchLatencyTrace = BatchLatencyTrace(),
+        // A realtime dictation falling back to batch: what the user took over of its preview (#421).
+        handedOver: String = "",
     ) {
         logLatency(latencyTrace, "transcribeEntered")
         val account = if (forceLocal) localTranscriptionAccount() else transcriptionAccount()
@@ -1789,7 +1933,10 @@ object DictateController {
                 return
             }
             scope.launch {
-                recordFailedHistory(appContext, audioFile, account.providerId, historyProviderName, model, historyLanguage, recordedSeconds, historySource)
+                recordFailedHistory(
+                    appContext, audioFile, account.providerId, historyProviderName, model, historyLanguage,
+                    recordedSeconds, historySource, sensitive = isSensitiveDictationField(appContext),
+                )
                 if (audioFile.exists()) audioFile.delete()
             }
         }
@@ -1824,9 +1971,13 @@ object DictateController {
         // this attempt has no row until it writes one, and a rescue in the meantime must not be handed the
         // last dictation's (#358).
         inFlightHistoryId = adoptHistoryId
+        // Nothing for a stop to keep until the job has asked the field (#437).
+        inFlightResend = null
         // Live prompt is consumed by this transcription only (the next recording is normal again).
         val live = livePromptArmed
         livePromptArmed = false
+        val unwinding = unwindingTranscribeJob
+        unwindingTranscribeJob = null
         val coroutineScheduledNanos = SystemClock.elapsedRealtimeNanos()
         transcribeJob = scope.launch {
             var keepAudio = false
@@ -1834,6 +1985,9 @@ object DictateController {
             // The history row written when the audio went out (#358), waiting to become the finished
             // dictation. Null while there is none: history off, a sensitive field, or a replay.
             var pendingHistoryId: Long? = adoptHistoryId
+            // A password or incognito field (#383), asked once below. True until then, so nothing is kept
+            // for a field nobody has asked about.
+            var sensitiveField = true
             // Which engine a failure belongs to (#354). Starts as the configured one and flips when the
             // offline fallback takes over, so an error can name where it actually happened.
             var ranOnDevice = localEngine
@@ -1852,6 +2006,17 @@ object DictateController {
             var convertedFrom: File? = null
             try {
                 logLatency(latencyTrace, "coroutineStarted", coroutineScheduledNanos)
+                // A request that was stopped may still be unwinding its audio work; see [unwindingTranscribeJob].
+                unwinding?.join()
+                // Asked once, before anything leaves the phone, and by the field the dictation is for. A stop
+                // comes later, often from another app (#437), and the history rows below are decided now too.
+                sensitiveField = isSensitiveDictationField(appContext)
+                if (!sensitiveField) {
+                    inFlightResend = RetainedAudio(
+                        audioFile, RetainReason.FAILED, live, recordedSeconds,
+                        historyId = pendingHistoryId ?: replayHistoryId,
+                    )
+                }
                 reconcileActiveLanguage() // correct a stale active language before it's read for the request
                 // Local Silero VAD pass before spending an upload. Two purposes, both skipped for picked
                 // files / resends (gate=false) and while long-form dictation runs its own segment-cutting:
@@ -1914,10 +2079,12 @@ object DictateController {
                 if (replayHistoryId == null && pendingHistoryId == null) {
                     pendingHistoryId = recordFailedHistory(
                         appContext, audioFile, account.providerId, historyProviderName,
-                        model, historyLanguage, recordedSeconds, historySource,
+                        model, historyLanguage, recordedSeconds, historySource, sensitiveField,
                     )
                 }
                 inFlightHistoryId = pendingHistoryId
+                // A stop from here on hands the resend chip this row, so a resend finishes it.
+                inFlightResend = inFlightResend?.copy(historyId = pendingHistoryId ?: replayHistoryId)
                 // Time compression (issue #272): send the speech faster than it was spoken, at unchanged
                 // pitch, so a provider that bills by duration bills less. Whatever the file was before —
                 // the recording or the trimmed copy — is what gets sped up.
@@ -2023,7 +2190,7 @@ object DictateController {
                             proxy = prefs.dictate.dictateProxyConfig(),
                             // Single-call multimodal (issue #130): route audio through chat/completions.
                             useChatAudio = chatAudio,
-                            trustUserCerts = prefs.dictate.trustUserCertificates.get(),
+                            trustUserCerts = account.trustUserCerts,
                             timeoutSeconds = prefs.dictate.requestTimeout.get().toLong(),
                         ).transcribe(
                             request,
@@ -2040,7 +2207,7 @@ object DictateController {
                                 baseUrlOverride = baseUrlOverrideFor(account),
                                 proxy = prefs.dictate.dictateProxyConfig(),
                                 useChatAudio = chatAudio,
-                                trustUserCerts = prefs.dictate.trustUserCertificates.get(),
+                                trustUserCerts = account.trustUserCerts,
                                 timeoutSeconds = prefs.dictate.requestTimeout.get().toLong(),
                             ).transcribe(
                                 request.copy(audioFile = packedFrom!!),
@@ -2106,19 +2273,26 @@ object DictateController {
                     alreadyFormatted = chatAudio,
                     capture = capture,
                     latencyTrace = latencyTrace,
+                    handedOver = handedOver,
                 )
                 logLatency(latencyTrace, "finalizeCompleted", finalizeStartedNanos)
                 outcome = "success"
             } catch (c: CancellationException) {
-                // User aborted via the stop button: discard quietly (state set by cancelTranscription),
-                // never show an error. The cache file is dropped in the finally block — but the row
+                // Stopped or abandoned: never an error here, the state is the canceller's to set. The row
                 // written when the audio was sent (#358) stays, with its own copy, so giving up on a wait
                 // is no longer the same as giving up on the dictation. That was the whole reason nobody
-                // could use the stop button to escape a hanging request.
+                // could use the stop button to escape a hanging request. The stop button also keeps the
+                // cache file for its resend chip (#437), which is why the finally asks before deleting it.
                 outcome = "cancelled"
                 throw c
             } catch (e: DictateApiException) {
                 outcome = "apiError"
+                // Diagnostics (#447): which failure it was. Provider error text never carries the transcript.
+                Log.i(
+                    LATENCY_LOG_TAG,
+                    "phase=apiError kind=${e.kind} http=${e.httpStatus} code=${e.code} " +
+                        "cause=${e.cause?.javaClass?.simpleName} msg=${e.message?.take(160)?.replace('\n', ' ')}",
+                )
                 // Read before anything below touches the state: this block catches the provider call as
                 // well as the live prompt's rewording inside finalizeAndCommit (issue #284).
                 val stage = stageOf(_state.value)
@@ -2128,7 +2302,7 @@ object DictateController {
                 // time (#358) is already saying exactly this — it only ever had to be left alone. Left
                 // ahead of the retain below so the chip is handed the row either of them produced.
                 if (replayHistoryId == null && pendingHistoryId == null) {
-                    pendingHistoryId = recordFailedHistory(appContext, audioFile, account.providerId, historyProviderName, model, historyLanguage, recordedSeconds, historySource)
+                    pendingHistoryId = recordFailedHistory(appContext, audioFile, account.providerId, historyProviderName, model, historyLanguage, recordedSeconds, historySource, sensitiveField)
                 }
                 // Exportable failures (too large / bad format) keep the audio regardless of the resend
                 // pref, so it can be saved instead of lost (issue #144).
@@ -2164,7 +2338,7 @@ object DictateController {
                 val stage = stageOf(_state.value)
                 _pendingPrompts.value = emptyList()
                 if (replayHistoryId == null && pendingHistoryId == null) {
-                    pendingHistoryId = recordFailedHistory(appContext, audioFile, account.providerId, historyProviderName, model, historyLanguage, recordedSeconds, historySource)
+                    pendingHistoryId = recordFailedHistory(appContext, audioFile, account.providerId, historyProviderName, model, historyLanguage, recordedSeconds, historySource, sensitiveField)
                 }
                 keepAudio = retainFailedAudio(
                     audioFile, live, recordedSeconds,
@@ -2178,10 +2352,17 @@ object DictateController {
                 )
             } finally {
                 // The request is over, however it ended: there is nothing left for a held button to rescue,
-                // and no row of this attempt left for a next one to continue (#358).
-                inFlightAudio = null
-                inFlightHistoryId = null
-                if (!keepAudio) audioFile.delete()
+                // no row of this attempt left for a next one to continue (#358), and nothing for a stop to
+                // keep. Only while they are still this request's, though: a cancel clears them itself, and a
+                // request started since then has set them for itself.
+                if (transcribeJob == null || transcribeJob === coroutineContext[Job]) {
+                    inFlightAudio = null
+                    inFlightHistoryId = null
+                    inFlightResend = null
+                }
+                // A recording the resend chip holds is the chip's: a stop handed it over (#437), or this
+                // was a resend of it and it stays offered until a resend succeeds or the user drops it.
+                if (!keepAudio && retained?.file != audioFile) audioFile.delete()
                 // Drop the derived upload copies — trimmed (#232) and/or sped up (#272); the original
                 // audioFile is the one history keeps.
                 if (uploadFile !== audioFile) runCatching { uploadFile.delete() }
@@ -2211,6 +2392,9 @@ object DictateController {
      * realtime path (issue #128): runs live-prompt rewording or the auto-formatting/auto-apply/pending
      * prompt chain (unless [alreadyFormatted]), applies the deterministic mappings, commits, and records
      * stats. [rawText] is the transcript to process; [live] routes it as a live-prompt instruction.
+     *
+     * [handedOver] is what the user took over of a live preview by editing it (issue #421). It is in the
+     * field as they left it, so only the rest of [rawText] is finished and written.
      */
     private suspend fun finalizeAndCommit(
         appContext: Context,
@@ -2221,6 +2405,7 @@ object DictateController {
         finalizeViaComposing: Boolean = false,
         capture: HistoryCapture? = null,
         latencyTrace: BatchLatencyTrace? = null,
+        handedOver: String = "",
     ) {
         swallowedRewording = null // this dictation's own slate (issue #284)
         // The spoken command word (#139): a transcript that opens with the user's trigger is an
@@ -2228,9 +2413,12 @@ object DictateController {
         // instead of tapped. Checked here rather than per path so every route into this function is
         // covered by one rule: batch, realtime (which has usually armed it mid-stream already, and
         // re-reads the same transcript here to take the word off), segmented and the on-device model.
+        // Always the whole transcript, as the stream judged it: a preview that was handed over was shown,
+        // so it never opened with the trigger, whatever the rest of it happens to start with.
         val spokenCommand = commandTrigger().takeIf { it.isNotEmpty() }
             ?.let { CommandTrigger.instructionFor(rawText, it) }
         val isLive = live || spokenCommand != null
+        val text = TranscriptHandover.continuation(handedOver, rawText)
         val finalText = if (isLive) {
             // The spoken transcript is an instruction; send it to GPT (optionally operating on the current
             // selection) and insert the answer instead of the transcript.
@@ -2246,12 +2434,17 @@ object DictateController {
             // after the stop is what UiState.Rewording is for, and the Smartbar already says it.
             _state.value = UiState.Rewording(appContext.getString(R.string.dictate__status_rewording))
             val selection = sink(appContext).selectedText().takeIf { it.isNotEmpty() }
-            requestReword(spokenCommand ?: rawText, selection)
+            requestReword(spokenCommand ?: text, selection)
         } else {
             // Normal dictation: auto-formatting + auto-apply prompts, then the prompts the user queued by
             // tapping the prompt row while recording, in tap order; then commit. [alreadyFormatted] skips
-            // the rewording pass (single-call multimodal #130 already returns finished text).
-            val processed = if (alreadyFormatted) rawText else postProcessTranscript(appContext, rawText)
+            // the rewording pass (single-call multimodal #130 already returns finished text) except for
+            // the automatic snippets, which the single call leaves out.
+            val processed = if (alreadyFormatted) {
+                appendAutoApplySnippets(appContext, text)
+            } else {
+                postProcessTranscript(appContext, text)
+            }
             applyPendingPrompts(appContext, processed)
         }
         // Paragraph splitting (issue #225): break a long *pure* transcript into paragraphs at sentence
@@ -2259,12 +2452,12 @@ object DictateController {
         // multimodal, or an auto-format/prompt pass that actually changed it) — that output already carries
         // its own paragraphing and must not be second-guessed.
         val splitWords = prefs.dictate.paragraphSplitWords.get()
-        val isPureTranscript = !isLive && !alreadyFormatted && finalText == rawText
+        val isPureTranscript = !isLive && !alreadyFormatted && finalText == text
         // Keep the raw transcript for the history when a prompt actually rewrote it (issue #240), so the
         // original wording stays recoverable without re-running (and paying for) the transcription. Only
         // the prompt chain counts: the deterministic steps below (paragraph splitting, custom mappings)
         // would otherwise store a near-identical copy differing in little more than line breaks.
-        val originalForHistory = if (finalText != rawText) rawText else ""
+        val originalForHistory = if (finalText != text) rawText else ""
         val paragraphed = if (isPureTranscript && splitWords > 0) {
             TranscriptParagraphs.split(finalText, splitWords)
         } else {
@@ -2272,30 +2465,55 @@ object DictateController {
         }
         // Deterministic find-and-replace dictionary (issue #129), applied right before insert.
         val outputText = prefs.dictate.customMappings.get().apply(paragraphed)
+        // The whole dictation, for what keeps a record of it — the history, the stats, the re-insert cache —
+        // while the field gets only the part that was not handed over (#421). [text] is the tail of [rawText].
+        val dictated = if (text.length == rawText.length) {
+            outputText
+        } else {
+            TranscriptJoin.join(rawText.dropLast(text.length).trimEnd(), outputText, appContext.transcriptTighteningSymbols())
+        }
+        // The space in front of it, if the field needs one (#443). Kept out of [outputText] on purpose:
+        // the history, the re-insert cache and the clipboard copies hold the dictation, not the seam.
+        val lead: String
         if (finalizeViaComposing) {
             // Realtime (#128): replace the live-streamed preview with the finished (reworded) result via the
             // minimal diff, then honor auto-enter — instead of committing on top of the preview.
             val outSink = sink(appContext)
+            // Edited while it was being finished (#421): what the user saw is theirs, finished or not, so
+            // the finished text has nothing left to replace. Only words that never reached the field are
+            // still to be written, as they were heard.
+            val shownOwn = realtimeShown.toString().removePrefix(dictationLead)
+            val edited = handOverIfEdited(outSink)
+            val written = if (edited) TranscriptHandover.continuation(shownOwn, text) else outputText
+            // A preview already on screen carries the separator decided at its first word; asking the field
+            // now would find our own preview in front of the cursor.
+            lead = when {
+                written.isEmpty() -> ""
+                realtimeShown.isNotEmpty() -> dictationLead
+                else -> leadFor(appContext, written)
+            }
             // Off the main thread for the overlay, like every other accessibility write: this one ends
             // in the same resolve-focus-write-verify round trip (see [writeToSink]).
             val landed = if (outputTarget == OutputTarget.OVERLAY) {
                 withContext(Dispatchers.IO) {
-                    outSink.commitDictationFinal(outputText, realtimeShown.toString())
+                    outSink.commitDictationFinal(lead + written, realtimeShown.toString())
                 }
             } else {
-                outSink.commitDictationFinal(outputText, realtimeShown.toString())
+                outSink.commitDictationFinal(lead + written, realtimeShown.toString())
             }
             realtimeShown.setLength(0)
             realtimeTranscript.setLength(0)
             // This branch never went through commitOutput, so it never saw the insert-failure check
             // either (issue #277) — a swallowed write finished as Idle, i.e. a green check.
             if (reportOverlayInsertFailure(appContext, landed, outputText)) {
-                rememberLastDictation(outputText)
+                rememberLastDictation(appContext, outputText)
                 recordHistory(appContext, outputText, originalForHistory, recordedSeconds, capture, reworded = isLive)
                 discardRetainedAudio()
                 return
             }
-            if (prefs.dictate.autoEnter.get() && outputText.isNotEmpty()) outSink.performEnter()
+            // Not after an edit at the last moment: the user is in the middle of the text, and auto-enter
+            // would send it.
+            if (prefs.dictate.autoEnter.get() && outputText.isNotEmpty() && !edited) outSink.performEnter()
         } else {
             // Safety net (#214): for the floating button, optionally copy every dictation to the system
             // clipboard so nothing is lost if the accessibility insert is silently swallowed (the known
@@ -2307,13 +2525,14 @@ object DictateController {
             ) {
                 copyToSystemClipboard(appContext, outputText)
             }
-            val committed = commitOutput(appContext, outputText)
+            lead = leadFor(appContext, outputText)
+            val committed = commitOutput(appContext, lead + outputText)
             if (committed) latencyTrace?.let { logLatency(it, "outputCommitted") }
             // Floating button (#156): the accessibility insert can be silently swallowed by some app fields
             // (Gemini's Compose box, WebViews). Don't flash a false green check — surface an error, and
             // put the text somewhere the user can actually reach.
             if (!committed && outputTarget == OutputTarget.OVERLAY && outputText.isNotEmpty()) {
-                rememberLastDictation(outputText)
+                rememberLastDictation(appContext, outputText)
                 if (capture?.isReplay != true) {
                     DictateStats.recordDictation(prefs, outputText, recordedSeconds)
                     if (recordedSeconds > 0L) creditAudioSeconds(recordedSeconds)
@@ -2330,13 +2549,14 @@ object DictateController {
             }
         }
         // Re-insert safety net (issue #111) + lifetime stats (issue #142) + history log (issue #140).
-        rememberLastDictation(outputText)
+        rememberLastDictation(appContext, dictated)
+        lastDictationLead = lead
         if (capture?.isReplay != true) {
             countDictationSource(outputTarget)
-            DictateStats.recordDictation(prefs, outputText, recordedSeconds)
+            DictateStats.recordDictation(prefs, dictated, recordedSeconds)
             if (recordedSeconds > 0L) creditAudioSeconds(recordedSeconds)
         }
-        recordHistory(appContext, outputText, originalForHistory, recordedSeconds, capture, reworded = isLive)
+        recordHistory(appContext, dictated, originalForHistory, recordedSeconds, capture, reworded = isLive)
         discardRetainedAudio()
         _afterDictation.value = outputTarget == OutputTarget.IME && outputText.isNotBlank()
         if (reportSwallowedRewording(appContext)) return
@@ -2459,6 +2679,8 @@ object DictateController {
         _interimText.value = ""
         realtimeContext = appContext
         realtimeShown.setLength(0)
+        realtimeShownTranscript = ""
+        realtimeHandedOver = ""
         realtimeTranscript.setLength(0)
         // The floating button always holds the words back, whatever the preference says (#357).
         //
@@ -2488,8 +2710,8 @@ object DictateController {
         // unless the preview is held back (#345), in which case the words are only remembered and the field
         // sees nothing until stop. The stream itself runs identically either way; this is purely what the
         // user is shown, so hiding it costs no speed and removes the word-by-word churn.
-        fun showLive(full: String) {
-            if (realtimeCancelled) return   // a late callback must not re-add text after a cancel
+        suspend fun showLive(full: String) {
+            if (realtimeCancelled) return   // a late callback must not re-add text after a cancel or a finalize
             _interimText.value = full
             realtimeTranscript.setLength(0)
             realtimeTranscript.append(full)
@@ -2527,9 +2749,21 @@ object DictateController {
                 }
             }
             if (realtimeHidden) return
-            runCatching { sink(appContext).setDictationPreview(full, realtimeShown.toString()) }
+            val outSink = sink(appContext)
+            // Text the user has marked mid-dictation is theirs to act on, and a write now would type over
+            // it (#421). Waiting loses nothing: the next update brings the whole transcript again. A
+            // selection from before the first word is the opposite — dictating over it is the point.
+            if (realtimeShown.isNotEmpty() && outSink.selectedText().isNotEmpty()) return
+            handOverIfEdited(outSink)
+            val own = TranscriptHandover.continuation(realtimeHandedOver, full)
+            // The separator is settled before the first word goes in (#443) and then travels with the
+            // preview, so the finalize replaces like with like.
+            if (realtimeShown.isEmpty()) dictationLead = leadFor(appContext, own)
+            val shown = if (own.isEmpty()) "" else dictationLead + own
+            runCatching { outSink.setDictationPreview(shown, realtimeShown.toString()) }
             realtimeShown.setLength(0)
-            realtimeShown.append(full)
+            realtimeShown.append(shown)
+            realtimeShownTranscript = full
         }
         // Read once for the whole session rather than per piece, so a subtype switch mid-dictation cannot
         // leave one transcript joined by two different conventions.
@@ -2665,6 +2899,16 @@ object DictateController {
                 // the clock is restarted by every piece of text and only silence ends it early.
                 val tailComplete = awaitRealtimeTail(closed)
                 runCatching { session?.cancel() }
+                // From here the transcript is read, and nothing that arrives later may touch the field.
+                // `close(1000)` keeps frames coming until the server's own close, and a final that lands
+                // after the commit used to go through showLive with an empty realtimeShown, typing the
+                // whole dictation in a second time: on a slow connection the provider's ordinary last
+                // message is enough, once it misses the silence window (#172). The yield first lets
+                // whatever is already queued on the main thread land: a session that closed before the
+                // wait began left `closed.await()` with nothing to suspend for, and its last segment can
+                // still be waiting behind this coroutine.
+                yield()
+                realtimeCancelled = true
                 // The transcript is everything the stream produced (finals + last partial), which with a
                 // hidden preview (#345) is the only place it exists; fall back to the finalized-segments
                 // buffer only if the stream produced nothing at all.
@@ -2673,14 +2917,22 @@ object DictateController {
                 // A stream still delivering when the tail cap ran out is missing its end, and half a
                 // dictation is worse than the wait: the recording is complete, so transcribe that instead.
                 if (realtimeFailed || !tailComplete || transcript.isEmpty()) {
+                    Log.i(
+                        LATENCY_LOG_TAG,
+                        "phase=realtimeFallback reason=" + when {
+                            realtimeFailed -> "streamFailed"
+                            !tailComplete -> "tailCap"
+                            else -> "emptyTranscript"
+                        },
+                    )
                     // Drop the live provisional text; the batch path commits fresh from the WAV. With the
                     // preview hidden there is nothing in the field to take back, and realtimeShown says so.
-                    runCatching { sink(appContext).clearDictationPreview(realtimeShown.toString()) }
-                    realtimeShown.setLength(0)
+                    // What the user has edited stays, and the batch text leaves out what they took (#421).
+                    val handedOver = withdrawPreview(appContext)
                     realtimeTranscript.setLength(0)
                     if (wavFile != null && wavFile.exists() && wavFile.length() > 0L) {
                         livePromptArmed = live
-                        transcribe(context, wavFile, recordedSeconds, gate = false)
+                        transcribe(context, wavFile, recordedSeconds, gate = false, handedOver = handedOver)
                     } else {
                         _state.value = UiState.Error(appContext.getString(R.string.dictate__error_no_audio))
                     }
@@ -2700,18 +2952,20 @@ object DictateController {
                     language = prefs.dictate.activeInputLanguage.get().takeIf { it != DictateLanguages.DETECT } ?: "",
                     source = DictateHistorySource.REALTIME,
                 )
-                finalizeAndCommit(appContext, transcript, recordedSeconds, live, alreadyFormatted = false, finalizeViaComposing = true, capture = rtCapture)
+                finalizeAndCommit(
+                    appContext, transcript, recordedSeconds, live, alreadyFormatted = false,
+                    finalizeViaComposing = true, capture = rtCapture, handedOver = realtimeHandedOver,
+                )
                 wavFile?.delete()
             } catch (c: CancellationException) {
                 throw c
             } catch (t: Throwable) {
                 _interimText.value = ""
-                runCatching { sink(appContext).clearDictationPreview(realtimeShown.toString()) }
-                realtimeShown.setLength(0)
+                val handedOver = withdrawPreview(appContext)
                 realtimeTranscript.setLength(0)
                 if (wavFile != null && wavFile.exists() && wavFile.length() > 0L) {
                     livePromptArmed = live
-                    transcribe(context, wavFile, recordedSeconds, gate = false)
+                    transcribe(context, wavFile, recordedSeconds, gate = false, handedOver = handedOver)
                 } else {
                     _state.value = UiState.Error(appContext.getString(R.string.dictate__error_unknown))
                 }
@@ -2746,6 +3000,8 @@ object DictateController {
         // Keep + merge the segment audio only when the history feature would actually store it.
         segmentKeepAudio = prefs.dictate.historyEnabled.get() && prefs.dictate.historyAudioRetention.get()
         realtimeShown.setLength(0)
+        realtimeShownTranscript = ""
+        realtimeHandedOver = ""
         realtimeTranscript.setLength(0)
         // Segmented dictation shows its assembled text as it goes; the hidden-preview mode belongs to
         // realtime alone, and the two are mutually exclusive (see [isSegmentedMode]).
@@ -2758,6 +3014,7 @@ object DictateController {
     }
 
     private fun resetSegmentedState() {
+        segmentGeneration++
         segmentedActive = false
         segmentNextIndex = 0
         segmentCommitIndex = 0
@@ -2783,6 +3040,7 @@ object DictateController {
     private fun flushSegment(context: Context, splitterAlreadyReset: Boolean) {
         if (!segmentedActive || _state.value !is UiState.Recording) return
         val appContext = context.applicationContext
+        val generation = segmentGeneration
         // Manual cuts reset the analyzer at call time so audio queued after this point belongs to the next
         // turn. Automatic cuts already reset atomically inside LiveSpeechSplitter before invoking us.
         if (!splitterAlreadyReset) segmentVad?.notifyCut()
@@ -2799,11 +3057,11 @@ object DictateController {
             } ?: return@launch
             val (idx, wav) = assigned
             if (wav != null && wav.exists() && wav.length() > 0L) {
-                launchSegmentTranscription(appContext, idx, wav)
+                launchSegmentTranscription(appContext, idx, wav, generation)
             } else {
                 // Nothing captured since the last cut (e.g. a double tap): keep the index sequence
                 // contiguous so the ordered drain never stalls.
-                onSegmentResult(appContext, idx, "")
+                onSegmentResult(appContext, idx, "", generation)
             }
         }
     }
@@ -2839,6 +3097,7 @@ object DictateController {
         segmentRecordedSeconds = recordedSecondsOf(_state.value)
         _segmentedRecording.value = false
         setTranscribing()
+        val generation = segmentGeneration
         scope.launch {
             val assigned = segmentMutex.withLock {
                 val i = segmentNextIndex++
@@ -2859,24 +3118,52 @@ object DictateController {
             }
             val (idx, wav) = assigned
             if (!discardFinal && wav != null && wav.exists() && wav.length() > 0L) {
-                launchSegmentTranscription(appContext, idx, wav)
+                launchSegmentTranscription(appContext, idx, wav, generation)
             } else {
-                onSegmentResult(appContext, idx, "")
+                onSegmentResult(appContext, idx, "", generation)
             }
         }
     }
 
-    private fun launchSegmentTranscription(appContext: Context, idx: Int, wav: File) {
+    /**
+     * The stop button while a stopped long-form dictation still waits for its last segments (#172). It used
+     * to cancel nothing: the state went to Idle, the segment jobs ran on and committed their text anyway,
+     * and one still running when the next recording started wrote into that one.
+     *
+     * Now it keeps what has already landed in the field, gives up on everything still pending, and finishes
+     * with that through the normal end (formatting, prompts, history) — the promise the trash button makes
+     * during the recording (#183). A segment that finished out of order is dropped with the rest: it sits
+     * behind a gap that is never going to close.
+     */
+    private fun abandonPendingSegments(appContext: Context) {
+        scope.launch {
+            segmentMutex.withLock {
+                segmentGeneration++ // whatever is still in flight now belongs to no dictation
+                segmentJobs.forEach { it.cancel() }
+                segmentJobs.clear()
+                segmentResults.clear()
+                segmentAudioFiles.keys.filter { it >= segmentCommitIndex }.forEach { idx ->
+                    segmentAudioFiles.remove(idx)?.let { runCatching { it.delete() } }
+                }
+                segmentInFlightCount = 0
+                _segmentsInFlight.value = 0
+                segmentStopped = true
+            }
+            finalizeSegmentedEnd(appContext)
+        }
+    }
+
+    private fun launchSegmentTranscription(appContext: Context, idx: Int, wav: File, generation: Int) {
         val job = scope.launch {
-            // Best-effort cross-segment continuity: bias the recognizer with what's committed so far.
-            val continuity = realtimeShown.toString()
+            // Best-effort cross-segment continuity: bias the recognizer with what's been said so far.
+            val continuity = realtimeTranscript.toString()
             // One retry before giving up; a still-failed segment leaves a gap (no placeholder), but its
             // audio is preserved in the merged history WAV so nothing is truly lost.
             val text = transcribeSegmentRaw(appContext, wav, continuity)
                 ?: transcribeSegmentRaw(appContext, wav, continuity)
             // Keep the WAV when it will be merged into the history audio; otherwise drop it now.
             if (!segmentKeepAudio) withContext(Dispatchers.IO) { runCatching { wav.delete() } }
-            onSegmentResult(appContext, idx, text ?: "")
+            onSegmentResult(appContext, idx, text ?: "", generation)
         }
         segmentJobs.add(job)
         job.invokeOnCompletion { segmentJobs.remove(job) }
@@ -2886,19 +3173,30 @@ object DictateController {
      * Buffers a finished segment's raw text and drains the ordered commit queue: appends every now-in-order
      * segment to the field's live preview. When the last segment lands after a stop, runs the end finalize.
      */
-    private suspend fun onSegmentResult(appContext: Context, idx: Int, text: String) {
+    private suspend fun onSegmentResult(appContext: Context, idx: Int, text: String, generation: Int) {
         val tightening = appContext.transcriptTighteningSymbols()
         val shouldFinish = segmentMutex.withLock {
+            if (generation != segmentGeneration) return@withLock false
             segmentResults[idx] = text
             while (segmentResults.containsKey(segmentCommitIndex)) {
                 val raw = segmentResults.remove(segmentCommitIndex)!!.trim()
                 segmentCommitIndex++
                 if (raw.isNotEmpty()) {
+                    // The whole dictation, whatever happens to it in the field: the finalize records it.
+                    TranscriptJoin.appendPiece(realtimeTranscript, raw, tightening)
+                    val outSink = sink(appContext)
+                    // Segments never revise each other, so edited ones simply stay the user's, and the
+                    // preview starts afresh at the cursor with this one (#421).
+                    handOverIfEdited(outSink)
+                    val own = TranscriptHandover.continuation(realtimeHandedOver, realtimeTranscript.toString())
                     val prev = realtimeShown.toString()
-                    val full = TranscriptJoin.join(prev, raw, tightening)
-                    runCatching { sink(appContext).setDictationPreview(full, prev) }
+                    // The first segment is the one that meets the field's own text (#443).
+                    if (prev.isEmpty()) dictationLead = leadFor(appContext, own)
+                    val full = dictationLead + own
+                    runCatching { outSink.setDictationPreview(full, prev) }
                     realtimeShown.setLength(0)
                     realtimeShown.append(full)
+                    realtimeShownTranscript = realtimeTranscript.toString()
                 }
             }
             segmentInFlightCount--
@@ -2916,7 +3214,8 @@ object DictateController {
         val account = transcriptionAccount()
         val preset = presetFor(account)
         val model = transcriptionModelFor(appContext, account, preset)
-        val assembled = realtimeShown.toString().trim()
+        val assembled = realtimeTranscript.toString().trim()
+        val handedOver = realtimeHandedOver
         val recordedSeconds = segmentRecordedSeconds
         // Snapshot the kept segment files (in cut order) before resetting; merge them into one WAV so the
         // whole dictation has a single retained-audio file in the history (issue #170 / #140 reuse).
@@ -2946,7 +3245,7 @@ object DictateController {
         )
         finalizeAndCommit(
             appContext, assembled, recordedSeconds, live = false,
-            alreadyFormatted = false, finalizeViaComposing = true, capture = capture,
+            alreadyFormatted = false, finalizeViaComposing = true, capture = capture, handedOver = handedOver,
         )
         mergedWav?.delete() // history already copied it during finalize
     }
@@ -3012,7 +3311,7 @@ object DictateController {
                         baseUrlOverride = baseUrlOverrideFor(account),
                         proxy = prefs.dictate.dictateProxyConfig(),
                         useChatAudio = false,
-                        trustUserCerts = prefs.dictate.trustUserCertificates.get(),
+                        trustUserCerts = account.trustUserCerts,
                         timeoutSeconds = prefs.dictate.requestTimeout.get().toLong(),
                     ).transcribe(request)
                 } catch (e: DictateApiException) {
@@ -3024,7 +3323,7 @@ object DictateController {
                             baseUrlOverride = baseUrlOverrideFor(account),
                             proxy = prefs.dictate.dictateProxyConfig(),
                             useChatAudio = false,
-                            trustUserCerts = prefs.dictate.trustUserCertificates.get(),
+                            trustUserCerts = account.trustUserCerts,
                             timeoutSeconds = prefs.dictate.requestTimeout.get().toLong(),
                         ).transcribe(request.copy(audioFile = toUpload))
                     } else {
@@ -3094,6 +3393,60 @@ object DictateController {
             sink.performEnter()
         }
         return committed
+    }
+
+    /**
+     * Gives the live preview to the user if they have edited it (issue #421), and says whether it did.
+     *
+     * [realtimeShown] is what the dictation believes sits in front of the cursor, and every write is a
+     * diff against it. Once the user has deleted a word somebody else said, or cleared the field, a write
+     * against that belief deletes their own words and types the removed ones back in. So the field as it
+     * stands becomes the baseline instead: everything the user saw is theirs ([realtimeHandedOver]) and
+     * never revised again, and the dictation goes on at the cursor with what is said after it.
+     *
+     * Cutting off the provider's revisions at that point is the price, and the right one: a revision of
+     * text the user has already corrected by hand could only undo the correction.
+     */
+    private fun handOverIfEdited(sink: DictationSink): Boolean {
+        if (realtimeShown.isEmpty()) return false
+        if (runCatching { sink.holdsPreview(realtimeShown.toString()) }.getOrDefault(true)) return false
+        realtimeHandedOver = realtimeShownTranscript
+        realtimeShown.setLength(0)
+        return true
+    }
+
+    /**
+     * Takes the live preview back out of the field for a batch transcription to replace (the stream failed,
+     * or ran out of time), and returns what the user had taken over of it (#421). That part stays in the
+     * field as they left it, so the batch text has to leave it out. An edit since the last update counts.
+     */
+    private fun withdrawPreview(appContext: Context): String {
+        val outSink = sink(appContext)
+        handOverIfEdited(outSink)
+        runCatching { outSink.clearDictationPreview(realtimeShown.toString()) }
+        realtimeShown.setLength(0)
+        return realtimeHandedOver
+    }
+
+    /**
+     * The separator a dictation of [text] needs against what already sits in front of the cursor: a space,
+     * or nothing (issue #443). Two dictations in a row used to be glued — `1, 2, 3.Testing` — on the
+     * keyboard as much as over the floating button, because the keyboard only ever spaced a seam it made
+     * itself, after a picked suggestion. The rule is [TranscriptJoin.separatorBefore]; this only asks the
+     * field, off the main thread for the overlay like every other accessibility call.
+     *
+     * Nothing for the system voice input: the calling app joins our result into its own field.
+     */
+    private suspend fun leadFor(appContext: Context, text: String): String {
+        if (text.isEmpty() || outputTarget == OutputTarget.RECOGNITION_SERVICE) return ""
+        val sink = sink(appContext)
+        // One character is all the rule looks at.
+        val before = if (outputTarget == OutputTarget.OVERLAY) {
+            withContext(Dispatchers.IO) { sink.textBeforeCursor(1) }
+        } else {
+            sink.textBeforeCursor(1)
+        }
+        return appContext.transcriptSeparatorBefore(before, text)
     }
 
     /**
@@ -3168,8 +3521,13 @@ object DictateController {
      * prompt) and re-credits the recorded seconds towards the nudges. No-op unless we are idle/showing
      * one of the resend chips and a usable file exists. Interrupted audio is claimed (its persisted
      * marker cleared) up front, so a crash mid-transcription cannot re-offer the same recording.
+     *
+     * [target] is the surface the tap came from: the floating button passes OVERLAY, the voice-input view
+     * RECOGNITION_SERVICE, and the keyboard's chips pass nothing and claim the keyboard (#409). Inheriting
+     * the latch was wrong as soon as the floating button could resend a dictation the keyboard had started
+     * (#437): its text went to the keyboard's editor, which was not on screen.
      */
-    fun sendRetainedAudio(context: Context) {
+    fun sendRetainedAudio(context: Context, target: OutputTarget? = null) {
         if (_state.value !is UiState.Error && _state.value !is UiState.Interrupted &&
             _state.value !is UiState.Idle
         ) return
@@ -3179,6 +3537,7 @@ object DictateController {
             _state.value = UiState.Idle
             return
         }
+        if (target != null) outputTarget = target else claimKeyboardOutput()
         if (r.reason == RetainReason.INTERRUPTED) scope.launch { clearInterruptedAudioPref() }
         livePromptArmed = r.wasLive
         // A user-initiated resend of already-captured audio is sent as-is (no silence gate — issue #93).
@@ -3496,9 +3855,13 @@ object DictateController {
      * can recover it after the field is cleared (rotation, context switch, host app refreshing its
      * state). No-op when the feature is off or the text is blank. Held until the next successful
      * dictation overwrites it; stored to a pref so it survives the IME process being killed.
+     *
+     * Not for a password or incognito field, for the history's reason (#383): the pref is a file on disk,
+     * and it goes into the platform backup with the rest of the settings.
      */
-    private suspend fun rememberLastDictation(text: String) {
+    private suspend fun rememberLastDictation(appContext: Context, text: String) {
         if (!prefs.dictate.rememberLastDictation.get() || text.isBlank()) return
+        if (isSensitiveDictationField(appContext)) return
         prefs.dictate.lastDictation.set(text)
     }
 
@@ -3546,7 +3909,12 @@ object DictateController {
         val text = prefs.dictate.lastDictation.get()
         if (text.isEmpty()) return false
         outputTarget = OutputTarget.OVERLAY
-        if (!sink(context).deleteLastText(text)) return false
+        // The space put in front of it (#443) goes with it; the bare text is the fallback for a field the
+        // user has edited in between, and for a dictation from before the process last restarted.
+        val sink = sink(context)
+        val lead = lastDictationLead
+        if (!(lead.isNotEmpty() && sink.deleteLastText(lead + text)) && !sink.deleteLastText(text)) return false
+        lastDictationLead = ""
         scope.launch { prefs.dictate.lastDictation.set("") }
         clearError()
         return true
@@ -3631,11 +3999,14 @@ object DictateController {
         language: String,
         recordedSeconds: Long,
         source: String,
+        // [isSensitiveDictationField], asked by the caller: the request asks it once for everything it
+        // decides, and for the floating button every ask is a round trip to another app.
+        sensitive: Boolean,
     ): Long? {
         // Gated only on the master history switch: a failed dictation has no text, so its audio is the ONLY
         // recovery path — we keep it even when "keep audio" (which governs successful dictations) is off.
         if (!prefs.dictate.historyEnabled.get()) return null
-        if (isSensitiveDictationField(appContext)) return null
+        if (sensitive) return null
         if (!audioFile.exists() || audioFile.length() == 0L) return null
         return DictateHistoryStore.record(
             context = appContext,
@@ -3672,16 +4043,24 @@ object DictateController {
     }
 
     /**
-     * True when the active in-keyboard field is a password field or in incognito mode, so a dictation into
-     * it must not be logged. Only meaningful for the IME target — the floating button injects into
-     * arbitrary apps via accessibility with no reliable field-sensitivity signal, so it is never gated here.
+     * True when the dictation is going into a password field or an incognito one, so it must not be
+     * logged or kept for re-insert.
+     *
+     * Every path is asked, because the privacy policy promises it of every path (#383). Until then only
+     * the keyboard was; the floating button was assumed to have no signal, though the accessibility node
+     * says `isPassword`. The voice IME passes its field's answer in [startRecognition]. An app asking
+     * Android's speech recognition says nothing about what the words are for, so that request is logged.
      */
-    private fun isSensitiveDictationField(context: Context): Boolean {
-        if (outputTarget != OutputTarget.IME) return false
-        return runCatching {
+    private suspend fun isSensitiveDictationField(context: Context): Boolean = when (outputTarget) {
+        OutputTarget.IME -> runCatching {
             val state = context.keyboardManager().value.activeState
             state.isIncognitoMode || state.keyVariation == KeyVariation.PASSWORD
         }.getOrDefault(false)
+        // Off the main thread like every other accessibility round trip (see [writeToSink]).
+        OutputTarget.OVERLAY -> withContext(Dispatchers.IO) {
+            runCatching { DictateAccessibilityService.focusedFieldIsPassword() }.getOrDefault(false)
+        }
+        OutputTarget.RECOGNITION_SERVICE -> recognitionFieldSensitive
     }
 
     /**
@@ -4164,40 +4543,65 @@ object DictateController {
             }
         }
 
-        // 2) Auto-apply prompts, in POS order; each operates on the running text if it needs input.
+        // 2) Auto-apply prompts, in POS order, each on the running text whatever its stored "requires
+        // selection" says (see promptRequiresSelection). A snippet is no instruction: it is appended, as one
+        // tapped while recording is, with the space two dictations get between them, and the next prompt
+        // sees it as part of the text.
         val autoApply = withContext(Dispatchers.IO) {
             promptsDb(context).getAll().filter { it.autoApply }
         }
         for (p in autoApply) {
             val instruction = p.prompt.orEmpty()
             if (instruction.isBlank()) continue
+            val snippet = p.snippetBody()
+            if (snippet != null) {
+                text += context.transcriptSeparatorBefore(text, snippet) + snippet
+                continue
+            }
             _state.value = UiState.Rewording(p.name ?: context.getString(R.string.dictate__status_rewording))
             text = rewordOrKeep(text) {
-                requestReword(instruction, if (p.requiresSelection) text else null, p.reasoningEffort, p.reasoningEffortCustom)
+                requestReword(instruction, text, p.reasoningEffort, p.reasoningEffortCustom)
             }
         }
         return text
     }
 
     /**
+     * The automatic snippets, appended in order to a transcript the single call (#130) already finished.
+     * That call takes the automatic prompts as instructions, and a snippet is none, so it is left out there
+     * ([buildChatAudioInstruction]) and added here — what [postProcessTranscript] does on the two-call path.
+     */
+    private suspend fun appendAutoApplySnippets(context: Context, text: String): String {
+        if (!prefs.dictate.rewordingEnabled.get() || text.isBlank()) return text
+        val snippets = withContext(Dispatchers.IO) {
+            promptsDb(context).getAll().filter { it.autoApply }.mapNotNull { it.snippetBody() }
+        }
+        return snippets.fold(text) { acc, snippet -> acc + context.transcriptSeparatorBefore(acc, snippet) + snippet }
+    }
+
+    /**
      * Applies the prompts the user queued by tapping the always-on prompt row while recording (ROW
      * layout), in tap order, to the finished [text]. Each step is best-effort (a failing prompt keeps
-     * the text so far). `[snippet]` prompts are appended literally; everything else runs through the
+     * the text so far). `[snippet]` prompts are appended as written, behind a space where two dictations
+     * would get one ([TranscriptJoin.separatorBefore]); everything else runs through the
      * rewording model (operating on the running text when the prompt requires a selection). Clears the
      * queue (so the highlights disappear) regardless of outcome.
      */
     private suspend fun applyPendingPrompts(context: Context, text: String): String {
         val queued = _pendingPrompts.value
         _pendingPrompts.value = emptyList()
-        if (queued.isEmpty()) return text
+        // Nothing left to rework: the user took the whole live preview over and said nothing after (#421).
+        if (queued.isEmpty() || text.isBlank()) return text
         if (rewordingApiKey().isBlank()) return text
         var result = text
         for (p in queued) {
             val raw = p.prompt.orEmpty()
             if (raw.isBlank()) continue
-            // Snippet shortcut: text wrapped in [...] is appended literally (no network call).
-            if (raw.length >= 2 && raw.startsWith("[") && raw.endsWith("]")) {
-                result += raw.substring(1, raw.length - 1)
+            // Snippet shortcut: text wrapped in [...] is appended literally (no network call), with the
+            // space two dictations get between them.
+            val snippet = p.snippetBody()
+            if (snippet != null) {
+                result += context.transcriptSeparatorBefore(result, snippet) + snippet
                 continue
             }
             _state.value = UiState.Rewording(p.name ?: context.getString(R.string.dictate__status_rewording))
@@ -4214,31 +4618,36 @@ object DictateController {
      * the trimmed model output.
      */
     /**
-     * Wake-on-demand for a self-hosted rewording backend (issue #189).
+     * Wake-on-demand for a self-hosted backend (issue #189).
      *
      * The self-hosting shape this exists for: a small always-on box in front of a GPU machine that sleeps
      * between jobs and is woken by the first packet that reaches it. Waking takes tens of seconds, and
      * since the app only ever spoke to the server when it had something to send, that wait landed on the
      * request the user was already waiting for — or timed out.
      *
-     * So the moment a rewording is *known to be coming*, an empty `/models` goes out: free, side-effect
+     * So the moment a server is *known to be needed*, an empty `/models` goes out: free, side-effect
      * free, and every OpenAI-compatible server answers it. From there the machine has the whole dictation
      * to boot in. It is fire-and-forget by design — a failure is exactly the case this is for, and nothing
      * about it may reach the user or hold up a recording.
      *
-     * Deliberately not fired for transcriptions: the reporter runs a cloud STT in front of a local GPU,
-     * and waking that GPU for every dictation would defeat the point of letting it sleep.
+     * The switch belongs to each account, and each account is only woken for its own job: the rewording
+     * server when a rewording is certain, the transcription server when a recording starts. That keeps
+     * the reporter's shape intact — a cloud STT in front of a local GPU leaves the GPU asleep through
+     * dictations that end without a rewording, since the cloud account has no switch to turn on — while
+     * a self-hosted transcription server that sleeps between jobs (or unloads its model when idle) gets
+     * the same head start. One account doing both jobs is woken once.
      */
-    private fun warmUpRewordingServer() {
-        val account = rewordingAccount()
+    private fun warmUpRewordingServer() = warmUp(rewordingAccount(), apiKey = rewordingApiKey())
+
+    private fun warmUp(account: ProviderAccount, apiKey: String = account.apiKey) {
         if (!account.customWarmUp) return
+        val preset = presetFor(account)
+        val baseUrl = baseUrlOverrideFor(account)
+        val key = baseUrl ?: account.providerId
         val now = SystemClock.elapsedRealtime()
         // Once a minute is plenty: the machine is either coming up already or it is up.
-        if (now - lastWarmUpAtMs in 0 until WARM_UP_THROTTLE_MS) return
-        lastWarmUpAtMs = now
-        val preset = presetFor(account)
-        val apiKey = account.apiKey.ifBlank { transcriptionAccount().apiKey }
-        val baseUrl = baseUrlOverrideFor(account)
+        if (now - (lastWarmUpAtMs[key] ?: 0L) in 0 until WARM_UP_THROTTLE_MS) return
+        lastWarmUpAtMs[key] = now
         scope.launch(Dispatchers.IO) {
             runCatching {
                 // Deliberately not on the user's request timeout (#337): this request exists to make
@@ -4248,7 +4657,7 @@ object DictateController {
                     preset, apiKey,
                     baseUrlOverride = baseUrl,
                     proxy = prefs.dictate.dictateProxyConfig(),
-                    trustUserCerts = prefs.dictate.trustUserCertificates.get(),
+                    trustUserCerts = account.trustUserCerts,
                 ).listModels()
             }
         }
@@ -4257,12 +4666,13 @@ object DictateController {
     /**
      * Whether this dictation is bound to end in a rewording, which is what makes waking the server at the
      * start of the recording worthwhile rather than presumptuous: auto-formatting or an auto-apply prompt
-     * means the chain runs on its own once the transcript lands. Read from the cached prompt list, so this
-     * costs nothing on the recording path.
+     * means the chain runs on its own once the transcript lands. An automatic snippet does not count: it is
+     * appended without a request. Read from the cached prompt list, so this costs nothing on the recording
+     * path.
      */
     private fun rewordingWillFollow(): Boolean =
         prefs.dictate.rewordingEnabled.get() &&
-            (prefs.dictate.autoFormattingEnabled.get() || _prompts.value.any { it.autoApply })
+            (prefs.dictate.autoFormattingEnabled.get() || _prompts.value.any { it.autoApply && it.snippetBody() == null })
 
     private suspend fun requestReword(
         instruction: String,
@@ -4300,7 +4710,7 @@ object DictateController {
             preset, apiKey,
             baseUrlOverride = baseUrlOverrideFor(account),
             proxy = prefs.dictate.dictateProxyConfig(),
-            trustUserCerts = prefs.dictate.trustUserCertificates.get(),
+            trustUserCerts = account.trustUserCerts,
             timeoutSeconds = prefs.dictate.requestTimeout.get().toLong(),
         )
         // Reasoning effort for reasoning models (issue #141); a per-prompt override wins over the global
@@ -4386,8 +4796,10 @@ object DictateController {
             if (prefs.dictate.autoFormattingEnabled.get()) {
                 parts.add(DictatePromptDefaults.AUTO_FORMATTING_PROMPT)
             }
+            // Snippets stay out: they are no instruction, and [appendAutoApplySnippets] adds them to the
+            // finished text afterwards.
             val autoApply = withContext(Dispatchers.IO) {
-                promptsDb(context).getAll().filter { it.autoApply }
+                promptsDb(context).getAll().filter { it.autoApply && it.snippetBody() == null }
             }
             autoApply.forEach { p -> p.prompt?.takeIf { it.isNotBlank() }?.let { parts.add(it) } }
         }

@@ -11,6 +11,9 @@
 package dev.patrickgold.florisboard.dictate
 
 import android.content.Context
+import dev.patrickgold.florisboard.dictate.field.SEAM_FOLLOWING_DEFAULT
+import dev.patrickgold.florisboard.dictate.field.SEAM_PRECEDING_DEFAULT
+import dev.patrickgold.florisboard.dictate.field.seamSeparator
 import dev.patrickgold.florisboard.nlpManager
 
 /**
@@ -65,6 +68,21 @@ object TranscriptJoin {
         return out.append(text)
     }
 
+    /** The phantom space's default marks, see [seamSeparator] (moved to `:lib:dictate-core` for the watch). */
+    const val DEFAULT_SEAM_PRECEDING = SEAM_PRECEDING_DEFAULT
+    const val DEFAULT_SEAM_FOLLOWING = SEAM_FOLLOWING_DEFAULT
+
+    /**
+     * The separator a dictation needs in front of it to sit next to [textBefore], the text already in the
+     * field up to the cursor: a single space, or nothing. The rule is [seamSeparator]'s.
+     */
+    fun separatorBefore(
+        textBefore: String?,
+        piece: String,
+        precedingSymbols: String = DEFAULT_SEAM_PRECEDING,
+        followingSymbols: String = DEFAULT_SEAM_FOLLOWING,
+    ): String = seamSeparator(textBefore, piece, precedingSymbols, followingSymbols)
+
     /** [appendPiece] for the callers that hold their head as a plain string. */
     fun join(
         head: String,
@@ -116,3 +134,20 @@ internal fun Context.transcriptTighteningSymbols(): String = runCatching {
     val nlp = nlpManager()
     if (nlp.isInitialized()) nlp.value.getActivePunctuationRule().symbolsTighteningSpace else null
 }.getOrNull() ?: TranscriptJoin.DEFAULT_TIGHTENING_SYMBOLS
+
+/**
+ * [TranscriptJoin.separatorBefore] with the active punctuation rule's phantom-space marks, on the same
+ * terms as [transcriptTighteningSymbols]: the keyboard's rule when it is already up, the default otherwise.
+ */
+internal fun Context.transcriptSeparatorBefore(textBefore: String?, piece: String): String {
+    val rule = runCatching {
+        val nlp = nlpManager()
+        if (nlp.isInitialized()) nlp.value.getActivePunctuationRule() else null
+    }.getOrNull()
+    return TranscriptJoin.separatorBefore(
+        textBefore = textBefore,
+        piece = piece,
+        precedingSymbols = rule?.symbolsPrecedingPhantomSpace ?: TranscriptJoin.DEFAULT_SEAM_PRECEDING,
+        followingSymbols = rule?.symbolsFollowingPhantomSpace ?: TranscriptJoin.DEFAULT_SEAM_FOLLOWING,
+    )
+}

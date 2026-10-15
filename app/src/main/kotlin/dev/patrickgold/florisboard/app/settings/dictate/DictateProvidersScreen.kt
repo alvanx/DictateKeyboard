@@ -772,6 +772,8 @@ internal fun ProviderEditorDialog(
     var customRealtime by remember { mutableStateOf(account.customRealtime) }
     // Wake-on-demand (#189): whether this endpoint sits in front of a machine that sleeps between jobs.
     var customWarmUp by remember { mutableStateOf(account.customWarmUp) }
+    // User-installed CAs, for this endpoint alone (#383).
+    var trustUserCerts by remember { mutableStateOf(account.trustUserCerts) }
     var pickerKind by remember { mutableStateOf<ModelKind?>(null) }
 
     // Effective preset to drive the model picker / connection test. Custom endpoints get a base-URL-only
@@ -840,6 +842,7 @@ internal fun ProviderEditorDialog(
                     customBaseUrl = baseUrl.trim(),
                     customRealtime = customRealtime,
                     customWarmUp = customWarmUp,
+                    trustUserCerts = trustUserCerts,
                     transcriptionModel = transcriptionModel.trim(),
                     chatModel = chatModel.trim(),
                     realtimeModel = realtimeModel.trim(),
@@ -954,6 +957,18 @@ internal fun ProviderEditorDialog(
                     ),
                     keyboardType = KeyboardType.Uri,
                 )
+                // An http:// address is allowed on purpose, for a server on the user's own network (#136).
+                // It sends the key and the recording as plain text, which nothing else on screen says,
+                // and the same address used on someone else's Wi-Fi may answer from someone else's
+                // machine (#383).
+                if (baseUrl.trim().startsWith("http://", ignoreCase = true)) {
+                    Text(
+                        text = stringRes(R.string.dictate__base_url_cleartext_warning),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.error,
+                        modifier = Modifier.padding(top = 4.dp),
+                    )
+                }
             }
             EditorField(
                 label = stringRes(R.string.dictate__api_key_title),
@@ -972,12 +987,14 @@ internal fun ProviderEditorDialog(
                 apiKey.trim(),
                 transcriptionModel.trim(),
                 transcriptionViaChat,
+                trustUserCerts,
             ) {
                 ProviderCheckSection(
                     preset = effectivePreset,
                     apiKey = apiKey,
                     transcriptionModel = transcriptionModel,
                     transcriptionViaChat = transcriptionViaChat,
+                    trustUserCerts = trustUserCerts,
                     showTranscription = showTranscription,
                 )
             }
@@ -1062,33 +1079,8 @@ internal fun ProviderEditorDialog(
                         ?: stringRes(R.string.dictate__model_placeholder),
                     onBrowse = { pickerKind = ModelKind.CHAT },
                 )
-                // Wake-on-demand (#189): a GPU box that sleeps between jobs only starts waking when
-                // something reaches it, so the first rewording otherwise pays for the whole boot. Offered
-                // only for endpoints of the user's own — nowhere else is there a machine to wake.
-                if (isCustom) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { customWarmUp = !customWarmUp }
-                            .padding(top = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Column(modifier = Modifier.weight(1f).padding(end = 8.dp)) {
-                            Text(
-                                text = stringRes(R.string.dictate__providers_custom_warm_up),
-                                style = MaterialTheme.typography.bodyLarge,
-                            )
-                            Text(
-                                text = stringRes(R.string.dictate__providers_custom_warm_up_summary),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                        Switch(checked = customWarmUp, onCheckedChange = { customWarmUp = it })
-                    }
-                }
             }
-            // Single-call multimodal (issue #130): kept at the bottom; when on, this one model transcribes
+            // Single-call multimodal (issue #130): kept below the models; when on, this one model transcribes
             // and formats in a single request and the rewording field above is folded into it. Offered for
             // any provider with a chat endpoint, which is the prerequisite for input_audio.
             //
@@ -1118,6 +1110,58 @@ internal fun ProviderEditorDialog(
                     )
                 }
             }
+            // Wake-on-demand (#189): a machine that sleeps between jobs, or a server that unloads its model
+            // when idle, only starts coming back once something reaches it, so the first request otherwise
+            // pays for the whole wake-up. Since #446 it is woken for whichever job it does — when a
+            // recording starts if it transcribes, when a rewording is certain if it rewords — so it belongs
+            // to the server rather than to either model, and sits below both. That also keeps it in sight
+            // when single-call folds the two into one request. Offered only for endpoints of the user's
+            // own — nowhere else is there a machine to wake.
+            if (isCustom) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { customWarmUp = !customWarmUp }
+                        .padding(top = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(modifier = Modifier.weight(1f).padding(end = 8.dp)) {
+                        Text(
+                            text = stringRes(R.string.dictate__providers_custom_warm_up),
+                            style = MaterialTheme.typography.bodyLarge,
+                        )
+                        Text(
+                            text = stringRes(R.string.dictate__providers_custom_warm_up_summary),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    Switch(checked = customWarmUp, onCheckedChange = { customWarmUp = it })
+                }
+            }
+            // Per account since #383: the app-wide switch it replaces also opened every cloud provider's
+            // traffic to whoever holds a certificate from the CA it was turned on for. Any account may need
+            // it, not only a server of the user's own — a company's TLS-inspecting proxy sits in front of all.
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { trustUserCerts = !trustUserCerts }
+                    .padding(top = 4.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(modifier = Modifier.weight(1f).padding(end = 8.dp)) {
+                    Text(
+                        text = stringRes(R.string.dictate__trust_user_certs_title),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                    Text(
+                        text = stringRes(R.string.dictate__trust_user_certs_summary),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Switch(checked = trustUserCerts, onCheckedChange = { trustUserCerts = it })
+            }
         }
         }
     }
@@ -1127,6 +1171,7 @@ internal fun ProviderEditorDialog(
             kind = kind,
             preset = effectivePreset,
             apiKey = apiKey,
+            trustUserCerts = trustUserCerts,
             current = if (kind == ModelKind.TRANSCRIPTION) transcriptionModel else chatModel,
             cachedModels = cachedModels,
             cachedAudioModels = cachedAudioModels,
@@ -1239,6 +1284,7 @@ private fun ProviderCheckSection(
     apiKey: String,
     transcriptionModel: String,
     transcriptionViaChat: Boolean,
+    trustUserCerts: Boolean,
     showTranscription: Boolean,
 ) {
     val scope = rememberCoroutineScope()
@@ -1279,7 +1325,7 @@ private fun ProviderCheckSection(
                     baseUrlOverride = preset.baseUrl,
                     proxy = prefs.dictate.dictateProxyConfig(),
                     useChatAudio = transcriptionViaChat,
-                    trustUserCerts = prefs.dictate.trustUserCertificates.get(),
+                    trustUserCerts = trustUserCerts,
                 )
                 checkOutcome(context, check(client))
             } catch (e: Exception) {

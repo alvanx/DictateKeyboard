@@ -323,7 +323,7 @@ export async function debitPaid(
   const first = await wallet.debit(seconds, limits.rateLimitPerMinute);
   if (first.ok || first.reason !== 'not_entitled') return first;
   if (!(await recheckEntitlement(env, walletId, now))) return first;
-  return wallet.debit(seconds, limits.rateLimitPerMinute);
+  return wallet.debit(seconds, limits.rateLimitPerMinute, true);
 }
 
 async function recheckEntitlement(env: Env, walletId: string, now: number): Promise<boolean> {

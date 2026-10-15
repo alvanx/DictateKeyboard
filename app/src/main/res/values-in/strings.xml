@@ -247,6 +247,10 @@
     <string name="style__motion" comment="Style tab heading above how the mic button moves while recording">Saat mendengarkan</string>
     <string name="style__button_off" comment="Style tab note while the floating mic button is off">Tombol mikrofon mengambang sedang nonaktif, jadi untuk sementara kamu hanya akan melihatnya di sini.</string>
     <string name="style__look_summary" comment="Floating button settings: summary of the row opening the Style tab. {charm} is the look">{charm} · ubah di tab Gaya</string>
+    <string name="dictate__settings_unreadable_card">Setelan Anda tidak dapat dibaca, jadi Voice Mode dimulai dengan setelan bawaan. Ketuk di sini untuk memulihkannya.</string>
+    <string name="dictate__settings_unreadable_title">Pulihkan setelan?</string>
+    <string name="dictate__settings_unreadable_message">Saat dimulai, Voice Mode tidak dapat membaca file setelannya. File itu disimpan tanpa diubah dan Voice Mode dimulai dengan setelan bawaan. “Pulihkan” mengembalikan penyedia, kunci, perintah, dan setelan Anda seperti semula. “Hapus” menghapus file lama.</string>
+    <string name="dictate__settings_restore_failed">Setelan lama masih tidak dapat dibaca.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Cari pengaturan</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Cari pengaturan…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Pencarian terkini</string>
@@ -554,6 +558,28 @@
     <string name="pref__keyboard__number_row__summary" comment="Preference summary">Tampilkan baris nomor di atas tata letak karakter</string>
     <string name="pref__keyboard__hinted_number_row_mode__label" comment="Preference title">Petunjuk baris nomor</string>
     <string name="pref__keyboard__hinted_symbols_mode__label" comment="Preference title">Simbol yang diisyaratkan</string>
+    <string name="settings__custom_symbols__title">Simbol khusus</string>
+    <string name="pref__keyboard__custom_symbols__label">Gunakan simbol khusus</string>
+    <string name="custom_symbols__edit_key">Edit tombol</string>
+    <string name="custom_symbols__key">Simbol</string>
+    <string name="custom_symbols__currency">Mata uang bahasa</string>
+    <string name="custom_symbols__long_press">Saat ditekan lama</string>
+    <string name="custom_symbols__add_placeholder">Tambah, mis. ✔ ☑ ✅</string>
+    <string name="custom_symbols__insert_as">Sisipkan sebagai</string>
+    <string name="custom_symbols__target_key">Tombol</string>
+    <string name="custom_symbols__target_long_press">Tekan lama</string>
+    <string name="custom_symbols__palette_math">Matematika</string>
+    <string name="custom_symbols__palette_arrows">Panah</string>
+    <string name="custom_symbols__palette_currencies">Mata uang</string>
+    <string name="custom_symbols__palette_punctuation">Tanda baca</string>
+    <string name="custom_symbols__palette_shapes">Bentuk</string>
+    <string name="custom_symbols__palette_greek">Yunani</string>
+    <string name="custom_symbols__palette_scripts">Superskrip &amp; subskrip</string>
+    <string name="custom_symbols__reset_all">Atur ulang semua tombol</string>
+    <string name="custom_symbols__reset_all_confirm">Kembalikan semua tombol ke bawaan?</string>
+    <string name="custom_symbols__import_confirm">Ganti simbol Anda dengan yang ada di file ini?</string>
+    <string name="custom_symbols__import_done">Simbol diimpor</string>
+    <string name="custom_symbols__import_invalid">Ini bukan file simbol</string>
     <string name="pref__keyboard__utility_key_enabled__label" comment="Preference title">Tampilkan tombol utilitas</string>
     <string name="pref__keyboard__utility_key_enabled__summary" comment="Preference summary">Menampilkan tombol utilitas yang dapat diatur di sebelah batang spasi</string>
     <string name="pref__keyboard__utility_key_action__label" comment="Preference title">Tindakan tombol utilitas</string>
@@ -1355,6 +1381,8 @@
     <string name="dictate__floating_button_snap_summary_on">Tombol menempel ke sisi terdekat setelah Anda menyeretnya.</string>
     <string name="dictate__floating_button_snap_title">Tempel ke tepi</string>
     <string name="dictate__interrupted_recording">Terputus ({time})</string>
+    <string name="dictate__transcription_stopped">Dihentikan, rekaman disimpan</string>
+    <string name="dictate__transcription_stopped_in_history">Dihentikan, rekaman ada di Riwayat</string>
     <string name="dictate__providers_summary_both">Transkripsi: {transcription} · Penyusunan ulang: {rewording}</string>
     <string name="dictate__remember_last_dictation_summary">Menyimpan dikte terakhir Anda agar tombol mengambang dapat membatalkannya dan tata letak klasik dapat menyisipkannya kembali.</string>
     <string name="dictate__remember_last_dictation_title">Ingat dikte terakhir</string>
@@ -1445,6 +1473,7 @@
     <string name="dictate__model_default_summary">Bawaan penyedia</string>
     <string name="dictate__custom_server_title">Server kustom</string>
     <string name="dictate__base_url_title">URL dasar</string>
+    <string name="dictate__base_url_cleartext_warning">Tidak dienkripsi: kunci API dan rekaman Anda dikirim sebagai teks biasa. Aman di jaringan Anda sendiri, tetapi di Wi-Fi lain orang lain bisa membacanya.</string>
     <string name="dictate__base_url_placeholder">https://your-server/v1/</string>
     <string name="dictate__base_url_required">Diperlukan untuk penyedia kustom</string>
     <string name="dictate__value_not_set">Belum diatur</string>
@@ -1580,7 +1609,7 @@
     <string name="dictate__providers_field_realtime_model">Model waktu nyata</string>
     <string name="dictate__providers_custom_realtime">Streaming waktu nyata</string>
     <string name="dictate__providers_custom_realtime_summary">Server ini menggunakan protokol realtime OpenAI di /v1/realtime</string>
-    <string name="dictate__providers_custom_warm_up">Bangunkan sebelum penulisan ulang</string>
+    <string name="dictate__providers_custom_warm_up">Bangunkan lebih awal</string>
     <string name="dictate__providers_custom_warm_up_summary">Menghubungi server lebih awal agar mesin yang tidur sempat menyala</string>
     <string name="dictate__providers_realtime_model_default">Bawaan</string>
     <string name="dictate__instant_recording_title">Perekaman instan</string>
@@ -1852,6 +1881,8 @@
     <string name="dictate__mappings_wholeword_summary">Hanya ganti kata yang berdiri sendiri, bukan kecocokan di dalam kata yang lebih panjang.</string>
     <string name="dictate__mappings_wholeword_title">Hanya seluruh kata</string>
     <string name="dictate__wear_standalone_summary">Kirim kunci API ke jam tangan agar bisa mendikte tanpa ponsel di dekatnya.</string>
+    <string name="dictate__wear_tether_notif_channel_name">Dikte dari jam tangan</string>
+    <string name="dictate__wear_tether_notif_title">Mentranskripsikan untuk jam tangan Anda…</string>
     <string name="dictate__wear_standalone_title">Sinkronkan kunci ke jam</string>
     <string name="emoji__search__hint">Cari emoji</string>
     <string name="emoji__row__open_panel">Buka semua emoji</string>
@@ -1883,7 +1914,6 @@
     <string name="dictate__audio_source_voice_recognition_summary">Disesuaikan untuk ucapan dengan lebih sedikit pemrosesan — coba ini jika transkripsi tidak akurat</string>
     <string name="dictate__audio_source_unprocessed">Tanpa pemrosesan (mentah)</string>
     <string name="dictate__audio_source_unprocessed_summary">Tanpa pemrosesan sama sekali; kembali ke Pengenalan suara jika ponsel Anda tidak mendukungnya</string>
-    <string name="dictate__security_group">Keamanan</string>
     <string name="dictate__trust_user_certs_title">Percayai sertifikat pengguna</string>
     <string name="dictate__trust_user_certs_summary">Percayai sertifikat CA yang Anda pasang, untuk endpoint swakelola di balik CA pribadi.</string>
     <string name="dictate__stats_title">Statistik</string>
@@ -2176,7 +2206,7 @@
     <string name="apptour60__chinese_body">Pinyin dengan baris kandidat — sebelumnya hanya ada Zhengma, yang nyaris tak dipakai siapa pun. Ditambah model di perangkat yang benar-benar dilatih untuk bahasa Mandarin, dan penyedia yang dapat dijangkau dari Tiongkok daratan.</string>
     <string name="apptour60__emoji_eyebrow">Emoji</string>
     <string name="apptour60__emoji_title">Cari emoji dalam bahasa Anda</string>
-    <string name="apptour60__emoji_body">Pencarian emoji mengenal enam bahasa. Kini lebih dari empat puluh — cari „heart", „心", atau „قلب" dan Anda sampai di emoji yang sama. Pencarian mengikuti bahasa papan ketik Anda.</string>
+    <string name="apptour60__emoji_body">Pencarian emoji mengenal enam bahasa. Kini lebih dari empat puluh — cari “heart”, “心”, atau “قلب” dan Anda sampai di emoji yang sama. Pencarian mengikuti bahasa papan ketik Anda.</string>
     <string name="apptour60__languages_eyebrow">Kamus</string>
     <string name="apptour60__languages_title">Tujuh bahasa yang tanpa saran</string>
     <string name="apptour60__languages_body">Bahasa Arab, Bengali, Finlandia, Hindi, Indonesia, Tamil, dan Urdu kini mendapat saran kata dan koreksi otomatis. Bahasa Islandia dan Georgia sebenarnya berisi bahasa yang salah dan dibangun ulang. Dan karakter tekan-lama pada 19 tata letak kini mengikuti apa yang benar-benar ditulis dalam bahasa itu.</string>
@@ -2295,6 +2325,11 @@
     <string name="prefs__media__gif_setup__step3">Salin kunci Anda dan tempel ke kolom di bawah.</string>
     <string name="prefs__media__gif_setup__open_klipy">Buka KLIPY Partner Panel</string>
     <string name="prefs__media__gif_setup__key_label">Kunci API KLIPY</string>
+    <string name="prefs__media__gif_content_filter">Penelusuran aman</string>
+    <string name="prefs__media__gif_content_filter__high">Ketat</string>
+    <string name="prefs__media__gif_content_filter__medium">Sedang</string>
+    <string name="prefs__media__gif_content_filter__low">Ringan</string>
+    <string name="prefs__media__gif_content_filter__off">Nonaktif</string>
     <string name="prefs__media__gif_setup__privacy_note">Istilah pencarian Anda hanya dikirim ke KLIPY saat panel GIF terbuka — tidak pernah selama pendiktean.</string>
     <string name="gif__search_placeholder">Cari di KLIPY</string>
     <string name="gif__powered_by">Didukung oleh KLIPY</string>

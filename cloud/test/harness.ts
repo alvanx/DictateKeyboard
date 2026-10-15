@@ -272,8 +272,17 @@ export async function makeHarness(vars: Record<string, string> = {}): Promise<Ha
         body = JSON.stringify(opts.json);
         headers.set('content-type', 'application/json');
       }
+      let request = new Request(`https://cloud.test${path}`, { method, headers, body });
+      // The routes refuse a body that declares no length, as the app's own requests always declare
+      // one. Node's Request only works it out on the wire, so it is set here unless a test chose its own.
+      if (body !== undefined && !headers.has('content-length')) {
+        const bytes = await request.arrayBuffer();
+        const sized = new Headers(request.headers);
+        sized.set('content-length', String(bytes.byteLength));
+        request = new Request(`https://cloud.test${path}`, { method, headers: sized, body: bytes });
+      }
       const response = await worker.fetch(
-        new Request(`https://cloud.test${path}`, { method, headers, body }) as never,
+        request as never,
         env as never,
         ctx as never,
       );

@@ -136,12 +136,54 @@ test('no entitlement: 402 not_entitled before any model call', async () => {
   const res = await h.call('POST', '/v1/audio/transcriptions', { token: device, body: transcribeForm(2) });
   assert.equal(res.status, 402);
   assert.deepEqual(res.body, {
-    error: { message: 'Dictate Cloud needs an active Plus subscription.', type: 'insufficient_quota', code: 'not_entitled' },
+    error: { message: 'Voice Mode Cloud needs an active Plus subscription.', type: 'insufficient_quota', code: 'not_entitled' },
   });
   const chat = await h.call('POST', '/v1/chat/completions', { token: device, json: { messages: [{ role: 'user', content: 'hi' }] } });
   assert.equal(chat.status, 402);
   const cleanup = await h.call('POST', '/v1/cleanup', { token: device, json: { text: 'first a second b third c' } });
   assert.equal(cleanup.status, 402);
+  assert.equal(h.ai.calls.length, 0);
+});
+
+test('a refused request counts toward the rate limit, and a flood writes one log row', async () => {
+  const h = await makeHarness({ RATE_LIMIT_PER_MINUTE: '3' });
+  whisper(h);
+  const { device } = await subscribe(h, 'tok-1', googleSub({ state: 'SUBSCRIPTION_STATE_ON_HOLD', expiresIn: -DAY }));
+  const statuses: number[] = [];
+  for (let i = 0; i < 6; i++) {
+    statuses.push((await h.call('POST', '/v1/audio/transcriptions', { token: device, body: transcribeForm(2) })).status);
+  }
+  assert.deepEqual(statuses, [402, 402, 402, 429, 429, 429]);
+  assert.equal(h.sql('SELECT * FROM usage_log WHERE status = 429').length, 1);
+  assert.equal(h.ai.calls.length, 0);
+});
+
+test('a recheck that finds the renewal counts its request once, not twice', async () => {
+  const h = await makeHarness({ RATE_LIMIT_PER_MINUTE: '2' });
+  whisper(h);
+  const { device, wallet } = await subscribe(h);
+  await h.wallets.getByName(wallet).setEntitlement(Date.now() - 1000);
+  h.sql("UPDATE subscriptions SET expires_at = ?, updated_at = ?", Date.now() - 1000, Date.now() - DAY);
+  h.google.subscriptions.set('tok-1', googleSub({ expiresIn: 30 * DAY, acknowledged: true }));
+  assert.equal((await h.call('POST', '/v1/audio/transcriptions', { token: device, body: transcribeForm(2) })).status, 200);
+  assert.equal((await h.call('POST', '/v1/audio/transcriptions', { token: device, body: transcribeForm(2) })).status, 200);
+  assert.equal((await h.call('POST', '/v1/audio/transcriptions', { token: device, body: transcribeForm(2) })).status, 429);
+});
+
+test('a body that declares more than a route reads is refused before it is read', async () => {
+  const h = await makeHarness();
+  whisper(h);
+  const { device } = await subscribe(h);
+  const big = (bytes: number) => ({ 'content-length': String(bytes) });
+  const upload = await h.call('POST', '/v1/audio/transcriptions', { token: device, body: transcribeForm(2), headers: big(27 * 1024 * 1024) });
+  assert.equal(upload.status, 413);
+  assert.equal(upload.body.error.code, 'upload_too_large');
+  const chat = await h.call('POST', '/v1/chat/completions', { token: device, json: { messages: [{ role: 'user', content: 'hi' }] }, headers: big(2 * 1024 * 1024) });
+  assert.equal(chat.status, 413);
+  const cleanup = await h.call('POST', '/v1/cleanup', { token: device, json: { text: 'first a second b' }, headers: big(2 * 1024 * 1024) });
+  assert.equal(cleanup.status, 413);
+  const unsized = await h.call('POST', '/v1/cleanup', { token: device, json: { text: 'first a second b' }, headers: { 'content-length': '0' } });
+  assert.equal(unsized.status, 411);
   assert.equal(h.ai.calls.length, 0);
 });
 

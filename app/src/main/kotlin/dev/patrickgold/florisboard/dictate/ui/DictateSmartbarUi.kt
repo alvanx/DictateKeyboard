@@ -658,7 +658,7 @@ private fun RowScope.ErrorContent(state: DictateController.UiState.Error) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                imageVector = errorIcon(state.kind, state.action),
+                imageVector = errorIcon(state.kind, state.action, state.neutral),
                 contentDescription = null,
                 tint = errorColor,
                 modifier = Modifier.size(18.dp),
@@ -873,7 +873,16 @@ private fun ErrorDetailPopup(detail: String, onDismiss: () -> Unit) {
 }
 
 /** Kind-specific icon for the error chip; the open-settings action gets a key icon regardless of kind. */
-private fun errorIcon(kind: DictateApiException.Kind?, action: DictateController.ErrorAction): ImageVector = when {
+private fun errorIcon(
+    kind: DictateApiException.Kind?,
+    action: DictateController.ErrorAction,
+    neutral: Boolean,
+): ImageVector = when {
+    // Saved offline, to be sent once the connection is back: the missing connection is the news here.
+    neutral && kind == DictateApiException.Kind.NETWORK -> Icons.Default.CloudOff
+    // A stopped transcription with its recording kept (#437): the glyph of the interrupted-recording chip,
+    // the other offer of a kept recording, rather than a warning sign over something the user chose.
+    neutral && action == DictateController.ErrorAction.RESEND -> Icons.Default.GraphicEq
     action == DictateController.ErrorAction.TOP_UP -> Icons.Default.AddCard
     action == DictateController.ErrorAction.OPEN_SETTINGS -> Icons.Default.VpnKey
     kind == DictateApiException.Kind.QUOTA_EXCEEDED -> Icons.Default.DataUsage

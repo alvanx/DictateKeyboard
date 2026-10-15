@@ -18,6 +18,9 @@ import type { WalletState } from '../wallet';
 import { chatComplete, type Upstream } from '../ai';
 import { answerTextOf, parseUsage, reportReasoning, wasTruncated } from './chat';
 import { debitError, logRefusal, usageHeaders } from './transcriptions';
+
+/** The largest cleanup body read at all: far above what the character and token limits let through. */
+const MAX_CLEANUP_BODY_BYTES = 1024 * 1024;
 import INSTRUCTIONS from '../../prompts/cleanup.txt';
 
 /**
@@ -47,6 +50,17 @@ export async function handleCleanup(
   }
   touch(env, session, ctx);
 
+  // Checked before `json()` reads the body into memory, as on the rewording and transcription
+  // routes: a limit applied after reading comes too late to protect the isolate.
+  const declaredBytes = Number(request.headers.get('content-length'));
+  if (!Number.isFinite(declaredBytes) || declaredBytes <= 0) {
+    return apiError(411, 'A Content-Length is required.', 'length_required', 'invalid_request_error');
+  }
+  if (declaredBytes > MAX_CLEANUP_BODY_BYTES) {
+    logRefusal(env, session, 'cleanup', 413, started, ctx);
+    return apiError(413, 'The text is too long to clean up through Voice Mode Cloud.', 'input_too_long', 'invalid_request_error');
+  }
+
   let body: unknown;
   try {
     body = await request.json();
@@ -60,7 +74,7 @@ export async function handleCleanup(
   // one failure this route exists to rule out.
   if (req.text.length > limits.cleanupMaxChars || estimateTokens(req.text) > limits.maxChatInputTokens) {
     logRefusal(env, session, 'cleanup', 413, started, ctx);
-    return apiError(413, 'The text is too long to clean up through Dictate Cloud.', 'input_too_long', 'invalid_request_error');
+    return apiError(413, 'The text is too long to clean up through Voice Mode Cloud.', 'input_too_long', 'invalid_request_error');
   }
 
   const wallet = walletStub(env, session.walletId);
@@ -90,7 +104,9 @@ export async function handleCleanup(
   if (!debit.ok) {
     settleBudget(env, -worstCaseNano, ctx);
     const refusal = debitError(debit.reason, debit.state);
-    logRefusal(env, session, 'cleanup', refusal.status, started, ctx, debit.state);
+    // Only the first rate-limited refusal of a minute is logged; a flood would otherwise write a row
+    // per request.
+    if (!debit.repeat) logRefusal(env, session, 'cleanup', refusal.status, started, ctx, debit.state);
     return refusal;
   }
 

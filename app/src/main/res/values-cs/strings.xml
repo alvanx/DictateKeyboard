@@ -251,6 +251,10 @@
     <string name="style__motion">Když poslouchá</string>
     <string name="style__button_off">Plovoucí tlačítko mikrofonu je vypnuté, takže ho zatím uvidíte jen tady.</string>
     <string name="style__look_summary">{charm} · změníte na kartě Styl</string>
+    <string name="dictate__settings_unreadable_card">Vaše nastavení nešlo načíst, proto Voice Mode začal s výchozími hodnotami. Klepnutím je vrátíte zpět.</string>
+    <string name="dictate__settings_unreadable_title">Obnovit nastavení?</string>
+    <string name="dictate__settings_unreadable_message">Při spuštění nemohl Voice Mode načíst svůj soubor s nastavením. Ponechal ho nedotčený a začal s výchozími hodnotami. „Obnovit“ vrátí vaše poskytovatele, klíče, prompty a nastavení do původního stavu. „Odstranit“ starý soubor smaže.</string>
+    <string name="dictate__settings_restore_failed">Staré nastavení stále nejde načíst.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Hledat v nastavení</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Hledat v nastavení…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Nedávná hledání</string>
@@ -568,6 +572,28 @@
     <string name="pref__keyboard__number_row__summary" comment="Preference summary">Zobrazit číselný řádek nad znakovým rozložením</string>
     <string name="pref__keyboard__hinted_number_row_mode__label" comment="Preference title">Řádek čísel s návrhy</string>
     <string name="pref__keyboard__hinted_symbols_mode__label" comment="Preference title">Navrhované symboly</string>
+    <string name="settings__custom_symbols__title">Vlastní symboly</string>
+    <string name="pref__keyboard__custom_symbols__label">Používat vlastní symboly</string>
+    <string name="custom_symbols__edit_key">Upravit klávesu</string>
+    <string name="custom_symbols__key">Symbol</string>
+    <string name="custom_symbols__currency">Měna jazyka</string>
+    <string name="custom_symbols__long_press">Při podržení</string>
+    <string name="custom_symbols__add_placeholder">Přidat, např. ✔ ☑ ✅</string>
+    <string name="custom_symbols__insert_as">Vložit jako</string>
+    <string name="custom_symbols__target_key">Klávesa</string>
+    <string name="custom_symbols__target_long_press">Podržení</string>
+    <string name="custom_symbols__palette_math">Matematika</string>
+    <string name="custom_symbols__palette_arrows">Šipky</string>
+    <string name="custom_symbols__palette_currencies">Měny</string>
+    <string name="custom_symbols__palette_punctuation">Interpunkce</string>
+    <string name="custom_symbols__palette_shapes">Tvary</string>
+    <string name="custom_symbols__palette_greek">Řečtina</string>
+    <string name="custom_symbols__palette_scripts">Horní a dolní index</string>
+    <string name="custom_symbols__reset_all">Obnovit všechny klávesy</string>
+    <string name="custom_symbols__reset_all_confirm">Vrátit všechny klávesy na výchozí?</string>
+    <string name="custom_symbols__import_confirm">Nahradit vaše symboly symboly z tohoto souboru?</string>
+    <string name="custom_symbols__import_done">Symboly importovány</string>
+    <string name="custom_symbols__import_invalid">Toto není soubor se symboly</string>
     <string name="pref__keyboard__utility_key_enabled__label" comment="Preference title">Zobrazit pomocné tlačítko</string>
     <string name="pref__keyboard__utility_key_enabled__summary" comment="Preference summary">Zobrazí nastavitelné pomocné tlačítko vedle mezerníku</string>
     <string name="pref__keyboard__utility_key_action__label" comment="Preference title">Funkce pomocného tlačítka</string>
@@ -1417,6 +1443,8 @@
     <string name="dictate__floating_button_snap_summary_on">Tlačítko se po přetažení přichytí k nejbližší straně.</string>
     <string name="dictate__floating_button_snap_title">Přichytit k okraji</string>
     <string name="dictate__interrupted_recording">Přerušeno ({time})</string>
+    <string name="dictate__transcription_stopped">Zastaveno, nahrávka zachována</string>
+    <string name="dictate__transcription_stopped_in_history">Zastaveno, nahrávka je v Historii</string>
     <string name="dictate__providers_summary_both">Přepis: {transcription} · Přeformulování: {rewording}</string>
     <string name="dictate__remember_last_dictation_summary">Uchová poslední diktát, aby jej plovoucí tlačítko mohlo vrátit zpět a klasické rozvržení znovu vložit.</string>
     <string name="dictate__remember_last_dictation_title">Zapamatovat poslední diktování</string>
@@ -1507,6 +1535,7 @@
     <string name="dictate__model_default_summary">Výchozí poskytovatele</string>
     <string name="dictate__custom_server_title">Vlastní server</string>
     <string name="dictate__base_url_title">Základní URL</string>
+    <string name="dictate__base_url_cleartext_warning">Nešifrováno: klíč API a vaše nahrávky putují jako prostý text. Ve vlastní síti je to v pořádku, ale v jakékoli jiné Wi-Fi je může přečíst někdo jiný.</string>
     <string name="dictate__base_url_placeholder">https://vas-server/v1/</string>
     <string name="dictate__base_url_required">Vyžadováno pro vlastního poskytovatele</string>
     <string name="dictate__value_not_set">Nenastaveno</string>
@@ -1642,7 +1671,7 @@
     <string name="dictate__providers_field_realtime_model">Model v reálném čase</string>
     <string name="dictate__providers_custom_realtime">Streamování v reálném čase</string>
     <string name="dictate__providers_custom_realtime_summary">Tento server používá protokol OpenAI realtime na /v1/realtime</string>
-    <string name="dictate__providers_custom_warm_up">Probudit před přeformulováním</string>
+    <string name="dictate__providers_custom_warm_up">Probudit včas</string>
     <string name="dictate__providers_custom_warm_up_summary">Ozve se serveru včas, aby měl spící stroj čas naběhnout</string>
     <string name="dictate__providers_realtime_model_default">Výchozí</string>
     <string name="dictate__instant_recording_title">Okamžité nahrávání</string>
@@ -1917,6 +1946,8 @@
     <string name="dictate__mappings_wholeword_summary">Nahradit pouze samostatná slova, nikoli shody uvnitř delších slov.</string>
     <string name="dictate__mappings_wholeword_title">Pouze celá slova</string>
     <string name="dictate__wear_standalone_summary">Odešlete svůj API klíč do hodinek, aby mohly diktovat i bez telefonu poblíž.</string>
+    <string name="dictate__wear_tether_notif_channel_name">Diktování z hodinek</string>
+    <string name="dictate__wear_tether_notif_title">Přepisuji pro hodinky…</string>
     <string name="dictate__wear_standalone_title">Synchronizovat klíč do hodinek</string>
     <string name="emoji__search__hint">Hledat emoji</string>
     <string name="emoji__row__open_panel">Otevřít všechna emodži</string>
@@ -1948,7 +1979,6 @@
     <string name="dictate__audio_source_voice_recognition_summary">Vyladěno pro řeč s menším zpracováním — vyzkoušejte, pokud je přepis nepřesný</string>
     <string name="dictate__audio_source_unprocessed">Nezpracováno (surové)</string>
     <string name="dictate__audio_source_unprocessed_summary">Žádné zpracování; když to telefon nepodporuje, použije se Rozpoznávání řeči</string>
-    <string name="dictate__security_group">Zabezpečení</string>
     <string name="dictate__trust_user_certs_title">Důvěřovat uživatelským certifikátům</string>
     <string name="dictate__trust_user_certs_summary">Důvěřovat CA certifikátům, které jste sami nainstalovali – pro vlastní koncové body za soukromou CA.</string>
     <string name="dictate__stats_title">Statistiky</string>
@@ -2241,7 +2271,7 @@
     <string name="apptour60__chinese_body">Pinyin s řádkem kandidátů — dosud byl jen Zhengma, který sotva kdo používá. Přibyl model v zařízení skutečně trénovaný na čínštině a poskytovatel dostupný z pevninské Číny.</string>
     <string name="apptour60__emoji_eyebrow">Emodži</string>
     <string name="apptour60__emoji_title">Hledat emodži ve svém jazyce</string>
-    <string name="apptour60__emoji_body">Vyhledávání emodži znalo šest jazyků. Teď jich zná přes čtyřicet — hledejte „heart", „心" nebo „قلب" a dojdete ke stejné emodži. Vyhledávání jde podle jazyka vaší klávesnice.</string>
+    <string name="apptour60__emoji_body">Vyhledávání emodži znalo šest jazyků. Teď jich zná přes čtyřicet — hledejte „heart“, „心“ nebo „قلب“ a dojdete ke stejné emodži. Vyhledávání jde podle jazyka vaší klávesnice.</string>
     <string name="apptour60__languages_eyebrow">Slovníky</string>
     <string name="apptour60__languages_title">Sedm jazyků bez návrhů</string>
     <string name="apptour60__languages_body">Arabština, bengálština, finština, hindština, indonéština, tamilština a urdština dostávají návrhy slov a automatické opravy. Islandština a gruzínština obsahovaly zkrátka nesprávné jazyky a byly postaveny znovu. A znaky pod dlouhým stiskem u 19 rozložení se řídí tím, co se v daném jazyce opravdu píše.</string>
@@ -2360,6 +2390,11 @@
     <string name="prefs__media__gif_setup__step3">Zkopírujte svůj klíč a vložte jej do pole níže.</string>
     <string name="prefs__media__gif_setup__open_klipy">Otevřít KLIPY Partner Panel</string>
     <string name="prefs__media__gif_setup__key_label">Klíč KLIPY API</string>
+    <string name="prefs__media__gif_content_filter">Bezpečné vyhledávání</string>
+    <string name="prefs__media__gif_content_filter__high">Přísné</string>
+    <string name="prefs__media__gif_content_filter__medium">Střední</string>
+    <string name="prefs__media__gif_content_filter__low">Mírné</string>
+    <string name="prefs__media__gif_content_filter__off">Vypnuto</string>
     <string name="prefs__media__gif_setup__privacy_note">Hledané výrazy se odesílají do KLIPY jen po dobu, kdy je panel GIF otevřený — nikdy během diktování.</string>
     <string name="gif__search_placeholder">Hledat v KLIPY</string>
     <string name="gif__powered_by">Využívá KLIPY</string>

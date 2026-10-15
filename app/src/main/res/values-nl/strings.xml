@@ -245,6 +245,10 @@
     <string name="style__motion">Tijdens het luisteren</string>
     <string name="style__button_off">De zwevende microfoonknop staat uit, dus je ziet dit voorlopig alleen hier.</string>
     <string name="style__look_summary">{charm} · wijzig het op het tabblad Stijl</string>
+    <string name="dictate__settings_unreadable_card">Je instellingen konden niet worden gelezen, dus Voice Mode is gestart met de standaardwaarden. Tik hier om ze terug te halen.</string>
+    <string name="dictate__settings_unreadable_title">Herstellen?</string>
+    <string name="dictate__settings_unreadable_message">Bij het starten kon Voice Mode zijn instellingenbestand niet lezen. Het heeft het onaangeroerd bewaard en is gestart met de standaardwaarden. ‘Herstellen’ haalt je aanbieders, sleutels, prompts en instellingen terug zoals ze waren. ‘Verwijderen’ wist het oude bestand.</string>
+    <string name="dictate__settings_restore_failed">De oude instellingen kunnen nog steeds niet worden gelezen.</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Instellingen doorzoeken</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Instellingen doorzoeken…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Recente zoekopdrachten</string>
@@ -491,6 +495,28 @@
     <string name="pref__keyboard__number_row__summary" comment="Preference summary">Toon nummerrij boven de alfabettoetsen</string>
     <string name="pref__keyboard__hinted_number_row_mode__label" comment="Preference title">nummer op de achterkant</string>
     <string name="pref__keyboard__hinted_symbols_mode__label" comment="Preference title">Symbolen achter</string>
+    <string name="settings__custom_symbols__title">Eigen symbolen</string>
+    <string name="pref__keyboard__custom_symbols__label">Eigen symbolen gebruiken</string>
+    <string name="custom_symbols__edit_key">Toets bewerken</string>
+    <string name="custom_symbols__key">Symbool</string>
+    <string name="custom_symbols__currency">Valuta van de taal</string>
+    <string name="custom_symbols__long_press">Bij lang indrukken</string>
+    <string name="custom_symbols__add_placeholder">Toevoegen, bijv. ✔ ☑ ✅</string>
+    <string name="custom_symbols__insert_as">Invoegen als</string>
+    <string name="custom_symbols__target_key">Toets</string>
+    <string name="custom_symbols__target_long_press">Lang indrukken</string>
+    <string name="custom_symbols__palette_math">Wiskunde</string>
+    <string name="custom_symbols__palette_arrows">Pijlen</string>
+    <string name="custom_symbols__palette_currencies">Valuta’s</string>
+    <string name="custom_symbols__palette_punctuation">Leestekens</string>
+    <string name="custom_symbols__palette_shapes">Vormen</string>
+    <string name="custom_symbols__palette_greek">Grieks</string>
+    <string name="custom_symbols__palette_scripts">Super- en subscript</string>
+    <string name="custom_symbols__reset_all">Alle toetsen herstellen</string>
+    <string name="custom_symbols__reset_all_confirm">Alle toetsen terugzetten naar de standaard?</string>
+    <string name="custom_symbols__import_confirm">Je symbolen vervangen door die uit dit bestand?</string>
+    <string name="custom_symbols__import_done">Symbolen geïmporteerd</string>
+    <string name="custom_symbols__import_invalid">Dit is geen symbolenbestand</string>
     <string name="pref__keyboard__utility_key_enabled__label" comment="Preference title">Toon functietoets</string>
     <string name="pref__keyboard__utility_key_enabled__summary" comment="Preference summary">Toont een instelbare functietoets naast de spatiebalk</string>
     <string name="pref__keyboard__utility_key_action__label" comment="Preference title">Functietoets actie</string>
@@ -1301,6 +1327,8 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__floating_button_snap_summary_on">De knop klikt na het slepen vast aan de dichtstbijzijnde zijde.</string>
     <string name="dictate__floating_button_snap_title">Aan rand vastklikken</string>
     <string name="dictate__interrupted_recording">Onderbroken ({time})</string>
+    <string name="dictate__transcription_stopped">Gestopt, opname bewaard</string>
+    <string name="dictate__transcription_stopped_in_history">Gestopt, opname staat in Geschiedenis</string>
     <string name="dictate__providers_summary_both">Transcriptie: {transcription} · Herformulering: {rewording}</string>
     <string name="dictate__remember_last_dictation_summary">Bewaart je laatste dictaat zodat de zwevende knop het ongedaan kan maken en de klassieke lay-out het opnieuw kan invoegen.</string>
     <string name="dictate__remember_last_dictation_title">Laatste dictaat onthouden</string>
@@ -1391,6 +1419,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__model_default_summary">Standaard van de aanbieder</string>
     <string name="dictate__custom_server_title">Aangepaste server</string>
     <string name="dictate__base_url_title">Basis-URL</string>
+    <string name="dictate__base_url_cleartext_warning">Niet versleuteld: de API-sleutel en je opnames gaan als platte tekst over het netwerk. Prima op je eigen netwerk, maar op elk ander wifi-netwerk kan iemand anders ze lezen.</string>
     <string name="dictate__base_url_placeholder">https://jouw-server/v1/</string>
     <string name="dictate__base_url_required">Vereist voor de aangepaste aanbieder</string>
     <string name="dictate__value_not_set">Niet ingesteld</string>
@@ -1526,7 +1555,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__providers_field_realtime_model">Realtimemodel</string>
     <string name="dictate__providers_custom_realtime">Realtime streamen</string>
     <string name="dictate__providers_custom_realtime_summary">Deze server spreekt het OpenAI-realtimeprotocol op /v1/realtime</string>
-    <string name="dictate__providers_custom_warm_up">Wekken vóór herformuleren</string>
+    <string name="dictate__providers_custom_warm_up">Vroeg wekken</string>
     <string name="dictate__providers_custom_warm_up_summary">Benadert de server vroeg, zodat een slapende machine kan opstarten</string>
     <string name="dictate__providers_realtime_model_default">Standaard</string>
     <string name="dictate__instant_recording_title">Direct opnemen</string>
@@ -1799,6 +1828,8 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__mappings_wholeword_summary">Alleen losstaande woorden vervangen, niet binnen langere woorden.</string>
     <string name="dictate__mappings_wholeword_title">Alleen heel woord</string>
     <string name="dictate__wear_standalone_summary">Stuur je API-sleutel naar het horloge zodat het zonder telefoon kan dicteren.</string>
+    <string name="dictate__wear_tether_notif_channel_name">Dicteren via horloge</string>
+    <string name="dictate__wear_tether_notif_title">Transcriberen voor je horloge…</string>
     <string name="dictate__wear_standalone_title">Sleutel synchroniseren met horloge</string>
     <string name="emoji__search__hint">Emoji zoeken</string>
     <string name="emoji__row__open_panel">Alle emoji openen</string>
@@ -1830,7 +1861,6 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__audio_source_voice_recognition_summary">Afgestemd op spraak met minder verwerking — probeer dit als de transcriptie onnauwkeurig is</string>
     <string name="dictate__audio_source_unprocessed">Onverwerkt (ruw)</string>
     <string name="dictate__audio_source_unprocessed_summary">Helemaal geen verwerking; valt terug op Spraakherkenning als je telefoon het niet ondersteunt</string>
-    <string name="dictate__security_group">Beveiliging</string>
     <string name="dictate__trust_user_certs_title">Gebruikerscertificaten vertrouwen</string>
     <string name="dictate__trust_user_certs_summary">Vertrouw CA-certificaten die je hebt geïnstalleerd, voor zelf-gehoste eindpunten achter een privé-CA.</string>
     <string name="dictate__stats_title">Statistieken</string>
@@ -2123,7 +2153,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour60__chinese_body">Pinyin met kandidatenrij — tot nu was er alleen Zhengma, dat vrijwel niemand gebruikt. Daarbij komen een model op het toestel dat echt op Chinees getraind is, en een aanbieder die vanaf het vasteland bereikbaar is.</string>
     <string name="apptour60__emoji_eyebrow">Emoji</string>
     <string name="apptour60__emoji_title">Emoji zoeken in je eigen taal</string>
-    <string name="apptour60__emoji_body">De emojizoekfunctie kende zes talen. Nu zijn het er ruim veertig — zoek op „heart", „心" of „قلب" en je komt bij dezelfde emoji uit. De zoekfunctie volgt de taal van je toetsenbord.</string>
+    <string name="apptour60__emoji_body">De emojizoekfunctie kende zes talen. Nu zijn het er ruim veertig — zoek op “heart”, “心” of “قلب” en je komt bij dezelfde emoji uit. De zoekfunctie volgt de taal van je toetsenbord.</string>
     <string name="apptour60__languages_eyebrow">Woordenboeken</string>
     <string name="apptour60__languages_title">Zeven talen zonder suggesties</string>
     <string name="apptour60__languages_body">Arabisch, Bengaals, Fins, Hindi, Indonesisch, Tamil en Urdu krijgen woordsuggesties en autocorrectie. IJslands en Georgisch bevatten domweg de verkeerde talen en zijn opnieuw gebouwd. En de tekens onder lang indrukken van 19 indelingen volgen nu wat de taal werkelijk schrijft.</string>
@@ -2242,6 +2272,11 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="prefs__media__gif_setup__step3">Kopieer je sleutel en plak deze in het veld hieronder.</string>
     <string name="prefs__media__gif_setup__open_klipy">Open KLIPY Partner Panel</string>
     <string name="prefs__media__gif_setup__key_label">KLIPY-API-sleutel</string>
+    <string name="prefs__media__gif_content_filter">Veilig zoeken</string>
+    <string name="prefs__media__gif_content_filter__high">Streng</string>
+    <string name="prefs__media__gif_content_filter__medium">Gemiddeld</string>
+    <string name="prefs__media__gif_content_filter__low">Licht</string>
+    <string name="prefs__media__gif_content_filter__off">Uit</string>
     <string name="prefs__media__gif_setup__privacy_note">Je zoektermen worden alleen naar KLIPY gestuurd terwijl het GIF-paneel open is — nooit tijdens het dicteren.</string>
     <string name="gif__search_placeholder">KLIPY doorzoeken</string>
     <string name="gif__powered_by">Mogelijk gemaakt door KLIPY</string>

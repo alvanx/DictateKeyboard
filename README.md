@@ -39,7 +39,7 @@ from us and are not going anywhere.
 
 ## 🎤 Features
 
-- **Voice dictation with Whisper AI** — highly accurate speech-to-text in over a hundred languages, with automatic punctuation. It's so sensitive you can literally *whisper* and still get a clean transcription.
+- **Voice dictation with the engine you choose** — Whisper, Gemini, Deepgram, Soniox, ElevenLabs and more: highly accurate speech-to-text in over a hundred languages, with automatic punctuation. It's so sensitive you can literally *whisper* and still get a clean transcription.
 - **Push to talk** — hold the mic key and speak, let go and it's sent, like a voice message. Slide left to throw the recording away, drag up to lock it hands-free. A quick tap still works the way it always did.
 - **Use Voice Mode from any keyboard** — Voice Mode registers as a system-wide voice input, so the mic key in other keyboards and apps can transcribe through Voice Mode, with your provider, prompts and on-device models. No accessibility permission needed, so it also works in apps that block it.
 - **Real-time transcription** — watch your words appear live as you speak, streaming from OpenAI, Google Gemini, Deepgram, Soniox, AssemblyAI, ElevenLabs or xAI. Deepgram's **Flux** models decide for themselves when a turn has ended instead of waiting out a silence timer.
@@ -120,7 +120,7 @@ vLLM, or something you wrote yourself. Nothing is hardcoded about it:
 
 Two things worth knowing: **`localhost` means the phone, not the machine your server runs on** —
 use its address on your network. And if your server also speaks the OpenAI *realtime* protocol
-under `/v1/realtime`, switch on **Realtime** in the same editor to dictate live.
+under `/v1/realtime`, switch on **Real-time streaming** in the same editor to dictate live.
 
 **Ollama is a special case.** It serves no `/v1/audio/transcriptions`, so it can only reword. Run a
 speech server next to it for dictation — or use the on-device engine below and skip servers
@@ -194,7 +194,6 @@ version becomes Apache 2.0 two years after it is published.
   licensed under Apache-2.0.
 - See [`LICENSE`](LICENSE) for the full license text and [`NOTICE`](NOTICE) for required
   attribution notices.
-- Speech recognition is powered by [OpenAI Whisper](https://openai.com/index/whisper/).
 - On-device transcription uses [OpenAI Whisper](https://openai.com/index/whisper/) (MIT),
   NVIDIA's [Parakeet](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3),
   [Canary](https://huggingface.co/nvidia/canary-180m-flash) and

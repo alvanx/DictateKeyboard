@@ -45,6 +45,14 @@ interface DictationSink {
     fun selectAll()
 
     /**
+     * Up to [length] characters in front of the cursor (in front of the selection, when there is one),
+     * or null when the field cannot be read. Empty means the cursor sits at the start of the field —
+     * the two are kept apart because only the second is a fact. Used to space a dictation against the
+     * text it lands next to ([TranscriptJoin.separatorBefore]).
+     */
+    fun textBeforeCursor(length: Int): String?
+
+    /**
      * Presses Enter / triggers the editor action (auto-enter, roadmap 10.1). Returns whether the field
      * accepted it — the keyboard dispatches a real key event and always does, while the overlay can only
      * *ask* the field, and an app that implements no editor action simply refuses (issue #278).
@@ -73,8 +81,22 @@ interface DictationSink {
      */
     fun commitDictationFinal(finalText: String, prevText: String): Boolean
 
-    /** Remove the [prevText] preview entirely (a realtime recording was cancelled / fell back to batch). */
+    /**
+     * Remove the [prevText] preview entirely (a realtime recording was cancelled / fell back to batch) —
+     * unless the field no longer [holds][holdsPreview] it: text the user has edited is theirs (issue #421).
+     */
     fun clearDictationPreview(prevText: String)
+
+    /**
+     * Whether the field still ends, at the cursor, with [prevText] — the live preview as it was last
+     * written. False once the user has edited it, moved the cursor away or cleared the field (issue #421):
+     * every preview write is a diff against [prevText], and against a field that no longer holds it the
+     * diff deletes the user's own words and types back the ones they removed.
+     *
+     * True when the field cannot be read, which is what every write assumed before. Paths that keep no
+     * preview text of their own in a field answer true.
+     */
+    fun holdsPreview(prevText: String): Boolean = true
 }
 
 /**
@@ -116,6 +138,14 @@ class ImeDictationSink(context: Context) : DictationSink {
             return
         }
         editorInstance.performClipboardSelectAll()
+    }
+
+    override fun textBeforeCursor(length: Int): String? {
+        field()?.let { field ->
+            val current = keyboardManager.fieldText(field) ?: return null
+            return current.text.substring(0, current.cursor.coerceIn(0, current.text.length)).takeLast(length)
+        }
+        return editorInstance.activeContent.textBeforeSelection.takeLast(length)
     }
 
     override fun performEnter(): Boolean {
@@ -176,10 +206,29 @@ class ImeDictationSink(context: Context) : DictationSink {
             is PreviewSurface.Field -> applyFieldDiff(surface.field, prevText, "")
             // Atomic delete of the whole streamed preview in one batch. Doing this per-character (backspaces)
             // ANRs and can kill the keyboard when a long dictation is cancelled mid-recording.
-            PreviewSurface.App -> editorInstance.replaceTextBeforeCursor(prevText.length, "")
+            PreviewSurface.App -> if (appHolds(prevText)) editorInstance.replaceTextBeforeCursor(prevText.length, "")
             PreviewSurface.AppFresh -> Unit
         }
     }
+
+    override fun holdsPreview(prevText: String): Boolean {
+        if (prevText.isEmpty()) return true
+        return when (val surface = activePreview ?: field()?.let { PreviewSurface.Field(it) } ?: PreviewSurface.App) {
+            // A field that has closed under its preview is not an edit: the preview carries on in the app
+            // as if it had just started there (see [previewSurface]).
+            is PreviewSurface.Field -> keyboardManager.fieldText(surface.field)
+                ?.let { it.text.substring(0, it.cursor).endsWith(prevText) } ?: true
+            PreviewSurface.App -> appHolds(prevText)
+            PreviewSurface.AppFresh -> true
+        }
+    }
+
+    /**
+     * The app's field read back from the editor: the whole preview has to be there, character for
+     * character. A field that cannot be read is taken to hold it, as before.
+     */
+    private fun appHolds(prevText: String): Boolean =
+        editorInstance.textBeforeCursorFromEditor(prevText.length)?.endsWith(prevText) ?: true
 
     /**
      * Where the running live preview is being shown. Decided when it starts and kept until it ends, so a

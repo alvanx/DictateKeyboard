@@ -82,7 +82,13 @@ export type DebitReason = 'blocked' | 'rate_limited' | 'not_entitled' | 'daily_l
 
 export type DebitResult =
   | { ok: true; state: WalletState; booking: Booking }
-  | { ok: false; reason: DebitReason; state: WalletState };
+  | {
+      ok: false;
+      reason: DebitReason;
+      state: WalletState;
+      /** A rate-limited refusal that is not the first in its minute, so not worth a row of its own. */
+      repeat?: boolean;
+    };
 
 /** What older callers meant before there were two counters: the credit balance. */
 const BALANCE: Booking = { source: 'balance', day: '' };
@@ -103,6 +109,13 @@ export class Wallet extends DurableObject<Env> {
    * too expensive for that.
    */
   private hits: number[] = [];
+
+  /**
+   * When the last rate-limited refusal that was reported in full went out, in memory like [hits].
+   * A flood is refused on every request, but only its first refusal a minute is worth a row in the
+   * usage log; one per request was the write volume the limit exists to prevent.
+   */
+  private limitedAt: number | null = null;
 
   /**
    * Reads the balance, converting an account that still carries the old separate rewording
@@ -166,19 +179,32 @@ export class Wallet extends DurableObject<Env> {
    * Happens **before** the model is called, not after: bill last and every dropped connection
    * is a giveaway. If the call fails, [refund] puts it back.
    *
-   * The order of the checks is the order of the answers the app can act on: blocked first, then
-   * too fast, then Plus — today's allowance while it is active, the old credit balance when it is
-   * not — and only then "subscribe".
+   * The order of the checks: too fast first, then blocked, then Plus — today's allowance while it
+   * is active, the old credit balance when it is not — and only then "subscribe".
+   *
+   * Every attempt counts toward the rate limit, a refused one too. Counted only on success, an
+   * account that was blocked or had no Plus was never limited at all: exactly the states in which
+   * someone keeps hammering, each attempt still costing an authentication, a read of the upload, a
+   * row in the usage log and, for "not entitled", a recheck with Google.
+   *
+   * [alreadyCounted] is for the second try in `debitPaid` after a recheck: the same request,
+   * so it is neither limited nor counted a second time.
    */
-  async debit(seconds: number, rateLimitPerMinute: number): Promise<DebitResult> {
+  async debit(seconds: number, rateLimitPerMinute: number, alreadyCounted = false): Promise<DebitResult> {
     const state = await this.read();
     const now = Date.now();
-    if (state.status === 'blocked') return { ok: false, reason: 'blocked', state: this.view(state, now) };
 
-    this.hits = this.hits.filter((t) => now - t < 60_000);
-    if (this.hits.length >= rateLimitPerMinute) {
-      return { ok: false, reason: 'rate_limited', state: this.view(state, now) };
+    if (!alreadyCounted) {
+      this.hits = this.hits.filter((t) => now - t < 60_000);
+      if (this.hits.length >= rateLimitPerMinute) {
+        const repeat = this.limitedAt !== null && now - this.limitedAt < 60_000;
+        if (!repeat) this.limitedAt = now;
+        return { ok: false, reason: 'rate_limited', state: this.view(state, now), repeat };
+      }
+      this.hits.push(now);
     }
+
+    if (state.status === 'blocked') return { ok: false, reason: 'blocked', state: this.view(state, now) };
 
     const wantSeconds = Math.ceil(seconds);
 
@@ -186,14 +212,12 @@ export class Wallet extends DurableObject<Env> {
       if (!allowanceLeft(state.daily, this.allowance(), now)) {
         return { ok: false, reason: 'daily_limit', state: this.view(state, now) };
       }
-      this.hits.push(now);
       const next: StoredState = { ...state, daily: bookDaily(state.daily, wantSeconds, now) };
       await this.write(next);
       return { ok: true, state: this.view(next, now), booking: { source: 'daily', day: utcDay(now) } };
     }
 
     if (state.secondsLeft >= wantSeconds && wantSeconds > 0) {
-      this.hits.push(now);
       const next: StoredState = {
         ...state,
         secondsLeft: state.secondsLeft - wantSeconds,
