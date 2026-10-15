@@ -114,7 +114,7 @@
     <string name="quick_actions_editor__subheader_hidden_actions">Verborgen acties ({n})</string>
     <string name="select_subtype_panel__header">Selecteer subtype</string>
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">De incognitomodus is nu ingeschakeld\n\n{app_name} leert geen woorden van uw invoer terwijl deze modus actief is</string>
+    <string name="incognito_mode__toast_after_enabled">De incognitomodus is nu ingeschakeld\n\nVoice Mode leert geen woorden van uw invoer terwijl deze modus actief is</string>
     <string name="incognito_mode__toast_after_disabled">Incognito modus is nu standaard uitgeschakeld</string>
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">Instellingen</string>
@@ -122,9 +122,129 @@
     <string name="settings__help" comment="General label for help buttons in Settings">Hulp</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Standaard</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Systeemstandaard</string>
-    <string name="settings__home__title" comment="Title of the Home screen">Welkom bij {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name} is niet ingeschakeld in het systeem en zal dus niet beschikbaar zijn als een invoermethode in de invoermethode-kiezer. Klik hier om dit probleem op te lossen.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name} is niet geselecteerd als de standaard invoermethode. Klik hier om dit probleem op te lossen.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">Welkom bij Voice Mode</string>
+    <string name="home__recent_title">Recente dictaten</string>
+    <string name="home__recent_see_all">Alles bekijken</string>
+    <string name="home__recent_copy">Kopiëren</string>
+    <string name="home__recent_failed">Transcriptie mislukt. Opname bewaard.</string>
+    <string name="home__recent_retry">Opnieuw</string>
+    <string name="home__transcribe_file">Bestand transcriberen</string>
+    <string name="home__ai_model">AI-model</string>
+    <string name="home__stats_summary">bespaard · {count} dictaten</string>
+    <string name="settings__all__title">Instellingen</string>
+    <string name="dictionary_hub__title">Woordenboek</string>
+    <string name="words__personal_dictionary">Persoonlijk woordenboek</string>
+    <string name="mywords__subtitle">Namen en termen die Voice Mode altijd goed moet hebben.</string>
+    <string name="mywords__title">Mijn woorden</string>
+    <string name="mywords__explanation">Eén lijst voor alles. Elk woord wordt op jouw manier gespeld als je spreekt, en voorgesteld als je typt.</string>
+    <string name="mywords__empty">Nog niets hier. Voeg een naam, een product of een woord toe dat je vaak gebruikt.</string>
+    <string name="mywords__more">+ {count} meer</string>
+    <string name="mywords__see_all">Lijst bewerken</string>
+    <string name="mywords__add_hint">Voeg een woord of naam toe</string>
+    <string name="mywords__add">Woord toevoegen</string>
+    <string name="mywords__usage">{count} van {limit} gaan naar de spraak-AI</string>
+    <string name="mywords__usage_full">{count} van {total} gaan naar de spraak-AI. Alle worden gebruikt bij het typen.</string>
+    <string name="mywords__fixes">Correcties</string>
+    <string name="mywords__find_replace">Zoeken en vervangen</string>
+    <string name="mywords__find_replace_none">Corrigeer woorden die de spraak-AI steeds verkeerd schrijft</string>
+    <string name="mywords__find_replace_one">1 regel: “{from}” → “{to}”</string>
+    <string name="mywords__find_replace_many">{count} regels, bijv. “{from}” → “{to}”</string>
+    <string name="mywords__learned">Geleerd van je typen</string>
+    <string name="mywords__learned_summary">Automatisch opgepikt. Verwijder wat je wilt.</string>
+    <string name="mywords__phone_settings">Woordenboek- en leerinstellingen van de telefoon</string>
+    <string name="mywords__edit_as_text">Bewerken als tekst</string>
+    <string name="mywords__edit_as_text_summary">De hele lijst plakken, importeren of exporteren</string>
+    <string name="mywords__remove">{word} verwijderen</string>
+    <string name="mywords__typing_only">Alleen typen: geen ruimte meer voor de spraak-AI</string>
+    <string name="mywords__budget_over">Je lijst is langer dan de spraak-AI leest. De eerste {fits} van je {count} woorden gaan ernaartoe; de rest wordt nog steeds voorgesteld als je typt.</string>
+    <string name="mywords__row_summary">{count} woorden, op jouw manier gespeld en voorgesteld als je typt</string>
+    <string name="nav__home">Start</string>
+    <string name="nav__style">Stijl</string>
+    <string name="home__mic_title">Je microfoonknop</string>
+    <string name="home__mic_on">{charm} · zweeft in elke app</string>
+    <string name="home__mic_off">Niet ingeschakeld</string>
+    <string name="home__mic_change_look">Uiterlijk wijzigen</string>
+    <string name="home__turn_on">Inschakelen</string>
+    <string name="home__keyboard_title">Voice Mode-toetsenbord</string>
+    <string name="home__keyboard_off">Niet ingeschakeld</string>
+    <string name="home__keyboard_on">Aan · de microfoon zit op het toetsenbord</string>
+    <string name="firstrun__title">Zeg het.\nVoice Mode schrijft het.</string>
+    <string name="firstrun__subtitle">Twee snelle stappen en je kunt praten.</string>
+    <string name="firstrun__step_look">Kies je microfoonknop</string>
+    <string name="firstrun__more_looks">Meer</string>
+    <string name="firstrun__step_where">Kies waar hij verschijnt</string>
+    <string name="firstrun__floating_title">Zwevende microfoon</string>
+    <string name="firstrun__floating_summary">Naast elk tekstveld, met het toetsenbord dat je al gebruikt</string>
+    <string name="firstrun__keyboard_summary">Een volledig toetsenbord met je microfoon ingebouwd</string>
+    <string name="firstrun__done">Aan</string>
+    <string name="firstrun__try_title">Probeer het hier</string>
+    <string name="firstrun__try_summary">Tik en zeg iets. Je tekst verschijnt hieronder, klaar om te kopiëren.</string>
+    <string name="settings__dictation_group">Dicteren</string>
+    <string name="settings__more_group">Toetsenbord en app</string>
+    <string name="settings__floating_button_on">Aan · waar en wanneer hij verschijnt</string>
+    <string name="settings__more_dictation">Meer dicteerinstellingen</string>
+    <string name="settings__more_dictation_summary">Talen, opmaak, herformulering, opname</string>
+    <string name="style__subtitle">Maak de microfoonknop helemaal van jou.</string>
+    <string name="style__preview_message">Kom je vanavond nog?</string>
+    <string name="style__preview_caption">Luistert in een chat-app</string>
+    <string name="style__preview_field">Bericht</string>
+    <string name="style__charm_classic">Klassiek</string>
+    <string name="style__charm_daisy">Madeliefje</string>
+    <string name="style__charm_butterfly">Vlinder</string>
+    <string name="style__charm_heart">Hart</string>
+    <string name="style__charm_clover">Klavertje</string>
+    <string name="style__charm_moon">Maan</string>
+    <string name="style__charm_sunflower">Zonnebloem</string>
+    <string name="style__charm_blossom">Bloesem</string>
+    <string name="style__charm_on_air">On Air</string>
+    <string name="style__charm_gramophone">Grammofoon</string>
+    <string name="style__charm_crooner">Crooner</string>
+    <string name="style__charm_mixtape">Mixtape</string>
+    <string name="style__charm_planet">Planeet</string>
+    <string name="style__charm_shooting_star">Vallende ster</string>
+    <string name="style__charm_disco_ball">Discobal</string>
+    <string name="style__charm_big_red_button">Grote rode knop</string>
+    <string name="style__charm_pixel_heart">8-bit hartje</string>
+    <string name="style__charm_neon">Neon</string>
+    <string name="style__charm_studio_mic">Studiomicrofoon</string>
+    <string name="style__collection_garden">Tuin</string>
+    <string name="style__collection_garden_tagline">Zacht, fris, levendig</string>
+    <string name="style__collection_retro">Retro</string>
+    <string name="style__collection_retro_tagline">Warm, analoog, met een knipoog</string>
+    <string name="style__collection_night_sky">Sterrenhemel</string>
+    <string name="style__collection_night_sky_tagline">Rustig en dromerig</string>
+    <string name="style__collection_arcade">Arcade</string>
+    <string name="style__collection_arcade_tagline">Pittig en speels</string>
+    <string name="style__collection_simple">Eenvoudig</string>
+    <string name="style__collection_simple_tagline">De gewone ronde knop</string>
+    <string name="style__move_bloom">Bloeit op tijdens het luisteren</string>
+    <string name="style__move_flutter">Fladdert tijdens het luisteren</string>
+    <string name="style__move_turn">Draait tijdens het luisteren</string>
+    <string name="style__move_sway">Wiegt tijdens het luisteren</string>
+    <string name="style__move_glow">Gloeit tijdens het luisteren</string>
+    <string name="style__move_wobble">Wiebelt tijdens het luisteren</string>
+    <string name="style__move_pulse">Pulseert tijdens het luisteren</string>
+    <string name="style__move_spin">Draait zijn spoelen tijdens het luisteren</string>
+    <string name="style__move_tilt">Kantelt tijdens het luisteren</string>
+    <string name="style__move_twinkle">Fonkelt tijdens het luisteren</string>
+    <string name="style__move_press">Zakt in tijdens het luisteren</string>
+    <string name="style__move_beat">Klopt tijdens het luisteren</string>
+    <string name="style__move_flicker">Flikkert tijdens het luisteren</string>
+    <string name="style__move_title">Bewegen tijdens het luisteren</string>
+    <string name="style__move_off">Blijft stil staan</string>
+    <string name="style__color_original">Originele kleuren</string>
+    <string name="style__color_fixed">{charm} houdt zijn eigen kleuren.</string>
+    <string name="style__color">Kleur</string>
+    <string name="style__color_cloud">Wolk</string>
+    <string name="style__color_blossom">Bloesem</string>
+    <string name="style__color_lilac">Lila</string>
+    <string name="style__color_butter">Boter</string>
+    <string name="style__color_mint">Munt</string>
+    <string name="style__color_sky">Hemel</string>
+    <string name="style__more_colors">Meer kleuren</string>
+    <string name="style__motion">Tijdens het luisteren</string>
+    <string name="style__button_off">De zwevende microfoonknop staat uit, dus je ziet dit voorlopig alleen hier.</string>
+    <string name="style__look_summary">{charm} · wijzig het op het tabblad Stijl</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Instellingen doorzoeken</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Instellingen doorzoeken…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Recente zoekopdrachten</string>
@@ -192,7 +312,7 @@
     <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">Nachtthema</string>
     <string name="pref__theme__theme_accent_color__label" comment="Label of accent color preference in Theme">Accentkleur (Material You)</string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">Geïnstalleerde thema\'s beheren</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">{app_name} Apponderdelen</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">Voice Mode Apponderdelen</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">Intern geheugen</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">Externe leverancier</string>
     <string name="settings__theme_manager__title_day" comment="Title of the theme manager screen for day theme selection">Selecteer dagthema</string>
@@ -219,7 +339,7 @@
     <string name="settings__theme_editor__code_recording_help_text">Gebruik de knop naast het code-invoerveld om de code van een sleutel te vinden. Eenmaal geactiveerd, zal het de volgende toetsaanslag opnemen en de code in het invoerveld invoegen.</string>
     <string name="settings__theme_editor__code_recording_started">Opname van sleutelcode gestart</string>
     <string name="settings__theme_editor__code_recording_stopped">Opname van sleutelcode gestopt</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">{app_name} moet het standaardtoetsenbord zijn om een ​​toetscode op te nemen</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Voice Mode moet het standaardtoetsenbord zijn om een ​​toetscode op te nemen</string>
     <string name="settings__theme_editor__code_recording_placeholder">Opnemen…</string>
     <string name="settings__theme_editor__add_property">Eigenschap toevoegen</string>
     <string name="settings__theme_editor__edit_property">Eigenschap bewerken</string>
@@ -528,7 +648,7 @@
     <string name="pref__other__show_app_icon__summary_atleast_q" comment="Summary of Show app icon preference in Other for Android 10+">Altijd ingeschakeld op Android 10+ vanwege systeembeperkingen</string>
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">Over</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">App-pictogram van {app_name}</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">App-pictogram van Voice Mode</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">Open source-licenties</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">Privacybeleid</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">Broncode</string>
@@ -545,30 +665,30 @@
     <string name="about__privacy_policy__title" comment="Preference title">Privacybeleid</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">Het privacybeleid voor dit project</string>
     <string name="about__project_license__title" comment="Preference title">Projectlicentie</string>
-    <string name="about__project_license__summary" comment="Preference summary">{app_name} heeft een licentie onder {license_name}</string>
+    <string name="about__project_license__summary" comment="Preference summary">Voice Mode heeft een licentie onder {license_name}</string>
     <string name="about__project_license__error_license_text_failed" comment="Error text for license text loading failure">Fout: kan licentietekst niet laden.\n-&gt; Reden: {error_message}</string>
     <string name="about__project_license__error_reason_asset_manager_null" comment="Error text if asset manager is null">Ontbrekende referentie in onderdelenbeheer</string>
     <string name="about__third_party_licenses__title" comment="Preference title">Licenties van derden</string>
     <string name="about__third_party_licenses__summary" comment="Preference summary">Licenties van de bibliotheken van derden die in deze app zijn opgenomen</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">Welkom!</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">Bedankt voor het gebruik van {app_name}! Deze snelle installatie leidt u door de vereiste stappen om {app_name} op uw apparaat te gebruiken.</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">Bedankt voor het gebruik van Voice Mode! Deze snelle installatie leidt u door de vereiste stappen om Voice Mode op uw apparaat te gebruiken.</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">Privacybeleid</string>
     <string name="setup__footer__repository" comment="Repository label for URL">Opslagplaats</string>
-    <string name="setup__enable_ime__title">{app_name} inschakelen</string>
-    <string name="setup__enable_ime__description">Android vereist dat elk aangepast toetsenbord afzonderlijk is ingeschakeld voordat u het kunt gebruiken. Open het systeem<i> Taal</i> Instellingen, activeer daar \"{app_name}\".</string>
+    <string name="setup__enable_ime__title">Voice Mode inschakelen</string>
+    <string name="setup__enable_ime__description">Android vereist dat elk aangepast toetsenbord afzonderlijk is ingeschakeld voordat u het kunt gebruiken. Open het systeem<i> Taal</i> Instellingen, activeer daar \"Voice Mode\".</string>
     <string name="setup__enable_ime__open_settings_btn">Systeeminstellingen openen</string>
-    <string name="setup__select_ime__title">Selecteer {app_name}</string>
-    <string name="setup__select_ime__description">{app_name} is nu ingeschakeld in uw systeem. Om het actief te gebruiken, schakel over naar {app_name} door het te selecteren in het invoerkeuzedialoogvenster!</string>
+    <string name="setup__select_ime__title">Selecteer Voice Mode</string>
+    <string name="setup__select_ime__description">Voice Mode is nu ingeschakeld in uw systeem. Om het actief te gebruiken, schakel over naar Voice Mode door het te selecteren in het invoerkeuzedialoogvenster!</string>
     <string name="setup__select_ime__switch_keyboard_btn">Van toetsenbord wisselen</string>
     <string name="setup__grant_notification_permission__title">Meldingen van crashrapporten toestaan</string>
     <string name="setup__grant_notification_permission__description">Vanaf Android 13+ moeten apps toestemming vragen om meldingen te verzenden. In Voice Mode wordt dit alleen gebruikt om bij een crash een crashrapportage te openen.
 Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.    </string>
     <string name="setup__grant_notification_permission__btn">Toestemming verlenen</string>
     <string name="setup__finish_up__title">Afronden</string>
-    <string name="setup__finish_up__description_p1">{app_name} is nu ingeschakeld in het systeem en kan door jou worden aangepast.</string>
+    <string name="setup__finish_up__description_p1">Voice Mode is nu ingeschakeld in het systeem en kan door jou worden aangepast.</string>
     <string name="setup__finish_up__description_p2">Als je problemen, bugs, crashes tegenkomt of gewoon een suggestie wilt doen, bekijk dan de projectrepository vanaf het about-scherm!</string>
-    <string name="setup__finish_up__finish_btn">Begin met aanpassen</string>
+    <string name="setup__finish_up__finish_btn">Aan de slag met Voice Mode</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__title">Fysiek toetsenbord</string>
     <string name="physical_keyboard__system_settings__title">Instellingen fysiek toetsenbord</string>
@@ -631,7 +751,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="clipboard__search_placeholder" comment="Hint inside the clipboard search field">Zoeken in klembord</string>
     <string name="clipboard__search_no_results" comment="Shown when no clip contains what was typed">Geen fragment bevat dat</string>
     <string name="clipboard__disabled__title">Klembordgeschiedenis is momenteel uitgeschakeld</string>
-    <string name="clipboard__disabled__message">Met de klembordgeschiedenis van {app_name} kun je snel tekst en afbeeldingen die je kopieert opslaan en openen, met de mogelijkheid om items vast te zetten, automatische opschoning te configureren en een maximale itemlimiet in te stellen.</string>
+    <string name="clipboard__disabled__message">Met de klembordgeschiedenis van Voice Mode kun je snel tekst en afbeeldingen die je kopieert opslaan en openen, met de mogelijkheid om items vast te zetten, automatische opschoning te configureren en een maximale itemlimiet in te stellen.</string>
     <string name="clipboard__disabled__enable_button">Schakel klembordgeschiedenis in</string>
     <string name="clipboard__empty__title">Je klembord is leeg</string>
     <string name="clipboard__empty__message">Zodra u tekstfragmenten of afbeeldingen kopieert, worden ze hier weergegeven.</string>
@@ -756,7 +876,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="ext__editor__create_component__title_theme">Thema maken</string>
     <string name="ext__editor__create_component__from_empty">Leeg</string>
     <string name="ext__editor__create_component__from_existing">Van bestaande</string>
-    <string name="ext__editor__create_component__from_empty_warning">Het maken en configureren van een leeg onderdeel kan moeilijk zijn als {app_name} nieuw voor u is of als u niet bekend bent met de details. Overweeg om een ​​bestaand onderdeel te kopiëren en in dat geval naar wens aan te passen.</string>
+    <string name="ext__editor__create_component__from_empty_warning">Het maken en configureren van een leeg onderdeel kan moeilijk zijn als Voice Mode nieuw voor u is of als u niet bekend bent met de details. Overweeg om een ​​bestaand onderdeel te kopiëren en in dat geval naar wens aan te passen.</string>
     <string name="ext__editor__edit_component__title">Bewerk onderdeel</string>
     <string name="ext__editor__edit_component__title_theme">Themacomponent bewerken</string>
     <string name="ext__export__success">Extensie geëxporteerd!</string>
@@ -919,9 +1039,9 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="enum__extended_actions_placement__overlay_app_ui" comment="Enum value label">App-UI overlappen</string>
     <string name="enum__extended_actions_placement__overlay_app_ui__description" comment="Enum value description">Hiermee wordt de uitgebreide actierij als overlay boven de gebruikersinterface van de app geplaatst, zonder dat dit invloed heeft op de resulterende hoogte van de gebruikersinterface van het toetsenbord. Houd er rekening mee dat deze plaatsing ertoe kan leiden dat het invoerveld van de app gedeeltelijk wordt overtekend</string>
     <string name="enum__haptic_vibration_mode__use_vibrator_directly" comment="Enum value label">Vibrator direct gebruiken</string>
-    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">{app_name} werkt rechtstreeks samen met de standaard hardwarevibrator. Dit geeft meer controle over de duur en sterkte van een trilling, maar de trilling is mogelijk niet zo soepel en geoptimaliseerd als bij het gebruik van de haptische feedbackinterface</string>
+    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">Voice Mode werkt rechtstreeks samen met de standaard hardwarevibrator. Dit geeft meer controle over de duur en sterkte van een trilling, maar de trilling is mogelijk niet zo soepel en geoptimaliseerd als bij het gebruik van de haptische feedbackinterface</string>
     <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface" comment="Enum value label">Haptische feedback-interface gebruiken</string>
-    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">{app_name} gebruikt de interface voor haptische feedback om een vooraf gedefinieerde trilvolgorde te activeren voor toetsaanslagen. Dit kan op sommige apparaten uitzonderlijk goed werken, maar op andere apparaten volledig falen of zeer slecht presteren</string>
+    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">Voice Mode gebruikt de interface voor haptische feedback om een vooraf gedefinieerde trilvolgorde te activeren voor toetsaanslagen. Dit kan op sommige apparaten uitzonderlijk goed werken, maar op andere apparaten volledig falen of zeer slecht presteren</string>
     <string name="enum__key_hint_mode__accent_priority" comment="Enum value label">Accent krijgt prioriteit</string>
     <string name="enum__key_hint_mode__accent_priority__description" comment="Enum value description">Het eerste geselecteerde teken na een lange indruk is altijd het primaire accent, of het hint symbool als er geen primair accent beschikbaar is</string>
     <string name="enum__key_hint_mode__hint_priority" comment="Enum value label">Hint krijgt prioriteit</string>
@@ -1052,9 +1172,10 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="quick_action__ime_ui_mode_scan__tooltip">Gedrukte tekst fotograferen en invoegen</string>
     <string name="quick_action__translate">Vertalen</string>
     <string name="quick_action__translate__tooltip">Vertalen tijdens het typen, op dit apparaat</string>
-    <string name="quick_action__ime_ui_mode_dictate">Voice Mode</string>
+    <string name="quick_action__ime_ui_mode_dictate">Dicteren</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Tik om te dicteren, tik nogmaals om te transcriberen</string>
     <string name="quick_action__dictate_live_prompt">Live-instructie</string>
+    <string name="dictate__live_prompt_chip">Vraag met je stem</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Neem een gesproken instructie op en stuur die naar de AI</string>
     <string name="quick_action__dictate_prompts">AI-prompts</string>
     <string name="quick_action__dictate_prompts__tooltip">De AI-herformuleringsprompts openen</string>
@@ -1062,8 +1183,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="about__based_on_floris__summary">Een fork van FlorisBoard door Patrick Goldinger en bijdragers, Apache 2.0. Tik om te openen.</string>
     <string name="about__feedback__title">Feedback en ondersteuning</string>
     <string name="about__feedback__summary">Stuur een e-mail met vragen, bugs of ideeën</string>
-    <string name="about__feedback__email">support@voicemode.example</string>
-    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Kies hoe Voice Mode transcribeert</string>
     <string name="setup__provider__choose_intro">Voice Mode zet je spraak om in tekst met een AI-dienst. Voor de meeste mensen voldoet een van deze twee manieren — en wil je helemaal geen clouddienst gebruiken, dan staan er hieronder nog twee.</string>
     <string name="setup__provider__choice_cloud_title">Tegoed kopen in de app</string>
@@ -1186,14 +1306,16 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__remember_last_dictation_title">Laatste dictaat onthouden</string>
     <string name="changelog__v4_2_0">• NIEUW: zwevende dicteerknop — dicteer rechtstreeks in elke app, zelfs met een ander toetsenbord actief. Kies uit drie stijlen (Pil, Ring, Bol), zie een live golfvorm terwijl je praat, sleep hem overal heen met randmagnetisme, stel kleur en grootte in en houd ingedrukt om te herformuleren. Schakel hem in via Instellingen ▸ Voice Mode ▸ Zwevende knop.\n• NIEUW: Google Gemini — gebruik je eigen AI Studio-API-sleutel voor transcriptie en herformuleren.\n• Prompts verschijnen nu standaard in een vaste rij boven de toetsen.\n• Betrouwbaardere tekstinvoer in apps, inclusief browsers en andere toetsenborden.</string>
     <string name="dictate__promo_floating_button_message">Nieuw: overal dicteren</string>
+    <string name="dictate__promo_keep_button_message">Zwevende microfoon hier ook houden?</string>
+    <string name="dictate__promo_keep_button_action">Houden</string>
     <string name="dictate__promo_floating_button_action">Proberen</string>
     <string name="setup__floating_button__btn">Zwevende knop instellen</string>
     <string name="setup__nav_back">Terug</string>
     <string name="setup__nav_next">Volgende</string>
     <string name="setup__floating_button__title">Overal dicteren (optioneel)</string>
     <string name="setup__floating_button__intro">De zwevende knop plaatst een kleine dicteerbel over elke app, zodat je in elk tekstveld kunt spreken zonder van toetsenbord te wisselen.</string>
-    <string name="setup__floating_button__accessibility_note">Hiervoor gebruikt {app_name} de toegankelijkheidsinstellingen van Android — zo kan de bel over andere apps verschijnen en de getranscribeerde tekst voor je invoegen. Het volgende scherm helpt je bij het inschakelen.</string>
-    <string name="setup__floating_button__optional_note">Dit is volledig optioneel — sla het over als je {app_name} gewoon als volledig toetsenbord wilt gebruiken. Je kunt het later altijd instellen in de instellingen.</string>
+    <string name="setup__floating_button__accessibility_note">Hiervoor gebruikt Voice Mode de toegankelijkheidsinstellingen van Android — zo kan de bel over andere apps verschijnen en de getranscribeerde tekst voor je invoegen. Het volgende scherm helpt je bij het inschakelen.</string>
+    <string name="setup__floating_button__optional_note">Dit is volledig optioneel — sla het over als je Voice Mode gewoon als volledig toetsenbord wilt gebruiken. Je kunt het later altijd instellen in de instellingen.</string>
     <string name="setup__floating_button__skip_btn">Overslaan — ik gebruik het toetsenbord</string>
     <string name="dictate__floating_button_badge_new">Nieuw</string>
     <string name="dictate__panel_title">AI-prompts</string>
@@ -1203,6 +1325,8 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__prompts_layout_panel_description">Open de prompts in een eigen paneel via de toverstaf-knop.</string>
     <string name="dictate__prompts_layout_row_label">Altijd zichtbare rij</string>
     <string name="dictate__prompts_layout_row_description">Zet de prompts vast in een extra rij boven het toetsenbord.</string>
+    <string name="dictate__prompts_layout_when_useful_label">Wanneer nuttig</string>
+    <string name="dictate__prompts_layout_when_useful_description">Toon de prompts in de bovenbalk direct na het dicteren of als er tekst is geselecteerd.</string>
     <string name="dictate__status_idle">Tik om te dicteren</string>
     <string name="dictate__status_recording">Opnemen – tik om te stoppen</string>
     <string name="dictate__status_transcribing">Transcriberen…</string>
@@ -1448,9 +1572,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__custom_words_title">Aangepaste woorden</string>
     <string name="dictate__custom_words_summary_empty">Voeg namen of vaktermen toe die correct gespeld moeten worden</string>
     <string name="dictate__custom_words_placeholder">bv. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} woorden · ongeveer {tokens} van {budget} tokens</string>
     <string name="dictate__custom_words_budget_info">Elk woord hier gaat met elk dictaat mee, en het spraakmodel leest daarvan maar zo\'n {budget} tokens context. Je lijst gebruikt er ongeveer {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">Je lijst is langer dan het spraakmodel leest. Ongeveer {fits} van je {count} woorden komen aan; de rest gaat bij elk dictaat mee en wordt genegeerd. Gebruik voor een grotere woordenschat eigen vervangingen — die zijn exact, werken offline en kosten niets.</string>
     <string name="dictate__custom_words_import">Woordenlijst importeren</string>
     <string name="dictate__custom_words_export">Woordenlijst exporteren</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1460,11 +1582,8 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__custom_words_import_nofit">{count} vielen af — het spraakmodel leest maar zo\'n {budget} tokens context, ze zouden dus bij elk dictaat zijn meegestuurd en genegeerd.</string>
     <string name="dictate__custom_words_import_unusable">{count} regels bevatten niets om te spellen en zijn overgeslagen.</string>
     <string name="dictate__custom_words_import_truncated">Alleen de eerste {count} vermeldingen van het bestand zijn gelezen.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Ook aan het persoonlijke woordenboek toevoegen</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Deze lijst vertelt alleen het spraakmodel hoe een woord geschreven wordt. Het persoonlijke woordenboek is wat het toetsenbord gebruikt terwijl je typt — dat heeft geen lengtegrens, dus elk woord uit het bestand komt erin, niet alleen de woorden die hierboven passen.</string>
     <string name="dictate__custom_words_import_empty">Geen woorden in dat bestand gevonden</string>
     <string name="dictate__custom_words_import_done">{count} woorden toegevoegd</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} woorden toegevoegd, en {dict} aan je persoonlijke woordenboek</string>
     <string name="dictate__file_unreadable">Dat bestand kon niet worden gelezen</string>
     <string name="dictate__file_export_done">Bestand opgeslagen</string>
     <string name="dictate__file_export_failed">Kon dat bestand niet schrijven</string>
@@ -1607,7 +1726,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="changelog__intro">Voice Mode is bijgewerkt. Dit is er nieuw:</string>
     <string name="changelog__version_header">Versie {version}</string>
     <string name="changelog__donate">Vind je Voice Mode leuk? Tik hier om de ontwikkeling te steunen ♥</string>
-    <string name="changelog__current">• Gloednieuw toetsenbord: Voice Mode is nu een volwaardig meertalig lay-outtoetsenbord met een eigen microfoontoets die het spraakpaneel opent.\n• Gebruik je eigen AI: kies een willekeurige OpenAI-compatibele aanbieder en voer je API-sleutel in via Instellingen → Voice Mode.\n• Slimme opmaak en herformulering met het model van jouw keuze.\n• Je instellingen van de vorige Voice Mode-app worden automatisch geïmporteerd.</string>
+    <string name="changelog__current">• Gloednieuw toetsenbord: Voice Mode is nu een volwaardig meertalig lay-outtoetsenbord met een eigen microfoontoets die het spraakpaneel opent.\n• Gebruik je eigen AI: kies een willekeurige OpenAI-compatibele aanbieder en voer je API-sleutel in via Instellingen → Voice Mode.\n• Slimme opmaak en herformulering met het model van jouw keuze.\n• Je instellingen van de vorige Dictate-app worden automatisch geïmporteerd.</string>
     <string name="changelog__v4_1_0">• Nieuw: zoek emoji\'s rechtstreeks vanaf het toetsenbord.\n• Nieuwe transcriptieprovider: Soniox.\n• Voeg je laatste dictaat opnieuw in en herstel opnames die werden onderbroken toen het toetsenbord sloot.\n• De promptbalk wordt nu live bijgewerkt: houd een prompt ingedrukt om die te bewerken.\n• Het scherm met AI-providers toont nu zowel je actieve transcriptie- als herformuleringsprovider.\n• Grotere opnameknop die makkelijker te raken is.\n• Oplossingen: een ondersteuningsmelding kon blijven hangen en de balk blokkeren in sommige talen; back-up mislukt niet meer wanneer prompts, toetsenbord of thema zijn geselecteerd; opgeslagen API-sleutels blijven behouden bij het updaten.</string>
     <string name="changelog__v4_1_1">• Oplossing: de accentkleur kon op sommige apparaten groen lijken; toetsen en knoppen zijn weer Voice Mode-blauw.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -1809,7 +1928,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__audio_save_failed">Kan de audio niet opslaan</string>
     <string name="dictate__instant_recording_mode_off">Uit</string>
     <string name="dictate__instant_recording_mode_always">Elke keer als het toetsenbord opent</string>
-    <string name="dictate__instant_recording_mode_after_switch">Alleen na overschakelen naar {app_name}</string>
+    <string name="dictate__instant_recording_mode_after_switch">Alleen na overschakelen naar Voice Mode</string>
     <string name="dictate__instant_recording_in_numeric">Ook in numerieke velden</string>
     <string name="dictate__instant_recording_skip_numeric_title">Numerieke velden overslaan</string>
     <string name="dictate__instant_recording_skip_numeric_summary">Niet automatisch starten bij cijfer-, telefoon- of pinvelden</string>
@@ -1865,7 +1984,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour__badge_highlight">★ Uitgelicht</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">Een korte rondleiding</string>
-    <string name="apptour__intro_body">Dit is nieuw in Dictate 5.0 — de hoogtepunten in minder dan een minuut. Tik op elke pagina op ‘Uitproberen’ om meteen naar die instelling te springen.</string>
+    <string name="apptour__intro_body">Dit is nieuw in Voice Mode 5.0 — de hoogtepunten in minder dan een minuut. Tik op elke pagina op ‘Uitproberen’ om meteen naar die instelling te springen.</string>
     <string name="apptour__glide_eyebrow">Toetsenbord</string>
     <string name="apptour__glide_title">Veeg om te typen</string>
     <string name="apptour__glide_body">Veeg met je vinger van toets naar toets en Voice Mode maakt van het pad hele woorden. Elke taal heeft een eigen woordenboek dat op verzoek wordt gedownload — zet het aan bij Gebaren.</string>
@@ -1931,7 +2050,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour51__outro_title">Veel plezier met de update</string>
     <string name="apptour51__outro_body">Bedankt dat je Voice Mode gebruikt! Als het je elke dag helpt, houdt een kleine donatie het project draaiende. Je kunt al deze rondleidingen altijd opnieuw bekijken via Instellingen › Over.</string>
     <string name="apptour52__cta_try">Proberen</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">Voice Mode 5.2</string>
     <string name="apptour52__intro_title">Overal dicteren</string>
     <string name="apptour52__intro_body">Deze versie tilt Voice Mode voorbij het eigen toetsenbord: als spraakinvoer van je telefoon, voor gesproken opdrachten vanaf elke plek en om lange dictaten netjes op te maken. Dit is nieuw.</string>
     <string name="apptour52__voiceinput_eyebrow">Spraakinvoer van het systeem</string>
@@ -1959,7 +2078,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour52__outro_title">Veel dicteerplezier</string>
     <string name="apptour52__outro_body">En veel onder de motorkap: het scherm blijft het hele dictaat aan, lokale modellen geven hun geheugen vrij bij inactiviteit, horloge-dictaten overleven verbindingsonderbrekingen en de Duitse autocorrectie kent nu umlauten. Elke rondleiding is terug te vinden onder Instellingen › Over.</string>
     <string name="apptour53__cta_try">Uitproberen</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">Voice Mode 5.3</string>
     <string name="apptour53__intro_title">Vasthouden, praten, klaar</string>
     <string name="apptour53__intro_body">Deze versie gaat over de twee dingen die je het vaakst doet: tegen je telefoon praten en erop typen. Allebei sneller, en allebei beter in je niet voor de voeten lopen.</string>
     <string name="apptour53__pushtotalk_eyebrow">Indrukken om te praten</string>
@@ -1990,7 +2109,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour60__cta_try">Uitproberen</string>
     <string name="apptour60__art_minutes">minuten</string>
     <string name="apptour60__art_speed">1,5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">Voice Mode 6.0</string>
     <string name="apptour60__intro_title">Tegoed, Chinees, goedkoper dicteren</string>
     <string name="apptour60__intro_body">Deze versie voegt een tweede ingang toe — tegoed kopen in plaats van je eigen API-sleutel meebrengen —, plus pinyin voor Chinees, zeven talen met een nieuw woordenboek en opnames die minder kosten.</string>
     <string name="apptour60__cloud_eyebrow">Nieuw: Voice Mode Cloud</string>
@@ -2019,7 +2138,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour61__art_share">Delen met</string>
     <string name="apptour61__art_typed">eht</string>
     <string name="apptour61__art_fixed">het</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">Voice Mode 6.1</string>
     <string name="apptour61__intro_title">Stickers, spraakberichten en autocorrectie die de typfout eindelijk ziet</string>
     <string name="apptour61__intro_body">Wijs het toetsenbord een map met je eigen stickers aan, deel een spraakbericht rechtstreeks met Voice Mode om te weten wat erin staat, en gebruik een autocorrectie die de fout eindelijk opmerkt die ze was gebouwd om te missen.</string>
     <string name="apptour61__stickers_eyebrow">Nieuw: je eigen stickers</string>
@@ -2048,7 +2167,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour62__art_word">Zoya</string>
     <string name="apptour62__art_emoji_word">taart</string>
     <string name="apptour62__art_emoji">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">Voice Mode 6.2</string>
     <string name="apptour62__intro_title">Het leert jouw woorden en heeft vijf nieuwe gezichten</string>
     <string name="apptour62__intro_body">Het toetsenbord kan nu de woorden onthouden die geen enkel woordenboek kent, de toetsen kunnen de app erachter laten doorschijnen, en beide duimen kunnen een eigen helft krijgen. Plus een handvol kleine hulpjes voor wat je elke dag doet.</string>
     <string name="apptour62__learning_eyebrow">Nieuw: het leert terwijl je typt</string>
@@ -2056,7 +2175,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour62__learning_body">Typ een naam of vakterm vaak genoeg en het toetsenbord houdt hem: het markeert hem niet langer als fout en gaat hem voorstellen. Deze update zet dat bij iedereen aan, ook bij wie het eerder had uitgezet. In incognitomodus, in wachtwoordvelden en uit alles wat je niet toets voor toets hebt getypt wordt niets geleerd; alles blijft op dit toestel, en de knop hieronder opent de lijst — en de schakelaar.</string>
     <string name="apptour62__themes_eyebrow">Vijf nieuwe thema\'s</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep en een donkere E-Ink</string>
-    <string name="apptour62__themes_body">Voice Mode Glass laat de app doorschijnen door de kieren tussen de toetsen, terwijl de toetsen zelf dekkend genoeg blijven om erop te lezen; Glass Clear gaat verder en oogt mooier, ten koste van tekst die doorschijnt in apps die achter het toetsenbord doortekenen. Sand is een warm licht thema, Deep een rustig donker thema, en E-Ink heeft eindelijk een nachtversie — zo geeft het automatisch wisselen je na zonsondergang geen wit toetsenbord meer.</string>
+    <string name="apptour62__themes_body">Glass laat de app doorschijnen door de kieren tussen de toetsen, terwijl de toetsen zelf dekkend genoeg blijven om erop te lezen; Glass Clear gaat verder en oogt mooier, ten koste van tekst die doorschijnt in apps die achter het toetsenbord doortekenen. Sand is een warm licht thema, Deep een rustig donker thema, en E-Ink heeft eindelijk een nachtversie — zo geeft het automatisch wisselen je na zonsondergang geen wit toetsenbord meer.</string>
     <string name="apptour62__split_eyebrow">Nieuw: gesplitst toetsenbord</string>
     <string name="apptour62__split_title">Allebei de duimen, zonder rekken</string>
     <string name="apptour62__split_body">Een nieuwe snelle actie, naast eenhandig en zwevend, trekt de rijen uit elkaar zodat elke duim bij zijn eigen helft blijft. Elke indeling splitst, niet alleen QWERTY, omdat de naad uit de toetsbreedtes wordt afgeleid in plaats van per indeling te worden opgeschreven. En liggend blijft de app nu zichtbaar zodra er ruimte is voor allebei.</string>
@@ -2085,7 +2204,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour62__outro_title">Hetzelfde toetsenbord, meer ervan van jou</string>
     <string name="apptour62__outro_body">Aan de manier waarop je dicteert verandert niets — je eigen sleutel, je eigen server of een model op het toestel. Alle rondleidingen vind je terug onder Instellingen › Over.</string>
     <string name="apptour63__cta_try">Uitproberen</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">Voice Mode 6.3</string>
     <string name="apptour63__intro_title">Meer toetsenbord, zonder het te verlaten</string>
     <string name="apptour63__intro_body">Richt de camera op gedrukte tekst en die belandt in het veld. Cursor, selectie en klembord delen eindelijk één paneel. Elke Smartbar-knop kan met lang indrukken een tweede actie dragen. En dicteren zonder internet heeft eindelijk modellen die echt op een telefoon passen.</string>
     <string name="apptour63__scan_eyebrow">Nieuw: tekst scannen</string>
@@ -2224,8 +2343,6 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__cloud_other_way_body">Je kunt altijd overstappen op je eigen API-sleutel, en weer terug. Je tegoed blijft waar het is.</string>
     <string name="dictate__error_out_of_credit">Tegoed op</string>
     <string name="dictate__action_top_up">Tegoed opwaarderen</string>
-    <string name="dictate__promo_low_credit_message">Tegoed bijna op.</string>
-    <string name="dictate__promo_low_credit_action">Opwaarderen</string>
     <string name="prefs__media__sticker__title">Stickers</string>
     <string name="prefs__media__sticker_folder__title">Stickermap</string>
     <string name="prefs__media__sticker_folder__summary_unset">Kies een map met je eigen afbeeldingen</string>

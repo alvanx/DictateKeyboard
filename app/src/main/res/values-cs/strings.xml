@@ -120,7 +120,7 @@
     <string name="quick_actions_editor__subheader_hidden_actions">Skrýt akce ({n})</string>
     <string name="select_subtype_panel__header">Vyberte podtyp</string>
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">Anonymní režim je nyní povolen\n\nV tomto režimu se {app_name} nebude učit slova z vašeho zadávání</string>
+    <string name="incognito_mode__toast_after_enabled">Anonymní režim je nyní povolen\n\nV tomto režimu se Voice Mode nebude učit slova z vašeho zadávání</string>
     <string name="incognito_mode__toast_after_disabled">Anonymní režim je nyní ve výchozím nastavení zakázán</string>
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">Nastavení</string>
@@ -128,9 +128,129 @@
     <string name="settings__help" comment="General label for help buttons in Settings">Nápověda</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Výchozí</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Výchozí nastavení systému</string>
-    <string name="settings__home__title" comment="Title of the Home screen">Vítejte ve {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name} není povolena v systému a proto nemůže být použita jako metoda zadávání. Klikněte sem pro vyřešení tohoto problému.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name} není vybrán jako výchozí vstupní metoda. Kliknutím sem tento problém vyřešíte.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">Vítejte ve Voice Mode</string>
+    <string name="home__recent_title">Nedávné diktáty</string>
+    <string name="home__recent_see_all">Zobrazit vše</string>
+    <string name="home__recent_copy">Kopírovat</string>
+    <string name="home__recent_failed">Přepis se nezdařil. Nahrávka je uložena.</string>
+    <string name="home__recent_retry">Zkusit znovu</string>
+    <string name="home__transcribe_file">Přepsat soubor</string>
+    <string name="home__ai_model">Model AI</string>
+    <string name="home__stats_summary">ušetřeno · diktáty: {count}</string>
+    <string name="settings__all__title">Nastavení</string>
+    <string name="dictionary_hub__title">Slovník</string>
+    <string name="words__personal_dictionary">Osobní slovník</string>
+    <string name="mywords__subtitle">Jména a pojmy, které má Voice Mode vždy napsat správně.</string>
+    <string name="mywords__title">Moje slova</string>
+    <string name="mywords__explanation">Jeden seznam na všechno. Každé slovo se při mluvení napíše po vašem a při psaní se nabídne.</string>
+    <string name="mywords__empty">Zatím tu nic není. Přidejte jméno, produkt nebo jakékoli slovo, které často používáte.</string>
+    <string name="mywords__more">+ {count} dalších</string>
+    <string name="mywords__see_all">Upravit seznam</string>
+    <string name="mywords__add_hint">Přidejte slovo nebo jméno</string>
+    <string name="mywords__add">Přidat slovo</string>
+    <string name="mywords__usage">{count} z {limit} jde do řečové AI</string>
+    <string name="mywords__usage_full">{count} z {total} jde do řečové AI. Při psaní se používají všechna.</string>
+    <string name="mywords__fixes">Opravy</string>
+    <string name="mywords__find_replace">Najít a nahradit</string>
+    <string name="mywords__find_replace_none">Opravte slova, která řečová AI stále plete</string>
+    <string name="mywords__find_replace_one">1 pravidlo: „{from}“ → „{to}“</string>
+    <string name="mywords__find_replace_many">Pravidla: {count}, např. „{from}“ → „{to}“</string>
+    <string name="mywords__learned">Naučeno z vašeho psaní</string>
+    <string name="mywords__learned_summary">Zachyceno automaticky. Odeberte, co nechcete.</string>
+    <string name="mywords__phone_settings">Slovník telefonu a nastavení učení</string>
+    <string name="mywords__edit_as_text">Upravit jako text</string>
+    <string name="mywords__edit_as_text_summary">Vložit, importovat nebo exportovat celý seznam</string>
+    <string name="mywords__remove">Odebrat {word}</string>
+    <string name="mywords__typing_only">Jen pro psaní: pro řečovou AI už není místo</string>
+    <string name="mywords__budget_over">Váš seznam je delší, než řečová AI přečte. Prvních {fits} z vašich {count} slov jde do ní; zbytek se dál nabízí při psaní.</string>
+    <string name="mywords__row_summary">Slova: {count}, psaná po vašem a nabízená při psaní</string>
+    <string name="nav__home">Domů</string>
+    <string name="nav__style">Styl</string>
+    <string name="home__mic_title">Vaše tlačítko mikrofonu</string>
+    <string name="home__mic_on">{charm} · plave v každé aplikaci</string>
+    <string name="home__mic_off">Nezapnuto</string>
+    <string name="home__mic_change_look">Změnit vzhled</string>
+    <string name="home__turn_on">Zapnout</string>
+    <string name="home__keyboard_title">Klávesnice Voice Mode</string>
+    <string name="home__keyboard_off">Nezapnuto</string>
+    <string name="home__keyboard_on">Zapnuto · mikrofon je na klávesnici</string>
+    <string name="firstrun__title">Řekněte to.\nVoice Mode to napíše.</string>
+    <string name="firstrun__subtitle">Dva rychlé kroky a můžete mluvit.</string>
+    <string name="firstrun__step_look">Vyberte si tlačítko mikrofonu</string>
+    <string name="firstrun__more_looks">Další</string>
+    <string name="firstrun__step_where">Vyberte, kde se zobrazí</string>
+    <string name="firstrun__floating_title">Plovoucí mikrofon</string>
+    <string name="firstrun__floating_summary">Vedle každého textového pole, s klávesnicí, kterou už používáte</string>
+    <string name="firstrun__keyboard_summary">Plnohodnotná klávesnice s vestavěným mikrofonem</string>
+    <string name="firstrun__done">Zapnuto</string>
+    <string name="firstrun__try_title">Vyzkoušejte to tady</string>
+    <string name="firstrun__try_summary">Klepněte a řekněte cokoli. Text se objeví níže, připravený ke zkopírování.</string>
+    <string name="settings__dictation_group">Diktování</string>
+    <string name="settings__more_group">Klávesnice a aplikace</string>
+    <string name="settings__floating_button_on">Zapnuto · kde a kdy se zobrazuje</string>
+    <string name="settings__more_dictation">Další nastavení diktování</string>
+    <string name="settings__more_dictation_summary">Jazyky, formátování, přeformulování, nahrávání</string>
+    <string name="style__subtitle">Udělejte si tlačítko mikrofonu po svém.</string>
+    <string name="style__preview_message">Přijdeš dnes večer?</string>
+    <string name="style__preview_caption">Poslouchá v chatovací aplikaci</string>
+    <string name="style__preview_field">Zpráva</string>
+    <string name="style__charm_classic">Klasika</string>
+    <string name="style__charm_daisy">Sedmikráska</string>
+    <string name="style__charm_butterfly">Motýl</string>
+    <string name="style__charm_heart">Srdce</string>
+    <string name="style__charm_clover">Čtyřlístek</string>
+    <string name="style__charm_moon">Měsíc</string>
+    <string name="style__charm_sunflower">Slunečnice</string>
+    <string name="style__charm_blossom">Třešňový květ</string>
+    <string name="style__charm_on_air">Vysíláme</string>
+    <string name="style__charm_gramophone">Gramofon</string>
+    <string name="style__charm_crooner">Crooner</string>
+    <string name="style__charm_mixtape">Kazeta</string>
+    <string name="style__charm_planet">Planeta</string>
+    <string name="style__charm_shooting_star">Padající hvězda</string>
+    <string name="style__charm_disco_ball">Disko koule</string>
+    <string name="style__charm_big_red_button">Velké červené tlačítko</string>
+    <string name="style__charm_pixel_heart">8bitové srdce</string>
+    <string name="style__charm_neon">Neon</string>
+    <string name="style__charm_studio_mic">Studiový mikrofon</string>
+    <string name="style__collection_garden">Zahrada</string>
+    <string name="style__collection_garden_tagline">Jemné, jasné, živé</string>
+    <string name="style__collection_retro">Retro</string>
+    <string name="style__collection_retro_tagline">Teplé, analogové, s mrknutím oka</string>
+    <string name="style__collection_night_sky">Noční obloha</string>
+    <string name="style__collection_night_sky_tagline">Klidné a snové</string>
+    <string name="style__collection_arcade">Arkáda</string>
+    <string name="style__collection_arcade_tagline">Výrazné a hravé</string>
+    <string name="style__collection_simple">Jednoduché</string>
+    <string name="style__collection_simple_tagline">Obyčejné kulaté tlačítko</string>
+    <string name="style__move_bloom">Rozkvétá, když poslouchá</string>
+    <string name="style__move_flutter">Třepotá se, když poslouchá</string>
+    <string name="style__move_turn">Otáčí se, když poslouchá</string>
+    <string name="style__move_sway">Pohupuje se, když poslouchá</string>
+    <string name="style__move_glow">Září, když poslouchá</string>
+    <string name="style__move_wobble">Kolébá se, když poslouchá</string>
+    <string name="style__move_pulse">Pulzuje, když poslouchá</string>
+    <string name="style__move_spin">Točí cívkami, když poslouchá</string>
+    <string name="style__move_tilt">Naklání se, když poslouchá</string>
+    <string name="style__move_twinkle">Třpytí se, když poslouchá</string>
+    <string name="style__move_press">Promáčkne se, když poslouchá</string>
+    <string name="style__move_beat">Tluče jako srdce, když poslouchá</string>
+    <string name="style__move_flicker">Bliká, když poslouchá</string>
+    <string name="style__move_title">Pohyb při poslechu</string>
+    <string name="style__move_off">Zůstává v klidu</string>
+    <string name="style__color_original">Původní barvy</string>
+    <string name="style__color_fixed">{charm} si ponechává vlastní barvy.</string>
+    <string name="style__color">Barva</string>
+    <string name="style__color_cloud">Oblak</string>
+    <string name="style__color_blossom">Květ</string>
+    <string name="style__color_lilac">Šeřík</string>
+    <string name="style__color_butter">Máslo</string>
+    <string name="style__color_mint">Máta</string>
+    <string name="style__color_sky">Nebe</string>
+    <string name="style__more_colors">Další barvy</string>
+    <string name="style__motion">Když poslouchá</string>
+    <string name="style__button_off">Plovoucí tlačítko mikrofonu je vypnuté, takže ho zatím uvidíte jen tady.</string>
+    <string name="style__look_summary">{charm} · změníte na kartě Styl</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Hledat v nastavení</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Hledat v nastavení…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Nedávná hledání</string>
@@ -198,7 +318,7 @@
     <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">Noční motiv</string>
     <string name="pref__theme__theme_accent_color__label" comment="Label of accent color preference in Theme">Barva akcentu (Material You)</string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">Spravovat nainstalované motivy</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">Podklady aplikace {app_name}</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">Podklady aplikace Voice Mode</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">Interní úložiště</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">Externí poskytovatel</string>
     <string name="settings__theme_manager__title_day" comment="Title of the theme manager screen for day theme selection">Vyberte denní motiv</string>
@@ -228,7 +348,7 @@
     <string name="settings__theme_editor__code_recording_help_text">Pro nalezení kódu klávesy použijte tlačítko vedle vstupního pole kódu. Po aktivaci bude zaznamenáno další stisknutí klávesy a kód bude vložen do vstupního pole.</string>
     <string name="settings__theme_editor__code_recording_started">Nahrávání kódu klávesy spuštěno</string>
     <string name="settings__theme_editor__code_recording_stopped">Nahrávání kódu klávesy ukončeno</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Pro zaznamenání kódu klávesy musí být výchozí klávesnice nastavena na {app_name}</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Pro zaznamenání kódu klávesy musí být výchozí klávesnice nastavena na Voice Mode</string>
     <string name="settings__theme_editor__code_recording_placeholder">Nahrávání…</string>
     <string name="settings__theme_editor__add_property">Přidat vlastnost</string>
     <string name="settings__theme_editor__edit_property">Upravit vlastnost</string>
@@ -244,7 +364,7 @@
     <string name="settings__theme_editor__component_meta_stylesheet_path">Cesta tabulky stylů</string>
     <string name="settings__theme_editor__component_meta_material_you__title">Material You</string>
     <string name="settings__theme_editor__stylesheet_error_title">Chyba stylů</string>
-    <string name="settings__theme_editor__stylesheet_error_description">{app_name} se přesto může pokusit načíst soubor stylů a přidat chybějící schémata, pravidla nebo odstranit neplatná pravidla, vlastnosti nebo hodnoty. Chcete, aby aplikace {app_name} tyto změny použila?</string>
+    <string name="settings__theme_editor__stylesheet_error_description">Voice Mode se přesto může pokusit načíst soubor stylů a přidat chybějící schémata, pravidla nebo odstranit neplatná pravidla, vlastnosti nebo hodnoty. Chcete, aby aplikace Voice Mode tyto změny použila?</string>
     <string name="settings__theme_editor__component_meta_material_you__palette_style">Styl palety</string>
     <string name="settings__theme_editor__component_meta_material_you__color_contrast">Barevný kontrast</string>
     <string name="settings__theme_editor__component_meta_material_you__spec_version">Verze specifikací</string>
@@ -605,7 +725,7 @@
     <string name="pref__other__show_app_icon__summary_atleast_q" comment="Summary of Show app icon preference in Other for Android 10+">Vždy povoleno v systému Android 10+ kvůli systémovým omezením</string>
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">O aplikaci</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Ikona aplikace {app_name}</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Ikona aplikace Voice Mode</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">Open source licence</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">Soukromí</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">Zdrojový kód</string>
@@ -622,21 +742,21 @@
     <string name="about__privacy_policy__title" comment="Preference title">Soukromí</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">Zásady ochrany soukromí tohoto projektu</string>
     <string name="about__project_license__title" comment="Preference title">Licence projektu</string>
-    <string name="about__project_license__summary" comment="Preference summary">{app_name} je licencován pod {license_name}</string>
+    <string name="about__project_license__summary" comment="Preference summary">Voice Mode je licencován pod {license_name}</string>
     <string name="about__project_license__error_license_text_failed" comment="Error text for license text loading failure">Chyba: Nepodařilo se načíst text licence.\n-&gt; Důvod: {error_message}</string>
     <string name="about__project_license__error_reason_asset_manager_null" comment="Error text if asset manager is null">Reference správce podkladů je null</string>
     <string name="about__third_party_licenses__title" comment="Preference title">Licence třetích stran</string>
     <string name="about__third_party_licenses__summary" comment="Preference summary">Licence knihoven třetích stran zahrnutých v této aplikaci</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">Vítejte!</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">Děkujeme za používání aplikace {app_name}! Toto rychlé nastavení vás provede kroky vyžadovanými k používání {app_name} na vašem zařízení.</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">Děkujeme za používání aplikace Voice Mode! Toto rychlé nastavení vás provede kroky vyžadovanými k používání Voice Mode na vašem zařízení.</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">Soukromí</string>
     <string name="setup__footer__repository" comment="Repository label for URL">Repozitář</string>
-    <string name="setup__enable_ime__title">Povolit {app_name}</string>
-    <string name="setup__enable_ime__description">Android vyžaduje, aby každá vlastní klávesnice byla ručně povolena, než ji budete moci použít. Otevřete systémové nastavení <i>Jazyk a vstup</i> a v něm povolte „{app_name}“.</string>
+    <string name="setup__enable_ime__title">Povolit Voice Mode</string>
+    <string name="setup__enable_ime__description">Android vyžaduje, aby každá vlastní klávesnice byla ručně povolena, než ji budete moci použít. Otevřete systémové nastavení <i>Jazyk a vstup</i> a v něm povolte „Voice Mode“.</string>
     <string name="setup__enable_ime__open_settings_btn">Otevřít systémová nastavení</string>
-    <string name="setup__select_ime__title">Vyberte {app_name}</string>
-    <string name="setup__select_ime__description">{app_name} je nyní povolena ve vašem systému. Pro její aktivní používání přepněte na {app_name} jejím vybráním v dialogu výběru vstupu!</string>
+    <string name="setup__select_ime__title">Vyberte Voice Mode</string>
+    <string name="setup__select_ime__description">Voice Mode je nyní povolena ve vašem systému. Pro její aktivní používání přepněte na Voice Mode jejím vybráním v dialogu výběru vstupu!</string>
     <string name="setup__select_ime__switch_keyboard_btn">Přepnout klávesnici</string>
     <string name="setup__grant_notification_permission__title">Povolit oznámení o hlášení pádu</string>
     <string name="setup__grant_notification_permission__description">Počínaje systémem Android 13 musí aplikace žádat o oprávnění
@@ -645,9 +765,9 @@
     </string>
     <string name="setup__grant_notification_permission__btn">Udělit oprávnění</string>
     <string name="setup__finish_up__title">Dokončit</string>
-    <string name="setup__finish_up__description_p1">{app_name} je nyní povolena ve vašem systému a je připravena na přizpůsobení.</string>
+    <string name="setup__finish_up__description_p1">Voice Mode je nyní povolena ve vašem systému a je připravena na přizpůsobení.</string>
     <string name="setup__finish_up__description_p2">Pokud objevíte jakékoli problémy, chyby, pády nebo prostě jen budete chtít podat návrh, podívejte se na repozitář projektu na obrazovce O aplikaci!</string>
-    <string name="setup__finish_up__finish_btn">Začít přizpůsobovat</string>
+    <string name="setup__finish_up__finish_btn">Začít používat Voice Mode</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__title">Fyzická klávesnice</string>
     <string name="physical_keyboard__system_settings__title">Nastavení fyzické klávesnice</string>
@@ -692,7 +812,7 @@
     <string name="backup_and_restore__restore__success">Data úspěšně obnovena!</string>
     <string name="backup_and_restore__restore__failure">Nepodařilo se obnovit data: {error_message}</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">Zpráva o chybě Dictateu</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Zpráva o chybě Voice Mode</string>
     <string name="crash_dialog__description" comment="Description of crash dialog">Omlouváme se za potíže, ale aplikace Voice Mode spadla kvůli neočekávané chybě.</string>
     <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Pokud chcete tuto chybu nahlásit, podívejte se nejprve do nástroje pro sledování problémů na GitHubu, pokud již nebyla chyba nahlášena.\nPokud tomu tak není, zkopírujte vygenerovaný záznam o chybě a otevřete nový problém. Použijte šablonu „%s“ a vyplňte popis, kroky k reprodukci a na konec vložte vygenerovaný záznam o pádu. Pomůžete tak k tomu, aby byl Voice Mode lepší a stabilnější pro všechny. Děkujeme!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Kopírovat do schránky</string>
@@ -711,7 +831,7 @@
     <string name="clipboard__search_placeholder" comment="Hint inside the clipboard search field">Hledat ve schránce</string>
     <string name="clipboard__search_no_results" comment="Shown when no clip contains what was typed">Žádná položka to neobsahuje</string>
     <string name="clipboard__disabled__title">Historie schránky je momentálně zakázána</string>
-    <string name="clipboard__disabled__message">Historie schránky {app_name} vám umoňuje rychle ukládat a přistupovat k textu a obrázkům které zkopírujete, s možností připínat položky, nastavovat automatická čištění a nastavit maximální limit položek.</string>
+    <string name="clipboard__disabled__message">Historie schránky Voice Mode vám umoňuje rychle ukládat a přistupovat k textu a obrázkům které zkopírujete, s možností připínat položky, nastavovat automatická čištění a nastavit maximální limit položek.</string>
     <string name="clipboard__disabled__enable_button">Zapnout historii schránky</string>
     <string name="clipboard__empty__title">Vaše schránka je prázdná</string>
     <string name="clipboard__empty__message">Jakmile zkopírujete text nebo obrázky, zobrazí se tady.</string>
@@ -848,7 +968,7 @@
     <string name="ext__editor__create_component__title_theme">Vytvořit téma</string>
     <string name="ext__editor__create_component__from_empty">Prázdné</string>
     <string name="ext__editor__create_component__from_existing">Z existujících</string>
-    <string name="ext__editor__create_component__from_empty_warning">Vytváření a konfigurace prázdné komponenty může být těžká, pokud jste novým uživatelem {app_name} nebo nejste obeznámeni se specifickými věcmi. Pokud tomu tak je, zkuste zkopírovat existující komponentu a upravit ji podle vašich představ.</string>
+    <string name="ext__editor__create_component__from_empty_warning">Vytváření a konfigurace prázdné komponenty může být těžká, pokud jste novým uživatelem Voice Mode nebo nejste obeznámeni se specifickými věcmi. Pokud tomu tak je, zkuste zkopírovat existující komponentu a upravit ji podle vašich představ.</string>
     <string name="ext__editor__edit_component__title">Upravit komponentu</string>
     <string name="ext__editor__edit_component__title_theme">Upravit komponentu tématu</string>
     <string name="ext__export__success">Rozšíření úspěšně exportováno!</string>
@@ -1019,9 +1139,9 @@
     <string name="enum__extended_actions_placement__overlay_app_ui" comment="Enum value label">Překrýt rozhraní aplikace</string>
     <string name="enum__extended_actions_placement__overlay_app_ui__description" comment="Enum value description">Umístí řádek rozšířených akcí jako překrytí nad UI aplikace, bez ovlivnění výšky rozhraní klávesnice. Vezměte prosím na vědomí, že toto umístění může způsobit částečné překreslení vstupního pole aplikace</string>
     <string name="enum__haptic_vibration_mode__use_vibrator_directly" comment="Enum value label">Použít přímo vibrační zařízení</string>
-    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">{app_name} přímo interaguje s výchozím hardwarovým vibračním zařízením. Díky tomu má aplikace větší kontrolu nad délkou a sílou vibrace, ale kvůli tomu nemusí být vibrace tak hladká a optimalizovaná jako při použití rozhraní haptické odezvy</string>
+    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">Voice Mode přímo interaguje s výchozím hardwarovým vibračním zařízením. Díky tomu má aplikace větší kontrolu nad délkou a sílou vibrace, ale kvůli tomu nemusí být vibrace tak hladká a optimalizovaná jako při použití rozhraní haptické odezvy</string>
     <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface" comment="Enum value label">Použít rozhraní haptické odezvy</string>
-    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">{app_name} používá rozhraní haptické odezvy pro spuštění přednastavené sekvence vibrací při stisku kláves. Toto může na některých zařízeních fungovat naprosto bez problémů, ale také naprosto selhat na jiných</string>
+    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">Voice Mode používá rozhraní haptické odezvy pro spuštění přednastavené sekvence vibrací při stisku kláves. Toto může na některých zařízeních fungovat naprosto bez problémů, ale také naprosto selhat na jiných</string>
     <string name="enum__key_hint_mode__accent_priority" comment="Enum value label">Prioritu má přízvuk</string>
     <string name="enum__key_hint_mode__accent_priority__description" comment="Enum value description">Počáteční znak vybraný po dlouhém stisku má vždy primární přízvuk, nebo znak nápovědy, když není dostupný primární přízvuk</string>
     <string name="enum__key_hint_mode__hint_priority" comment="Enum value label">Prioritu má nápověda</string>
@@ -1171,6 +1291,7 @@
     <string name="quick_action__ime_ui_mode_dictate">Voice Mode</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Klepnutím diktujte, dalším klepnutím přepište</string>
     <string name="quick_action__dictate_live_prompt">Pokyn naživo</string>
+    <string name="dictate__live_prompt_chip">Zeptat se hlasem</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Nahrajte mluvený pokyn a odešlete jej AI</string>
     <string name="quick_action__dictate_prompts">Prompty AI</string>
     <string name="quick_action__dictate_prompts__tooltip">Otevřít prompty přeformulování AI</string>
@@ -1178,8 +1299,7 @@
     <string name="about__based_on_floris__summary">Fork FlorisBoard od Patricka Goldingera a přispěvatelů, Apache 2.0. Klepnutím jej otevřete.</string>
     <string name="about__feedback__title">Zpětná vazba a podpora</string>
     <string name="about__feedback__summary">Pošlete e-mail s dotazy, chybami nebo nápady</string>
-    <string name="about__feedback__email">support@voicemode.example</string>
-    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Vyberte, jak má Voice Mode přepisovat</string>
     <string name="setup__provider__choose_intro">Voice Mode převádí vaši řeč na text pomocí služby AI. Většině lidí vyhoví jeden ze dvou způsobů — a pokud nechcete používat žádnou cloudovou službu, níže najdete další dva.</string>
     <string name="setup__provider__choice_cloud_title">Koupit kredit v aplikaci</string>
@@ -1302,14 +1422,16 @@
     <string name="dictate__remember_last_dictation_title">Zapamatovat poslední diktování</string>
     <string name="changelog__v4_2_0">• NOVÉ: plovoucí tlačítko diktování — diktujte přímo v jakékoli aplikaci, i když je aktivní jiná klávesnice. Vyberte si ze tří stylů (Pilulka, Prstenec, Koule), sledujte živý průběh zvuku, když mluvíte, přetáhněte ho kamkoli s přichytáváním k okrajům, nastavte barvu a velikost a podržením přeformulujte. Zapněte ho v Nastavení ▸ Voice Mode ▸ Plovoucí tlačítko.\n• NOVÉ: Google Gemini — použijte vlastní klíč API z AI Studia pro přepis i přeformulování.\n• Výzvy se nyní ve výchozím nastavení zobrazují ve stálém řádku nad klávesami.\n• Spolehlivější vkládání textu napříč aplikacemi, včetně prohlížečů a jiných klávesnic.</string>
     <string name="dictate__promo_floating_button_message">Nové: diktujte kdekoli</string>
+    <string name="dictate__promo_keep_button_message">Ponechat tu i plovoucí mikrofon?</string>
+    <string name="dictate__promo_keep_button_action">Ponechat</string>
     <string name="dictate__promo_floating_button_action">Vyzkoušet</string>
     <string name="setup__floating_button__btn">Nastavit plovoucí tlačítko</string>
     <string name="setup__nav_back">Zpět</string>
     <string name="setup__nav_next">Další</string>
     <string name="setup__floating_button__title">Diktujte kdekoli (volitelné)</string>
     <string name="setup__floating_button__intro">Plovoucí tlačítko zobrazí malou diktovací bublinu přes libovolnou aplikaci, takže můžete mluvit do jakéhokoli textového pole bez přepínání klávesnice.</string>
-    <string name="setup__floating_button__accessibility_note">K tomu {app_name} využívá nastavení přístupnosti Androidu — díky tomu se bublina může zobrazovat přes ostatní aplikace a vkládat za vás přepsaný text. Další obrazovka vás provede zapnutím.</string>
-    <string name="setup__floating_button__optional_note">Je to zcela volitelné — přeskočte, pokud chcete {app_name} používat jen jako plnohodnotnou klávesnici. Vždy to můžete nastavit později v nastavení.</string>
+    <string name="setup__floating_button__accessibility_note">K tomu Voice Mode využívá nastavení přístupnosti Androidu — díky tomu se bublina může zobrazovat přes ostatní aplikace a vkládat za vás přepsaný text. Další obrazovka vás provede zapnutím.</string>
+    <string name="setup__floating_button__optional_note">Je to zcela volitelné — přeskočte, pokud chcete Voice Mode používat jen jako plnohodnotnou klávesnici. Vždy to můžete nastavit později v nastavení.</string>
     <string name="setup__floating_button__skip_btn">Přeskočit — použiji klávesnici</string>
     <string name="dictate__floating_button_badge_new">Nové</string>
     <string name="dictate__panel_title">Prompty AI</string>
@@ -1319,6 +1441,8 @@
     <string name="dictate__prompts_layout_panel_description">Otevírejte prompty ve vlastním panelu pomocí tlačítka kouzelné hůlky.</string>
     <string name="dictate__prompts_layout_row_label">Stálý řádek</string>
     <string name="dictate__prompts_layout_row_description">Připněte prompty do dalšího řádku nad klávesnicí.</string>
+    <string name="dictate__prompts_layout_when_useful_label">Když se hodí</string>
+    <string name="dictate__prompts_layout_when_useful_description">Zobrazujte prompty v horní liště hned po diktování nebo když je vybraný text.</string>
     <string name="dictate__status_idle">Klepnutím diktujte</string>
     <string name="dictate__status_recording">Nahrávání – klepnutím zastavíte</string>
     <string name="dictate__status_transcribing">Přepis…</string>
@@ -1564,9 +1688,7 @@
     <string name="dictate__custom_words_title">Vlastní slova</string>
     <string name="dictate__custom_words_summary_empty">Přidejte jména nebo odborné termíny, které se mají psát správně</string>
     <string name="dictate__custom_words_placeholder">např. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} slov · asi {tokens} z {budget} tokenů</string>
     <string name="dictate__custom_words_budget_info">Každé slovo odsud jede s každým diktováním a řečový model z toho přečte jen asi {budget} tokenů kontextu. Tvůj seznam z nich zabírá asi {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">Tvůj seznam je delší, než kolik řečový model přečte. K modelu se dostane asi {fits} z tvých {count} slov; zbytek se posílá při každém diktování a ignoruje se. Na větší slovní zásobu použij vlastní nahrazení — jsou přesná, fungují offline a nic nestojí.</string>
     <string name="dictate__custom_words_import">Importovat seznam slov</string>
     <string name="dictate__custom_words_export">Exportovat seznam slov</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1576,11 +1698,8 @@
     <string name="dictate__custom_words_import_nofit">{count} zůstalo mimo — řečový model přečte jen asi {budget} tokenů kontextu, posílala by se tedy při každém diktování a ignorovala.</string>
     <string name="dictate__custom_words_import_unusable">{count} řádků neobsahovalo nic k zapsání a byly přeskočeny.</string>
     <string name="dictate__custom_words_import_truncated">Přečteno bylo jen prvních {count} položek souboru.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Přidat je i do osobního slovníku</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Tento seznam říká jen řečovému modelu, jak se slovo píše. Osobní slovník je to, co klávesnice používá při psaní — nemá žádný limit délky, takže do něj jde každé slovo ze souboru, ne jen ta, která se vejdou nahoru.</string>
     <string name="dictate__custom_words_import_empty">V tomto souboru nebyla nalezena žádná slova</string>
     <string name="dictate__custom_words_import_done">Přidáno {count} slov</string>
-    <string name="dictate__custom_words_import_done_dictionary">Přidáno {count} slov a {dict} do tvého osobního slovníku</string>
     <string name="dictate__file_unreadable">Tento soubor se nepodařilo přečíst</string>
     <string name="dictate__file_export_done">Soubor uložen</string>
     <string name="dictate__file_export_failed">Tento soubor se nepodařilo zapsat</string>
@@ -1723,7 +1842,7 @@
     <string name="changelog__intro">Voice Mode byl aktualizován. Co je nového:</string>
     <string name="changelog__version_header">Verze {version}</string>
     <string name="changelog__donate">Líbí se vám Voice Mode? Klepnutím sem podpoříte vývoj ♥</string>
-    <string name="changelog__current">• Zcela nová klávesnice: Voice Mode je nyní plnohodnotná vícejazyčná klávesnice s vyhrazenou klávesou mikrofonu, která otevírá hlasový panel.\n• Vlastní AI: vyberte libovolného poskytovatele kompatibilního s OpenAI a zadejte klíč API v Nastavení → Voice Mode.\n• Inteligentní formátování a přeformulování pomocí zvoleného modelu.\n• Nastavení z předchozí aplikace Voice Mode se importují automaticky.</string>
+    <string name="changelog__current">• Zcela nová klávesnice: Voice Mode je nyní plnohodnotná vícejazyčná klávesnice s vyhrazenou klávesou mikrofonu, která otevírá hlasový panel.\n• Vlastní AI: vyberte libovolného poskytovatele kompatibilního s OpenAI a zadejte klíč API v Nastavení → Voice Mode.\n• Inteligentní formátování a přeformulování pomocí zvoleného modelu.\n• Nastavení z předchozí aplikace Dictate se importují automaticky.</string>
     <string name="changelog__v4_1_0">• Novinka: vyhledávejte emoji přímo z klávesnice.\n• Nový poskytovatel přepisu: Soniox.\n• Znovu vložte své poslední diktování a obnovte nahrávky přerušené při zavření klávesnice.\n• Lišta promptů se nyní aktualizuje živě: podržením promptu jej upravíte.\n• Obrazovka poskytovatelů AI nyní zobrazuje aktivního poskytovatele přepisu i přeformulování.\n• Větší tlačítko nahrávání, na které se snáze míří.\n• Opravy: výzva k podpoře mohla zůstat viset a zakrýt lištu v některých jazycích; záloha už neselhává při vybraných promptech, klávesnici nebo motivu; uložené klíče API zůstanou zachovány při aktualizaci.</string>
     <string name="changelog__v4_1_1">• Oprava: zvýrazňovací barva se na některých zařízeních mohla zobrazovat zeleně; klávesy a tlačítka jsou opět v modré barvě Voice Mode.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -1927,7 +2046,7 @@
     <string name="dictate__audio_save_failed">Zvuk se nepodařilo uložit</string>
     <string name="dictate__instant_recording_mode_off">Vypnuto</string>
     <string name="dictate__instant_recording_mode_always">Při každém otevření klávesnice</string>
-    <string name="dictate__instant_recording_mode_after_switch">Jen po přepnutí na {app_name}</string>
+    <string name="dictate__instant_recording_mode_after_switch">Jen po přepnutí na Voice Mode</string>
     <string name="dictate__instant_recording_in_numeric">Také v číselných polích</string>
     <string name="dictate__instant_recording_skip_numeric_title">Přeskočit číselná pole</string>
     <string name="dictate__instant_recording_skip_numeric_summary">Nespouštět automaticky u polí pro čísla, telefon nebo PIN</string>
@@ -1983,7 +2102,7 @@
     <string name="apptour__badge_highlight">★ Highlight</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">Rychlá prohlídka</string>
-    <string name="apptour__intro_body">Tohle je novinka v Dictate 5.0 — to nejdůležitější za necelou minutu. Klepnutím na „Vyzkoušet“ na kterékoli stránce přejdete rovnou k danému nastavení.</string>
+    <string name="apptour__intro_body">Tohle je novinka v Voice Mode 5.0 — to nejdůležitější za necelou minutu. Klepnutím na „Vyzkoušet“ na kterékoli stránce přejdete rovnou k danému nastavení.</string>
     <string name="apptour__glide_eyebrow">Klávesnice</string>
     <string name="apptour__glide_title">Psaní tahem</string>
     <string name="apptour__glide_body">Táhněte prstem od klávesy ke klávese a Voice Mode z té dráhy vytvoří celá slova. Každý jazyk má vlastní slovník, který se stáhne podle potřeby — zapněte ho v sekci Gesta.</string>
@@ -2049,11 +2168,11 @@
     <string name="apptour51__outro_title">Užijte si aktualizaci</string>
     <string name="apptour51__outro_body">Děkujeme, že používáte Voice Mode! Pokud vám pomáhá každý den, drobný příspěvek udrží projekt v chodu. Kteroukoli z těchto prohlídek si můžete kdykoli znovu projít v Nastavení › O aplikaci.</string>
     <string name="apptour52__cta_try">Vyzkoušet</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">Voice Mode 5.2</string>
     <string name="apptour52__intro_title">Diktujte všude</string>
     <string name="apptour52__intro_body">Tato verze posouvá Voice Mode za hranice vlastní klávesnice: jako hlasový vstup telefonu, pro mluvené příkazy odkudkoli a pro úpravu dlouhých diktátů. Tohle je nové.</string>
     <string name="apptour52__voiceinput_eyebrow">Systémový hlasový vstup</string>
-    <string name="apptour52__voiceinput_title">Voice Mode z libovolné klávesnice</string>
+    <string name="apptour52__voiceinput_title">Používejte Voice Mode z libovolné klávesnice</string>
     <string name="apptour52__voiceinput_body">Voice Mode se nyní registruje jako systémový hlasový vstup: tlačítko mikrofonu v jiných klávesnicích a aplikacích přepisuje přes Voice Mode — s vaším poskytovatelem, vašimi prompty a vašimi místními modely. Zapněte „Hlasový vstup Voice Mode“ v seznamu klávesnic a zvolte jej jako metodu hlasového vstupu. (Gboard má mikrofon napevno na Google — použijte klávesnici, která respektuje systémové nastavení.)</string>
     <string name="apptour52__liveprompt_eyebrow">Volný hlasový příkaz</string>
     <string name="apptour52__liveprompt_title">Řekněte AI, co má udělat — kdekoli</string>
@@ -2077,7 +2196,7 @@
     <string name="apptour52__outro_title">Příjemné diktování</string>
     <string name="apptour52__outro_body">A hodně pod kapotou: obrazovka zůstane během celého diktátu zapnutá, místní modely uvolní paměť při nečinnosti, diktáty z hodinek přežijí výpadky spojení a německá autokorekce zvládá přehlásky. Každou prohlídku si znovu pustíte v Nastavení › O aplikaci.</string>
     <string name="apptour53__cta_try">Vyzkoušet</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">Voice Mode 5.3</string>
     <string name="apptour53__intro_title">Podržet, mluvit, hotovo</string>
     <string name="apptour53__intro_body">Tahle verze je o dvou věcech, které děláte nejčastěji: mluvíte na telefon a píšete na něm. Obojí je rychlejší a obojí vám líp uhne z cesty.</string>
     <string name="apptour53__pushtotalk_eyebrow">Stisknout a mluvit</string>
@@ -2108,7 +2227,7 @@
     <string name="apptour60__cta_try">Vyzkoušet</string>
     <string name="apptour60__art_minutes">minut</string>
     <string name="apptour60__art_speed">1,5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">Voice Mode 6.0</string>
     <string name="apptour60__intro_title">Kredit, čínština, levnější diktování</string>
     <string name="apptour60__intro_body">Tato verze přidává druhou cestu dovnitř — koupit kredit místo vlastního klíče API —, k tomu pinyin pro čínštinu, sedm jazyků s novým slovníkem a nahrávky, které stojí méně.</string>
     <string name="apptour60__cloud_eyebrow">Novinka: Voice Mode Cloud</string>
@@ -2137,7 +2256,7 @@
     <string name="apptour61__art_share">Sdílet přes</string>
     <string name="apptour61__art_typed">nei</string>
     <string name="apptour61__art_fixed">nie</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">Voice Mode 6.1</string>
     <string name="apptour61__intro_title">Samolepky, hlasové zprávy a automatické opravy, které konečně vidí překlep</string>
     <string name="apptour61__intro_body">Ukažte klávesnici složku s vlastními samolepkami, sdílejte hlasovou zprávu přímo do Voice Mode, abyste zjistili, co v ní je, a získejte automatickou opravu, která konečně zaznamená chybu, kterou byla postavena přehlížet.</string>
     <string name="apptour61__stickers_eyebrow">Novinka: vlastní samolepky</string>
@@ -2166,7 +2285,7 @@
     <string name="apptour62__art_word">Zoya</string>
     <string name="apptour62__art_emoji_word">dort</string>
     <string name="apptour62__art_emoji">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">Voice Mode 6.2</string>
     <string name="apptour62__intro_title">Učí se vaše slova a má pět nových vzhledů</string>
     <string name="apptour62__intro_body">Klávesnice si teď umí zapamatovat slova, která nezná žádný slovník, klávesy mohou nechat prosvítat aplikaci pod nimi a každý palec může mít svou polovinu. K tomu hrst malých pomocníků pro to, co děláte každý den.</string>
     <string name="apptour62__learning_eyebrow">Novinka: učí se při psaní</string>
@@ -2174,7 +2293,7 @@
     <string name="apptour62__learning_body">Napište jméno nebo odborný výraz dostatečně často a klávesnice si je nechá: přestane je označovat za chybu a začne je nabízet. Tato aktualizace funkci zapíná všem, i těm, kdo si ji dřív vypnuli. V anonymním režimu, v polích pro hesla a z čehokoli, co jste nenapsali klávesu po klávese, se neučí nic; všechno zůstává v tomto zařízení a tlačítko níže otevře seznam — i ten přepínač.</string>
     <string name="apptour62__themes_eyebrow">Pět nových vzhledů</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep a tmavý E-Ink</string>
-    <string name="apptour62__themes_body">Voice Mode Glass nechává aplikaci prosvítat mezerami mezi klávesami, zatímco samotné klávesy zůstávají dost kryjící, aby se na nich dalo číst; Glass Clear jde dál a vypadá lépe — za cenu toho, že v aplikacích, které kreslí za klávesnicí, jejich text prosvítá. Sand je teplý světlý vzhled, Deep klidný tmavý a E-Ink má konečně noční variantu, takže vám automatické přepínání po setmění už nepodá bílou klávesnici.</string>
+    <string name="apptour62__themes_body">Glass nechává aplikaci prosvítat mezerami mezi klávesami, zatímco samotné klávesy zůstávají dost kryjící, aby se na nich dalo číst; Glass Clear jde dál a vypadá lépe — za cenu toho, že v aplikacích, které kreslí za klávesnicí, jejich text prosvítá. Sand je teplý světlý vzhled, Deep klidný tmavý a E-Ink má konečně noční variantu, takže vám automatické přepínání po setmění už nepodá bílou klávesnici.</string>
     <string name="apptour62__split_eyebrow">Novinka: rozdělená klávesnice</string>
     <string name="apptour62__split_title">Oba palce, bez natahování</string>
     <string name="apptour62__split_body">Nová rychlá akce vedle jednoruční a plovoucí klávesnice roztáhne řady, aby každý palec zůstal u své poloviny. Rozdělí se každé rozložení, nejen QWERTY, protože šev se počítá ze šířek kláves místo toho, aby byl zapsaný v každém rozložení. A na šířku teď aplikace zůstává vidět, kdykoli je místo pro obojí.</string>
@@ -2203,7 +2322,7 @@
     <string name="apptour62__outro_title">Stejná klávesnice, víc z ní vaše</string>
     <string name="apptour62__outro_body">Na tom, jak diktujete, se nic nemění — vlastní klíč, vlastní server nebo model v zařízení. Všechny prohlídky najdete znovu v Nastavení › O aplikaci.</string>
     <string name="apptour63__cta_try">Vyzkoušet</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">Voice Mode 6.3</string>
     <string name="apptour63__intro_title">Víc klávesnice, aniž byste ji opustili</string>
     <string name="apptour63__intro_body">Namiřte fotoaparát na tištěný text a text přistane v poli. Kurzor, výběr a schránka konečně sdílejí jeden panel. Každé tlačítko Smartbaru může pod dlouhým stiskem nést druhou akci. A diktování bez sítě má konečně modely, které se do telefonu opravdu vejdou.</string>
     <string name="apptour63__scan_eyebrow">Novinka: naskenovat text</string>
@@ -2342,8 +2461,6 @@
     <string name="dictate__cloud_other_way_body">Kdykoli můžete přejít na vlastní klíč API a zase zpátky. Váš kredit zůstane, kde je.</string>
     <string name="dictate__error_out_of_credit">Kredit vyčerpán</string>
     <string name="dictate__action_top_up">Dobít kredit</string>
-    <string name="dictate__promo_low_credit_message">Kredit skoro došel.</string>
-    <string name="dictate__promo_low_credit_action">Dobít</string>
     <string name="prefs__media__sticker__title">Samolepky</string>
     <string name="prefs__media__sticker_folder__title">Složka se samolepkami</string>
     <string name="prefs__media__sticker_folder__summary_unset">Vyberte složku s vlastními obrázky</string>

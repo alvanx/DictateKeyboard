@@ -23,12 +23,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.FileUpload
-import androidx.compose.material.icons.filled.MenuBook
-import androidx.compose.material3.Checkbox
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -41,7 +39,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -52,9 +49,7 @@ import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.FlorisPreferenceModel
 import dev.patrickgold.florisboard.app.settings.search.settingsSearchAnchor
 import dev.patrickgold.florisboard.dictate.data.prompts.CustomWordList
-import dev.patrickgold.florisboard.glideTypingManager
-import dev.patrickgold.florisboard.ime.dictionary.DictionaryManager
-import dev.patrickgold.florisboard.ime.dictionary.PersonalDictionaryWriter
+import dev.patrickgold.florisboard.dictate.data.prompts.MyWords
 import dev.patrickgold.jetpref.datastore.model.PreferenceData
 import dev.patrickgold.jetpref.datastore.model.collectAsState
 import dev.patrickgold.jetpref.datastore.ui.Preference
@@ -68,8 +63,9 @@ import org.florisboard.lib.compose.florisDialogScroll
 import org.florisboard.lib.compose.stringRes
 
 /**
- * The custom-words list on the formatting screen: one row, and behind it everything that belongs to
- * the list (issue #389).
+ * The "Edit as text" row of My words: one row, and behind it the whole list as text, with import and
+ * export (issue #389). It used to be the custom-words row on the formatting screen; since the custom
+ * words became My words (see [MyWords]) it lives on the full My words list.
  *
  * The editor itself is untouched in spirit — pasting a block into it always worked, so what was
  * missing is a file, not a better text field. Importing and exporting live **inside** the editor
@@ -92,8 +88,6 @@ internal fun PreferenceUiScope<FlorisPreferenceModel>.CustomWordsSection(pref: P
     val scope = rememberCoroutineScope()
 
     val raw by pref.collectAsState()
-    val words = remember(raw) { CustomWordList.parse(raw) }
-    val tokens = remember(words) { CustomWordList.estimateTokens(words) }
 
     // The editor's text while it is open. Saveable because the file picker is another activity, and a
     // low-memory device may rebuild this one underneath it.
@@ -109,8 +103,10 @@ internal fun PreferenceUiScope<FlorisPreferenceModel>.CustomWordsSection(pref: P
         scope.launch {
             // A word list can be an address book's worth of names, so reading and planning stay off
             // the main thread — and nothing is written before the user has seen how much it is.
+            // No token budget: My words is the typing list too, so every word is kept, and only the ones
+            // that fit go to the speech AI (MyWords.usage says how many).
             val report = withContext(Dispatchers.IO) {
-                readText(context, uri)?.let { CustomWordList.plan(existing, it) }
+                readText(context, uri)?.let { CustomWordList.plan(existing, it, budget = Int.MAX_VALUE) }
             }
             when {
                 report == null -> context.showLongToast(R.string.dictate__file_unreadable)
@@ -135,21 +131,12 @@ internal fun PreferenceUiScope<FlorisPreferenceModel>.CustomWordsSection(pref: P
     }
 
     Preference(
-        icon = Icons.Default.MenuBook,
+        icon = Icons.Default.Edit,
         modifier = Modifier.settingsSearchAnchor("dictate__custom_words_title"),
-        title = stringRes(R.string.dictate__custom_words_title),
-        // What the list costs belongs on the row itself: it is the only number that explains both the
-        // cap and why a word that is in the list still does not arrive.
-        summary = if (words.isEmpty()) {
-            stringRes(R.string.dictate__custom_words_summary_empty)
-        } else {
-            stringRes(
-                R.string.dictate__custom_words_summary,
-                "count" to words.size,
-                "tokens" to tokens,
-                "budget" to CustomWordList.TOKEN_BUDGET,
-            )
-        },
+        title = stringRes(R.string.mywords__edit_as_text),
+        // What the list costs is on the screen around this row (the usage bar), so the row only says
+        // what is behind it.
+        summary = stringRes(R.string.mywords__edit_as_text_summary),
         onClick = { editorText = raw },
     )
 
@@ -178,32 +165,20 @@ internal fun PreferenceUiScope<FlorisPreferenceModel>.CustomWordsSection(pref: P
         ImportWordsDialog(
             report = report,
             onDismiss = { pendingImport = null },
-            onConfirm = { alsoToDictionary ->
+            onConfirm = {
                 pendingImport = null
                 // An import is its own confirmed action, so it is written straight through rather than
                 // left to the editor's OK — otherwise a later Cancel would silently undo a file the
-                // user just approved, and the personal-dictionary half (which is written now) could
-                // not be undone with it anyway.
+                // user just approved. The personal dictionary follows by itself (MyWordsSync).
                 report.merged?.let { merged ->
                     editorText = merged
                     scope.launch { pref.set(merged) }
                 }
                 scope.launch {
-                    val addedToDictionary = withContext(Dispatchers.IO) {
-                        if (alsoToDictionary) addToPersonalDictionary(context, report.fromFile) else 0
-                    }
-                    if (alsoToDictionary) {
-                        context.showLongToast(
-                            R.string.dictate__custom_words_import_done_dictionary,
-                            "count" to report.accepted.size,
-                            "dict" to addedToDictionary,
-                        )
-                    } else {
-                        context.showLongToast(
-                            R.string.dictate__custom_words_import_done,
-                            "count" to report.accepted.size,
-                        )
-                    }
+                    context.showLongToast(
+                        R.string.dictate__custom_words_import_done,
+                        "count" to report.accepted.size,
+                    )
                 }
             },
         )
@@ -229,6 +204,7 @@ private fun CustomWordsEditorDialog(
 ) {
     val words = remember(text) { CustomWordList.parse(text) }
     val tokens = remember(words) { CustomWordList.estimateTokens(words) }
+    val usage = remember(words) { MyWords.usage(words) }
     val overBudget = tokens > CustomWordList.TOKEN_BUDGET
     val hasNote = tokens > CustomWordList.WARN_TOKENS
 
@@ -236,7 +212,7 @@ private fun CustomWordsEditorDialog(
         modifier = Modifier.fillMaxWidth(0.96f),
         properties = DialogProperties(usePlatformDefaultWidth = false),
         scrollModifier = florisDialogScroll(),
-        title = stringRes(R.string.dictate__custom_words_title),
+        title = stringRes(R.string.mywords__title),
         confirmLabel = stringRes(R.string.action__ok),
         dismissLabel = stringRes(R.string.action__cancel),
         onConfirm = onConfirm,
@@ -269,16 +245,11 @@ private fun CustomWordsEditorDialog(
                 text = if (words.isEmpty()) {
                     stringRes(R.string.dictate__custom_words_summary_empty)
                 } else {
-                    stringRes(
-                        R.string.dictate__custom_words_summary,
-                        "count" to words.size,
-                        "tokens" to tokens,
-                        "budget" to CustomWordList.TOKEN_BUDGET,
-                    )
+                    myWordsUsageText(usage)
                 },
                 style = MaterialTheme.typography.bodySmall,
                 // Red is the whole point of the live count: it goes red exactly when pasting one more
-                // word stops adding anything.
+                // word stops reaching the speech AI.
                 color = if (overBudget) {
                     MaterialTheme.colorScheme.error
                 } else {
@@ -317,7 +288,7 @@ private fun CustomWordsEditorDialog(
                     modifier = Modifier.padding(top = 12.dp),
                     text = if (overBudget) {
                         stringRes(
-                            R.string.dictate__custom_words_budget_over,
+                            R.string.mywords__budget_over,
                             "fits" to CustomWordList.countWithinBudget(words),
                             "count" to words.size,
                         )
@@ -367,9 +338,8 @@ private fun DialogFileButton(
 private fun ImportWordsDialog(
     report: CustomWordList.ImportReport,
     onDismiss: () -> Unit,
-    onConfirm: (alsoToDictionary: Boolean) -> Unit,
+    onConfirm: () -> Unit,
 ) {
-    var alsoToDictionary by remember { mutableStateOf(false) }
     val preview = report.accepted.ifEmpty { report.fromFile }
 
     JetPrefAlertDialog(
@@ -379,7 +349,7 @@ private fun ImportWordsDialog(
         title = stringRes(R.string.dictate__custom_words_import_title),
         confirmLabel = stringRes(R.string.action__add),
         dismissLabel = stringRes(R.string.action__cancel),
-        onConfirm = { onConfirm(alsoToDictionary) },
+        onConfirm = onConfirm,
         onDismiss = onDismiss,
     ) {
         Column {
@@ -431,16 +401,6 @@ private fun ImportWordsDialog(
                 text = preview.take(8).joinToString(", ") + if (preview.size > 8) ", …" else "",
                 fontStyle = FontStyle.Italic,
             )
-            // The split between the two lists is deliberate and stays — but an import is exactly the
-            // moment somebody expects one list to be the other, so the offer is made here in words
-            // rather than left to be discovered as a missing feature.
-            CheckboxRow(
-                title = stringRes(R.string.dictate__custom_words_import_also_dictionary),
-                summary = stringRes(R.string.dictate__custom_words_import_also_dictionary_summary),
-                checked = alsoToDictionary,
-                onCheckedChange = { alsoToDictionary = it },
-                modifier = Modifier.padding(top = 12.dp),
-            )
         }
     }
 }
@@ -459,51 +419,3 @@ internal fun writeText(context: Context, uri: Uri, text: String): Boolean = runC
     } ?: return false
     true
 }.getOrDefault(false)
-
-/**
- * Writes [words] into the internal personal dictionary and returns how many were new.
- *
- * The internal one rather than the system one: it is the dictionary the keyboard's own engine reads,
- * and the system one belongs to the device rather than to this app.
- */
-private fun addToPersonalDictionary(context: Context, words: List<String>): Int {
-    val manager = DictionaryManager.default()
-    manager.loadUserDictionariesIfNecessary()
-    val dao = manager.florisUserDictionaryDao() ?: return 0
-    val added = PersonalDictionaryWriter.addWords(dao, words)
-    // Glide typing indexes the vocabulary once per subtype, so without this a swipe would keep using
-    // the list as it was before the import (issue #263).
-    if (added.isNotEmpty()) context.glideTypingManager().value.invalidateWordData()
-    return added.size
-}
-
-/** A checkbox with a title and an explanation under it, for use inside a dialog. */
-@Composable
-private fun CheckboxRow(
-    title: String,
-    summary: String,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .selectable(selected = checked, onClick = { onCheckedChange(!checked) }),
-        verticalAlignment = Alignment.Top,
-    ) {
-        Checkbox(
-            checked = checked,
-            onCheckedChange = null,
-            modifier = Modifier.padding(end = 8.dp),
-        )
-        Column(modifier = Modifier.weight(1f)) {
-            Text(title, style = MaterialTheme.typography.bodyLarge)
-            Text(
-                summary,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
-    }
-}

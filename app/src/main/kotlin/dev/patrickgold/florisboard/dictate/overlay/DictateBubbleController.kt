@@ -62,6 +62,8 @@ import dev.patrickgold.florisboard.dictate.DictateFloatingButtonDesign
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonFade
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonShowWhen
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonSize
+import dev.patrickgold.florisboard.dictate.DictateMicCharm
+import dev.patrickgold.florisboard.dictate.MicCharmPainter
 import dev.patrickgold.florisboard.dictate.data.prompts.PromptModel
 import dev.patrickgold.florisboard.dictate.data.prompts.PromptsDatabaseHelper
 import dev.patrickgold.florisboard.dictate.data.prompts.snippetBody
@@ -76,6 +78,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -150,7 +153,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
     private var menuView: View? = null
     private var menuAdded = false
 
-    private var currentDesign = DictateFloatingButtonDesign.PILL
+    private var currentLook = Look(DictateFloatingButtonDesign.PILL, DictateMicCharm.CLASSIC, 0, true)
     private var sizeScale = DictateFloatingButtonSize.MEDIUM.scale
     private var accentColor = 0xFF30B7E6.toInt()
 
@@ -240,10 +243,19 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         val state: DictateController.UiState,
     )
 
+    /** The prefs that decide which skin is built: a charm from the Style tab, or the classic [design]. */
+    private data class Look(
+        val design: DictateFloatingButtonDesign,
+        val charm: DictateMicCharm,
+        /** The charm's colour as picked; 0 for its own. See [DictateMicCharm.resolveColor]. */
+        val charmColor: Int,
+        val animated: Boolean,
+    )
+
     /** [Inputs] plus the design/size/color prefs and the IME-visible signal; one combined emission. */
     private data class Emission(
         val inputs: Inputs,
-        val design: DictateFloatingButtonDesign,
+        val look: Look,
         val size: DictateFloatingButtonSize,
         val imeVisible: Boolean,
         val accentColor: Int,
@@ -257,10 +269,31 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         val allowedInApp: Boolean,
     )
 
+    /**
+     * Screen y of the top of the Dictate keyboard while it is up, else null. Only ever set for our own
+     * keyboard: the bubble stands beside it only when the user asked for that ("Also with the Dictate
+     * keyboard"), and then it keeps off the keys — see [bottomLimit]. Over other keyboards it goes where
+     * the user put it, as it always has.
+     */
+    private var keyboardTopOnScreen: Int? = null
+
     /** Starts observing the feature toggle + focus + design + dictation state to drive the bubble. */
     fun start() {
         scope.launch {
             DictateAccessibilityService.foregroundPackage.collect { pkg -> onForegroundPackageChanged(pkg) }
+        }
+        // Our keyboard opening or closing (or changing height) moves the bubble above it and back again.
+        // Nothing is written to the anchor: once the keyboard goes, the bubble returns to its own spot.
+        scope.launch {
+            combine(
+                DictateAccessibilityService.imeTop,
+                DictateAccessibilityService.dictateKeyboardActive,
+            ) { top, ours -> if (ours) top else null }
+                .distinctUntilChanged()
+                .collect { top ->
+                    keyboardTopOnScreen = top
+                    if (added) applyAnchor()
+                }
         }
         // A new fade level applies at once: wake the bubble and let the new timer decide.
         scope.launch {
@@ -276,14 +309,22 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
             ) { enabled, showWhen, focused, dictateKeyboard, state ->
                 Inputs(enabled, showWhen, focused, dictateKeyboard, state)
             }
+            val look = combine(
+                prefs.dictate.floatingButtonDesign.asFlow(),
+                prefs.dictate.floatingButtonCharm.asFlow(),
+                prefs.dictate.floatingButtonCharmColor.asFlow(),
+                prefs.dictate.floatingButtonCharmAnimated.asFlow(),
+            ) { design, charm, charmColor, animated ->
+                Look(design, charm, charmColor.toArgb(), animated)
+            }
             val emissions = combine(
                 base,
-                prefs.dictate.floatingButtonDesign.asFlow(),
+                look,
                 prefs.dictate.floatingButtonSize.asFlow(),
                 DictateAccessibilityService.imeVisible,
                 prefs.dictate.floatingButtonColor.asFlow(),
-            ) { inputs, design, size, imeVisible, color ->
-                Emission(inputs, design, size, imeVisible, color.toArgb())
+            ) { inputs, look, size, imeVisible, color ->
+                Emission(inputs, look, size, imeVisible, color.toArgb())
             }
             // Whether this app is one the button may appear over at all (#392). Built from the same
             // foreground-package flow the per-app anchors already ride on, so nothing new has to watch for
@@ -303,10 +344,10 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
             ) { emission, recogActive, screenOn, appAllowed ->
                 Surroundings(emission, recogActive, screenOn, appAllowed)
             }.collect { (emission, recogActive, screenOn, appAllowed) ->
-                val (inputs, design, size, imeVisible, accent) = emission
+                val (inputs, look, size, imeVisible, accent) = emission
                 val (enabled, showWhen, focused, dictateKeyboard, state) = inputs
-                if (design != currentDesign || size.scale != sizeScale || accent != accentColor) {
-                    currentDesign = design
+                if (look != currentLook || size.scale != sizeScale || accent != accentColor) {
+                    currentLook = look
                     sizeScale = size.scale
                     accentColor = accent
                     rebuildSkin()
@@ -676,7 +717,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         // reads as a different thing beside the filled rows around it.
         list.addView(
             menuItem(
-                context.getString(R.string.quick_action__dictate_live_prompt),
+                context.getString(R.string.dictate__live_prompt_chip),
                 R.drawable.ic_dictate_live_prompt,
                 bold = true,
             ) {
@@ -870,7 +911,9 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
     }
 
     private fun createView(): View {
-        val newSkin = when (currentDesign) {
+        val newSkin = if (currentLook.charm != DictateMicCharm.CLASSIC) {
+            CharmSkin(context, currentLook.charm, currentLook.charm.resolveColor(currentLook.charmColor), currentLook.animated)
+        } else when (currentLook.design) {
             DictateFloatingButtonDesign.RING -> RingSkin(context)
             DictateFloatingButtonDesign.PILL -> PillSkin(context)
             DictateFloatingButtonDesign.ORB -> OrbSkin(context)
@@ -1070,7 +1113,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         val v = rootView ?: return
         val maxX = (screenWidth() - v.width).coerceAtLeast(0)
         val margin = edgeMargin(maxX)
-        lp.y = lp.y.coerceIn(0, (screenHeight() - v.height).coerceAtLeast(0))
+        lp.y = lp.y.coerceIn(0, bottomLimit(v.height))
         // The drag decided which side; read that off the dropped position before animating towards it.
         // After the clamp, so a drop past the bottom edge is anchored where it lands, not where it went.
         captureAnchor()
@@ -1115,7 +1158,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         val v = rootView ?: return
         if (!added) return
         val maxX = (screenWidth() - v.width).coerceAtLeast(0)
-        val maxY = (screenHeight() - v.height).coerceAtLeast(0)
+        val maxY = bottomLimit(v.height)
         val snapped = prefs.dictate.floatingButtonSnapToEdge.get()
         val nx = (if (snapped) edgeMargin(maxX) else lp.x).coerceIn(0, maxX)
         val ny = lp.y.coerceIn(0, maxY)
@@ -1185,6 +1228,25 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         }
         val dm = context.resources.displayMetrics
         return Point(dm.widthPixels, dm.heightPixels)
+    }
+
+    /**
+     * The lowest y a window [height] px tall may take: the bottom of the screen, or, while the Dictate
+     * keyboard is up beside it, just above that keyboard, so the button never sits on its keys.
+     */
+    private fun bottomLimit(height: Int): Int {
+        val screenMax = (screenHeight() - height).coerceAtLeast(0)
+        val keyboardTop = keyboardTopOnScreen ?: return screenMax
+        // The window is placed in a frame that starts below the status bar; the keyboard's top is
+        // measured on the whole screen.
+        val frameTop = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            windowManager.currentWindowMetrics.windowInsets.getInsetsIgnoringVisibility(
+                WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout(),
+            ).top
+        } else {
+            0
+        }
+        return (keyboardTop - frameTop - height - dp(KEYBOARD_GAP_DP)).coerceIn(0, screenMax)
     }
 
     /** How far the bubble can travel horizontally, i.e. the x of the right edge. */
@@ -1356,7 +1418,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         val maxX = travelX()
         val maxY = travelY()
         val nx = anchor.toX(maxX, edgeMargin(maxX), prefs.dictate.floatingButtonSnapToEdge.get())
-        val ny = anchor.toY(maxY)
+        val ny = anchor.toY(maxY).coerceAtMost(bottomLimit(rootView?.height ?: 0))
         // The only way to observe where the bubble ended up without guessing at a screenshot. Debug builds
         // only; flog compiles out of a release.
         flogDebug {
@@ -2760,6 +2822,162 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         }
     }
 
+    // --- Charm skin (Style tab) ------------------------------------------------------------------
+
+    /**
+     * A look picked on the Style tab — a daisy, a mixtape, a neon sign… — in place of the round button.
+     *
+     * Same 64dp window as the orb, with the look a little smaller than it, so it has room to bloom, sway
+     * and glow without being clipped. It stays still at rest, since it sits on screen all day. While it
+     * listens it moves its own way (unless the user turned that off), with a ripple in the recording colour
+     * behind it; while the transcript is worked on it breathes slowly, so it still says "busy". The
+     * drawing and the movement both come from [MicCharmPainter], the same code the Style tab previews with.
+     */
+    private inner class CharmSkin(
+        context: Context,
+        private val charm: DictateMicCharm,
+        private val charmColor: Int,
+        private val animated: Boolean,
+    ) : BubbleSkin {
+        private val viewSize = sdp(64)
+        private val charmSize = sdp(54)
+
+        override val visualInset: Int = (viewSize - charmSize) / 2
+        override val shapeWidth: Int get() = viewSize
+        override val shapeHeight: Int get() = viewSize
+
+        private val halo = HaloView(context)
+        private val body = CharmView(context)
+        private var moveAnim: ValueAnimator? = null
+        private var haloAnim: ValueAnimator? = null
+        private var smoothed = 0f
+
+        override val root: View = FrameLayout(context).apply {
+            addView(halo, FrameLayout.LayoutParams(viewSize, viewSize))
+            addView(body, FrameLayout.LayoutParams(viewSize, viewSize))
+        }
+
+        override fun applyState(state: DictateController.UiState) {
+            stopAnims()
+            when (state) {
+                is DictateController.UiState.Recording -> {
+                    body.setSign(R.drawable.ic_dictate_overlay_stop)
+                    smoothed = 0f
+                    startHalo()
+                    if (animated) startMove()
+                }
+                is DictateController.UiState.Transcribing,
+                is DictateController.UiState.Rewording -> {
+                    body.setSign(R.drawable.ic_dictate_overlay_mic)
+                    startBreathe()
+                }
+                else -> body.setSign(R.drawable.ic_dictate_overlay_mic)
+            }
+        }
+
+        override fun showFlash(kind: FlashKind) {
+            stopAnims()
+            body.setSign(
+                when (kind) {
+                    FlashKind.ERROR -> R.drawable.ic_dictate_overlay_error
+                    FlashKind.SUCCESS -> R.drawable.ic_dictate_overlay_check
+                },
+            )
+        }
+
+        override fun onRecordingTick(level: Float, elapsedMs: Long) {
+            smoothed += (level - smoothed) * 0.35f
+            halo.level = smoothed
+        }
+
+        override fun destroy() = stopAnims()
+
+        /** The look's own movement, looped for as long as the recording runs. */
+        private fun startMove() {
+            moveAnim = loop(charm.move.periodMs) { t ->
+                body.t = t
+                body.invalidate()
+            }
+        }
+
+        private fun startBreathe() {
+            moveAnim = loop(2200L) { t ->
+                val s = 1f + 0.05f * ((1f - kotlin.math.cos(2f * Math.PI.toFloat() * t)) / 2f)
+                body.scaleX = s
+                body.scaleY = s
+            }
+        }
+
+        private fun startHalo() {
+            halo.color = color(R.color.dictate_overlay_recording)
+            haloAnim = loop(1600L) { t ->
+                halo.phase = t
+                halo.invalidate()
+            }
+        }
+
+        private fun loop(period: Long, onFrame: (Float) -> Unit): ValueAnimator =
+            ValueAnimator.ofFloat(0f, 1f).apply {
+                duration = period
+                interpolator = LinearInterpolator()
+                repeatCount = ValueAnimator.INFINITE
+                repeatMode = ValueAnimator.RESTART
+                addUpdateListener { onFrame(it.animatedValue as Float) }
+                start()
+            }
+
+        private fun stopAnims() {
+            moveAnim?.cancel()
+            moveAnim = null
+            haloAnim?.cancel()
+            haloAnim = null
+            body.scaleX = 1f
+            body.scaleY = 1f
+            body.t = 0f
+            body.invalidate()
+            halo.phase = -1f
+            halo.invalidate()
+        }
+
+        private inner class CharmView(context: Context) : View(context) {
+            private var sign: android.graphics.drawable.Drawable? = null
+            private var signIsMic = true
+            var t = 0f
+
+            fun setSign(resId: Int) {
+                sign = ContextCompat.getDrawable(context, resId)?.mutate()
+                signIsMic = resId == R.drawable.ic_dictate_overlay_mic
+                invalidate()
+            }
+
+            override fun onDraw(canvas: Canvas) {
+                val inset = (width - charmSize) / 2f
+                canvas.save()
+                canvas.translate(inset, inset)
+                MicCharmPainter.draw(canvas, charm, charmColor, charmSize.toFloat(), sign, signIsMic, t)
+                canvas.restore()
+            }
+        }
+
+        /** A ring spreading out from behind the look and fading, louder voice making it bolder. */
+        private inner class HaloView(context: Context) : View(context) {
+            var color: Int = Color.TRANSPARENT
+            /** 0..1 through one ripple; below zero means no ripple. */
+            var phase: Float = -1f
+            var level: Float = 0f
+            private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.FILL }
+
+            override fun onDraw(canvas: Canvas) {
+                if (phase < 0f || width == 0) return
+                val maxR = width / 2f
+                val r = maxR * (0.7f + 0.3f * phase)
+                val alpha = (1f - phase) * (0.35f + 0.4f * level.coerceIn(0f, 1f))
+                paint.color = ColorUtils.setAlphaComponent(color, (alpha * 255).toInt().coerceIn(0, 255))
+                canvas.drawCircle(width / 2f, height / 2f, r, paint)
+            }
+        }
+    }
+
     private companion object {
         private const val ERROR_HOLD_MS = 1800L
         private const val SUCCESS_HOLD_MS = 1700L
@@ -2767,6 +2985,9 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
 
         /** How long after a dictation the bubble stays full size, so undo is still on offer. */
         private const val AFTER_DICTATION_MS = 10_000L
+
+        /** The gap kept between the bubble and the top of the Dictate keyboard, in dp. */
+        private const val KEYBOARD_GAP_DP = 8
 
         /** How soon the bubble steps back once the user starts typing on the keyboard. */
         private const val TYPING_DIM_DELAY_MS = 2_000L

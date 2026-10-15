@@ -226,6 +226,7 @@
     <string name="quick_action__ime_ui_mode_dictate" comment="Please mind the limited available space for the quick action strings">Dictate</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Tap to dictate, tap again to transcribe</string>
     <string name="quick_action__dictate_live_prompt" comment="Please mind the limited available space for the quick action strings">Live prompt</string>
+    <string name="dictate__live_prompt_chip" comment="Prompt chip and floating-button menu entry: you speak an instruction (e.g. make this more polite, or write a thank-you note) instead of dictating text, and the AI carries it out">Ask by voice</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Record a spoken instruction and send it to the AI</string>
     <string name="quick_action__dictate_prompts" comment="Please mind the limited available space for the quick action strings">AI prompts</string>
     <string name="quick_action__dictate_prompts__tooltip">Open the AI rewording prompts</string>
@@ -279,7 +280,7 @@
     <string name="select_subtype_panel__switch_keyboard_app" comment="Row in the keyboard's language menu that opens the system's list of keyboard apps">Switch keyboard app</string>
 
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">Incognito mode is now enabled\n\n{app_name} will not learn words from your input while this mode is active</string>
+    <string name="incognito_mode__toast_after_enabled">Incognito mode is now enabled\n\nVoice Mode will not learn words from your input while this mode is active</string>
     <string name="incognito_mode__toast_after_disabled">Incognito mode is now disabled by default</string>
 
     <!-- Settings UI strings -->
@@ -289,9 +290,132 @@
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Default</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">System default</string>
 
-    <string name="settings__home__title" comment="Title of the Home screen">Welcome to {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when the keyboard is not enabled in the system">{app_name} is not enabled in the system and thus won\'t be available as an input method in the input picker. Click here to resolve this issue.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when the keyboard is not selected as the default keyboard">{app_name} is not selected as the default input method. Click here to resolve this issue.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">Welcome to Voice Mode</string>
+    <string name="home__recent_title" comment="Title of the recent dictations card on the home screen">Recent dictations</string>
+    <string name="home__recent_see_all" comment="Button on the recent dictations card that opens the full history">See all</string>
+    <string name="home__recent_copy" comment="Accessibility label of the copy icon on a recent dictation row">Copy</string>
+    <string name="home__recent_failed" comment="Recent dictations row for a recording whose transcription failed">Transcription failed. Recording saved.</string>
+    <string name="home__recent_retry" comment="Button on a failed recent dictation that sends its saved recording again">Retry</string>
+    <string name="home__transcribe_file" comment="Floating button on the home screen that opens the file picker to transcribe an audio or video file">Transcribe a file</string>
+    <string name="home__ai_model" comment="Settings row that opens the AI providers screen; its second line names the speech model in use">AI Model</string>
+    <string name="home__stats_summary" comment="Home time-saved strip, after the bold duration. {count} is the number of dictations">saved · {count} dictations</string>
+    <string name="settings__all__title" comment="The Settings tab and its title">Settings</string>
+    <string name="dictionary_hub__title" comment="The Dictionary tab, gathering every word list (dictation words, find-and-replace, the keyboard dictionary)">Dictionary</string>
+    <string name="words__personal_dictionary" comment="Dictionary screen row opening the keyboard's own user dictionary">Personal dictionary</string>
+    <!-- The Dictionary tab: one "My words" list used both for dictation and for typing. -->
+    <string name="mywords__subtitle" comment="Line under the Dictionary tab title">Names and terms Voice Mode should always get right.</string>
+    <string name="mywords__title" comment="Heading of the one word list used for both dictation and typing">My words</string>
+    <string name="mywords__explanation" comment="Short explanation at the top of the My words card">One list for everything. Each word is spelled your way when you speak, and suggested when you type.</string>
+    <string name="mywords__empty" comment="Shown in the My words card while the list is empty">Nothing here yet. Add a name, a product or any word you use a lot.</string>
+    <string name="mywords__more" comment="Last chip after the first few words, opening the full list. Placeholder: how many words are not shown.">+ {count} more</string>
+    <string name="mywords__see_all" comment="Last chip after the words when all of them are shown; opens the full list to edit or remove words">Edit list</string>
+    <string name="mywords__add_hint" comment="Placeholder of the field where a new word is typed">Add a word or name</string>
+    <string name="mywords__add" comment="Accessibility label of the + button next to the field">Add word</string>
+    <string name="mywords__usage" comment="Under the usage bar. Placeholders: words in the list, and about how many fit in what the speech AI reads.">{count} of {limit} go to the speech AI</string>
+    <string name="mywords__usage_full" comment="Under the full usage bar, once the list is longer than the speech AI reads. Placeholders: how many words go to it, how many words are in the list.">{count} of {total} go to the speech AI. All are used for typing.</string>
+    <string name="mywords__fixes" comment="Dictionary tab heading above find-and-replace and learned words">Fixes</string>
+    <string name="mywords__find_replace" comment="Dictionary tab row opening the find-and-replace rules for transcripts">Find and replace</string>
+    <string name="mywords__find_replace_none" comment="Summary of the find-and-replace row while there are no rules">Fix words the speech AI keeps getting wrong</string>
+    <string name="mywords__find_replace_one" comment="Summary of the find-and-replace row with one rule. Placeholders: what is found and what it becomes.">1 rule: “{from}” → “{to}”</string>
+    <string name="mywords__find_replace_many" comment="Summary of the find-and-replace row. Placeholders: how many rules, and the first rule as an example.">{count} rules, e.g. “{from}” → “{to}”</string>
+    <string name="mywords__learned" comment="Dictionary tab row opening the words the keyboard learned on its own">Learned from your typing</string>
+    <string name="mywords__learned_summary" comment="Summary of the learned words row">Picked up automatically. Remove any.</string>
+    <string name="mywords__phone_settings" comment="Link at the bottom of the Dictionary tab opening the keyboard dictionary settings">Phone dictionary and learning settings</string>
+    <!-- The full My words list -->
+    <string name="mywords__edit_as_text" comment="Row on the full My words list opening a text editor for the whole list">Edit as text</string>
+    <string name="mywords__edit_as_text_summary" comment="Summary of the Edit as text row">Paste, import or export the whole list</string>
+    <string name="mywords__remove" comment="Accessibility label of the button that removes one word. Placeholder: the word.">Remove {word}</string>
+    <string name="mywords__typing_only" comment="Under a word in the full list that the speech AI has no room for">Typing only: no room left for the speech AI</string>
+    <string name="mywords__budget_over" comment="Note in the text editor once the list is longer than the speech AI reads. Placeholders: how many words go to it, how many words there are.">Your list is longer than the speech AI reads. The first {fits} of your {count} words go to it; the rest are still suggested when you type.</string>
+    <string name="mywords__row_summary" comment="Summary of the My words row on the dictation formatting screen. Placeholder: how many words.">{count} words, spelled your way and suggested when you type</string>
+    <string name="nav__home" comment="Bottom tab bar: the home tab">Home</string>
+    <string name="nav__style" comment="Bottom tab bar: the tab where the mic button's look is picked">Style</string>
+    <string name="home__mic_title" comment="Home card showing the floating mic button's current look">Your mic button</string>
+    <string name="home__mic_on" comment="Home mic card, second line while the floating mic button is on. {charm} is the look, e.g. Daisy">{charm} · floats in every app</string>
+    <string name="home__mic_off" comment="Home mic card, second line while the floating mic button is off">Not turned on</string>
+    <string name="home__mic_change_look" comment="Home mic card button that opens the Style tab">Change look</string>
+    <string name="home__turn_on" comment="Button that turns on the floating mic button or the keyboard">Turn on</string>
+    <string name="home__keyboard_title" comment="Row naming the app's keyboard, on the home screen and at the top of Settings">Voice Mode keyboard</string>
+    <string name="home__keyboard_off" comment="Second line of the keyboard row while the keyboard is not turned on">Not turned on</string>
+    <string name="home__keyboard_on" comment="Second line of the keyboard row while the keyboard is turned on">On · the mic sits on the keyboard</string>
+    <!-- Home, before the first dictation: two steps to get going (HomeFirstRun.kt) -->
+    <string name="firstrun__title" comment="Big heading of the home screen before the first dictation, on two lines">Say it.\nVoice Mode writes it.</string>
+    <string name="firstrun__subtitle" comment="Line under the first-run home heading">Two quick steps and you\'re talking.</string>
+    <string name="firstrun__step_look" comment="First-run home, step 1 heading: choose the look of the floating mic button">Pick your mic button</string>
+    <string name="firstrun__more_looks" comment="First-run home, tile after a few mic looks that opens the Style tab with all of them">More</string>
+    <string name="firstrun__step_where" comment="First-run home, step 2 heading: turn on the floating mic, the keyboard, or both">Choose where it shows up</string>
+    <string name="firstrun__floating_title" comment="First-run home, step 2 option: the floating mic button">Floating mic</string>
+    <string name="firstrun__floating_summary" comment="First-run home, second line of the floating mic option">Next to any text box, with the keyboard you already use</string>
+    <string name="firstrun__keyboard_summary" comment="First-run home, second line of the keyboard option">A full keyboard with your mic built in</string>
+    <string name="firstrun__done" comment="Accessibility label of the check mark shown instead of Turn on once an option is on">On</string>
+    <string name="firstrun__try_title" comment="First-run home, card with a mic button that records a voice note right in the app">Try it here</string>
+    <string name="firstrun__try_summary" comment="First-run home, second line of the Try it here card; the note then appears in the recent dictations list on the home screen">Tap and say anything. Your text shows up below, ready to copy.</string>
+    <string name="settings__dictation_group" comment="Settings tab: the group of dictation settings at the top">Dictation</string>
+    <string name="settings__more_group" comment="Settings tab: the group of every other settings category">Keyboard and app</string>
+    <string name="settings__floating_button_on" comment="Settings tab: summary of the floating mic button row while it is on">On · where and when it shows</string>
+    <string name="settings__more_dictation" comment="Settings tab: row opening every dictation setting">More dictation settings</string>
+    <string name="settings__more_dictation_summary" comment="Summary of the row opening every dictation setting">Languages, formatting, rewording, recording</string>
+    <string name="style__subtitle" comment="Line under the Style tab title">Make the mic button yours.</string>
+    <string name="style__preview_message" comment="Sample chat message in the Style tab preview">Are you still coming tonight?</string>
+    <string name="style__preview_caption" comment="Caption in the Style tab preview, which shows the mic button listening">Listening in a chat app</string>
+    <string name="style__preview_field" comment="Placeholder of the sample message field in the Style tab preview">Message</string>
+    <string name="style__charm_classic" comment="Mic button look: the plain round button">Classic</string>
+    <string name="style__charm_daisy" comment="Mic button look: a daisy">Daisy</string>
+    <string name="style__charm_butterfly" comment="Mic button look: a butterfly">Butterfly</string>
+    <string name="style__charm_heart" comment="Mic button look: a heart">Heart</string>
+    <string name="style__charm_clover" comment="Mic button look: a four-leaf clover">Clover</string>
+    <string name="style__charm_moon" comment="Mic button look: a crescent moon">Moon</string>
+    <string name="style__charm_sunflower" comment="Mic button look: a sunflower">Sunflower</string>
+    <string name="style__charm_blossom" comment="Mic button look: a cherry blossom">Blossom</string>
+    <string name="style__charm_on_air" comment="Mic button look: a lit “On Air” studio sign">On Air</string>
+    <string name="style__charm_gramophone" comment="Mic button look: an old gramophone horn">Gramophone</string>
+    <string name="style__charm_crooner" comment="Mic button look: a vintage stage microphone">Crooner</string>
+    <string name="style__charm_mixtape" comment="Mic button look: a cassette tape">Mixtape</string>
+    <string name="style__charm_planet" comment="Mic button look: a ringed planet">Planet</string>
+    <string name="style__charm_shooting_star" comment="Mic button look: a shooting star">Shooting star</string>
+    <string name="style__charm_disco_ball" comment="Mic button look: a disco ball">Disco ball</string>
+    <string name="style__charm_big_red_button" comment="Mic button look: a big red arcade button">Big red button</string>
+    <string name="style__charm_pixel_heart" comment="Mic button look: a pixel-art heart">8-bit heart</string>
+    <string name="style__charm_neon" comment="Mic button look: a neon sign of a microphone">Neon</string>
+    <string name="style__charm_studio_mic" comment="Mic button look: a studio microphone">Studio mic</string>
+    <string name="style__collection_garden" comment="Style tab: name of a collection of mic button looks">Garden</string>
+    <string name="style__collection_garden_tagline" comment="Style tab: one-line description of the Garden collection">Soft, bright, alive</string>
+    <string name="style__collection_retro" comment="Style tab: name of a collection of mic button looks">Retro</string>
+    <string name="style__collection_retro_tagline" comment="Style tab: one-line description of the Retro collection">Warm, analog, a bit of a wink</string>
+    <string name="style__collection_night_sky" comment="Style tab: name of a collection of mic button looks">Night sky</string>
+    <string name="style__collection_night_sky_tagline" comment="Style tab: one-line description of the Night sky collection">Calm and dreamy</string>
+    <string name="style__collection_arcade" comment="Style tab: name of a collection of mic button looks">Arcade</string>
+    <string name="style__collection_arcade_tagline" comment="Style tab: one-line description of the Arcade collection">Punchy and playful</string>
+    <string name="style__collection_simple" comment="Style tab: name of a collection of mic button looks">Simple</string>
+    <string name="style__collection_simple_tagline" comment="Style tab: one-line description of the Simple collection">The plain round button</string>
+    <string name="style__move_bloom" comment="How the mic button moves while recording: grows and turns like a flower opening">Blooms while it listens</string>
+    <string name="style__move_flutter" comment="How the mic button moves while recording: flaps like wings">Flutters while it listens</string>
+    <string name="style__move_turn" comment="How the mic button moves while recording: spins slowly">Turns while it listens</string>
+    <string name="style__move_sway" comment="How the mic button moves while recording: swings gently side to side">Sways while it listens</string>
+    <string name="style__move_glow" comment="How the mic button moves while recording: lights up and dims">Glows while it listens</string>
+    <string name="style__move_wobble" comment="How the mic button moves while recording: rocks and swells">Wobbles while it listens</string>
+    <string name="style__move_pulse" comment="How the mic button moves while recording: grows and shrinks">Pulses while it listens</string>
+    <string name="style__move_spin" comment="How the mic button moves while recording: the cassette reels turn">Spins its reels while it listens</string>
+    <string name="style__move_tilt" comment="How the mic button moves while recording: leans side to side">Tilts while it listens</string>
+    <string name="style__move_twinkle" comment="How the mic button moves while recording: the star sparkles">Twinkles while it listens</string>
+    <string name="style__move_press" comment="How the mic button moves while recording: the button pushes in">Presses down while it listens</string>
+    <string name="style__move_beat" comment="How the mic button moves while recording: double-thumps like a heartbeat">Beats while it listens</string>
+    <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">Flickers while it listens</string>
+    <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">Move while listening</string>
+    <string name="style__move_off" comment="Summary of the movement switch while it is off">Stays still</string>
+    <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">Original colors</string>
+    <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">{charm} keeps its own colors.</string>
+    <string name="style__color" comment="Style tab heading above the colour swatches">Color</string>
+    <string name="style__color_cloud" comment="Colour swatch name (white)">Cloud</string>
+    <string name="style__color_blossom" comment="Colour swatch name (pink)">Blossom</string>
+    <string name="style__color_lilac" comment="Colour swatch name (light purple)">Lilac</string>
+    <string name="style__color_butter" comment="Colour swatch name (yellow)">Butter</string>
+    <string name="style__color_mint" comment="Colour swatch name (green)">Mint</string>
+    <string name="style__color_sky" comment="Colour swatch name (light blue)">Sky</string>
+    <string name="style__more_colors" comment="Style tab row opening the full colour picker">More colors</string>
+    <string name="style__motion" comment="Style tab heading above how the mic button moves while recording">While it listens</string>
+    <string name="style__button_off" comment="Style tab note while the floating mic button is off">The floating mic button is off, so you\'ll only see this here for now.</string>
+    <string name="style__look_summary" comment="Floating button settings: summary of the row opening the Style tab. {charm} is the look">{charm} · change it on the Style tab</string>
 
     <string name="settings__search__title" comment="Title of the settings search screen">Search settings</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Search settings…</string>
@@ -366,7 +490,7 @@
     <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">Night theme</string>
     <string name="pref__theme__theme_accent_color__label" comment="Label of accent color preference in Theme">Accent color (Material You)</string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">Manage installed themes</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">{app_name} App Assets</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">Voice Mode App Assets</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">Internal Storage</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">External Provider</string>
 
@@ -398,7 +522,7 @@
     <string name="settings__theme_editor__code_recording_help_text">To find the code of a key, use the button besides the code input field. Once activated, it will record the next key press and will insert the code into the input field.</string>
     <string name="settings__theme_editor__code_recording_started">Key code recording started</string>
     <string name="settings__theme_editor__code_recording_stopped">Key code recording stopped</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">{app_name} needs to be the default keyboard to record a key code</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Voice Mode needs to be the default keyboard to record a key code</string>
     <string name="settings__theme_editor__code_recording_placeholder">Recording…</string>
     <string name="settings__theme_editor__add_property">Add property</string>
     <string name="settings__theme_editor__edit_property">Edit property</string>
@@ -414,7 +538,7 @@
     <string name="settings__theme_editor__component_meta_stylesheet_path">Stylesheet path</string>
     <string name="settings__theme_editor__component_meta_material_you__title">Material You</string>
     <string name="settings__theme_editor__stylesheet_error_title">Stylesheet error</string>
-    <string name="settings__theme_editor__stylesheet_error_description">{app_name} can try to leniently load the stylesheet and add missing schemas, rules, or remove invalid rules, properties, or values. Do you want {app_name} to apply these changes?</string>
+    <string name="settings__theme_editor__stylesheet_error_description">Voice Mode can try to leniently load the stylesheet and add missing schemas, rules, or remove invalid rules, properties, or values. Do you want Voice Mode to apply these changes?</string>
     <string name="settings__theme_editor__component_meta_material_you__palette_style">Palette style</string>
     <string name="settings__theme_editor__component_meta_material_you__color_contrast">Color contrast</string>
     <string name="settings__theme_editor__component_meta_material_you__spec_version">Spec version</string>
@@ -857,7 +981,7 @@
 
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">About</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">App icon of {app_name}</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">App icon of Voice Mode</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">Open source licenses</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">Privacy policy</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">Source code</string>
@@ -880,7 +1004,7 @@
     <string name="apptour__badge_highlight" comment="Small badge marking a headline feature">★ Highlight</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">A quick tour</string>
-    <string name="apptour__intro_body">Here’s what’s new in Dictate 5.0 — the highlights in under a minute. Tap “Try it” on any page to jump straight to that setting.</string>
+    <string name="apptour__intro_body">Here’s what’s new in Voice Mode 5.0 — the highlights in under a minute. Tap “Try it” on any page to jump straight to that setting.</string>
     <string name="apptour__glide_eyebrow">Keyboard</string>
     <string name="apptour__glide_title">Swipe to type</string>
     <string name="apptour__glide_body">Slide your finger from key to key and Voice Mode turns the path into whole words. Each language brings its own dictionary that downloads on demand — switch it on under Gestures.</string>
@@ -948,7 +1072,7 @@
     <string name="apptour51__outro_body">Thanks for using Voice Mode! If it helps you every day, a small donation keeps the project going. You can revisit any of these tours anytime under Settings › About.</string>
     <!-- What's new tour 5.2 -->
     <string name="apptour52__cta_try" comment="Button on a 5.2 tour page to jump straight to that feature">Try it</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">Voice Mode 5.2</string>
     <string name="apptour52__intro_title">Dictate everywhere</string>
     <string name="apptour52__intro_body">This release takes Voice Mode beyond its own keyboard: use it as your phone\'s voice input, run a spoken command from anywhere, and let it clean up long dictations for you. Here\'s what\'s new.</string>
     <string name="apptour52__voiceinput_eyebrow">System-wide voice input</string>
@@ -976,7 +1100,7 @@
     <string name="apptour52__outro_title">Happy dictating</string>
     <string name="apptour52__outro_body">Plus plenty under the hood: the screen stays awake through a whole dictation, on-device models free their memory when idle, watch dictations survive dropouts, and German autocorrect learned umlauts. You can revisit any tour under Settings › About.</string>
     <string name="apptour53__cta_try" comment="Button on a 5.3 tour page to jump straight to that feature">Try it</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">Voice Mode 5.3</string>
     <string name="apptour53__intro_title">Hold, speak, done</string>
     <string name="apptour53__intro_body">This release is about the two things you do most: talking to your phone and typing on it. Both got faster, and both got better at staying out of your way.</string>
     <string name="apptour53__pushtotalk_eyebrow">Push to talk</string>
@@ -1008,7 +1132,7 @@
     <string name="apptour60__cta_try" comment="Button on a what's-new page that opens the settings screen for the feature just described">Try it</string>
     <string name="apptour60__art_minutes" comment="Label next to a counting number in the credit-pack illustration, e.g. \u201c2200 minutes\u201d">minutes</string>
     <string name="apptour60__art_speed" comment="Playback-speed badge in the illustration showing a recording being shortened. Uses the local decimal separator.">1.5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">Voice Mode 6.0</string>
     <string name="apptour60__intro_title">Credit, Chinese, cheaper dictation</string>
     <string name="apptour60__intro_body">This release adds a second way in — buy credit instead of bringing your own API key — along with Pinyin for Chinese, seven languages that gained a dictionary, and recordings that cost less to transcribe.</string>
     <string name="apptour60__cloud_eyebrow">New: Voice Mode Cloud</string>
@@ -1037,7 +1161,7 @@
     <string name="apptour61__art_share" comment="Label on the share-sheet card in the illustration, above the app name">Share with</string>
     <string name="apptour61__art_typed" comment="A misspelled word shown being corrected in the illustration. Should look like a real thumb slip in the target language.">teh</string>
     <string name="apptour61__art_fixed" comment="The correction of apptour61__art_typed, shown replacing it in the illustration">the</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">Voice Mode 6.1</string>
     <string name="apptour61__intro_title">Stickers, voice messages, and an autocorrect that catches the typo</string>
     <string name="apptour61__intro_body">Point the keyboard at a folder of your own stickers, share a voice message straight to Voice Mode to find out what it says, and get an autocorrect that finally sees the mistake it was built not to see.</string>
     <string name="apptour61__stickers_eyebrow">New: your own stickers</string>
@@ -1066,7 +1190,7 @@
     <string name="apptour62__art_word" comment="A word shown being learned in the illustration. Pick a first name or term that no dictionary in your language would know — short, at most about eight letters.">Zoya</string>
     <string name="apptour62__art_emoji_word" comment="A word shown being typed in the illustration, for which an emoji is then suggested. Must be an everyday word in your language whose emoji is obvious — keep it short.">cake</string>
     <string name="apptour62__art_emoji" comment="The emoji suggested for apptour62__art_emoji_word in the illustration. Change it only if your word needs a different one.">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">Voice Mode 6.2</string>
     <string name="apptour62__intro_title">It learns your words, and it has five new looks</string>
     <string name="apptour62__intro_body">The keyboard can remember the words you type that no dictionary knows, the keys can let the app show through, and both thumbs can have a half of their own. Plus a handful of small helpers for the things you do every day.</string>
     <string name="apptour62__learning_eyebrow">New: it learns as you type</string>
@@ -1074,7 +1198,7 @@
     <string name="apptour62__learning_body">Type a name or a term often enough and the keyboard keeps it, so it stops marking it as a mistake and starts suggesting it. This update switches that on for everyone, including anyone who had it off. Nothing is learned in incognito mode, in password fields or from anything you did not type key by key; it all stays on this device, and the button below opens the list — and the switch.</string>
     <string name="apptour62__themes_eyebrow">Five new designs</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep and a dark E-Ink</string>
-    <string name="apptour62__themes_body">Voice Mode Glass lets the app show through the gaps between the keys, while the keys themselves stay solid enough to read on; Glass Clear goes further and looks better, at the price of text showing through in apps that draw behind the keyboard. Sand is a warm light theme, Deep a quiet dark one, and E-Ink finally has a night version — so automatic switching no longer hands you a white keyboard after dark.</string>
+    <string name="apptour62__themes_body">Glass lets the app show through the gaps between the keys, while the keys themselves stay solid enough to read on; Glass Clear goes further and looks better, at the price of text showing through in apps that draw behind the keyboard. Sand is a warm light theme, Deep a quiet dark one, and E-Ink finally has a night version — so automatic switching no longer hands you a white keyboard after dark.</string>
     <string name="apptour62__split_eyebrow">New: split keyboard</string>
     <string name="apptour62__split_title">Both thumbs, without the stretch</string>
     <string name="apptour62__split_body">A new quick action, next to one-handed and floating, pulls the rows apart so each thumb keeps to its own half. Every layout splits, not just QWERTY, because the seam is worked out from the key widths rather than written into each layout. And in landscape the app now stays visible whenever there is room for both.</string>
@@ -1103,7 +1227,7 @@
     <string name="apptour62__outro_title">Same keyboard, more of it yours</string>
     <string name="apptour62__outro_body">Nothing about the way you dictate has changed — your own key, your own server, or a model on the device. You can revisit any tour under Settings › About.</string>
     <string name="apptour63__cta_try" comment="Button on a what\'s-new page that opens the settings screen for the feature just described">Try it</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">Voice Mode 6.3</string>
     <string name="apptour63__intro_title">More of the keyboard, without leaving it</string>
     <string name="apptour63__intro_body">Point the camera at printed text and it lands in the field. The cursor, the selection and the clipboard finally share one panel. Any Smartbar button can carry a second action under a long press. And offline dictation has models that actually fit on a phone.</string>
     <string name="apptour63__scan_eyebrow">New: scan text</string>
@@ -1142,7 +1266,7 @@
     <string name="about__privacy_policy__title" comment="Preference title">Privacy policy</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">The privacy policy for this project</string>
     <string name="about__project_license__title" comment="Preference title">Project license</string>
-    <string name="about__project_license__summary" comment="Preference summary">{app_name} is licensed under {license_name}</string>
+    <string name="about__project_license__summary" comment="Preference summary">Voice Mode is licensed under {license_name}</string>
     <string name="about__project_license__error_license_text_failed" comment="Error text for license text loading failure">Error: Failed to load license text.\n-&gt; Reason: {error_message}</string>
     <string name="about__project_license__error_reason_asset_manager_null" comment="Error text if asset manager is null">Asset manager reference is null</string>
     <string name="about__third_party_licenses__title" comment="Preference title">Third-party licenses</string>
@@ -1152,18 +1276,18 @@
 
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">Welcome!</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">Welcome to {app_name}! Let\'s get you ready to dictate in just a few quick steps — no technical knowledge needed.</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">Welcome to Voice Mode! Let\'s get you ready to dictate in just a few quick steps — no technical knowledge needed.</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">Privacy policy</string>
     <string name="setup__footer__repository" comment="Repository label for URL">Repository</string>
     <string name="setup__nav_back" comment="Setup wizard: go to the previous step">Back</string>
     <string name="setup__nav_next" comment="Setup wizard: go to the next, already-reached step">Next</string>
 
-    <string name="setup__enable_ime__title">Enable {app_name}</string>
-    <string name="setup__enable_ime__description">Android requires that every custom keyboard is separately enabled before you can use it. Open the System <i>Language &amp; Input</i> Settings, there enable "{app_name}".</string>
+    <string name="setup__enable_ime__title">Enable Voice Mode</string>
+    <string name="setup__enable_ime__description">Android requires that every custom keyboard is separately enabled before you can use it. Open the System <i>Language &amp; Input</i> Settings, there enable "Voice Mode".</string>
     <string name="setup__enable_ime__open_settings_btn">Open System Settings</string>
 
-    <string name="setup__select_ime__title">Select {app_name}</string>
-    <string name="setup__select_ime__description">{app_name} is now enabled in your system. To actively use it, switch to {app_name} by selecting it in the input selector dialog!</string>
+    <string name="setup__select_ime__title">Select Voice Mode</string>
+    <string name="setup__select_ime__description">Voice Mode is now enabled in your system. To actively use it, switch to Voice Mode by selecting it in the input selector dialog!</string>
     <string name="setup__select_ime__switch_keyboard_btn">Switch Keyboard</string>
 
     <string name="setup__grant_notification_permission__title">Permit Crash Report Notifications</string>
@@ -1215,15 +1339,15 @@
     <string name="setup__provider__other_provider_hint">Advanced: pick another service instead of Groq. You\'ll need an API key from that provider.</string>
 
     <string name="setup__finish_up__title">You\'re all set!</string>
-    <string name="setup__finish_up__description_p1">{app_name} is ready. Switch to it with the keyboard switcher, tap the microphone, and start speaking.</string>
+    <string name="setup__finish_up__description_p1">Voice Mode is ready. Switch to it with the keyboard switcher, tap the microphone, and start speaking.</string>
     <string name="setup__finish_up__description_p2">You can change languages, the AI provider and everything else anytime in the settings. If you ever run into a problem or have an idea, reach out from the about screen!</string>
     <string name="setup__finish_up__add_key_hint">Tip: you haven\'t added an AI key yet. Add one anytime in Settings → Voice Mode → AI providers to start dictating.</string>
     <string name="setup__finish_up__finish_btn">Start using Voice Mode</string>
     <string name="setup__floating_button__btn" comment="Onboarding button that opens the floating-button settings">Set up the floating button</string>
     <string name="setup__floating_button__title" comment="Title of the optional floating-button onboarding step">Dictate anywhere (optional)</string>
     <string name="setup__floating_button__intro" comment="Explanation on the optional floating-button onboarding step">The floating button puts a small dictation bubble over any app, so you can speak into any text field without switching keyboards.</string>
-    <string name="setup__floating_button__accessibility_note" comment="Transparency note about the accessibility service the floating button relies on">To do this, {app_name} uses Android\'s accessibility settings — that\'s how the bubble can show over other apps and insert the transcribed text for you. The next screen guides you through enabling it.</string>
-    <string name="setup__floating_button__optional_note" comment="Reassurance that the floating button is optional">This is completely optional — skip it if you just want to use {app_name} as a full keyboard. You can always set it up later in the settings.</string>
+    <string name="setup__floating_button__accessibility_note" comment="Transparency note about the accessibility service the floating button relies on">To do this, Voice Mode uses Android\'s accessibility settings — that\'s how the bubble can show over other apps and insert the transcribed text for you. The next screen guides you through enabling it.</string>
+    <string name="setup__floating_button__optional_note" comment="Reassurance that the floating button is optional">This is completely optional — skip it if you just want to use Voice Mode as a full keyboard. You can always set it up later in the settings.</string>
     <string name="setup__floating_button__skip_btn" comment="Button to skip the optional floating-button step">Skip — I\'ll use the keyboard</string>
 
     <!-- Physical keyboard -->
@@ -1298,7 +1422,7 @@
     <string name="clipboard__search_placeholder" comment="Hint inside the clipboard search field">Search your clips</string>
     <string name="clipboard__search_no_results" comment="Shown when no clip contains what was typed">No clip contains that</string>
     <string name="clipboard__disabled__title">Clipboard history is currently disabled</string>
-    <string name="clipboard__disabled__message">{app_name}\'s clipboard history allows you to quickly store and access text and images you copy, with the ability to pin items, configure automatic clean-up and set a maximum item limit.</string>
+    <string name="clipboard__disabled__message">Voice Mode\'s clipboard history allows you to quickly store and access text and images you copy, with the ability to pin items, configure automatic clean-up and set a maximum item limit.</string>
     <string name="clipboard__disabled__enable_button">Enable clipboard history</string>
     <string name="clipboard__empty__title">Your clipboard is empty</string>
     <string name="clipboard__empty__message">Once you copy text clips or images they will show up here.</string>
@@ -1443,7 +1567,7 @@
     <string name="ext__editor__create_component__title_theme">Create theme</string>
     <string name="ext__editor__create_component__from_empty">Empty</string>
     <string name="ext__editor__create_component__from_existing">From existing</string>
-    <string name="ext__editor__create_component__from_empty_warning">Creating and configuring an empty component may be hard if you are new to {app_name} or if you are unfamiliar with the specifics. Consider copying an existing component and modifying it to your likings if that is the case.</string>
+    <string name="ext__editor__create_component__from_empty_warning">Creating and configuring an empty component may be hard if you are new to Voice Mode or if you are unfamiliar with the specifics. Consider copying an existing component and modifying it to your likings if that is the case.</string>
     <string name="ext__editor__edit_component__title">Edit component</string>
     <string name="ext__editor__edit_component__title_theme">Edit theme component</string>
     <string name="ext__export__success">Successfully exported extension!</string>
@@ -1632,9 +1756,9 @@
     <string name="enum__extended_actions_placement__overlay_app_ui__description" comment="Enum value description">Places the extended actions row as an overlay above the app UI, without affecting the resulting keyboard UI height. Note that this placement may cause the app input field to be partially overdrawn</string>
 
     <string name="enum__haptic_vibration_mode__use_vibrator_directly" comment="Enum value label">Use vibrator directly</string>
-    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">{app_name} directly interacts with the default hardware vibrator. This gives more control over duration and strength of a vibration, but the vibration may not be as smooth and optimized as using the haptic feedback interface</string>
+    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">Voice Mode directly interacts with the default hardware vibrator. This gives more control over duration and strength of a vibration, but the vibration may not be as smooth and optimized as using the haptic feedback interface</string>
     <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface" comment="Enum value label">Use haptic feedback interface</string>
-    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">{app_name} uses the haptic feedback interface to trigger a predefined vibration sequence for key presses. This may work exceptionally well on some devices, but completely fail or perform very poorly on others</string>
+    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">Voice Mode uses the haptic feedback interface to trigger a predefined vibration sequence for key presses. This may work exceptionally well on some devices, but completely fail or perform very poorly on others</string>
 
     <string name="enum__key_hint_mode__accent_priority" comment="Enum value label">Accent is prioritized</string>
     <string name="enum__key_hint_mode__accent_priority__description" comment="Enum value description">The initial character selected after long press is always the primary accent, or the hint symbol if no primary accent is available</string>
@@ -1814,7 +1938,8 @@
     <string name="dictate__floating_button_show_when_title" comment="Setting title: in which situation the floating dictation button appears; opens a list of three choices">When to show</string>
     <string name="dictate__floating_button_show_when_field" comment="Choice: the floating button appears as soon as a text field is focused, even before any keyboard opens">As soon as a text field is selected</string>
     <string name="dictate__floating_button_show_when_keyboard" comment="Choice: the floating button appears only while an on-screen keyboard (any keyboard) is open">Only while a keyboard is open</string>
-    <string name="dictate__floating_button_show_when_dictate_keyboard" comment="Choice: like “as soon as a text field is selected”, and also while the Voice Mode keyboard itself is open (normally hidden then, as it has its own mic key)">Also with the Voice Mode keyboard</string>    <string name="dictate__floating_button_apps_title" comment="Row that opens the per-app visibility screen for the floating button">App visibility</string>
+    <string name="dictate__floating_button_show_when_dictate_keyboard" comment="Choice: like “as soon as a text field is selected”, and also while the Voice Mode keyboard itself is open (normally hidden then, as it has its own mic key)">Also with the Voice Mode keyboard</string>
+    <string name="dictate__floating_button_apps_title" comment="Row that opens the per-app visibility screen for the floating button">App visibility</string>
     <string name="dictate__floating_button_apps_summary_all" comment="Summary of the app-visibility row when no filter is set">In every app</string>
     <string name="dictate__floating_button_apps_summary_only" comment="Summary of the app-visibility row in allow-list mode; {n} is the number of chosen apps">Only in {n} apps</string>
     <string name="dictate__floating_button_apps_summary_except" comment="Summary of the app-visibility row in block-list mode; {n} is the number of chosen apps">Everywhere except {n} apps</string>
@@ -1922,6 +2047,8 @@
     <string name="dictate__prompts_layout_panel_description">Open the prompts in their own panel via the magic-wand button.</string>
     <string name="dictate__prompts_layout_row_label">Always-on row</string>
     <string name="dictate__prompts_layout_row_description">Pin the prompts in an extra row above the keyboard.</string>
+    <string name="dictate__prompts_layout_when_useful_label" comment="Prompt layout option: the rewrite chips appear in the keyboard's top bar only right after dictating or while text is selected">When useful</string>
+    <string name="dictate__prompts_layout_when_useful_description">Show the prompts in the top bar right after you dictate or when text is selected.</string>
     <string name="dictate__status_idle" comment="Status shown on the Voice Mode panel when ready to record">Tap to dictate</string>
     <string name="dictate__status_recording" comment="Status shown while recording audio">Recording – tap to stop</string>
     <string name="dictate__status_transcribing" comment="Status shown while the audio is being transcribed">Transcribing…</string>
@@ -1994,12 +2121,12 @@
     <string name="dictate__promo_changelog_message" comment="Smartbar nudge shown after an app update. Kept short to fit the single-line Smartbar.">Voice Mode was updated</string>
     <string name="dictate__promo_changelog_action" comment="Short label of the accent pill button that opens the app's What's new changelog dialog. Must stay short to fit the single-line Smartbar.">Details</string>
     <string name="dictate__promo_floating_button_message" comment="Smartbar spotlight message introducing the floating dictation button. Keep short for one line.">New: dictate in any app</string>
+    <string name="dictate__promo_keep_button_message" comment="One-time Smartbar question to people who mostly dictate with the floating mic button: should it also show while this keyboard is open? Keep short for one line.">Keep your floating mic here too?</string>
+    <string name="dictate__promo_keep_button_action" comment="Short label of the accent pill that keeps the floating mic button showing over this keyboard. Must stay short to fit the single-line Smartbar.">Keep it</string>
     <string name="dictate__promo_floating_button_action" comment="Short label of the accent pill button that opens the floating-button settings. Must stay short to fit the single-line Smartbar.">Try it</string>
     <string name="dictate__promo_milestone_time" comment="Smartbar milestone nudge for saved time; %s is a duration. Keep short (single line).">Saved %s with Voice Mode! 🎉</string>
     <string name="dictate__promo_milestone_count" comment="Smartbar milestone nudge for dictation count; %s is a number. Keep short (single line).">%s dictations with Voice Mode! 🎉</string>
     <string name="dictate__promo_milestone_action" comment="Short label of the accent pill that opens the statistics screen. Must stay short to fit the single-line Smartbar.">Stats</string>
-    <string name="dictate__promo_low_credit_message" comment="Smartbar nudge shown once when Voice Mode Cloud credit is nearly used up">Credit almost gone.</string>
-    <string name="dictate__promo_low_credit_action" comment="Short label of the accent pill that opens Voice Mode Cloud. Must stay short to fit the single-line Smartbar.">Top up</string>
 
     <!-- Voice Mode settings screen -->
     <string name="dictate__title" comment="Title of the Voice Mode settings screen and home tile">Voice Mode</string>
@@ -2363,7 +2490,7 @@
     <string name="dictate__instant_recording_summary" comment="Summary for the instant recording setting">Start recording automatically when the keyboard opens</string>
     <string name="dictate__instant_recording_mode_off" comment="Instant recording: the feature is switched off">Off</string>
     <string name="dictate__instant_recording_mode_always" comment="Instant recording: start recording whenever the keyboard opens on a text field">Every time the keyboard opens</string>
-    <string name="dictate__instant_recording_mode_after_switch" comment="Instant recording: start recording only when the user has just switched to this keyboard from another one">Only after switching to {app_name}</string>
+    <string name="dictate__instant_recording_mode_after_switch" comment="Instant recording: start recording only when the user has just switched to this keyboard from another one">Only after switching to Voice Mode</string>
     <string name="dictate__instant_recording_in_numeric" comment="Checkbox inside the instant-recording dialog: whether it also starts in number-only fields (phone, PIN, date)">Also in number fields</string>
     <string name="dictate__instant_recording_skip_numeric_title" comment="Setting: don't auto-start recording on number-only fields">Skip number fields</string>
     <string name="dictate__instant_recording_skip_numeric_summary" comment="Summary: instant recording won't auto-start on number/phone/PIN fields">Don\'t auto-start on number, phone or PIN fields</string>
@@ -2419,9 +2546,7 @@
     <string name="dictate__custom_words_title" comment="Setting: custom vocabulary added to the transcription prompt so names/jargon are spelled correctly">Custom words</string>
     <string name="dictate__custom_words_summary_empty" comment="Summary shown when no custom words are set">Add names or technical terms to spell correctly</string>
     <string name="dictate__custom_words_placeholder" comment="Placeholder listing example custom words, comma-separated">e.g. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary" comment="Summary on the custom words row once words are set. Placeholders: how many words, the estimated token cost, and the budget the speech model reads.">{count} words · about {tokens} of {budget} tokens</string>
     <string name="dictate__custom_words_budget_info" comment="Info card shown once the word list uses most of the prompt budget. Placeholders: the budget and the estimated tokens in use.">Every word here travels with every dictation, and the speech model reads only about {budget} tokens of context. Your list is using about {tokens}.</string>
-    <string name="dictate__custom_words_budget_over" comment="Warning card shown when the word list is longer than the speech model can read. Placeholders: how many words still reach the model, and how many there are in total.">Your list is longer than the speech model reads. About {fits} of your {count} words reach it; the rest are sent with every dictation and ignored. For a longer vocabulary use custom mappings — they are exact, work offline and cost nothing.</string>
     <string name="dictate__custom_words_import" comment="Row that opens a file picker to import a word list">Import a word list</string>
     <string name="dictate__custom_words_export" comment="Row that saves the word list as a text file">Export the word list</string>
     <string name="dictate__custom_words_export_filename" comment="Default file name for the word list export">dictate_words.txt</string>
@@ -2431,11 +2556,8 @@
     <string name="dictate__custom_words_import_nofit" comment="Import dialog: how many words were left out because the prompt budget is full, and why. Placeholders: the count and the token budget.">{count} were left out — the speech model reads only about {budget} tokens of context, so they would have been sent with every dictation and ignored.</string>
     <string name="dictate__custom_words_import_unusable" comment="Import dialog: how many lines held nothing usable. Placeholder inserts the count.">{count} lines held nothing to spell and were skipped.</string>
     <string name="dictate__custom_words_import_truncated" comment="Import dialog: the file was longer than the app reads. Placeholder inserts the entry limit.">Only the first {count} entries of the file were read.</string>
-    <string name="dictate__custom_words_import_also_dictionary" comment="Checkbox in the import dialog: also write the words into the personal typing dictionary">Also add them to the personal dictionary</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary" comment="Explains the difference between the two lists, because an import is where people expect one to do both">This list only tells the speech model how to spell a word. The personal dictionary is what the keyboard uses while you type — it has no length limit, so every word in the file goes in, not only the ones that fit above.</string>
     <string name="dictate__custom_words_import_empty" comment="Toast when the chosen file held no usable words at all">No words found in that file</string>
     <string name="dictate__custom_words_import_done" comment="Toast after words were added. Placeholder inserts how many.">Added {count} words</string>
-    <string name="dictate__custom_words_import_done_dictionary" comment="Toast after words were added to both lists. Placeholders: how many reached the speech vocabulary and how many the personal dictionary.">Added {count} words, and {dict} to your personal dictionary</string>
     <string name="dictate__file_unreadable" comment="Toast when a chosen file could not be read">That file could not be read</string>
     <string name="dictate__file_export_done" comment="Toast after a file was written successfully">File saved</string>
     <string name="dictate__file_export_failed" comment="Toast when a file could not be written">Could not write that file</string>
@@ -2732,7 +2854,7 @@
     <string name="changelog__version_header" comment="Header shown above one release's notes. {version} is e.g. 4.0.0">Version {version}</string>
     <string name="changelog__donate" comment="Tappable invitation to donate, shown at the bottom of the what's-new dialog">Enjoying Voice Mode? Tap here to support development ♥</string>
     <!-- Per-release notes. To announce a new version, add a changelog__vX_Y_Z string here and a matching
-         entry in DictateChangelog.kt. changelog__current holds the notes for the initial 4.0.0 release. -->
+         entry in Voice ModeChangelog.kt. changelog__current holds the notes for the initial 4.0.0 release. -->
     <string name="changelog__current" comment="What's-new text for the 4.0.0 release. One change per line.">• Brand-new keyboard: Voice Mode now ships as a full multi-language layout keyboard with a dedicated mic key that opens the voice panel.\n• Bring your own AI: pick any OpenAI-compatible provider and enter your API key under Settings → Voice Mode.\n• Smart formatting and rewording powered by your chosen model.\n• Your settings from the previous Voice Mode app are imported automatically.</string>
     <string name="changelog__v4_1_0" comment="What's-new text for the 4.1.0 release. One change per line.">• New: search emoji right from the keyboard.\n• New transcription provider: Soniox.\n• Re-insert your last dictation, and recover recordings interrupted when the keyboard closed.\n• The prompt bar now refreshes live — long-press a prompt to edit it.\n• The AI providers screen now shows both your active transcription and rewording providers.\n• Bigger, easier-to-hit record button.\n• Fixes: a support prompt could get stuck and block the bar in some languages; backup no longer fails when prompts, keyboard or theme are selected; saved API keys are kept when upgrading.</string>
     <string name="changelog__v5_0_0" comment="What\'s-new text for the 5.0.0 release. One change per line.">• NEW: Glide typing — swipe across the keys to type whole words, with per-language dictionaries that download on demand. 👆\n• NEW: Word suggestions &amp; autocorrect — typos get fixed automatically and the word you typed stays one tap away. ✨\n• NEW: Real-time transcription — watch your words appear as you speak, with OpenAI, Deepgram, Soniox, AssemblyAI and ElevenLabs. ⚡\n• NEW: Three more transcription providers — ElevenLabs Scribe, Deepgram and AssemblyAI. ☁️\n• NEW: Classic dictation layout — the keyboard-free voice screen from Dictate 3 is back, locked or just a swipe away. 🎙️\n• NEW: Community prompt library — browse and share rewording prompts. 📚\n• NEW: Dictation statistics with milestones. 📊\n• NEW: Offline model NVIDIA Parakeet, plus a silence filter that skips empty recordings. 📴\n• More: a steadier floating button, reasoning-effort control, haptic feedback, a new E-Reader theme and dozens of fixes. 🛠️</string>

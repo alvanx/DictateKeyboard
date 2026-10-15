@@ -91,7 +91,7 @@
     <string name="quick_actions_editor__subheader_dynamic_actions">دوگمە سەرەکییەکان ({n})</string>
     <string name="quick_actions_editor__subheader_hidden_actions">دوگمە شاراوەکان ({n})</string>
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">دۆخی نادیار چالاککرا\n\n{app_name} چیتر ووشەی نوێ پاشەکەوت ناکات لە فەرهەنگدا</string>
+    <string name="incognito_mode__toast_after_enabled">دۆخی نادیار چالاککرا\n\nVoice Mode چیتر ووشەی نوێ پاشەکەوت ناکات لە فەرهەنگدا</string>
     <string name="incognito_mode__toast_after_disabled">دۆخی نادیار نا چالاککرا</string>
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">ڕێکخستنەکان</string>
@@ -99,9 +99,7 @@
     <string name="settings__help" comment="General label for help buttons in Settings">یارمەتی</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">بنەڕەتی</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">بەپێی سیستەم</string>
-    <string name="settings__home__title" comment="Title of the Home screen">بەخێربێی بۆ {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">تەختەکلیلی {app_name} هێشتا چالاک نەکراوە لە ڕێکخستنەکانی سیستەمدا، پێویستە چالاکی بکەیت بۆ بەکارهێنان پەنجەبنێ بێرەدا.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">تەختەکلیلی {app_name} چالاککراوە لە ڕێکخستنەکانی سیستەمدا بەڵام هەڵنەبژێردراوە بۆ بەکارهێنان وەک تەختەکلیلی سەرەکی، پێویستە دیاریبکەیت بۆ بەکارهێنان پەنجەبنێ بێرەدا بۆ هەڵبژاردن.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">بەخێربێی بۆ Voice Mode</string>
     <string name="settings__localization__title" comment="Title of languages and Layout screen">زمان و شێوازەکان</string>
     <string name="settings__localization__display_language_names_in__label" comment="Label of Display language names in preference">پیشاندانی ناوی زمان بەشێوەی</string>
     <string name="settings__localization__group_subtypes__label" comment="Label of subtypes group">شێوازەکان</string>
@@ -168,7 +166,7 @@
     <string name="settings__theme_editor__code_recording_help_text">بۆ دۆزینەوەی کۆدی کلیلێک، دوگمەکە بەکاربهێنە جگە لە خانەی نوسینی کۆدەکە، کاتێک چالاک کرا، کلیلەکانی دواتر تۆمار دەکات و کۆدەکە دادەنێت بۆ خانەکە.</string>
     <string name="settings__theme_editor__code_recording_started">دۆزینەوەی کۆد دەستیپێکرد</string>
     <string name="settings__theme_editor__code_recording_stopped">دۆزینەوەی کۆد وەستێنرا</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">{app_name} پێویستە کرابێتە تەختەکلیلی بنەڕەتی بۆ ئەوەی بتوانی کۆدەکە بدۆیتەوە</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Voice Mode پێویستە کرابێتە تەختەکلیلی بنەڕەتی بۆ ئەوەی بتوانی کۆدەکە بدۆیتەوە</string>
     <string name="settings__theme_editor__code_recording_placeholder">دۆزینەوە…</string>
     <string name="settings__theme_editor__add_property">زیادکردنی بەش</string>
     <string name="settings__theme_editor__edit_property">دەستکاریکردنی بەش</string>
@@ -402,19 +400,19 @@
     <string name="about__third_party_licenses__summary" comment="Preference summary">مۆڵەتی ئەو سەرچاوە-دەرەکییانەی کە لە بەرنامەکەدا بەکارهاتووە</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">بەخێربێیت!</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">سوپاس بۆ بەکارهێنانی {app_name}! ئەم فێرکارییە یارمەتیت دەدات بۆ چالاککردن و ڕێکخستنی {app_name} لەسەر مۆبایلەکەت.</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">سوپاس بۆ بەکارهێنانی Voice Mode! ئەم فێرکارییە یارمەتیت دەدات بۆ چالاککردن و ڕێکخستنی Voice Mode لەسەر مۆبایلەکەت.</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">تایبەتمەندێتی ڕامیاری</string>
     <string name="setup__footer__repository" comment="Repository label for URL">کۆگا</string>
-    <string name="setup__enable_ime__title">چالاککردنی {app_name}</string>
-    <string name="setup__enable_ime__description">پێویستە  \"{app_name}\"  چالاک بکەیت لە ڕێکخستنەکانی مۆبایلەکەتدا، تا بتوانی پێی بنوسی و بەکاری بهێنیت.</string>
+    <string name="setup__enable_ime__title">چالاککردنی Voice Mode</string>
+    <string name="setup__enable_ime__description">پێویستە  \"Voice Mode\"  چالاک بکەیت لە ڕێکخستنەکانی مۆبایلەکەتدا، تا بتوانی پێی بنوسی و بەکاری بهێنیت.</string>
     <string name="setup__enable_ime__open_settings_btn">چالاککردنی تەختەکلیل</string>
-    <string name="setup__select_ime__title">هەڵبژاردنی {app_name}</string>
-    <string name="setup__select_ime__description">{app_name} ئێستا چالاککراوە لەسەر مۆبایلەکەت، بەڵام هەڵنەبژێردراوە بۆ بەکارهێنان پێویستە {app_name} بکەیتە سەرەکی بۆ ئەوەی بتوانی پێی بنوسیت!</string>
+    <string name="setup__select_ime__title">هەڵبژاردنی Voice Mode</string>
+    <string name="setup__select_ime__description">Voice Mode ئێستا چالاککراوە لەسەر مۆبایلەکەت، بەڵام هەڵنەبژێردراوە بۆ بەکارهێنان پێویستە Voice Mode بکەیتە سەرەکی بۆ ئەوەی بتوانی پێی بنوسیت!</string>
     <string name="setup__select_ime__switch_keyboard_btn">هەڵبژاردنی تەختەکلیل</string>
     <string name="setup__finish_up__title">تەواو</string>
-    <string name="setup__finish_up__description_p1">{app_name} ئێستا چالاکە بۆ بەکارهێنان و نووسین لەسەر مۆبایلەکەت.</string>
+    <string name="setup__finish_up__description_p1">Voice Mode ئێستا چالاکە بۆ بەکارهێنان و نووسین لەسەر مۆبایلەکەت.</string>
     <string name="setup__finish_up__description_p2">لەکاتی بوونی هەر پرسیار و سەرنج و پێشنیارێک ئەتوانن سەردانی بەشی تایبەتی یارمەتیدان بکەن!</string>
-    <string name="setup__finish_up__finish_btn">ڕێکخستنەکانی تەختەکلیل</string>
+    <string name="setup__finish_up__finish_btn">دەست بکە بە بەکارهێنانی Voice Mode</string>
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
     <string name="backup_and_restore__title">پاشەکەوتکردن و گێڕانەوە</string>
@@ -461,7 +459,7 @@
     <!-- Clipboard strings -->
     <string name="clipboard__header_title">لەبەرگیراوەکان</string>
     <string name="clipboard__disabled__title">بەشی لەبەرگیراوەکان نا چالاککراوە </string>
-    <string name="clipboard__disabled__message">بەشی لەبەرگیراوەکانی {app_name} ڕێگە دەدات بە هەڵگرتن و هێشتنەوەی شتە کۆپی کراوەکانت و ڕێکخستنیان بەدڵی خۆت.</string>
+    <string name="clipboard__disabled__message">بەشی لەبەرگیراوەکانی Voice Mode ڕێگە دەدات بە هەڵگرتن و هێشتنەوەی شتە کۆپی کراوەکانت و ڕێکخستنیان بەدڵی خۆت.</string>
     <string name="clipboard__disabled__enable_button">بەکارهێنانی بەشی لەبەرگیراوەکان</string>
     <string name="clipboard__empty__title">بەشی لەبەرگیراوەکان بەتاڵە</string>
     <string name="clipboard__empty__message">هەر کاتێ نووسین یان وێنەیەکت کۆپی کرد لێرەدا دەرەکەون.</string>
@@ -553,7 +551,7 @@
     <string name="ext__editor__create_component__title_theme">دروستکردنی ڕووکار</string>
     <string name="ext__editor__create_component__from_empty">دروستکردن لە سەرەتاوە</string>
     <string name="ext__editor__create_component__from_existing">دروستکردن لە ڕووکارەکانەوە</string>
-    <string name="ext__editor__create_component__from_empty_warning">دروستکردنی ڕووکارێکی بەتاڵ لەسەرەتاوە بۆ {app_name} لەوانەیە گران بێت و شارەزایی پێویستە ئەگەر بەکارهێنەرێکی نوێی بەرنامەکەیت یان شارەزایی کۆد و سەرچاوەکانی دیزاین نەبیت!</string>
+    <string name="ext__editor__create_component__from_empty_warning">دروستکردنی ڕووکارێکی بەتاڵ لەسەرەتاوە بۆ Voice Mode لەوانەیە گران بێت و شارەزایی پێویستە ئەگەر بەکارهێنەرێکی نوێی بەرنامەکەیت یان شارەزایی کۆد و سەرچاوەکانی دیزاین نەبیت!</string>
     <string name="ext__editor__edit_component__title">دەستکاریکردنی پێکهاتەکان</string>
     <string name="ext__editor__edit_component__title_theme">دەستکاریکردنی ڕووکارەکان</string>
     <string name="ext__export__success">زیادکراو بەسەرکەوتوویی هەڵگیرا!</string>
@@ -650,9 +648,9 @@
     <string name="enum__emoji_hair_style__white_hair" comment="Enum value label">{emoji} سپی</string>
     <string name="enum__emoji_hair_style__bald" comment="Enum value label">{emoji} کەچەڵ</string>
     <string name="enum__haptic_vibration_mode__use_vibrator_directly" comment="Enum value label">لەرینەوەی ڕاستەوخۆ</string>
-    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">{app_name} ڕاستەوخۆ هەستەوەری لەرینەوەی ئامێر بەکاردێت لەکاتی نووسین، بەڵام لەوانەیە لە هەندێ مۆبایلدا بەردەست نەبێت</string>
+    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">Voice Mode ڕاستەوخۆ هەستەوەری لەرینەوەی ئامێر بەکاردێت لەکاتی نووسین، بەڵام لەوانەیە لە هەندێ مۆبایلدا بەردەست نەبێت</string>
     <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface" comment="Enum value label">لەرینەوەی ئاسایی</string>
-    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">{app_name} لەرینەوەی ئاسایی ڕێکخراو بەکاردێت لەکاتی نووسین، ئەم هەڵبژاردنە لە زۆربەی مۆبایلەکاندا بەباشی کاردەکات و لەوانەیە لەهەندێکیشیان کار نەکات</string>
+    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">Voice Mode لەرینەوەی ئاسایی ڕێکخراو بەکاردێت لەکاتی نووسین، ئەم هەڵبژاردنە لە زۆربەی مۆبایلەکاندا بەباشی کاردەکات و لەوانەیە لەهەندێکیشیان کار نەکات</string>
     <string name="enum__key_hint_mode__accent_priority" comment="Enum value label">پیتەکان لەپێشدا</string>
     <string name="enum__key_hint_mode__accent_priority__description" comment="Enum value description">پیشاندانی یەکەم پیتی خانەی دووەم لەکاتی دەست راگرتن</string>
     <string name="enum__key_hint_mode__hint_priority" comment="Enum value label">هێماکان لەپێشدا</string>

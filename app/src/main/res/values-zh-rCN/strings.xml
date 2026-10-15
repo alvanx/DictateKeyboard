@@ -121,7 +121,7 @@
     <string name="quick_actions_editor__subheader_hidden_actions">隐藏操作 ({n})</string>
     <string name="select_subtype_panel__header">选择子类型</string>
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">无痕模式现已启用\n\n{app_name} 在此模式处于启用状态时不会从您的输入中学习词条</string>
+    <string name="incognito_mode__toast_after_enabled">无痕模式现已启用\n\nVoice Mode 在此模式处于启用状态时不会从您的输入中学习词条</string>
     <string name="incognito_mode__toast_after_disabled">无痕模式现已默认禁用</string>
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">设置</string>
@@ -129,9 +129,129 @@
     <string name="settings__help" comment="General label for help buttons in Settings">帮助</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">默认</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">系统默认</string>
-    <string name="settings__home__title" comment="Title of the Home screen">欢迎使用{app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name}没有在系统中被启用，因此在输入法选择界面中不会出现。点击这里解决这一问题。</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name}没有被设置为默认输入法。点击这里解决这一问题。</string>
+    <string name="settings__home__title" comment="Title of the Home screen">欢迎使用Voice Mode</string>
+    <string name="home__recent_title" comment="Title of the recent dictations card on the home screen">最近的听写</string>
+    <string name="home__recent_see_all" comment="Button on the recent dictations card that opens the full history">查看全部</string>
+    <string name="home__recent_copy" comment="Accessibility label of the copy icon on a recent dictation row">复制</string>
+    <string name="home__recent_failed" comment="Recent dictations row for a recording whose transcription failed">转写失败。录音已保存。</string>
+    <string name="home__recent_retry" comment="Button on a failed recent dictation that sends its saved recording again">重试</string>
+    <string name="home__transcribe_file" comment="Floating button on the home screen that opens the file picker to transcribe an audio or video file">转写文件</string>
+    <string name="home__ai_model" comment="Settings row that opens the AI providers screen; its second line names the speech model in use">AI 模型</string>
+    <string name="home__stats_summary" comment="Home time-saved strip, after the bold duration. {count} is the number of dictations">已节省 · {count} 次听写</string>
+    <string name="settings__all__title" comment="The Settings tab and its title">设置</string>
+    <string name="dictionary_hub__title" comment="The Dictionary tab, gathering every word list (dictation words, find-and-replace, the keyboard dictionary)">词典</string>
+    <string name="words__personal_dictionary" comment="Dictionary screen row opening the keyboard's own user dictionary">个人词典</string>
+    <string name="mywords__subtitle" comment="Line under the Dictionary tab title">Voice Mode 应始终写对的名字和术语。</string>
+    <string name="mywords__title" comment="Heading of the one word list used for both dictation and typing">我的词汇</string>
+    <string name="mywords__explanation" comment="Short explanation at the top of the My words card">一个列表管全部。说话时每个词都按你的写法写出，打字时也会出现在建议中。</string>
+    <string name="mywords__empty" comment="Shown in the My words card while the list is empty">这里还没有内容。添加一个名字、一个产品或任何你常用的词。</string>
+    <string name="mywords__more" comment="Last chip after the first few words, opening the full list. Placeholder: how many words are not shown.">+ 另外 {count} 个</string>
+    <string name="mywords__see_all" comment="Last chip after the words when all of them are shown; opens the full list to edit or remove words">编辑列表</string>
+    <string name="mywords__add_hint" comment="Placeholder of the field where a new word is typed">添加词语或名字</string>
+    <string name="mywords__add" comment="Accessibility label of the + button next to the field">添加词语</string>
+    <string name="mywords__usage" comment="Under the usage bar. Placeholders: words in the list, and about how many fit in what the speech AI reads.">{count}/{limit} 个发送给语音 AI</string>
+    <string name="mywords__usage_full" comment="Under the full usage bar, once the list is longer than the speech AI reads. Placeholders: how many words go to it, how many words are in the list.">{count}/{total} 个发送给语音 AI。打字时全部可用。</string>
+    <string name="mywords__fixes" comment="Dictionary tab heading above find-and-replace and learned words">修正</string>
+    <string name="mywords__find_replace" comment="Dictionary tab row opening the find-and-replace rules for transcripts">查找和替换</string>
+    <string name="mywords__find_replace_none" comment="Summary of the find-and-replace row while there are no rules">修正语音 AI 总是写错的词</string>
+    <string name="mywords__find_replace_one" comment="Summary of the find-and-replace row with one rule. Placeholders: what is found and what it becomes.">1 条规则：“{from}”→“{to}”</string>
+    <string name="mywords__find_replace_many" comment="Summary of the find-and-replace row. Placeholders: how many rules, and the first rule as an example.">{count} 条规则，例如“{from}”→“{to}”</string>
+    <string name="mywords__learned" comment="Dictionary tab row opening the words the keyboard learned on its own">从你的输入中学到的</string>
+    <string name="mywords__learned_summary" comment="Summary of the learned words row">自动收录。可随时删除。</string>
+    <string name="mywords__phone_settings" comment="Link at the bottom of the Dictionary tab opening the keyboard dictionary settings">手机词典和学习设置</string>
+    <string name="mywords__edit_as_text" comment="Row on the full My words list opening a text editor for the whole list">以文本编辑</string>
+    <string name="mywords__edit_as_text_summary" comment="Summary of the Edit as text row">粘贴、导入或导出整个列表</string>
+    <string name="mywords__remove" comment="Accessibility label of the button that removes one word. Placeholder: the word.">删除 {word}</string>
+    <string name="mywords__typing_only" comment="Under a word in the full list that the speech AI has no room for">仅用于打字：语音 AI 已无空间</string>
+    <string name="mywords__budget_over" comment="Note in the text editor once the list is longer than the speech AI reads. Placeholders: how many words go to it, how many words there are.">你的列表超出了语音 AI 能读取的长度。{count} 个词中的前 {fits} 个会发送给它；其余的在打字时仍会出现在建议中。</string>
+    <string name="mywords__row_summary" comment="Summary of the My words row on the dictation formatting screen. Placeholder: how many words.">{count} 个词，按你的写法书写，打字时出现在建议中</string>
+    <string name="nav__home" comment="Bottom tab bar: the home tab">首页</string>
+    <string name="nav__style" comment="Bottom tab bar: the tab where the mic button's look is picked">样式</string>
+    <string name="home__mic_title" comment="Home card showing the floating mic button's current look">你的麦克风按钮</string>
+    <string name="home__mic_on" comment="Home mic card, second line while the floating mic button is on. {charm} is the look, e.g. Daisy">{charm} · 悬浮于所有应用</string>
+    <string name="home__mic_off" comment="Home mic card, second line while the floating mic button is off">未开启</string>
+    <string name="home__mic_change_look" comment="Home mic card button that opens the Style tab">更换外观</string>
+    <string name="home__turn_on" comment="Button that turns on the floating mic button or the keyboard">开启</string>
+    <string name="home__keyboard_title" comment="Row naming the app's keyboard, on the home screen and at the top of Settings">Voice Mode 键盘</string>
+    <string name="home__keyboard_off" comment="Second line of the keyboard row while the keyboard is not turned on">未开启</string>
+    <string name="home__keyboard_on" comment="Second line of the keyboard row while the keyboard is turned on">已开启 · 麦克风位于键盘上</string>
+    <string name="firstrun__title" comment="Big heading of the home screen before the first dictation, on two lines">说出来。\nVoice Mode 帮你写。</string>
+    <string name="firstrun__subtitle" comment="Line under the first-run home heading">两步即可开口说话。</string>
+    <string name="firstrun__step_look" comment="First-run home, step 1 heading: choose the look of the floating mic button">选择你的麦克风按钮</string>
+    <string name="firstrun__more_looks" comment="First-run home, tile after a few mic looks that opens the Style tab with all of them">更多</string>
+    <string name="firstrun__step_where" comment="First-run home, step 2 heading: turn on the floating mic, the keyboard, or both">选择它出现的位置</string>
+    <string name="firstrun__floating_title" comment="First-run home, step 2 option: the floating mic button">悬浮麦克风</string>
+    <string name="firstrun__floating_summary" comment="First-run home, second line of the floating mic option">出现在任意文本框旁，搭配你现在使用的键盘</string>
+    <string name="firstrun__keyboard_summary" comment="First-run home, second line of the keyboard option">内置麦克风的完整键盘</string>
+    <string name="firstrun__done" comment="Accessibility label of the check mark shown instead of Turn on once an option is on">已开启</string>
+    <string name="firstrun__try_title">在这里试试</string>
+    <string name="firstrun__try_summary">轻点后随便说点什么。文字会显示在下方，可直接复制。</string>
+    <string name="settings__dictation_group" comment="Settings tab: the group of dictation settings at the top">听写</string>
+    <string name="settings__more_group" comment="Settings tab: the group of every other settings category">键盘和应用</string>
+    <string name="settings__floating_button_on" comment="Settings tab: summary of the floating mic button row while it is on">已开启 · 显示位置和时机</string>
+    <string name="settings__more_dictation" comment="Settings tab: row opening every dictation setting">更多听写设置</string>
+    <string name="settings__more_dictation_summary" comment="Summary of the row opening every dictation setting">语言、格式、改写、录音</string>
+    <string name="style__subtitle" comment="Line under the Style tab title">打造专属于你的麦克风按钮。</string>
+    <string name="style__preview_message" comment="Sample chat message in the Style tab preview">你今晚还来吗？</string>
+    <string name="style__preview_caption" comment="Caption in the Style tab preview, which shows the mic button listening">在聊天应用中聆听</string>
+    <string name="style__preview_field" comment="Placeholder of the sample message field in the Style tab preview">消息</string>
+    <string name="style__charm_classic" comment="Mic button look: the plain round button">经典</string>
+    <string name="style__charm_daisy" comment="Mic button look: a daisy">雏菊</string>
+    <string name="style__charm_butterfly" comment="Mic button look: a butterfly">蝴蝶</string>
+    <string name="style__charm_heart" comment="Mic button look: a heart">爱心</string>
+    <string name="style__charm_clover" comment="Mic button look: a four-leaf clover">四叶草</string>
+    <string name="style__charm_moon" comment="Mic button look: a crescent moon">月亮</string>
+    <string name="style__charm_sunflower" comment="Mic button look: a sunflower">向日葵</string>
+    <string name="style__charm_blossom" comment="Mic button look: a cherry blossom">樱花</string>
+    <string name="style__charm_on_air" comment="Mic button look: a lit “On Air” studio sign">直播中</string>
+    <string name="style__charm_gramophone" comment="Mic button look: an old gramophone horn">留声机</string>
+    <string name="style__charm_crooner" comment="Mic button look: a vintage stage microphone">复古麦克风</string>
+    <string name="style__charm_mixtape" comment="Mic button look: a cassette tape">磁带</string>
+    <string name="style__charm_planet" comment="Mic button look: a ringed planet">行星</string>
+    <string name="style__charm_shooting_star" comment="Mic button look: a shooting star">流星</string>
+    <string name="style__charm_disco_ball" comment="Mic button look: a disco ball">迪斯科球</string>
+    <string name="style__charm_big_red_button" comment="Mic button look: a big red arcade button">大红按钮</string>
+    <string name="style__charm_pixel_heart" comment="Mic button look: a pixel-art heart">8 位爱心</string>
+    <string name="style__charm_neon" comment="Mic button look: a neon sign of a microphone">霓虹</string>
+    <string name="style__charm_studio_mic" comment="Mic button look: a studio microphone">录音室麦克风</string>
+    <string name="style__collection_garden" comment="Style tab: name of a collection of mic button looks">花园</string>
+    <string name="style__collection_garden_tagline" comment="Style tab: one-line description of the Garden collection">柔和、明亮、生机勃勃</string>
+    <string name="style__collection_retro" comment="Style tab: name of a collection of mic button looks">复古</string>
+    <string name="style__collection_retro_tagline" comment="Style tab: one-line description of the Retro collection">温暖、模拟，带点俏皮</string>
+    <string name="style__collection_night_sky" comment="Style tab: name of a collection of mic button looks">夜空</string>
+    <string name="style__collection_night_sky_tagline" comment="Style tab: one-line description of the Night sky collection">宁静而梦幻</string>
+    <string name="style__collection_arcade" comment="Style tab: name of a collection of mic button looks">街机</string>
+    <string name="style__collection_arcade_tagline" comment="Style tab: one-line description of the Arcade collection">活泼又有趣</string>
+    <string name="style__collection_simple" comment="Style tab: name of a collection of mic button looks">简约</string>
+    <string name="style__collection_simple_tagline" comment="Style tab: one-line description of the Simple collection">朴素的圆形按钮</string>
+    <string name="style__move_bloom" comment="How the mic button moves while recording: grows and turns like a flower opening">聆听时绽放</string>
+    <string name="style__move_flutter" comment="How the mic button moves while recording: flaps like wings">聆听时振翅</string>
+    <string name="style__move_turn" comment="How the mic button moves while recording: spins slowly">聆听时旋转</string>
+    <string name="style__move_sway" comment="How the mic button moves while recording: swings gently side to side">聆听时摇摆</string>
+    <string name="style__move_glow" comment="How the mic button moves while recording: lights up and dims">聆听时发光</string>
+    <string name="style__move_wobble" comment="How the mic button moves while recording: rocks and swells">聆听时晃动</string>
+    <string name="style__move_pulse" comment="How the mic button moves while recording: grows and shrinks">聆听时脉动</string>
+    <string name="style__move_spin" comment="How the mic button moves while recording: the cassette reels turn">聆听时转动磁带</string>
+    <string name="style__move_tilt" comment="How the mic button moves while recording: leans side to side">聆听时倾斜</string>
+    <string name="style__move_twinkle" comment="How the mic button moves while recording: the star sparkles">聆听时闪烁</string>
+    <string name="style__move_press" comment="How the mic button moves while recording: the button pushes in">聆听时按下</string>
+    <string name="style__move_beat" comment="How the mic button moves while recording: double-thumps like a heartbeat">聆听时跳动</string>
+    <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">聆听时忽明忽暗</string>
+    <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">聆听时动起来</string>
+    <string name="style__move_off" comment="Summary of the movement switch while it is off">保持静止</string>
+    <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">原始颜色</string>
+    <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">{charm} 保持其自身的颜色。</string>
+    <string name="style__color" comment="Style tab heading above the colour swatches">颜色</string>
+    <string name="style__color_cloud" comment="Colour swatch name (white)">云白</string>
+    <string name="style__color_blossom" comment="Colour swatch name (pink)">樱粉</string>
+    <string name="style__color_lilac" comment="Colour swatch name (light purple)">丁香紫</string>
+    <string name="style__color_butter" comment="Colour swatch name (yellow)">奶油黄</string>
+    <string name="style__color_mint" comment="Colour swatch name (green)">薄荷绿</string>
+    <string name="style__color_sky" comment="Colour swatch name (light blue)">天蓝</string>
+    <string name="style__more_colors" comment="Style tab row opening the full colour picker">更多颜色</string>
+    <string name="style__motion" comment="Style tab heading above how the mic button moves while recording">聆听时</string>
+    <string name="style__button_off" comment="Style tab note while the floating mic button is off">悬浮麦克风按钮已关闭，所以目前只能在这里看到它。</string>
+    <string name="style__look_summary" comment="Floating button settings: summary of the row opening the Style tab. {charm} is the look">{charm} · 在“样式”标签页中更改</string>
     <string name="settings__search__title" comment="Title of the settings search screen">搜索设置</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">搜索设置…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">最近搜索</string>
@@ -199,7 +319,7 @@
     <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">夜间主题</string>
     <string name="pref__theme__theme_accent_color__label" comment="Label of accent color preference in Theme">强调色（Material You）</string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">管理已安装的主题</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">{app_name}应用资源</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">Voice Mode应用资源</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">内部存储空间</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">外部提供者</string>
     <string name="settings__theme_manager__title_day" comment="Title of the theme manager screen for day theme selection">选择日间主题</string>
@@ -229,7 +349,7 @@
     <string name="settings__theme_editor__code_recording_help_text">要查找一个键的键码，请使用代码输入框旁边的按钮。一旦激活，它将记录下一次按键并将键码插入输入框。</string>
     <string name="settings__theme_editor__code_recording_started">键码记录已开始</string>
     <string name="settings__theme_editor__code_recording_stopped">键码记录已停止</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">{app_name} 需要设置为默认键盘才能记录键码</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Voice Mode 需要设置为默认键盘才能记录键码</string>
     <string name="settings__theme_editor__code_recording_placeholder">正在记录…</string>
     <string name="settings__theme_editor__add_property">添加属性</string>
     <string name="settings__theme_editor__edit_property">编辑属性</string>
@@ -245,7 +365,7 @@
     <string name="settings__theme_editor__component_meta_stylesheet_path">样式表路径</string>
     <string name="settings__theme_editor__component_meta_material_you__title">Material You</string>
     <string name="settings__theme_editor__stylesheet_error_title">样式表错误</string>
-    <string name="settings__theme_editor__stylesheet_error_description">{app_name} 可以尝试宽松地加载样式表，并添加缺失的模式、规则，或删除无效的规则、属性或值。您希望 {app_name} 应用这些更改吗？</string>
+    <string name="settings__theme_editor__stylesheet_error_description">Voice Mode 可以尝试宽松地加载样式表，并添加缺失的模式、规则，或删除无效的规则、属性或值。您希望 Voice Mode 应用这些更改吗？</string>
     <string name="settings__theme_editor__component_meta_material_you__palette_style">调色板风格</string>
     <string name="settings__theme_editor__component_meta_material_you__color_contrast">颜色对比</string>
     <string name="settings__theme_editor__component_meta_material_you__spec_version">规格版本</string>
@@ -605,7 +725,7 @@
     <string name="pref__other__show_app_icon__summary_atleast_q" comment="Summary of Show app icon preference in Other for Android 10+">由于系统限制，在Android 10及以上版本中将始终启用</string>
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">关于</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">{app_name} 的应用图标</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Voice Mode 的应用图标</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">开源协议</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">隐私政策</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">源代码</string>
@@ -622,21 +742,21 @@
     <string name="about__privacy_policy__title" comment="Preference title">隐私政策</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">本项目的隐私政策</string>
     <string name="about__project_license__title" comment="Preference title">项目开源协议</string>
-    <string name="about__project_license__summary" comment="Preference summary">{app_name} 在 {license_name} 下进行授权</string>
+    <string name="about__project_license__summary" comment="Preference summary">Voice Mode 在 {license_name} 下进行授权</string>
     <string name="about__project_license__error_license_text_failed" comment="Error text for license text loading failure">错误：无法加载许可证文本。\n-&gt; 原因：{error_message}</string>
     <string name="about__project_license__error_reason_asset_manager_null" comment="Error text if asset manager is null">资源管理器引用为空</string>
     <string name="about__third_party_licenses__title" comment="Preference title">第三方许可</string>
     <string name="about__third_party_licenses__summary" comment="Preference summary">此应用中包含的第三方库的许可证</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">欢迎！</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">感谢您使用 {app_name}！这个快速设定将引导您完成在您的设备上使用 {app_name} 所需的步骤。</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">感谢您使用 Voice Mode！这个快速设定将引导您完成在您的设备上使用 Voice Mode 所需的步骤。</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">隐私政策</string>
     <string name="setup__footer__repository" comment="Repository label for URL">源码库</string>
-    <string name="setup__enable_ime__title">启用 {app_name}</string>
-    <string name="setup__enable_ime__description">安卓要求每个自定义键盘必须由您分别启用才能被使用。打开系统<i>语言和输入法</i>设置，在那里启用“{app_name}”。</string>
+    <string name="setup__enable_ime__title">启用 Voice Mode</string>
+    <string name="setup__enable_ime__description">安卓要求每个自定义键盘必须由您分别启用才能被使用。打开系统<i>语言和输入法</i>设置，在那里启用“Voice Mode”。</string>
     <string name="setup__enable_ime__open_settings_btn">打开系统设置</string>
-    <string name="setup__select_ime__title">选择 {app_name}</string>
-    <string name="setup__select_ime__description">{app_name} 现在已在您的系统中启用。要使用它，请在输入法选择对话框中选择{app_name} 来切换到它！</string>
+    <string name="setup__select_ime__title">选择 Voice Mode</string>
+    <string name="setup__select_ime__description">Voice Mode 现在已在您的系统中启用。要使用它，请在输入法选择对话框中选择Voice Mode 来切换到它！</string>
     <string name="setup__select_ime__switch_keyboard_btn">切换键盘</string>
     <string name="setup__grant_notification_permission__title">允许崩溃报告消息通知</string>
     <string name="setup__grant_notification_permission__description">自安卓 13 以来，应用在发送通知前
@@ -645,9 +765,9 @@
     </string>
     <string name="setup__grant_notification_permission__btn">授予权限</string>
     <string name="setup__finish_up__title">完成</string>
-    <string name="setup__finish_up__description_p1">{app_name} 现在已在系统中启用，可供您自定义。</string>
+    <string name="setup__finish_up__description_p1">Voice Mode 现在已在系统中启用，可供您自定义。</string>
     <string name="setup__finish_up__description_p2">如果您遇到任何问题、错误、崩溃或只是想提出建议，请从“关于”界面中查看项目源码库！</string>
-    <string name="setup__finish_up__finish_btn">开始自定义</string>
+    <string name="setup__finish_up__finish_btn">开始使用 Voice Mode</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__title">实体键盘</string>
     <string name="physical_keyboard__system_settings__title">物理键盘设置</string>
@@ -711,7 +831,7 @@
     <string name="clipboard__search_placeholder" comment="Hint inside the clipboard search field">搜索剪贴板</string>
     <string name="clipboard__search_no_results" comment="Shown when no clip contains what was typed">没有包含该内容的剪贴项</string>
     <string name="clipboard__disabled__title">剪贴板历史记录当前已禁用</string>
-    <string name="clipboard__disabled__message">{app_name} 的剪贴板历史记录允许您快速存储、访问您复制的文本和图像，并能够置顶条目、设置自动清理、限制最大条目数。</string>
+    <string name="clipboard__disabled__message">Voice Mode 的剪贴板历史记录允许您快速存储、访问您复制的文本和图像，并能够置顶条目、设置自动清理、限制最大条目数。</string>
     <string name="clipboard__disabled__enable_button">启用剪贴板历史记录</string>
     <string name="clipboard__empty__title">剪贴板无内容</string>
     <string name="clipboard__empty__message">复制文本或图像后，它们将显示在此处。</string>
@@ -848,7 +968,7 @@
     <string name="ext__editor__create_component__title_theme">添加主题</string>
     <string name="ext__editor__create_component__from_empty">空白</string>
     <string name="ext__editor__create_component__from_existing">从现有</string>
-    <string name="ext__editor__create_component__from_empty_warning">如果您不熟悉 {app_name} 或不熟悉具体细节，从空白开始创建和配置组件可能会很困难。如果是这种情况，请考虑复制现有组件并根据自己的喜好修改。</string>
+    <string name="ext__editor__create_component__from_empty_warning">如果您不熟悉 Voice Mode 或不熟悉具体细节，从空白开始创建和配置组件可能会很困难。如果是这种情况，请考虑复制现有组件并根据自己的喜好修改。</string>
     <string name="ext__editor__edit_component__title">编辑组件</string>
     <string name="ext__editor__edit_component__title_theme">编辑主题组件</string>
     <string name="ext__export__success">成功导出扩展！</string>
@@ -1019,9 +1139,9 @@
     <string name="enum__extended_actions_placement__overlay_app_ui" comment="Enum value label">应用界面上叠加显示</string>
     <string name="enum__extended_actions_placement__overlay_app_ui__description" comment="Enum value description">将扩展操作行作为应用界面上的叠加层显示，而不影响键盘界面高度。请注意，这个显示位置可能会导致应用输入框被部分覆盖</string>
     <string name="enum__haptic_vibration_mode__use_vibrator_directly" comment="Enum value label">直接使用振动器</string>
-    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">{app_name} 直接与默认的硬件振动器交互。 这可以更好地控制振动的持续时间和强度，但振动可能不像使用触觉反馈接口那样平滑和精良</string>
+    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">Voice Mode 直接与默认的硬件振动器交互。 这可以更好地控制振动的持续时间和强度，但振动可能不像使用触觉反馈接口那样平滑和精良</string>
     <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface" comment="Enum value label">使用触觉反馈接口</string>
-    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">{app_name} 使用触觉反馈接口触发预定义的按键振动序列。这可能在某些设备上运行得非常好，但在其他设备上完全失败或表现很差</string>
+    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">Voice Mode 使用触觉反馈接口触发预定义的按键振动序列。这可能在某些设备上运行得非常好，但在其他设备上完全失败或表现很差</string>
     <string name="enum__key_hint_mode__accent_priority" comment="Enum value label">重音优先</string>
     <string name="enum__key_hint_mode__accent_priority__description" comment="Enum value description">长按后自动选择的字符始终是主重音，如果没有主重音可用，则为提示符号</string>
     <string name="enum__key_hint_mode__hint_priority" comment="Enum value label">提示优先</string>
@@ -1150,6 +1270,7 @@
     <string name="quick_action__ime_ui_mode_dictate">听写</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">点按开始听写，再次点按进行转录</string>
     <string name="quick_action__dictate_live_prompt">实时指令</string>
+    <string name="dictate__live_prompt_chip" comment="Prompt chip and floating-button menu entry: you speak an instruction (e.g. make this more polite, or write a thank-you note) instead of dictating text, and the AI carries it out">语音提问</string>
     <string name="quick_action__dictate_live_prompt__tooltip">录制一条语音指令并发送给 AI</string>
     <string name="quick_action__dictate_prompts">AI 提示词</string>
     <string name="quick_action__dictate_prompts__tooltip">打开 AI 改写提示词</string>
@@ -1157,8 +1278,7 @@
     <string name="about__based_on_floris__summary">由 Patrick Goldinger 及贡献者开发的 FlorisBoard 分支，Apache 2.0。点按可打开。</string>
     <string name="about__feedback__title">反馈与支持</string>
     <string name="about__feedback__summary">发送电子邮件提出问题、漏洞或建议</string>
-    <string name="about__feedback__email">support@voicemode.example</string>
-    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">选择 Voice Mode 的转写方式</string>
     <string name="setup__provider__choose_intro">Voice Mode 借助 AI 服务把语音转成文字。上面两种方式适合大多数人；如果你完全不想用云服务，下面还有两种。</string>
     <string name="setup__provider__choice_cloud_title">在应用内购买额度</string>
@@ -1281,14 +1401,16 @@
     <string name="dictate__remember_last_dictation_title">记住上次听写</string>
     <string name="changelog__v4_2_0">• 新功能：悬浮听写按钮——即使其他键盘处于激活状态，也能直接在任何应用中听写。可从三种样式（胶囊、圆环、光球）中选择，说话时显示实时波形，可拖到任意位置并吸附到边缘，设置颜色和大小，长按即可改写。在 设置 ▸ Voice Mode ▸ 悬浮按钮 中开启。\n• 新功能：Google Gemini — 使用你自己的 AI Studio API 密钥进行转录和改写。\n• 提示词现在默认显示在按键上方的常驻行中。\n• 跨应用的文本插入更可靠，包括浏览器和其他键盘。</string>
     <string name="dictate__promo_floating_button_message">新功能：在任何应用中听写</string>
+    <string name="dictate__promo_keep_button_message" comment="One-time Smartbar question to people who mostly dictate with the floating mic button: should it also show while this keyboard is open? Keep short for one line.">在这里也保留悬浮麦克风？</string>
+    <string name="dictate__promo_keep_button_action" comment="Short label of the accent pill that keeps the floating mic button showing over this keyboard. Must stay short to fit the single-line Smartbar.">保留</string>
     <string name="dictate__promo_floating_button_action">试用</string>
     <string name="setup__floating_button__btn">设置悬浮按钮</string>
     <string name="setup__nav_back">返回</string>
     <string name="setup__nav_next">下一步</string>
     <string name="setup__floating_button__title">随处听写（可选）</string>
     <string name="setup__floating_button__intro">悬浮按钮会在任意应用上方显示一个小小的听写气泡，让你无需切换键盘即可在任何文本框中说话输入。</string>
-    <string name="setup__floating_button__accessibility_note">为此，{app_name} 会使用 Android 的无障碍设置——这样气泡才能显示在其他应用之上，并为你插入转写的文字。下一个界面会引导你完成开启。</string>
-    <string name="setup__floating_button__optional_note">这完全是可选的——如果你只想把 {app_name} 当作完整键盘使用，可以跳过。你随时可以稍后在设置中开启。</string>
+    <string name="setup__floating_button__accessibility_note">为此，Voice Mode 会使用 Android 的无障碍设置——这样气泡才能显示在其他应用之上，并为你插入转写的文字。下一个界面会引导你完成开启。</string>
+    <string name="setup__floating_button__optional_note">这完全是可选的——如果你只想把 Voice Mode 当作完整键盘使用，可以跳过。你随时可以稍后在设置中开启。</string>
     <string name="setup__floating_button__skip_btn">跳过 — 我用键盘</string>
     <string name="dictate__floating_button_badge_new">新</string>
     <string name="dictate__panel_title">AI 提示词</string>
@@ -1298,6 +1420,8 @@
     <string name="dictate__prompts_layout_panel_description">通过魔杖按钮在独立面板中打开提示词。</string>
     <string name="dictate__prompts_layout_row_label">常驻行</string>
     <string name="dictate__prompts_layout_row_description">将提示词固定在键盘上方的额外一行中。</string>
+    <string name="dictate__prompts_layout_when_useful_label" comment="Prompt layout option: the rewrite chips appear in the keyboard's top bar only right after dictating or while text is selected">需要时</string>
+    <string name="dictate__prompts_layout_when_useful_description">在你听写之后或选中文本时，在顶部栏显示提示词。</string>
     <string name="dictate__status_idle">点按开始听写</string>
     <string name="dictate__status_recording">录音中——点按停止</string>
     <string name="dictate__status_transcribing">转录中…</string>
@@ -1543,9 +1667,7 @@
     <string name="dictate__custom_words_title">自定义词汇</string>
     <string name="dictate__custom_words_summary_empty">添加姓名或专业术语以正确拼写</string>
     <string name="dictate__custom_words_placeholder">例如：FlorisBoard、Kubernetes、Renée、OAuth、Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} 个词 · 约 {tokens}/{budget} 个词元</string>
     <string name="dictate__custom_words_budget_info">这里的每个词都会随每次听写一起发送，而语音模型只读取其中约 {budget} 个词元的上下文。你的列表约占 {tokens} 个。</string>
-    <string name="dictate__custom_words_budget_over">你的列表比语音模型能读取的更长。{count} 个词中约有 {fits} 个能送达，其余的每次听写都会发送并被忽略。词汇量较大时请改用自定义替换，它精确、可离线工作，而且不产生任何费用。</string>
     <string name="dictate__custom_words_import">导入词表</string>
     <string name="dictate__custom_words_export">导出词表</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1555,11 +1677,8 @@
     <string name="dictate__custom_words_import_nofit">有 {count} 个没放下——语音模型只读取约 {budget} 个词元的上下文，它们即使被发送也会被忽略。</string>
     <string name="dictate__custom_words_import_unusable">{count} 行没有可拼写的内容，已跳过。</string>
     <string name="dictate__custom_words_import_truncated">只读取了文件中的前 {count} 条。</string>
-    <string name="dictate__custom_words_import_also_dictionary">同时加入个人词典</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">这个列表只告诉语音模型一个词该怎么写。个人词典才是键盘在你打字时使用的词典——它没有长度限制，所以文件中的每个词都会加入，而不只是上面放得下的那些。</string>
     <string name="dictate__custom_words_import_empty">在该文件中未找到词语</string>
     <string name="dictate__custom_words_import_done">已添加 {count} 个词</string>
-    <string name="dictate__custom_words_import_done_dictionary">已添加 {count} 个词，并将 {dict} 个加入你的个人词典</string>
     <string name="dictate__file_unreadable">无法读取该文件</string>
     <string name="dictate__file_export_done">文件已保存</string>
     <string name="dictate__file_export_failed">无法写入该文件</string>
@@ -1702,7 +1821,7 @@
     <string name="changelog__intro">Voice Mode 已更新。以下是新功能：</string>
     <string name="changelog__version_header">版本 {version}</string>
     <string name="changelog__donate">喜欢 Voice Mode 吗？点按此处支持开发 ♥</string>
-    <string name="changelog__current">• 全新键盘：Voice Mode 现在作为完整的多语言布局键盘提供，带有专用麦克风键以打开语音面板。\n• 自带 AI：选择任何兼容 OpenAI 的服务商，并在设置 → Voice Mode 中输入您的 API 密钥。\n• 由您选择的模型驱动的智能格式化和改写。\n• 您在旧版 Voice Mode 应用中的设置会自动导入。</string>
+    <string name="changelog__current">• 全新键盘：Voice Mode 现在作为完整的多语言布局键盘提供，带有专用麦克风键以打开语音面板。\n• 自带 AI：选择任何兼容 OpenAI 的服务商，并在设置 → Voice Mode 中输入您的 API 密钥。\n• 由您选择的模型驱动的智能格式化和改写。\n• 您在旧版 Dictate 应用中的设置会自动导入。</string>
     <string name="changelog__v4_1_0">• 新增：直接从键盘搜索表情符号。\n• 新的转录服务商：Soniox。\n• 重新插入上一次的听写，并恢复键盘关闭时中断的录音。\n• 提示词栏现在会实时刷新：长按某个提示词即可编辑。\n• AI 服务商界面现在会同时显示当前启用的转录服务商和改写服务商。\n• 录音按钮更大，更容易点按。\n• 修复：在某些语言下，支持提示可能卡住并遮挡操作栏；选择了提示词、键盘或主题时备份不再失败；升级后会保留已保存的 API 密钥。</string>
     <string name="changelog__v4_1_1">• 修复：在某些设备上强调色可能显示为绿色；按键和按钮已恢复为 Voice Mode 蓝色。</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -1902,7 +2021,7 @@
     <string name="dictate__audio_save_failed">无法保存音频</string>
     <string name="dictate__instant_recording_mode_off">关闭</string>
     <string name="dictate__instant_recording_mode_always">每次打开键盘时</string>
-    <string name="dictate__instant_recording_mode_after_switch">仅在切换到 {app_name} 后</string>
+    <string name="dictate__instant_recording_mode_after_switch">仅在切换到 Voice Mode 后</string>
     <string name="dictate__instant_recording_in_numeric">在数字输入框中也启用</string>
     <string name="dictate__instant_recording_skip_numeric_title">跳过数字输入框</string>
     <string name="dictate__instant_recording_skip_numeric_summary">在数字、电话或 PIN 输入框中不自动开始</string>
@@ -1958,7 +2077,7 @@
     <string name="apptour__badge_highlight">★ 亮点</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">快速导览</string>
-    <string name="apptour__intro_body">这是 Dictate 5.0 的新变化——精华内容，一分钟内看完。在任意页面点按「试一试」即可直接跳到该设置。</string>
+    <string name="apptour__intro_body">这是 Voice Mode 5.0 的新变化——精华内容，一分钟内看完。在任意页面点按「试一试」即可直接跳到该设置。</string>
     <string name="apptour__glide_eyebrow">键盘</string>
     <string name="apptour__glide_title">滑动输入</string>
     <string name="apptour__glide_body">手指在按键之间滑动，Voice Mode 就会把轨迹变成完整的词语。每种语言都有各自的词典，按需下载——在「手势」中开启它。</string>
@@ -2024,7 +2143,7 @@
     <string name="apptour51__outro_title">尽情享受此次更新</string>
     <string name="apptour51__outro_body">感谢你使用 Voice Mode！如果它每天都在帮助你，一笔小额捐赠就能让项目继续下去。你随时可以在「设置 › 关于」中重新查看这些导览。</string>
     <string name="apptour52__cta_try">试试</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">Voice Mode 5.2</string>
     <string name="apptour52__intro_title">随处口述</string>
     <string name="apptour52__intro_body">这个版本让 Voice Mode 走出自家键盘：作为手机的语音输入、随时随地的语音指令，并帮你整理长篇口述。以下是新功能。</string>
     <string name="apptour52__voiceinput_eyebrow">系统级语音输入</string>
@@ -2052,7 +2171,7 @@
     <string name="apptour52__outro_title">口述愉快</string>
     <string name="apptour52__outro_body">此外还有诸多内部改进：整个口述过程中屏幕保持常亮，设备端模型闲置时释放内存，手表口述可挺过连接中断，德语自动更正也学会了变音符号。你可以在设置 › 关于中重温任意导览。</string>
     <string name="apptour53__cta_try">试试看</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">Voice Mode 5.3</string>
     <string name="apptour53__intro_title">按住、说话、完成</string>
     <string name="apptour53__intro_body">这一版围绕你最常做的两件事：对着手机说话，以及在手机上打字。两者都更快了，也都更懂得让路。</string>
     <string name="apptour53__pushtotalk_eyebrow">按住说话</string>
@@ -2083,7 +2202,7 @@
     <string name="apptour60__cta_try">试一试</string>
     <string name="apptour60__art_minutes">分钟</string>
     <string name="apptour60__art_speed">1.5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">Voice Mode 6.0</string>
     <string name="apptour60__intro_title">额度、中文与更省钱的听写</string>
     <string name="apptour60__intro_body">这个版本增加了第二条入口——购买额度，而不必自备 API 密钥；还带来中文拼音输入、七种新增词库的语言，以及成本更低的录音处理。</string>
     <string name="apptour60__cloud_eyebrow">全新：Voice Mode Cloud</string>
@@ -2112,7 +2231,7 @@
     <string name="apptour61__art_share">分享到</string>
     <string name="apptour61__art_typed">帐号</string>
     <string name="apptour61__art_fixed">账号</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">Voice Mode 6.1</string>
     <string name="apptour61__intro_title">贴纸、语音消息，以及终于看得见错字的自动更正</string>
     <string name="apptour61__intro_body">把一个装着你自己贴纸的文件夹指给键盘，把语音消息直接分享给 Voice Mode 就能知道里面说了什么，还有一个终于能发现它本来被设计为看不见的那类错误的自动更正。</string>
     <string name="apptour61__stickers_eyebrow">新功能：你自己的贴纸</string>
@@ -2141,7 +2260,7 @@
     <string name="apptour62__art_word">泽雅</string>
     <string name="apptour62__art_emoji_word">蛋糕</string>
     <string name="apptour62__art_emoji">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">Voice Mode 6.2</string>
     <string name="apptour62__intro_title">它会记住你的词，还添了五套新外观</string>
     <string name="apptour62__intro_body">键盘现在能记住任何词典都不认识的词，按键之间可以透出下面的应用，两个拇指也能各占一半。此外还有一把小工具，专门帮你处理每天都在做的事。</string>
     <string name="apptour62__learning_eyebrow">新功能：边打边学</string>
@@ -2149,7 +2268,7 @@
     <string name="apptour62__learning_body">把一个名字或术语输入足够多次，键盘就会把它留下：不再标成错误，而是开始推荐它。这次更新会为所有人打开它，包括此前把它关掉的人。在无痕模式、密码输入框，以及任何不是你一键一键敲出来的内容里都不会学到东西；所有内容都只留在这台设备上，下面的按钮会打开这份清单——以及那个开关。</string>
     <string name="apptour62__themes_eyebrow">五套新外观</string>
     <string name="apptour62__themes_title">Glass、Sand、Deep，以及深色 E-Ink</string>
-    <string name="apptour62__themes_body">Voice Mode Glass 让应用从按键之间的缝隙透出来，而按键本身仍然足够不透明，字看得清；Glass Clear 更通透、更好看，代价是在那些会画到键盘后面的应用里，它们的文字会透过来。Sand 是温暖的浅色主题，Deep 是沉静的深色主题，E-Ink 终于有了夜间版本——自动切换在天黑之后不会再递给你一块白色键盘。</string>
+    <string name="apptour62__themes_body">Glass 让应用从按键之间的缝隙透出来，而按键本身仍然足够不透明，字看得清；Glass Clear 更通透、更好看，代价是在那些会画到键盘后面的应用里，它们的文字会透过来。Sand 是温暖的浅色主题，Deep 是沉静的深色主题，E-Ink 终于有了夜间版本——自动切换在天黑之后不会再递给你一块白色键盘。</string>
     <string name="apptour62__split_eyebrow">新功能：分体键盘</string>
     <string name="apptour62__split_title">两个拇指都够得着，不必伸手</string>
     <string name="apptour62__split_body">在单手模式和悬浮模式旁边新增的快捷操作，会把每一行拉开，让每个拇指都待在自己那一半。所有布局都能分开，不只是 QWERTY，因为分界点是从键宽算出来的，而不是写进每套布局里。横屏时，只要空间够，应用现在会一直保持可见。</string>
@@ -2178,7 +2297,7 @@
     <string name="apptour62__outro_title">还是那块键盘，更多地属于你</string>
     <string name="apptour62__outro_body">你的口述方式没有任何变化——自己的密钥、自己的服务器，或是设备上的模型。所有导览都能在 设置 › 关于 中重新查看。</string>
     <string name="apptour63__cta_try">试试看</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">Voice Mode 6.3</string>
     <string name="apptour63__intro_title">不用离开键盘，就能做更多</string>
     <string name="apptour63__intro_body">把相机对准印刷文字，它就会落进输入框。光标、选择和剪贴板终于共用一个面板。智能栏上的任何按钮都能在长按时承载第二个操作。离线听写也终于有了真正装得下手机的模型。</string>
     <string name="apptour63__scan_eyebrow">新功能：扫描文字</string>
@@ -2317,8 +2436,6 @@
     <string name="dictate__cloud_other_way_body">你随时可以切换到自己的 API 密钥，也可以再切回来。你的额度会原样保留。</string>
     <string name="dictate__error_out_of_credit">额度已用完</string>
     <string name="dictate__action_top_up">充值额度</string>
-    <string name="dictate__promo_low_credit_message">额度快用完了。</string>
-    <string name="dictate__promo_low_credit_action">充值</string>
     <string name="prefs__media__sticker__title">贴纸</string>
     <string name="prefs__media__sticker_folder__title">贴纸文件夹</string>
     <string name="prefs__media__sticker_folder__summary_unset">选择一个存放你自己图片的文件夹</string>

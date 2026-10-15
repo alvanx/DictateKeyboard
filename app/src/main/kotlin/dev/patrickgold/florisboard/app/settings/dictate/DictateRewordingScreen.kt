@@ -82,6 +82,11 @@ fun DictateRewordingScreen() = FlorisScreen {
             title = stringRes(R.string.dictate__prompts_layout_title),
             entries = listPrefEntries {
                 entry(
+                    key = DictatePromptsLayout.WHEN_USEFUL,
+                    label = stringRes(R.string.dictate__prompts_layout_when_useful_label),
+                    description = stringRes(R.string.dictate__prompts_layout_when_useful_description),
+                )
+                entry(
                     key = DictatePromptsLayout.PANEL,
                     label = stringRes(R.string.dictate__prompts_layout_panel_label),
                     description = stringRes(R.string.dictate__prompts_layout_panel_description),

@@ -101,7 +101,7 @@
     <string name="quick_actions_editor__subheader_hidden_actions">פעולה מוסתרת({n})</string>
     <string name="select_subtype_panel__header">בחר תת-סוג</string>
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">מצב גלישה בסתר כרגע מופעל\n\n{app_name} לא ילמד מילים מהקלט שלך בזמן שמצב זה פעיל</string>
+    <string name="incognito_mode__toast_after_enabled">מצב גלישה בסתר כרגע מופעל\n\nVoice Mode לא ילמד מילים מהקלט שלך בזמן שמצב זה פעיל</string>
     <string name="incognito_mode__toast_after_disabled">מצב גלישה בסתר מושבת כרגע לפי ברירת מחדל</string>
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">הגדרות</string>
@@ -109,9 +109,7 @@
     <string name="settings__help" comment="General label for help buttons in Settings">עזרה</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">ברירת מחדל</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">ברירת המחדל של המערכת</string>
-    <string name="settings__home__title" comment="Title of the Home screen">ברוכים הבאים ל{app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name} אינו מופעל במערכת ולכן לא יהיה זמין כשיטת קלט בעת בחירת סוג המלקדת. לחץ כאן כדי לפתור תקלה זו.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name} לא הוגדר כמקלדת ברירת המחדל. לחיצה כאן תאפשר לפתור תקלה זו.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">ברוכים הבאים לVoice Mode</string>
     <string name="settings__localization__title" comment="Title of languages and Layout screen">שפות &amp; פריסות</string>
     <string name="settings__localization__display_language_names_in__label" comment="Label of Display language names in preference">הציגו שם שפה ב</string>
     <string name="settings__localization__display_keyboard_labels_in_subtype_language" comment="Label of Display keyboard labels in subtype language preference">הצגת תוויות מקלדת בשפת תת-סוג</string>
@@ -158,7 +156,7 @@
     <string name="pref__theme__theme_accent_color__label" comment="Label of accent color preference in Theme">        צבע עיצוב (Material you themes)
     </string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">נהל ערכות נושא מותקנות</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">נכסי אפליקצית {app_name}</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">נכסי אפליקצית Voice Mode</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">אחסון פנימי</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">ספק חיצוני</string>
     <string name="settings__theme_manager__title_day" comment="Title of the theme manager screen for day theme selection">בחר ערכת נושא של יום</string>
@@ -251,7 +249,7 @@
     <string name="pref__gestures__swipe_distance_threshold__label" comment="Preference title">סף מרחק החלקה</string>
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">אודות</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">סמל האפליקציה של {app_name}</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">סמל האפליקציה של Voice Mode</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">רישיונות קוד פתוח</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">מדיניות פרטיות</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">קוד מקור</string>
@@ -271,7 +269,7 @@
     <string name="crash_notification_channel__title" comment="Title of crash notification channel">Voice Mode דוח שגיאה</string>
     <string name="crash_once_notification__title" comment="Title of the notification for a single crash">Voice Mode הפסיק לעבוד…</string>
     <string name="crash_once_notification__body" comment="Body of the notification for a single crash">לחץ להצגת פרטי השגיאה</string>
-    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">נראה שVoice Mode מפסיק לעבוד שוב שוב…</string>
+    <string name="crash_multiple_notification__title" comment="Title of the notification for consecutive crashes">נראה ש-Voice Mode מפסיק לעבוד שוב שוב…</string>
     <string name="crash_multiple_notification__body" comment="Body of the notification for consecutive crashes">המקדלת הקומדת הוחזרה כדי למנוע לולאת קריסה אינסופית. לחץ כדי לראות את פרטי השגיאה</string>
     <!-- Clipboard strings -->
     <string name="clipboard__disabled__enable_button">אפשר היסטוריה של הלוח</string>

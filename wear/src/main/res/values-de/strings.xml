@@ -13,7 +13,7 @@
     <string name="wear_cd_resume">Fortsetzen</string>
     <string name="wear_cd_backspace">Löschen</string>
     <string name="wear_cd_enter">Enter</string>
-    <string name="wear_err_mic_grant">Mikro in Voice Mode-App erlauben</string>
+    <string name="wear_err_mic_grant">Mikro in Voice-Mode-App erlauben</string>
     <string name="wear_err_mic_unavailable">Mikrofon nicht verfügbar</string>
     <string name="wear_err_transcribe_failed">Transkription fehlgeschlagen</string>
     <string name="wear_err_tap_to_retry">%1$s · Zum Wiederholen tippen</string>

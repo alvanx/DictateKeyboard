@@ -114,7 +114,7 @@
     <string name="quick_actions_editor__subheader_hidden_actions">非表示のアクション ({n})</string>
     <string name="select_subtype_panel__header">サブタイプを選択</string>
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">シークレットモードが有効になりました\n\nこのモードがアクティブな間、{app_name} は入力から単語を学習しません</string>
+    <string name="incognito_mode__toast_after_enabled">シークレットモードが有効になりました\n\nこのモードがアクティブな間、Voice Mode は入力から単語を学習しません</string>
     <string name="incognito_mode__toast_after_disabled">シークレットモードはデフォルトで無効になりました</string>
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">設定</string>
@@ -122,9 +122,129 @@
     <string name="settings__help" comment="General label for help buttons in Settings">ヘルプ</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">デフォルト</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">システムのデフォルト</string>
-    <string name="settings__home__title" comment="Title of the Home screen">{app_name}へようこそ</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name}がシステムで有効になっていないため、入力方法として使用できません。この問題を解決するには、ここをタップしてください。</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name}は、デフォルトの入力方法として選択されていません。この問題を解決するには、ここをタップしてください。</string>
+    <string name="settings__home__title" comment="Title of the Home screen">Voice Modeへようこそ</string>
+    <string name="home__recent_title" comment="Title of the recent dictations card on the home screen">最近の音声入力</string>
+    <string name="home__recent_see_all" comment="Button on the recent dictations card that opens the full history">すべて表示</string>
+    <string name="home__recent_copy" comment="Accessibility label of the copy icon on a recent dictation row">コピー</string>
+    <string name="home__recent_failed" comment="Recent dictations row for a recording whose transcription failed">文字起こしに失敗しました。録音は保存されています。</string>
+    <string name="home__recent_retry" comment="Button on a failed recent dictation that sends its saved recording again">再試行</string>
+    <string name="home__transcribe_file" comment="Floating button on the home screen that opens the file picker to transcribe an audio or video file">ファイルを文字起こし</string>
+    <string name="home__ai_model" comment="Settings row that opens the AI providers screen; its second line names the speech model in use">AIモデル</string>
+    <string name="home__stats_summary" comment="Home time-saved strip, after the bold duration. {count} is the number of dictations">節約 · 音声入力 {count} 回</string>
+    <string name="settings__all__title" comment="The Settings tab and its title">設定</string>
+    <string name="dictionary_hub__title" comment="The Dictionary tab, gathering every word list (dictation words, find-and-replace, the keyboard dictionary)">辞書</string>
+    <string name="words__personal_dictionary" comment="Dictionary screen row opening the keyboard's own user dictionary">個人辞書</string>
+    <string name="mywords__subtitle" comment="Line under the Dictionary tab title">Voice Mode にいつも正しく書いてほしい名前や用語。</string>
+    <string name="mywords__title" comment="Heading of the one word list used for both dictation and typing">マイ単語</string>
+    <string name="mywords__explanation" comment="Short explanation at the top of the My words card">すべてに使える 1 つのリストです。話すと各単語があなたの表記で書かれ、入力時には候補に出ます。</string>
+    <string name="mywords__empty" comment="Shown in the My words card while the list is empty">まだ何もありません。名前や製品名、よく使う単語を追加しましょう。</string>
+    <string name="mywords__more" comment="Last chip after the first few words, opening the full list. Placeholder: how many words are not shown.">+ ほか {count} 件</string>
+    <string name="mywords__see_all" comment="Last chip after the words when all of them are shown; opens the full list to edit or remove words">リストを編集</string>
+    <string name="mywords__add_hint" comment="Placeholder of the field where a new word is typed">単語や名前を追加</string>
+    <string name="mywords__add" comment="Accessibility label of the + button next to the field">単語を追加</string>
+    <string name="mywords__usage" comment="Under the usage bar. Placeholders: words in the list, and about how many fit in what the speech AI reads.">{limit} 語中 {count} 語が音声AIに渡されます</string>
+    <string name="mywords__usage_full" comment="Under the full usage bar, once the list is longer than the speech AI reads. Placeholders: how many words go to it, how many words are in the list.">{total} 語中 {count} 語が音声AIに渡されます。入力にはすべて使われます。</string>
+    <string name="mywords__fixes" comment="Dictionary tab heading above find-and-replace and learned words">修正</string>
+    <string name="mywords__find_replace" comment="Dictionary tab row opening the find-and-replace rules for transcripts">検索と置換</string>
+    <string name="mywords__find_replace_none" comment="Summary of the find-and-replace row while there are no rules">音声AIがいつも間違える単語を修正</string>
+    <string name="mywords__find_replace_one" comment="Summary of the find-and-replace row with one rule. Placeholders: what is found and what it becomes.">1 件のルール: 「{from}」→「{to}」</string>
+    <string name="mywords__find_replace_many" comment="Summary of the find-and-replace row. Placeholders: how many rules, and the first rule as an example.">{count} 件のルール（例: 「{from}」→「{to}」）</string>
+    <string name="mywords__learned" comment="Dictionary tab row opening the words the keyboard learned on its own">入力から学習した単語</string>
+    <string name="mywords__learned_summary" comment="Summary of the learned words row">自動で覚えた単語です。どれでも削除できます。</string>
+    <string name="mywords__phone_settings" comment="Link at the bottom of the Dictionary tab opening the keyboard dictionary settings">端末の辞書と学習の設定</string>
+    <string name="mywords__edit_as_text" comment="Row on the full My words list opening a text editor for the whole list">テキストとして編集</string>
+    <string name="mywords__edit_as_text_summary" comment="Summary of the Edit as text row">リスト全体の貼り付け、インポート、エクスポート</string>
+    <string name="mywords__remove" comment="Accessibility label of the button that removes one word. Placeholder: the word.">{word} を削除</string>
+    <string name="mywords__typing_only" comment="Under a word in the full list that the speech AI has no room for">入力のみ: 音声AIに渡す余裕がありません</string>
+    <string name="mywords__budget_over" comment="Note in the text editor once the list is longer than the speech AI reads. Placeholders: how many words go to it, how many words there are.">リストが音声AIの読める量より長くなっています。{count} 語のうち最初の {fits} 語が渡され、残りは入力時の候補として引き続き使われます。</string>
+    <string name="mywords__row_summary" comment="Summary of the My words row on the dictation formatting screen. Placeholder: how many words.">{count} 語。あなたの表記で書かれ、入力時に候補に出ます</string>
+    <string name="nav__home" comment="Bottom tab bar: the home tab">ホーム</string>
+    <string name="nav__style" comment="Bottom tab bar: the tab where the mic button's look is picked">スタイル</string>
+    <string name="home__mic_title" comment="Home card showing the floating mic button's current look">マイクボタン</string>
+    <string name="home__mic_on" comment="Home mic card, second line while the floating mic button is on. {charm} is the look, e.g. Daisy">{charm} · すべてのアプリで表示</string>
+    <string name="home__mic_off" comment="Home mic card, second line while the floating mic button is off">オフ</string>
+    <string name="home__mic_change_look" comment="Home mic card button that opens the Style tab">見た目を変える</string>
+    <string name="home__turn_on" comment="Button that turns on the floating mic button or the keyboard">オンにする</string>
+    <string name="home__keyboard_title" comment="Row naming the app's keyboard, on the home screen and at the top of Settings">Voice Mode キーボード</string>
+    <string name="home__keyboard_off" comment="Second line of the keyboard row while the keyboard is not turned on">オフ</string>
+    <string name="home__keyboard_on" comment="Second line of the keyboard row while the keyboard is turned on">オン · マイクはキーボード上にあります</string>
+    <string name="firstrun__title" comment="Big heading of the home screen before the first dictation, on two lines">話すだけ。\nVoice Mode が書きます。</string>
+    <string name="firstrun__subtitle" comment="Line under the first-run home heading">2 つの簡単なステップで話し始められます。</string>
+    <string name="firstrun__step_look" comment="First-run home, step 1 heading: choose the look of the floating mic button">マイクボタンを選ぶ</string>
+    <string name="firstrun__more_looks" comment="First-run home, tile after a few mic looks that opens the Style tab with all of them">もっと見る</string>
+    <string name="firstrun__step_where" comment="First-run home, step 2 heading: turn on the floating mic, the keyboard, or both">表示する場所を選ぶ</string>
+    <string name="firstrun__floating_title" comment="First-run home, step 2 option: the floating mic button">フローティングマイク</string>
+    <string name="firstrun__floating_summary" comment="First-run home, second line of the floating mic option">どの入力欄の横にも。今のキーボードのままで使えます</string>
+    <string name="firstrun__keyboard_summary" comment="First-run home, second line of the keyboard option">マイクを内蔵したフルキーボード</string>
+    <string name="firstrun__done" comment="Accessibility label of the check mark shown instead of Turn on once an option is on">オン</string>
+    <string name="firstrun__try_title">ここで試す</string>
+    <string name="firstrun__try_summary">タップして何か話してください。テキストが下に表示され、すぐにコピーできます。</string>
+    <string name="settings__dictation_group" comment="Settings tab: the group of dictation settings at the top">音声入力</string>
+    <string name="settings__more_group" comment="Settings tab: the group of every other settings category">キーボードとアプリ</string>
+    <string name="settings__floating_button_on" comment="Settings tab: summary of the floating mic button row while it is on">オン · 表示する場所とタイミング</string>
+    <string name="settings__more_dictation" comment="Settings tab: row opening every dictation setting">その他の音声入力設定</string>
+    <string name="settings__more_dictation_summary" comment="Summary of the row opening every dictation setting">言語、書式、言い換え、録音</string>
+    <string name="style__subtitle" comment="Line under the Style tab title">マイクボタンを自分好みに。</string>
+    <string name="style__preview_message" comment="Sample chat message in the Style tab preview">今夜まだ来られる？</string>
+    <string name="style__preview_caption" comment="Caption in the Style tab preview, which shows the mic button listening">チャットアプリで聞き取り中</string>
+    <string name="style__preview_field" comment="Placeholder of the sample message field in the Style tab preview">メッセージ</string>
+    <string name="style__charm_classic" comment="Mic button look: the plain round button">クラシック</string>
+    <string name="style__charm_daisy" comment="Mic button look: a daisy">デイジー</string>
+    <string name="style__charm_butterfly" comment="Mic button look: a butterfly">チョウ</string>
+    <string name="style__charm_heart" comment="Mic button look: a heart">ハート</string>
+    <string name="style__charm_clover" comment="Mic button look: a four-leaf clover">クローバー</string>
+    <string name="style__charm_moon" comment="Mic button look: a crescent moon">月</string>
+    <string name="style__charm_sunflower" comment="Mic button look: a sunflower">ヒマワリ</string>
+    <string name="style__charm_blossom" comment="Mic button look: a cherry blossom">桜</string>
+    <string name="style__charm_on_air" comment="Mic button look: a lit “On Air” studio sign">オンエア</string>
+    <string name="style__charm_gramophone" comment="Mic button look: an old gramophone horn">蓄音機</string>
+    <string name="style__charm_crooner" comment="Mic button look: a vintage stage microphone">クルーナー</string>
+    <string name="style__charm_mixtape" comment="Mic button look: a cassette tape">ミックステープ</string>
+    <string name="style__charm_planet" comment="Mic button look: a ringed planet">惑星</string>
+    <string name="style__charm_shooting_star" comment="Mic button look: a shooting star">流れ星</string>
+    <string name="style__charm_disco_ball" comment="Mic button look: a disco ball">ミラーボール</string>
+    <string name="style__charm_big_red_button" comment="Mic button look: a big red arcade button">大きな赤いボタン</string>
+    <string name="style__charm_pixel_heart" comment="Mic button look: a pixel-art heart">8ビットハート</string>
+    <string name="style__charm_neon" comment="Mic button look: a neon sign of a microphone">ネオン</string>
+    <string name="style__charm_studio_mic" comment="Mic button look: a studio microphone">スタジオマイク</string>
+    <string name="style__collection_garden" comment="Style tab: name of a collection of mic button looks">ガーデン</string>
+    <string name="style__collection_garden_tagline" comment="Style tab: one-line description of the Garden collection">やさしく、明るく、生き生きと</string>
+    <string name="style__collection_retro" comment="Style tab: name of a collection of mic button looks">レトロ</string>
+    <string name="style__collection_retro_tagline" comment="Style tab: one-line description of the Retro collection">温かくアナログ、ちょっと茶目っ気</string>
+    <string name="style__collection_night_sky" comment="Style tab: name of a collection of mic button looks">夜空</string>
+    <string name="style__collection_night_sky_tagline" comment="Style tab: one-line description of the Night sky collection">穏やかで夢見心地</string>
+    <string name="style__collection_arcade" comment="Style tab: name of a collection of mic button looks">アーケード</string>
+    <string name="style__collection_arcade_tagline" comment="Style tab: one-line description of the Arcade collection">元気で遊び心たっぷり</string>
+    <string name="style__collection_simple" comment="Style tab: name of a collection of mic button looks">シンプル</string>
+    <string name="style__collection_simple_tagline" comment="Style tab: one-line description of the Simple collection">プレーンな丸いボタン</string>
+    <string name="style__move_bloom" comment="How the mic button moves while recording: grows and turns like a flower opening">聞いている間、花開く</string>
+    <string name="style__move_flutter" comment="How the mic button moves while recording: flaps like wings">聞いている間、はばたく</string>
+    <string name="style__move_turn" comment="How the mic button moves while recording: spins slowly">聞いている間、回る</string>
+    <string name="style__move_sway" comment="How the mic button moves while recording: swings gently side to side">聞いている間、揺れる</string>
+    <string name="style__move_glow" comment="How the mic button moves while recording: lights up and dims">聞いている間、光る</string>
+    <string name="style__move_wobble" comment="How the mic button moves while recording: rocks and swells">聞いている間、ぷるぷる揺れる</string>
+    <string name="style__move_pulse" comment="How the mic button moves while recording: grows and shrinks">聞いている間、脈打つ</string>
+    <string name="style__move_spin" comment="How the mic button moves while recording: the cassette reels turn">聞いている間、リールが回る</string>
+    <string name="style__move_tilt" comment="How the mic button moves while recording: leans side to side">聞いている間、傾く</string>
+    <string name="style__move_twinkle" comment="How the mic button moves while recording: the star sparkles">聞いている間、きらめく</string>
+    <string name="style__move_press" comment="How the mic button moves while recording: the button pushes in">聞いている間、押し込まれる</string>
+    <string name="style__move_beat" comment="How the mic button moves while recording: double-thumps like a heartbeat">聞いている間、鼓動する</string>
+    <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">聞いている間、ちらつく</string>
+    <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">聞いている間に動く</string>
+    <string name="style__move_off" comment="Summary of the movement switch while it is off">動かない</string>
+    <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">元の色</string>
+    <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">{charm} は固有の色のままです。</string>
+    <string name="style__color" comment="Style tab heading above the colour swatches">色</string>
+    <string name="style__color_cloud" comment="Colour swatch name (white)">クラウド</string>
+    <string name="style__color_blossom" comment="Colour swatch name (pink)">ブロッサム</string>
+    <string name="style__color_lilac" comment="Colour swatch name (light purple)">ライラック</string>
+    <string name="style__color_butter" comment="Colour swatch name (yellow)">バター</string>
+    <string name="style__color_mint" comment="Colour swatch name (green)">ミント</string>
+    <string name="style__color_sky" comment="Colour swatch name (light blue)">スカイ</string>
+    <string name="style__more_colors" comment="Style tab row opening the full colour picker">その他の色</string>
+    <string name="style__motion" comment="Style tab heading above how the mic button moves while recording">聞いている間</string>
+    <string name="style__button_off" comment="Style tab note while the floating mic button is off">フローティングマイクボタンはオフなので、今はここでのみ表示されます。</string>
+    <string name="style__look_summary" comment="Floating button settings: summary of the row opening the Style tab. {charm} is the look">{charm} · スタイルタブで変更</string>
     <string name="settings__search__title" comment="Title of the settings search screen">設定を検索</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">設定を検索…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">最近の検索</string>
@@ -192,7 +312,7 @@
     <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">夜のテーマ</string>
     <string name="pref__theme__theme_accent_color__label" comment="Label of accent color preference in Theme">アクセントカラー (Material You)</string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">インストール済みテーマの管理</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">{app_name}アプリのアセット</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">Voice Modeアプリのアセット</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">内部ストレージ</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">外部プロバイダ</string>
     <string name="settings__theme_manager__title_day" comment="Title of the theme manager screen for day theme selection">昼のテーマを選択</string>
@@ -222,7 +342,7 @@
     <string name="settings__theme_editor__code_recording_help_text">キーのコードを見つけるには、コード入力フィールドの横にあるボタンを使用します。有効化すると、次に押したキーが記録され、コードが入力フィールドに挿入されます。</string>
     <string name="settings__theme_editor__code_recording_started">キーコードの記録を開始しました</string>
     <string name="settings__theme_editor__code_recording_stopped">キーコードの記録を停止しました</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">{app_name} はキーコードを記録するためにデフォルトのキーボードである必要があります</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Voice Mode はキーコードを記録するためにデフォルトのキーボードである必要があります</string>
     <string name="settings__theme_editor__code_recording_placeholder">記録中…</string>
     <string name="settings__theme_editor__add_property">プロパティを追加</string>
     <string name="settings__theme_editor__edit_property">プロパティを編集</string>
@@ -237,7 +357,7 @@
     <string name="settings__theme_editor__component_meta_is_borderless">枠線なし</string>
     <string name="settings__theme_editor__component_meta_stylesheet_path">スタイルシートパス</string>
     <string name="settings__theme_editor__stylesheet_error_title">スタイルシートエラー</string>
-    <string name="settings__theme_editor__stylesheet_error_description">{app_name} はスタイルシートを寛大に読み込み、不足しているスキーマやルールを追加したり、無効なルール、プロパティ、値を削除したりすることができます。 {app_name} にこれらの変更を適用させますか？</string>
+    <string name="settings__theme_editor__stylesheet_error_description">Voice Mode はスタイルシートを寛大に読み込み、不足しているスキーマやルールを追加したり、無効なルール、プロパティ、値を削除したりすることができます。 Voice Mode にこれらの変更を適用させますか？</string>
     <string name="snygg__rule_annotation__defines">変数</string>
     <string name="snygg__rule_annotation__defines_description">このルール内で変数を定義して、スタイルシート内で共通の色やサイズを再利用します。</string>
     <string name="snygg__rule_annotation__font">フォント</string>
@@ -577,7 +697,7 @@
     <string name="pref__other__show_app_icon__summary_atleast_q" comment="Summary of Show app icon preference in Other for Android 10+">システムの制限により、Android 10以降では常に有効です</string>
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">アプリについて</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">{app_name}のアプリアイコン</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Voice Modeのアプリアイコン</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">オープンソースライセンス</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">プライバシーポリシー</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">ソースコード</string>
@@ -594,29 +714,29 @@
     <string name="about__privacy_policy__title" comment="Preference title">プライバシーポリシー</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">このプロジェクトのプライバシーポリシー</string>
     <string name="about__project_license__title" comment="Preference title">プロジェクトライセンス</string>
-    <string name="about__project_license__summary" comment="Preference summary">{app_name}は{license_name}の下でライセンスされています</string>
+    <string name="about__project_license__summary" comment="Preference summary">Voice Modeは{license_name}の下でライセンスされています</string>
     <string name="about__project_license__error_license_text_failed" comment="Error text for license text loading failure">エラー: ライセンステキストの読み込みに失敗しました。\n-&gt; 理由: {error_message}</string>
     <string name="about__project_license__error_reason_asset_manager_null" comment="Error text if asset manager is null">アセットマネージャーの参照がnullです</string>
     <string name="about__third_party_licenses__title" comment="Preference title">サードパーティライセンス</string>
     <string name="about__third_party_licenses__summary" comment="Preference summary">このアプリに含まれるサードパーティライブラリのライセンス</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">ようこそ！</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">{app_name}をご利用いただきありがとうございます！このクイックセットアップでは、お使いのデバイスで{app_name}を使用するために必要な手順を案内します。</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">Voice Modeをご利用いただきありがとうございます！このクイックセットアップでは、お使いのデバイスでVoice Modeを使用するために必要な手順を案内します。</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">プライバシーポリシー</string>
     <string name="setup__footer__repository" comment="Repository label for URL">リポジトリ</string>
-    <string name="setup__enable_ime__title">{app_name}を有効にする</string>
-    <string name="setup__enable_ime__description">Androidでは、使用する前にすべてのカスタムキーボードを個別に有効にする必要があります。システムの<i>「言語と入力」</i>設定を開き、「{app_name}」を有効にしてください。</string>
+    <string name="setup__enable_ime__title">Voice Modeを有効にする</string>
+    <string name="setup__enable_ime__description">Androidでは、使用する前にすべてのカスタムキーボードを個別に有効にする必要があります。システムの<i>「言語と入力」</i>設定を開き、「Voice Mode」を有効にしてください。</string>
     <string name="setup__enable_ime__open_settings_btn">システム設定を開く</string>
-    <string name="setup__select_ime__title">{app_name}を選択</string>
-    <string name="setup__select_ime__description">{app_name}はシステムで有効になりました。アクティブに使用するには、入力セレクターダイアログで{app_name}を選択して切り替えてください！</string>
+    <string name="setup__select_ime__title">Voice Modeを選択</string>
+    <string name="setup__select_ime__description">Voice Modeはシステムで有効になりました。アクティブに使用するには、入力セレクターダイアログでVoice Modeを選択して切り替えてください！</string>
     <string name="setup__select_ime__switch_keyboard_btn">キーボードを切り替える</string>
     <string name="setup__grant_notification_permission__title">クラッシュレポート通知を許可</string>
     <string name="setup__grant_notification_permission__description">Android 13以降、アプリは通知を送信するために許可を求める必要があります。\n Voice Modeでは、これはクラッシュ発生時にクラッシュレポート画面を開くためにのみ使用されます。\n この許可はシステム設定でいつでも変更できます。\n </string>
     <string name="setup__grant_notification_permission__btn">許可を与える</string>
     <string name="setup__finish_up__title">完了</string>
-    <string name="setup__finish_up__description_p1">{app_name}はシステムで有効になり、カスタマイズの準備ができました。</string>
+    <string name="setup__finish_up__description_p1">Voice Modeはシステムで有効になり、カスタマイズの準備ができました。</string>
     <string name="setup__finish_up__description_p2">問題、バグ、クラッシュが発生した場合、または単に提案をしたい場合は、概要画面からプロジェクトリポジトリを確認してください！</string>
-    <string name="setup__finish_up__finish_btn">カスタマイズを開始</string>
+    <string name="setup__finish_up__finish_btn">Voice Mode を使い始める</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__system_settings__title">物理キーボードの設定</string>
     <!-- Back up & Restore -->
@@ -675,7 +795,7 @@
     <string name="clipboard__search_placeholder" comment="Hint inside the clipboard search field">クリップボードを検索</string>
     <string name="clipboard__search_no_results" comment="Shown when no clip contains what was typed">その語を含む項目はありません</string>
     <string name="clipboard__disabled__title">クリップボード履歴は現在無効です</string>
-    <string name="clipboard__disabled__message">{app_name}のクリップボード履歴を使用すると、コピーしたテキストや画像を素早く保存してアクセスできます。また、アイテムをピン留めしたり、自動クリーンアップを設定したり、アイテム数の上限を設定したりできます。</string>
+    <string name="clipboard__disabled__message">Voice Modeのクリップボード履歴を使用すると、コピーしたテキストや画像を素早く保存してアクセスできます。また、アイテムをピン留めしたり、自動クリーンアップを設定したり、アイテム数の上限を設定したりできます。</string>
     <string name="clipboard__disabled__enable_button">クリップボード履歴を有効にする</string>
     <string name="clipboard__empty__title">クリップボードは空です</string>
     <string name="clipboard__empty__message">テキストクリップや画像をコピーすると、ここに表示されます。</string>
@@ -799,7 +919,7 @@
     <string name="ext__editor__create_component__title_theme">テーマを作成</string>
     <string name="ext__editor__create_component__from_empty">空</string>
     <string name="ext__editor__create_component__from_existing">既存のものから</string>
-    <string name="ext__editor__create_component__from_empty_warning">{app_name}を初めて使用する場合、または詳細に慣れていない場合は、空のコンポーネントを作成して設定するのが難しい場合があります。その場合は、既存のコンポーネントをコピーして好みに合わせて変更することを検討してください。</string>
+    <string name="ext__editor__create_component__from_empty_warning">Voice Modeを初めて使用する場合、または詳細に慣れていない場合は、空のコンポーネントを作成して設定するのが難しい場合があります。その場合は、既存のコンポーネントをコピーして好みに合わせて変更することを検討してください。</string>
     <string name="ext__editor__edit_component__title">コンポーネントを編集</string>
     <string name="ext__editor__edit_component__title_theme">テーマコンポーネントを編集</string>
     <string name="ext__export__success">拡張機能の書き出しに成功しました！</string>
@@ -959,9 +1079,9 @@
     <string name="enum__extended_actions_placement__overlay_app_ui" comment="Enum value label">アプリUIにオーバーレイ</string>
     <string name="enum__extended_actions_placement__overlay_app_ui__description" comment="Enum value description">キーボードUIの高さに影響を与えずに、拡張アクションをアプリUIの上にオーバーレイとして配置します。この配置により、アプリの入力フィールドが部分的に隠れる可能性があることに注意してください</string>
     <string name="enum__haptic_vibration_mode__use_vibrator_directly" comment="Enum value label">バイブレーターを直接使用</string>
-    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">{app_name}はデフォルトのハードウェアバイブレーターと直接やり取りします。これにより、振動の持続時間と強さをより詳細に制御できますが、振動は触覚フィードバックインターフェースを使用するほど滑らかで最適化されない場合があります。</string>
+    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">Voice Modeはデフォルトのハードウェアバイブレーターと直接やり取りします。これにより、振動の持続時間と強さをより詳細に制御できますが、振動は触覚フィードバックインターフェースを使用するほど滑らかで最適化されない場合があります。</string>
     <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface" comment="Enum value label">触覚フィードバックインターフェースを使用</string>
-    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">{app_name}は触覚フィードバックインターフェースを使用して、キーを押すと定義済みの振動シーケンスをトリガーします。これは、一部のデバイスでは非常にうまく動作する場合がありますが、他のデバイスでは動作しないか、パフォーマンスが非常に低くなります。</string>
+    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">Voice Modeは触覚フィードバックインターフェースを使用して、キーを押すと定義済みの振動シーケンスをトリガーします。これは、一部のデバイスでは非常にうまく動作する場合がありますが、他のデバイスでは動作しないか、パフォーマンスが非常に低くなります。</string>
     <string name="enum__key_hint_mode__accent_priority" comment="Enum value label">アクセント優先</string>
     <string name="enum__key_hint_mode__accent_priority__description" comment="Enum value description">長押し後に最初に選択される文字は常にプライマリアクセント、またはプライマリアクセントが利用できない場合はヒントシンボルです</string>
     <string name="enum__key_hint_mode__hint_priority" comment="Enum value label">ヒント優先</string>
@@ -1087,6 +1207,7 @@
     <string name="quick_action__ime_ui_mode_dictate">音声入力</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">タップして音声入力、もう一度タップで文字起こし</string>
     <string name="quick_action__dictate_live_prompt">音声指示</string>
+    <string name="dictate__live_prompt_chip" comment="Prompt chip and floating-button menu entry: you speak an instruction (e.g. make this more polite, or write a thank-you note) instead of dictating text, and the AI carries it out">声で頼む</string>
     <string name="quick_action__dictate_live_prompt__tooltip">話した指示を録音してAIに送信します</string>
     <string name="quick_action__dictate_prompts">AIプロンプト</string>
     <string name="quick_action__dictate_prompts__tooltip">AIの言い換えプロンプトを開きます</string>
@@ -1094,8 +1215,7 @@
     <string name="about__based_on_floris__summary">Patrick Goldinger 氏と貢献者による FlorisBoard のフォーク、Apache 2.0。タップして開きます。</string>
     <string name="about__feedback__title">フィードバックとサポート</string>
     <string name="about__feedback__summary">質問・不具合・アイデアをメールで送信</string>
-    <string name="about__feedback__email">support@voicemode.example</string>
-    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">文字起こしの方法を選ぶ</string>
     <string name="setup__provider__choose_intro">Voice Mode は AI サービスを使って音声を文字にします。ほとんどの方には上の2つの方法が合いますが、クラウドサービスをまったく使いたくない場合は、下にさらに2つあります。</string>
     <string name="setup__provider__choice_cloud_title">アプリ内でクレジットを購入</string>
@@ -1218,14 +1338,16 @@
     <string name="dictate__remember_last_dictation_title">最後の音声入力を記憶</string>
     <string name="changelog__v4_2_0">• 新機能: フローティング音声入力ボタン — 別のキーボードが有効でも、どのアプリにも直接音声入力できます。3つのスタイル（ピル、リング、オーブ）から選び、話すとライブ波形が表示され、端に吸着させながらどこへでもドラッグでき、色とサイズを設定し、長押しで言い換えられます。設定 ▸ Voice Mode ▸ フローティングボタンでオンにできます。\n• 新機能：Google Gemini — 文字起こしと書き換えに自分の AI Studio API キーを使えます。\n• プロンプトがデフォルトでキーの上の常時表示の行に表示されるようになりました。\n• ブラウザーや他のキーボードを含む、アプリ全体でのより確実なテキスト挿入。</string>
     <string name="dictate__promo_floating_button_message">新機能：どのアプリでも音声入力</string>
+    <string name="dictate__promo_keep_button_message" comment="One-time Smartbar question to people who mostly dictate with the floating mic button: should it also show while this keyboard is open? Keep short for one line.">ここでもフローティングマイクを表示？</string>
+    <string name="dictate__promo_keep_button_action" comment="Short label of the accent pill that keeps the floating mic button showing over this keyboard. Must stay short to fit the single-line Smartbar.">表示する</string>
     <string name="dictate__promo_floating_button_action">試す</string>
     <string name="setup__floating_button__btn">フローティングボタンを設定</string>
     <string name="setup__nav_back">戻る</string>
     <string name="setup__nav_next">次へ</string>
     <string name="setup__floating_button__title">どこでも音声入力（任意）</string>
     <string name="setup__floating_button__intro">フローティングボタンは、どのアプリの上にも小さな音声入力バブルを表示します。キーボードを切り替えずに、あらゆるテキスト欄に話しかけられます。</string>
-    <string name="setup__floating_button__accessibility_note">そのために {app_name} は Android のユーザー補助設定を利用します。これにより、バブルが他のアプリの上に表示され、文字起こししたテキストを代わりに挿入できます。次の画面で有効化の手順を案内します。</string>
-    <string name="setup__floating_button__optional_note">これは完全に任意です。{app_name} を通常のキーボードとして使うだけならスキップして構いません。あとから設定でいつでも有効にできます。</string>
+    <string name="setup__floating_button__accessibility_note">そのために Voice Mode は Android のユーザー補助設定を利用します。これにより、バブルが他のアプリの上に表示され、文字起こししたテキストを代わりに挿入できます。次の画面で有効化の手順を案内します。</string>
+    <string name="setup__floating_button__optional_note">これは完全に任意です。Voice Mode を通常のキーボードとして使うだけならスキップして構いません。あとから設定でいつでも有効にできます。</string>
     <string name="setup__floating_button__skip_btn">スキップ — キーボードを使います</string>
     <string name="dictate__floating_button_badge_new">新着</string>
     <string name="dictate__panel_title">AIプロンプト</string>
@@ -1235,6 +1357,8 @@
     <string name="dictate__prompts_layout_panel_description">魔法の杖ボタンから専用パネルでプロンプトを開きます。</string>
     <string name="dictate__prompts_layout_row_label">常時表示の行</string>
     <string name="dictate__prompts_layout_row_description">キーボードの上の追加の行にプロンプトを固定します。</string>
+    <string name="dictate__prompts_layout_when_useful_label" comment="Prompt layout option: the rewrite chips appear in the keyboard's top bar only right after dictating or while text is selected">必要なときだけ</string>
+    <string name="dictate__prompts_layout_when_useful_description">音声入力の直後やテキストを選択しているときに、上部バーにプロンプトを表示します。</string>
     <string name="dictate__status_idle">タップして音声入力</string>
     <string name="dictate__status_recording">録音中 – タップで停止</string>
     <string name="dictate__status_transcribing">文字起こし中…</string>
@@ -1480,9 +1604,7 @@
     <string name="dictate__custom_words_title">カスタム単語</string>
     <string name="dictate__custom_words_summary_empty">正しく表記するために名前や専門用語を追加します</string>
     <string name="dictate__custom_words_placeholder">例: FlorisBoard、Kubernetes、Renée、OAuth、Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} 語 · 約 {tokens} / {budget} トークン</string>
     <string name="dictate__custom_words_budget_info">ここの単語は口述のたびに毎回送られますが、音声モデルが読むのは約 {budget} トークン分の文脈だけです。このリストはそのうち約 {tokens} を使っています。</string>
-    <string name="dictate__custom_words_budget_over">リストが音声モデルの読み取れる長さを超えています。{count} 語のうち約 {fits} 語だけが届き、残りは毎回送られたうえで無視されます。語彙が多い場合はカスタム置換をお使いください。正確で、オフラインでも動き、費用もかかりません。</string>
     <string name="dictate__custom_words_import">単語リストを読み込む</string>
     <string name="dictate__custom_words_export">単語リストを書き出す</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1492,11 +1614,8 @@
     <string name="dictate__custom_words_import_nofit">{count} 語は入りませんでした。音声モデルが読む文脈は約 {budget} トークンまでなので、送られても無視されていたはずです。</string>
     <string name="dictate__custom_words_import_unusable">{count} 行には表記すべき語がなく、読み飛ばしました。</string>
     <string name="dictate__custom_words_import_truncated">ファイルの先頭 {count} 件のみを読み込みました。</string>
-    <string name="dictate__custom_words_import_also_dictionary">ユーザー辞書にも追加する</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">このリストは音声モデルに綴りを伝えるだけのものです。ユーザー辞書は入力中にキーボードが使う辞書で、長さの制限がありません。そのため上に収まらなかった語も含め、ファイル内のすべての単語が登録されます。</string>
     <string name="dictate__custom_words_import_empty">このファイルに単語は見つかりませんでした</string>
     <string name="dictate__custom_words_import_done">{count} 語を追加しました</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} 語を追加し、{dict} 語をユーザー辞書にも追加しました</string>
     <string name="dictate__file_unreadable">このファイルは読み込めませんでした</string>
     <string name="dictate__file_export_done">ファイルを保存しました</string>
     <string name="dictate__file_export_failed">このファイルを書き込めませんでした</string>
@@ -1639,7 +1758,7 @@
     <string name="changelog__intro">Voice Modeが更新されました。新着情報はこちら:</string>
     <string name="changelog__version_header">バージョン{version}</string>
     <string name="changelog__donate">Voice Modeはいかがですか？ ここをタップして開発を応援してください ♥</string>
-    <string name="changelog__current">• まったく新しいキーボード: Voice Modeは、音声パネルを開く専用マイクキーを備えた本格的な多言語レイアウトキーボードとして提供されるようになりました。\n• 自分のAIを使用: OpenAI互換の任意のプロバイダーを選び、設定 → Voice ModeでAPIキーを入力します。\n• 選択したモデルによるスマートな書式設定と言い換え。\n• 以前のVoice Modeアプリの設定が自動的にインポートされます。</string>
+    <string name="changelog__current">• まったく新しいキーボード: Voice Modeは、音声パネルを開く専用マイクキーを備えた本格的な多言語レイアウトキーボードとして提供されるようになりました。\n• 自分のAIを使用: OpenAI互換の任意のプロバイダーを選び、設定 → Voice ModeでAPIキーを入力します。\n• 選択したモデルによるスマートな書式設定と言い換え。\n• 以前のDictateアプリの設定が自動的にインポートされます。</string>
     <string name="changelog__v4_1_0">• 新機能: キーボードから直接絵文字を検索できます。\n• 新しい文字起こしプロバイダー: Soniox。\n• 直前のディクテーションを再挿入し、キーボードを閉じたときに中断された録音を復元できます。\n• プロンプトバーがライブ更新されるようになりました。プロンプトを長押しすると編集できます。\n• AIプロバイダー画面に、有効な文字起こしプロバイダーと言い換えプロバイダーの両方が表示されるようになりました。\n• 録音ボタンが大きくなり、タップしやすくなりました。\n• 修正: 一部の言語でサポートの案内が固まってバーを覆ってしまう問題を修正しました。プロンプト・キーボード・テーマを選択した状態でバックアップが失敗しなくなりました。保存したAPIキーがアップデート後も保持されます。</string>
     <string name="changelog__v4_1_1">• 修正: 一部の端末でアクセントカラーが緑色に表示されることがありました。キーやボタンが本来のVoice Modeブルーに戻りました。</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -1840,7 +1959,7 @@
     <string name="dictate__audio_save_failed">音声を保存できませんでした</string>
     <string name="dictate__instant_recording_mode_off">オフ</string>
     <string name="dictate__instant_recording_mode_always">キーボードを開くたびに</string>
-    <string name="dictate__instant_recording_mode_after_switch">{app_name} に切り替えたときだけ</string>
+    <string name="dictate__instant_recording_mode_after_switch">Voice Mode に切り替えたときだけ</string>
     <string name="dictate__instant_recording_in_numeric">数字入力欄でも有効にする</string>
     <string name="dictate__instant_recording_skip_numeric_title">数字入力欄をスキップ</string>
     <string name="dictate__instant_recording_skip_numeric_summary">数字・電話・PIN入力欄では自動開始しない</string>
@@ -1896,7 +2015,7 @@
     <string name="apptour__badge_highlight">★ 注目</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">かんたんツアー</string>
-    <string name="apptour__intro_body">Dictate 5.0 の新機能をご紹介します。要点を 1 分以内で。どのページでも「試す」をタップすれば、その設定に直接ジャンプできます。</string>
+    <string name="apptour__intro_body">Voice Mode 5.0 の新機能をご紹介します。要点を 1 分以内で。どのページでも「試す」をタップすれば、その設定に直接ジャンプできます。</string>
     <string name="apptour__glide_eyebrow">キーボード</string>
     <string name="apptour__glide_title">スワイプで入力</string>
     <string name="apptour__glide_body">指をキーからキーへ滑らせると、Voice Mode がその軌跡を単語全体に変換します。言語ごとに専用の辞書があり、必要に応じてダウンロードされます。ジェスチャーからオンにしてください。</string>
@@ -1962,7 +2081,7 @@
     <string name="apptour51__outro_title">アップデートをお楽しみください</string>
     <string name="apptour51__outro_body">Voice Mode をご利用いただきありがとうございます！ 毎日役立っているなら、少しの寄付がこのプロジェクトを支えます。これらのツアーはいつでも「設定 › アプリについて」から見直せます。</string>
     <string name="apptour52__cta_try">試す</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">Voice Mode 5.2</string>
     <string name="apptour52__intro_title">どこでも音声入力</string>
     <string name="apptour52__intro_body">今回のリリースで Voice Mode は自前のキーボードを超えます。スマホの音声入力として、どこからでも話しかける指示として、そして長い音声入力を整えるために。新機能はこちらです。</string>
     <string name="apptour52__voiceinput_eyebrow">システム全体の音声入力</string>
@@ -1990,7 +2109,7 @@
     <string name="apptour52__outro_title">よい音声入力を</string>
     <string name="apptour52__outro_body">さらに内部も改善：音声入力中は画面が消えず、端末内モデルはアイドル時にメモリを解放し、ウォッチからの音声入力は接続断でも失われず、ドイツ語の自動修正がウムラウトに対応しました。各ツアーは設定 › このアプリについて から見直せます。</string>
     <string name="apptour53__cta_try">試す</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">Voice Mode 5.3</string>
     <string name="apptour53__intro_title">押して、話して、完了</string>
     <string name="apptour53__intro_body">今回は、いちばんよく使う 2 つ ― スマホに話すことと、スマホで打つこと ― が主役です。どちらも速くなり、どちらも前より邪魔をしなくなりました。</string>
     <string name="apptour53__pushtotalk_eyebrow">押して話す</string>
@@ -2021,7 +2140,7 @@
     <string name="apptour60__cta_try">試してみる</string>
     <string name="apptour60__art_minutes">分</string>
     <string name="apptour60__art_speed">1.5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">Voice Mode 6.0</string>
     <string name="apptour60__intro_title">クレジット、中国語、より安い音声入力</string>
     <string name="apptour60__intro_body">このバージョンでは2つ目の入口が加わりました。自分のAPIキーを用意する代わりにクレジットを購入できます。さらに中国語のピンイン入力、辞書が増えた7言語、そして費用が下がる録音処理も。</string>
     <string name="apptour60__cloud_eyebrow">新登場: Voice Mode Cloud</string>
@@ -2050,7 +2169,7 @@
     <string name="apptour61__art_share">共有先</string>
     <string name="apptour61__art_typed">こんにちわ</string>
     <string name="apptour61__art_fixed">こんにちは</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">Voice Mode 6.1</string>
     <string name="apptour61__intro_title">ステッカー、音声メッセージ、そしてついに打ち間違いを見つける自動修正</string>
     <string name="apptour61__intro_body">自分のステッカーが入ったフォルダをキーボードに教え、音声メッセージを Voice Mode に直接共有して内容を確かめ、見逃すように作られていた間違いをついに見つける自動修正を使えます。</string>
     <string name="apptour61__stickers_eyebrow">新機能: 自分のステッカー</string>
@@ -2079,7 +2198,7 @@
     <string name="apptour62__art_word">ゾーヤ</string>
     <string name="apptour62__art_emoji_word">ケーキ</string>
     <string name="apptour62__art_emoji">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">Voice Mode 6.2</string>
     <string name="apptour62__intro_title">あなたの言葉を覚え、5つの新しい装いに</string>
     <string name="apptour62__intro_body">どの辞書も知らない語をキーボードが覚えられるようになり、キーの向こうにアプリを透かせるようになり、左右の親指がそれぞれの半分を持てるようになりました。さらに、毎日の作業を助ける小さな機能をいくつか。</string>
     <string name="apptour62__learning_eyebrow">新機能: 入力しながら覚える</string>
@@ -2087,7 +2206,7 @@
     <string name="apptour62__learning_body">名前や専門用語を何度か入力すると、キーボードがそれを覚え、誤りとして印を付けるのをやめて候補に出すようになります。この更新で、以前オフにしていた方も含め、全員で有効になります。シークレットモード、パスワード欄、キーを一つずつ打っていないものからは何も覚えません。すべてこの端末の中だけに残り、下のボタンから一覧と切り替えスイッチを開けます。</string>
     <string name="apptour62__themes_eyebrow">5つの新しいテーマ</string>
     <string name="apptour62__themes_title">Glass、Sand、Deep、そして暗い E-Ink</string>
-    <string name="apptour62__themes_body">Voice Mode Glass はキーとキーのすき間からアプリを透かせつつ、キー自体は文字が読める程度の不透明さを保ちます。Glass Clear はさらに透かし、見た目は上ですが、キーボードの背後まで描くアプリではその文字が透けてしまいます。Sand は暖かい明るいテーマ、Deep は落ち着いた暗いテーマ、そして E-Ink にようやく夜版ができました。自動切り替えが暗くなってから白いキーボードを出すことはもうありません。</string>
+    <string name="apptour62__themes_body">Glass はキーとキーのすき間からアプリを透かせつつ、キー自体は文字が読める程度の不透明さを保ちます。Glass Clear はさらに透かし、見た目は上ですが、キーボードの背後まで描くアプリではその文字が透けてしまいます。Sand は暖かい明るいテーマ、Deep は落ち着いた暗いテーマ、そして E-Ink にようやく夜版ができました。自動切り替えが暗くなってから白いキーボードを出すことはもうありません。</string>
     <string name="apptour62__split_eyebrow">新機能: 分割キーボード</string>
     <string name="apptour62__split_title">手を伸ばさずに、両方の親指で</string>
     <string name="apptour62__split_body">片手モードやフローティングの隣に加わった新しいクイック操作が、各行を左右に引き離し、それぞれの親指が自分の側だけで済むようにします。QWERTY だけでなくすべての配列が分割されます。継ぎ目はキーの幅から計算されるので、配列ごとに書き込む必要がないからです。横向きでは、両方に余裕があるかぎりアプリが見えたままになります。</string>
@@ -2116,7 +2235,7 @@
     <string name="apptour62__outro_title">同じキーボード、より自分のものに</string>
     <string name="apptour62__outro_body">口述のやり方は何も変わりません。自分の鍵でも、自分のサーバーでも、端末上のモデルでも同じです。すべてのツアーは 設定 › このアプリについて から読み直せます。</string>
     <string name="apptour63__cta_try">試してみる</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">Voice Mode 6.3</string>
     <string name="apptour63__intro_title">キーボードから出ずに、できることを増やす</string>
     <string name="apptour63__intro_body">印刷された文字にカメラを向ければ、そのまま入力欄に入ります。カーソル・選択・クリップボードは、ようやくひとつのパネルにまとまりました。スマートバーのどのボタンも、長押しで二つ目の操作を持てます。オフライン音声入力にも、本当にスマートフォンに収まるモデルが揃いました。</string>
     <string name="apptour63__scan_eyebrow">新機能: テキストをスキャン</string>
@@ -2255,8 +2374,6 @@
     <string name="dictate__cloud_other_way_body">いつでもご自身の API キーに切り替えられますし、戻すこともできます。クレジットはそのまま残ります。</string>
     <string name="dictate__error_out_of_credit">クレジットを使い切りました</string>
     <string name="dictate__action_top_up">クレジットをチャージ</string>
-    <string name="dictate__promo_low_credit_message">クレジット残りわずか。</string>
-    <string name="dictate__promo_low_credit_action">チャージ</string>
     <string name="prefs__media__sticker__title">ステッカー</string>
     <string name="prefs__media__sticker_folder__title">ステッカーのフォルダ</string>
     <string name="prefs__media__sticker_folder__summary_unset">自分の画像が入ったフォルダを選択</string>

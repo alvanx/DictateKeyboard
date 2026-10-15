@@ -118,7 +118,7 @@
     <string name="quick_actions_editor__subheader_hidden_actions">Gizli eylemler ({n})</string>
     <string name="select_subtype_panel__header">Alt türü seçin</string>
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">Gizli mod şimdi etkin\n\nBu mod aktifken {app_name} girdilerinizden kelime öğrenmeyecektir</string>
+    <string name="incognito_mode__toast_after_enabled">Gizli mod şimdi etkin\n\nBu mod aktifken Voice Mode girdilerinizden kelime öğrenmeyecektir</string>
     <string name="incognito_mode__toast_after_disabled">Gizli mod şimdi varsayılan olarak devre dışı</string>
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">Ayarlar</string>
@@ -126,9 +126,129 @@
     <string name="settings__help" comment="General label for help buttons in Settings">Yardım</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Varsayılan</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Sistem varsayılanı</string>
-    <string name="settings__home__title" comment="Title of the Home screen">{app_name} Uygulamasına Hoş Geldiniz</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name} sistemde etkin değil ve bu nedenle giriş yöntemi seçicisinde bir giriş yöntemi olarak kullanılamayacak. Bu sorunu çözmek için buraya tıklayın.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name} varsayılan giriş yöntemi olarak seçilmemiş. Bu sorunu çözmek için buraya tıklayın.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">Voice Mode Uygulamasına Hoş Geldiniz</string>
+    <string name="home__recent_title" comment="Title of the recent dictations card on the home screen">Son dikteler</string>
+    <string name="home__recent_see_all" comment="Button on the recent dictations card that opens the full history">Tümünü gör</string>
+    <string name="home__recent_copy" comment="Accessibility label of the copy icon on a recent dictation row">Kopyala</string>
+    <string name="home__recent_failed" comment="Recent dictations row for a recording whose transcription failed">Yazıya dökme başarısız. Kayıt saklandı.</string>
+    <string name="home__recent_retry" comment="Button on a failed recent dictation that sends its saved recording again">Yeniden dene</string>
+    <string name="home__transcribe_file" comment="Floating button on the home screen that opens the file picker to transcribe an audio or video file">Bir dosyayı yazıya dök</string>
+    <string name="home__ai_model" comment="Settings row that opens the AI providers screen; its second line names the speech model in use">Yapay zekâ modeli</string>
+    <string name="home__stats_summary" comment="Home time-saved strip, after the bold duration. {count} is the number of dictations">kazanıldı · {count} dikte</string>
+    <string name="settings__all__title" comment="The Settings tab and its title">Ayarlar</string>
+    <string name="dictionary_hub__title" comment="The Dictionary tab, gathering every word list (dictation words, find-and-replace, the keyboard dictionary)">Sözlük</string>
+    <string name="words__personal_dictionary" comment="Dictionary screen row opening the keyboard's own user dictionary">Kişisel sözlük</string>
+    <string name="mywords__subtitle" comment="Line under the Dictionary tab title">Voice Mode\'un hep doğru yazması gereken adlar ve terimler.</string>
+    <string name="mywords__title" comment="Heading of the one word list used for both dictation and typing">Kelimelerim</string>
+    <string name="mywords__explanation" comment="Short explanation at the top of the My words card">Her şey için tek liste. Konuştuğunda her kelime senin yazdığın gibi yazılır, yazarken de önerilir.</string>
+    <string name="mywords__empty" comment="Shown in the My words card while the list is empty">Burada henüz bir şey yok. Bir ad, bir ürün ya da sık kullandığın bir kelime ekle.</string>
+    <string name="mywords__more" comment="Last chip after the first few words, opening the full list. Placeholder: how many words are not shown.">+ {count} tane daha</string>
+    <string name="mywords__see_all" comment="Last chip after the words when all of them are shown; opens the full list to edit or remove words">Listeyi düzenle</string>
+    <string name="mywords__add_hint" comment="Placeholder of the field where a new word is typed">Kelime veya ad ekle</string>
+    <string name="mywords__add" comment="Accessibility label of the + button next to the field">Kelime ekle</string>
+    <string name="mywords__usage" comment="Under the usage bar. Placeholders: words in the list, and about how many fit in what the speech AI reads.">{count}/{limit} kelime konuşma yapay zekâsına gidiyor</string>
+    <string name="mywords__usage_full" comment="Under the full usage bar, once the list is longer than the speech AI reads. Placeholders: how many words go to it, how many words are in the list.">{count}/{total} kelime konuşma yapay zekâsına gidiyor. Yazarken hepsi kullanılır.</string>
+    <string name="mywords__fixes" comment="Dictionary tab heading above find-and-replace and learned words">Düzeltmeler</string>
+    <string name="mywords__find_replace" comment="Dictionary tab row opening the find-and-replace rules for transcripts">Bul ve değiştir</string>
+    <string name="mywords__find_replace_none" comment="Summary of the find-and-replace row while there are no rules">Konuşma yapay zekâsının hep yanlış yazdığı kelimeleri düzelt</string>
+    <string name="mywords__find_replace_one" comment="Summary of the find-and-replace row with one rule. Placeholders: what is found and what it becomes.">1 kural: “{from}” → “{to}”</string>
+    <string name="mywords__find_replace_many" comment="Summary of the find-and-replace row. Placeholders: how many rules, and the first rule as an example.">{count} kural, ör. “{from}” → “{to}”</string>
+    <string name="mywords__learned" comment="Dictionary tab row opening the words the keyboard learned on its own">Yazdıklarından öğrenilenler</string>
+    <string name="mywords__learned_summary" comment="Summary of the learned words row">Kendiliğinden öğrenildi. İstediğini kaldır.</string>
+    <string name="mywords__phone_settings" comment="Link at the bottom of the Dictionary tab opening the keyboard dictionary settings">Telefon sözlüğü ve öğrenme ayarları</string>
+    <string name="mywords__edit_as_text" comment="Row on the full My words list opening a text editor for the whole list">Metin olarak düzenle</string>
+    <string name="mywords__edit_as_text_summary" comment="Summary of the Edit as text row">Tüm listeyi yapıştır, içe veya dışa aktar</string>
+    <string name="mywords__remove" comment="Accessibility label of the button that removes one word. Placeholder: the word.">Kaldır: {word}</string>
+    <string name="mywords__typing_only" comment="Under a word in the full list that the speech AI has no room for">Yalnızca yazma: konuşma yapay zekâsında yer kalmadı</string>
+    <string name="mywords__budget_over" comment="Note in the text editor once the list is longer than the speech AI reads. Placeholders: how many words go to it, how many words there are.">Listen, konuşma yapay zekâsının okuduğundan daha uzun. {count} kelimenin ilk {fits} tanesi ona gider; geri kalanlar yazarken önerilmeye devam eder.</string>
+    <string name="mywords__row_summary" comment="Summary of the My words row on the dictation formatting screen. Placeholder: how many words.">{count} kelime, senin yazdığın gibi yazılır ve yazarken önerilir</string>
+    <string name="nav__home" comment="Bottom tab bar: the home tab">Ana sayfa</string>
+    <string name="nav__style" comment="Bottom tab bar: the tab where the mic button's look is picked">Stil</string>
+    <string name="home__mic_title" comment="Home card showing the floating mic button's current look">Mikrofon düğmen</string>
+    <string name="home__mic_on" comment="Home mic card, second line while the floating mic button is on. {charm} is the look, e.g. Daisy">{charm} · her uygulamada süzülür</string>
+    <string name="home__mic_off" comment="Home mic card, second line while the floating mic button is off">Açık değil</string>
+    <string name="home__mic_change_look" comment="Home mic card button that opens the Style tab">Görünümü değiştir</string>
+    <string name="home__turn_on" comment="Button that turns on the floating mic button or the keyboard">Aç</string>
+    <string name="home__keyboard_title" comment="Row naming the app's keyboard, on the home screen and at the top of Settings">Voice Mode klavyesi</string>
+    <string name="home__keyboard_off" comment="Second line of the keyboard row while the keyboard is not turned on">Açık değil</string>
+    <string name="home__keyboard_on" comment="Second line of the keyboard row while the keyboard is turned on">Açık · mikrofon klavyede</string>
+    <string name="firstrun__title" comment="Big heading of the home screen before the first dictation, on two lines">Sen söyle.\nVoice Mode yazsın.</string>
+    <string name="firstrun__subtitle" comment="Line under the first-run home heading">İki hızlı adım, sonra konuşmaya başla.</string>
+    <string name="firstrun__step_look" comment="First-run home, step 1 heading: choose the look of the floating mic button">Mikrofon düğmeni seç</string>
+    <string name="firstrun__more_looks" comment="First-run home, tile after a few mic looks that opens the Style tab with all of them">Daha fazla</string>
+    <string name="firstrun__step_where" comment="First-run home, step 2 heading: turn on the floating mic, the keyboard, or both">Nerede görüneceğini seç</string>
+    <string name="firstrun__floating_title" comment="First-run home, step 2 option: the floating mic button">Kayan mikrofon</string>
+    <string name="firstrun__floating_summary" comment="First-run home, second line of the floating mic option">Her metin kutusunun yanında, zaten kullandığın klavyeyle</string>
+    <string name="firstrun__keyboard_summary" comment="First-run home, second line of the keyboard option">Mikrofonu içinde, eksiksiz bir klavye</string>
+    <string name="firstrun__done" comment="Accessibility label of the check mark shown instead of Turn on once an option is on">Açık</string>
+    <string name="firstrun__try_title">Burada dene</string>
+    <string name="firstrun__try_summary">Dokun ve bir şey söyle. Metnin aşağıda, kopyalanmaya hazır görünür.</string>
+    <string name="settings__dictation_group" comment="Settings tab: the group of dictation settings at the top">Dikte</string>
+    <string name="settings__more_group" comment="Settings tab: the group of every other settings category">Klavye ve uygulama</string>
+    <string name="settings__floating_button_on" comment="Settings tab: summary of the floating mic button row while it is on">Açık · nerede ve ne zaman görüneceği</string>
+    <string name="settings__more_dictation" comment="Settings tab: row opening every dictation setting">Diğer dikte ayarları</string>
+    <string name="settings__more_dictation_summary" comment="Summary of the row opening every dictation setting">Diller, biçimlendirme, yeniden ifade etme, kayıt</string>
+    <string name="style__subtitle" comment="Line under the Style tab title">Mikrofon düğmesini kendine göre yap.</string>
+    <string name="style__preview_message" comment="Sample chat message in the Style tab preview">Bu akşam hâlâ geliyor musun?</string>
+    <string name="style__preview_caption" comment="Caption in the Style tab preview, which shows the mic button listening">Bir sohbet uygulamasında dinliyor</string>
+    <string name="style__preview_field" comment="Placeholder of the sample message field in the Style tab preview">Mesaj</string>
+    <string name="style__charm_classic" comment="Mic button look: the plain round button">Klasik</string>
+    <string name="style__charm_daisy" comment="Mic button look: a daisy">Papatya</string>
+    <string name="style__charm_butterfly" comment="Mic button look: a butterfly">Kelebek</string>
+    <string name="style__charm_heart" comment="Mic button look: a heart">Kalp</string>
+    <string name="style__charm_clover" comment="Mic button look: a four-leaf clover">Yonca</string>
+    <string name="style__charm_moon" comment="Mic button look: a crescent moon">Ay</string>
+    <string name="style__charm_sunflower" comment="Mic button look: a sunflower">Ayçiçeği</string>
+    <string name="style__charm_blossom" comment="Mic button look: a cherry blossom">Çiçek</string>
+    <string name="style__charm_on_air" comment="Mic button look: a lit “On Air” studio sign">Yayında</string>
+    <string name="style__charm_gramophone" comment="Mic button look: an old gramophone horn">Gramofon</string>
+    <string name="style__charm_crooner" comment="Mic button look: a vintage stage microphone">Sahne mikrofonu</string>
+    <string name="style__charm_mixtape" comment="Mic button look: a cassette tape">Kaset</string>
+    <string name="style__charm_planet" comment="Mic button look: a ringed planet">Gezegen</string>
+    <string name="style__charm_shooting_star" comment="Mic button look: a shooting star">Kayan yıldız</string>
+    <string name="style__charm_disco_ball" comment="Mic button look: a disco ball">Disko topu</string>
+    <string name="style__charm_big_red_button" comment="Mic button look: a big red arcade button">Büyük kırmızı düğme</string>
+    <string name="style__charm_pixel_heart" comment="Mic button look: a pixel-art heart">8 bit kalp</string>
+    <string name="style__charm_neon" comment="Mic button look: a neon sign of a microphone">Neon</string>
+    <string name="style__charm_studio_mic" comment="Mic button look: a studio microphone">Stüdyo mikrofonu</string>
+    <string name="style__collection_garden" comment="Style tab: name of a collection of mic button looks">Bahçe</string>
+    <string name="style__collection_garden_tagline" comment="Style tab: one-line description of the Garden collection">Yumuşak, parlak, canlı</string>
+    <string name="style__collection_retro" comment="Style tab: name of a collection of mic button looks">Retro</string>
+    <string name="style__collection_retro_tagline" comment="Style tab: one-line description of the Retro collection">Sıcak, analog, biraz da göz kırpan</string>
+    <string name="style__collection_night_sky" comment="Style tab: name of a collection of mic button looks">Gece göğü</string>
+    <string name="style__collection_night_sky_tagline" comment="Style tab: one-line description of the Night sky collection">Sakin ve rüya gibi</string>
+    <string name="style__collection_arcade" comment="Style tab: name of a collection of mic button looks">Atari salonu</string>
+    <string name="style__collection_arcade_tagline" comment="Style tab: one-line description of the Arcade collection">Enerjik ve eğlenceli</string>
+    <string name="style__collection_simple" comment="Style tab: name of a collection of mic button looks">Sade</string>
+    <string name="style__collection_simple_tagline" comment="Style tab: one-line description of the Simple collection">Düz, yuvarlak düğme</string>
+    <string name="style__move_bloom" comment="How the mic button moves while recording: grows and turns like a flower opening">Dinlerken açar</string>
+    <string name="style__move_flutter" comment="How the mic button moves while recording: flaps like wings">Dinlerken kanat çırpar</string>
+    <string name="style__move_turn" comment="How the mic button moves while recording: spins slowly">Dinlerken döner</string>
+    <string name="style__move_sway" comment="How the mic button moves while recording: swings gently side to side">Dinlerken salınır</string>
+    <string name="style__move_glow" comment="How the mic button moves while recording: lights up and dims">Dinlerken parlar</string>
+    <string name="style__move_wobble" comment="How the mic button moves while recording: rocks and swells">Dinlerken sallanır</string>
+    <string name="style__move_pulse" comment="How the mic button moves while recording: grows and shrinks">Dinlerken nabız gibi atar</string>
+    <string name="style__move_spin" comment="How the mic button moves while recording: the cassette reels turn">Dinlerken makaraları döner</string>
+    <string name="style__move_tilt" comment="How the mic button moves while recording: leans side to side">Dinlerken yana eğilir</string>
+    <string name="style__move_twinkle" comment="How the mic button moves while recording: the star sparkles">Dinlerken ışıldar</string>
+    <string name="style__move_press" comment="How the mic button moves while recording: the button pushes in">Dinlerken içeri basılır</string>
+    <string name="style__move_beat" comment="How the mic button moves while recording: double-thumps like a heartbeat">Dinlerken kalp gibi atar</string>
+    <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">Dinlerken titreşir</string>
+    <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">Dinlerken hareket et</string>
+    <string name="style__move_off" comment="Summary of the movement switch while it is off">Sabit kalır</string>
+    <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">Orijinal renkler</string>
+    <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">{charm} kendi renklerini korur.</string>
+    <string name="style__color" comment="Style tab heading above the colour swatches">Renk</string>
+    <string name="style__color_cloud" comment="Colour swatch name (white)">Bulut</string>
+    <string name="style__color_blossom" comment="Colour swatch name (pink)">Çiçek</string>
+    <string name="style__color_lilac" comment="Colour swatch name (light purple)">Leylak</string>
+    <string name="style__color_butter" comment="Colour swatch name (yellow)">Tereyağı</string>
+    <string name="style__color_mint" comment="Colour swatch name (green)">Nane</string>
+    <string name="style__color_sky" comment="Colour swatch name (light blue)">Gökyüzü</string>
+    <string name="style__more_colors" comment="Style tab row opening the full colour picker">Daha fazla renk</string>
+    <string name="style__motion" comment="Style tab heading above how the mic button moves while recording">Dinlerken</string>
+    <string name="style__button_off" comment="Style tab note while the floating mic button is off">Kayan mikrofon düğmesi kapalı, bu yüzden şimdilik bunu yalnızca burada göreceksin.</string>
+    <string name="style__look_summary" comment="Floating button settings: summary of the row opening the Style tab. {charm} is the look">{charm} · Stil sekmesinden değiştir</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Ayarlarda ara</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Ayarlarda ara…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Son aramalar</string>
@@ -196,7 +316,7 @@
     <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">Gece teması</string>
     <string name="pref__theme__theme_accent_color__label" comment="Label of accent color preference in Theme">Vurgu rengi (Material You)</string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">Yüklü temaları yönet</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">{app_name} Uygulama Varlıkları</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">Voice Mode Uygulama Varlıkları</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">Dahili Depolama</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">Harici Sağlayıcı</string>
     <string name="settings__theme_manager__title_day" comment="Title of the theme manager screen for day theme selection">Gündüz temasını seç</string>
@@ -226,7 +346,7 @@
     <string name="settings__theme_editor__code_recording_help_text">Bir tuşun kodunu bulmak için kod giriş alanının yanındaki düğmeyi kullanın. Etkinleştirildiğinde, bir sonraki tuşa basışı kaydedecek ve kodu giriş alanına ekleyecektir.</string>
     <string name="settings__theme_editor__code_recording_started">Tuş kodu kaydı başlatıldı</string>
     <string name="settings__theme_editor__code_recording_stopped">Tuş kodu kaydı durduruldu</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Bir tuş kodunu kaydetmek için {app_name}\'in varsayılan klavye olması gerekir</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Bir tuş kodunu kaydetmek için Voice Mode\'in varsayılan klavye olması gerekir</string>
     <string name="settings__theme_editor__code_recording_placeholder">Kaydediliyor…</string>
     <string name="settings__theme_editor__add_property">Özellik ekle</string>
     <string name="settings__theme_editor__edit_property">Özelliği düzenle</string>
@@ -241,7 +361,7 @@
     <string name="settings__theme_editor__component_meta_is_borderless">Kenarlıksız mı</string>
     <string name="settings__theme_editor__component_meta_stylesheet_path">Stil sayfası yolu</string>
     <string name="settings__theme_editor__stylesheet_error_title">Stil sayfası hatası</string>
-    <string name="settings__theme_editor__stylesheet_error_description">{app_name}, stil sayfasını esnek bir şekilde yüklemeyi deneyebilir ve eksik şemaları, kuralları ekleyebilir veya geçersiz kuralları, özellikleri veya değerleri kaldırabilir. {app_name}\'in bu değişiklikleri uygulamasını ister misiniz?</string>
+    <string name="settings__theme_editor__stylesheet_error_description">Voice Mode, stil sayfasını esnek bir şekilde yüklemeyi deneyebilir ve eksik şemaları, kuralları ekleyebilir veya geçersiz kuralları, özellikleri veya değerleri kaldırabilir. Voice Mode\'in bu değişiklikleri uygulamasını ister misiniz?</string>
     <string name="settings__theme_editor__component_meta_material_you__palette_style">Palet Tarzı</string>
     <string name="settings__theme_editor__component_meta_material_you__color_contrast">Renk Kontrastı</string>
     <string name="snygg__rule_annotation__defines">Değişkenler</string>
@@ -597,7 +717,7 @@
     <string name="pref__other__show_app_icon__summary_atleast_q" comment="Summary of Show app icon preference in Other for Android 10+">Sistem kısıtlamaları nedeniyle Android 10+ üzerinde her zaman etkindir</string>
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">Hakkında</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">{app_name} uygulama simgesi</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Voice Mode uygulama simgesi</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">Açık kaynak lisansları</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">Gizlilik politikası</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">Kaynak kodu</string>
@@ -614,29 +734,29 @@
     <string name="about__privacy_policy__title" comment="Preference title">Gizlilik politikası</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">Bu projenin gizlilik politikası</string>
     <string name="about__project_license__title" comment="Preference title">Proje lisansı</string>
-    <string name="about__project_license__summary" comment="Preference summary">{app_name}, {license_name} altında lisanslanmıştır</string>
+    <string name="about__project_license__summary" comment="Preference summary">Voice Mode, {license_name} altında lisanslanmıştır</string>
     <string name="about__project_license__error_license_text_failed" comment="Error text for license text loading failure">Hata: Lisans metni yüklenemedi.\n-&gt; Neden: {error_message}</string>
     <string name="about__project_license__error_reason_asset_manager_null" comment="Error text if asset manager is null">Varlık yöneticisi referansı boş</string>
     <string name="about__third_party_licenses__title" comment="Preference title">Üçüncü taraf lisansları</string>
     <string name="about__third_party_licenses__summary" comment="Preference summary">Bu uygulamada yer alan üçüncü taraf kütüphanelerin lisansları</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">Hoş geldiniz!</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">{app_name} kullandığınız için teşekkürler! Bu hızlı kurulum, cihazınızda {app_name} kullanmak için gerekli adımlarda size rehberlik eder.</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">Voice Mode kullandığınız için teşekkürler! Bu hızlı kurulum, cihazınızda Voice Mode kullanmak için gerekli adımlarda size rehberlik eder.</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">Gizlilik politikası</string>
     <string name="setup__footer__repository" comment="Repository label for URL">Depo</string>
-    <string name="setup__enable_ime__title">{app_name} uygulamasını etkinleştirin</string>
-    <string name="setup__enable_ime__description">Android, kullanabilmeniz için her özel klavyenin ayrı ayrı etkinleştirilmesini gerektirir. Sistem <i>Dil ve Giriş</i> Ayarlarını açın, orada \"{app_name}\" öğesini etkinleştirin.</string>
+    <string name="setup__enable_ime__title">Voice Mode uygulamasını etkinleştirin</string>
+    <string name="setup__enable_ime__description">Android, kullanabilmeniz için her özel klavyenin ayrı ayrı etkinleştirilmesini gerektirir. Sistem <i>Dil ve Giriş</i> Ayarlarını açın, orada \"Voice Mode\" öğesini etkinleştirin.</string>
     <string name="setup__enable_ime__open_settings_btn">Sistem Ayarlarını Aç</string>
-    <string name="setup__select_ime__title">{app_name} uygulamasını seçin</string>
-    <string name="setup__select_ime__description">{app_name} artık sisteminizde etkin. Aktif olarak kullanmak için giriş seçici diyaloğunda seçerek {app_name} uygulamasına geçin!</string>
+    <string name="setup__select_ime__title">Voice Mode uygulamasını seçin</string>
+    <string name="setup__select_ime__description">Voice Mode artık sisteminizde etkin. Aktif olarak kullanmak için giriş seçici diyaloğunda seçerek Voice Mode uygulamasına geçin!</string>
     <string name="setup__select_ime__switch_keyboard_btn">Klavyeyi Değiştir</string>
     <string name="setup__grant_notification_permission__title">Kilitlenme Raporu Bildirimlerine İzin Verin</string>
     <string name="setup__grant_notification_permission__description">Android 13+ itibarıyla, uygulamalar bildirim göndermek için izin istemelidir. Voice Mode\'da bu yalnızca bir kilitlenme durumunda kilitlenme raporu ekranını açmak için kullanılır. Bu izin sistem ayarlarından herhangi bir zamanda değiştirilebilir.</string>
     <string name="setup__grant_notification_permission__btn">İzin Ver</string>
     <string name="setup__finish_up__title">Bitir</string>
-    <string name="setup__finish_up__description_p1">{app_name} sistemde etkin ve özelleştirilmeye hazır.</string>
+    <string name="setup__finish_up__description_p1">Voice Mode sistemde etkin ve özelleştirilmeye hazır.</string>
     <string name="setup__finish_up__description_p2">Herhangi bir sorun, hata, çökme ile karşılaşırsanız veya sadece bir öneride bulunmak isterseniz, hakkında ekranından proje deposuna göz atın!</string>
-    <string name="setup__finish_up__finish_btn">Özelleştirmeye Başla</string>
+    <string name="setup__finish_up__finish_btn">Voice Mode\'u kullanmaya başla</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__title">Fiziksel klavye</string>
     <string name="physical_keyboard__system_settings__title">Fiziksel klavye ayarları</string>
@@ -700,7 +820,7 @@
     <string name="clipboard__search_placeholder" comment="Hint inside the clipboard search field">Panoda ara</string>
     <string name="clipboard__search_no_results" comment="Shown when no clip contains what was typed">Bunu içeren bir öge yok</string>
     <string name="clipboard__disabled__title">Pano geçmişi şu anda devre dışı</string>
-    <string name="clipboard__disabled__message">{app_name}\'in pano geçmişi, kopyaladığınız metinleri ve resimleri hızlıca saklamanıza ve erişmenize olanak tanır, ögeleri sabitleme, otomatik temizlemeyi yapılandırma ve maksimum öge sınırı belirleme yeteneği sunar.</string>
+    <string name="clipboard__disabled__message">Voice Mode\'in pano geçmişi, kopyaladığınız metinleri ve resimleri hızlıca saklamanıza ve erişmenize olanak tanır, ögeleri sabitleme, otomatik temizlemeyi yapılandırma ve maksimum öge sınırı belirleme yeteneği sunar.</string>
     <string name="clipboard__disabled__enable_button">Pano geçmişini etkinleştir</string>
     <string name="clipboard__empty__title">Panonuz boş</string>
     <string name="clipboard__empty__message">Metin klipleri veya resimler kopyaladığınızda burada görünecekler.</string>
@@ -830,7 +950,7 @@
     <string name="ext__editor__create_component__title_theme">Tema oluştur</string>
     <string name="ext__editor__create_component__from_empty">Boş</string>
     <string name="ext__editor__create_component__from_existing">Mevcuttan</string>
-    <string name="ext__editor__create_component__from_empty_warning">{app_name} uygulamasında yeniyseniz veya özelliklere aşina değilseniz boş bir bileşen oluşturmak ve yapılandırmak zor olabilir. Bu durumda, mevcut bir bileşeni kopyalayıp beğeninize göre değiştirmeyi düşünün.</string>
+    <string name="ext__editor__create_component__from_empty_warning">Voice Mode uygulamasında yeniyseniz veya özelliklere aşina değilseniz boş bir bileşen oluşturmak ve yapılandırmak zor olabilir. Bu durumda, mevcut bir bileşeni kopyalayıp beğeninize göre değiştirmeyi düşünün.</string>
     <string name="ext__editor__edit_component__title">Bileşeni düzenle</string>
     <string name="ext__editor__edit_component__title_theme">Tema bileşenini düzenle</string>
     <string name="ext__export__success">Eklenti başarıyla dışa aktarıldı!</string>
@@ -996,9 +1116,9 @@
     <string name="enum__extended_actions_placement__overlay_app_ui" comment="Enum value label">Uygulama arayüzünün üzerine kapla</string>
     <string name="enum__extended_actions_placement__overlay_app_ui__description" comment="Enum value description">Genişletilmiş eylem satırını uygulama arayüzünün üzerine bir kaplama olarak yerleştirir, sonuçta ortaya çıkan klavye arayüzü yüksekliğini etkilemez. Bu yerleşimin uygulama giriş alanının kısmen üzerine yazılmasına neden olabileceğini unutmayın</string>
     <string name="enum__haptic_vibration_mode__use_vibrator_directly" comment="Enum value label">Titreşimi doğrudan kullan</string>
-    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">{app_name} doğrudan varsayılan donanım titreşimi ile etkileşime girer. Bu, bir titreşimin süresi ve gücü üzerinde daha fazla kontrol sağlar, ancak titreşim dokunsal geri bildirim arayüzünü kullanmak kadar pürüzsüz ve optimize olmayabilir</string>
+    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">Voice Mode doğrudan varsayılan donanım titreşimi ile etkileşime girer. Bu, bir titreşimin süresi ve gücü üzerinde daha fazla kontrol sağlar, ancak titreşim dokunsal geri bildirim arayüzünü kullanmak kadar pürüzsüz ve optimize olmayabilir</string>
     <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface" comment="Enum value label">Dokunsal geri bildirim arayüzünü kullan</string>
-    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">{app_name}, tuşa basmalar için önceden tanımlanmış bir titreşim dizisini tetiklemek için dokunsal geri bildirim arayüzünü kullanır. Bu, bazı cihazlarda son derece iyi çalışabilir, ancak diğerlerinde tamamen başarısız olabilir veya çok kötü performans gösterebilir</string>
+    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">Voice Mode, tuşa basmalar için önceden tanımlanmış bir titreşim dizisini tetiklemek için dokunsal geri bildirim arayüzünü kullanır. Bu, bazı cihazlarda son derece iyi çalışabilir, ancak diğerlerinde tamamen başarısız olabilir veya çok kötü performans gösterebilir</string>
     <string name="enum__key_hint_mode__accent_priority" comment="Enum value label">Aksan önceliklidir</string>
     <string name="enum__key_hint_mode__accent_priority__description" comment="Enum value description">Uzun basıştan sonra seçilen ilk karakter her zaman birincil aksandır veya birincil aksan yoksa ipucu sembolüdür</string>
     <string name="enum__key_hint_mode__hint_priority" comment="Enum value label">İpucu önceliklidir</string>
@@ -1134,6 +1254,7 @@
     <string name="quick_action__ime_ui_mode_dictate">Dikte</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Dikte etmek için dokunun, yazıya dökmek için tekrar dokunun</string>
     <string name="quick_action__dictate_live_prompt">Canlı komut</string>
+    <string name="dictate__live_prompt_chip" comment="Prompt chip and floating-button menu entry: you speak an instruction (e.g. make this more polite, or write a thank-you note) instead of dictating text, and the AI carries it out">Sesle iste</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Sözlü bir talimat kaydedin ve yapay zekâya gönderin</string>
     <string name="quick_action__dictate_prompts">Yapay zekâ komutları</string>
     <string name="quick_action__dictate_prompts__tooltip">Yapay zekâ yeniden ifade etme komutlarını açın</string>
@@ -1141,9 +1262,8 @@
     <string name="about__based_on_floris__summary">Patrick Goldinger ve katkıda bulunanların FlorisBoard çatalı, Apache 2.0. Açmak için dokunun.</string>
     <string name="about__feedback__title">Geri bildirim ve destek</string>
     <string name="about__feedback__summary">Sorular, hatalar veya fikirlerle bir e-posta gönderin</string>
-    <string name="about__feedback__email">support@voicemode.example</string>
-    <string name="about__feedback__subject">Voice Mode Feedback</string>
-    <string name="setup__provider__title">Voice Mode\'in nasıl yazıya dökeceğini seçin</string>
+    <string name="about__feedback__email">contact@devemperor.net</string>
+    <string name="setup__provider__title">Voice Mode\'un nasıl yazıya dökeceğini seçin</string>
     <string name="setup__provider__choose_intro">Voice Mode, konuşmanızı bir yapay zekâ hizmetiyle metne dönüştürür. Çoğu kişiye yukarıdaki iki yoldan biri uyar — hiç bulut hizmeti kullanmak istemiyorsanız aşağıda iki yol daha var.</string>
     <string name="setup__provider__choice_cloud_title">Uygulamada kontör satın alın</string>
     <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: hiçbir yerde hesap yok, API anahtarı yok. Dikte dakikalarını Google Play üzerinden satın alırsınız ve süreleri hiç dolmaz. Rahat yol — ve doğrudan bir sağlayıcıya gitmekten biraz daha pahalı.</string>
@@ -1156,7 +1276,7 @@
     <string name="setup__provider__choice_local_title">Cihazınızda, çevrimdışı</string>
     <string name="setup__provider__choice_local_body">Bir konuşma modelini bir kez indirin. Hesap yok, ücret yok ve hiçbir ses telefonunuzdan çıkmaz.</string>
     <string name="setup__provider__choice_server_title">Kendi sunucunuz</string>
-    <string name="setup__provider__choice_server_body">Voice Mode\'i kendi işlettiğiniz bir konuşma sunucusuna ya da OpenAI uyumlu herhangi bir uç noktaya yönlendirin.</string>
+    <string name="setup__provider__choice_server_body">Voice Mode\'u kendi işlettiğiniz bir konuşma sunucusuna ya da OpenAI uyumlu herhangi bir uç noktaya yönlendirin.</string>
     <string name="setup__provider__local_intro">Konuşma tanıma o zaman telefonunuzda çalışır: hiçbir şey hiçbir yere gönderilmez ve bağlantı olmadan da çalışır. Şimdi indirmek için bir model seçin — sonradan model ekleyebilir veya değiştirebilirsiniz.</string>
     <string name="setup__provider__local_recommended">Diliniz için önerilir</string>
     <string name="setup__provider__local_bigger">Daha doğru, ama çok daha büyük bir indirme</string>
@@ -1164,7 +1284,7 @@
     <string name="setup__provider__local_use_btn">Bu modeli kullan</string>
     <string name="setup__provider__local_all_models">Tüm modelleri göster</string>
     <string name="setup__provider__intro">Voice Mode, çevrimiçi bir yapay zekâ hizmetinin yardımıyla konuşmanızı metne dönüştürür. Bunu kullanmak için böyle bir hizmete ait kendi kişisel anahtarınıza ihtiyacınız vardır.</string>
-    <string name="setup__provider__what_is_key">API anahtarı, Voice Mode\'in hizmeti sizin adınıza kullanmasını sağlayan kişisel bir parola gibidir. Oluşturmak ücretsizdir ve yaklaşık iki dakika sürer.</string>
+    <string name="setup__provider__what_is_key">API anahtarı, Voice Mode\'un hizmeti sizin adınıza kullanmasını sağlayan kişisel bir parola gibidir. Oluşturmak ücretsizdir ve yaklaşık iki dakika sürer.</string>
     <string name="setup__provider__recommended"><b>Groq</b>\'u öneriyoruz — günlük dikte için hızlı ve ücretsizdir.</string>
     <string name="setup__provider__steps_groq">1. Groq\'u açmak için aşağıdaki düğmeye dokunun.\n2. Google ile veya e-posta adresinizle oturum açın.\n3. “Create API Key”e dokunun, herhangi bir ad verin ve onaylayın.\n4. Anahtarı kopyalayın (“gsk_” ile başlar).\n5. Buraya geri dönün ve aşağıdaki “API anahtarını yapıştır”a dokunun.</string>
     <string name="setup__provider__steps_generic">1. {provider} hizmetini açmak için aşağıdaki düğmeye dokunun.\n2. Henüz bir hesabınız yoksa oluşturun.\n3. Yeni bir API anahtarı oluşturun ve kopyalayın.\n4. Buraya geri dönün ve aşağıdaki “API anahtarını yapıştır”a dokunun.</string>
@@ -1202,7 +1322,7 @@
     <string name="dictate__floating_button_service_enabled">Etkin · sistem ayarlarını açmak için dokunun</string>
     <string name="dictate__floating_button_service_disabled">Henüz etkin değil · kurmak için dokunun</string>
     <string name="dictate__floating_button_disclosure_title">Kayan düğmeyi etkinleştir</string>
-    <string name="dictate__floating_button_disclosure_message">Kayan düğmeyi göstermek için Voice Mode’in erişilebilirlik hizmetine ihtiyacı var. Herhangi bir uygulamada bir metin alanının odaklandığını algılar — böylece düğme görünebilir — ve yazıya dökülen konuşmanızı o alana ekler. Voice Mode metninizi yerleştirmek için yalnızca odaklanılan alanı okur; başka hiçbir ekran içeriğini toplamaz, saklamaz veya paylaşmaz.\n\nSonraki ekranda “Voice Mode kayan düğmesi” öğesini bulun ve açın.</string>
+    <string name="dictate__floating_button_disclosure_message">Kayan düğmeyi göstermek için Voice Mode’un erişilebilirlik hizmetine ihtiyacı var. Herhangi bir uygulamada bir metin alanının odaklandığını algılar — böylece düğme görünebilir — ve yazıya dökülen konuşmanızı o alana ekler. Voice Mode metninizi yerleştirmek için yalnızca odaklanılan alanı okur; başka hiçbir ekran içeriğini toplamaz, saklamaz veya paylaşmaz.\n\nSonraki ekranda “Voice Mode kayan düğmesi” öğesini bulun ve açın.</string>
     <string name="dictate__floating_button_disclosure_continue">Ayarları aç</string>
     <string name="dictate__floating_button_mic_title">Mikrofon erişimi</string>
     <string name="dictate__floating_button_mic_summary">Sesinizi kaydetmek için gerekli · izin vermek için dokunun</string>
@@ -1265,14 +1385,16 @@
     <string name="dictate__remember_last_dictation_title">Son dikteyi hatırla</string>
     <string name="changelog__v4_2_0">• YENİ: kayan dikte düğmesi — başka bir klavye etkin olsa bile herhangi bir uygulamaya doğrudan dikte edin. Üç stilden birini seçin (Hap, Halka, Küre), konuşurken canlı dalga biçimini izleyin, kenara yapışmayla istediğiniz yere sürükleyin, rengini ve boyutunu ayarlayın ve yeniden ifade etmek için basılı tutun. Ayarlar ▸ Voice Mode ▸ Kayan düğme bölümünden açın.\n• YENİ: Google Gemini — transkripsiyon ve yeniden ifade için kendi AI Studio API anahtarını kullan.\n• İstemler artık varsayılan olarak tuşların üzerinde sabit bir sırada görünür.\n• Tarayıcılar ve diğer klavyeler dahil uygulamalar arası daha güvenilir metin ekleme.</string>
     <string name="dictate__promo_floating_button_message">Yeni: her yerde dikte et</string>
+    <string name="dictate__promo_keep_button_message" comment="One-time Smartbar question to people who mostly dictate with the floating mic button: should it also show while this keyboard is open? Keep short for one line.">Kayan mikrofon burada da kalsın mı?</string>
+    <string name="dictate__promo_keep_button_action" comment="Short label of the accent pill that keeps the floating mic button showing over this keyboard. Must stay short to fit the single-line Smartbar.">Kalsın</string>
     <string name="dictate__promo_floating_button_action">Deneyin</string>
     <string name="setup__floating_button__btn">Kayan düğmeyi ayarla</string>
     <string name="setup__nav_back">Geri</string>
     <string name="setup__nav_next">İleri</string>
     <string name="setup__floating_button__title">Her yerde dikte et (isteğe bağlı)</string>
     <string name="setup__floating_button__intro">Kayan düğme, herhangi bir uygulamanın üzerine küçük bir dikte balonu yerleştirir; böylece klavye değiştirmeden herhangi bir metin alanına konuşabilirsin.</string>
-    <string name="setup__floating_button__accessibility_note">Bunun için {app_name}, Android’in erişilebilirlik ayarlarını kullanır — balon bu sayede diğer uygulamaların üzerinde görünüp yazıya dökülen metni senin için ekleyebilir. Sonraki ekran, etkinleştirme konusunda sana yol gösterir.</string>
-    <string name="setup__floating_button__optional_note">Bu tamamen isteğe bağlı — {app_name} uygulamasını yalnızca tam bir klavye olarak kullanmak istiyorsan atla. Bunu istediğin zaman ayarlardan kurabilirsin.</string>
+    <string name="setup__floating_button__accessibility_note">Bunun için Voice Mode, Android’in erişilebilirlik ayarlarını kullanır — balon bu sayede diğer uygulamaların üzerinde görünüp yazıya dökülen metni senin için ekleyebilir. Sonraki ekran, etkinleştirme konusunda sana yol gösterir.</string>
+    <string name="setup__floating_button__optional_note">Bu tamamen isteğe bağlı — Voice Mode uygulamasını yalnızca tam bir klavye olarak kullanmak istiyorsan atla. Bunu istediğin zaman ayarlardan kurabilirsin.</string>
     <string name="setup__floating_button__skip_btn">Atla — klavyeyi kullanacağım</string>
     <string name="dictate__floating_button_badge_new">Yeni</string>
     <string name="dictate__panel_title">Yapay zekâ komutları</string>
@@ -1282,6 +1404,8 @@
     <string name="dictate__prompts_layout_panel_description">Komutları sihirli değnek düğmesiyle kendi panellerinde açın.</string>
     <string name="dictate__prompts_layout_row_label">Her zaman açık satır</string>
     <string name="dictate__prompts_layout_row_description">Komutları klavyenin üzerindeki ek bir satıra sabitleyin.</string>
+    <string name="dictate__prompts_layout_when_useful_label" comment="Prompt layout option: the rewrite chips appear in the keyboard's top bar only right after dictating or while text is selected">Gerektiğinde</string>
+    <string name="dictate__prompts_layout_when_useful_description">Komutları dikte ettikten hemen sonra veya metin seçiliyken üst çubukta göster.</string>
     <string name="dictate__status_idle">Dikte etmek için dokunun</string>
     <string name="dictate__status_recording">Kaydediliyor – durdurmak için dokunun</string>
     <string name="dictate__status_transcribing">Yazıya dökülüyor…</string>
@@ -1327,8 +1451,8 @@
     <string name="dictate__action_dismiss">Kapat</string>
     <string name="dictate__action_yes">Evet</string>
     <string name="dictate__action_no">Hayır, teşekkürler</string>
-    <string name="dictate__promo_rate_message">Voice Mode\'ten memnun musunuz?</string>
-    <string name="dictate__promo_donate_message">Voice Mode\'i destekleyin mi?</string>
+    <string name="dictate__promo_rate_message">Voice Mode\'dan memnun musunuz?</string>
+    <string name="dictate__promo_donate_message">Voice Mode\'u destekleyin mi?</string>
     <string name="dictate__promo_rate_action">Puan ver</string>
     <string name="dictate__promo_donate_action">Bağış yap</string>
     <string name="dictate__promo_changelog_message">Voice Mode güncellendi</string>
@@ -1527,9 +1651,7 @@
     <string name="dictate__custom_words_title">Özel sözcükler</string>
     <string name="dictate__custom_words_summary_empty">Doğru yazılması için adlar veya teknik terimler ekleyin</string>
     <string name="dictate__custom_words_placeholder">örn. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} kelime · {budget} jetonun yaklaşık {tokens} kadarı</string>
     <string name="dictate__custom_words_budget_info">Buradaki her kelime her dikteyle birlikte gönderilir ve konuşma modeli bunun yalnızca yaklaşık {budget} jetonluk bağlamını okur. Listen bunun yaklaşık {tokens} kadarını kullanıyor.</string>
-    <string name="dictate__custom_words_budget_over">Listen, konuşma modelinin okuduğundan uzun. {count} kelimenin yaklaşık {fits} tanesi modele ulaşıyor; geri kalanı her diktede gönderilip yok sayılıyor. Daha geniş bir sözcük dağarcığı için özel eşleştirmeleri kullan — onlar birebirdir, çevrimdışı çalışır ve hiçbir maliyeti yoktur.</string>
     <string name="dictate__custom_words_import">Kelime listesi içe aktar</string>
     <string name="dictate__custom_words_export">Kelime listesini dışa aktar</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1539,11 +1661,8 @@
     <string name="dictate__custom_words_import_nofit">{count} tanesi dışarıda kaldı — konuşma modeli yalnızca yaklaşık {budget} jetonluk bağlam okuyor, dolayısıyla her diktede gönderilip yok sayılacaklardı.</string>
     <string name="dictate__custom_words_import_unusable">{count} satırda yazılacak bir şey yoktu ve atlandı.</string>
     <string name="dictate__custom_words_import_truncated">Dosyanın yalnızca ilk {count} kaydı okundu.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Kişisel sözlüğe de ekle</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Bu liste yalnızca konuşma modeline bir kelimenin nasıl yazıldığını söyler. Kişisel sözlük ise klavyenin sen yazarken kullandığı sözlüktür — uzunluk sınırı yoktur, bu yüzden dosyadaki her kelime oraya girer, yalnızca yukarıya sığanlar değil.</string>
     <string name="dictate__custom_words_import_empty">Bu dosyada kelime bulunamadı</string>
     <string name="dictate__custom_words_import_done">{count} kelime eklendi</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} kelime eklendi, {dict} tanesi de kişisel sözlüğüne</string>
     <string name="dictate__file_unreadable">Bu dosya okunamadı</string>
     <string name="dictate__file_export_done">Dosya kaydedildi</string>
     <string name="dictate__file_export_failed">Bu dosya yazılamadı</string>
@@ -1677,7 +1796,7 @@
     <string name="dictate__import_not_audio">Bu dosyada ses yok.</string>
     <string name="dictate__import_only_first">Yalnızca ilk dosya yazıya dökülür – {count} dosya daha atlandı.</string>
     <string name="dictate__setup_description">Mikrofonla dikte etmeye başlayabilmek için yapay zekâ sağlayıcınızı ve API anahtarınızı ayarlayın.</string>
-    <string name="dictate__setup_configure_btn">Voice Mode\'i yapılandır</string>
+    <string name="dictate__setup_configure_btn">Voice Mode\'u yapılandır</string>
     <string name="setup__grant_mic_permission__title">Mikrofon erişimi</string>
     <string name="setup__grant_mic_permission__description">Voice Mode, sesinizi yazıya dökmek üzere kaydetmek için mikrofon erişimine ihtiyaç duyar.</string>
     <string name="setup__grant_mic_permission__btn">Mikrofon iznini ver</string>
@@ -1685,8 +1804,8 @@
     <string name="changelog__view_all">Tüm değişiklikleri görüntüle</string>
     <string name="changelog__intro">Voice Mode güncellendi. İşte yenilikler:</string>
     <string name="changelog__version_header">Sürüm {version}</string>
-    <string name="changelog__donate">Voice Mode\'ten memnun musunuz? Geliştirmeyi desteklemek için buraya dokunun ♥</string>
-    <string name="changelog__current">• Yepyeni bir klavye: Voice Mode artık, ses panelini açan özel bir mikrofon tuşuna sahip, tam donanımlı çok dilli bir düzen klavyesi olarak geliyor.\n• Kendi yapay zekânızı getirin: OpenAI uyumlu herhangi bir sağlayıcı seçin ve API anahtarınızı Ayarlar → Voice Mode altında girin.\n• Seçtiğiniz modelle desteklenen akıllı biçimlendirme ve yeniden ifade etme.\n• Önceki Voice Mode uygulamasındaki ayarlarınız otomatik olarak içe aktarılır.</string>
+    <string name="changelog__donate">Voice Mode\'dan memnun musunuz? Geliştirmeyi desteklemek için buraya dokunun ♥</string>
+    <string name="changelog__current">• Yepyeni bir klavye: Voice Mode artık, ses panelini açan özel bir mikrofon tuşuna sahip, tam donanımlı çok dilli bir düzen klavyesi olarak geliyor.\n• Kendi yapay zekânızı getirin: OpenAI uyumlu herhangi bir sağlayıcı seçin ve API anahtarınızı Ayarlar → Voice Mode altında girin.\n• Seçtiğiniz modelle desteklenen akıllı biçimlendirme ve yeniden ifade etme.\n• Önceki Dictate uygulamasındaki ayarlarınız otomatik olarak içe aktarılır.</string>
     <string name="changelog__v4_1_0">• Yeni: doğrudan klavyeden emoji arayın.\n• Yeni transkripsiyon sağlayıcısı: Soniox.\n• Son dikte ettiğinizi yeniden ekleyin ve klavye kapandığında kesilen kayıtları geri getirin.\n• İstem çubuğu artık canlı olarak yenileniyor: düzenlemek için bir isteme uzun basın.\n• Yapay zekâ sağlayıcıları ekranı artık hem etkin transkripsiyon hem de yeniden ifade sağlayıcınızı gösteriyor.\n• Daha büyük, daha kolay dokunulan kayıt düğmesi.\n• Düzeltmeler: bir destek bildirimi bazı dillerde takılıp çubuğu kapatabiliyordu; istemler, klavye veya tema seçiliyken yedekleme artık başarısız olmuyor; kaydedilen API anahtarları güncellemede korunuyor.</string>
     <string name="changelog__v4_1_1">• Düzeltme: vurgu rengi bazı cihazlarda yeşil görünebiliyordu; tuşlar ve düğmeler yeniden Voice Mode mavisinde.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -1774,7 +1893,7 @@
     <string name="dictate__providers_rewording_single_call_note">Şu anda kullanılmıyor — yazıya dökme sağlayıcınız yeniden ifadeyi tek çağrısında yapıyor.</string>
     <string name="dictate__wear_title">Wear OS</string>
     <string name="dictate__wear_summary">Eşleştirilmiş saatten dikte seçenekleri</string>
-    <string name="dictate__wear_install_title">Voice Mode\'i saatinize yükleyin</string>
+    <string name="dictate__wear_install_title">Voice Mode\'u saatinize yükleyin</string>
     <string name="dictate__wear_install_summary">Play Store\'u açar — eşleşmiş Wear OS 3+ saatte saatinizi hedef olarak seçin.</string>
     <string name="dictate__wear_auto_rewording_title">Saat diktelerini otomatik yeniden ifade et</string>
     <string name="dictate__wear_auto_rewording_summary">Saat diktelerini telefondaki gibi yeniden ifade et.</string>
@@ -1888,7 +2007,7 @@
     <string name="dictate__audio_save_failed">Ses kaydedilemedi</string>
     <string name="dictate__instant_recording_mode_off">Kapalı</string>
     <string name="dictate__instant_recording_mode_always">Klavye her açıldığında</string>
-    <string name="dictate__instant_recording_mode_after_switch">Yalnızca {app_name} klavyesine geçtikten sonra</string>
+    <string name="dictate__instant_recording_mode_after_switch">Yalnızca Voice Mode klavyesine geçtikten sonra</string>
     <string name="dictate__instant_recording_in_numeric">Sayı alanlarında da</string>
     <string name="dictate__instant_recording_skip_numeric_title">Sayı alanlarını atla</string>
     <string name="dictate__instant_recording_skip_numeric_summary">Sayı, telefon veya PIN alanlarında otomatik başlatma</string>
@@ -1944,7 +2063,7 @@
     <string name="apptour__badge_highlight">★ Öne çıkan</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">Kısa bir tur</string>
-    <string name="apptour__intro_body">İşte Dictate 5.0’daki yenilikler — öne çıkanlar bir dakikadan kısa sürede. Doğrudan o ayara gitmek için herhangi bir sayfada «Dene»ye dokun.</string>
+    <string name="apptour__intro_body">İşte Voice Mode 5.0’daki yenilikler — öne çıkanlar bir dakikadan kısa sürede. Doğrudan o ayara gitmek için herhangi bir sayfada «Dene»ye dokun.</string>
     <string name="apptour__glide_eyebrow">Klavye</string>
     <string name="apptour__glide_title">Kaydırarak yaz</string>
     <string name="apptour__glide_body">Parmağını tuştan tuşa kaydır, Voice Mode bu izi bütün kelimelere dönüştürsün. Her dil, istendiğinde indirilen kendi sözlüğünü getirir — Hareketler altından etkinleştir.</string>
@@ -1990,10 +2109,10 @@
     <string name="apptour51__history_body">Artık her dikte, aranabilir bir geçmişte saklanır. Geçmiş herhangi bir metni tek dokunuşla yeniden ekle, orijinal sesi yeniden çal, yeniden transkribe et ya da en çok kullandıklarını sabitle. Özel bir ekran, ses kayıtlarının ne kadar saklanacağı dahil her şeyi yönetmeni sağlar.</string>
     <string name="apptour51__longform_eyebrow">Transkripsiyon</string>
     <string name="apptour51__longform_title">Uzun dikte</string>
-    <string name="apptour51__longform_body">İstediğin kadar konuş. Uzun kayıtlar otomatik olarak parçalara bölünür ve sen devam ederken arka planda transkribe edilir; böylece metnini daha erken alırsın ve asla bir uzunluk sınırına takılmazsın. Bir parçayı kendin kes ya da Voice Mode’in doğal duraklamaları algılamasına izin ver.</string>
+    <string name="apptour51__longform_body">İstediğin kadar konuş. Uzun kayıtlar otomatik olarak parçalara bölünür ve sen devam ederken arka planda transkribe edilir; böylece metnini daha erken alırsın ve asla bir uzunluk sınırına takılmazsın. Bir parçayı kendin kes ya da Voice Mode’un doğal duraklamaları algılamasına izin ver.</string>
     <string name="apptour51__gif_eyebrow">Klavye</string>
     <string name="apptour51__gif_title">GIF arama</string>
-    <string name="apptour51__gif_body">Voice Mode’ten hiç çıkmadan GIF bul ve gönder. GIF panelini aç, istediğin her şeyi ara ve doğrudan sohbetine bırak — tam buraya yerleştirilmiş, Gboard tarzı hızlı bir seçici.</string>
+    <string name="apptour51__gif_body">Voice Mode’dan hiç çıkmadan GIF bul ve gönder. GIF panelini aç, istediğin her şeyi ara ve doğrudan sohbetine bırak — tam buraya yerleştirilmiş, Gboard tarzı hızlı bir seçici.</string>
     <string name="apptour51__classic_eyebrow">Klasik düzen</string>
     <string name="apptour51__classic_title">Klasik düzen, yenilendi</string>
     <string name="apptour51__classic_body">Klavyesiz dikte ekranı büyük bir güncelleme aldı: sürükle bırak ile oluşturduğun serbestçe düzenlenebilir bir eylem satırı, uzun kayıt denetimleri, bir ya da iki istem satırı, her zaman erişilebilir bir geri silme tuşu, Enter tuşunda bir karakter açılır menüsü ve tek elle daha kolay kullanım için isteğe bağlı ikinci bir «klavye değiştir» düğmesi.</string>
@@ -2008,11 +2127,11 @@
     <string name="apptour51__more_body">Birçok küçük yükseltme de var: ayarlardan etkin transkripsiyon dilini seç, durdurma düğmesi artık çalışan bir isteği gerçekten iptal eder, API anahtarları için bir göster/gizle geçişi ve diller arası otomatik düzeltme olmadan çok dilli yazım — ayrıca klasik düzen, sayı tuş takımı ve ötesinde birçok düzeltme.</string>
     <string name="apptour51__outro_eyebrow">İşte 5.1</string>
     <string name="apptour51__outro_title">Güncellemenin keyfini çıkar</string>
-    <string name="apptour51__outro_body">Voice Mode’i kullandığın için teşekkürler! Her gün işine yarıyorsa, küçük bir bağış projeyi ayakta tutar. Bu turların herhangi birine istediğin zaman Ayarlar › Hakkında altından yeniden göz atabilirsin.</string>
+    <string name="apptour51__outro_body">Voice Mode’u kullandığın için teşekkürler! Her gün işine yarıyorsa, küçük bir bağış projeyi ayakta tutar. Bu turların herhangi birine istediğin zaman Ayarlar › Hakkında altından yeniden göz atabilirsin.</string>
     <string name="apptour52__cta_try">Dene</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">Voice Mode 5.2</string>
     <string name="apptour52__intro_title">Her yerde dikte et</string>
-    <string name="apptour52__intro_body">Bu sürüm Voice Mode\'i kendi klavyesinin ötesine taşıyor: telefonunun sesli girişi olarak, her yerden sesli komutlar için ve uzun diktelerini düzenlemek için. İşte yenilikler.</string>
+    <string name="apptour52__intro_body">Bu sürüm Voice Mode\'u kendi klavyesinin ötesine taşıyor: telefonunun sesli girişi olarak, her yerden sesli komutlar için ve uzun diktelerini düzenlemek için. İşte yenilikler.</string>
     <string name="apptour52__voiceinput_eyebrow">Sistem geneli sesli giriş</string>
     <string name="apptour52__voiceinput_title">Her klavyeden Voice Mode</string>
     <string name="apptour52__voiceinput_body">Voice Mode artık sistem sesli girişi olarak kaydoluyor: diğer klavyelerin ve uygulamaların mikrofon tuşu Voice Mode üzerinden yazıya döküyor — kendi sağlayıcın, kendi istemlerin ve kendi yerel modellerinle. Klavye listende „Voice Mode sesli giriş“i etkinleştir ve sesli giriş yöntemi olarak seç. (Gboard mikrofonunu Google\'a sabitler — sistem ayarına uyan bir klavye kullan.)</string>
@@ -2038,7 +2157,7 @@
     <string name="apptour52__outro_title">İyi dikteler</string>
     <string name="apptour52__outro_body">Ayrıca kapak altında bir sürü şey: ekran dikte boyunca açık kalıyor, yerel modeller boştayken belleği bırakıyor, saatteki dikteler bağlantı kopmalarını atlatıyor ve Almanca otomatik düzeltme artık umlautları biliyor. Tüm turları Ayarlar › Hakkında altında yeniden izleyebilirsin.</string>
     <string name="apptour53__cta_try">Dene</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">Voice Mode 5.3</string>
     <string name="apptour53__intro_title">Basılı tut, konuş, tamam</string>
     <string name="apptour53__intro_body">Bu sürüm en çok yaptığın iki şeyle ilgili: telefonunla konuşmak ve onda yazmak. İkisi de hızlandı, ikisi de yolundan daha iyi çekiliyor.</string>
     <string name="apptour53__pushtotalk_eyebrow">Bas konuş</string>
@@ -2069,7 +2188,7 @@
     <string name="apptour60__cta_try">Deneyin</string>
     <string name="apptour60__art_minutes">dakika</string>
     <string name="apptour60__art_speed">1,5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">Voice Mode 6.0</string>
     <string name="apptour60__intro_title">Kredi, Çince ve daha ucuz dikte</string>
     <string name="apptour60__intro_body">Bu sürüm ikinci bir giriş yolu ekliyor — kendi API anahtarınızı getirmek yerine kredi satın almak —, ayrıca Çince için pinyin, sözlük kazanan yedi dil ve daha az maliyetli kayıtlar.</string>
     <string name="apptour60__cloud_eyebrow">Yeni: Voice Mode Cloud</string>
@@ -2092,18 +2211,18 @@
     <string name="apptour60__more_body">Durdurma düğmesini basılı tutmak takılıp kalan bir dökümü geri alır. Yüzen düğme artık doğrulayamadığı bir başarıyı bildirmiyor ve ekranla birlikte sönüyor. Kaydırarak yazma artık kendi eklediğiniz sözcükleri tanıyor. Güncellemenin hemen ardından yaşanan çökme de giderildi.</string>
     <string name="apptour60__outro_eyebrow">İşte 6.0</string>
     <string name="apptour60__outro_title">İyi kullanımlar</string>
-    <string name="apptour60__outro_body">Voice Mode\'i nasıl kullanırsanız kullanın — kendi anahtarınız, kendi sunucunuz, cihazdaki bir model ya da kredi —, diğer yollarda hiçbir şey değişmedi. Tüm turları Ayarlar › Hakkında altında yeniden izleyebilirsiniz.</string>
+    <string name="apptour60__outro_body">Voice Mode\'u nasıl kullanırsanız kullanın — kendi anahtarınız, kendi sunucunuz, cihazdaki bir model ya da kredi —, diğer yollarda hiçbir şey değişmedi. Tüm turları Ayarlar › Hakkında altında yeniden izleyebilirsiniz.</string>
     <string name="apptour61__cta_try">Dene</string>
     <string name="apptour61__art_folder">Çıkartmalar</string>
     <string name="apptour61__art_share">Şununla paylaş</string>
     <string name="apptour61__art_typed">bri</string>
     <string name="apptour61__art_fixed">bir</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">Voice Mode 6.1</string>
     <string name="apptour61__intro_title">Çıkartmalar, sesli mesajlar ve yazım hatasını nihayet gören bir otomatik düzeltme</string>
     <string name="apptour61__intro_body">Klavyeye kendi çıkartmalarının bulunduğu bir klasörü göster, bir sesli mesajı ne dediğini öğrenmek için doğrudan Voice Mode ile paylaş ve görmemek üzere kurulmuş olduğu hatayı nihayet fark eden bir otomatik düzeltme kullan.</string>
     <string name="apptour61__stickers_eyebrow">Yeni: kendi çıkartmaların</string>
     <string name="apptour61__stickers_title">Telefondaki bir klasör, klavyede</string>
-    <string name="apptour61__stickers_body">Voice Mode\'e herhangi bir klasörü göster, içindeki görseller çıkartmaya dönüşsün — alt klasörler kendi favorileri ve son kullanılanlarıyla sekme olur. Herhangi bir uygulamadan paylaşma menüsüyle ekle, klavyeden çıkmadan sil. Bir sohbet uygulamasının gerçekte kabul ettiği, kabul ettiğini söylediği şey değildir: bu yüzden her çıkartma girişte bir kez biçime sokulur ve oradan yalnızca gönderilir.</string>
+    <string name="apptour61__stickers_body">Voice Mode\'a herhangi bir klasörü göster, içindeki görseller çıkartmaya dönüşsün — alt klasörler kendi favorileri ve son kullanılanlarıyla sekme olur. Herhangi bir uygulamadan paylaşma menüsüyle ekle, klavyeden çıkmadan sil. Bir sohbet uygulamasının gerçekte kabul ettiği, kabul ettiğini söylediği şey değildir: bu yüzden her çıkartma girişte bir kez biçime sokulur ve oradan yalnızca gönderilir.</string>
     <string name="apptour61__share_eyebrow">Yeni: Voice Mode ile paylaş</string>
     <string name="apptour61__share_title">O sesli mesajın ne dediğini öğren</string>
     <string name="apptour61__share_body">Voice Mode artık ses ve video için paylaşma menüsünde. Oraya bir sesli mesaj paylaş, kendiliğinden yazıya dökmeye başlayan bir ekran açılsın — aranacak alan yok, basılacak düğme yok. Metinde arama yapılabilir ve uzun kayıtlar geri çevrilmek yerine parçalar hâlinde işlenir.</string>
@@ -2127,7 +2246,7 @@
     <string name="apptour62__art_word">Zoya</string>
     <string name="apptour62__art_emoji_word">pasta</string>
     <string name="apptour62__art_emoji">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">Voice Mode 6.2</string>
     <string name="apptour62__intro_title">Kelimelerini öğreniyor ve beş yeni görünüme kavuştu</string>
     <string name="apptour62__intro_body">Klavye artık hiçbir sözlüğün bilmediği kelimeleri aklında tutabiliyor, tuşlar arkadaki uygulamayı sızdırabiliyor ve iki başparmağın da kendi yarısı olabiliyor. Üstüne her gün yaptığın işler için bir avuç küçük yardımcı.</string>
     <string name="apptour62__learning_eyebrow">Yeni: sen yazarken öğreniyor</string>
@@ -2135,7 +2254,7 @@
     <string name="apptour62__learning_body">Bir ismi, bir terimi ya da bir yeri yeterince sık yaz, klavye onu saklasın: artık hata olarak işaretlemeyi bırakır, onu önermeye ve ona düzeltmeye başlar. Bu güncelleme özelliği herkeste açıyor, daha önce kapatmış olanlarda da. Gizli modda, parola alanlarında ve tuş tuş yazmadığın hiçbir şeyden öğrenilmez; her şey bu cihazda kalır ve aşağıdaki düğme listeyi — ve anahtarı — açar.</string>
     <string name="apptour62__themes_eyebrow">Beş yeni görünüm</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep ve karanlık bir E-Ink</string>
-    <string name="apptour62__themes_body">Voice Mode Glass, uygulamayı tuşlar arasındaki boşluklardan gösterirken tuşların kendisi üzerinde okunacak kadar örtücü kalır; Glass Clear daha ileri gider ve daha güzel durur, bunun bedeli de klavyenin arkasına çizen uygulamaların yazısının sızmasıdır. Sand sıcak bir açık tema, Deep sakin bir koyu tema, E-Ink ise nihayet gece sürümüne kavuştu — yani otomatik geçiş hava karardıktan sonra artık eline beyaz bir klavye tutuşturmuyor.</string>
+    <string name="apptour62__themes_body">Glass, uygulamayı tuşlar arasındaki boşluklardan gösterirken tuşların kendisi üzerinde okunacak kadar örtücü kalır; Glass Clear daha ileri gider ve daha güzel durur, bunun bedeli de klavyenin arkasına çizen uygulamaların yazısının sızmasıdır. Sand sıcak bir açık tema, Deep sakin bir koyu tema, E-Ink ise nihayet gece sürümüne kavuştu — yani otomatik geçiş hava karardıktan sonra artık eline beyaz bir klavye tutuşturmuyor.</string>
     <string name="apptour62__split_eyebrow">Yeni: bölünmüş klavye</string>
     <string name="apptour62__split_title">İki başparmak da, uzanmadan</string>
     <string name="apptour62__split_body">Tek elli ve yüzen modun yanına gelen yeni bir hızlı eylem, sıraları birbirinden ayırarak her başparmağın kendi yarısında kalmasını sağlıyor. Yalnızca QWERTY değil, her düzen bölünüyor; çünkü ayrım yeri her düzene ayrı ayrı yazılmak yerine tuş genişliklerinden hesaplanıyor. Yatay modda ise uygulama, ikisine birden yer olduğu sürece görünür kalıyor.</string>
@@ -2164,7 +2283,7 @@
     <string name="apptour62__outro_title">Aynı klavye, daha çoğu senin</string>
     <string name="apptour62__outro_body">Nasıl dikte ettiğin konusunda hiçbir şey değişmiyor — kendi anahtarın, kendi sunucun ya da cihazdaki bir model. Tüm turları yeniden Ayarlar › Hakkında altında bulabilirsin.</string>
     <string name="apptour63__cta_try">Dene</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">Voice Mode 6.3</string>
     <string name="apptour63__intro_title">Klavyeden çıkmadan daha fazlası</string>
     <string name="apptour63__intro_body">Kamerayı basılı bir metne tut, metin alana düşsün. İmleç, seçim ve pano sonunda tek bir paneli paylaşıyor. Her Smartbar düğmesi uzun basışla ikinci bir eylem taşıyabiliyor. Ve çevrimdışı dikte için nihayet bir telefona gerçekten sığan modeller var.</string>
     <string name="apptour63__scan_eyebrow">Yeni: metni tara</string>
@@ -2303,8 +2422,6 @@
     <string name="dictate__cloud_other_way_body">İstediğiniz zaman kendi API anahtarınıza geçebilir, sonra geri dönebilirsiniz. Kontörünüz olduğu yerde kalır.</string>
     <string name="dictate__error_out_of_credit">Kontör bitti</string>
     <string name="dictate__action_top_up">Kontör yükle</string>
-    <string name="dictate__promo_low_credit_message">Kontör bitmek üzere.</string>
-    <string name="dictate__promo_low_credit_action">Yükle</string>
     <string name="prefs__media__sticker__title">Çıkartmalar</string>
     <string name="prefs__media__sticker_folder__title">Çıkartma klasörü</string>
     <string name="prefs__media__sticker_folder__summary_unset">Kendi görsellerinizin bulunduğu bir klasör seçin</string>

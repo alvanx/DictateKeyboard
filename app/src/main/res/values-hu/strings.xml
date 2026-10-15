@@ -121,7 +121,7 @@
     <string name="quick_actions_editor__subheader_hidden_actions">Elrejtett műveletek ({n})</string>
     <string name="select_subtype_panel__header">Altípus kiválasztása</string>
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">Az inkognitó mód bekapcsolva\n\nA {app_name} nem fog tanulni a beírt szavakból, amíg ez a mód aktív</string>
+    <string name="incognito_mode__toast_after_enabled">Az inkognitó mód bekapcsolva\n\nA Voice Mode nem fog tanulni a beírt szavakból, amíg ez a mód aktív</string>
     <string name="incognito_mode__toast_after_disabled">Az inkognitó mód mostantól alapértelmezés szerint ki van kapcsolva</string>
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">Beállítások</string>
@@ -129,9 +129,129 @@
     <string name="settings__help" comment="General label for help buttons in Settings">Súgó</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Alapértelmezett</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Rendszer alapértelmezése</string>
-    <string name="settings__home__title" comment="Title of the Home screen">Üdvözli a {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">A {app_name} nincs engedélyezve a rendszerben, így nem lesz elérhető beviteli módként a bevitelválasztóban. A probléma megoldásához kattintson ide.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">Nem a {app_name} az alapértelmezett beviteli mód. A probléma megoldásához kattintson ide.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">Üdvözli a Voice Mode</string>
+    <string name="home__recent_title">Legutóbbi diktálások</string>
+    <string name="home__recent_see_all">Összes</string>
+    <string name="home__recent_copy">Másolás</string>
+    <string name="home__recent_failed">Az átírás nem sikerült. A felvétel mentve.</string>
+    <string name="home__recent_retry">Újra</string>
+    <string name="home__transcribe_file">Fájl átírása</string>
+    <string name="home__ai_model">MI-modell</string>
+    <string name="home__stats_summary">megspórolva · {count} diktálás</string>
+    <string name="settings__all__title">Beállítások</string>
+    <string name="dictionary_hub__title">Szótár</string>
+    <string name="words__personal_dictionary">Személyes szótár</string>
+    <string name="mywords__subtitle">Nevek és kifejezések, amelyeket a(z) Voice Mode mindig helyesen ír le.</string>
+    <string name="mywords__title">Saját szavak</string>
+    <string name="mywords__explanation">Egy lista mindenhez. Minden szót az Ön írásmódjával ír le, amikor beszél, és felajánl, amikor gépel.</string>
+    <string name="mywords__empty">Még üres. Adjon hozzá egy nevet, egy terméket vagy bármilyen gyakran használt szót.</string>
+    <string name="mywords__more">+ további {count}</string>
+    <string name="mywords__see_all">Lista szerkesztése</string>
+    <string name="mywords__add_hint">Szó vagy név hozzáadása</string>
+    <string name="mywords__add">Szó hozzáadása</string>
+    <string name="mywords__usage">{limit} szóból {count} jut el a beszédmodellhez</string>
+    <string name="mywords__usage_full">{total} szóból {count} jut el a beszédmodellhez. Gépeléskor mindegyik használatban van.</string>
+    <string name="mywords__fixes">Javítások</string>
+    <string name="mywords__find_replace">Keresés és csere</string>
+    <string name="mywords__find_replace_none">Javítsa ki a szavakat, amelyeket a beszédmodell rendre elront</string>
+    <string name="mywords__find_replace_one">1 szabály: „{from}” → „{to}”</string>
+    <string name="mywords__find_replace_many">{count} szabály, pl. „{from}” → „{to}”</string>
+    <string name="mywords__learned">A gépeléséből tanult szavak</string>
+    <string name="mywords__learned_summary">Automatikusan gyűjtve. Bármelyiket eltávolíthatja.</string>
+    <string name="mywords__phone_settings">A telefon szótára és tanulási beállításai</string>
+    <string name="mywords__edit_as_text">Szerkesztés szövegként</string>
+    <string name="mywords__edit_as_text_summary">A teljes lista beillesztése, importálása vagy exportálása</string>
+    <string name="mywords__remove">{word} eltávolítása</string>
+    <string name="mywords__typing_only">Csak gépeléshez: a beszédmodellnek már nem jut hely</string>
+    <string name="mywords__budget_over">A lista hosszabb annál, amennyit a beszédmodell elolvas. A(z) {count} szóból az első {fits} jut el hozzá; a többit gépeléskor továbbra is felajánlja.</string>
+    <string name="mywords__row_summary">{count} szó, az Ön írásmódjával, gépeléskor felajánlva</string>
+    <string name="nav__home">Kezdőlap</string>
+    <string name="nav__style">Stílus</string>
+    <string name="home__mic_title">Az Ön mikrofongombja</string>
+    <string name="home__mic_on">{charm} · minden alkalmazásban lebeg</string>
+    <string name="home__mic_off">Nincs bekapcsolva</string>
+    <string name="home__mic_change_look">Megjelenés módosítása</string>
+    <string name="home__turn_on">Bekapcsolás</string>
+    <string name="home__keyboard_title">Voice Mode billentyűzet</string>
+    <string name="home__keyboard_off">Nincs bekapcsolva</string>
+    <string name="home__keyboard_on">Be · a mikrofon a billentyűzeten van</string>
+    <string name="firstrun__title">Mondja ki.\nA(z) Voice Mode leírja.</string>
+    <string name="firstrun__subtitle">Két gyors lépés, és már beszélhet is.</string>
+    <string name="firstrun__step_look">Válassza ki a mikrofongombot</string>
+    <string name="firstrun__more_looks">Több</string>
+    <string name="firstrun__step_where">Válassza ki, hol jelenjen meg</string>
+    <string name="firstrun__floating_title">Lebegő mikrofon</string>
+    <string name="firstrun__floating_summary">Bármely szövegmező mellett, a már megszokott billentyűzettel</string>
+    <string name="firstrun__keyboard_summary">Teljes billentyűzet beépített mikrofonnal</string>
+    <string name="firstrun__done">Bekapcsolva</string>
+    <string name="firstrun__try_title">Próbálja ki itt</string>
+    <string name="firstrun__try_summary">Koppintson, és mondjon bármit. A szöveg alább jelenik meg, másolásra készen.</string>
+    <string name="settings__dictation_group">Diktálás</string>
+    <string name="settings__more_group">Billentyűzet és alkalmazás</string>
+    <string name="settings__floating_button_on">Be · hol és mikor jelenik meg</string>
+    <string name="settings__more_dictation">További diktálási beállítások</string>
+    <string name="settings__more_dictation_summary">Nyelvek, formázás, átfogalmazás, felvétel</string>
+    <string name="style__subtitle">Tegye egyedivé a mikrofongombot.</string>
+    <string name="style__preview_message">Ugye jössz még ma este?</string>
+    <string name="style__preview_caption">Figyel egy csevegőalkalmazásban</string>
+    <string name="style__preview_field">Üzenet</string>
+    <string name="style__charm_classic">Klasszikus</string>
+    <string name="style__charm_daisy">Százszorszép</string>
+    <string name="style__charm_butterfly">Pillangó</string>
+    <string name="style__charm_heart">Szív</string>
+    <string name="style__charm_clover">Lóhere</string>
+    <string name="style__charm_moon">Hold</string>
+    <string name="style__charm_sunflower">Napraforgó</string>
+    <string name="style__charm_blossom">Cseresznyevirág</string>
+    <string name="style__charm_on_air">Adásban</string>
+    <string name="style__charm_gramophone">Gramofon</string>
+    <string name="style__charm_crooner">Retró mikrofon</string>
+    <string name="style__charm_mixtape">Kazetta</string>
+    <string name="style__charm_planet">Bolygó</string>
+    <string name="style__charm_shooting_star">Hullócsillag</string>
+    <string name="style__charm_disco_ball">Diszkógömb</string>
+    <string name="style__charm_big_red_button">Nagy piros gomb</string>
+    <string name="style__charm_pixel_heart">8 bites szív</string>
+    <string name="style__charm_neon">Neon</string>
+    <string name="style__charm_studio_mic">Stúdiómikrofon</string>
+    <string name="style__collection_garden">Kert</string>
+    <string name="style__collection_garden_tagline">Lágy, élénk, eleven</string>
+    <string name="style__collection_retro">Retró</string>
+    <string name="style__collection_retro_tagline">Meleg, analóg, egy kis kacsintással</string>
+    <string name="style__collection_night_sky">Éjszakai égbolt</string>
+    <string name="style__collection_night_sky_tagline">Nyugodt és álomszerű</string>
+    <string name="style__collection_arcade">Játékterem</string>
+    <string name="style__collection_arcade_tagline">Pörgős és játékos</string>
+    <string name="style__collection_simple">Egyszerű</string>
+    <string name="style__collection_simple_tagline">A sima kerek gomb</string>
+    <string name="style__move_bloom">Kivirágzik, amíg figyel</string>
+    <string name="style__move_flutter">Verdes, amíg figyel</string>
+    <string name="style__move_turn">Forog, amíg figyel</string>
+    <string name="style__move_sway">Ringatózik, amíg figyel</string>
+    <string name="style__move_glow">Világít, amíg figyel</string>
+    <string name="style__move_wobble">Imbolyog, amíg figyel</string>
+    <string name="style__move_pulse">Lüktet, amíg figyel</string>
+    <string name="style__move_spin">Pörgeti az orsóit, amíg figyel</string>
+    <string name="style__move_tilt">Dülöngél, amíg figyel</string>
+    <string name="style__move_twinkle">Csillog, amíg figyel</string>
+    <string name="style__move_press">Lenyomódik, amíg figyel</string>
+    <string name="style__move_beat">Dobog, amíg figyel</string>
+    <string name="style__move_flicker">Vibrál, amíg figyel</string>
+    <string name="style__move_title">Mozgás figyelés közben</string>
+    <string name="style__move_off">Mozdulatlan marad</string>
+    <string name="style__color_original">Eredeti színek</string>
+    <string name="style__color_fixed">A(z) {charm} megtartja a saját színeit.</string>
+    <string name="style__color">Szín</string>
+    <string name="style__color_cloud">Felhő</string>
+    <string name="style__color_blossom">Cseresznyevirág</string>
+    <string name="style__color_lilac">Orgona</string>
+    <string name="style__color_butter">Vaj</string>
+    <string name="style__color_mint">Menta</string>
+    <string name="style__color_sky">Égbolt</string>
+    <string name="style__more_colors">További színek</string>
+    <string name="style__motion">Amíg figyel</string>
+    <string name="style__button_off">A lebegő mikrofongomb ki van kapcsolva, ezért egyelőre csak itt látja.</string>
+    <string name="style__look_summary">{charm} · a Stílus lapon módosítható</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Keresés a beállításokban</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Keresés a beállításokban…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Legutóbbi keresések</string>
@@ -199,7 +319,7 @@
     <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">Éjszakai téma</string>
     <string name="pref__theme__theme_accent_color__label" comment="Label of accent color preference in Theme">Kiemelőszín (Material You)</string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">Telepített témák kezelése</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">{app_name} alkalmazásadatok</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">Voice Mode alkalmazásadatok</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">Belső tárhely</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">Külső szolgáltató</string>
     <string name="settings__theme_manager__title_day" comment="Title of the theme manager screen for day theme selection">Nappali téma kiválasztása</string>
@@ -229,7 +349,7 @@
     <string name="settings__theme_editor__code_recording_help_text">Hogy megtalálja a megfelelő kódot, használja a gombot a kitöltendő mező mellett. Aktiválás esetében, felvételre kerül a legelső megnyomott billentyű, és kitöltésre kerül a mező.</string>
     <string name="settings__theme_editor__code_recording_started">Billentyűkód felvétele megkezdődött</string>
     <string name="settings__theme_editor__code_recording_stopped">Billentyűkód felvétele befejeződött</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">{app_name}-nak az alapértelmezett billentyűzetnek kell lennie a billentyűkód rögzítéséhez</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Voice Mode-nak az alapértelmezett billentyűzetnek kell lennie a billentyűkód rögzítéséhez</string>
     <string name="settings__theme_editor__code_recording_placeholder">Rögzítés…</string>
     <string name="settings__theme_editor__add_property">Tulajdonság hozzáadása</string>
     <string name="settings__theme_editor__edit_property">Tulajdonság szerkesztése</string>
@@ -245,7 +365,7 @@
     <string name="settings__theme_editor__component_meta_stylesheet_path">Stíluslap útvonala</string>
     <string name="settings__theme_editor__component_meta_material_you__title">Material You</string>
     <string name="settings__theme_editor__stylesheet_error_title">Stíluslaphiba</string>
-    <string name="settings__theme_editor__stylesheet_error_description">A(z) {app_name} megpróbálhatja elnézően betölteni a stíluslapot, és hozzáadhatja a hiányzó sémákat, szabályokat, vagy eltávolíthatja az érvénytelen szabályokat, tulajdonságokat vagy értékeket. Szeretné, ha a(z) {app_name} alkalmazná ezeket a módosításokat?</string>
+    <string name="settings__theme_editor__stylesheet_error_description">A(z) Voice Mode megpróbálhatja elnézően betölteni a stíluslapot, és hozzáadhatja a hiányzó sémákat, szabályokat, vagy eltávolíthatja az érvénytelen szabályokat, tulajdonságokat vagy értékeket. Szeretné, ha a(z) Voice Mode alkalmazná ezeket a módosításokat?</string>
     <string name="settings__theme_editor__component_meta_material_you__palette_style">Palettastílus</string>
     <string name="settings__theme_editor__component_meta_material_you__color_contrast">Színkontraszt</string>
     <string name="settings__theme_editor__component_meta_material_you__spec_version">Specifikáció verziója</string>
@@ -605,7 +725,7 @@
     <string name="pref__other__show_app_icon__summary_atleast_q" comment="Summary of Show app icon preference in Other for Android 10+">A rendszer korlátozásai miatt Android 10+ rendszereken mindig engedélyezve van</string>
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">Névjegy</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">A {app_name} alkalmazásikonja</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">A Voice Mode alkalmazásikonja</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">Nyílt forráskódú licencek</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">Adatvédelmi irányelvek</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">Forráskód</string>
@@ -622,33 +742,33 @@
     <string name="about__privacy_policy__title" comment="Preference title">Adatvédelmi irányelvek</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">A projekt adatvédelmi irányelvei</string>
     <string name="about__project_license__title" comment="Preference title">Projekt licence</string>
-    <string name="about__project_license__summary" comment="Preference summary">A {app_name} {license_name} licenc alatt érhető el</string>
+    <string name="about__project_license__summary" comment="Preference summary">A Voice Mode {license_name} licenc alatt érhető el</string>
     <string name="about__project_license__error_license_text_failed" comment="Error text for license text loading failure">Hiba: A licenc szövegének betöltése sikertelen.\n-&gt; Ok: {error_message}</string>
     <string name="about__project_license__error_reason_asset_manager_null" comment="Error text if asset manager is null">Az elemkezelő hivatkozás üres</string>
     <string name="about__third_party_licenses__title" comment="Preference title">Harmadik felek licencei</string>
     <string name="about__third_party_licenses__summary" comment="Preference summary">Az alkalmazásban szereplő harmadik felektől származó könyvtárak licencei</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">Üdvözöljük!</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">Köszönjük, hogy a {app_name}ot használja. Ez a gyors beállítás végigvezeti a {app_name} eszközön való használatához szükséges lépéseken.</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">Köszönjük, hogy a Voice Modeot használja. Ez a gyors beállítás végigvezeti a Voice Mode eszközön való használatához szükséges lépéseken.</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">Adatvédelmi irányelvek</string>
     <string name="setup__footer__repository" comment="Repository label for URL">Tároló</string>
-    <string name="setup__enable_ime__title">{app_name} engedélyezése</string>
-    <string name="setup__enable_ime__description">Az Android megköveteli, hogy minden egyéni billentyűzet külön engedélyezve legyen, mielőtt használhatná. Nyissa meg a rendszerbeállítások <i>Nyelvek és bevitel</i> lapját, azon belül pedig engedélyezze ezt: „{app_name}”.</string>
+    <string name="setup__enable_ime__title">Voice Mode engedélyezése</string>
+    <string name="setup__enable_ime__description">Az Android megköveteli, hogy minden egyéni billentyűzet külön engedélyezve legyen, mielőtt használhatná. Nyissa meg a rendszerbeállítások <i>Nyelvek és bevitel</i> lapját, azon belül pedig engedélyezze ezt: „Voice Mode”.</string>
     <string name="setup__enable_ime__open_settings_btn">Rendszerbeállítások megnyitása</string>
-    <string name="setup__select_ime__title">{app_name} kiválasztása</string>
-    <string name="setup__select_ime__description">A {app_name} most már engedélyezve van a rendszerben. Hogy aktívan használja, váltson erre a bevitelválasztó párbeszédablakban: {app_name}.</string>
+    <string name="setup__select_ime__title">Voice Mode kiválasztása</string>
+    <string name="setup__select_ime__description">A Voice Mode most már engedélyezve van a rendszerben. Hogy aktívan használja, váltson erre a bevitelválasztó párbeszédablakban: Voice Mode.</string>
     <string name="setup__select_ime__switch_keyboard_btn">Billentyűzet váltása</string>
     <string name="setup__grant_notification_permission__title">Összeomlási jelentések értesítéseinek engedélyezése</string>
     <string name="setup__grant_notification_permission__description">Az Android 13+ rendszertől kezdve az alkalmazásoknak engedélyt kell kérniük az
-        értesítések küldéséhez. A Dictateban ez csak arra szolgál, hogy
+        értesítések küldéséhez. A(z) Voice Mode alkalmazásban ez csak arra szolgál, hogy
         összeomlás esetén megnyíjon az összeomlási jelentés képernyője. Ez az
         engedély bármikor megváltoztatható a rendszerbeállításokban.
     </string>
     <string name="setup__grant_notification_permission__btn">Engedély megadása</string>
     <string name="setup__finish_up__title">Befejezés</string>
-    <string name="setup__finish_up__description_p1">A {app_name} most már engedélyezve van a rendszerben, és csak arra vár, hogy személyre szabja.</string>
+    <string name="setup__finish_up__description_p1">A Voice Mode most már engedélyezve van a rendszerben, és csak arra vár, hogy személyre szabja.</string>
     <string name="setup__finish_up__description_p2">Ha bármilyen hibával vagy összeomlással találkozik, vagy csak javaslatot szeretne tenni, nézze meg a projekt tárolóját a névjegy képernyőn!</string>
-    <string name="setup__finish_up__finish_btn">Személyre szabás megkezdése</string>
+    <string name="setup__finish_up__finish_btn">Voice Mode használatának megkezdése</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__title">Fizikai billentyűzet</string>
     <string name="physical_keyboard__system_settings__title">Fizikai billentyűzet beállításai</string>
@@ -695,7 +815,7 @@
     <!-- Crash Dialog strings -->
     <string name="crash_dialog__title" comment="Title of crash dialog">Voice Mode hibajelentés</string>
     <string name="crash_dialog__description" comment="Description of crash dialog">Elnézést a kellemetlenségért, de a Voice Mode összeomlott egy váratlan hiba miatt.</string>
-    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Ha szeretné jelenteni ezt a hibát, elsőnek nézze meg a hibakövetőt a GitHubon, hogy az összeomlása nem volt-e már jelentve.\nHa nem volt, másolja ki a generált összeomlásnaplót, és nyisson egy új hibajelentést. Használja a \"%s\" sablont, és töltse ki a leírást, írja le, hogy hogyan lehet előhozni a hibát, és illessze be az összeomlási naplót is a végére. Ez segít jobbá és stabilabbá tenni a Dictateot mindenki számára. Köszönöm!</string>
+    <string name="crash_dialog__report_instructions" comment="Issue tracker report instructions for the crash dialog. The %s placeholder is the name of the crash report template and always in English/LTR.">Ha szeretné jelenteni ezt a hibát, elsőnek nézze meg a hibakövetőt a GitHubon, hogy az összeomlása nem volt-e már jelentve.\nHa nem volt, másolja ki a generált összeomlásnaplót, és nyisson egy új hibajelentést. Használja a \"%s\" sablont, és töltse ki a leírást, írja le, hogy hogyan lehet előhozni a hibát, és illessze be az összeomlási naplót is a végére. Ez segít jobbá és stabilabbá tenni a Voice Mode-ot mindenki számára. Köszönöm!</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">Rendszervágólapra másolás</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">Rendszervágólapra másolva</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">Nem lehet rendszervágólapra másolni: nem található vágólapkezelő</string>
@@ -712,7 +832,7 @@
     <string name="clipboard__search_placeholder" comment="Hint inside the clipboard search field">Keresés a vágólapon</string>
     <string name="clipboard__search_no_results" comment="Shown when no clip contains what was typed">Egyik elem sem tartalmazza ezt</string>
     <string name="clipboard__disabled__title">A vágólapelőzmények jelenleg ki vannak kapcsolva</string>
-    <string name="clipboard__disabled__message">A {app_name} vágólapelőzményei lehetővé teszik, gyorsan eltároljon és elérjen szövegeket és képeket másolásra, az elemek kitűzésének, az automatikus törlésnek és a maximum elemszám beállításának lehetőségével.</string>
+    <string name="clipboard__disabled__message">A Voice Mode vágólapelőzményei lehetővé teszik, gyorsan eltároljon és elérjen szövegeket és képeket másolásra, az elemek kitűzésének, az automatikus törlésnek és a maximum elemszám beállításának lehetőségével.</string>
     <string name="clipboard__disabled__enable_button">Vágólapelőzmények engedélyezése</string>
     <string name="clipboard__empty__title">A vágólapja üres</string>
     <string name="clipboard__empty__message">Ha szövegeket vagy képeket másol, itt fognak megjelenni.</string>
@@ -845,7 +965,7 @@
     <string name="ext__editor__create_component__title_theme">Téma létrehozása</string>
     <string name="ext__editor__create_component__from_empty">Üres</string>
     <string name="ext__editor__create_component__from_existing">Létezőből</string>
-    <string name="ext__editor__create_component__from_empty_warning">Az üres összetevő létrehozása és konfigurálása lehet nehézséget okoz, ha még új a {app_name}, vagy nem ismeri a jellegzetességeket. Érdemes egy már meglevő összetevő tartalmát másolni, és ízlés szerint azt testreszabni.</string>
+    <string name="ext__editor__create_component__from_empty_warning">Az üres összetevő létrehozása és konfigurálása lehet nehézséget okoz, ha még új a Voice Mode, vagy nem ismeri a jellegzetességeket. Érdemes egy már meglevő összetevő tartalmát másolni, és ízlés szerint azt testreszabni.</string>
     <string name="ext__editor__edit_component__title">Összetevő szerkesztése</string>
     <string name="ext__editor__edit_component__title_theme">Témaösszetevő szerkesztése</string>
     <string name="ext__export__success">A kiterjesztés sikeresen exportálva!</string>
@@ -1016,9 +1136,9 @@
     <string name="enum__extended_actions_placement__overlay_app_ui" comment="Enum value label">Alkalmazás felületének átfedése</string>
     <string name="enum__extended_actions_placement__overlay_app_ui__description" comment="Enum value description">A kiegészítő műveleti sor az alkalmazás felülete fölött lebeg, anélkül hogy befolyásolná a billentyűzet magasságát. Lehetséges, hogy a beviteli rész takarásba kerül emiatt</string>
     <string name="enum__haptic_vibration_mode__use_vibrator_directly" comment="Enum value label">Rezgés közvetlen kezelése</string>
-    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">A(z) {app_name} közvetlenül kezeli a hardveres rezgést. Ez nagyobb szabályozást biztosít a rezgés hossza és erőssége felett, de nem biztos hogy annyira simán viselkedik, mintha a haptic feedback felület esetében</string>
+    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">A(z) Voice Mode közvetlenül kezeli a hardveres rezgést. Ez nagyobb szabályozást biztosít a rezgés hossza és erőssége felett, de nem biztos hogy annyira simán viselkedik, mintha a haptic feedback felület esetében</string>
     <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface" comment="Enum value label">Használjon haptic feedback felületet</string>
-    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">A(z) {app_name} haptikus visszajelzési felületet használ, hogy előre beállított rezgéseket váltson ki a gombok megnyomásakor. Ez egyes eszközökön kiválóan működhet, de másokon teljesen meghiúsulhat, vagy elégtelenül teljesíthet.</string>
+    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">A(z) Voice Mode haptikus visszajelzési felületet használ, hogy előre beállított rezgéseket váltson ki a gombok megnyomásakor. Ez egyes eszközökön kiválóan működhet, de másokon teljesen meghiúsulhat, vagy elégtelenül teljesíthet.</string>
     <string name="enum__key_hint_mode__accent_priority" comment="Enum value label">Ékezetesek az elsődlegesek</string>
     <string name="enum__key_hint_mode__accent_priority__description" comment="Enum value description">A megjelenő karakterválasztásnál mindig az alap ékezetes változatok az elsődlegesek, vagy a tippelt szimbólum, ha ez nem érhető el</string>
     <string name="enum__key_hint_mode__hint_priority" comment="Enum value label">Tipp az elsődleges</string>
@@ -1154,6 +1274,7 @@
     <string name="quick_action__ime_ui_mode_dictate">Diktálás</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Koppintson a diktáláshoz, majd újra az átíráshoz</string>
     <string name="quick_action__dictate_live_prompt">Élő utasítás</string>
+    <string name="dictate__live_prompt_chip">Kérés hanggal</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Rögzítsen egy kimondott utasítást, és küldje el az MI-nek</string>
     <string name="quick_action__dictate_prompts">MI-utasítások</string>
     <string name="quick_action__dictate_prompts__tooltip">Az MI átfogalmazási utasításainak megnyitása</string>
@@ -1161,8 +1282,7 @@
     <string name="about__based_on_floris__summary">A FlorisBoard elágazása Patrick Goldingertől és közreműködőktől, Apache 2.0. Koppintson a megnyitáshoz.</string>
     <string name="about__feedback__title">Visszajelzés és támogatás</string>
     <string name="about__feedback__summary">Küldjön e-mailt kérdésekkel, hibákkal vagy ötletekkel</string>
-    <string name="about__feedback__email">support@voicemode.example</string>
-    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Válassza ki, hogyan írjon át a Voice Mode</string>
     <string name="setup__provider__choose_intro">A Voice Mode egy MI-szolgáltatás segítségével alakítja a beszédet szöveggé. A legtöbbeknek megfelel a két fenti mód valamelyike — ha pedig egyáltalán nem szeretne felhőszolgáltatást használni, alább van még kettő.</string>
     <string name="setup__provider__choice_cloud_title">Egyenleg vásárlása az alkalmazásban</string>
@@ -1176,7 +1296,7 @@
     <string name="setup__provider__choice_local_title">A készülékén, offline</string>
     <string name="setup__provider__choice_local_body">Töltsön le egyszer egy beszédmodellt. Nincs fiók, nincs költség, és semmilyen hang nem hagyja el a telefont.</string>
     <string name="setup__provider__choice_server_title">Saját szerver</string>
-    <string name="setup__provider__choice_server_body">Irányítsa a Voice Mode-et egy saját üzemeltetésű beszédszerverre, vagy bármilyen OpenAI-kompatibilis végpontra.</string>
+    <string name="setup__provider__choice_server_body">Irányítsa a Voice Mode-ot egy saját üzemeltetésű beszédszerverre, vagy bármilyen OpenAI-kompatibilis végpontra.</string>
     <string name="setup__provider__local_intro">A beszédfelismerés ilyenkor a telefonján fut: semmi nem megy sehová, és kapcsolat nélkül is működik. Válasszon most egy letöltendő modellt — továbbiakat később is hozzáadhat vagy válthat.</string>
     <string name="setup__provider__local_recommended">Ajánlott az Ön nyelvéhez</string>
     <string name="setup__provider__local_bigger">Pontosabb, de sokkal nagyobb letöltés</string>
@@ -1222,7 +1342,7 @@
     <string name="dictate__floating_button_service_enabled">Bekapcsolva · koppints a rendszerbeállítások megnyitásához</string>
     <string name="dictate__floating_button_service_disabled">Még nincs bekapcsolva · koppints a beállításhoz</string>
     <string name="dictate__floating_button_disclosure_title">A lebegő gomb bekapcsolása</string>
-    <string name="dictate__floating_button_disclosure_message">A lebegő gomb megjelenítéséhez a Voice Mode-nek szüksége van a kisegítő szolgáltatásra. Érzékeli, amikor egy szövegmező fókuszba kerül bármely alkalmazásban — hogy a gomb megjelenhessen —, és beszúrja a leírt beszédet abba a mezőbe. A Voice Mode csak a fókuszban lévő mezőt olvassa, hogy elhelyezze a szöveget; nem gyűjt, nem tárol és nem oszt meg más képernyőtartalmat.\n\nA következő képernyőn keresd meg a „Voice Mode lebegő gomb” elemet, és kapcsold be.</string>
+    <string name="dictate__floating_button_disclosure_message">A lebegő gomb megjelenítéséhez a Voice Mode-nak szüksége van a kisegítő szolgáltatásra. Érzékeli, amikor egy szövegmező fókuszba kerül bármely alkalmazásban — hogy a gomb megjelenhessen —, és beszúrja a leírt beszédet abba a mezőbe. A Voice Mode csak a fókuszban lévő mezőt olvassa, hogy elhelyezze a szöveget; nem gyűjt, nem tárol és nem oszt meg más képernyőtartalmat.\n\nA következő képernyőn keresd meg a „Voice Mode lebegő gomb” elemet, és kapcsold be.</string>
     <string name="dictate__floating_button_disclosure_continue">Beállítások megnyitása</string>
     <string name="dictate__floating_button_mic_title">Mikrofon-hozzáférés</string>
     <string name="dictate__floating_button_mic_summary">A hangod rögzítéséhez szükséges · koppints az engedélyezéshez</string>
@@ -1285,14 +1405,16 @@
     <string name="dictate__remember_last_dictation_title">Utolsó diktálás megjegyzése</string>
     <string name="changelog__v4_2_0">• ÚJ: lebegő diktálógomb — diktáljon közvetlenül bármelyik appba, akkor is, ha másik billentyűzet aktív. Válasszon a három stílus közül (Pirula, Gyűrű, Gömb), nézze az élő hullámformát beszéd közben, húzza bárhová a szélhez illesztéssel, állítsa be a színét és méretét, és tartsa lenyomva az átfogalmazáshoz. Kapcsolja be a Beállítások ▸ Voice Mode ▸ Lebegő gomb alatt.\n• ÚJ: Google Gemini — használd saját AI Studio API-kulcsodat átíráshoz és újrafogalmazáshoz.\n• A parancsok mostantól alapértelmezetten egy állandó sorban jelennek meg a billentyűk fölött.\n• Megbízhatóbb szövegbeszúrás az appokban, beleértve a böngészőket és más billentyűzeteket.</string>
     <string name="dictate__promo_floating_button_message">Új: diktálj bárhol</string>
+    <string name="dictate__promo_keep_button_message">Itt is maradjon a lebegő mikrofon?</string>
+    <string name="dictate__promo_keep_button_action">Maradjon</string>
     <string name="dictate__promo_floating_button_action">Kipróbálom</string>
     <string name="setup__floating_button__btn">Lebegő gomb beállítása</string>
     <string name="setup__nav_back">Vissza</string>
     <string name="setup__nav_next">Tovább</string>
     <string name="setup__floating_button__title">Diktálj bárhol (opcionális)</string>
     <string name="setup__floating_button__intro">A lebegő gomb egy kis diktálóbuborékot helyez bármelyik alkalmazás fölé, így bármelyik szövegmezőbe beszélhetsz billentyűzetváltás nélkül.</string>
-    <string name="setup__floating_button__accessibility_note">Ehhez a(z) {app_name} az Android kisegítő lehetőségek beállításait használja — így jelenhet meg a buborék más alkalmazások fölött, és illesztheti be helyetted az átírt szöveget. A következő képernyő végigvezet a bekapcsoláson.</string>
-    <string name="setup__floating_button__optional_note">Ez teljesen opcionális — hagyd ki, ha a(z) {app_name} alkalmazást csak teljes billentyűzetként szeretnéd használni. Bármikor beállíthatod később a beállításokban.</string>
+    <string name="setup__floating_button__accessibility_note">Ehhez a(z) Voice Mode az Android kisegítő lehetőségek beállításait használja — így jelenhet meg a buborék más alkalmazások fölött, és illesztheti be helyetted az átírt szöveget. A következő képernyő végigvezet a bekapcsoláson.</string>
+    <string name="setup__floating_button__optional_note">Ez teljesen opcionális — hagyd ki, ha a(z) Voice Mode alkalmazást csak teljes billentyűzetként szeretnéd használni. Bármikor beállíthatod később a beállításokban.</string>
     <string name="setup__floating_button__skip_btn">Kihagyás — a billentyűzetet használom</string>
     <string name="dictate__floating_button_badge_new">Új</string>
     <string name="dictate__panel_title">MI-utasítások</string>
@@ -1302,6 +1424,8 @@
     <string name="dictate__prompts_layout_panel_description">Nyissa meg az utasításokat saját panelen a varázspálca gombbal.</string>
     <string name="dictate__prompts_layout_row_label">Mindig látható sor</string>
     <string name="dictate__prompts_layout_row_description">Rögzítse az utasításokat egy plusz sorban a billentyűzet fölött.</string>
+    <string name="dictate__prompts_layout_when_useful_label">Ha hasznos</string>
+    <string name="dictate__prompts_layout_when_useful_description">Az utasítások megjelenítése a felső sávban közvetlenül diktálás után, vagy ha szöveg van kijelölve.</string>
     <string name="dictate__status_idle">Koppintson a diktáláshoz</string>
     <string name="dictate__status_recording">Felvétel – koppintson a leállításhoz</string>
     <string name="dictate__status_transcribing">Átírás…</string>
@@ -1348,7 +1472,7 @@
     <string name="dictate__action_yes">Igen</string>
     <string name="dictate__action_no">Nem, köszönöm</string>
     <string name="dictate__promo_rate_message">Tetszik a Voice Mode?</string>
-    <string name="dictate__promo_donate_message">Támogatja a Voice Mode-et?</string>
+    <string name="dictate__promo_donate_message">Támogatja a Voice Mode-ot?</string>
     <string name="dictate__promo_rate_action">Értékelés</string>
     <string name="dictate__promo_donate_action">Adományozás</string>
     <string name="dictate__promo_changelog_message">A Voice Mode frissült</string>
@@ -1547,9 +1671,7 @@
     <string name="dictate__custom_words_title">Egyéni szavak</string>
     <string name="dictate__custom_words_summary_empty">Adjon hozzá neveket vagy szakkifejezéseket a helyes írásmódhoz</string>
     <string name="dictate__custom_words_placeholder">pl. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} szó · nagyjából {tokens} a {budget} tokenből</string>
     <string name="dictate__custom_words_budget_info">Az itteni szavak mindegyike minden diktálással együtt megy el, és a beszédmodell ebből csak körülbelül {budget} token kontextust olvas. A listád ebből nagyjából {tokens} tokent foglal.</string>
-    <string name="dictate__custom_words_budget_over">A listád hosszabb annál, mint amennyit a beszédmodell elolvas. A {count} szavadból nagyjából {fits} jut el hozzá; a többi minden diktáláskor elmegy, és figyelmen kívül marad. Nagyobb szókincshez használd az egyéni cseréket — azok pontosak, offline is működnek, és semmibe sem kerülnek.</string>
     <string name="dictate__custom_words_import">Szólista importálása</string>
     <string name="dictate__custom_words_export">Szólista exportálása</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1559,11 +1681,8 @@
     <string name="dictate__custom_words_import_nofit">{count} kimaradt — a beszédmodell csak körülbelül {budget} token kontextust olvas, így ezek minden diktáláskor elmentek volna, és figyelmen kívül maradtak volna.</string>
     <string name="dictate__custom_words_import_unusable">{count} sor nem tartalmazott leírható szót, ezeket kihagytuk.</string>
     <string name="dictate__custom_words_import_truncated">A fájlnak csak az első {count} bejegyzését olvastuk be.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Add hozzá a személyes szótárhoz is</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Ez a lista csak a beszédmodellnek mondja meg, hogyan kell egy szót írni. A személyes szótár az, amit a billentyűzet gépelés közben használ — annak nincs hosszkorlátja, így a fájl minden szava bekerül, nem csak azok, amelyek fentebb elférnek.</string>
     <string name="dictate__custom_words_import_empty">Ebben a fájlban nem található szó</string>
     <string name="dictate__custom_words_import_done">{count} szó hozzáadva</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} szó hozzáadva, és {dict} a személyes szótáradhoz</string>
     <string name="dictate__file_unreadable">Ezt a fájlt nem sikerült beolvasni</string>
     <string name="dictate__file_export_done">Fájl mentve</string>
     <string name="dictate__file_export_failed">Ezt a fájlt nem sikerült megírni</string>
@@ -1699,14 +1818,14 @@
     <string name="dictate__setup_description">Állítsa be az MI-szolgáltatóját és az API-kulcsát, hogy a mikrofonnal diktálhasson.</string>
     <string name="dictate__setup_configure_btn">Voice Mode beállítása</string>
     <string name="setup__grant_mic_permission__title">Mikrofon-hozzáférés</string>
-    <string name="setup__grant_mic_permission__description">A Voice Mode-nek mikrofon-hozzáférésre van szüksége, hogy rögzítse a hangját az átíráshoz.</string>
+    <string name="setup__grant_mic_permission__description">A Voice Mode-nak mikrofon-hozzáférésre van szüksége, hogy rögzítse a hangját az átíráshoz.</string>
     <string name="setup__grant_mic_permission__btn">Mikrofonengedély megadása</string>
     <string name="changelog__dialog_title">Újdonságok</string>
     <string name="changelog__view_all">Összes változás megtekintése</string>
     <string name="changelog__intro">A Voice Mode frissült. Íme az újdonságok:</string>
     <string name="changelog__version_header">{version} verzió</string>
     <string name="changelog__donate">Tetszik a Voice Mode? Koppintson ide a fejlesztés támogatásához ♥</string>
-    <string name="changelog__current">• Vadonatúj billentyűzet: a Voice Mode mostantól teljes értékű, többnyelvű elrendezésű billentyűzetként érkezik, dedikált mikrofongombbal, amely megnyitja a hangpanelt.\n• Hozza a saját MI-jét: válasszon bármilyen OpenAI-kompatibilis szolgáltatót, és adja meg az API-kulcsát a Beállítások → Voice Mode menüpontban.\n• Intelligens formázás és átfogalmazás az Ön által választott modell segítségével.\n• A korábbi Voice Mode alkalmazás beállításai automatikusan importálódnak.</string>
+    <string name="changelog__current">• Vadonatúj billentyűzet: a Voice Mode mostantól teljes értékű, többnyelvű elrendezésű billentyűzetként érkezik, dedikált mikrofongombbal, amely megnyitja a hangpanelt.\n• Hozza a saját MI-jét: válasszon bármilyen OpenAI-kompatibilis szolgáltatót, és adja meg az API-kulcsát a Beállítások → Voice Mode menüpontban.\n• Intelligens formázás és átfogalmazás az Ön által választott modell segítségével.\n• A korábbi Dictate alkalmazás beállításai automatikusan importálódnak.</string>
     <string name="changelog__v4_1_0">• Új: emodzsik keresése közvetlenül a billentyűzetről.\n• Új átírási szolgáltató: Soniox.\n• Szúrd be újra a legutóbbi diktálást, és állítsd vissza a billentyűzet bezárásakor megszakadt felvételeket.\n• A promptsáv mostantól élőben frissül: tartsd nyomva egy promptot a szerkesztéséhez.\n• Az AI-szolgáltatók képernyője mostantól az aktív átírási és átfogalmazási szolgáltatót is megjeleníti.\n• Nagyobb, könnyebben eltalálható felvétel gomb.\n• Javítások: egy támogatási üzenet beragadhatott, és eltakarhatta a sávot néhány nyelven; a biztonsági mentés már nem hiúsul meg, ha promptok, billentyűzet vagy téma van kiválasztva; a mentett API-kulcsok megmaradnak frissítéskor.</string>
     <string name="changelog__v4_1_1">• Javítás: a kiemelőszín egyes eszközökön zöldnek tűnhetett; a billentyűk és gombok ismét a Voice Mode kék színében jelennek meg.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -1881,15 +2000,15 @@
     <string name="dictate__stats_reset_confirm_title">Statisztika törlése?</string>
     <string name="dictate__stats_reset_confirm_msg">Ez véglegesen törli az összes diktálási statisztikádat.</string>
     <string name="dictate__stats_share">Megosztás</string>
-    <string name="dictate__stats_share_text">%1$s időt spóroltam a Voice Mode-tel — %2$s diktálás, %3$s szó. 🎤</string>
+    <string name="dictate__stats_share_text">%1$s időt spóroltam a Voice Mode-dal — %2$s diktálás, %3$s szó. 🎤</string>
     <string name="dictate__stats_view">Statisztika megtekintése</string>
     <string name="dictate__stats_milestones_title">Mérföldkő-ünneplések</string>
     <string name="dictate__stats_milestones_summary">Ünnepelj egyszer, ha elérsz egy időmegtakarítási vagy diktálási mérföldkövet</string>
     <string name="dictate__stats_milestone_title">Mérföldkő elérve 🎉</string>
-    <string name="dictate__stats_milestone_time">%s időt spóroltál a Voice Mode-tel — szép munka!</string>
-    <string name="dictate__stats_milestone_count">Elérted a(z) %s diktálást a Voice Mode-tel!</string>
-    <string name="dictate__promo_milestone_time">%s megspórolva a Voice Mode-tel! 🎉</string>
-    <string name="dictate__promo_milestone_count">%s diktálás a Voice Mode-tel! 🎉</string>
+    <string name="dictate__stats_milestone_time">%s időt spóroltál a Voice Mode-dal — szép munka!</string>
+    <string name="dictate__stats_milestone_count">Elérted a(z) %s diktálást a Voice Mode-dal!</string>
+    <string name="dictate__promo_milestone_time">%s megspórolva a Voice Mode-dal! 🎉</string>
+    <string name="dictate__promo_milestone_count">%s diktálás a Voice Mode-dal! 🎉</string>
     <string name="dictate__promo_milestone_action">Statisztika</string>
     <string name="dictate__reasoning_effort_title">Gondolkodási ráfordítás</string>
     <string name="dictate__reasoning_effort_off">Ki</string>
@@ -1908,7 +2027,7 @@
     <string name="dictate__audio_save_failed">Nem sikerült menteni a hangot</string>
     <string name="dictate__instant_recording_mode_off">Ki</string>
     <string name="dictate__instant_recording_mode_always">A billentyűzet minden megnyitásakor</string>
-    <string name="dictate__instant_recording_mode_after_switch">Csak a {app_name} billentyűzetre váltás után</string>
+    <string name="dictate__instant_recording_mode_after_switch">Csak a Voice Mode billentyűzetre váltás után</string>
     <string name="dictate__instant_recording_in_numeric">Számmezőkben is</string>
     <string name="dictate__instant_recording_skip_numeric_title">Számmezők kihagyása</string>
     <string name="dictate__instant_recording_skip_numeric_summary">Ne induljon automatikusan szám-, telefon- vagy PIN-mezőknél</string>
@@ -1964,7 +2083,7 @@
     <string name="apptour__badge_highlight">★ Kiemelt</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">Gyors túra</string>
-    <string name="apptour__intro_body">Íme az újdonságok a Dictate 5.0-ban — a lényeg egy percen belül. Bármelyik oldalon koppints a „Kipróbálom” gombra, hogy egyből az adott beállításhoz ugorj.</string>
+    <string name="apptour__intro_body">Íme az újdonságok a Voice Mode 5.0-ban — a lényeg egy percen belül. Bármelyik oldalon koppints a „Kipróbálom” gombra, hogy egyből az adott beállításhoz ugorj.</string>
     <string name="apptour__glide_eyebrow">Billentyűzet</string>
     <string name="apptour__glide_title">Húzással gépelj</string>
     <string name="apptour__glide_body">Húzd az ujjad billentyűről billentyűre, és a Voice Mode a vonalból egész szavakat készít. Minden nyelvhez saját szótár tartozik, amely igény szerint töltődik le — kapcsold be a Kézmozdulatok között.</string>
@@ -2013,7 +2132,7 @@
     <string name="apptour51__longform_body">Beszélj, ameddig csak akarsz. A hosszú felvételeket a rendszer automatikusan szegmensekre bontja, és a háttérben átírja, miközben te folytatod — így hamarabb megkapod a szöveget, és soha nem ütközöl hosszkorlátba. Egy szegmenst magad is elvághatsz, vagy hagyd, hogy a Voice Mode felismerje a természetes szüneteket.</string>
     <string name="apptour51__gif_eyebrow">Billentyűzet</string>
     <string name="apptour51__gif_title">GIF-keresés</string>
-    <string name="apptour51__gif_body">Keress és küldj GIF-eket anélkül, hogy elhagynád a Voice Mode-et. Nyisd meg a GIF-panelt, keress rá bármire, és tedd egyenesen a beszélgetésbe — egy gyors, Gboard-stílusú választó, gyárilag beépítve.</string>
+    <string name="apptour51__gif_body">Keress és küldj GIF-eket anélkül, hogy elhagynád a Voice Mode-ot. Nyisd meg a GIF-panelt, keress rá bármire, és tedd egyenesen a beszélgetésbe — egy gyors, Gboard-stílusú választó, gyárilag beépítve.</string>
     <string name="apptour51__classic_eyebrow">Klasszikus elrendezés</string>
     <string name="apptour51__classic_title">Klasszikus elrendezés, átdolgozva</string>
     <string name="apptour51__classic_body">A billentyűzet nélküli diktálóképernyő nagy fejlesztést kapott: szabadon elrendezhető műveletsor, amelyet fogd és vidd módszerrel állítasz össze, hosszú felvétel vezérlők, egy vagy két prompt-sor, mindig elérhető visszatörlés, karakter-felugró az Enter billentyűn, és egy opcionális második „billentyűzetváltás” gomb a könnyebb egykezes használathoz.</string>
@@ -2028,14 +2147,14 @@
     <string name="apptour51__more_body">Rengeteg apróbb fejlesztés is: a beállításokban kiválaszthatod az aktív átírási nyelvet, a leállítás gomb mostantól valóban megszakítja a futó kérést, egy megjelenítés/elrejtés kapcsoló az API-kulcsokhoz, és többnyelvű gépelés a nyelvek közötti automatikus javítás nélkül — plusz számos javítás a klasszikus elrendezésben, a számbillentyűzeten és azon túl is.</string>
     <string name="apptour51__outro_eyebrow">Ez az 5.1</string>
     <string name="apptour51__outro_title">Jó szórakozást a frissítéshez</string>
-    <string name="apptour51__outro_body">Köszönjük, hogy a Voice Mode-et használod! Ha nap mint nap segít, egy kis adomány életben tartja a projektet. Ezeket a túrákat bármikor újranézheted a Beállítások › Névjegy alatt.</string>
+    <string name="apptour51__outro_body">Köszönjük, hogy a Voice Mode-ot használod! Ha nap mint nap segít, egy kis adomány életben tartja a projektet. Ezeket a túrákat bármikor újranézheted a Beállítások › Névjegy alatt.</string>
     <string name="apptour52__cta_try">Kipróbálom</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">Voice Mode 5.2</string>
     <string name="apptour52__intro_title">Diktálj bárhol</string>
-    <string name="apptour52__intro_body">Ez a kiadás túlviszi a Voice Mode-et a saját billentyűzetén: a telefon hangbeviteleként, kimondott parancsokhoz bárhonnan, és rendet tesz a hosszú diktálásokban. Ezek az újdonságok.</string>
+    <string name="apptour52__intro_body">Ez a kiadás túlviszi a Voice Mode-ot a saját billentyűzetén: a telefon hangbeviteleként, kimondott parancsokhoz bárhonnan, és rendet tesz a hosszú diktálásokban. Ezek az újdonságok.</string>
     <string name="apptour52__voiceinput_eyebrow">Rendszerszintű hangbevitel</string>
     <string name="apptour52__voiceinput_title">Voice Mode bármelyik billentyűzetről</string>
-    <string name="apptour52__voiceinput_body">A Voice Mode mostantól rendszerszintű hangbevitelként regisztrál: más billentyűzetek és alkalmazások mikrofongombja a Voice Mode-en keresztül ír át — a te szolgáltatóddal, promptjaiddal és helyi modelljeiddel. Kapcsold be a „Voice Mode hangbevitel” elemet a billentyűzetlistában, és válaszd hangbeviteli módnak. (A Gboard a mikrofonját a Google-höz köti — használj olyan billentyűzetet, amely tiszteletben tartja a rendszerbeállítást.)</string>
+    <string name="apptour52__voiceinput_body">A Voice Mode mostantól rendszerszintű hangbevitelként regisztrál: más billentyűzetek és alkalmazások mikrofongombja a Voice Mode-on keresztül ír át — a te szolgáltatóddal, promptjaiddal és helyi modelljeiddel. Kapcsold be a „Voice Mode hangbevitel” elemet a billentyűzetlistában, és válaszd hangbeviteli módnak. (A Gboard a mikrofonját a Google-höz köti — használj olyan billentyűzetet, amely tiszteletben tartja a rendszerbeállítást.)</string>
     <string name="apptour52__liveprompt_eyebrow">Szabad hangparancs</string>
     <string name="apptour52__liveprompt_title">Mondd meg az MI-nek, mit tegyen — bárhol</string>
     <string name="apptour52__liveprompt_body">Tartsd nyomva a lebegő gombot a menü megnyitásához, koppints a „Live prompt” elemre, és mondd ki, mit szeretnél: „írj udvarias visszautasítást a holnapi megbeszélésre”, „fordítsd le a fenti szöveget spanyolra”. A kijelölt szöveg a kontextus; kijelölés nélkül az MI a nulláról ír.</string>
@@ -2058,7 +2177,7 @@
     <string name="apptour52__outro_title">Jó diktálást</string>
     <string name="apptour52__outro_body">Ráadásul sok minden a motorháztető alatt: a képernyő végig bekapcsolva marad, a helyi modellek tétlenül felszabadítják a memóriát, az órás diktálások túlélik a kapcsolatszakadást, a német automatikus javítás pedig kezeli az umlautokat. Minden bemutatót újranézhetsz a Beállítások › Névjegy alatt.</string>
     <string name="apptour53__cta_try">Kipróbálom</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">Voice Mode 5.3</string>
     <string name="apptour53__intro_title">Nyomd, mondd, kész</string>
     <string name="apptour53__intro_body">Ez a kiadás arról a két dologról szól, amit a legtöbbet csinálsz: beszélsz a telefonodhoz, és gépelsz rajta. Mindkettő gyorsabb lett, és mindkettő jobban félreáll az utadból.</string>
     <string name="apptour53__pushtotalk_eyebrow">Nyomd és beszélj</string>
@@ -2089,7 +2208,7 @@
     <string name="apptour60__cta_try">Kipróbálom</string>
     <string name="apptour60__art_minutes">perc</string>
     <string name="apptour60__art_speed">1,5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">Voice Mode 6.0</string>
     <string name="apptour60__intro_title">Egyenleg, kínai, olcsóbb diktálás</string>
     <string name="apptour60__intro_body">Ez a verzió egy második utat nyit — egyenleget lehet venni a saját API-kulcs helyett —, mellé pinjin a kínaihoz, hét nyelv új szótárral és felvételek, amelyek kevesebbe kerülnek.</string>
     <string name="apptour60__cloud_eyebrow">Új: Voice Mode Cloud</string>
@@ -2112,19 +2231,19 @@
     <string name="apptour60__more_body">A stop gomb nyomva tartása visszavonja a beragadt átiratot. A lebegő gomb már nem jelez olyan sikert, amit nem tudott ellenőrizni, és a képernyővel együtt kialszik. A húzogatós gépelés mostantól ismeri az általad felvett szavakat. És javítottuk a frissítés utáni összeomlást.</string>
     <string name="apptour60__outro_eyebrow">Ennyi a 6.0</string>
     <string name="apptour60__outro_title">Jó szórakozást hozzá</string>
-    <string name="apptour60__outro_body">Bárhogyan is használod a Voice Mode-et — saját kulcs, saját kiszolgáló, eszközön futó modell vagy egyenleg —, a többi úton semmi nem változott. Minden bemutatót újranézhetsz a Beállítások › Névjegy alatt.</string>
+    <string name="apptour60__outro_body">Bárhogyan is használod a Voice Mode-ot — saját kulcs, saját kiszolgáló, eszközön futó modell vagy egyenleg —, a többi úton semmi nem változott. Minden bemutatót újranézhetsz a Beállítások › Névjegy alatt.</string>
     <string name="apptour61__cta_try">Kipróbálom</string>
     <string name="apptour61__art_folder">Matricák</string>
     <string name="apptour61__art_share">Megosztás ezzel</string>
     <string name="apptour61__art_typed">hgoy</string>
     <string name="apptour61__art_fixed">hogy</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">Voice Mode 6.1</string>
     <string name="apptour61__intro_title">Matricák, hangüzenetek és egy automatikus javítás, amely végre látja az elgépelést</string>
-    <string name="apptour61__intro_body">Mutass a billentyűzetnek egy mappát a saját matricáiddal, oszd meg a hangüzenetet közvetlenül a Voice Mode-tel, hogy megtudd, mi van benne, és használj olyan automatikus javítást, amely végre észreveszi azt a hibát, aminek a figyelmen kívül hagyására építették.</string>
+    <string name="apptour61__intro_body">Mutass a billentyűzetnek egy mappát a saját matricáiddal, oszd meg a hangüzenetet közvetlenül a Voice Mode-dal, hogy megtudd, mi van benne, és használj olyan automatikus javítást, amely végre észreveszi azt a hibát, aminek a figyelmen kívül hagyására építették.</string>
     <string name="apptour61__stickers_eyebrow">Új: a saját matricáid</string>
     <string name="apptour61__stickers_title">Egy mappa a telefonon, a billentyűzeten</string>
-    <string name="apptour61__stickers_body">Mutass a Voice Mode-nek bármilyen mappát, és a benne lévő képekből matricák lesznek — az almappákból fülek, saját kedvencekkel és nemrégiekkel. Bármelyik alkalmazásból hozzáadhatsz a megosztás menüvel, és törölhetsz anélkül, hogy elhagynád a billentyűzetet. Amit egy csevegőalkalmazás valójában elfogad, nem az, amit állítása szerint elfogad: ezért minden matrica egyszer, bekerüléskor kapja meg a megfelelő formát, onnantól pedig egyszerűen elküldhető.</string>
-    <string name="apptour61__share_eyebrow">Új: megosztás a Voice Mode-tel</string>
+    <string name="apptour61__stickers_body">Mutass a Voice Mode-nak bármilyen mappát, és a benne lévő képekből matricák lesznek — az almappákból fülek, saját kedvencekkel és nemrégiekkel. Bármelyik alkalmazásból hozzáadhatsz a megosztás menüvel, és törölhetsz anélkül, hogy elhagynád a billentyűzetet. Amit egy csevegőalkalmazás valójában elfogad, nem az, amit állítása szerint elfogad: ezért minden matrica egyszer, bekerüléskor kapja meg a megfelelő formát, onnantól pedig egyszerűen elküldhető.</string>
+    <string name="apptour61__share_eyebrow">Új: megosztás a Voice Mode-dal</string>
     <string name="apptour61__share_title">Tudd meg, mit mond az a hangüzenet</string>
     <string name="apptour61__share_body">A Voice Mode mostantól ott van a hang és a videó megosztási menüjében. Oszd meg vele a hangüzenetet, és megnyílik egy képernyő, amely magától elkezdi a leiratot — nincs mezőt keresni, nincs gombot nyomni. A leiratban lehet keresni, a hosszú felvételeket pedig részletekben dolgozza fel ahelyett, hogy visszautasítaná.</string>
     <string name="apptour61__autocorrect_eyebrow">Automatikus javítás</string>
@@ -2147,7 +2266,7 @@
     <string name="apptour62__art_word">Zoya</string>
     <string name="apptour62__art_emoji_word">torta</string>
     <string name="apptour62__art_emoji">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">Voice Mode 6.2</string>
     <string name="apptour62__intro_title">Megtanulja a szavaidat, és öt új külsőt kapott</string>
     <string name="apptour62__intro_body">A billentyűzet mostantól megjegyzi azokat a szavakat, amelyeket egyetlen szótár sem ismer, a billentyűk átengedhetik a mögöttük lévő alkalmazást, és mindkét hüvelykujj kaphat saját felet. Ráadásul egy marék apró segítség ahhoz, amit nap mint nap csinálsz.</string>
     <string name="apptour62__learning_eyebrow">Új: gépelés közben tanul</string>
@@ -2155,7 +2274,7 @@
     <string name="apptour62__learning_body">Írj be egy nevet vagy szakszót elég sokszor, és a billentyűzet megtartja: nem jelöli többé hibának, hanem felajánlja. Ez a frissítés mindenkinél bekapcsolja, azoknál is, akik korábban kikapcsolták. Inkognitómódban, jelszómezőkben és mindabból, amit nem billentyűről billentyűre írtál, semmit nem tanul; minden ezen az eszközön marad, az alábbi gomb pedig megnyitja a listát — és a kapcsolót.</string>
     <string name="apptour62__themes_eyebrow">Öt új külső</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep és egy sötét E-Ink</string>
-    <string name="apptour62__themes_body">A Voice Mode Glass a billentyűk közötti réseken át engedi látni az alkalmazást, miközben maguk a billentyűk elég takarók maradnak ahhoz, hogy olvasni lehessen rajtuk; a Glass Clear tovább megy és szebb, cserébe a billentyűzet mögé rajzoló alkalmazások szövege átüt rajta. A Sand meleg világos téma, a Deep egy nyugodt sötét, az E-Ink pedig végre kapott éjszakai változatot, így az automatikus váltás sötétedés után már nem ad fehér billentyűzetet.</string>
+    <string name="apptour62__themes_body">A Glass a billentyűk közötti réseken át engedi látni az alkalmazást, miközben maguk a billentyűk elég takarók maradnak ahhoz, hogy olvasni lehessen rajtuk; a Glass Clear tovább megy és szebb, cserébe a billentyűzet mögé rajzoló alkalmazások szövege átüt rajta. A Sand meleg világos téma, a Deep egy nyugodt sötét, az E-Ink pedig végre kapott éjszakai változatot, így az automatikus váltás sötétedés után már nem ad fehér billentyűzetet.</string>
     <string name="apptour62__split_eyebrow">Új: osztott billentyűzet</string>
     <string name="apptour62__split_title">Mindkét hüvelykujj, nyújtózás nélkül</string>
     <string name="apptour62__split_body">Egy új gyorsművelet — az egykezes és a lebegő mód mellett — széthúzza a sorokat, hogy minden hüvelykujj a maga felén maradjon. Minden kiosztás osztható, nem csak a QWERTY, mert a törésvonal a billentyűszélességekből adódik, nem pedig kiosztásonként beírt adat. Fekvő tájolásban pedig az alkalmazás mostantól látható marad, ha mindkettőnek van hely.</string>
@@ -2176,7 +2295,7 @@
     <string name="apptour62__gestures_body">Tartsd nyomva a szimbólumbillentyűt, húzd rá a kívánt karakterre, és engedd el: beszúródik, a betűk pedig már vissza is jöttek, oda-vissza váltogatás nélkül. A szóközön felfelé húzás mostantól a fölötte lévő sort éri el, nem csak az előző szót. A billentyűk közötti rés pedig olyan tartományban állítható, amelyen a különbség tényleg látszik.</string>
     <string name="apptour62__export_eyebrow">Új: diktálások fájlként</string>
     <string name="apptour62__export_title">Minden diktálás egy általad választott mappába</string>
-    <string name="apptour62__export_body">Válassz egyszer egy mappát, és minden elkészült diktálás oda is bekerül egyszerű szövegfájlként, abban a pillanatban, amikor kész van. Bármi figyeli azt a mappát — egy jegyzetalkalmazás, egy szinkronizáló eszköz, a mentésed —, megkapja a szövegeidet anélkül, hogy a Voice Mode-nek meg kellene tanulnia a nyelvét.</string>
+    <string name="apptour62__export_body">Válassz egyszer egy mappát, és minden elkészült diktálás oda is bekerül egyszerű szövegfájlként, abban a pillanatban, amikor kész van. Bármi figyeli azt a mappát — egy jegyzetalkalmazás, egy szinkronizáló eszköz, a mentésed —, megkapja a szövegeidet anélkül, hogy a Voice Mode-nak meg kellene tanulnia a nyelvét.</string>
     <string name="apptour62__more_eyebrow">Ezenkívül</string>
     <string name="apptour62__more_title">Sok apróság</string>
     <string name="apptour62__more_body">A javaslatok mostantól minden nyelven a kurzor előtti két szót nézik, nem csak angolul. A mentés elkészíthető az API-kulcsaid nélkül, így nyugodtan továbbadható. Az Azure saját átírási modelljei elérhetők, az offline modell választása immár az offline motorra is átvált, és minden kérésnek a várakozáshoz illő határideje van. A diktálások a küldés pillanatában megjelennek az előzményekben, az importálás megmondja, melyik lépésnél tart, és megszakítható, a szöveg pedig megbízhatóbban ér célba azokban az alkalmazásokban, amelyek nehezen fogadták.</string>
@@ -2184,7 +2303,7 @@
     <string name="apptour62__outro_title">Ugyanaz a billentyűzet, több belőle a tiéd</string>
     <string name="apptour62__outro_body">Semmi nem változik abban, ahogy diktálsz — saját kulcs, saját kiszolgáló vagy egy modell az eszközön. Minden bemutatót újra megtalálsz a Beállítások › Névjegy alatt.</string>
     <string name="apptour63__cta_try">Kipróbálom</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">Voice Mode 6.3</string>
     <string name="apptour63__intro_title">Több billentyűzet, anélkül hogy elhagynád</string>
     <string name="apptour63__intro_body">Irányítsd a kamerát nyomtatott szövegre, és az a mezőben landol. A kurzor, a kijelölés és a vágólap végre egy panelen osztozik. Bármelyik Smartbar-gomb hordozhat második műveletet hosszú nyomásra. Az offline diktáláshoz pedig végre vannak modellek, amelyek tényleg elférnek egy telefonon.</string>
     <string name="apptour63__scan_eyebrow">Új: szöveg beolvasása</string>
@@ -2323,8 +2442,6 @@
     <string name="dictate__cloud_other_way_body">Bármikor átválthat a saját API-kulcsára, és vissza is. Az egyenlege ott marad, ahol van.</string>
     <string name="dictate__error_out_of_credit">Az egyenleg elfogyott</string>
     <string name="dictate__action_top_up">Egyenleg feltöltése</string>
-    <string name="dictate__promo_low_credit_message">Az egyenleg fogytán.</string>
-    <string name="dictate__promo_low_credit_action">Feltöltés</string>
     <string name="prefs__media__sticker__title">Matricák</string>
     <string name="prefs__media__sticker_folder__title">Matricamappa</string>
     <string name="prefs__media__sticker_folder__summary_unset">Válassz egy mappát a saját képeiddel</string>
@@ -2363,9 +2480,9 @@
     <string name="quick_action__ime_ui_mode_sticker">Matrica</string>
     <string name="quick_action__ime_ui_mode_sticker__tooltip">Saját matricák beszúrása</string>
     <string name="prefs__media__sticker_add">Matricák hozzáadása</string>
-    <string name="prefs__media__sticker_add__summary">Másolj képeket a mappába. Bármelyik alkalmazásból is megoszthatsz egy képet a Voice Mode-tel.</string>
+    <string name="prefs__media__sticker_add__summary">Másolj képeket a mappába. Bármelyik alkalmazásból is megoszthatsz egy képet a Voice Mode-dal.</string>
     <string name="prefs__media__sticker_import_whatsapp">Behozás WhatsAppból</string>
-    <string name="prefs__media__sticker_import_whatsapp__summary">A fájlválasztót a WhatsApp matricamappájában nyitja meg. Az olyan billentyűzetek, mint a Samsungé, oda mentik a matricáikat, ahová más alkalmazás nem láthat — azokat oszd meg a Voice Mode-tel.</string>
+    <string name="prefs__media__sticker_import_whatsapp__summary">A fájlválasztót a WhatsApp matricamappájában nyitja meg. Az olyan billentyűzetek, mint a Samsungé, oda mentik a matricáikat, ahová más alkalmazás nem láthat — azokat oszd meg a Voice Mode-dal.</string>
     <string name="sticker__import_share_label">Mentés matricaként</string>
     <string name="sticker__import_added">{n} hozzáadva</string>
     <string name="sticker__import_duplicate">{n} már megvolt</string>
@@ -2389,7 +2506,7 @@
     <string name="sticker__source_downloads">Letöltések</string>
     <string name="sticker__source_pictures">Képek</string>
     <string name="sticker__source_dcim">Kamera</string>
-    <string name="sticker__source_hint">Ezek kiindulópontok, nem garanciák — ha a mappa nincs meg, a választó a szokott helyen nyílik. Azok az alkalmazások, amelyek megtartják maguknak a matricáikat, például a Samsung billentyűzete, csak megosztani tudják őket a Voice Mode-tel.</string>
+    <string name="sticker__source_hint">Ezek kiindulópontok, nem garanciák — ha a mappa nincs meg, a választó a szokott helyen nyílik. Azok az alkalmazások, amelyek megtartják maguknak a matricáikat, például a Samsung billentyűzete, csak megosztani tudják őket a Voice Mode-dal.</string>
     <string name="sticker__import_progress">Másolás: {done} / {total}</string>
     <string name="sticker__import_cancel">Koppints a leállításhoz. Ami átmásolódott, megmarad.</string>
     <string name="sticker__refused_declares_nothing">Ez az alkalmazás nem fogad képet a billentyűzetről — a vágólapra másolva, hosszan nyomd meg a beillesztéshez</string>

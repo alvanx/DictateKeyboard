@@ -23,6 +23,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -47,6 +50,7 @@ import androidx.navigation.compose.rememberNavController
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.apptheme.FlorisAppTheme
 import dev.patrickgold.florisboard.app.ext.ExtensionImportScreenType
+import dev.patrickgold.florisboard.app.settings.MainTabBar
 import dev.patrickgold.florisboard.app.setup.NotificationPermissionState
 import dev.patrickgold.florisboard.appContext
 import dev.patrickgold.florisboard.cacheManager
@@ -173,6 +177,7 @@ class FlorisAppActivity : ComponentActivity() {
         intentToBeHandled = null
     }
 
+    @OptIn(ExperimentalLayoutApi::class)
     @Composable
     private fun AppContent() {
         val navController = rememberNavController()
@@ -221,6 +226,10 @@ class FlorisAppActivity : ComponentActivity() {
                         startDestination = startDestination,
                     )
                     PreviewKeyboardField(previewFieldController)
+                    // Out of the way while typing into the test field: it would sit between field and keys.
+                    if (!WindowInsets.isImeVisible) {
+                        MainTabBar(navController)
+                    }
                 }
                 // Show the "What's new" surface once after an update (only when setup is complete, so
                 // it never competes with the onboarding flow). For the 5.0 milestone this is the

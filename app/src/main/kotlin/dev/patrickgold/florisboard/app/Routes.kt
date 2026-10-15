@@ -51,6 +51,8 @@ import dev.patrickgold.florisboard.app.ext.ExtensionListScreen
 import dev.patrickgold.florisboard.app.ext.ExtensionListScreenType
 import dev.patrickgold.florisboard.app.ext.ExtensionViewScreen
 import dev.patrickgold.florisboard.app.settings.HomeScreen
+import dev.patrickgold.florisboard.app.settings.AllSettingsScreen
+import dev.patrickgold.florisboard.app.settings.style.StyleScreen
 import dev.patrickgold.florisboard.app.settings.search.SettingsSearchScreen
 import dev.patrickgold.florisboard.app.settings.about.AboutScreen
 import dev.patrickgold.florisboard.app.settings.about.DataAttributionsScreen
@@ -70,6 +72,8 @@ import dev.patrickgold.florisboard.app.settings.dictate.DictateProxyScreen
 import dev.patrickgold.florisboard.app.settings.dictate.DictateWearScreen
 import dev.patrickgold.florisboard.app.settings.dictate.DictatePromptLibraryScreen
 import dev.patrickgold.florisboard.app.settings.dictate.DictatePromptsScreen
+import dev.patrickgold.florisboard.app.settings.dictate.DictateWordsScreen
+import dev.patrickgold.florisboard.app.settings.dictate.MyWordsScreen
 import dev.patrickgold.florisboard.app.settings.dictate.DictateFloatingButtonAppsScreen
 import dev.patrickgold.florisboard.app.settings.dictate.DictateFloatingButtonScreen
 import dev.patrickgold.florisboard.app.settings.dictate.DictateFormattingScreen
@@ -137,6 +141,14 @@ object Routes {
         object Search
 
         @Serializable
+        @Deeplink("settings/all")
+        object All
+
+        @Serializable
+        @Deeplink("settings/style")
+        object Style
+
+        @Serializable
         @Deeplink("settings/dictate")
         object Dictate
 
@@ -179,6 +191,14 @@ object Routes {
         @Serializable
         @Deeplink("settings/dictate/history")
         object DictateHistory
+
+        @Serializable
+        @Deeplink("settings/words")
+        object Words
+
+        @Serializable
+        @Deeplink("settings/words/all")
+        object MyWords
 
         @Serializable
         @Deeplink("settings/dictate/floating-button")
@@ -398,6 +418,8 @@ object Routes {
 
             composableWithDeepLink(Settings.Home::class) { HomeScreen() }
             composableWithDeepLink(Settings.Search::class) { SettingsSearchScreen() }
+            composableWithDeepLink(Settings.All::class) { AllSettingsScreen() }
+            composableWithDeepLink(Settings.Style::class) { StyleScreen() }
 
             composableWithDeepLink(Settings.Dictate::class) { DictateScreen() }
             composableWithDeepLink(Settings.DictateLanguages::class) { DictateLanguagesScreen() }
@@ -414,6 +436,8 @@ object Routes {
             composableWithDeepLink(Settings.DictateLayout::class) { DictateLayoutScreen() }
             composableWithDeepLink(Settings.DictateStats::class) { DictateStatsScreen() }
             composableWithDeepLink(Settings.DictateHistory::class) { DictateHistoryScreen() }
+            composableWithDeepLink(Settings.Words::class) { DictateWordsScreen() }
+            composableWithDeepLink(Settings.MyWords::class) { MyWordsScreen() }
             composableWithDeepLink(Settings.DictateFloatingButton::class) { DictateFloatingButtonScreen() }
             composableWithDeepLink(Settings.DictateFloatingButtonApps::class) { DictateFloatingButtonAppsScreen() }
             composableWithDeepLink(Settings.DictatePrompts::class) { navBackStack ->

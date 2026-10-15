@@ -214,13 +214,24 @@ private fun SmartbarMainRow(modifier: Modifier = Modifier) {
     LaunchedEffect(hasDictateSelection) {
         if (hasDictateSelection) DictateController.refreshPrompts(context)
     }
-    // The contextual on-selection strip belongs to the PANEL layout; in ROW mode the always-on prompt
-    // row above the Smartbar already shows every prompt, so the strip would be redundant.
+    // The chips in the bar: on a selection in the PANEL layout, and in the "show when useful" layout on a
+    // selection and right after a dictation. In ROW mode the always-on prompt row above the Smartbar
+    // already shows every prompt, so a strip would be redundant. See DictatePromptsLayout.chipsInBar.
     val dictatePromptsLayout by prefs.dictate.promptsLayout.collectAsState()
+    val afterDictation by DictateController.afterDictation.collectAsState()
+    LaunchedEffect(afterDictation) {
+        if (afterDictation) DictateController.refreshPrompts(context)
+    }
     val showDictatePromptStrip = dictateRewordingEnabled &&
-        dictatePromptsLayout == DictatePromptsLayout.PANEL &&
-        hasDictateSelection &&
-        dictatePrompts.isNotEmpty()
+        dictatePromptsLayout.chipsInBar(
+            hasSelection = hasDictateSelection,
+            afterDictation = afterDictation,
+            hasPrompts = dictatePrompts.isNotEmpty(),
+        )
+    val promptStripLiveChip = dictatePromptsLayout.liveChipInBar
+    // While recording, the cancel button takes the place of the actions toggle at the bar's edge: nothing
+    // the toggle opens can be shown during a dictation anyway.
+    val isRecording = dictateState is DictateController.UiState.Recording
 
     @Composable
     fun SharedActionsToggle() {
@@ -319,14 +330,15 @@ private fun SmartbarMainRow(modifier: Modifier = Modifier) {
                 enter = enterTransition,
                 exit = exitTransition,
             ) {
-                DictatePromptStrip(dictatePrompts, modifier = Modifier.fillMaxSize())
+                DictatePromptStrip(dictatePrompts, modifier = Modifier.fillMaxSize(), withLiveChip = promptStripLiveChip)
             }
             this@CenterContent.AnimatedVisibility(
                 visible = isDictating,
                 enter = enterTransition,
                 exit = exitTransition,
             ) {
-                DictateSmartbarUi(dictateState)
+                // Swapped sides put the cancel button at the far end, where the actions toggle was.
+                DictateSmartbarUi(dictateState, mirrored = flipToggles)
             }
         }
     }
@@ -400,6 +412,8 @@ private fun SmartbarMainRow(modifier: Modifier = Modifier) {
                 // The sticky slot is not necessarily the mic — anything can be dragged into it, and
                 // it is the one button that is always visible, so it earns a second action too.
                 secondAction = secondActions.childOf(action.keyData().code),
+                // The pinned mic is "the" mic, so it wears the look picked on the Style tab.
+                micLook = true,
             )
         } else {
             Spacer(
@@ -426,7 +440,11 @@ private fun SmartbarMainRow(modifier: Modifier = Modifier) {
         when (smartbarLayout) {
             SmartbarLayout.SUGGESTIONS_ONLY -> {
                 if (showDictatePromptStrip) {
-                    DictatePromptStrip(dictatePrompts, modifier = Modifier.fillMaxSize())
+                    DictatePromptStrip(
+                        dictatePrompts,
+                        modifier = Modifier.fillMaxSize(),
+                        withLiveChip = promptStripLiveChip,
+                    )
                 } else if (shouldShowInlineSuggestionsUi) {
                     InlineSuggestionsUi(inlineSuggestions)
                 } else {
@@ -444,25 +462,25 @@ private fun SmartbarMainRow(modifier: Modifier = Modifier) {
 
             SmartbarLayout.SUGGESTIONS_ACTIONS_SHARED -> {
                 if (!flipToggles) {
-                    SharedActionsToggle()
+                    if (!isRecording) SharedActionsToggle()
                     CenterContent()
                     StickyAction()
                 } else {
                     StickyAction()
                     CenterContent()
-                    SharedActionsToggle()
+                    if (!isRecording) SharedActionsToggle()
                 }
             }
 
             SmartbarLayout.SUGGESTIONS_ACTIONS_EXTENDED -> {
                 if (!flipToggles) {
-                    ExtendedActionsToggle()
+                    if (!isRecording) ExtendedActionsToggle()
                     CenterContent()
                     StickyAction()
                 } else {
                     StickyAction()
                     CenterContent()
-                    ExtendedActionsToggle()
+                    if (!isRecording) ExtendedActionsToggle()
                 }
             }
         }

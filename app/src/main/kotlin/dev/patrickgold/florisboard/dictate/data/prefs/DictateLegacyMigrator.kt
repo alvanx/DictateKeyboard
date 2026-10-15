@@ -15,6 +15,8 @@ import androidx.compose.ui.graphics.Color
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.dictate.DictateLanguages
 import dev.patrickgold.florisboard.dictate.DictatePromptsLayout
+import dev.patrickgold.florisboard.dictate.data.prompts.MyWordsSync
+import dev.patrickgold.florisboard.dictate.data.prompts.PromptsDatabaseHelper
 import dev.patrickgold.florisboard.dictate.provider.DictateProxyType
 import dev.patrickgold.florisboard.dictate.provider.ProviderAccount
 import dev.patrickgold.florisboard.dictate.provider.ProviderAccounts
@@ -296,6 +298,26 @@ object DictateLegacyMigrator {
     }
 
     /**
+     * Withdraws the "Inspiring quote" and "Fun fact" starter prompts from existing installs: they wrote
+     * something nobody could predict, which made them noise on the always-on prompt row. Only rows still
+     * exactly as seeded go — compared in the current language and in English, the two a seed is most
+     * likely to have been written in — so a prompt the user rewrote is left alone. Once, via
+     * `prefs.dictate.generatorExamplesRemoved`.
+     */
+    fun removeGeneratorExamplesIfNeeded(context: Context) {
+        val prefs by FlorisPreferenceStore
+        if (prefs.dictate.generatorExamplesRemoved.get()) return
+        val english = context.createConfigurationContext(
+            android.content.res.Configuration(context.resources.configuration).apply { setLocale(Locale.ENGLISH) },
+        )
+        val examples = listOf(context, english).flatMap { ctx ->
+            PromptsDatabaseHelper.GENERATOR_EXAMPLES.map { (name, prompt) -> ctx.getString(name) to ctx.getString(prompt) }
+        }.distinct()
+        runCatching { PromptsDatabaseHelper.getInstance(context).deleteUntouched(examples) }
+            .onSuccess { prefs.dictate.generatorExamplesRemoved.set(true) }
+    }
+
+    /**
      * Ensures the AI prompt-panel action ([KeyCode.DICTATE_PROMPTS]) is present in the saved arrangement.
      * Injected separately (own guard) so users who already ran the live-prompt migration still receive it.
      */
@@ -327,16 +349,33 @@ object DictateLegacyMigrator {
     }
 
     /**
-     * One-time switch to the always-on prompt ROW layout, now the default. Existing users who were on the
-     * PANEL layout are moved to ROW once on update so the prompt chips are immediately visible; they can
-     * switch back in settings. A brand-new install is already on ROW (the new default), so this is a no-op
-     * for them. Idempotent via `prefs.dictate.promptsLayoutRowMigrated`.
+     * One-time switch to the always-on prompt ROW layout, the default at the time (since followed by
+     * [migratePromptsLayoutToWhenUsefulIfNeeded]). Existing users who were on the PANEL layout are moved
+     * to ROW once on update so the prompt chips are immediately visible; they can switch back in settings.
+     * It sets ROW on a brand-new install too. Idempotent via `prefs.dictate.promptsLayoutRowMigrated`.
      */
     suspend fun migratePromptsLayoutToRowIfNeeded() {
         val prefs by FlorisPreferenceStore
         if (prefs.dictate.promptsLayoutRowMigrated.get()) return
         prefs.dictate.promptsLayout.set(DictatePromptsLayout.ROW)
         prefs.dictate.promptsLayoutRowMigrated.set(true)
+    }
+
+    /**
+     * One-time move of the prompt chips from the always-on row to "show when useful", now the default:
+     * in the bar right after a dictation and on a selection, out of the way the rest of the time.
+     *
+     * Runs after [migratePromptsLayoutToRowIfNeeded], which put every install on ROW, so ROW is where
+     * nearly everyone is without having chosen it; they move. PANEL can only have been picked by hand
+     * since then, so it stays. Someone who went back to ROW by hand cannot be told apart from the rest and
+     * moves too; they can pick it again in settings, and it is never changed after that. Idempotent via
+     * `prefs.dictate.promptsLayoutWhenUsefulMigrated`.
+     */
+    suspend fun migratePromptsLayoutToWhenUsefulIfNeeded() {
+        val prefs by FlorisPreferenceStore
+        if (prefs.dictate.promptsLayoutWhenUsefulMigrated.get()) return
+        prefs.dictate.promptsLayout.set(DictatePromptsLayout.movedToWhenUseful(prefs.dictate.promptsLayout.get()))
+        prefs.dictate.promptsLayoutWhenUsefulMigrated.set(true)
     }
 
     /**
@@ -383,6 +422,16 @@ object DictateLegacyMigrator {
         if (prefs.suggestion.learnTypedWordsDefaultMigrated.get()) return
         prefs.suggestion.learnTypedWords.set(true)
         prefs.suggestion.learnTypedWordsDefaultMigrated.set(true)
+    }
+
+    /**
+     * Makes the dictation custom words and the keyboard's personal dictionary one "My words" list, once
+     * (guarded by `prefs.dictate.myWordsMerged`): each list gets the other's words, so nothing either
+     * held is lost. From then on My words is the list people edit, and [MyWordsSync] keeps the
+     * dictionary following it. Waits for a later start while the internal dictionary is switched off.
+     */
+    suspend fun mergeMyWordsIfNeeded(context: Context) {
+        runCatching { MyWordsSync.mergeIfNeeded(context) }
     }
 
     /**

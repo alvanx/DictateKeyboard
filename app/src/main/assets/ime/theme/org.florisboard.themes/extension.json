@@ -14,85 +14,97 @@
   "themes": [
     {
       "id": "dictate_glass",
-      "label": "Voice Mode Glass",
+      "label": "Glass",
       "authors": [ "DevEmperor" ],
       "isNight": true
     },
     {
       "id": "dictate_glass_clear",
-      "label": "Voice Mode Glass Clear",
+      "label": "Glass Clear",
       "authors": [ "DevEmperor" ],
       "isNight": true
     },
     {
       "id": "dictate_sand",
-      "label": "Voice Mode Sand (Day)",
+      "label": "Sand (Day)",
       "authors": [ "DevEmperor" ],
       "isNight": false
     },
     {
       "id": "dictate_deep",
-      "label": "Voice Mode Deep (Night)",
+      "label": "Deep (Night)",
       "authors": [ "DevEmperor" ],
       "isNight": true
     },
     {
       "id": "dictate_contrast",
-      "label": "Voice Mode High Contrast (Day)",
+      "label": "High Contrast (Day)",
       "authors": [ "DevEmperor" ],
       "isNight": false
     },
     {
       "id": "dictate_contrast_night",
-      "label": "Voice Mode High Contrast (Night)",
+      "label": "High Contrast (Night)",
       "authors": [ "DevEmperor" ],
       "isNight": true
     },
     {
       "id": "dictate_eink",
-      "label": "Voice Mode E-Ink (Day)",
+      "label": "E-Ink (Day)",
       "authors": [ "DevEmperor" ],
       "isNight": false
     },
     {
       "id": "dictate_eink_night",
-      "label": "Voice Mode E-Ink (Night)",
+      "label": "E-Ink (Night)",
+      "authors": [ "DevEmperor" ],
+      "isNight": true
+    },
+    {
+      "id": "dictate_garden",
+      "label": "Garden",
+      "authors": [ "DevEmperor" ],
+      "isNight": false
+    },
+    {
+      "id": "dictate_studio",
+      "label": "Studio",
       "authors": [ "DevEmperor" ],
       "isNight": true
     },
     {
       "id": "floris_day",
-      "label": "Voice Mode Day",
+      "label": "Day",
       "authors": [ "patrickgold" ],
       "isNight": false
     },
     {
       "id": "floris_day_borderless",
-      "label": "Voice Mode Day (Borderless)",
+      "label": "Day (Borderless)",
       "authors": [ "patrickgold" ],
       "isNight": false
     },
     {
       "id": "floris_night",
-      "label": "Voice Mode Night",
+      "label": "Night",
       "authors": [ "patrickgold" ],
       "isNight": true
     },
     {
       "id": "floris_night_borderless",
-      "label": "Voice Mode Night (Borderless)",
+      "label": "Night (Borderless)",
       "authors": [ "patrickgold" ],
       "isNight": true
     },
     {
       "id": "floris_pure_night",
-      "label": "Voice Mode Pure Night",
+      "label": "Pure Night",
       "authors": [ "serebit" ],
       "isNight": true
     },
     {
       "id": "floris_pure_night_borderless",
-      "label": "Voice Mode Pure Night (Borderless)",
+      "label": "Pure Night (Borderless)",
       "authors": [ "serebit" ],
       "isNight": true
     }

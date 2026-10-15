@@ -30,8 +30,9 @@ import kotlin.math.max
  *
  * Hence one limit, expressed in the unit the model actually counts in, and it is the model's own:
  * [TOKEN_BUDGET] tokens, which is the window minus [STYLE_PROMPT_RESERVE] for the style prompt that is
- * prepended to the glossary. An import stops there and says how many words did not fit. A list the user
- * typed by hand is **never** truncated — we do not delete what somebody wrote — it is only reported on.
+ * prepended to the glossary. Since the list became "My words" — used for typing as well — it may be
+ * longer than that: nothing is ever deleted from it, but only the words within the budget, from the
+ * front, are sent ([DictatePromptDefaults.appendCustomWords]).
  *
  * ## Why an estimate rather than a real tokenizer
  *
@@ -216,13 +217,14 @@ object CustomWordList {
 
     /**
      * Works out what importing [fileText] on top of [existingRaw] would do, without writing anything.
+     * Entries past [budget] tokens are left out; pass [Int.MAX_VALUE] to take every entry.
      *
      * The existing text is **appended to, never rewritten**: the merged value is the user's own string
      * plus the new entries behind it, joined the way that string already joins things. Re-serialising a
      * parsed list would silently collapse somebody's carefully one-word-per-line field into a single
      * comma run, which is a worse thing to do to a setting than anything this feature adds.
      */
-    fun plan(existingRaw: String?, fileText: String): ImportReport {
+    fun plan(existingRaw: String?, fileText: String, budget: Int = TOKEN_BUDGET): ImportReport {
         val existing = parse(existingRaw)
         val file = parseFile(fileText)
 
@@ -239,7 +241,7 @@ object CustomWordList {
                 continue
             }
             val next = weight + weightOf(word) + if (count == 0) 0 else SEPARATOR_WEIGHT
-            if (tokensFor(next) > TOKEN_BUDGET) {
+            if (tokensFor(next) > budget) {
                 didNotFit++
                 continue
             }

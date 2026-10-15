@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Adjust
 import androidx.compose.material.icons.filled.GraphicEq
 import androidx.compose.material.icons.filled.Segment
@@ -100,6 +101,7 @@ import dev.patrickgold.florisboard.dictate.audio.SmartTurnModel
 import dev.patrickgold.florisboard.dictate.provider.LocalModelCatalog
 import dev.patrickgold.florisboard.dictate.provider.LocalModelDownloads
 import dev.patrickgold.florisboard.dictate.data.prompts.DictatePromptDefaults
+import dev.patrickgold.florisboard.dictate.data.prompts.MyWords
 import dev.patrickgold.florisboard.dictate.provider.ProviderAccounts
 import dev.patrickgold.florisboard.dictate.provider.ProviderRegistry
 import dev.patrickgold.florisboard.lib.compose.FlorisScreen
@@ -307,8 +309,20 @@ fun DictateFormattingScreen() = FlorisScreen {
             customPref = prefs.dictate.stylePromptCustom,
             customPlaceholder = stringRes(R.string.dictate__style_prompt_custom_placeholder),
         )
-        // The editor, what the list costs on every request, and the file import/export (issue #389).
-        CustomWordsSection(prefs.dictate.customWords)
+        // The custom words are My words now, one list with the keyboard's dictionary: this row leads to it.
+        val myWordsRaw by prefs.dictate.customWords.collectAsState()
+        val myWordsCount = remember(myWordsRaw) { MyWords.parse(myWordsRaw).size }
+        Preference(
+            icon = Icons.AutoMirrored.Filled.MenuBook,
+            modifier = Modifier.settingsSearchAnchor("dictate__custom_words_title"),
+            title = stringRes(R.string.mywords__title),
+            summary = if (myWordsCount == 0) {
+                stringRes(R.string.dictate__custom_words_summary_empty)
+            } else {
+                stringRes(R.string.mywords__row_summary, "count" to myWordsCount)
+            },
+            onClick = { navController.navigate(Routes.Settings.MyWords) },
+        )
         Preference(
             icon = Icons.Default.SwapHoriz,
             modifier = Modifier.settingsSearchAnchor("dictate__mappings_title"),
@@ -648,7 +662,7 @@ fun DictateLayoutScreen() = FlorisScreen {
  * the [ProviderRegistry], user-defined endpoints from their stored display name in the keyring, falling
  * back to the raw id if neither is available.
  */
-private fun providerDisplayName(id: String, accounts: ProviderAccounts): String {
+internal fun providerDisplayName(id: String, accounts: ProviderAccounts): String {
     ProviderRegistry.byId(id)?.let { return it.displayName }
     return accounts[id]?.displayName?.takeIf { it.isNotBlank() } ?: id
 }

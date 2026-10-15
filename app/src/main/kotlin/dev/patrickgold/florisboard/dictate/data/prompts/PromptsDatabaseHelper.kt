@@ -126,6 +126,17 @@ class PromptsDatabaseHelper private constructor(
         db.delete("PROMPTS", "ID = ?", arrayOf(id.toString()))
     }
 
+    /**
+     * Deletes the prompts whose name *and* text are exactly one of [examples], so a starter prompt the
+     * user never touched can be withdrawn while one they edited stays theirs. Returns how many went.
+     */
+    fun deleteUntouched(examples: List<Pair<String, String>>): Int {
+        val db = writableDatabase
+        return examples.sumOf { (name, prompt) ->
+            db.delete("PROMPTS", "NAME = ? AND PROMPT = ?", arrayOf(name, prompt))
+        }
+    }
+
     fun get(id: Int): PromptModel? {
         val db = readableDatabase
         return db.rawQuery("SELECT * FROM PROMPTS WHERE ID = ?", arrayOf(id.toString())).use { cursor ->
@@ -240,10 +251,17 @@ class PromptsDatabaseHelper private constructor(
                 instance ?: PromptsDatabaseHelper(context.applicationContext).also { instance = it }
             }
 
-        // A useful starter set covering all three prompt types: six rewrite-the-selection editors
-        // (requiresSelection = true), two free generators and two literal `[snippet]` prompts (both
-        // requiresSelection = false). Resolved lazily so the strings pick up the device locale at seed
+        // A useful starter set: six rewrite-the-selection editors (requiresSelection = true) and two
+        // literal `[snippet]` prompts (requiresSelection = false). The two free generators that used to
+        // ship here ("Inspiring quote", "Fun fact") went: nobody can tell what they will write before
+        // tapping them, so they had no place on an always-on row. See [GENERATOR_EXAMPLES]. Resolved lazily so the strings pick up the device locale at seed
         // time.
+        /** The withdrawn generator examples, as (name, prompt) string resources. */
+        val GENERATOR_EXAMPLES = listOf(
+            R.string.dictate__example_prompt_quote_name to R.string.dictate__example_prompt_quote_prompt,
+            R.string.dictate__example_prompt_funfact_name to R.string.dictate__example_prompt_funfact_prompt,
+        )
+
         private fun defaultSeeds() = listOf(
             Seed(R.string.dictate__example_prompt_fix_grammar_name, R.string.dictate__example_prompt_fix_grammar_prompt, true),
             Seed(R.string.dictate__example_prompt_improve_name, R.string.dictate__example_prompt_improve_prompt, true),
@@ -251,8 +269,6 @@ class PromptsDatabaseHelper private constructor(
             Seed(R.string.dictate__example_prompt_friendly_name, R.string.dictate__example_prompt_friendly_prompt, true),
             Seed(R.string.dictate__example_prompt_shorter_name, R.string.dictate__example_prompt_shorter_prompt, true),
             Seed(R.string.dictate__example_prompt_translate_name, R.string.dictate__example_prompt_translate_prompt, true),
-            Seed(R.string.dictate__example_prompt_quote_name, R.string.dictate__example_prompt_quote_prompt, false),
-            Seed(R.string.dictate__example_prompt_funfact_name, R.string.dictate__example_prompt_funfact_prompt, false),
             Seed(R.string.dictate__example_prompt_shrug_name, R.string.dictate__example_prompt_shrug_prompt, false),
             Seed(R.string.dictate__example_prompt_signoff_name, R.string.dictate__example_prompt_signoff_prompt, false),
         )

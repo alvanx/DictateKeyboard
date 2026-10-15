@@ -114,7 +114,7 @@
     <string name="quick_actions_editor__subheader_hidden_actions">Accions ocultes ({n})</string>
     <string name="select_subtype_panel__header">Escull un subtipus</string>
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">Estàs en mode incògnit, en aquest mode\n\n{app_name} no aprendrà les paraules que entris</string>
+    <string name="incognito_mode__toast_after_enabled">Estàs en mode incògnit, en aquest mode\n\nVoice Mode no aprendrà les paraules que entris</string>
     <string name="incognito_mode__toast_after_disabled">El mode incògnit ara està inhabilitat per defecte</string>
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">Preferències</string>
@@ -122,9 +122,129 @@
     <string name="settings__help" comment="General label for help buttons in Settings">Ajuda</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Per defecte</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Per defecte del sistema</string>
-    <string name="settings__home__title" comment="Title of the Home screen">Us donem la benvinguda a {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name} no està habilitat en el sistema i, per tant, no estarà disponible com a mètode d\'entrada en el selector d\'entrada. Feu clic aquí per a resoldre aquest problema.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name} no està seleccionat com a mètode d\'entrada per defecte. Feu clic aquí per a resoldre aquest problema.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">Us donem la benvinguda a Voice Mode</string>
+    <string name="home__recent_title">Dictats recents</string>
+    <string name="home__recent_see_all">Mostra-ho tot</string>
+    <string name="home__recent_copy">Copia</string>
+    <string name="home__recent_failed">La transcripció ha fallat. S\'ha desat l\'enregistrament.</string>
+    <string name="home__recent_retry">Torna-ho a provar</string>
+    <string name="home__transcribe_file">Transcriu un fitxer</string>
+    <string name="home__ai_model">Model d\'IA</string>
+    <string name="home__stats_summary">estalviat · {count} dictats</string>
+    <string name="settings__all__title">Configuració</string>
+    <string name="dictionary_hub__title">Diccionari</string>
+    <string name="words__personal_dictionary">Diccionari personal</string>
+    <string name="mywords__subtitle">Noms i termes que Voice Mode ha d\'encertar sempre.</string>
+    <string name="mywords__title">Les meves paraules</string>
+    <string name="mywords__explanation">Una sola llista per a tot. Cada paraula s\'escriu a la teva manera quan parles i se suggereix quan escrius.</string>
+    <string name="mywords__empty">Encara no hi ha res. Afegeix un nom, un producte o qualsevol paraula que facis servir sovint.</string>
+    <string name="mywords__more">+ {count} més</string>
+    <string name="mywords__see_all">Edita la llista</string>
+    <string name="mywords__add_hint">Afegeix una paraula o un nom</string>
+    <string name="mywords__add">Afegeix la paraula</string>
+    <string name="mywords__usage">{count} de {limit} van a la IA de veu</string>
+    <string name="mywords__usage_full">{count} de {total} van a la IA de veu. Totes s\'usen per escriure.</string>
+    <string name="mywords__fixes">Correccions</string>
+    <string name="mywords__find_replace">Cerca i substitueix</string>
+    <string name="mywords__find_replace_none">Corregeix les paraules que la IA de veu sempre erra</string>
+    <string name="mywords__find_replace_one">1 regla: «{from}» → «{to}»</string>
+    <string name="mywords__find_replace_many">{count} regles, p. ex. «{from}» → «{to}»</string>
+    <string name="mywords__learned">Apreses mentre escrius</string>
+    <string name="mywords__learned_summary">Recollides automàticament. Elimina les que vulguis.</string>
+    <string name="mywords__phone_settings">Diccionari del telèfon i opcions d\'aprenentatge</string>
+    <string name="mywords__edit_as_text">Edita com a text</string>
+    <string name="mywords__edit_as_text_summary">Enganxa, importa o exporta tota la llista</string>
+    <string name="mywords__remove">Elimina {word}</string>
+    <string name="mywords__typing_only">Només per escriure: no queda espai per a la IA de veu</string>
+    <string name="mywords__budget_over">La teva llista és més llarga del que llegeix la IA de veu. Hi van les primeres {fits} de les teves {count} paraules; la resta se segueixen suggerint quan escrius.</string>
+    <string name="mywords__row_summary">{count} paraules, escrites a la teva manera i suggerides quan escrius</string>
+    <string name="nav__home">Inici</string>
+    <string name="nav__style">Estil</string>
+    <string name="home__mic_title">El teu botó de micròfon</string>
+    <string name="home__mic_on">{charm} · flota a totes les apps</string>
+    <string name="home__mic_off">No activat</string>
+    <string name="home__mic_change_look">Canvia l\'aspecte</string>
+    <string name="home__turn_on">Activa</string>
+    <string name="home__keyboard_title">Teclat Voice Mode</string>
+    <string name="home__keyboard_off">No activat</string>
+    <string name="home__keyboard_on">Activat · el micròfon és al teclat</string>
+    <string name="firstrun__title">Digues-ho.\nVoice Mode ho escriu.</string>
+    <string name="firstrun__subtitle">Dos passos ràpids i ja estàs parlant.</string>
+    <string name="firstrun__step_look">Tria el teu botó de micròfon</string>
+    <string name="firstrun__more_looks">Més</string>
+    <string name="firstrun__step_where">Tria on apareix</string>
+    <string name="firstrun__floating_title">Micròfon flotant</string>
+    <string name="firstrun__floating_summary">Al costat de qualsevol camp de text, amb el teclat que ja fas servir</string>
+    <string name="firstrun__keyboard_summary">Un teclat complet amb el micròfon integrat</string>
+    <string name="firstrun__done">Activat</string>
+    <string name="firstrun__try_title">Prova-ho aquí</string>
+    <string name="firstrun__try_summary">Toca i digues qualsevol cosa. El text apareix a sota, a punt per copiar.</string>
+    <string name="settings__dictation_group">Dictat</string>
+    <string name="settings__more_group">Teclat i aplicació</string>
+    <string name="settings__floating_button_on">Activat · on i quan apareix</string>
+    <string name="settings__more_dictation">Més opcions de dictat</string>
+    <string name="settings__more_dictation_summary">Idiomes, format, reformulació, enregistrament</string>
+    <string name="style__subtitle">Fes teu el botó de micròfon.</string>
+    <string name="style__preview_message">Encara véns aquesta nit?</string>
+    <string name="style__preview_caption">Escoltant en una app de xat</string>
+    <string name="style__preview_field">Missatge</string>
+    <string name="style__charm_classic">Clàssic</string>
+    <string name="style__charm_daisy">Margarida</string>
+    <string name="style__charm_butterfly">Papallona</string>
+    <string name="style__charm_heart">Cor</string>
+    <string name="style__charm_clover">Trèvol</string>
+    <string name="style__charm_moon">Lluna</string>
+    <string name="style__charm_sunflower">Gira-sol</string>
+    <string name="style__charm_blossom">Flor de cirerer</string>
+    <string name="style__charm_on_air">En antena</string>
+    <string name="style__charm_gramophone">Gramòfon</string>
+    <string name="style__charm_crooner">Crooner</string>
+    <string name="style__charm_mixtape">Casset</string>
+    <string name="style__charm_planet">Planeta</string>
+    <string name="style__charm_shooting_star">Estel fugaç</string>
+    <string name="style__charm_disco_ball">Bola de discoteca</string>
+    <string name="style__charm_big_red_button">Gran botó vermell</string>
+    <string name="style__charm_pixel_heart">Cor de 8 bits</string>
+    <string name="style__charm_neon">Neó</string>
+    <string name="style__charm_studio_mic">Micro d\'estudi</string>
+    <string name="style__collection_garden">Jardí</string>
+    <string name="style__collection_garden_tagline">Suau, lluminós, viu</string>
+    <string name="style__collection_retro">Retro</string>
+    <string name="style__collection_retro_tagline">Càlid, analògic, amb una picada d\'ullet</string>
+    <string name="style__collection_night_sky">Cel nocturn</string>
+    <string name="style__collection_night_sky_tagline">Tranquil i somiador</string>
+    <string name="style__collection_arcade">Arcade</string>
+    <string name="style__collection_arcade_tagline">Contundent i juganer</string>
+    <string name="style__collection_simple">Senzill</string>
+    <string name="style__collection_simple_tagline">El botó rodó de sempre</string>
+    <string name="style__move_bloom">Floreix mentre escolta</string>
+    <string name="style__move_flutter">Aleteja mentre escolta</string>
+    <string name="style__move_turn">Gira mentre escolta</string>
+    <string name="style__move_sway">Es gronxa mentre escolta</string>
+    <string name="style__move_glow">Brilla mentre escolta</string>
+    <string name="style__move_wobble">Trontolla mentre escolta</string>
+    <string name="style__move_pulse">Palpita mentre escolta</string>
+    <string name="style__move_spin">Fa girar les bobines mentre escolta</string>
+    <string name="style__move_tilt">S\'inclina mentre escolta</string>
+    <string name="style__move_twinkle">Centelleja mentre escolta</string>
+    <string name="style__move_press">S\'enfonsa mentre escolta</string>
+    <string name="style__move_beat">Batega mentre escolta</string>
+    <string name="style__move_flicker">Parpelleja mentre escolta</string>
+    <string name="style__move_title">Moure\'s mentre escolta</string>
+    <string name="style__move_off">Es queda quiet</string>
+    <string name="style__color_original">Colors originals</string>
+    <string name="style__color_fixed">{charm} manté els seus propis colors.</string>
+    <string name="style__color">Color</string>
+    <string name="style__color_cloud">Núvol</string>
+    <string name="style__color_blossom">Flor</string>
+    <string name="style__color_lilac">Lila</string>
+    <string name="style__color_butter">Mantega</string>
+    <string name="style__color_mint">Menta</string>
+    <string name="style__color_sky">Cel</string>
+    <string name="style__more_colors">Més colors</string>
+    <string name="style__motion">Mentre escolta</string>
+    <string name="style__button_off">El botó de micròfon flotant està desactivat, així que de moment només el veuràs aquí.</string>
+    <string name="style__look_summary">{charm} · canvia\'l a la pestanya Estil</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Cerca la configuració</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Cerca la configuració…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Cerques recents</string>
@@ -192,7 +312,7 @@
     <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">Tema nocturn</string>
     <string name="pref__theme__theme_accent_color__label" comment="Label of accent color preference in Theme">Color d\'accent (Material You)</string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">Gestiona els temes instal·lats</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">Actius d\'aplicacions {app_name}</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">Actius d\'aplicacions Voice Mode</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">Emmagatzematge intern</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">Proveïdor extern</string>
     <string name="settings__theme_manager__title_day" comment="Title of the theme manager screen for day theme selection">Selecciona el tema del dia</string>
@@ -222,7 +342,7 @@
     <string name="settings__theme_editor__code_recording_help_text">Per trobar el codi d\'una tecla usa el botó que hi ha al costat del camp d\'entrada de codis. Quan l\'habilites enregistrarà el següent toc de tecla i inserirà el codi al camp d\'entrada.</string>
     <string name="settings__theme_editor__code_recording_started">S\'ha iniciat l\'enregistrament del codi de tecla</string>
     <string name="settings__theme_editor__code_recording_stopped">S\'ha aturat l\'enregistrament del codi de tecla</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">{app_name} ha de ser el teclat per defecte per enregistrar un codi de tecla</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Voice Mode ha de ser el teclat per defecte per enregistrar un codi de tecla</string>
     <string name="settings__theme_editor__code_recording_placeholder">Enregistrant…</string>
     <string name="settings__theme_editor__add_property">Afegir propietat</string>
     <string name="settings__theme_editor__edit_property">Editar propietat</string>
@@ -237,7 +357,7 @@
     <string name="settings__theme_editor__component_meta_is_borderless">És sense vores</string>
     <string name="settings__theme_editor__component_meta_stylesheet_path">Camí al full d\'estil</string>
     <string name="settings__theme_editor__stylesheet_error_title">Error amb el full d\'estil</string>
-    <string name="settings__theme_editor__stylesheet_error_description">{app_name} pot carregar el full d\'estil i afegir-hi les regles i esquemes que falten, o suprimir-ne les regles, propietats o valors no vàlids. Vols que {app_name} faci aquests canvis?</string>
+    <string name="settings__theme_editor__stylesheet_error_description">Voice Mode pot carregar el full d\'estil i afegir-hi les regles i esquemes que falten, o suprimir-ne les regles, propietats o valors no vàlids. Vols que Voice Mode faci aquests canvis?</string>
     <string name="snygg__rule_annotation__defines">Variables</string>
     <string name="snygg__rule_annotation__defines_description">Defineix les variables dins d\'aquesta regla per reutilitzar els colors o les mides comunes en el teu full d\'estil.</string>
     <string name="snygg__rule_annotation__font">Fonts</string>
@@ -503,7 +623,7 @@
     <string name="pref__other__show_app_icon__summary_atleast_q" comment="Summary of Show app icon preference in Other for Android 10+">Habilitat sempre a Android 10 i posteriors a conseqüència de les restriccions del sistema</string>
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">Quant a</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Icona de l\'aplicació de {app_name}</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Icona de l\'aplicació de Voice Mode</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">Llicències de codi obert</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">Política de privacitat</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">Codi font</string>
@@ -520,21 +640,21 @@
     <string name="about__privacy_policy__title" comment="Preference title">Política de privacitat</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">La política de privacitat per a aquest projecte</string>
     <string name="about__project_license__title" comment="Preference title">Llicència del projecte</string>
-    <string name="about__project_license__summary" comment="Preference summary">{app_name} està sota la llicència de {license_name}</string>
+    <string name="about__project_license__summary" comment="Preference summary">Voice Mode està sota la llicència de {license_name}</string>
     <string name="about__project_license__error_license_text_failed" comment="Error text for license text loading failure">Error: No s\'ha pogut carregar la llicència.\n-&gt; Motiu: {error_message}</string>
     <string name="about__project_license__error_reason_asset_manager_null" comment="Error text if asset manager is null">La referència al gestor de recursos és nul·la</string>
     <string name="about__third_party_licenses__title" comment="Preference title">Llicències de tercers</string>
     <string name="about__third_party_licenses__summary" comment="Preference summary">Llicències de les biblioteques de tercers incloses en aquesta aplicació</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">Benvinguts!</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">Gràcies per usar {app_name}! Aquesta configuració ràpida t\'acompanyarà en els passos necessaris per poder usar {app_name} al teu dispositiu.</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">Gràcies per usar Voice Mode! Aquesta configuració ràpida t\'acompanyarà en els passos necessaris per poder usar Voice Mode al teu dispositiu.</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">Política de privacitat</string>
     <string name="setup__footer__repository" comment="Repository label for URL">Repositori</string>
-    <string name="setup__enable_ime__title">Habilita {app_name}</string>
-    <string name="setup__enable_ime__description">Android requereix que cada teclat personalitzat s\'habiliti per separat abans de poder usar-lo. Obre els paràmetres de <i>Idioma i entrada</i> a Sistema i allà habilita \"{app_name}\".</string>
+    <string name="setup__enable_ime__title">Habilita Voice Mode</string>
+    <string name="setup__enable_ime__description">Android requereix que cada teclat personalitzat s\'habiliti per separat abans de poder usar-lo. Obre els paràmetres de <i>Idioma i entrada</i> a Sistema i allà habilita \"Voice Mode\".</string>
     <string name="setup__enable_ime__open_settings_btn">Obre els paràmetres del sistema</string>
-    <string name="setup__select_ime__title">Selecciona {app_name}</string>
-    <string name="setup__select_ime__description">{app_name} s\'ha habilitat al sistema. Per usar-lo canvia a {app_name} al diàleg de selecció de mètode d\'entrada!</string>
+    <string name="setup__select_ime__title">Selecciona Voice Mode</string>
+    <string name="setup__select_ime__description">Voice Mode s\'ha habilitat al sistema. Per usar-lo canvia a Voice Mode al diàleg de selecció de mètode d\'entrada!</string>
     <string name="setup__select_ime__switch_keyboard_btn">Canvia el teclat</string>
     <string name="setup__grant_notification_permission__title">Permet les notificacions d\'informes d\'errors</string>
     <string name="setup__grant_notification_permission__description">Des d\'Android 13 i posteriors les aplicacions han de demanar permís per
@@ -543,9 +663,9 @@
     </string>
     <string name="setup__grant_notification_permission__btn">Concedeix permís</string>
     <string name="setup__finish_up__title">Finalitza</string>
-    <string name="setup__finish_up__description_p1">{app_name} s\'habilitat al sistema i està preparat perquè el personalitzis.</string>
+    <string name="setup__finish_up__description_p1">Voice Mode s\'habilitat al sistema i està preparat perquè el personalitzis.</string>
     <string name="setup__finish_up__description_p2">Si trobes cap incidència, error, fallada o simplement vols suggerir alguna cosa, només has d\'anar al repositori del projecte des de la pantalla Quant a!</string>
-    <string name="setup__finish_up__finish_btn">Comença a personalitzar</string>
+    <string name="setup__finish_up__finish_btn">Comença a fer servir Voice Mode</string>
     <!-- Physical keyboard -->
     <string name="physical_keyboard__system_settings__title">Configuració del teclat físic</string>
     <!-- Back up & Restore -->
@@ -604,7 +724,7 @@
     <string name="clipboard__search_placeholder" comment="Hint inside the clipboard search field">Cerca al porta-retalls</string>
     <string name="clipboard__search_no_results" comment="Shown when no clip contains what was typed">Cap element no conté això</string>
     <string name="clipboard__disabled__title">L\'historial del porta-retalls està inhabilitat actualment</string>
-    <string name="clipboard__disabled__message">L\'historial del porta-retalls de {app_name} et permet emmagatzemar i accedir al text i a les imatges que has copiat ràpidament, amb la possibilitat de fixar entrades, configurar la neteja automàtica i definir un límit màxim d\'entrades.</string>
+    <string name="clipboard__disabled__message">L\'historial del porta-retalls de Voice Mode et permet emmagatzemar i accedir al text i a les imatges que has copiat ràpidament, amb la possibilitat de fixar entrades, configurar la neteja automàtica i definir un límit màxim d\'entrades.</string>
     <string name="clipboard__disabled__enable_button">Habilita l\'historial del porta-retalls</string>
     <string name="clipboard__empty__title">El porta-retalls és buit</string>
     <string name="clipboard__empty__message">Els textos o imatges que hagis copiat es mostraran aquí.</string>
@@ -729,7 +849,7 @@
     <string name="ext__editor__create_component__title_theme">Crea un tema</string>
     <string name="ext__editor__create_component__from_empty">Buit</string>
     <string name="ext__editor__create_component__from_existing">D\'un existent</string>
-    <string name="ext__editor__create_component__from_empty_warning">Crear i configurar un component buit pot ser difícil si ets nou a {app_name} o si no estàs familiaritzat amb els detalls. Sempre pots copiar un component existent i modificar-lo al teu gust si és el cas.</string>
+    <string name="ext__editor__create_component__from_empty_warning">Crear i configurar un component buit pot ser difícil si ets nou a Voice Mode o si no estàs familiaritzat amb els detalls. Sempre pots copiar un component existent i modificar-lo al teu gust si és el cas.</string>
     <string name="ext__editor__edit_component__title">Edita el component</string>
     <string name="ext__editor__edit_component__title_theme">Edita el component de tema</string>
     <string name="ext__export__success">L\'extensió s\'ha exportat correctament!</string>
@@ -890,9 +1010,9 @@
     <string name="enum__extended_actions_placement__overlay_app_ui" comment="Enum value label">Superposa la interfície d\'usuari de l\'aplicació</string>
     <string name="enum__extended_actions_placement__overlay_app_ui__description" comment="Enum value description">Situa la fila ampliada d\'accions com una superposició sobre la interfície d\'usuari de l\'aplicació per tal de no afectar l\'alçada resultant del teclat. Tingues present que aquesta ubicació pot fer que el camp d\'entrada de l\'aplicació sigui parcialment superposat</string>
     <string name="enum__haptic_vibration_mode__use_vibrator_directly" comment="Enum value label">Usa el vibrador directament</string>
-    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">{app_name} interacciona directament amb el maquinari de vibració per defecte. Això dona més control sobre la durada i la força de la vibració, però pot no ser tan suau ni optimitzada com si s\'usa la interfície de resposta tàctil</string>
+    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">Voice Mode interacciona directament amb el maquinari de vibració per defecte. Això dona més control sobre la durada i la força de la vibració, però pot no ser tan suau ni optimitzada com si s\'usa la interfície de resposta tàctil</string>
     <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface" comment="Enum value label">Usa la interfície de resposta tàctil</string>
-    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">{app_name} usa la interfície de resposta tàctil per activar una seqüència predeterminada de vibració en tocar les tecles. Això funciona de forma excepcional en alguns dispositius, però falla completament o funciona malament en d\'altres</string>
+    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">Voice Mode usa la interfície de resposta tàctil per activar una seqüència predeterminada de vibració en tocar les tecles. Això funciona de forma excepcional en alguns dispositius, però falla completament o funciona malament en d\'altres</string>
     <string name="enum__key_hint_mode__accent_priority" comment="Enum value label">Accent prioritzat</string>
     <string name="enum__key_hint_mode__accent_priority__description" comment="Enum value description">El caràcter inicial escollit després d\'un toc llarg serà sempre l\'accent principal, o el símbol si no hi ha cap accent principal disponible</string>
     <string name="enum__key_hint_mode__hint_priority" comment="Enum value label">Símbol suggerit prioritzat</string>
@@ -1025,6 +1145,7 @@
     <string name="quick_action__ime_ui_mode_dictate">Voice Mode</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Toca per dictar, torna a tocar per transcriure</string>
     <string name="quick_action__dictate_live_prompt">Instrucció en directe</string>
+    <string name="dictate__live_prompt_chip">Demana per veu</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Grava una instrucció parlada i envia-la a la IA</string>
     <string name="quick_action__dictate_prompts">Prompts d\'IA</string>
     <string name="quick_action__dictate_prompts__tooltip">Obre els prompts de reformulació amb IA</string>
@@ -1032,10 +1153,9 @@
     <string name="about__based_on_floris__summary">Una bifurcació de FlorisBoard de Patrick Goldinger i col·laboradors, Apache 2.0. Toca per obrir-lo.</string>
     <string name="about__feedback__title">Comentaris i assistència</string>
     <string name="about__feedback__summary">Envia un correu amb preguntes, errors o idees</string>
-    <string name="about__feedback__email">support@voicemode.example</string>
-    <string name="about__feedback__subject">Voice Mode Feedback</string>
-    <string name="setup__provider__title">Tria com transcriu el Voice Mode</string>
-    <string name="setup__provider__choose_intro">El Voice Mode converteix la teva veu en text amb un servei d\'IA. A la majoria de gent li va bé una d\'aquestes dues maneres, i si prefereixes no fer servir cap servei al núvol, a sota en tens dues més.</string>
+    <string name="about__feedback__email">contact@devemperor.net</string>
+    <string name="setup__provider__title">Tria com transcriu Voice Mode</string>
+    <string name="setup__provider__choose_intro">Voice Mode converteix la teva veu en text amb un servei d\'IA. A la majoria de gent li va bé una d\'aquestes dues maneres, i si prefereixes no fer servir cap servei al núvol, a sota en tens dues més.</string>
     <string name="setup__provider__choice_cloud_title">Comprar saldo a l\'aplicació</string>
     <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: cap compte enlloc, cap clau API. Compres minuts de dictat a través de Google Play i no caduquen mai. La via còmoda, i una mica més cara que anar directament a un proveïdor.</string>
     <string name="setup__provider__choice_cloud_btn">Mostra els paquets de saldo</string>
@@ -1047,15 +1167,15 @@
     <string name="setup__provider__choice_local_title">Al teu dispositiu, sense connexió</string>
     <string name="setup__provider__choice_local_body">Descarrega un model de veu un sol cop. Sense compte, sense costos i cap àudio no surt del telèfon.</string>
     <string name="setup__provider__choice_server_title">El teu propi servidor</string>
-    <string name="setup__provider__choice_server_body">Apunta el Voice Mode a un servidor de veu que gestionis tu mateix, o a qualsevol endpoint compatible amb OpenAI.</string>
+    <string name="setup__provider__choice_server_body">Apunta Voice Mode a un servidor de veu que gestionis tu mateix, o a qualsevol endpoint compatible amb OpenAI.</string>
     <string name="setup__provider__local_intro">El reconeixement de veu s\'executa llavors al teu telèfon: no s\'envia res enlloc i funciona sense connexió. Tria ara un model per descarregar; més endavant en pots afegir o canviar.</string>
     <string name="setup__provider__local_recommended">Recomanat per a la teva llengua</string>
     <string name="setup__provider__local_bigger">Més precís, però una descàrrega molt més gran</string>
     <string name="setup__provider__local_download_btn">Descarrega el model</string>
     <string name="setup__provider__local_use_btn">Utilitza aquest model</string>
     <string name="setup__provider__local_all_models">Mostra tots els models</string>
-    <string name="setup__provider__intro">El Voice Mode converteix la teva veu en text amb l\'ajuda d\'un servei d\'IA en línia. Per usar-lo, necessites la teva pròpia clau personal per a aquest servei.</string>
-    <string name="setup__provider__what_is_key">Una clau d\'API és com una contrasenya personal que permet al Voice Mode usar el servei per tu. Crear-ne una és gratuït i triga uns dos minuts.</string>
+    <string name="setup__provider__intro">Voice Mode converteix la teva veu en text amb l\'ajuda d\'un servei d\'IA en línia. Per usar-lo, necessites la teva pròpia clau personal per a aquest servei.</string>
+    <string name="setup__provider__what_is_key">Una clau d\'API és com una contrasenya personal que permet a Voice Mode usar el servei per tu. Crear-ne una és gratuït i triga uns dos minuts.</string>
     <string name="setup__provider__recommended">Recomanem <b>Groq</b>: és ràpid i gratuït per al dictat diari.</string>
     <string name="setup__provider__steps_groq">1. Toca el botó de sota per obrir Groq.\n2. Inicia la sessió amb Google o el teu correu electrònic.\n3. Toca «Create API Key», posa-li qualsevol nom i confirma.\n4. Copia la clau (comença per «gsk_»).\n5. Torna aquí i toca «Enganxa la clau d\'API» a sota.</string>
     <string name="setup__provider__steps_generic">1. Toca el botó de sota per obrir {provider}.\n2. Crea un compte si encara no en tens cap.\n3. Crea una nova clau d\'API i copia-la.\n4. Torna aquí i toca «Enganxa la clau d\'API» a sota.</string>
@@ -1156,23 +1276,27 @@
     <string name="dictate__remember_last_dictation_title">Recorda l’últim dictat</string>
     <string name="changelog__v4_2_0">• NOU: botó de dictat flotant — dicta directament a qualsevol app, fins i tot amb un altre teclat actiu. Tria entre tres estils (Píndola, Anella, Esfera), mira una forma d’ona en directe mentre parles, arrossega’l on vulguis amb ajust a les vores, defineix-ne el color i la mida i mantén premut per reformular. Activa’l a Configuració ▸ Voice Mode ▸ Botó flotant.\n• NOU: Google Gemini — fes servir la teva pròpia clau d’API d’AI Studio per a la transcripció i la reformulació.\n• Les indicacions ara apareixen per defecte en una fila fixa damunt de les tecles.\n• Inserció de text més fiable entre apps, inclosos navegadors i altres teclats.</string>
     <string name="dictate__promo_floating_button_message">Nou: dicta a qualsevol app</string>
+    <string name="dictate__promo_keep_button_message">Vols el micròfon flotant també aquí?</string>
+    <string name="dictate__promo_keep_button_action">Mantén-lo</string>
     <string name="dictate__promo_floating_button_action">Prova-ho</string>
     <string name="setup__floating_button__btn">Configura el botó flotant</string>
     <string name="setup__nav_back">Enrere</string>
     <string name="setup__nav_next">Següent</string>
     <string name="setup__floating_button__title">Dicta a qualsevol lloc (opcional)</string>
     <string name="setup__floating_button__intro">El botó flotant col·loca una petita bombolla de dictat sobre qualsevol aplicació, perquè puguis parlar a qualsevol camp de text sense canviar de teclat.</string>
-    <string name="setup__floating_button__accessibility_note">Per fer-ho, {app_name} utilitza la configuració d’accessibilitat d’Android — així la bombolla pot aparèixer sobre altres aplicacions i inserir el text transcrit per tu. La pantalla següent et guia per activar-ho.</string>
-    <string name="setup__floating_button__optional_note">Això és totalment opcional — omet-ho si només vols fer servir {app_name} com a teclat complet. Sempre pots configurar-ho més tard a la configuració.</string>
+    <string name="setup__floating_button__accessibility_note">Per fer-ho, Voice Mode utilitza la configuració d’accessibilitat d’Android — així la bombolla pot aparèixer sobre altres aplicacions i inserir el text transcrit per tu. La pantalla següent et guia per activar-ho.</string>
+    <string name="setup__floating_button__optional_note">Això és totalment opcional — omet-ho si només vols fer servir Voice Mode com a teclat complet. Sempre pots configurar-ho més tard a la configuració.</string>
     <string name="setup__floating_button__skip_btn">Omet — faré servir el teclat</string>
     <string name="dictate__floating_button_badge_new">Nou</string>
     <string name="dictate__panel_title">Prompts d\'IA</string>
-    <string name="dictate__panel_no_prompts">Encara no hi ha prompts. Afegeix-ne alguns a la configuració del Voice Mode, a «Reformulació».</string>
+    <string name="dictate__panel_no_prompts">Encara no hi ha prompts. Afegeix-ne alguns a la configuració de Voice Mode, a «Reformulació».</string>
     <string name="dictate__prompts_layout_title">Disposició dels prompts</string>
     <string name="dictate__prompts_layout_panel_label">Tauler propi</string>
     <string name="dictate__prompts_layout_panel_description">Obre els prompts en un tauler propi amb el botó de la vareta màgica.</string>
     <string name="dictate__prompts_layout_row_label">Fila sempre visible</string>
     <string name="dictate__prompts_layout_row_description">Fixa els prompts en una fila addicional sobre el teclat.</string>
+    <string name="dictate__prompts_layout_when_useful_label">Quan sigui útil</string>
+    <string name="dictate__prompts_layout_when_useful_description">Mostra els prompts a la barra superior just després de dictar o quan hi ha text seleccionat.</string>
     <string name="dictate__status_idle">Toca per dictar</string>
     <string name="dictate__status_recording">Gravant – toca per aturar</string>
     <string name="dictate__status_transcribing">Transcrivint…</string>
@@ -1186,7 +1310,7 @@
     <string name="dictate__voice_input_stop">Fet</string>
     <string name="dictate__voice_input_hint">Toca per enviar</string>
     <string name="dictate__voice_ime_label">Entrada de veu de Voice Mode</string>
-    <string name="dictate__error_no_api_key">No hi ha cap clau d\'API – configura-la a la configuració del Voice Mode.</string>
+    <string name="dictate__error_no_api_key">No hi ha cap clau d\'API – configura-la a la configuració de Voice Mode.</string>
     <string name="dictate__error_transcription_failed">Ha fallat la transcripció.</string>
     <string name="dictate__error_unknown">Error desconegut durant la transcripció.</string>
     <string name="dictate__error_rewording_failed">Ha fallat la reformulació.</string>
@@ -1218,11 +1342,11 @@
     <string name="dictate__action_dismiss">Descarta</string>
     <string name="dictate__action_yes">Sí</string>
     <string name="dictate__action_no">No, gràcies</string>
-    <string name="dictate__promo_rate_message">T\'agrada el Voice Mode?</string>
-    <string name="dictate__promo_donate_message">Vols donar suport al Voice Mode?</string>
+    <string name="dictate__promo_rate_message">T\'agrada Voice Mode?</string>
+    <string name="dictate__promo_donate_message">Vols donar suport a Voice Mode?</string>
     <string name="dictate__promo_rate_action">Valora</string>
     <string name="dictate__promo_donate_action">Fes un donatiu</string>
-    <string name="dictate__promo_changelog_message">El Voice Mode s\'ha actualitzat</string>
+    <string name="dictate__promo_changelog_message">Voice Mode s\'ha actualitzat</string>
     <string name="dictate__promo_changelog_action">Detalls</string>
     <string name="dictate__title">Voice Mode</string>
     <string name="dictate__provider_title">Proveïdor de transcripció</string>
@@ -1418,9 +1542,7 @@
     <string name="dictate__custom_words_title">Paraules personalitzades</string>
     <string name="dictate__custom_words_summary_empty">Afegeix noms o termes tècnics perquè s\'escriguin correctament</string>
     <string name="dictate__custom_words_placeholder">p. ex. FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} paraules · uns {tokens} de {budget} tokens</string>
     <string name="dictate__custom_words_budget_info">Cada paraula d\'aquí viatja amb cada dictat, i el model de veu només en llegeix uns {budget} tokens de context. La teva llista n\'ocupa uns {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">La teva llista és més llarga del que el model de veu llegeix. Unes {fits} de les teves {count} paraules hi arriben; la resta s\'envia a cada dictat i s\'ignora. Per a un vocabulari més ampli fes servir les correspondències personalitzades: són exactes, funcionen sense connexió i no costen res.</string>
     <string name="dictate__custom_words_import">Importa una llista de paraules</string>
     <string name="dictate__custom_words_export">Exporta la llista de paraules</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1430,11 +1552,8 @@
     <string name="dictate__custom_words_import_nofit">{count} han quedat fora: el model de veu només llegeix uns {budget} tokens de context, així que s\'haurien enviat a cada dictat i s\'haurien ignorat.</string>
     <string name="dictate__custom_words_import_unusable">{count} línies no contenien res per escriure i s\'han omès.</string>
     <string name="dictate__custom_words_import_truncated">Només s\'han llegit les primeres {count} entrades del fitxer.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Afegeix-les també al diccionari personal</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Aquesta llista només diu al model de veu com s\'escriu una paraula. El diccionari personal és el que el teclat fa servir mentre escrius: no té límit de longitud, així que hi entren totes les paraules del fitxer, no només les que caben a dalt.</string>
     <string name="dictate__custom_words_import_empty">No s\'ha trobat cap paraula en aquest fitxer</string>
     <string name="dictate__custom_words_import_done">{count} paraules afegides</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} paraules afegides i {dict} al teu diccionari personal</string>
     <string name="dictate__file_unreadable">No s\'ha pogut llegir aquest fitxer</string>
     <string name="dictate__file_export_done">Fitxer desat</string>
     <string name="dictate__file_export_failed">No s\'ha pogut escriure aquest fitxer</string>
@@ -1568,16 +1687,16 @@
     <string name="dictate__import_not_audio">Aquest fitxer no conté àudio.</string>
     <string name="dictate__import_only_first">Només es transcriu el primer fitxer: se n\'han omès {count} més.</string>
     <string name="dictate__setup_description">Configura el teu proveïdor d\'IA i la clau d\'API per començar a dictar amb el micròfon.</string>
-    <string name="dictate__setup_configure_btn">Configura el Voice Mode</string>
+    <string name="dictate__setup_configure_btn">Configura Voice Mode</string>
     <string name="setup__grant_mic_permission__title">Accés al micròfon</string>
-    <string name="setup__grant_mic_permission__description">El Voice Mode necessita accés al micròfon per gravar la teva veu per transcriure-la.</string>
+    <string name="setup__grant_mic_permission__description">Voice Mode necessita accés al micròfon per gravar la teva veu per transcriure-la.</string>
     <string name="setup__grant_mic_permission__btn">Concedeix el permís del micròfon</string>
     <string name="changelog__dialog_title">Novetats</string>
     <string name="changelog__view_all">Mostra tots els canvis</string>
-    <string name="changelog__intro">El Voice Mode s\'ha actualitzat. Aquestes són les novetats:</string>
+    <string name="changelog__intro">Voice Mode s\'ha actualitzat. Aquestes són les novetats:</string>
     <string name="changelog__version_header">Versió {version}</string>
-    <string name="changelog__donate">T\'agrada el Voice Mode? Toca aquí per donar suport al desenvolupament ♥</string>
-    <string name="changelog__current">• Teclat totalment nou: el Voice Mode ara és un teclat amb disposició completa i multilingüe, amb una tecla de micròfon dedicada que obre el tauler de veu.\n• Usa la teva pròpia IA: tria qualsevol proveïdor compatible amb OpenAI i introdueix la teva clau d\'API a Configuració → Voice Mode.\n• Formatació i reformulació intel·ligents amb el model que triïs.\n• La configuració de l\'app Voice Mode anterior s\'importa automàticament.</string>
+    <string name="changelog__donate">T\'agrada Voice Mode? Toca aquí per donar suport al desenvolupament ♥</string>
+    <string name="changelog__current">• Teclat totalment nou: Voice Mode ara és un teclat amb disposició completa i multilingüe, amb una tecla de micròfon dedicada que obre el tauler de veu.\n• Usa la teva pròpia IA: tria qualsevol proveïdor compatible amb OpenAI i introdueix la teva clau d\'API a Configuració → Voice Mode.\n• Formatació i reformulació intel·ligents amb el model que triïs.\n• La configuració de l\'app Dictate anterior s\'importa automàticament.</string>
     <string name="changelog__v4_1_0">• Nou: cerca emojis directament des del teclat.\n• Nou proveïdor de transcripció: Soniox.\n• Torna a inserir l\'últim dictat i recupera els enregistraments interromputs en tancar-se el teclat.\n• La barra de prompts ara s\'actualitza en directe: mantén premut un prompt per editar-lo.\n• La pantalla de proveïdors d\'IA ara mostra tant el proveïdor de transcripció com el de reformulació actius.\n• Botó d\'enregistrament més gran i més fàcil de prémer.\n• Correccions: un avís de suport es podia quedar encallat i tapar la barra en alguns idiomes; la còpia de seguretat ja no falla quan hi ha prompts, teclat o tema seleccionats; les claus d\'API desades es conserven en actualitzar.</string>
     <string name="changelog__v4_1_1">• Correcció: el color d\'accent podia aparèixer verd en alguns dispositius; les tecles i els botons tornen a ser del blau de Voice Mode.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -1779,7 +1898,7 @@
     <string name="dictate__audio_save_failed">No s\'ha pogut desar l\'àudio</string>
     <string name="dictate__instant_recording_mode_off">Desactivat</string>
     <string name="dictate__instant_recording_mode_always">Cada cop que s\'obre el teclat</string>
-    <string name="dictate__instant_recording_mode_after_switch">Només després de canviar a {app_name}</string>
+    <string name="dictate__instant_recording_mode_after_switch">Només després de canviar a Voice Mode</string>
     <string name="dictate__instant_recording_in_numeric">També als camps numèrics</string>
     <string name="dictate__instant_recording_skip_numeric_title">Omet camps numèrics</string>
     <string name="dictate__instant_recording_skip_numeric_summary">No iniciïs automàticament en camps de números, telèfon o PIN</string>
@@ -1835,7 +1954,7 @@
     <string name="apptour__badge_highlight">★ Destacat</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">Un recorregut ràpid</string>
-    <string name="apptour__intro_body">Això és el que hi ha de nou a Dictate 5.0 — el més destacat en menys d’un minut. Toca «Prova-ho» a qualsevol pàgina per anar directament a aquell ajust.</string>
+    <string name="apptour__intro_body">Això és el que hi ha de nou a Voice Mode 5.0 — el més destacat en menys d’un minut. Toca «Prova-ho» a qualsevol pàgina per anar directament a aquell ajust.</string>
     <string name="apptour__glide_eyebrow">Teclat</string>
     <string name="apptour__glide_title">Llisca per escriure</string>
     <string name="apptour__glide_body">Llisca el dit de tecla en tecla i Voice Mode converteix el recorregut en paraules senceres. Cada idioma porta el seu propi diccionari que es baixa quan cal — activa’l a Gestos.</string>
@@ -1901,12 +2020,12 @@
     <string name="apptour51__outro_title">Gaudeix de l’actualització</string>
     <string name="apptour51__outro_body">Gràcies per fer servir Voice Mode! Si t’ajuda cada dia, una petita donació manté el projecte en marxa. Pots tornar a veure qualsevol d’aquests recorreguts quan vulguis a Configuració › Quant a.</string>
     <string name="apptour52__cta_try">Prova-ho</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">Voice Mode 5.2</string>
     <string name="apptour52__intro_title">Dicta a tot arreu</string>
-    <string name="apptour52__intro_body">Aquesta versió porta el Voice Mode més enllà del seu propi teclat: com a entrada de veu del telèfon, per a ordres parlades des de qualsevol lloc i per endreçar els dictats llargs. Això és el nou.</string>
+    <string name="apptour52__intro_body">Aquesta versió porta Voice Mode més enllà del seu propi teclat: com a entrada de veu del telèfon, per a ordres parlades des de qualsevol lloc i per endreçar els dictats llargs. Això és el nou.</string>
     <string name="apptour52__voiceinput_eyebrow">Entrada de veu del sistema</string>
-    <string name="apptour52__voiceinput_title">Voice Mode des de qualsevol teclat</string>
-    <string name="apptour52__voiceinput_body">El Voice Mode ara es registra com a entrada de veu del sistema: la tecla de micròfon d\'altres teclats i aplicacions transcriu amb el Voice Mode — amb el teu proveïdor, els teus prompts i els teus models locals. Activa «Entrada de veu de Voice Mode» a la llista de teclats i tria-la com a mètode d\'entrada de veu. (El Gboard manté el micròfon lligat a Google: fes servir un teclat que respecti la configuració del sistema.)</string>
+    <string name="apptour52__voiceinput_title">Fes servir Voice Mode des de qualsevol teclat</string>
+    <string name="apptour52__voiceinput_body">Voice Mode ara es registra com a entrada de veu del sistema: la tecla de micròfon d\'altres teclats i aplicacions transcriu amb Voice Mode — amb el teu proveïdor, els teus prompts i els teus models locals. Activa «Entrada de veu de Voice Mode» a la llista de teclats i tria-la com a mètode d\'entrada de veu. (El Gboard manté el micròfon lligat a Google: fes servir un teclat que respecti la configuració del sistema.)</string>
     <string name="apptour52__liveprompt_eyebrow">Ordre de veu lliure</string>
     <string name="apptour52__liveprompt_title">Digues a la IA què ha de fer — a tot arreu</string>
     <string name="apptour52__liveprompt_body">Mantén premut el botó flotant per obrir el menú, toca «Live prompt» i digues què vols: «escriu una negativa cortès per a la reunió de demà», «tradueix el text de dalt a l\'espanyol». El text seleccionat serveix de context; sense selecció, la IA escriu de zero.</string>
@@ -1918,7 +2037,7 @@
     <string name="apptour52__trim_body">Et quedes pensant a mitja frase? Els silencis de més d\'un parell de segons es retallen abans d\'enviar: cada paraula dita es conserva i només desapareix el temps mort. Enviaments més curts volen dir menys espera i menys cost.</string>
     <string name="apptour52__paragraphs_eyebrow">Dictats llargs llegibles</string>
     <string name="apptour52__paragraphs_title">Paràgrafs automàtics</string>
-    <string name="apptour52__paragraphs_body">Els dictats llargs ja no arriben com un mur de text. Fixa un nombre de paraules i el Voice Mode començarà un paràgraf nou al següent final de frase — determinista i només per a transcripcions pures, mai per a text formatat per IA.</string>
+    <string name="apptour52__paragraphs_body">Els dictats llargs ja no arriben com un mur de text. Fixa un nombre de paraules i Voice Mode començarà un paràgraf nou al següent final de frase — determinista i només per a transcripcions pures, mai per a text formatat per IA.</string>
     <string name="apptour52__smartturn_eyebrow">Format llarg més llest</string>
     <string name="apptour52__smartturn_title">Talla en idees acabades</string>
     <string name="apptour52__smartturn_body">El dictat de format llarg ara pot utilitzar el model local Smart Turn v3 per saber quan has acabat realment una idea, en lloc de tallar a cada pausa. Opcional i baixat quan calgui.</string>
@@ -1929,7 +2048,7 @@
     <string name="apptour52__outro_title">Bon dictat</string>
     <string name="apptour52__outro_body">A més, molt sota el capó: la pantalla es manté encesa durant tot el dictat, els models locals alliberen memòria quan estan inactius, els dictats al rellotge sobreviuen als talls i l\'autocorrecció alemanya ja domina les dièresis. Pots tornar a veure qualsevol visita a Configuració › Quant a.</string>
     <string name="apptour53__cta_try">Provar-ho</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">Voice Mode 5.3</string>
     <string name="apptour53__intro_title">Mantén, parla, fet</string>
     <string name="apptour53__intro_body">Aquesta versió va de les dues coses que fas més: parlar al mòbil i escriure-hi. Totes dues són més ràpides, i totes dues s\'aparten millor del teu camí.</string>
     <string name="apptour53__pushtotalk_eyebrow">Prem per parlar</string>
@@ -1960,7 +2079,7 @@
     <string name="apptour60__cta_try">Provar-ho</string>
     <string name="apptour60__art_minutes">minuts</string>
     <string name="apptour60__art_speed">1,5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">Voice Mode 6.0</string>
     <string name="apptour60__intro_title">Saldo, xinès i dictat més barat</string>
     <string name="apptour60__intro_body">Aquesta versió afegeix una segona porta d\'entrada — comprar saldo en lloc de portar la teva pròpia clau d\'API —, a més de pinyin per al xinès, set llengües amb diccionari nou i enregistraments que costen menys.</string>
     <string name="apptour60__cloud_eyebrow">Nou: Voice Mode Cloud</string>
@@ -1983,13 +2102,13 @@
     <string name="apptour60__more_body">Mantenir premut el botó d\'aturada recupera una transcripció encallada. El botó flotant ja no anuncia un èxit que no ha pogut verificar i s\'apaga amb la pantalla. L\'escriptura lliscant ara coneix les paraules que has afegit. I la fallada just després d\'actualitzar està resolta.</string>
     <string name="apptour60__outro_eyebrow">Això és la 6.0</string>
     <string name="apptour60__outro_title">Que la gaudeixis</string>
-    <string name="apptour60__outro_body">Facis servir el Voice Mode com el facis servir — clau pròpia, servidor propi, un model al dispositiu o saldo —, res no ha canviat en els altres camins. Pots tornar a veure qualsevol visita a Configuració › Quant a.</string>
+    <string name="apptour60__outro_body">Facis servir Voice Mode com el facis servir — clau pròpia, servidor propi, un model al dispositiu o saldo —, res no ha canviat en els altres camins. Pots tornar a veure qualsevol visita a Configuració › Quant a.</string>
     <string name="apptour61__cta_try">Prova-ho</string>
     <string name="apptour61__art_folder">Adhesius</string>
     <string name="apptour61__art_share">Comparteix amb</string>
     <string name="apptour61__art_typed">qeu</string>
     <string name="apptour61__art_fixed">que</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">Voice Mode 6.1</string>
     <string name="apptour61__intro_title">Adhesius, missatges de veu i una correcció que per fi veu l\'errada</string>
     <string name="apptour61__intro_body">Indica al teclat una carpeta amb els teus propis adhesius, comparteix un missatge de veu directament amb Voice Mode per saber què diu, i estrena una correcció automàtica que per fi detecta l\'error que estava construïda per no veure.</string>
     <string name="apptour61__stickers_eyebrow">Nou: els teus adhesius</string>
@@ -2018,7 +2137,7 @@
     <string name="apptour62__art_word">Zoya</string>
     <string name="apptour62__art_emoji_word">pastís</string>
     <string name="apptour62__art_emoji">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">Voice Mode 6.2</string>
     <string name="apptour62__intro_title">Aprèn les teves paraules i estrena cinc aspectes</string>
     <string name="apptour62__intro_body">El teclat pot recordar les paraules que cap diccionari coneix, les tecles poden deixar veure l\'aplicació al darrere i cada polze pot tenir la seva meitat. A més d\'un grapat de petits ajudants per al que fas cada dia.</string>
     <string name="apptour62__learning_eyebrow">Nou: aprèn mentre escrius</string>
@@ -2026,7 +2145,7 @@
     <string name="apptour62__learning_body">Escriu un nom o un terme prou vegades i el teclat se\'l queda: deixa de marcar-lo com un error i comença a suggerir-lo. Aquesta actualització l\'activa per a tothom, també per a qui l\'hagués desactivat. No s\'aprèn res en mode d\'incògnit, ni als camps de contrasenya, ni de res que no hagis escrit tecla a tecla; tot es queda en aquest dispositiu, i el botó de sota obre la llista — i l\'interruptor.</string>
     <string name="apptour62__themes_eyebrow">Cinc aspectes nous</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep i un E-Ink fosc</string>
-    <string name="apptour62__themes_body">Voice Mode Glass deixa veure l\'aplicació pels espais entre les tecles, mentre que les tecles es mantenen prou opaques per llegir-hi a sobre; Glass Clear va més enllà i queda més bonic, al preu que el text de les aplicacions que dibuixen darrere del teclat s\'hi transparenti. Sand és un tema clar i càlid, Deep un de fosc i tranquil, i E-Ink finalment té versió nocturna, de manera que el canvi automàtic ja no et dona un teclat blanc quan es fa fosc.</string>
+    <string name="apptour62__themes_body">Glass deixa veure l\'aplicació pels espais entre les tecles, mentre que les tecles es mantenen prou opaques per llegir-hi a sobre; Glass Clear va més enllà i queda més bonic, al preu que el text de les aplicacions que dibuixen darrere del teclat s\'hi transparenti. Sand és un tema clar i càlid, Deep un de fosc i tranquil, i E-Ink finalment té versió nocturna, de manera que el canvi automàtic ja no et dona un teclat blanc quan es fa fosc.</string>
     <string name="apptour62__split_eyebrow">Nou: teclat dividit</string>
     <string name="apptour62__split_title">Els dos polzes, sense estirar-se</string>
     <string name="apptour62__split_body">Una acció ràpida nova, al costat del mode d\'una mà i el flotant, separa les files perquè cada polze es quedi a la seva meitat. Es divideixen totes les disposicions, no només QWERTY, perquè la junta es calcula a partir de l\'amplada de les tecles en comptes d\'escriure-la a cada disposició. I en horitzontal l\'aplicació ara es manté visible sempre que hi hagi espai per a totes dues.</string>
@@ -2055,12 +2174,12 @@
     <string name="apptour62__outro_title">El mateix teclat, més teu</string>
     <string name="apptour62__outro_body">No canvia res en la manera com dictes — la teva clau, el teu servidor o un model al dispositiu. Retrobaràs totes les visites a Configuració › Quant a.</string>
     <string name="apptour63__cta_try">Prova-ho</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">Voice Mode 6.3</string>
     <string name="apptour63__intro_title">Més teclat, sense sortir-ne</string>
     <string name="apptour63__intro_body">Apunta la càmera a un text imprès i arriba al camp. El cursor, la selecció i el porta-retalls per fi comparteixen un tauler. Qualsevol botó de la Smartbar pot dur una segona acció amb una pulsació llarga. I el dictat sense connexió ja té models que caben de debò en un telèfon.</string>
     <string name="apptour63__scan_eyebrow">Nou: escaneja text</string>
     <string name="apptour63__scan_title">L\'imprès, directe al camp</string>
-    <string name="apptour63__scan_body">L\'IBAN d\'una carta, el número de sèrie d\'una capsa, l\'adreça d\'un paquet: apunta la càmera i el text arriba on estaves escrivint, en lloc de tornar-lo a teclejar. El reconeixement es fa en aquest dispositiu: no es puja res i no hi intervé cap proveïdor. El Voice Mode tampoc no demana mai el permís de càmera: la càmera del sistema fa la foto i només torna aquesta imatge, que s\'esborra tan bon punt s\'ha llegit.</string>
+    <string name="apptour63__scan_body">L\'IBAN d\'una carta, el número de sèrie d\'una capsa, l\'adreça d\'un paquet: apunta la càmera i el text arriba on estaves escrivint, en lloc de tornar-lo a teclejar. El reconeixement es fa en aquest dispositiu: no es puja res i no hi intervé cap proveïdor. Voice Mode tampoc no demana mai el permís de càmera: la càmera del sistema fa la foto i només torna aquesta imatge, que s\'esborra tan bon punt s\'ha llegit.</string>
     <string name="apptour63__editing_eyebrow">Nou: tauler d\'edició</string>
     <string name="apptour63__editing_title">Cursor, selecció i porta-retalls en un sol lloc</string>
     <string name="apptour63__editing_body">Tot això ja existia, repartit en onze tecles que calia conèixer. Ara és un sol tauler: moure\'s per caràcter, paraula o línia, seleccionar, copiar, enganxar, desfer. Una tecla mantinguda es repeteix en lloc d\'exigir onze tocs. I el teclat numèric ja es pot demanar explícitament, en comptes d\'arribar-hi només amb un gest que ningú no havia assignat.</string>
@@ -2136,7 +2255,7 @@
     <string name="dictate__cloud_row_summary_balance">Queden {minutes} minuts de saldo</string>
     <string name="dictate__cloud_intro_title">Dictar sense clau API</string>
     <string name="dictate__cloud_intro_body">Compra saldo de dictat aquí mateix, a l\'aplicació. Cap compte amb un proveïdor d\'IA, cap clau API, cap subscripció. El saldo no caduca i només es gasta quan el fas servir de debò: un minut de dictat costa un minut, i una reformulació uns dos segons.</string>
-    <string name="dictate__cloud_intro_alternative">És totalment opcional. El Voice Mode funciona igual de bé amb la teva pròpia clau del proveïdor que vulguis —n\'hi ha uns quants de gratuïts— i així conserves el teu compte i pagues directament al proveïdor als seus preus.</string>
+    <string name="dictate__cloud_intro_alternative">És totalment opcional. Voice Mode funciona igual de bé amb la teva pròpia clau del proveïdor que vulguis —n\'hi ha uns quants de gratuïts— i així conserves el teu compte i pagues directament al proveïdor als seus preus.</string>
     <string name="dictate__cloud_use_own_provider_btn">Millor el meu propi proveïdor</string>
     <string name="dictate__cloud_balance_label">Saldo restant</string>
     <string name="dictate__cloud_balance_minutes">{minutes} min</string>
@@ -2150,7 +2269,7 @@
     <string name="dictate__cloud_shop_unavailable">Aquí no es poden mostrar els paquets de saldo. Normalment vol dir que l\'aplicació no s\'ha instal·lat des de Google Play, o que en aquest dispositiu no hi ha cap compte de Play iniciat. La teva clau API funciona en tots dos casos.</string>
     <string name="dictate__cloud_activate_title">El saldo és a punt</string>
     <string name="dictate__cloud_activate_body">Tens saldo, però el dictat passa ara mateix per un altre proveïdor. Canvia quan vulguis: sense tu no canvia res.</string>
-    <string name="dictate__cloud_activate_btn">Dicta amb el Voice Mode Cloud</string>
+    <string name="dictate__cloud_activate_btn">Dicta amb Voice Mode Cloud</string>
     <string name="dictate__cloud_notice_purchased">S\'han afegit {minutes} minuts al teu saldo.</string>
     <string name="dictate__cloud_notice_pending">El pagament encara no s\'ha completat. El saldo apareixerà tan bon punt Google el confirmi.</string>
     <string name="dictate__cloud_notice_not_redeemed">El pagament ha passat, però no s\'ha pogut obtenir el saldo. No s\'ha perdut res: torna a obrir aquesta pantalla i s\'hi afegirà.</string>
@@ -2186,7 +2305,7 @@
     <string name="dictate__cloud_devices_last_used">Últim ús {time}</string>
     <string name="dictate__cloud_devices_never_used">Encara no s\'ha fet servir</string>
     <string name="dictate__cloud_recovery_error">No s\'ha pogut contactar amb el servidor. Comprova la connexió i torna-ho a provar.</string>
-    <string name="dictate__cloud_limits_title">Què no fa el Voice Mode Cloud</string>
+    <string name="dictate__cloud_limits_title">Què no fa Voice Mode Cloud</string>
     <string name="dictate__cloud_limits_body">La transcripció en directe mentre parles no està disponible amb saldo: costa unes quatre vegades més per minut, i el motor del dispositiu ho fa fora de línia i de franc. El model d\'IA i quant raona els fixa el servidor, així que la tria de model, l\'esforç de raonament i els extrems propis queden desactivats. Tota la resta és igual: indicacions, historial, botó flotant, dictat llarg i el rellotge.</string>
     <string name="dictate__cloud_privacy_title">Què es desa</string>
     <string name="dictate__cloud_privacy_body">Els teus enregistraments i textos només es reenvien i mai no s\'escriuen al disc. Només es desen xifres: quin compte, quan, quanta estona i si ha funcionat. Darrere d\'un compte de saldo no hi ha cap nom, cap adreça electrònica ni cap compte de Google, només un identificador aleatori.</string>
@@ -2194,8 +2313,6 @@
     <string name="dictate__cloud_other_way_body">Pots passar a la teva pròpia clau API quan vulguis, i tornar enrere. El teu saldo es queda on és.</string>
     <string name="dictate__error_out_of_credit">Saldo esgotat</string>
     <string name="dictate__action_top_up">Recarrega el saldo</string>
-    <string name="dictate__promo_low_credit_message">Saldo gairebé esgotat.</string>
-    <string name="dictate__promo_low_credit_action">Recarrega</string>
     <string name="prefs__media__sticker__title">Adhesius</string>
     <string name="prefs__media__sticker_folder__title">Carpeta d\'adhesius</string>
     <string name="prefs__media__sticker_folder__summary_unset">Trieu una carpeta amb imatges vostres</string>

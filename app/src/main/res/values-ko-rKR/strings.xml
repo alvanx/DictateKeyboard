@@ -101,9 +101,7 @@
     <string name="settings__help" comment="General label for help buttons in Settings">도움말</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">기본값</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">시스템 기본값</string>
-    <string name="settings__home__title" comment="Title of the Home screen">{app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">앱이 시스템 설정에서 켜져 있지 않아 입력 방법으로 선택할 수 없습니다. 여기를 눌러 문제를 해결할 수 있습니다.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">앱이 기본 입력 방법으로 선택되어 있지 않습니다. 여기를 눌러 문제를 해결할 수 있습니다.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">Voice Mode</string>
     <string name="settings__localization__title" comment="Title of languages and Layout screen">언어 및 레이아웃</string>
     <string name="settings__localization__display_language_names_in__label" comment="Label of Display language names in preference">언어 표시 방식</string>
     <string name="settings__localization__group_subtypes__label" comment="Label of subtypes group">하위 유형</string>
@@ -167,7 +165,7 @@
     <string name="settings__theme_editor__code_recording_help_text">키의 코드를 찾으려면 코드 입력 필드 옆의 버튼을 사용하세요. 버튼을 누르면 다음 키 입력을 추적하여 해당 코드가 필드에 입력됩니다.</string>
     <string name="settings__theme_editor__code_recording_started">키 코드 추적을 시작했습니다.</string>
     <string name="settings__theme_editor__code_recording_stopped">키 코드 추적을 중지했습니다.</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">키 코드를 추적하려면 {app_name} 앱을 기본 키보드로 지정해야 합니다.</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">키 코드를 추적하려면 Voice Mode 앱을 기본 키보드로 지정해야 합니다.</string>
     <string name="settings__theme_editor__code_recording_placeholder">추적 중…</string>
     <string name="settings__theme_editor__add_property">속성 추가</string>
     <string name="settings__theme_editor__edit_property">속성 편집</string>
@@ -310,19 +308,19 @@
     <string name="about__third_party_licenses__summary" comment="Preference summary">이 앱에서 사용하는 서드파티 라이브러리의 라이선스</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">어서오세요!</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">{app_name} 키보드를 사용해 주셔서 고마워요! {app_name} 키보드를 사용하기 위해서 필요한 단계를 설명해 드릴게요.</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">Voice Mode 키보드를 사용해 주셔서 고마워요! Voice Mode 키보드를 사용하기 위해서 필요한 단계를 설명해 드릴게요.</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">개인 정보 보호 정책</string>
     <string name="setup__footer__repository" comment="Repository label for URL">리포지터리</string>
-    <string name="setup__enable_ime__title">{app_name} 켜기</string>
-    <string name="setup__enable_ime__description">Android에서 다른 키보드를 사용하려면 먼저 설정에서 키보드를 켜야 해요. 시스템 설정의 <i>언어 및 키보드</i>에 들어가서, \"{app_name}\" 키보드를 켜 주세요.</string>
+    <string name="setup__enable_ime__title">Voice Mode 켜기</string>
+    <string name="setup__enable_ime__description">Android에서 다른 키보드를 사용하려면 먼저 설정에서 키보드를 켜야 해요. 시스템 설정의 <i>언어 및 키보드</i>에 들어가서, \"Voice Mode\" 키보드를 켜 주세요.</string>
     <string name="setup__enable_ime__open_settings_btn">시스템 설정 열기</string>
-    <string name="setup__select_ime__title">{app_name} 선택</string>
-    <string name="setup__select_ime__description">{app_name} 키보드를 켰어요. 키보드를 제대로 사용하기 위해서는 입력 방법 선택 창에서 {app_name} 키보드를 선택해야 해요!</string>
+    <string name="setup__select_ime__title">Voice Mode 선택</string>
+    <string name="setup__select_ime__description">Voice Mode 키보드를 켰어요. 키보드를 제대로 사용하기 위해서는 입력 방법 선택 창에서 Voice Mode 키보드를 선택해야 해요!</string>
     <string name="setup__select_ime__switch_keyboard_btn">입력 방법 전환</string>
     <string name="setup__finish_up__title">마무리</string>
-    <string name="setup__finish_up__description_p1">이제 {app_name} 키보드를 마음껏 꾸미고 써볼 수 있어요.</string>
+    <string name="setup__finish_up__description_p1">이제 Voice Mode 키보드를 마음껏 꾸미고 써볼 수 있어요.</string>
     <string name="setup__finish_up__description_p2">문제가 생기거나, 버그를 발견하거나, 제안할 내용이 있다면 정보 화면에서 프로젝트 리포지터리에 방문해 주세요!</string>
-    <string name="setup__finish_up__finish_btn">꾸미기 시작</string>
+    <string name="setup__finish_up__finish_btn">Voice Mode 사용 시작</string>
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
     <string name="backup_and_restore__title">백업 및 복원</string>
@@ -344,12 +342,12 @@
     <string name="backup_and_restore__restore__mode_merge">현재 데이터에 합치기</string>
     <string name="backup_and_restore__restore__mode_erase_and_overwrite">현재 데이터를 덮어쓰기</string>
     <!-- Crash Dialog strings -->
-    <string name="crash_dialog__title" comment="Title of crash dialog">앱 오류 보고</string>
+    <string name="crash_dialog__title" comment="Title of crash dialog">Voice Mode 오류 보고</string>
     <string name="crash_dialog__copy_to_clipboard" comment="Label of Copy to clipboard button in crash dialog">클립보드에 복사</string>
     <string name="crash_dialog__copy_to_clipboard_success" comment="Label of Copy to clipboard success message in crash dialog">클립보드에 복사했습니다.</string>
     <string name="crash_dialog__copy_to_clipboard_failure" comment="Label of Copy to clipboard failure message in crash dialog">클립보드에 복사할 수 없습니다. 클립보드 관리자 인스턴스를 찾을 수 없습니다.</string>
     <string name="crash_dialog__close" comment="Label of Close button in crash dialog">닫기</string>
-    <string name="crash_notification_channel__title" comment="Title of crash notification channel">앱 오류 보고</string>
+    <string name="crash_notification_channel__title" comment="Title of crash notification channel">Voice Mode 오류 보고</string>
     <!-- Clipboard strings -->
     <string name="clipboard__header_title">클립보드</string>
     <string name="clipboard__disabled__title">클립보드 기록이 꺼져 있음</string>

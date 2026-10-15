@@ -11,9 +11,9 @@
     <string name="florisboard__repo_url" translatable="false">https://github.com/alvanx/voice-mode</string>
     <!-- Marketing website -->
     <string name="florisboard__website_url" translatable="false">https://voicemode.example</string>
-    <!-- Upstream project Dictate is forked from (attribution); stays pointed at the original FlorisBoard repo. -->
+    <!-- Upstream project Voice Mode is forked from (attribution); stays pointed at the original FlorisBoard repo. -->
     <string name="florisboard__upstream_repo_url" translatable="false">https://github.com/florisboard/florisboard</string>
-    <!-- The Dictate Keyboard project this app is built on (attribution; Apache-2.0 notice). -->
+    <!-- The Voice Mode project this app is built on (attribution; Apache-2.0 notice). -->
     <string name="florisboard__dictate_upstream_repo_url" translatable="false">https://github.com/DevEmperor/DictateKeyboard</string>
     <string name="florisboard__issue_tracker_url" translatable="false">https://github.com/alvanx/voice-mode/issues</string>
     <string name="florisboard__privacy_policy_url" translatable="false">https://voicemode.example/privacy</string>

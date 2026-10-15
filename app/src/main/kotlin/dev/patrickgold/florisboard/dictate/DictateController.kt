@@ -10,6 +10,7 @@
 
 package dev.patrickgold.florisboard.dictate
 
+import dev.patrickgold.florisboard.dictate.overlay.KeepOverKeyboardTip
 import android.content.BroadcastReceiver
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -257,7 +258,7 @@ object DictateController {
      * CHANGELOG is shown right after an app update (see [maybePromptChangelog]) and opens the in-app
      * "What's new" dialog instead of a web page.
      */
-    enum class PromoKind { RATE, DONATE, CHANGELOG, FLOATING_BUTTON, MILESTONE, CLOUD_PAYMENT }
+    enum class PromoKind { RATE, DONATE, CHANGELOG, FLOATING_BUTTON, MILESTONE, CLOUD_PAYMENT, KEEP_BUTTON_OVER_KEYBOARD }
 
     /**
      * Where the active dictation's output goes: the keyboard editor ([OutputTarget.IME]) or the
@@ -308,6 +309,20 @@ object DictateController {
      * which clears this. Set/cleared alongside the recording lifecycle.
      */
     val livePromptActive: StateFlow<Boolean> = _livePromptActive.asStateFlow()
+
+    private val _afterDictation = MutableStateFlow(false)
+    /**
+     * True from the moment a dictation lands in the keyboard's field until the user moves on: types, opens
+     * another field or closes the keyboard. That is when rewriting it is most likely wanted, so with the
+     * "show when useful" prompt layout the Smartbar offers the prompt chips in place of the suggestions.
+     * Only the keyboard's own dictations count; the floating button's text goes to another field.
+     */
+    val afterDictation: StateFlow<Boolean> = _afterDictation.asStateFlow()
+
+    /** The user moved on from the last dictation (see [afterDictation]). */
+    fun endAfterDictation() {
+        _afterDictation.value = false
+    }
 
     // --- Real-time streaming transcription (issue #128) -----------------------------------------
     private val _interimText = MutableStateFlow("")
@@ -2317,11 +2332,13 @@ object DictateController {
         // Re-insert safety net (issue #111) + lifetime stats (issue #142) + history log (issue #140).
         rememberLastDictation(outputText)
         if (capture?.isReplay != true) {
+            countDictationSource(outputTarget)
             DictateStats.recordDictation(prefs, outputText, recordedSeconds)
             if (recordedSeconds > 0L) creditAudioSeconds(recordedSeconds)
         }
         recordHistory(appContext, outputText, originalForHistory, recordedSeconds, capture, reworded = isLive)
         discardRetainedAudio()
+        _afterDictation.value = outputTarget == OutputTarget.IME && outputText.isNotBlank()
         if (reportSwallowedRewording(appContext)) return
         _state.value = UiState.Idle
         // Both nudges are Smartbar chips: they can only be seen, tapped and dismissed on the keyboard.
@@ -3833,6 +3850,33 @@ object DictateController {
     }
 
     /**
+     * Asks once, on the Dictate keyboard, whether the floating button should stay up beside it — for
+     * someone whose habit is plainly the floating button (see [KeepOverKeyboardTip]). Pointless while the
+     * button is off, or already set to stay. No-op unless idle.
+     */
+    fun maybePromptKeepButtonOverKeyboard() {
+        if (_state.value !is UiState.Idle) return
+        if (prefs.dictate.floatingButtonOverKeyboardAsked.get()) return
+        if (!prefs.dictate.floatingButtonEnabled.get()) return
+        if (prefs.dictate.floatingButtonShowWhen.get() == DictateFloatingButtonShowWhen.ALSO_WITH_DICTATE_KEYBOARD) return
+        val fromButton = prefs.dictate.floatingButtonDictations.get()
+        val fromKeyboard = prefs.dictate.keyboardDictations.get()
+        if (!KeepOverKeyboardTip.shouldOffer(fromButton, fromKeyboard)) return
+        _state.value = UiState.Promo(PromoKind.KEEP_BUTTON_OVER_KEYBOARD)
+    }
+
+    /** Counts a finished dictation towards where it was started (for [maybePromptKeepButtonOverKeyboard]). */
+    private fun countDictationSource(target: OutputTarget) {
+        val pref = when (target) {
+            OutputTarget.OVERLAY -> prefs.dictate.floatingButtonDictations
+            OutputTarget.IME -> prefs.dictate.keyboardDictations
+            OutputTarget.RECOGNITION_SERVICE -> return
+        }
+        // Capped: only the ratio matters, and an endless counter has no business in a backup.
+        scope.launch { pref.set((pref.get() + 1).coerceAtMost(1000)) }
+    }
+
+    /**
      * Acts on the active promo and marks it done: RATE/DONATE open the Play Store / PayPal page,
      * CHANGELOG opens the app (which then shows the "What's new" dialog), FLOATING_BUTTON deep-links to its
      * settings screen. No-op otherwise.
@@ -3862,8 +3906,15 @@ object DictateController {
                     context,
                     FlorisAppActivity::class.java,
                 ).addCategory(Intent.CATEGORY_BROWSABLE)
+                // Nothing to open: saying yes is the whole change.
+                PromoKind.KEEP_BUTTON_OVER_KEYBOARD -> {
+                    scope.launch {
+                        prefs.dictate.floatingButtonShowWhen.set(DictateFloatingButtonShowWhen.ALSO_WITH_DICTATE_KEYBOARD)
+                    }
+                    null
+                }
             }
-            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            intent?.let { context.startActivity(it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
         }
         markPromoDone(kind)
         _state.value = UiState.Idle
@@ -3895,6 +3946,8 @@ object DictateController {
                 // The flag was already set when shown, so the nudge cannot come back on the next
                 // keyboard open whether it was acted on or waved away. Fixing the payment clears it.
                 PromoKind.CLOUD_PAYMENT -> Unit
+                // Asked once, whatever the answer; the setting itself stays where it always was.
+                PromoKind.KEEP_BUTTON_OVER_KEYBOARD -> prefs.dictate.floatingButtonOverKeyboardAsked.set(true)
             }
         }
     }

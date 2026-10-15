@@ -113,7 +113,7 @@
     <string name="quick_actions_editor__subheader_hidden_actions">Actions cachées ({n})</string>
     <string name="select_subtype_panel__header">Choisir le sous-type</string>
     <!-- Incognito mode strings -->
-    <string name="incognito_mode__toast_after_enabled">Le mode \"Incognito\" est désormais activé\n\n{app_name} n\'apprendra pas de mots à partir de votre saisie tant que ce mode sera actif</string>
+    <string name="incognito_mode__toast_after_enabled">Le mode \"Incognito\" est désormais activé\n\nVoice Mode n\'apprendra pas de mots à partir de votre saisie tant que ce mode sera actif</string>
     <string name="incognito_mode__toast_after_disabled">Le mode \"Incognito\" est désormais désactivé par défaut</string>
     <!-- Settings UI strings -->
     <string name="settings__title" comment="Title of Settings">Paramètres</string>
@@ -121,9 +121,129 @@
     <string name="settings__help" comment="General label for help buttons in Settings">Aide</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Par défaut</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Valeur par défaut du système</string>
-    <string name="settings__home__title" comment="Title of the Home screen">Bienvenue dans {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">{app_name} n\'est pas activé dans le système et ne sera donc pas disponible comme méthode de saisie dans le sélectionneur de saisie. Cliquez ici pour résoudre ce problème.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">{app_name} n\'est pas sélectionné comme méthode de saisie par défaut. Cliquez ici pour résoudre ce problème.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">Bienvenue dans Voice Mode</string>
+    <string name="home__recent_title">Dictées récentes</string>
+    <string name="home__recent_see_all">Tout voir</string>
+    <string name="home__recent_copy">Copier</string>
+    <string name="home__recent_failed">Échec de la transcription. Enregistrement conservé.</string>
+    <string name="home__recent_retry">Réessayer</string>
+    <string name="home__transcribe_file">Transcrire un fichier</string>
+    <string name="home__ai_model">Modèle d\'IA</string>
+    <string name="home__stats_summary">gagné · {count} dictées</string>
+    <string name="settings__all__title">Paramètres</string>
+    <string name="dictionary_hub__title">Dictionnaire</string>
+    <string name="words__personal_dictionary">Dictionnaire personnel</string>
+    <string name="mywords__subtitle">Les noms et termes que Voice Mode doit toujours bien écrire.</string>
+    <string name="mywords__title">Mes mots</string>
+    <string name="mywords__explanation">Une seule liste pour tout. Chaque mot est écrit à votre façon quand vous parlez, et suggéré quand vous tapez.</string>
+    <string name="mywords__empty">Rien pour l\'instant. Ajoutez un nom, un produit ou tout mot que vous utilisez souvent.</string>
+    <string name="mywords__more">+ {count} autres</string>
+    <string name="mywords__see_all">Modifier la liste</string>
+    <string name="mywords__add_hint">Ajouter un mot ou un nom</string>
+    <string name="mywords__add">Ajouter le mot</string>
+    <string name="mywords__usage">{count} sur {limit} vont à l\'IA vocale</string>
+    <string name="mywords__usage_full">{count} sur {total} vont à l\'IA vocale. Tous servent à la saisie.</string>
+    <string name="mywords__fixes">Corrections</string>
+    <string name="mywords__find_replace">Rechercher et remplacer</string>
+    <string name="mywords__find_replace_none">Corrigez les mots que l\'IA vocale écrit toujours mal</string>
+    <string name="mywords__find_replace_one">1 règle : « {from} » → « {to} »</string>
+    <string name="mywords__find_replace_many">{count} règles, p. ex. « {from} » → « {to} »</string>
+    <string name="mywords__learned">Appris de votre saisie</string>
+    <string name="mywords__learned_summary">Repérés automatiquement. Supprimez ceux que vous voulez.</string>
+    <string name="mywords__phone_settings">Dictionnaire et apprentissage du téléphone</string>
+    <string name="mywords__edit_as_text">Modifier en texte</string>
+    <string name="mywords__edit_as_text_summary">Coller, importer ou exporter toute la liste</string>
+    <string name="mywords__remove">Supprimer {word}</string>
+    <string name="mywords__typing_only">Saisie uniquement : plus de place pour l\'IA vocale</string>
+    <string name="mywords__budget_over">Votre liste est plus longue que ce que lit l\'IA vocale. Les {fits} premiers de vos {count} mots lui sont envoyés ; les autres restent suggérés quand vous tapez.</string>
+    <string name="mywords__row_summary">{count} mots, écrits à votre façon et suggérés quand vous tapez</string>
+    <string name="nav__home">Accueil</string>
+    <string name="nav__style">Style</string>
+    <string name="home__mic_title">Votre bouton micro</string>
+    <string name="home__mic_on">{charm} · flotte dans toutes les applis</string>
+    <string name="home__mic_off">Pas activé</string>
+    <string name="home__mic_change_look">Changer l\'apparence</string>
+    <string name="home__turn_on">Activer</string>
+    <string name="home__keyboard_title">Clavier Voice Mode</string>
+    <string name="home__keyboard_off">Pas activé</string>
+    <string name="home__keyboard_on">Activé · le micro est sur le clavier</string>
+    <string name="firstrun__title">Dites-le.\nVoice Mode l\'écrit.</string>
+    <string name="firstrun__subtitle">Deux étapes rapides et vous pouvez parler.</string>
+    <string name="firstrun__step_look">Choisissez votre bouton micro</string>
+    <string name="firstrun__more_looks">Plus</string>
+    <string name="firstrun__step_where">Choisissez où il apparaît</string>
+    <string name="firstrun__floating_title">Micro flottant</string>
+    <string name="firstrun__floating_summary">À côté de n\'importe quel champ de texte, avec le clavier que vous utilisez déjà</string>
+    <string name="firstrun__keyboard_summary">Un clavier complet avec votre micro intégré</string>
+    <string name="firstrun__done">Activé</string>
+    <string name="firstrun__try_title">Essayez ici</string>
+    <string name="firstrun__try_summary">Touchez et dites ce que vous voulez. Votre texte s\'affiche en dessous, prêt à être copié.</string>
+    <string name="settings__dictation_group">Dictée</string>
+    <string name="settings__more_group">Clavier et application</string>
+    <string name="settings__floating_button_on">Activé · où et quand il apparaît</string>
+    <string name="settings__more_dictation">Autres paramètres de dictée</string>
+    <string name="settings__more_dictation_summary">Langues, mise en forme, reformulation, enregistrement</string>
+    <string name="style__subtitle">Personnalisez votre bouton micro.</string>
+    <string name="style__preview_message">Tu viens toujours ce soir ?</string>
+    <string name="style__preview_caption">À l\'écoute dans une appli de messagerie</string>
+    <string name="style__preview_field">Message</string>
+    <string name="style__charm_classic">Classique</string>
+    <string name="style__charm_daisy">Marguerite</string>
+    <string name="style__charm_butterfly">Papillon</string>
+    <string name="style__charm_heart">Cœur</string>
+    <string name="style__charm_clover">Trèfle</string>
+    <string name="style__charm_moon">Lune</string>
+    <string name="style__charm_sunflower">Tournesol</string>
+    <string name="style__charm_blossom">Cerisier</string>
+    <string name="style__charm_on_air">On Air</string>
+    <string name="style__charm_gramophone">Gramophone</string>
+    <string name="style__charm_crooner">Crooner</string>
+    <string name="style__charm_mixtape">Cassette</string>
+    <string name="style__charm_planet">Planète</string>
+    <string name="style__charm_shooting_star">Étoile filante</string>
+    <string name="style__charm_disco_ball">Boule disco</string>
+    <string name="style__charm_big_red_button">Gros bouton rouge</string>
+    <string name="style__charm_pixel_heart">Cœur 8 bits</string>
+    <string name="style__charm_neon">Néon</string>
+    <string name="style__charm_studio_mic">Micro de studio</string>
+    <string name="style__collection_garden">Jardin</string>
+    <string name="style__collection_garden_tagline">Doux, lumineux, vivant</string>
+    <string name="style__collection_retro">Rétro</string>
+    <string name="style__collection_retro_tagline">Chaleureux, analogique, un brin malicieux</string>
+    <string name="style__collection_night_sky">Ciel nocturne</string>
+    <string name="style__collection_night_sky_tagline">Calme et rêveur</string>
+    <string name="style__collection_arcade">Arcade</string>
+    <string name="style__collection_arcade_tagline">Percutant et ludique</string>
+    <string name="style__collection_simple">Simple</string>
+    <string name="style__collection_simple_tagline">Le simple bouton rond</string>
+    <string name="style__move_bloom">S\'épanouit pendant l\'écoute</string>
+    <string name="style__move_flutter">Bat des ailes pendant l\'écoute</string>
+    <string name="style__move_turn">Tourne pendant l\'écoute</string>
+    <string name="style__move_sway">Se balance pendant l\'écoute</string>
+    <string name="style__move_glow">Brille pendant l\'écoute</string>
+    <string name="style__move_wobble">Se dandine pendant l\'écoute</string>
+    <string name="style__move_pulse">Pulse pendant l\'écoute</string>
+    <string name="style__move_spin">Fait tourner ses bobines pendant l\'écoute</string>
+    <string name="style__move_tilt">S\'incline pendant l\'écoute</string>
+    <string name="style__move_twinkle">Scintille pendant l\'écoute</string>
+    <string name="style__move_press">S\'enfonce pendant l\'écoute</string>
+    <string name="style__move_beat">Palpite pendant l\'écoute</string>
+    <string name="style__move_flicker">Clignote pendant l\'écoute</string>
+    <string name="style__move_title">Bouger pendant l\'écoute</string>
+    <string name="style__move_off">Reste immobile</string>
+    <string name="style__color_original">Couleurs d\'origine</string>
+    <string name="style__color_fixed">{charm} garde ses propres couleurs.</string>
+    <string name="style__color">Couleur</string>
+    <string name="style__color_cloud">Nuage</string>
+    <string name="style__color_blossom">Rose</string>
+    <string name="style__color_lilac">Lilas</string>
+    <string name="style__color_butter">Beurre</string>
+    <string name="style__color_mint">Menthe</string>
+    <string name="style__color_sky">Ciel</string>
+    <string name="style__more_colors">Plus de couleurs</string>
+    <string name="style__motion">Pendant l\'écoute</string>
+    <string name="style__button_off">Le bouton micro flottant est désactivé : pour l\'instant, vous ne le voyez qu\'ici.</string>
+    <string name="style__look_summary">{charm} · à changer dans l\'onglet Style</string>
     <string name="settings__search__title" comment="Title of the settings search screen">Rechercher dans les paramètres</string>
     <string name="settings__search__placeholder" comment="Placeholder in the settings search field">Rechercher dans les paramètres…</string>
     <string name="settings__search__recent" comment="Header above recently used search terms">Recherches récentes</string>
@@ -191,7 +311,7 @@
     <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">Thème sombre</string>
     <string name="pref__theme__theme_accent_color__label" comment="Label of accent color preference in Theme">Couleur accentuée (Material You)</string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">Gérer les thèmes installés</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">Ressources de l’application {app_name}</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">Ressources de l’application Voice Mode</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">Stockage interne</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">Fournisseur externe</string>
     <string name="settings__theme_manager__title_day" comment="Title of the theme manager screen for day theme selection">Sélectionner le thème clair</string>
@@ -219,7 +339,7 @@
     <string name="settings__theme_editor__code_recording_help_text">Pour trouver le code d\'une touche, utilisez le bouton situé à côté du champ de saisie du code. Une fois activé, il enregistrera la prochaine pression sur la touche et insérera le code dans le champ de saisie.</string>
     <string name="settings__theme_editor__code_recording_started">L\'enregistrement du code de touche a commencé</string>
     <string name="settings__theme_editor__code_recording_stopped">L\'enregistrement du code de touche s\'est arrêté</string>
-    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">{app_name} doit être le clavier par défaut pour enregistrer un code de touche</string>
+    <string name="settings__theme_editor__code_recording_requires_default_ime_floris">Voice Mode doit être le clavier par défaut pour enregistrer un code de touche</string>
     <string name="settings__theme_editor__code_recording_placeholder">Enregistrement…</string>
     <string name="settings__theme_editor__add_property">Ajouter une propriété</string>
     <string name="settings__theme_editor__edit_property">Modifier la propriété</string>
@@ -234,7 +354,7 @@
     <string name="settings__theme_editor__component_meta_is_borderless">Est sans bordures</string>
     <string name="settings__theme_editor__component_meta_stylesheet_path">Chemin vers la feuille de style</string>
     <string name="settings__theme_editor__stylesheet_error_title">Erreur de feuille de style</string>
-    <string name="settings__theme_editor__stylesheet_error_description">{app_name} peut essayer de charger la feuille de style et ajouter des schémas ou des règles manquants, ou supprimer des règles, des propriétés ou des valeurs invalides. Voulez-vous que {app_name} applique ces changements ?</string>
+    <string name="settings__theme_editor__stylesheet_error_description">Voice Mode peut essayer de charger la feuille de style et ajouter des schémas ou des règles manquants, ou supprimer des règles, des propriétés ou des valeurs invalides. Voulez-vous que Voice Mode applique ces changements ?</string>
     <string name="snygg__rule_annotation__defines">Variables</string>
     <string name="snygg__rule_annotation__defines_description">Définit des variables dans cette règle pour réutiliser des couleurs ou des tailles communes dans votre feuille de style.</string>
     <string name="snygg__rule_annotation__font">Police</string>
@@ -534,7 +654,7 @@
     <string name="pref__other__show_app_icon__summary_atleast_q" comment="Summary of Show app icon preference in Other for Android 10+">Toujours activé sur Android 10+ en raison des restrictions du système</string>
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">À propos</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Icône de l\'application {app_name}</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Icône de l\'application Voice Mode</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">Licences Open sources</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">Politique de confidentialité</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">Code source</string>
@@ -551,21 +671,21 @@
     <string name="about__privacy_policy__title" comment="Preference title">Politique de confidentialité</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">La politique de confidentialité pour ce projet</string>
     <string name="about__project_license__title" comment="Preference title">Licence du projet</string>
-    <string name="about__project_license__summary" comment="Preference summary">{app_name} est sous licence {license_name}</string>
+    <string name="about__project_license__summary" comment="Preference summary">Voice Mode est sous licence {license_name}</string>
     <string name="about__project_license__error_license_text_failed" comment="Error text for license text loading failure">Erreur : Impossible de charger le texte de la licence.\n-&gt; Raison : {error_message}</string>
     <string name="about__project_license__error_reason_asset_manager_null" comment="Error text if asset manager is null">La référence du gestionnaire d\'actifs est nulle</string>
     <string name="about__third_party_licenses__title" comment="Preference title">Licences de tiers</string>
     <string name="about__third_party_licenses__summary" comment="Preference summary">Licences des bibliothèques tierces incluses dans cette application</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">Bienvenue !</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">Merci d\'utiliser {app_name} ! Cette configuration rapide vous guide à travers les étapes nécessaires pour utiliser {app_name} sur votre appareil.</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">Merci d\'utiliser Voice Mode ! Cette configuration rapide vous guide à travers les étapes nécessaires pour utiliser Voice Mode sur votre appareil.</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">Politique de confidentialité</string>
     <string name="setup__footer__repository" comment="Repository label for URL">Dépôt</string>
-    <string name="setup__enable_ime__title">Activer {app_name}</string>
-    <string name="setup__enable_ime__description">Android exige que chaque clavier personnalisé soit activé séparément avant que vous puissiez l\'utiliser. Ouvrez les paramètres système <i>Langues et saisie</i>, et activez \"{app_name}\".</string>
+    <string name="setup__enable_ime__title">Activer Voice Mode</string>
+    <string name="setup__enable_ime__description">Android exige que chaque clavier personnalisé soit activé séparément avant que vous puissiez l\'utiliser. Ouvrez les paramètres système <i>Langues et saisie</i>, et activez \"Voice Mode\".</string>
     <string name="setup__enable_ime__open_settings_btn">Ouvrir paramètres système</string>
-    <string name="setup__select_ime__title">Sélectionnez {app_name}</string>
-    <string name="setup__select_ime__description">{app_name} est maintenant activé dans votre système. Pour l\'utiliser, passez à {app_name} en le sélectionnant dans le menu de sélection des saisies !</string>
+    <string name="setup__select_ime__title">Sélectionnez Voice Mode</string>
+    <string name="setup__select_ime__description">Voice Mode est maintenant activé dans votre système. Pour l\'utiliser, passez à Voice Mode en le sélectionnant dans le menu de sélection des saisies !</string>
     <string name="setup__select_ime__switch_keyboard_btn">Changer de Clavier</string>
     <string name="setup__grant_notification_permission__title">Autoriser les notifications de rapport d\'incident</string>
     <string name="setup__grant_notification_permission__description">Depuis Android 13+, les applications doivent demander la permission pour
@@ -574,9 +694,9 @@
     </string>
     <string name="setup__grant_notification_permission__btn">Donner l\'autorisation</string>
     <string name="setup__finish_up__title">Terminer</string>
-    <string name="setup__finish_up__description_p1">{app_name} est maintenant activé dans le système et prêt à être personnalisé par vous.</string>
+    <string name="setup__finish_up__description_p1">Voice Mode est maintenant activé dans le système et prêt à être personnalisé par vous.</string>
     <string name="setup__finish_up__description_p2">Si vous rencontrez des problèmes, des bogues, des pannes ou si vous voulez simplement faire une suggestion, consultez le dépôt du projet à partir de l\'écran \" à propos \" !</string>
-    <string name="setup__finish_up__finish_btn">Commencer à personnaliser</string>
+    <string name="setup__finish_up__finish_btn">Commencer à utiliser Voice Mode</string>
     <string name="physical_keyboard__system_settings__title">Paramètres du clavier physique</string>
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
@@ -635,7 +755,7 @@
     <string name="clipboard__search_placeholder" comment="Hint inside the clipboard search field">Rechercher dans le presse-papiers</string>
     <string name="clipboard__search_no_results" comment="Shown when no clip contains what was typed">Aucun élément ne contient cela</string>
     <string name="clipboard__disabled__title">L\'historique du presse-papiers est actuellement désactivé</string>
-    <string name="clipboard__disabled__message">L\'historique du presse-papiers de {app_name} vous permet de stocker et d\'accéder rapidement au texte et aux images que vous copiez, avec la possibilité d\'épingler des éléments, de configurer le nettoyage automatique et de définir une limite maximale d\'éléments.</string>
+    <string name="clipboard__disabled__message">L\'historique du presse-papiers de Voice Mode vous permet de stocker et d\'accéder rapidement au texte et aux images que vous copiez, avec la possibilité d\'épingler des éléments, de configurer le nettoyage automatique et de définir une limite maximale d\'éléments.</string>
     <string name="clipboard__disabled__enable_button">Activer l\'historique du presse-papier</string>
     <string name="clipboard__empty__title">Votre presse-papiers est vide</string>
     <string name="clipboard__empty__message">Une fois que vous aurez copié des morceaux de texte ou des images, ils apparaîtront ici.</string>
@@ -754,7 +874,7 @@
     <string name="ext__editor__create_component__title_theme">Créer un thème</string>
     <string name="ext__editor__create_component__from_empty">Vide</string>
     <string name="ext__editor__create_component__from_existing">Depuis l\'existant</string>
-    <string name="ext__editor__create_component__from_empty_warning">La création et la configuration d\'un composant vide peuvent être difficiles si vous êtes nouveau sur {app_name} ou si vous n\'êtes pas familier avec les détails. Envisagez de copier un composant existant et de le modifier à votre guise si tel est le cas.</string>
+    <string name="ext__editor__create_component__from_empty_warning">La création et la configuration d\'un composant vide peuvent être difficiles si vous êtes nouveau sur Voice Mode ou si vous n\'êtes pas familier avec les détails. Envisagez de copier un composant existant et de le modifier à votre guise si tel est le cas.</string>
     <string name="ext__editor__edit_component__title">Modifier le composant</string>
     <string name="ext__editor__edit_component__title_theme">Modifier le composant de thème</string>
     <string name="ext__export__success">Extension exportée avec succès !</string>
@@ -905,9 +1025,9 @@
     <string name="enum__extended_actions_placement__overlay_app_ui" comment="Enum value label">Superposer l\'interface utilisateur de l\'application</string>
     <string name="enum__extended_actions_placement__overlay_app_ui__description" comment="Enum value description">Place la rangée d\'actions étendues en tant que superposition au-dessus de l\'interface utilisateur de l\'application, sans affecter la hauteur de l\'interface utilisateur du clavier. Notez que ce placement peut entraîner une surcharge partielle du champ de saisie de l\'application</string>
     <string name="enum__haptic_vibration_mode__use_vibrator_directly" comment="Enum value label">Utiliser le vibreur directement</string>
-    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">{app_name} interagit directement avec le vibreur matériel par défaut. Cela contrôle mieux la durée et la force d\'une vibration, mais la vibration peut ne pas être aussi douce et optimisée qu\'avec l\'interface de retour haptique</string>
+    <string name="enum__haptic_vibration_mode__use_vibrator_directly__description" comment="Enum value description">Voice Mode interagit directement avec le vibreur matériel par défaut. Cela contrôle mieux la durée et la force d\'une vibration, mais la vibration peut ne pas être aussi douce et optimisée qu\'avec l\'interface de retour haptique</string>
     <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface" comment="Enum value label">Utiliser l\'interface de retour haptique</string>
-    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">{app_name} utilise l\'interface de retour haptique pour déclencher une séquence de vibrations prédéfinie pour les pressions sur les touches. Cela peut fonctionner exceptionnellement bien sur certains appareils, mais échouer complètement ou avoir des performances très faibles sur d\'autres</string>
+    <string name="enum__haptic_vibration_mode__use_haptic_feedback_interface__description" comment="Enum value description">Voice Mode utilise l\'interface de retour haptique pour déclencher une séquence de vibrations prédéfinie pour les pressions sur les touches. Cela peut fonctionner exceptionnellement bien sur certains appareils, mais échouer complètement ou avoir des performances très faibles sur d\'autres</string>
     <string name="enum__key_hint_mode__accent_priority" comment="Enum value label">Priorité à l\'accent</string>
     <string name="enum__key_hint_mode__accent_priority__description" comment="Enum value description">Le caractère initial sélectionné après une pression longue est toujours l\'accent le plus courant, ou le symbole de l\'indice si aucun accent n\'est disponible</string>
     <string name="enum__key_hint_mode__hint_priority" comment="Enum value label">Priorité à l\'indice</string>
@@ -1030,9 +1150,10 @@
     <string name="quick_action__ime_ui_mode_scan__tooltip">Photographier un texte imprimé et l\'insérer</string>
     <string name="quick_action__translate">Traduire</string>
     <string name="quick_action__translate__tooltip">Traduire pendant la saisie, sur cet appareil</string>
-    <string name="quick_action__ime_ui_mode_dictate">Voice Mode</string>
+    <string name="quick_action__ime_ui_mode_dictate">Dicter</string>
     <string name="quick_action__ime_ui_mode_dictate__tooltip">Touchez pour dicter, touchez à nouveau pour transcrire</string>
     <string name="quick_action__dictate_live_prompt">Instruction en direct</string>
+    <string name="dictate__live_prompt_chip">Demander à voix haute</string>
     <string name="quick_action__dictate_live_prompt__tooltip">Enregistrez une instruction vocale et envoyez-la à l\'IA</string>
     <string name="quick_action__dictate_prompts">Prompts d\'IA</string>
     <string name="quick_action__dictate_prompts__tooltip">Ouvrir les prompts de reformulation par IA</string>
@@ -1040,8 +1161,7 @@
     <string name="about__based_on_floris__summary">Un fork de FlorisBoard par Patrick Goldinger et ses contributeurs, Apache 2.0. Touchez pour ouvrir.</string>
     <string name="about__feedback__title">Commentaires et assistance</string>
     <string name="about__feedback__summary">Envoyez un e-mail avec vos questions, bugs ou idées</string>
-    <string name="about__feedback__email">support@voicemode.example</string>
-    <string name="about__feedback__subject">Voice Mode Feedback</string>
+    <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Choisissez comment Voice Mode transcrit</string>
     <string name="setup__provider__choose_intro">Voice Mode transforme votre voix en texte à l\'aide d\'un service d\'IA. Deux façons conviennent à la plupart des gens — et si vous préférez vous passer complètement d\'un service en ligne, deux autres se trouvent en dessous.</string>
     <string name="setup__provider__choice_cloud_title">Acheter du crédit dans l\'application</string>
@@ -1164,14 +1284,16 @@
     <string name="dictate__remember_last_dictation_title">Mémoriser la dernière dictée</string>
     <string name="changelog__v4_2_0">• NOUVEAU : bouton de dictée flottant — dictez directement dans n’importe quelle appli, même avec un autre clavier actif. Choisissez parmi trois styles (Pilule, Anneau, Sphère), regardez une forme d’onde en direct pendant que vous parlez, déplacez-le partout avec l’alignement sur les bords, définissez sa couleur et sa taille, et appuyez longuement pour reformuler. Activez-le dans Réglages ▸ Voice Mode ▸ Bouton flottant.\n• NOUVEAU : Google Gemini — utilisez votre propre clé API AI Studio pour la transcription et la reformulation.\n• Les prompts apparaissent désormais par défaut dans une rangée permanente au-dessus des touches.\n• Insertion de texte plus fiable dans les applis, y compris les navigateurs et autres claviers.</string>
     <string name="dictate__promo_floating_button_message">Nouveau : dicter partout</string>
+    <string name="dictate__promo_keep_button_message">Garder aussi le micro flottant ici ?</string>
+    <string name="dictate__promo_keep_button_action">Le garder</string>
     <string name="dictate__promo_floating_button_action">Essayer</string>
     <string name="setup__floating_button__btn">Configurer le bouton flottant</string>
     <string name="setup__nav_back">Retour</string>
     <string name="setup__nav_next">Suivant</string>
     <string name="setup__floating_button__title">Dicter partout (facultatif)</string>
     <string name="setup__floating_button__intro">Le bouton flottant place une petite bulle de dictée par-dessus n’importe quelle app, pour parler dans n’importe quel champ de texte sans changer de clavier.</string>
-    <string name="setup__floating_button__accessibility_note">Pour cela, {app_name} utilise les paramètres d’accessibilité d’Android — c’est ainsi que la bulle peut s’afficher par-dessus les autres apps et insérer le texte transcrit à votre place. L’écran suivant vous guide pour l’activer.</string>
-    <string name="setup__floating_button__optional_note">C’est entièrement facultatif — passez cette étape si vous voulez simplement utiliser {app_name} comme clavier complet. Vous pourrez toujours le configurer plus tard dans les paramètres.</string>
+    <string name="setup__floating_button__accessibility_note">Pour cela, Voice Mode utilise les paramètres d’accessibilité d’Android — c’est ainsi que la bulle peut s’afficher par-dessus les autres apps et insérer le texte transcrit à votre place. L’écran suivant vous guide pour l’activer.</string>
+    <string name="setup__floating_button__optional_note">C’est entièrement facultatif — passez cette étape si vous voulez simplement utiliser Voice Mode comme clavier complet. Vous pourrez toujours le configurer plus tard dans les paramètres.</string>
     <string name="setup__floating_button__skip_btn">Passer — j’utilise le clavier</string>
     <string name="dictate__floating_button_badge_new">Nouveau</string>
     <string name="dictate__panel_title">Prompts d\'IA</string>
@@ -1181,6 +1303,8 @@
     <string name="dictate__prompts_layout_panel_description">Ouvrir les prompts dans leur propre panneau via le bouton baguette magique.</string>
     <string name="dictate__prompts_layout_row_label">Rangée permanente</string>
     <string name="dictate__prompts_layout_row_description">Épinglez les prompts dans une rangée supplémentaire au-dessus du clavier.</string>
+    <string name="dictate__prompts_layout_when_useful_label">Au besoin</string>
+    <string name="dictate__prompts_layout_when_useful_description">Afficher les prompts dans la barre supérieure juste après une dictée ou quand du texte est sélectionné.</string>
     <string name="dictate__status_idle">Touchez pour dicter</string>
     <string name="dictate__status_recording">Enregistrement – touchez pour arrêter</string>
     <string name="dictate__status_transcribing">Transcription…</string>
@@ -1426,9 +1550,7 @@
     <string name="dictate__custom_words_title">Mots personnalisés</string>
     <string name="dictate__custom_words_summary_empty">Ajoutez des noms ou des termes techniques à orthographier correctement</string>
     <string name="dictate__custom_words_placeholder">ex. : FlorisBoard, Kubernetes, Renée, OAuth, Anthropic</string>
-    <string name="dictate__custom_words_summary">{count} mots · environ {tokens} sur {budget} jetons</string>
     <string name="dictate__custom_words_budget_info">Chaque mot ici part avec chaque dictée, et le modèle vocal n\'en lit qu\'environ {budget} jetons de contexte. Votre liste en occupe environ {tokens}.</string>
-    <string name="dictate__custom_words_budget_over">Votre liste est plus longue que ce que le modèle vocal lit. Environ {fits} de vos {count} mots lui parviennent ; le reste part à chaque dictée et est ignoré. Pour un vocabulaire plus vaste, utilisez les correspondances personnalisées — elles sont exactes, fonctionnent hors ligne et ne coûtent rien.</string>
     <string name="dictate__custom_words_import">Importer une liste de mots</string>
     <string name="dictate__custom_words_export">Exporter la liste de mots</string>
     <string name="dictate__custom_words_export_filename">dictate_words.txt</string>
@@ -1438,11 +1560,8 @@
     <string name="dictate__custom_words_import_nofit">{count} ont été laissés de côté — le modèle vocal ne lit qu\'environ {budget} jetons de contexte, ils auraient donc été envoyés à chaque dictée puis ignorés.</string>
     <string name="dictate__custom_words_import_unusable">{count} lignes ne contenaient rien à orthographier et ont été ignorées.</string>
     <string name="dictate__custom_words_import_truncated">Seules les {count} premières entrées du fichier ont été lues.</string>
-    <string name="dictate__custom_words_import_also_dictionary">Les ajouter aussi au dictionnaire personnel</string>
-    <string name="dictate__custom_words_import_also_dictionary_summary">Cette liste indique seulement au modèle vocal comment écrire un mot. Le dictionnaire personnel est ce que le clavier utilise pendant la frappe — il n\'a aucune limite de longueur, donc tous les mots du fichier y entrent, pas seulement ceux qui tiennent ci-dessus.</string>
     <string name="dictate__custom_words_import_empty">Aucun mot trouvé dans ce fichier</string>
     <string name="dictate__custom_words_import_done">{count} mots ajoutés</string>
-    <string name="dictate__custom_words_import_done_dictionary">{count} mots ajoutés, et {dict} à votre dictionnaire personnel</string>
     <string name="dictate__file_unreadable">Ce fichier n\'a pas pu être lu</string>
     <string name="dictate__file_export_done">Fichier enregistré</string>
     <string name="dictate__file_export_failed">Impossible d\'écrire ce fichier</string>
@@ -1585,7 +1704,7 @@
     <string name="changelog__intro">Voice Mode a été mis à jour. Voici les nouveautés :</string>
     <string name="changelog__version_header">Version {version}</string>
     <string name="changelog__donate">Vous aimez Voice Mode ? Touchez ici pour soutenir le développement ♥</string>
-    <string name="changelog__current">• Tout nouveau clavier : Voice Mode est désormais un clavier de disposition complet et multilingue, doté d\'une touche micro dédiée qui ouvre le panneau vocal.\n• Votre propre IA : choisissez n\'importe quel fournisseur compatible OpenAI et saisissez votre clé d\'API dans Paramètres → Voice Mode.\n• Mise en forme et reformulation intelligentes grâce au modèle de votre choix.\n• Vos paramètres de l\'ancienne application Voice Mode sont importés automatiquement.</string>
+    <string name="changelog__current">• Tout nouveau clavier : Voice Mode est désormais un clavier de disposition complet et multilingue, doté d\'une touche micro dédiée qui ouvre le panneau vocal.\n• Votre propre IA : choisissez n\'importe quel fournisseur compatible OpenAI et saisissez votre clé d\'API dans Paramètres → Voice Mode.\n• Mise en forme et reformulation intelligentes grâce au modèle de votre choix.\n• Vos paramètres de l\'ancienne application Dictate sont importés automatiquement.</string>
     <string name="changelog__v4_1_0">• Nouveau : recherchez des emojis directement depuis le clavier.\n• Nouveau fournisseur de transcription : Soniox.\n• Réinsérez votre dernière dictée et récupérez les enregistrements interrompus à la fermeture du clavier.\n• La barre de prompts se met désormais à jour en direct : appui long sur un prompt pour le modifier.\n• L\'écran des fournisseurs d\'IA affiche maintenant à la fois le fournisseur de transcription et celui de reformulation actifs.\n• Bouton d\'enregistrement plus grand et plus facile à toucher.\n• Corrections : un message de soutien pouvait rester bloqué et masquer la barre dans certaines langues ; la sauvegarde n\'échoue plus lorsque des prompts, le clavier ou le thème sont sélectionnés ; les clés d\'API enregistrées sont conservées lors de la mise à jour.</string>
     <string name="changelog__v4_1_1">• Correction : la couleur d\'accent pouvait apparaître en vert sur certains appareils ; les touches et boutons reviennent au bleu de Voice Mode.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -1785,7 +1904,7 @@
     <string name="dictate__audio_save_failed">Impossible d\'enregistrer l\'audio</string>
     <string name="dictate__instant_recording_mode_off">Désactivé</string>
     <string name="dictate__instant_recording_mode_always">À chaque ouverture du clavier</string>
-    <string name="dictate__instant_recording_mode_after_switch">Seulement après être passé à {app_name}</string>
+    <string name="dictate__instant_recording_mode_after_switch">Seulement après être passé à Voice Mode</string>
     <string name="dictate__instant_recording_in_numeric">Aussi dans les champs numériques</string>
     <string name="dictate__instant_recording_skip_numeric_title">Ignorer les champs numériques</string>
     <string name="dictate__instant_recording_skip_numeric_summary">Ne pas démarrer automatiquement sur les champs numériques, téléphone ou PIN</string>
@@ -1841,7 +1960,7 @@
     <string name="apptour__badge_highlight">★ À la une</string>
     <string name="apptour__intro_eyebrow">Version 5.0</string>
     <string name="apptour__intro_title">Une visite rapide</string>
-    <string name="apptour__intro_body">Voici les nouveautés de Dictate 5.0 — les points forts en moins d’une minute. Touchez « Essayer » sur n’importe quelle page pour aller droit au réglage concerné.</string>
+    <string name="apptour__intro_body">Voici les nouveautés de Voice Mode 5.0 — les points forts en moins d’une minute. Touchez « Essayer » sur n’importe quelle page pour aller droit au réglage concerné.</string>
     <string name="apptour__glide_eyebrow">Clavier</string>
     <string name="apptour__glide_title">Glissez pour écrire</string>
     <string name="apptour__glide_body">Faites glisser votre doigt de touche en touche et Voice Mode transforme le tracé en mots entiers. Chaque langue apporte son propre dictionnaire téléchargé à la demande — activez-le dans Gestes.</string>
@@ -1907,7 +2026,7 @@
     <string name="apptour51__outro_title">Profitez de la mise à jour</string>
     <string name="apptour51__outro_body">Merci d’utiliser Voice Mode ! S’il vous aide au quotidien, un petit don aide le projet à continuer. Vous pouvez revoir n’importe laquelle de ces visites à tout moment dans Réglages › À propos.</string>
     <string name="apptour52__cta_try">Essayer</string>
-    <string name="apptour52__intro_eyebrow">Dictate 5.2</string>
+    <string name="apptour52__intro_eyebrow">Voice Mode 5.2</string>
     <string name="apptour52__intro_title">Dicter partout</string>
     <string name="apptour52__intro_body">Cette version emmène Voice Mode au-delà de son propre clavier : comme saisie vocale du téléphone, pour des commandes parlées depuis n\'importe où, et pour mettre en forme vos longues dictées. Voici les nouveautés.</string>
     <string name="apptour52__voiceinput_eyebrow">Saisie vocale système</string>
@@ -1935,7 +2054,7 @@
     <string name="apptour52__outro_title">Bonne dictée</string>
     <string name="apptour52__outro_body">Et beaucoup sous le capot : l\'écran reste allumé pendant toute la dictée, les modèles locaux libèrent leur mémoire au repos, les dictées sur montre survivent aux coupures, et la correction allemande gère les trémas. Vous pouvez revoir toutes les visites sous Réglages › À propos.</string>
     <string name="apptour53__cta_try">Essayer</string>
-    <string name="apptour53__intro_eyebrow">Dictate 5.3</string>
+    <string name="apptour53__intro_eyebrow">Voice Mode 5.3</string>
     <string name="apptour53__intro_title">Maintenir, parler, terminé</string>
     <string name="apptour53__intro_body">Cette version porte sur les deux choses que vous faites le plus : parler à votre téléphone et taper dessus. Les deux sont plus rapides, et les deux se font mieux oublier.</string>
     <string name="apptour53__pushtotalk_eyebrow">Appuyer pour parler</string>
@@ -1966,7 +2085,7 @@
     <string name="apptour60__cta_try">Essayer</string>
     <string name="apptour60__art_minutes">minutes</string>
     <string name="apptour60__art_speed">1,5×</string>
-    <string name="apptour60__intro_eyebrow">Dictate 6.0</string>
+    <string name="apptour60__intro_eyebrow">Voice Mode 6.0</string>
     <string name="apptour60__intro_title">Crédit, chinois, dictée moins chère</string>
     <string name="apptour60__intro_body">Cette version ajoute une deuxième porte d\'entrée — acheter du crédit au lieu d\'apporter sa propre clé API —, le pinyin pour le chinois, sept langues dotées d\'un dictionnaire et des enregistrements qui coûtent moins cher.</string>
     <string name="apptour60__cloud_eyebrow">Nouveau : Voice Mode Cloud</string>
@@ -1995,7 +2114,7 @@
     <string name="apptour61__art_share">Partager avec</string>
     <string name="apptour61__art_typed">qeu</string>
     <string name="apptour61__art_fixed">que</string>
-    <string name="apptour61__intro_eyebrow">Dictate 6.1</string>
+    <string name="apptour61__intro_eyebrow">Voice Mode 6.1</string>
     <string name="apptour61__intro_title">Des stickers, les messages vocaux et une correction qui voit enfin la faute</string>
     <string name="apptour61__intro_body">Montrez au clavier un dossier de vos propres stickers, partagez un message vocal directement vers Voice Mode pour savoir ce qu\'il dit, et profitez d\'une correction automatique qui repère enfin la faute qu\'elle était construite pour ignorer.</string>
     <string name="apptour61__stickers_eyebrow">Nouveau : vos propres stickers</string>
@@ -2024,7 +2143,7 @@
     <string name="apptour62__art_word">Zoya</string>
     <string name="apptour62__art_emoji_word">gâteau</string>
     <string name="apptour62__art_emoji">🍰</string>
-    <string name="apptour62__intro_eyebrow">Dictate 6.2</string>
+    <string name="apptour62__intro_eyebrow">Voice Mode 6.2</string>
     <string name="apptour62__intro_title">Il apprend vos mots et change cinq fois d\'allure</string>
     <string name="apptour62__intro_body">Le clavier peut retenir les mots qu\'aucun dictionnaire ne connaît, les touches peuvent laisser transparaître l\'application derrière elles, et chaque pouce peut avoir sa moitié. Plus une poignée de petits outils pour ce que vous faites tous les jours.</string>
     <string name="apptour62__learning_eyebrow">Nouveau : il apprend en écrivant</string>
@@ -2032,7 +2151,7 @@
     <string name="apptour62__learning_body">Tapez un nom ou un terme assez souvent et le clavier le garde : il cesse de le signaler comme une faute et se met à le proposer. Cette mise à jour l\'active pour tout le monde, y compris ceux qui l\'avaient désactivé. Rien n\'est appris en navigation privée, dans les champs de mot de passe, ni à partir de ce que vous n\'avez pas tapé touche par touche ; tout reste sur cet appareil, et le bouton ci-dessous ouvre la liste — et l\'interrupteur.</string>
     <string name="apptour62__themes_eyebrow">Cinq nouveaux thèmes</string>
     <string name="apptour62__themes_title">Glass, Sand, Deep et un E-Ink sombre</string>
-    <string name="apptour62__themes_body">Voice Mode Glass laisse voir l\'application par les espaces entre les touches, tandis que les touches restent assez opaques pour qu\'on y lise ; Glass Clear va plus loin et rend mieux, au prix du texte des applications qui dessinent derrière le clavier, qui transparaît alors. Sand est un thème clair et chaud, Deep un thème sombre et calme, et E-Ink a enfin une version nuit — la bascule automatique ne vous tend donc plus un clavier blanc à la tombée du jour.</string>
+    <string name="apptour62__themes_body">Glass laisse voir l\'application par les espaces entre les touches, tandis que les touches restent assez opaques pour qu\'on y lise ; Glass Clear va plus loin et rend mieux, au prix du texte des applications qui dessinent derrière le clavier, qui transparaît alors. Sand est un thème clair et chaud, Deep un thème sombre et calme, et E-Ink a enfin une version nuit — la bascule automatique ne vous tend donc plus un clavier blanc à la tombée du jour.</string>
     <string name="apptour62__split_eyebrow">Nouveau : clavier scindé</string>
     <string name="apptour62__split_title">Les deux pouces, sans s\'étirer</string>
     <string name="apptour62__split_body">Une nouvelle action rapide, à côté du mode à une main et du mode flottant, écarte les rangées pour que chaque pouce reste sur sa moitié. Toutes les dispositions se scindent, pas seulement AZERTY, parce que la coupure est calculée à partir de la largeur des touches plutôt qu\'écrite dans chaque disposition. Et en paysage, l\'application reste maintenant visible dès qu\'il y a la place pour les deux.</string>
@@ -2061,7 +2180,7 @@
     <string name="apptour62__outro_title">Le même clavier, davantage le vôtre</string>
     <string name="apptour62__outro_body">Rien ne change à votre façon de dicter — votre propre clé, votre propre serveur ou un modèle sur l\'appareil. Vous retrouverez toutes les visites guidées dans Paramètres › À propos.</string>
     <string name="apptour63__cta_try">Essayer</string>
-    <string name="apptour63__intro_eyebrow">Dictate 6.3</string>
+    <string name="apptour63__intro_eyebrow">Voice Mode 6.3</string>
     <string name="apptour63__intro_title">Plus de clavier, sans le quitter</string>
     <string name="apptour63__intro_body">Pointez la caméra vers un texte imprimé et il arrive dans le champ. Le curseur, la sélection et le presse-papiers partagent enfin un seul panneau. Chaque bouton de la Smartbar peut porter une seconde action sous un appui long. Et la dictée hors ligne dispose enfin de modèles qui tiennent sur un téléphone.</string>
     <string name="apptour63__scan_eyebrow">Nouveau : scanner du texte</string>
@@ -2200,8 +2319,6 @@
     <string name="dictate__cloud_other_way_body">Vous pouvez passer à votre propre clé API à tout moment, et revenir en arrière. Votre crédit reste où il est.</string>
     <string name="dictate__error_out_of_credit">Crédit épuisé</string>
     <string name="dictate__action_top_up">Recharger le crédit</string>
-    <string name="dictate__promo_low_credit_message">Crédit presque épuisé.</string>
-    <string name="dictate__promo_low_credit_action">Recharger</string>
     <string name="prefs__media__sticker__title">Autocollants</string>
     <string name="prefs__media__sticker_folder__title">Dossier d\'autocollants</string>
     <string name="prefs__media__sticker_folder__summary_unset">Choisissez un dossier contenant vos propres images</string>

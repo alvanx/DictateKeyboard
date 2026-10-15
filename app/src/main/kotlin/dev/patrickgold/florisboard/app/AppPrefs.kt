@@ -28,6 +28,7 @@ import dev.patrickgold.florisboard.dictate.DictateFloatingButtonDesign
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonFade
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonShowWhen
 import dev.patrickgold.florisboard.dictate.DictateLongformMode
+import dev.patrickgold.florisboard.dictate.DictateMicCharm
 import dev.patrickgold.florisboard.dictate.audio.AudioSpeedUp
 import dev.patrickgold.florisboard.dictate.audio.DictateAudioSource
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonSize
@@ -586,6 +587,24 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             default = Color(0xFF30B7E6),
             serializer = ColorPreferenceSerializer,
         )
+        // The look picked on the Style tab: a charm (daisy, mixtape, neon…) in place of the round button, or
+        // CLASSIC to keep floatingButtonDesign, which takes floatingButtonColor as its colour.
+        val floatingButtonCharm = enum(
+            key = "dictate__floating_button_charm",
+            default = DictateMicCharm.CLASSIC,
+        )
+        // The colour of a charm that takes one; transparent means the charm's own (DictateMicCharm.resolveColor).
+        // Separate from floatingButtonColor, so a white daisy does not repaint the classic button white.
+        val floatingButtonCharmColor = custom(
+            key = "dictate__floating_button_charm_color",
+            default = Color.Transparent,
+            serializer = ColorPreferenceSerializer,
+        )
+        // Whether a charm moves its own way (blooms, spins its reels…) while it listens.
+        val floatingButtonCharmAnimated = boolean(
+            key = "dictate__floating_button_charm_animated",
+            default = true,
+        )
         // How far the button fades + shrinks while unused. Replaces the boolean
         // `dictate__floating_button_auto_dim`, which migrate() carries over. See DictateFloatingButtonFade.
         val floatingButtonFade = enum(
@@ -668,6 +687,21 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
         val floatingButtonSpotlightVersion = string(
             key = "dictate__floating_button_spotlight_version",
             default = "",
+        )
+        // Finished dictations by where they were started: the floating button or the keyboard's own mic.
+        // Only to tell whether someone's habit is the floating button (KeepOverKeyboardTip).
+        val floatingButtonDictations = int(
+            key = "dictate__floating_button_dictations",
+            default = 0,
+        )
+        val keyboardDictations = int(
+            key = "dictate__keyboard_dictations",
+            default = 0,
+        )
+        // Whether the keyboard has asked once to keep the floating button up beside it.
+        val floatingButtonOverKeyboardAsked = boolean(
+            key = "dictate__floating_button_over_keyboard_asked",
+            default = false,
         )
         // --- Output behavior (roadmap section 10) ------------------------------------------------
         // Press Enter / trigger the editor action automatically after committing a transcription.
@@ -946,11 +980,25 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__live_prompt_action_removed",
             default = false,
         )
+        // Guard for the one-time withdrawal of the untouched "Inspiring quote" / "Fun fact" starter
+        // prompts. See DictateLegacyMigrator.removeGeneratorExamplesIfNeeded.
+        val generatorExamplesRemoved = boolean(
+            key = "dictate__generator_examples_removed",
+            default = false,
+        )
         // Guard for the one-time switch of existing users to the always-on prompt ROW layout (the new
         // default). Fires once so users who were on PANEL land on ROW after the update; they can switch
         // back any time. See DictateLegacyMigrator.migratePromptsLayoutToRowIfNeeded.
         val promptsLayoutRowMigrated = boolean(
             key = "dictate__prompts_layout_row_migrated",
+            default = false,
+        )
+        // Guard for the one-time move of the prompt chips from the always-on row to "show when useful"
+        // (the chips in the bar right after a dictation or on a selection). Runs after the ROW move above,
+        // so everyone that one put on ROW lands here; PANEL stays. See
+        // DictateLegacyMigrator.migratePromptsLayoutToWhenUsefulIfNeeded.
+        val promptsLayoutWhenUsefulMigrated = boolean(
+            key = "dictate__prompts_layout_when_useful_migrated",
             default = false,
         )
         // Guard for the one-time re-engagement reset shipped with the 4.0.0 relaunch: existing users
@@ -989,13 +1037,13 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__rewording_reasoning_effort_custom",
             default = "",
         )
-        // How the rewording prompt chips are surfaced: a dedicated panel (PANEL) opened from the
-        // Smartbar, or an always-on extra row pinned above the Smartbar (ROW). See DictatePromptsLayout.
-        // Defaults to ROW so the prompts are immediately visible; existing users are moved to ROW once via
-        // DictateLegacyMigrator.migratePromptsLayoutToRowIfNeeded.
+        // How the rewording prompt chips are surfaced: in the Smartbar only when useful (WHEN_USEFUL),
+        // a dedicated panel (PANEL) opened from the Smartbar, or an always-on extra row pinned above the
+        // Smartbar (ROW). See DictatePromptsLayout. Defaults to WHEN_USEFUL; those the earlier ROW default
+        // reached are moved there once via DictateLegacyMigrator.migratePromptsLayoutToWhenUsefulIfNeeded.
         val promptsLayout = enum(
             key = "dictate__prompts_layout",
-            default = DictatePromptsLayout.ROW,
+            default = DictatePromptsLayout.WHEN_USEFUL,
         )
         // Classic keyboard-less "legacy" dictation layout (issue #125): OFF = modern keyboard (default);
         // LOCKED = only the legacy record-first UI; SWIPE = legacy UI as home, horizontal swipe flips to
@@ -1071,6 +1119,18 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
         val customWords = string(
             key = "dictate__custom_words",
             default = "",
+        )
+        // "My words": customWords above is also the keyboard's list now, copied into the personal
+        // dictionary (MyWordsSync). This is what was copied last, so a word removed from My words can be
+        // removed from the dictionary too — and only such a word. Newline-separated.
+        val myWordsMirrored = string(
+            key = "dictate__my_words_mirrored",
+            default = "",
+        )
+        // Guard for the one-time merge of the personal dictionary into My words (and the other way round).
+        val myWordsMerged = boolean(
+            key = "dictate__my_words_merged",
+            default = false,
         )
         // Custom mappings (issue #129): deterministic find-and-replace applied to the finished transcript
         // before it is inserted — exact and token-free, unlike the prompt-hint customWords above.

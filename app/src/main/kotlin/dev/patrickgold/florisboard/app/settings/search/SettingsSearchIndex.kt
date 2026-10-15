@@ -67,6 +67,8 @@ object SettingsSearchIndex {
         SettingsSearchEntry(R.string.dictate__stats_title, R.string.dictate__stats_title, Routes.Settings.DictateStats, parentRes = R.string.dictate__title),
         SettingsSearchEntry(R.string.dictate__wear_title, R.string.dictate__wear_title, Routes.Settings.DictateWear, parentRes = R.string.dictate__title),
         SettingsSearchEntry(R.string.settings__dictionary__title, R.string.settings__dictionary__title, Routes.Settings.Dictionary),
+        SettingsSearchEntry(R.string.dictionary_hub__title, R.string.dictionary_hub__title, Routes.Settings.Words),
+        SettingsSearchEntry(R.string.nav__style, R.string.nav__style, Routes.Settings.Style),
         SettingsSearchEntry(R.string.settings__gestures__title, R.string.settings__gestures__title, Routes.Settings.Gestures),
         SettingsSearchEntry(R.string.settings__input_feedback__title, R.string.settings__input_feedback__title, Routes.Settings.InputFeedback, parentRes = R.string.settings__keyboard__title),
         SettingsSearchEntry(R.string.settings__keyboard__title, R.string.settings__keyboard__title, Routes.Settings.Keyboard),
@@ -136,10 +138,10 @@ object SettingsSearchIndex {
         // Hand-added (#439): replaces the "Show with Dictate keyboard" row; the generator is lossy.
         SettingsSearchEntry(R.string.dictate__floating_button_show_when_title, R.string.dictate__floating_button_title, Routes.Settings.DictateFloatingButton, parentRes = R.string.dictate__title, anchor = "dictate__floating_button_show_when_title"),
         SettingsSearchEntry(R.string.dictate__floating_button_apps_title, R.string.dictate__floating_button_title, Routes.Settings.DictateFloatingButton, parentRes = R.string.dictate__title, anchor = "dictate__floating_button_apps_title"),
-        SettingsSearchEntry(R.string.dictate__floating_button_design_title, R.string.dictate__floating_button_title, Routes.Settings.DictateFloatingButton, parentRes = R.string.dictate__title, anchor = "dictate__floating_button_design_title"),
+        SettingsSearchEntry(R.string.dictate__floating_button_design_title, R.string.nav__style, Routes.Settings.Style, anchor = "dictate__floating_button_design_title"),
         SettingsSearchEntry(R.string.dictate__floating_button_size_title, R.string.dictate__floating_button_title, Routes.Settings.DictateFloatingButton, parentRes = R.string.dictate__title, anchor = "dictate__floating_button_size_title"),
         SettingsSearchEntry(R.string.dictate__floating_button_snap_title, R.string.dictate__floating_button_title, Routes.Settings.DictateFloatingButton, parentRes = R.string.dictate__title, anchor = "dictate__floating_button_snap_title"),
-        SettingsSearchEntry(R.string.dictate__floating_button_color_title, R.string.dictate__floating_button_title, Routes.Settings.DictateFloatingButton, parentRes = R.string.dictate__title, anchor = "dictate__floating_button_color_title"),
+        SettingsSearchEntry(R.string.dictate__floating_button_color_title, R.string.nav__style, Routes.Settings.Style, anchor = "dictate__floating_button_color_title"),
         SettingsSearchEntry(R.string.dictate__floating_button_auto_dim_title, R.string.dictate__floating_button_title, Routes.Settings.DictateFloatingButton, parentRes = R.string.dictate__title, anchor = "dictate__floating_button_auto_dim_title"),
         SettingsSearchEntry(R.string.dictate__floating_button_remember_position_title, R.string.dictate__floating_button_title, Routes.Settings.DictateFloatingButton, parentRes = R.string.dictate__title, anchor = "dictate__floating_button_remember_position_title"),
         SettingsSearchEntry(R.string.dictate__floating_button_haptic_title, R.string.dictate__floating_button_title, Routes.Settings.DictateFloatingButton, parentRes = R.string.dictate__title, anchor = "dictate__floating_button_haptic_title"),
@@ -201,12 +203,15 @@ object SettingsSearchIndex {
         SettingsSearchEntry(R.string.dictate__floating_button_enable_title, R.string.dictate__title, Routes.Settings.Dictate, anchor = "dictate__floating_button_enable_title"),
         SettingsSearchEntry(R.string.dictate__wear_title, R.string.dictate__title, Routes.Settings.Dictate, anchor = "dictate__wear_title"),
         SettingsSearchEntry(R.string.dictate__style_prompt_title, R.string.dictate__formatting_title, Routes.Settings.DictateFormatting, parentRes = R.string.dictate__title),
-        SettingsSearchEntry(R.string.dictate__custom_words_title, R.string.dictate__formatting_title, Routes.Settings.DictateFormatting, parentRes = R.string.dictate__title),
+        SettingsSearchEntry(R.string.dictate__custom_words_title, R.string.dictate__formatting_title, Routes.Settings.DictateFormatting, parentRes = R.string.dictate__title, anchor = "dictate__custom_words_title"),
         // Hand-added (issue #389); the generator is lossy, so a rerun of it must be diffed before keeping.
-        // Both point at the custom-words row: importing and exporting live inside its dialog, so the
-        // row is where a search for either of them has to land.
-        SettingsSearchEntry(R.string.dictate__custom_words_import, R.string.dictate__formatting_title, Routes.Settings.DictateFormatting, parentRes = R.string.dictate__title, anchor = "dictate__custom_words_title"),
-        SettingsSearchEntry(R.string.dictate__custom_words_export, R.string.dictate__formatting_title, Routes.Settings.DictateFormatting, parentRes = R.string.dictate__title, anchor = "dictate__custom_words_title"),
+        // Both point at the "Edit as text" row of My words: importing and exporting live inside its
+        // dialog, so the row is where a search for either of them has to land.
+        SettingsSearchEntry(R.string.dictate__custom_words_import, R.string.mywords__title, Routes.Settings.MyWords, parentRes = R.string.dictionary_hub__title, anchor = "dictate__custom_words_title"),
+        SettingsSearchEntry(R.string.dictate__custom_words_export, R.string.mywords__title, Routes.Settings.MyWords, parentRes = R.string.dictionary_hub__title, anchor = "dictate__custom_words_title"),
+        // Hand-added: My words, the one list for dictation and typing, and its full list.
+        SettingsSearchEntry(R.string.mywords__title, R.string.dictionary_hub__title, Routes.Settings.Words, anchor = "mywords__title"),
+        SettingsSearchEntry(R.string.words__personal_dictionary, R.string.dictionary_hub__title, Routes.Settings.Words, anchor = "mywords__title"),
         SettingsSearchEntry(R.string.dictate__mappings_title, R.string.dictate__formatting_title, Routes.Settings.DictateFormatting, parentRes = R.string.dictate__title, anchor = "dictate__mappings_title"),
         SettingsSearchEntry(R.string.dictate__push_to_talk_title, R.string.dictate__recording_group, Routes.Settings.DictateRecording, parentRes = R.string.dictate__title, anchor = "dictate__push_to_talk_title"),
         SettingsSearchEntry(R.string.dictate__realtime_title, R.string.dictate__recording_group, Routes.Settings.DictateRecording, parentRes = R.string.dictate__title, anchor = "dictate__realtime_title"),

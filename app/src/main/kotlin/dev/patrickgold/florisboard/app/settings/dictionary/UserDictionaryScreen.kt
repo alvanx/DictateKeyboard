@@ -49,6 +49,7 @@ import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.LocalNavController
 import dev.patrickgold.florisboard.glideTypingManager
 import dev.patrickgold.florisboard.app.settings.theme.DialogProperty
+import dev.patrickgold.florisboard.dictate.data.prompts.MyWordsSync
 import dev.patrickgold.florisboard.ime.dictionary.ContactNameImport
 import dev.patrickgold.florisboard.ime.dictionary.DictionaryManager
 import dev.patrickgold.florisboard.ime.dictionary.FREQUENCY_MAX
@@ -434,6 +435,10 @@ fun UserDictionaryScreen(type: UserDictionaryType) = FlorisScreen {
                             userDictionaryDao()?.insert(entry)
                         } else {
                             userDictionaryDao()?.update(entry)
+                            // A renamed word is renamed in My words too (it is one list).
+                            if (type == UserDictionaryType.FLORIS && entry.word != wordEntry.word) {
+                                scope.launch { MyWordsSync.onDictionaryWordChanged(wordEntry.word, entry.word) }
+                            }
                         }
                         userDictionaryEntryForDialog = null
                         onDictionaryChanged()
@@ -450,6 +455,10 @@ fun UserDictionaryScreen(type: UserDictionaryType) = FlorisScreen {
                 },
                 onNeutral = {
                     userDictionaryDao()?.delete(wordEntry)
+                    // Deleted here means gone from My words too, or the list would still show it.
+                    if (type == UserDictionaryType.FLORIS && wordEntry.shortcut.isNullOrBlank()) {
+                        scope.launch { MyWordsSync.onDictionaryWordChanged(wordEntry.word, null) }
+                    }
                     userDictionaryEntryForDialog = null
                     onDictionaryChanged()
                 },

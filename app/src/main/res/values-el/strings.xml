@@ -32,9 +32,7 @@
     <string name="settings__help" comment="General label for help buttons in Settings">Βοήθεια</string>
     <string name="settings__default" comment="General string which is used when a preference has the default value set">Προεπιλογή</string>
     <string name="settings__system_default" comment="General string which is used when a preference has the system default value set">Προεπιλογή συστήματος</string>
-    <string name="settings__home__title" comment="Title of the Home screen">Καλώς ήλθατε στο {app_name}</string>
-    <string name="settings__home__ime_not_enabled" comment="Error message shown in Home fragment when Voice Mode is not enabled in the system">Το {app_name} δεν είναι ενεργοποιημένο στο σύστημα και συνεπώς δε θα είναι διαθέσιμο ως μέθοδος εισαγωγής στον επιλογέα εισαγωγής. Πατήστε εδώ για να επιλύσετε αυτό το πρόβλημα.</string>
-    <string name="settings__home__ime_not_selected" comment="Warning message shown in Home fragment when Voice Mode is not selected as the default keyboard">Το {app_name} δεν έχει επιλεχθεί ως η προεπιλεγμένη μέθοδος εισαγωγής. Πατήστε εδώ για να επιλύσετε αυτό το πρόβλημα.</string>
+    <string name="settings__home__title" comment="Title of the Home screen">Καλώς ήλθατε στο Voice Mode</string>
     <string name="settings__localization__title" comment="Title of languages and Layout screen">Γλώσσες &amp; Διατάξεις</string>
     <string name="settings__localization__group_subtypes__label" comment="Label of subtypes group">Υποτύποι</string>
     <string name="settings__localization__subtype_add_title" comment="Title of subtype dialog when adding a new subtype">Προσθήκη υποτύπου</string>
@@ -72,7 +70,7 @@
     <string name="pref__theme__day" comment="Label of the day group (day means light theme)">Θέμα ημέρας</string>
     <string name="pref__theme__night" comment="Label of the night group (night means dark theme)">Θέμα νύχτας</string>
     <string name="settings__theme_manager__title_manage" comment="Title of the theme manager screen for managing installed and custom themes">Διαχείριση εγκατεστημένων θεμάτων</string>
-    <string name="pref__theme__source_assets" comment="Label for the theme source field">Πηγές της Εφαρμογής {app_name}</string>
+    <string name="pref__theme__source_assets" comment="Label for the theme source field">Πηγές της Εφαρμογής Voice Mode</string>
     <string name="pref__theme__source_internal" comment="Label for the theme source field">Εσωτερικός αποθηκευτικός χώρος</string>
     <string name="pref__theme__source_external" comment="Label for the theme source field">Εξωτερικός Προμηθευτής</string>
     <string name="settings__theme_manager__title_day" comment="Title of the theme manager screen for day theme selection">Επιλογή θέματος μέρας</string>
@@ -186,7 +184,7 @@
     <string name="pref__gestures__swipe_distance_threshold__label" comment="Preference title">Όριο απόστασης σάρωσης</string>
     <!-- About UI strings -->
     <string name="about__title" comment="Title of About activity">Σχετικά με</string>
-    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Εικονίδιο εφαρμογής του {app_name}</string>
+    <string name="about__app_icon_content_description" comment="Content description of app icon in About">Εικονίδιο εφαρμογής του Voice Mode</string>
     <string name="about__view_licenses" comment="Label of View licenses button in About">Άδειες λογισμικού ανοικτού κώδικα</string>
     <string name="about__view_privacy_policy" comment="Label of View privacy policy button in About">Πολιτική απορρήτου</string>
     <string name="about__view_source_code" comment="Label of View source code button in About">Πηγαίος κώδικας</string>
@@ -201,25 +199,25 @@
     <string name="about__privacy_policy__title" comment="Preference title">Πολιτική απορρήτου</string>
     <string name="about__privacy_policy__summary" comment="Preference summary">Η πολιτική απορρήτου αυτού του πρότζεκτ</string>
     <string name="about__project_license__title" comment="Preference title">Άδεια πρότζεκτ</string>
-    <string name="about__project_license__summary" comment="Preference summary">Το {app_name} είναι αδειοδοτημένο υπό την άδεια {license_name}</string>
+    <string name="about__project_license__summary" comment="Preference summary">Το Voice Mode είναι αδειοδοτημένο υπό την άδεια {license_name}</string>
     <string name="about__project_license__error_license_text_failed" comment="Error text for license text loading failure">Σφάλμα: Αποτυχία φόρτωσης κειμένου άδειας.\n-&gt; Λόγος: {error_message}</string>
     <string name="about__third_party_licenses__title" comment="Preference title">Άδειες χρήσης τρίτων</string>
     <string name="about__third_party_licenses__summary" comment="Preference summary">Άδειες χρήσης βιβλιοθηκών τρίτων που έχουν συμπεριληφθεί σε αυτήν την εφαρμογή</string>
     <!-- Setup UI strings -->
     <string name="setup__title" comment="Title of Setup">Καλώς ήλθατε!</string>
-    <string name="setup__intro_message" comment="Short intro message welcoming new users">Ευχαριστώ που χρησιμοποιείτε το {app_name}! Αυτή η σύντομη αρχική ρύθμιση θα σας καθοδηγήσει στα απαιτούμενα βήματα για να χρησιμοποιήσετε το {app_name} στη συσκευή σας.</string>
+    <string name="setup__intro_message" comment="Short intro message welcoming new users">Ευχαριστώ που χρησιμοποιείτε το Voice Mode! Αυτή η σύντομη αρχική ρύθμιση θα σας καθοδηγήσει στα απαιτούμενα βήματα για να χρησιμοποιήσετε το Voice Mode στη συσκευή σας.</string>
     <string name="setup__footer__privacy_policy" comment="Privacy policy label for URL">Πολιτική απορρήτου</string>
     <string name="setup__footer__repository" comment="Repository label for URL">Αποθετήριο</string>
-    <string name="setup__enable_ime__title">Ενεργοποίηση {app_name}</string>
-    <string name="setup__enable_ime__description">Το Android απαιτεί κάθε ειδικό πληκτρολόγιο να ενεργοποιείται χειροκίνητα πριν τη χρήση. Ανοίξτε τις Ρυθμίσεις Συστήματος <i>Γλώσσα &amp; Εισαγωγή</i>, κι εκεί ενεργοποιήστε το \"{app_name}\".</string>
+    <string name="setup__enable_ime__title">Ενεργοποίηση Voice Mode</string>
+    <string name="setup__enable_ime__description">Το Android απαιτεί κάθε ειδικό πληκτρολόγιο να ενεργοποιείται χειροκίνητα πριν τη χρήση. Ανοίξτε τις Ρυθμίσεις Συστήματος <i>Γλώσσα &amp; Εισαγωγή</i>, κι εκεί ενεργοποιήστε το \"Voice Mode\".</string>
     <string name="setup__enable_ime__open_settings_btn">Άνοιγμα Ρυθμίσεων Συστήματος</string>
-    <string name="setup__select_ime__title">Επιλέξτε {app_name}</string>
-    <string name="setup__select_ime__description">Το {app_name} είναι τώρα ενεργοποιημένο στο σύστημά σας. Για να το χρησιμοποιήσετε ενεργά, κάντε εναλλαγή στο {app_name} επιλέγοντάς το στο διάλογο επιλογέα εισαγωγής!</string>
+    <string name="setup__select_ime__title">Επιλέξτε Voice Mode</string>
+    <string name="setup__select_ime__description">Το Voice Mode είναι τώρα ενεργοποιημένο στο σύστημά σας. Για να το χρησιμοποιήσετε ενεργά, κάντε εναλλαγή στο Voice Mode επιλέγοντάς το στο διάλογο επιλογέα εισαγωγής!</string>
     <string name="setup__select_ime__switch_keyboard_btn">Εναλλαγή Πληκτρολογίου</string>
     <string name="setup__finish_up__title">Ολοκλήρωση</string>
-    <string name="setup__finish_up__description_p1">{app_name} είναι τώρα ενεργοποιημένο στο σύστημα και έτοιμο να προσαρμοστεί από εσάς.</string>
+    <string name="setup__finish_up__description_p1">Voice Mode είναι τώρα ενεργοποιημένο στο σύστημα και έτοιμο να προσαρμοστεί από εσάς.</string>
     <string name="setup__finish_up__description_p2">Εάν αντιμετωπίσετε τυχόν θέματα, προβλήματα, σφάλματα ή απλώς θέλετε να κάνετε μία πρόταση, ρίξτε μία ματιά στο αποθετήριο από το πεδίο σχετικά με!</string>
-    <string name="setup__finish_up__finish_btn">Ξεκινήστε την προσαρμογή</string>
+    <string name="setup__finish_up__finish_btn">Ξεκινήστε να χρησιμοποιείτε το Voice Mode</string>
     <!-- Physical keyboard -->
     <!-- Back up & Restore -->
     <string name="backup_and_restore__restore__title">Επαναφορά δεδομένων</string>
@@ -243,7 +241,7 @@
     <!-- Clipboard strings -->
     <string name="clipboard__header_title">Πρόχειρο</string>
     <string name="clipboard__disabled__title">Το ιστορικό προχείρου είναι προς το παρόν απενεργοποιημένο</string>
-    <string name="clipboard__disabled__message">Το ιστορικό προχείρου του {app_name} σας επιτρέπει να αποθηκεύσετε και να προσβείτε γρήγορα σε κείμενο και εικόνες που αντιγράφετε, με τη δυνατότητα να καρφιτσώσετε στοιχεία, να ρυθμίσετε τον αυτόματο καθαρισμό και να θέσετε ένα μέγιστο όριο στοιχείων.</string>
+    <string name="clipboard__disabled__message">Το ιστορικό προχείρου του Voice Mode σας επιτρέπει να αποθηκεύσετε και να προσβείτε γρήγορα σε κείμενο και εικόνες που αντιγράφετε, με τη δυνατότητα να καρφιτσώσετε στοιχεία, να ρυθμίσετε τον αυτόματο καθαρισμό και να θέσετε ένα μέγιστο όριο στοιχείων.</string>
     <string name="clipboard__disabled__enable_button">Ενεργοποίηση ιστορικού του προχείρου</string>
     <string name="clipboard__empty__title">Το πρόχειρό σας είναι κενό</string>
     <string name="clipboard__empty__message">Αφού αντιγράψετε αποκόμματα κειμένου ή εικόνες θα εμφανιστούν εδώ.</string>
