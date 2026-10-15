@@ -233,7 +233,7 @@ Manual, with a license tester:
 4. App: billing client on `SUBS`, verify, entitlement store, feature flag.
 5. App: subscription screen and error states.
 6. License-tester pass, then closed beta.
-7. Separate spec: referral grants and the welcome offer.
+7. Referrals: see `referrals.md`.
 
 ## 14. Open questions
 
