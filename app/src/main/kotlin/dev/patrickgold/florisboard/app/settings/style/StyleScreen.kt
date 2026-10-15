@@ -44,6 +44,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -76,6 +77,7 @@ import dev.patrickgold.jetpref.datastore.ui.ColorPickerPreference
 import dev.patrickgold.jetpref.datastore.ui.ListPreference
 import dev.patrickgold.jetpref.datastore.ui.SwitchPreference
 import dev.patrickgold.jetpref.datastore.ui.listPrefEntries
+import kotlinx.coroutines.launch
 import org.florisboard.lib.color.ColorMappings
 import org.florisboard.lib.compose.stringRes
 
@@ -94,6 +96,7 @@ fun StyleScreen() = FlorisScreen {
     val navController = LocalNavController.current
 
     content {
+        val scope = rememberCoroutineScope()
         val charm by prefs.dictate.floatingButtonCharm.collectAsState()
         val charmColor by prefs.dictate.floatingButtonCharmColor.collectAsState()
         val classicColor by prefs.dictate.floatingButtonColor.collectAsState()
@@ -136,7 +139,7 @@ fun StyleScreen() = FlorisScreen {
                 collection = collection,
                 selected = charm,
                 colorOf = shownColor,
-                onPick = { prefs.dictate.floatingButtonCharm.set(it) },
+                onPick = { scope.launch { prefs.dictate.floatingButtonCharm.set(it) } },
             )
         }
 
@@ -185,7 +188,7 @@ fun StyleScreen() = FlorisScreen {
                 SwatchRow(
                     original = null,
                     picked = classicColor.toArgb(),
-                    onPick = { prefs.dictate.floatingButtonColor.set(Color(it)) },
+                    onPick = { scope.launch { prefs.dictate.floatingButtonColor.set(Color(it)) } },
                 )
                 ColorPickerPreference(
                     prefs.dictate.floatingButtonColor,
@@ -202,7 +205,7 @@ fun StyleScreen() = FlorisScreen {
                 SwatchRow(
                     original = charm,
                     picked = charmColor.toArgb(),
-                    onPick = { prefs.dictate.floatingButtonCharmColor.set(Color(it)) },
+                    onPick = { scope.launch { prefs.dictate.floatingButtonCharmColor.set(Color(it)) } },
                 )
                 // "Default" here is the look's own colours again.
                 ColorPickerPreference(

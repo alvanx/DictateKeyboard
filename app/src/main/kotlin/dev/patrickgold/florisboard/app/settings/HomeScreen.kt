@@ -149,6 +149,7 @@ fun HomeScreen() = FlorisScreen {
         val animated by prefs.dictate.floatingButtonCharmAnimated.collectAsState()
         val buttonOn = rememberMicButtonOn()
         val keyboardOn = rememberKeyboardOn()
+        val scope = rememberCoroutineScope()
         if (firstRun) {
             FirstRunHome(
                 charm = charm,
@@ -158,12 +159,12 @@ fun HomeScreen() = FlorisScreen {
                 },
                 buttonOn = buttonOn,
                 keyboardOn = keyboardOn,
-                onPickLook = { prefs.dictate.floatingButtonCharm.set(it) },
+                onPickLook = { scope.launch { prefs.dictate.floatingButtonCharm.set(it) } },
                 onMoreLooks = { navController.navigateToTab(MainTab.STYLE) },
                 // "Turn on" switches the button on here; the floating-button screen then asks for the
                 // accessibility permission, with its disclosure, as it does from the normal Home.
                 onTurnOnButton = {
-                    prefs.dictate.floatingButtonEnabled.set(true)
+                    scope.launch { prefs.dictate.floatingButtonEnabled.set(true) }
                     navController.navigate(Routes.Settings.DictateFloatingButton)
                 },
                 onTurnOnKeyboard = { InputMethodUtils.showImeEnablerActivity(context) },

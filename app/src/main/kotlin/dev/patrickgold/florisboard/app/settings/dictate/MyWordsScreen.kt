@@ -71,7 +71,8 @@ fun MyWordsScreen() = FlorisScreen {
 
     content {
         val scope = rememberCoroutineScope()
-        val raw by prefs.dictate.customWords.collectAsState()
+        val customWords = prefs.dictate.customWords
+        val raw by customWords.collectAsState()
         val words = remember(raw) { MyWords.parse(raw) }
         val usage = remember(words) { MyWords.usage(words) }
 
@@ -92,7 +93,7 @@ fun MyWordsScreen() = FlorisScreen {
             }
             item {
                 // The text editor: pasting a list, importing and exporting a file.
-                CustomWordsSection(prefs.dictate.customWords)
+                CustomWordsSection(customWords)
                 HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
             }
             itemsIndexed(words, key = { _, word -> word.lowercase() }) { index, word ->
@@ -121,7 +122,7 @@ fun MyWordsScreen() = FlorisScreen {
                     IconButton(
                         onClick = {
                             scope.launch {
-                                prefs.dictate.customWords.set(MyWords.remove(prefs.dictate.customWords.get(), word))
+                                customWords.set(MyWords.remove(customWords.get(), word))
                             }
                         },
                     ) {

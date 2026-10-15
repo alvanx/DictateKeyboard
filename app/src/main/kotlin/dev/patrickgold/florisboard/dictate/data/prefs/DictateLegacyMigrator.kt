@@ -304,7 +304,7 @@ object DictateLegacyMigrator {
      * likely to have been written in — so a prompt the user rewrote is left alone. Once, via
      * `prefs.dictate.generatorExamplesRemoved`.
      */
-    fun removeGeneratorExamplesIfNeeded(context: Context) {
+    suspend fun removeGeneratorExamplesIfNeeded(context: Context) {
         val prefs by FlorisPreferenceStore
         if (prefs.dictate.generatorExamplesRemoved.get()) return
         val english = context.createConfigurationContext(
