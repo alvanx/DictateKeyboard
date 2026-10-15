@@ -2,10 +2,6 @@
 
 > **Working name.** "Voice Mode" is a placeholder. See [`docs/rebrand.md`](docs/rebrand.md) for what to
 > change when the real name is chosen.
->
-> This app is built on [Dictate Keyboard](https://github.com/DevEmperor/DictateKeyboard) by DevEmperor
-> and on [FlorisBoard](https://github.com/florisboard/florisboard), both Apache-2.0. See
-> [Built on](#-built-on) and [`NOTICE`](NOTICE).
 
 <br>
 
@@ -18,20 +14,19 @@ application ID is set once in [`gradle.properties`](gradle.properties) (`appId`)
 
 ## ✨ What is it?
 
-**Voice Mode** is an easy-to-use keyboard for transcribing and dictating. It uses
-[OpenAI Whisper](https://openai.com/index/whisper/) in the background, which delivers
-extremely accurate results for
-[many different languages](https://platform.openai.com/docs/guides/speech-to-text/supported-languages),
-complete with punctuation — plus custom AI rewording powered by leading models from OpenAI,
-Google Gemini and many other providers.
+**Voice Mode** is an expressive dictation tool for Android that you shape to your liking. Speak,
+and clean, formatted text appears in any app: with punctuation, in over a hundred languages,
+online or entirely offline. Hold the mic like a voice message and let go to send, or use the
+floating button to dictate into apps while another keyboard is open.
 
-Instead of pecking at keys, just tap the microphone — or hold it like a voice message and
-let go to send — and watch your words appear in real time as clean, formatted text in any
-app, online or entirely offline. Prefer to type? Voice Mode is a complete keyboard too, with
-glide typing, next-word prediction and an autocorrect that reads your fingers rather than
-your typos. Need the text more formal, translated, summarised, or fixed-up? Hand it to a
-rewording prompt and let the model do the work. With the floating button you can even
-dictate straight into apps while another keyboard is open.
+Make it yours. Hand your words to a rewording prompt to make them more formal, translated or
+summarised, say a command word to give the AI a freeform instruction, fix recurring words with
+find-and-replace rules, and pick the look, the button style and the languages. It works with
+leading AI models from OpenAI, Google Gemini and many other providers.
+
+A full keyboard is included if you want it: glide typing, next-word prediction and an autocorrect
+that reads your fingers rather than your typos. Use it alone, or keep your own keyboard and
+dictate through Voice Mode.
 
 There are four ways to power it, and you pick one during setup: **your own API key** with the
 provider of your choice, **a server of your own**, **a model on the device** with no network at
@@ -155,9 +150,8 @@ The subscription design is in [`docs/specs/billing.md`](docs/specs/billing.md).
 
 ## 🧱 Built on
 
-Voice Mode is built on [**Dictate Keyboard**](https://github.com/DevEmperor/DictateKeyboard) by
-DevEmperor (Apache-2.0), which provides the voice-dictation and AI-rewording layer and most of what
-is described above. Dictate Keyboard is in turn a fork of [**FlorisBoard**](https://github.com/florisboard/florisboard),
+Voice Mode started from [**Dictate Keyboard**](https://github.com/DevEmperor/DictateKeyboard) by
+DevEmperor (Apache-2.0), which provided the voice-dictation and AI-rewording foundation. Dictate Keyboard is in turn a fork of [**FlorisBoard**](https://github.com/florisboard/florisboard),
 an open-source, privacy-respecting keyboard created by
 [Patrick Goldinger](https://github.com/patrickgold) and
 [The FlorisBoard Contributors](https://github.com/florisboard/florisboard/graphs/contributors).
