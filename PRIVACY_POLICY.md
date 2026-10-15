@@ -1,439 +1,496 @@
 # Privacy Policy for Voice Mode
 
-> **DRAFT. Do not publish as is.** This is the upstream project's policy with the names swapped
-> for placeholders. It describes prepaid credit packs and a different operator. Before the app
-> ships it must be rewritten for the subscription service (see `docs/specs/billing.md`) and filled in
-> with the real operator's details. Placeholders are in square brackets.
+> **Draft. Do not publish as is.** Fill in the operator's details and every point marked
+> **[TO CONFIRM]** first. Everything else describes the App and the server in this repository as
+> they are today.
 
+**Effective date:** [DATE OF FIRST RELEASE]
+**Last updated:** 15 October 2026
 
-**Effective date:** 31 August 2026
-**Last updated:** 31 August 2026
+This policy explains how **Voice Mode** (the "App", application ID `com.placeholder.voicemode`)
+handles your information. The App is made by **[OPERATOR NAME]** ("we", "us"), [OPERATOR ADDRESS].
+We are the data controller for the few things described below.
 
-This Privacy Policy explains how **Voice Mode** (the "App", application ID
-`com.placeholder.voicemode`) handles your information. The App is developed and
-maintained by **[OPERATOR NAME]** (the "Developer", "we",
-"us"), [OPERATOR ADDRESS] — the data controller for the
-limited purposes described below.
-
-If you have any questions about this policy, contact us at
-**[SUPPORT EMAIL]**.
+Questions? Write to **[SUPPORT EMAIL]**.
 
 ---
 
-## 0. Two ways to use this App, and only one of them involves us
+## 0. Two ways to use the App, and only one involves us
 
-Voice Mode turns your speech into text. There are two ways to set that up,
-and they differ completely in what happens to your data:
+Voice Mode turns your speech into text. You can set that up in two ways, and they handle your data
+very differently.
 
-**By default, we are not involved at all.** You bring your own API key for a
-provider you choose, or you use on-device recognition. Your audio goes from your
-phone straight to that provider, or never leaves the phone. We operate no server
-in that path, receive nothing, and store nothing about you.
+**The free way does not involve us at all.** You bring your own API key from a provider you choose,
+or you use on-device recognition. Your audio goes from your phone straight to that provider, or never
+leaves the phone. We run no server in that path. We receive nothing and store nothing about you.
 
-**Voice Mode Cloud is optional.** If — and only if — you deliberately buy credit
-through Google Play, your recordings pass through a server we operate. That is
-the only situation in which any of your data reaches us, and it is described
-separately in section 4.
-
-**Nothing about the first way changed when the second was added.** If you never
-buy credit, this policy applies to you exactly as it did before Voice Mode Cloud
-existed: we have no server in your path and no data about you.
+**Plus is optional.** Plus is a subscription you buy through Google Play. Only if you subscribe do
+your recordings pass through a server we run, called Voice Mode Cloud. Section 4 describes exactly
+what happens then.
 
 ---
 
-## 1. Summary (the short version)
+## 1. The short version
 
-- **Unless you choose Voice Mode Cloud, we do not receive any of your data.** No
-  backend in your path, no database about you, no analytics.
-- Voice Mode is a voice-to-text keyboard. To turn your speech into text it
-  sends the audio you record to an **AI provider that you choose and configure**
-  (for example OpenAI, Groq, or a self-hosted server). That transfer happens
-  **directly from your device to that provider** — it never passes through us.
-- **On-device recognition is available** and needs no network connection and no
-  provider at all.
-- **Voice Mode Cloud is the one exception**, it is entirely optional, it is never
-  switched on without a purchase you make yourself, and section 4 says exactly
-  what it does.
-- Your API keys, prompts, and settings are stored **only on your device**.
-- The App contains **no advertising, no tracking, no telemetry, and no
-  crash-reporting SDKs**.
-- As a keyboard, the App **does not log your keystrokes or collect what you type**
-  in other apps. It only processes audio that you explicitly record by pressing
-  the dictation button.
-- **All of this can be checked.** The App and the Voice Mode Cloud server are open
-  source and readable in full — see section 8.
+- **Unless you subscribe to Plus, we receive none of your data.** No server of ours in your path, no
+  database about you, no analytics.
+- To turn speech into text, the App sends your recording to **an AI provider you choose** (for
+  example OpenAI, Groq, or your own server). It goes **directly from your phone to that provider**,
+  never through us.
+- **On-device recognition** needs no internet connection and no provider at all.
+- **Plus is the one exception.** It is optional, it only starts with a subscription you buy
+  yourself, and section 4 says what it does.
+- Your API keys, prompts and settings are stored **on your phone**, and we never receive them. Copies
+  can exist in two other places, and only if you use them: Android's own backup, where they are
+  end-to-end encrypted (section 2.6), and your watch, if you use the Wear OS app (section 3.5).
+- The App has **no ads, no tracking, no telemetry and no crash-reporting tools**.
+- The App is a keyboard, but it **does not log your keystrokes** or collect what you type in other
+  apps. It only handles audio you record on purpose, by pressing the dictation button.
+- **You can check all of this.** The App and the Voice Mode Cloud server are open source (section 8).
 
 ---
 
-## 2. What information the App processes
+## 2. What the App handles
 
 ### 2.1 Voice recordings
-When you start a dictation, the App records audio using your device microphone.
-The recording is written to a temporary, app-private cache file on your device
-and is **deleted automatically** once the transcription completes. To produce a
-transcript, this audio is uploaded to the transcription provider you have
-selected — or processed entirely on your device if you use on-device
-recognition.
+When you dictate, the App records audio with your microphone. The recording is saved to a temporary
+file in the App's private storage and **deleted automatically** once the transcript is back. To get a
+transcript, the App sends the audio to the provider you chose, or processes it on your phone if you
+use on-device recognition.
 
-If you enable the "resend / retry" convenience feature, the most recent recording
-may be kept temporarily so it can be sent again; it is deleted when you start a
-new dictation, when you clear it, or when the App removes it.
+If a recording cannot be sent because you have no connection, the App keeps it and sends it once you
+are back online. If you turn on the "resend / retry" option, the latest recording is kept so you can
+send it again. It is deleted when you start a new dictation, when you clear it, or when the App
+removes it.
 
 ### 2.2 Text you transcribe or reword
-The transcribed text — and, if you use the rewording / AI-formatting feature, the
-text you ask the App to rephrase — is sent to the AI provider you have configured
-so the requested result can be returned. The provider returns the text to your
-device, where it is inserted into the field you are typing in.
+The transcript goes to the provider you set up. So does any text you ask the App to reword or format.
+The provider sends the result back to your phone, and the App types it into the field you are in.
 
 ### 2.3 Dictation history
-The App keeps a history of your dictations **on your device** so you can
-re-insert, review or re-transcribe them. It is **on by default** and holds the
-most recent entries (50 unless you change it), which you can search, pin and
-delete individually or all at once in the App's settings.
+The App keeps a history of your dictations **on your phone**, so you can insert, review or
+re-transcribe them again. It is **on by default** and holds your latest 50 dictations, unless you
+change that. You can search it, pin entries, and delete one entry or all of them in the App's
+settings.
 
-- **Transcripts** are stored in an app-private database on your device.
-- **The source audio is not kept** unless you switch that on separately; it is
-  **off by default**. Failed transcriptions are an exception: their audio is kept
-  so the attempt can be repeated, and is removed with the entry.
-- **Nothing is recorded in password fields or in incognito mode.**
-- None of this is uploaded anywhere. It exists only on your device and is deleted
-  when you clear the history or uninstall the App.
+- **Transcripts** are stored in a private database on your phone.
+- **The audio is not kept**, unless you turn that on separately. It is **off by default**. One
+  exception: when a transcription fails, its audio is kept so you can try again. It is deleted with
+  the entry.
+- **Nothing is saved from password fields, PIN fields or incognito mode.** This is true whether you
+  dictate with the keyboard, the floating button, or Voice Mode's voice input in another keyboard.
+  One case is different: when another app asks Android's speech recognition for text, it does not
+  say what the text is for. Such a dictation is saved like any other.
+- None of this is uploaded. It stays on your phone until you clear the history or uninstall the App.
 
-### 2.4 API keys and provider configuration
-To use a provider, you enter your own API key (or, for a local/self-hosted server
-such as Ollama, a base URL). These credentials and provider settings are stored
-**locally on your device** in the App's private storage. They are sent **only** to
-the corresponding provider's API to authenticate your own requests, and are
-**never** transmitted to the Developer.
+### 2.4 API keys and provider settings
+To use a provider, you enter your own API key (or, for a server of your own such as Ollama, its
+address). The App stores these on your phone, in its private storage. It sends a key **only** to the
+provider it belongs to, to sign in your own requests. We never receive your keys.
 
-### 2.5 Prompts and settings
-Custom rewording prompts, style settings, language preferences, and other
-configuration are stored **locally on your device** (in an app-private settings
-store and a local SQLite database). They are not uploaded anywhere except as part
-of a request to your chosen provider when relevant (e.g. a prompt you send for
-rewording).
+Copies can exist in two other places: Android's own backup, if you use it (section 2.6), and your
+watch, if you use the Wear OS app (section 3.5).
+
+### 2.5 Prompts, words and settings
+Your rewording prompts, style settings, custom words, language choices and other settings are stored
+on your phone, in the App's private settings and a local database. They are only sent anywhere as part
+of a request to your provider, when needed. For example, a prompt goes along when you ask for a
+rewording.
+
+### 2.6 Android's own backup
+If Android's built-in backup is on for your phone (the backup to your Google account, or moving to a
+new phone), it includes the App's settings. That way a new phone starts where the old one left off.
+The backup covers your API keys, your Voice Mode Cloud access key and recovery code, the proxy
+password, your prompts and settings, your personal dictionary and the keyboard's own files.
+
+- On Android 12 and later, the App joins the backup to your Google account **only when that backup
+  is end-to-end encrypted** with your screen lock. That means Google cannot read it.
+- On Android 8 to 11, the App cannot set that condition. Whether the backup is encrypted depends on
+  your phone.
+- Your **dictation history, its audio and the clipboard are never included.**
+- This backup belongs to Android, not to us, and we never receive it. You can turn it off in
+  Android's settings. The App's own "Back up & Restore" lets you leave your keys and passwords out of
+  a backup file you make yourself.
+
+### 2.7 The floating dictation button
+The floating button is **optional and off until you turn it on**. It works through an Android
+accessibility service. That is the kind of permission that lets an app see what is on the screen, so
+here is exactly what the App does with it:
+
+- It finds the text field you are in, and whether it is a password field.
+- It types your dictation into that field.
+- It reads the text in that field when you apply a prompt to it.
+- It notes which app is open, so the button shows up in the right place and stays out of the way.
+
+It reads nothing else on the screen and does not record your typing. Nothing it reads is stored.
+Nothing leaves your phone, except text you ask a prompt to reword, which goes to your provider like
+any other rewording. You can turn the service off at any time in Android's accessibility settings.
+
+### 2.8 Scanning and translating text
+**Scan text** reads printed text from a photo you take or pick. **The translate bar** translates what
+you type. Both run entirely on your phone. The photo and the text are never uploaded. The translation
+models are downloaded once, when you add a language (section 3.4).
+
+Scan text uses Google's ML Kit library. On its own, that library sends Google usage statistics about
+the feature. The App turns that off.
 
 ---
 
-## 3. Third-party services you choose
+## 3. Other services
 
-### 3.1 AI providers
-To perform transcription and rewording, the App acts as a client to an
-OpenAI-compatible API **that you select and authenticate with your own account**.
-When you use such a feature, your audio and/or text is processed by that provider
-under **their** privacy policy and terms — they act as independent data
-controllers, not on our behalf. We have no access to, and no control over, the
-data you send them or what they do with it.
+### 3.1 AI providers you choose
+For transcription and rewording, the App connects to a provider **you choose and sign in to with your
+own account**. When you use such a feature, the provider handles your audio or text under **its own**
+privacy policy and terms. It decides what happens to that data, not us. We have no access to it and no
+control over it.
 
-Built-in providers the App can be configured to use include:
+Providers you can choose in the App:
 
 | Provider | Privacy policy |
 | --- | --- |
 | OpenAI | https://openai.com/policies/privacy-policy |
 | Groq | https://groq.com/privacy-policy/ |
 | OpenRouter | https://openrouter.ai/privacy |
+| Google Gemini | https://policies.google.com/privacy and the Gemini API terms, https://ai.google.dev/gemini-api/terms |
 | Together AI | https://www.together.ai/privacy |
 | DeepInfra | https://deepinfra.com/privacy |
 | Mistral AI | https://mistral.ai/terms/#privacy-policy |
+| Scaleway | https://www.scaleway.com/en/privacy-policy/ |
+| OVHcloud | https://www.ovhcloud.com/en-ie/personal-data-protection/ |
 | xAI (Grok) | https://x.ai/legal/privacy-policy |
 | DeepSeek | https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html |
+| SiliconFlow | https://docs.siliconflow.cn/cn/legals/privacy-policy (in Chinese) |
 | Anthropic | https://www.anthropic.com/legal/privacy |
 | Deepgram | https://deepgram.com/privacy |
 | AssemblyAI | https://www.assemblyai.com/legal/privacy-policy |
 | ElevenLabs | https://elevenlabs.io/privacy |
 | Soniox | https://soniox.com/privacy |
-| Ollama (local) | Runs on your own device/server — no third party involved |
-| On-device recognition | Runs entirely on your phone — no third party involved |
+| Microsoft Azure Speech | https://privacy.microsoft.com/privacystatement |
+| Ollama (local) | Runs on your own device or server. No third party involved. |
+| On-device recognition | Runs entirely on your phone. No third party involved. |
+| Voice Mode Cloud | Our own service, for Plus subscribers. See section 4. |
 
-You may also configure a **custom OpenAI-compatible endpoint**. If you do, your
-data is sent to whichever server you specify, and you are responsible for that
-server's data handling.
+Some differences are worth knowing before you choose:
 
-**Please review the privacy policy of any provider before you use it.** Because
-the data is sent with your own API key, the provider may retain or process it
-according to your account terms with them (for example, to deliver the service or
-for abuse monitoring).
+- **Google Gemini:** on Google's free tier, Google may use what you send to improve its products, and
+  people at Google may read it. On the paid tier it does not. Which tier applies depends on your
+  Google account, not on the App.
+- **SiliconFlow** is run from mainland China, and what you send it is processed there.
+- **Scaleway and OVHcloud** are European providers and process in the EU. **Soniox** and
+  **OpenRouter** offer EU regions, which you can pick in the App.
+- **Microsoft Azure Speech** uses your own Azure resource. The audio goes to the address and region
+  of the resource you enter.
+
+You can also set up **any other OpenAI-compatible server**. Then your data goes to the server you
+enter, and how it handles that data is up to that server.
+
+**Please read a provider's privacy policy before you use it.** Your data is sent with your own API
+key, so the provider may keep or process it under your account terms with them (for example, to run
+the service or to check for abuse).
 
 ### 3.2 GIF search
-If you use the GIF panel, the search terms you type there are sent to **KLIPY**
-(https://klipy.com/privacy-policy) to fetch results, using an API key you supply
-yourself. The feature is unavailable until you configure that key, and nothing is
-sent to KLIPY unless you open the panel and search.
+If you use the GIF panel, the words you search for are sent to **KLIPY**
+(https://klipy.com/privacy-policy) to fetch results, using an API key you add yourself. The panel does
+not work until you add that key. Nothing is sent to KLIPY unless you open the panel and search.
 
 ### 3.3 Google Play
-Purchases of Voice Mode Cloud credit are processed by **Google**, who is the seller
-and an independent controller for the payment. We never see your payment details.
-See https://policies.google.com/privacy.
+**Google** sells and bills the Plus subscription. Google handles the payment and decides what happens
+to that data. We never see your payment details. See https://policies.google.com/privacy.
+
+### 3.4 Downloads from GitHub
+Some files are too big to ship inside the App, so it downloads them from **GitHub** (a Microsoft
+company):
+
+- on-device recognition models and translation models, when you tap to download one;
+- the word lists for swipe typing and suggestions, and the Chinese Pinyin pack, when you add a
+  keyboard language or first type in it;
+- the community prompt library, each time you open it.
+
+**For now, these files come from the GitHub repository of the original author of the open-source app
+Voice Mode is built on** (https://github.com/DevEmperor/DictateKeyboard). We do not run that
+repository.
+
+These are plain file downloads. Nothing about you, your dictations or your typing is sent with them.
+As with any download, GitHub sees your IP address and which file was requested. See
+https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement.
+
+### 3.5 The Wear OS watch app
+If you use Voice Mode on a Wear OS watch, your phone sends the watch what it needs to dictate:
+
+- your chosen providers and models, the style prompt, your custom words and your rewording prompts;
+- **your API keys** for those providers, so the watch can dictate without the phone. You can turn
+  this off in the App's Wear OS settings, on the phone or on the watch. The watch then always goes
+  through the phone.
+
+When you dictate on the watch, the recording goes to your phone, which transcribes it as described
+above. If the phone is not around and the keys are on the watch, the watch sends the recording
+straight to your provider instead.
+
+Phone and watch exchange all of this through Google Play services. That happens over Bluetooth, or
+through Google's servers when Bluetooth is not available. Google states that this route is
+end-to-end encrypted.
 
 ---
 
-## 4. Voice Mode Cloud (optional credit)
+## 4. Plus and Voice Mode Cloud (optional subscription)
 
-**This section applies only if you buy credit.** If you use your own API key or
-on-device recognition, none of it applies to you and nothing here changes what is
-described above.
+**This section only applies if you subscribe to Plus.** If you use your own API key or on-device
+recognition, none of it applies to you.
 
-Voice Mode Cloud exists for people who do not want to create an account with an AI
-provider. You buy dictation minutes through Google Play, and your recordings are
-sent to a server we operate, which has them transcribed by **Groq** and returns
-the text. Rewording and cleanup work the same way.
+Plus is for people who do not want an account with an AI provider. You subscribe through Google Play.
+Your recordings then go to our server, Voice Mode Cloud, which has them transcribed by **Groq** and
+sends back the text. Rewording and one-tap cleanup work the same way.
 
-### 4.1 What we process
+### 4.1 What we handle
 
-**Recordings and text.** Your recording is sent to our server, **not stored
-there**, and passed straight on to Groq for transcription. The same applies to
-text you have reworded or cleaned up. We keep none of it — no audio, no
+**Recordings and text.** Your recording is sent to our server, **not stored there**, and passed
+straight on to Groq. The same goes for text you reword or clean up. We keep none of it: no audio, no
 transcript, no prompt.
 
-**At Groq.** [TO CONFIRM BEFORE LAUNCH: Groq's retention of API inputs and
-outputs, and the data-retention setting chosen for our account. State here how
-long Groq keeps them, if at all, and that they are not used to train models —
-only once Groq's terms and the account setting say so.]
+**At Groq.** [TO CONFIRM BEFORE LAUNCH: how long Groq keeps API inputs and outputs, if at all, the
+data-retention setting chosen for our account, and that they are not used to train models. State
+this only once Groq's terms and the account setting say so.]
 
-**Your credit account.** We store a random identifier, your balance, a hash of
-your recovery code and hashes of your access keys. There is no account in the
-usual sense: we hold no name, no email address and no Google account.
+**Your Voice Mode Cloud account.** Subscribing creates an account on our server. It holds a random
+ID, a hash of your recovery code and hashes of your access keys. It is not an account in the usual
+sense: we hold **no name, no email address and no Google account**.
 
-**Device name.** So you can see in the settings which devices use your credit, a
-label such as "SM-A556B · Android 15 · 5.4.0" is stored.
+**Device names.** So you can see in the App which devices use your account, we store a label for
+each one, such as "Pixel 8 · Android 16 · 1.0.0" (phone model, Android version, App version), and
+when it was last used.
 
-**Purchases.** For each purchase we store the order number, the pack, the amounts
-Google reports, the currency and the billing country. These records are subject
-to statutory retention (see 4.4).
+**IP address.** Like any server on the internet, ours sees your IP address when the App connects. We
+do not store it in our database. It is used briefly in two places. When someone enters a recovery
+code, the server counts attempts from that address for one minute, to stop guessing. And Cloudflare,
+which runs our server, keeps short technical request logs that we use to fix problems. [TO CONFIRM
+BEFORE LAUNCH: which request details Cloudflare's Workers Logs keep, IP address included, and for how
+long on our plan.]
 
-**Usage log.** For each request we store the time, the kind (dictation or
-rewording), the seconds billed, token counts, cost, a status code and the
-duration — **numbers only, never content.** These individual rows are deleted
-after **90 days**; what remains are daily totals with no link to any account.
+**Your subscription.** We store what Google tells us about your subscription: Google's purchase
+token, the plan (monthly or yearly), any free-trial offer, its status, when the current period ends,
+whether it renews, and the latest order number. We also keep track of how much of today's allowance
+you have used. We never see payment details.
 
-**A hash of your previous credit account.** When you buy while a credit account
-already exists on your device, the App attaches that account's random identifier
-to the purchase and Google returns it to us with the order. We store only a
-**SHA-256 hash** of it. It is not a Google identifier and says nothing about your
-Play account, your name or your email address; it exists solely to recognise
-repeated refunds after full consumption. A first purchase, or one made after you
-have deleted your credit account, carries nothing at all.
+**Usage log.** For each request we store the time, which of your devices sent it, the kind (dictation,
+rewording or cleanup), the provider and model used, the seconds billed, token counts, cost, a status
+code and how long it took. For a cleanup we also note whether the text was turned into a list. **These
+are numbers only, never content.** Each row is deleted after **90 days**. What remains are daily
+totals with no link to any account.
+
+**Abuse warnings.** If our automatic checks spot unusual use, the warning they raise can name an
+account. These warnings are deleted when the account is.
+
+**A hash of your previous account.** If you subscribe while a Voice Mode Cloud account already exists
+on your phone, the App attaches that account's random ID to the purchase, and Google sends it back to
+us with the subscription. We store only a **SHA-256 hash** of it. It is not a Google ID and says
+nothing about your Play account, your name or your email address. Its only use is to recognise
+repeated refunds. A first subscription, or one made after you deleted your account, carries nothing.
 
 ### 4.2 Legal bases
 
 | Purpose | Basis |
 | --- | --- |
-| Providing the service, credit, handling purchases | Art. 6(1)(b) GDPR (contract) |
-| Detecting abuse, operational security, alerting | Art. 6(1)(f) GDPR (legitimate interests) |
-| Retaining purchase records | Art. 6(1)(c) GDPR with § 147 AO |
+| Providing the service and handling your subscription | Art. 6(1)(b) GDPR (contract) |
+| Detecting abuse, keeping the service secure, alerts | Art. 6(1)(f) GDPR (legitimate interests) |
+| Keeping subscription and order records | Art. 6(1)(c) GDPR, with the tax law that applies [TO CONFIRM] |
 
-### 4.3 Recipients and where the data is
+### 4.3 Who else receives the data, and where it is
 
-- **Cloudflare, Inc.**, USA — operates our server and database. This rests on
-  Cloudflare's data processing addendum, which forms part of its terms, and the
-  transfer relies on the European Commission's **standard contractual clauses**.
-- **Groq, Inc.**, USA — transcribes your recordings and rewords and cleans up
-  your text. [TO CONFIRM BEFORE LAUNCH: Groq's data processing addendum and the
-  transfer mechanism it relies on.]
+- **Cloudflare, Inc.**, USA, runs our server and database. This rests on Cloudflare's data
+  processing addendum, which is part of its terms. The transfer relies on the European Commission's
+  **standard contractual clauses**.
+- **Groq, Inc.**, USA, transcribes your recordings and rewords and cleans up your text. [TO CONFIRM
+  BEFORE LAUNCH: Groq's data processing addendum and the transfer mechanism it relies on.]
 
-**Where your data actually is — and the part we cannot promise.** Our database
-and your balance are held in the **European Union** (Western Europe); we pinned
-them there deliberately.
+**Where your data is.** Our database and your account are kept in the **European Union** (Western
+Europe). We chose that on purpose.
 
-**That pinning does not extend to transcription and rewording.** These run at
-Groq, in the United States. We would rather say so plainly than let the sentence
-about the database be read as covering everything.
+**That does not cover transcription and rewording.** Those run at Groq, in the United States. We
+would rather say so plainly.
 
-Pinning would not be the whole answer in any case: Cloudflare is a US company,
-and access from the United States is itself a transfer under data protection law
-even when the bytes sit in Europe. What carries this is the standard contractual
-clauses above — and the fact that **nothing is kept**, so there is no store for
-anyone to reach into.
+Keeping the database in Europe is not the whole answer anyway. Cloudflare is a US company, and access
+from the United States counts as a transfer under data protection law, even when the data sits in
+Europe. What covers this are the standard contractual clauses above, and the fact that **we keep no
+recordings or text**, so there is nothing of that kind to reach.
 
 ### 4.4 How long we keep it
 
 | What | How long |
 | --- | --- |
-| Recordings, transcripts, prompts | not at all with us; at Groq: [TO CONFIRM BEFORE LAUNCH] |
-| Usage log (individual rows) | 90 days |
-| Daily totals | indefinitely, with no link to an account |
-| Credit account, access keys | until you delete it |
-| Purchase records | 10 years (§ 147 AO) |
+| Recordings, transcripts, prompts | Not at all, on our side. At Groq: [TO CONFIRM BEFORE LAUNCH] |
+| Usage log (one row per request) | 90 days |
+| IP address for the recovery-code limit | 1 minute |
+| Request logs at Cloudflare | [TO CONFIRM BEFORE LAUNCH] |
+| Daily totals | Indefinitely, with no link to an account |
+| Account, access keys, device names | Until you delete the account |
+| Subscription and order records | As long as tax law requires [TO CONFIRM: the period, for example 10 years under § 147 AO in Germany] |
+| Hash of a previous account | 24 months after you delete the account |
 
-### 4.5 Deleting your credit account
+### 4.5 Deleting your Voice Mode Cloud account
 
-You can delete it **in the App** under Settings → Voice Mode Cloud, or **in a
-browser** at **https://api.voicemode.example/delete** if you no longer have the
-App installed. Deleting removes your account, your recovery code, every signed-in
-device and your usage log.
+You can delete it **in the App**, under Settings → Voice Mode Cloud, or **in a browser** at
+**https://api.voicemode.example/delete** if the App is no longer installed. Deleting removes your
+account, your recovery code, every signed-in device, your usage log and any abuse warnings about it.
 
-**Any remaining credit is forfeited. It is not refunded.** If you want your money
-back, contact Google Play before deleting.
+**Deleting the account does not cancel Plus.** Only Google can cancel a subscription. If yours is
+still running, the App and the web page tell you so and link to Google Play to cancel it. Cancel there
+first if you want the payments to stop.
 
-Your purchase records remain for the retention period above; they hold an order
-number and an amount, and once the account is gone there is nothing in them that
-leads back to you. Because those records refer to the account, the account's own
-entry is emptied rather than dropped: what is left is the random identifier, the
-dates it was created and deleted, and the minute totals. No recovery code, no
-device, nothing that can be signed in to.
+Your subscription and order records stay for the period above. They hold an order number, a plan and
+dates. Once the account is gone, nothing in them leads back to you. Because those records point to the
+account, the account entry is emptied rather than removed. What is left is the random ID, the dates
+it was created and deleted, and usage totals. No recovery code, no device, nothing anyone can sign in
+with.
 
-**One exception, and we would rather name it than bury it.** The one-way hash
-described in section 4.1 is kept for **24 months** after deletion, and then
-erased. It exists solely to recognise repeated refunds after full consumption:
-without it, deleting the account would reset that count and make deletion the
-last step of a refund cycle rather than an end to the relationship. It is a
-random identifier of ours, and cannot be turned back into an account, an email
-address or a name. The basis is Art. 6(1)(f) GDPR, our legitimate interest in
-preventing payment abuse.
+**One exception, which we would rather name than hide.** The hash described in section 4.1 is kept
+for **24 months** after deletion, then erased. Its only use is to recognise repeated refunds. Without
+it, deleting the account would reset that count. It is a random ID of ours and cannot be turned back
+into an account, an email address or a name. The basis is Art. 6(1)(f) GDPR, our legitimate interest
+in preventing payment abuse.
 
 ### 4.6 Identifying you
 
-Because we deliberately store no name, no email address and no account, **we
-cannot identify you.** If you ask us for access to or erasure of your data, we
-therefore need your **recovery code** or the account identifier shown in the App.
-Without one of those we cannot connect a request to any data, and Art. 11 GDPR
-does not require us to collect more information just to be able to (Art. 12(2)).
+We store no name, no email address and no Google account, so **we cannot identify you**. If you ask us
+for a copy of your data or to erase it, we need your **recovery code** or the account ID shown in the
+App. Without one of those, we cannot connect a request to any data. Under Art. 11 GDPR we do not have
+to collect more information just to be able to do that (Art. 12(2)).
 
 ---
 
-## 5. Permissions and why they are used
+## 5. Permissions and why the App uses them
 
-| Permission | Purpose |
+| Permission | Why |
 | --- | --- |
-| `RECORD_AUDIO` | To capture your voice when you press the dictation button. |
-| `INTERNET` | To send audio/text to the AI provider you configured and receive the result. |
-| `ACCESS_NETWORK_STATE` | To tell whether the phone is online, so a recording made offline is saved and transcribed once the connection is back. It reports only whether a network is available, never which one or where. |
-| `MODIFY_AUDIO_SETTINGS` / `BLUETOOTH` | To route recording correctly, including through Bluetooth headsets. |
-| `VIBRATE` | Optional haptic feedback. |
-| `POST_NOTIFICATIONS` | To show status notifications (e.g. transcription progress) on Android 13+. |
+| `RECORD_AUDIO` | To record your voice when you press the dictation button. |
+| `INTERNET` | To send audio or text to the provider you chose and get the result back. |
+| `ACCESS_NETWORK_STATE` | To tell whether the phone is online, so a recording made offline is kept and transcribed once the connection is back. It only says whether a network is available, never which one or where. |
+| `MODIFY_AUDIO_SETTINGS` / `BLUETOOTH` | To record through the right microphone, including Bluetooth headsets. |
+| `VIBRATE` | Optional vibration feedback. |
+| `POST_NOTIFICATIONS` | To show status notifications, such as transcription progress, on Android 13 and later. |
+| `FOREGROUND_SERVICE` / `FOREGROUND_SERVICE_MICROPHONE` | To keep recording while you use the floating button over another app, and to finish a transcription for a connected watch. |
+| `FOREGROUND_SERVICE_DATA_SYNC` | To keep downloading an on-device model when you leave the App. |
+| `com.android.vending.BILLING` | To subscribe to Plus through Google Play, only if you choose to. |
+| Accessibility service | The optional floating dictation button. See section 2.7. |
 
-The App requests the microphone permission only for dictation and uses it only
-while you are actively recording. **The App does not request access to your
-contacts.**
+The App asks for the microphone only for dictation, and only uses it while you are recording. **The
+App does not ask for access to your contacts.**
 
-You can teach the App a contact's name so it stops autocorrecting it, and that
-works without giving it your address book: you either pick a single contact in
-the system's own contact picker — which hands over that one contact and nothing
-else — or select a contacts file you exported yourself. Only the name is taken
-from it, never numbers, addresses or anything else, and it is stored in your
-personal dictionary on the device, exactly like any other word you add there.
-You can see and delete these names in the App's dictionary settings.
+You can still teach the App a contact's name so it stops autocorrecting it, without giving it your
+address book. Either pick one contact in Android's own contact picker, which hands over that one
+contact and nothing else, or pick a contacts file you exported yourself. The App takes only the name,
+never numbers, addresses or anything else. It stores the name in your personal dictionary on your
+phone, like any other word you add. You can see and delete these names in the App's dictionary
+settings.
 
 ---
 
-## 6. Data storage and retention
+## 6. Where your data is kept, and for how long
 
-- **On your device:** API keys, settings, prompts and your dictation history
-  remain on your device until you delete them in the App or uninstall it.
-  Temporary audio recordings are deleted automatically after transcription.
-- **With your chosen provider:** any retention of audio or text is governed by
-  that provider's policy, not by us.
-- **With the Developer:** nothing — unless you use Voice Mode Cloud, where section
-  4.4 applies.
+- **On your phone:** API keys, settings, prompts and your dictation history stay on your phone until
+  you delete them in the App or uninstall it. If you use Android's own backup, it holds a copy of the
+  settings (section 2.6). Temporary recordings are deleted automatically after transcription.
+- **With your provider:** how long your audio or text is kept is up to that provider's policy, not us.
+- **With us:** nothing, unless you subscribe to Plus. Then section 4.4 applies.
 
-To erase all locally stored data, clear the App's keys, history and settings in
-its settings screens, or uninstall the App.
+To erase everything stored on your phone, clear the App's keys, history and settings in its settings,
+or uninstall the App.
 
 ---
 
 ## 7. We do not collect what you type
 
-Although Voice Mode is an input method (a keyboard), it does **not** record,
-log, store, or transmit your general typing. Only audio you deliberately record
-for dictation is processed, and only for the purpose of returning a transcript.
-Password fields and incognito mode are excluded from the dictation history
-entirely.
+Voice Mode is a keyboard, but it does **not** record, log, store or send your typing. It only handles
+audio you record on purpose for dictation, and only to give you a transcript. Password fields, PIN
+fields and incognito mode are kept out of the dictation history. Section 2.3 names the one case where
+the App cannot tell what kind of field it is.
 
 ---
 
-## 8. You do not have to take our word for any of this
+## 8. You do not have to take our word for it
 
-The App is open source, and so is the server behind Voice Mode Cloud. Both live in
-the same public repository:
+The App is open source, and so is the Voice Mode Cloud server. Both are in the same public repository:
 
-**<https://github.com/alvanx/voice-mode>** — the App under `app/` and
-`lib/`, the Voice Mode Cloud server under `cloud/`.
+**<https://github.com/alvanx/voice-mode>**. The App is under `app/` and `lib/`, the server under
+`cloud/`.
 
-You can read every line, including the parts this policy describes: what is sent
-to a provider and when, that recordings are streamed through the server without
-ever being written to a disk, how a credit account is deleted, and what is kept
-afterwards. The App is licensed under the Apache License 2.0; you are free to
-build it yourself rather than install ours. The server code is source-available
-under the Functional Source License: readable and checkable by anyone, but not
-free to resell as a competing service.
+You can read every line, including the parts this policy describes: what is sent to a provider and
+when, that recordings pass through the server without being saved, how an account is deleted, and
+what is kept afterwards. The App is licensed under the Apache License 2.0, so you can build it
+yourself instead of installing ours. The server code is source-available under the Functional Source
+License: anyone can read and check it, but not resell it as a competing service.
 
-Two honest limits, because a promise of transparency that overstates itself is
-worth less than none:
+Two honest limits:
 
-- **Published source is not proof of what runs.** Reading `cloud/` tells you what
-  the server is built from, not that the deployment matches it byte for byte.
-  Nobody can verify that from outside — here or anywhere else.
-- **Two things are deliberately not in the repository.** Credentials, which live
-  in Cloudflare's secret store and are never committed, and one configuration
-  file holding an alert address and the thresholds our abuse detection trips on.
-  Publishing those would mean publishing exactly what someone would tune against.
-  No behaviour described in this policy depends on them.
+- **Published code is not proof of what runs.** Reading `cloud/` tells you what the server is built
+  from. It cannot prove the running server matches it exactly. Nobody can check that from outside,
+  here or anywhere else.
+- **Two things are deliberately not in the repository.** Passwords and keys, which live in
+  Cloudflare's secret store and are never committed. And one settings file with an alert address and
+  the limits our abuse checks use. Publishing those would show people exactly how to get around the
+  checks. Nothing this policy describes depends on them.
 
 ---
 
 ## 9. Data security
 
-Data sent to AI providers, and to Voice Mode Cloud, is transmitted over encrypted
-HTTPS connections. Your credentials and settings are kept in the App's private,
-sandboxed storage, which on Android is not accessible to other apps. On the
-Voice Mode Cloud server, recovery codes and access keys are stored only as SHA-256
-hashes, so possession of the database does not allow anyone to sign in. No method
-of transmission or storage is 100% secure.
+Data sent to AI providers and to Voice Mode Cloud travels over encrypted HTTPS connections. The one
+exception is a plain `http://` address you enter yourself for a server of your own. The App allows
+it so a server on your home network works, and it warns you under the address field that such a
+connection is not encrypted.
+
+Your keys and settings are kept in the App's private storage, which other apps on Android cannot
+read. On the Voice Mode Cloud server, recovery codes and access keys are stored only as SHA-256
+hashes, so even someone with a copy of the database could not sign in with them. No way of sending or
+storing data is 100% secure.
 
 ---
 
 ## 10. Children's privacy
 
-The App is not directed at children under the age of 13 (or the equivalent
-minimum age in your jurisdiction), and we do not knowingly process data from
-children. Note that the third-party AI providers may impose their own age
-requirements.
+The App is not meant for children under 13 (or the minimum age where you live), and we do not
+knowingly handle children's data. AI providers may set their own age limits.
 
 ---
 
-## 11. International data transfers
+## 11. Data sent to other countries
 
-The AI providers you choose may operate servers in other countries (for example
-the United States). When you send audio or text to a provider, that data may be
-processed in the country where the provider operates, under that provider's
-policies.
+The providers you choose may run servers in other countries, for example the United States. When you
+send them audio or text, it may be processed where they operate, under their policies. SiliconFlow
+processes in mainland China. Scaleway and OVHcloud, and the EU regions of Soniox and OpenRouter, keep
+processing in the EU (section 3.1).
 
-For Voice Mode Cloud, the transfer arrangements are set out in section 4.3.
+For Voice Mode Cloud, see section 4.3.
 
 ---
 
 ## 12. Your choices and rights
 
-- You decide whether to use any AI provider and which one — or none, using
-  on-device recognition.
+- You decide whether to use an AI provider and which one, or none at all with on-device recognition.
 - You can change or delete your API keys at any time in the App's settings.
-- You can delete your dictation history, your custom prompts and reset settings
-  in the App.
+- You can delete your dictation history and your prompts, and reset your settings, in the App.
 - You can delete your Voice Mode Cloud account (section 4.5).
-- You can uninstall the App to remove all locally stored data.
-- Under the GDPR you have the rights of access, rectification, erasure,
-  restriction, data portability and objection (Art. 15–21), and the right to
-  complain to a supervisory authority. For Voice Mode Cloud, please read section 4.6
-  first: we can only act on a request we can connect to an account.
-- For data already processed by a third-party provider, please exercise your
-  rights directly with that provider, who is the controller for that data.
+- You can uninstall the App to remove everything stored on your phone.
+- Under the GDPR you have the right to access, correct, erase, restrict, move and object to the
+  processing of your data (Art. 15 to 21), and the right to complain to a data protection authority.
+  For Voice Mode Cloud, please read section 4.6 first: we can only act on a request we can connect to
+  an account.
+- For data a provider has already received, please contact that provider directly. It decides what
+  happens to that data.
 
 ---
 
 ## 13. Changes to this policy
 
-We may update this Privacy Policy from time to time. Material changes will be
-reflected by updating the "Last updated" date above and publishing the new version
-at this location. Continued use of the App after an update constitutes acceptance
-of the revised policy.
+We may update this policy. When we make a real change, we update the "Last updated" date above and
+publish the new version here. If you keep using the App after an update, the new version applies.
 
 ---
 
 ## 14. Contact
 
-If you have questions or requests regarding this Privacy Policy, contact:
+Questions or requests about this policy:
 
-**[OPERATOR NAME]** — [SUPPORT EMAIL]
+**[OPERATOR NAME]**, [SUPPORT EMAIL]
 [OPERATOR ADDRESS]
 
 Project repository: https://github.com/alvanx/voice-mode
