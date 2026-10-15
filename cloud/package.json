@@ -2,6 +2,7 @@
   "name": "dictate-cloud",
   "version": "0.1.0",
   "private": true,
+  "license": "SEE LICENSE IN LICENSE.md",
   "description": "Subscription proxy for Voice Mode: verifies Play subscriptions, meters a daily allowance and forwards to Workers AI.",
   "type": "module",
   "scripts": {

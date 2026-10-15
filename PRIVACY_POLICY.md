@@ -353,7 +353,9 @@ You can read every line, including the parts this policy describes: what is sent
 to a provider and when, that recordings are streamed through the server without
 ever being written to a disk, how a credit account is deleted, and what is kept
 afterwards. The App is licensed under the Apache License 2.0; you are free to
-build it yourself rather than install ours.
+build it yourself rather than install ours. The server code is source-available
+under the Functional Source License: readable and checkable by anyone, but not
+free to resell as a competing service.
 
 Two honest limits, because a promise of transparency that overstates itself is
 worth less than none:

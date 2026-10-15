@@ -182,8 +182,13 @@ published as the project matures. Thank you! 🙏
 
 ## 📄 License & attribution
 
-Voice Mode is released under the terms of the
+The keyboard app is released under the terms of the
 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+The Plus subscription server (`cloud/`) and its specs (`docs/specs/`) are **source-available**
+under the [Functional Source License](cloud/LICENSE.md) (FSL-1.1-Apache-2.0): you can read, run and
+modify them for your own use, but you can't offer them as a competing product or service. Each
+version becomes Apache 2.0 two years after it is published.
 
 - This project is built on **Dictate Keyboard** (Copyright © DevEmperor, Apache-2.0), itself a fork of **FlorisBoard** — Copyright © The FlorisBoard Contributors,
   licensed under Apache-2.0.

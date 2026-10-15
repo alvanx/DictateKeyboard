@@ -11,7 +11,7 @@ placeholders that are easy to find and replace.
 | `com.placeholder.voicemode` (Play package ID) | `gradle.properties` (`appId`), `app/src/androidTest/.../ExampleInstrumentedTest.kt`, `cloud/wrangler.example.jsonc` (`PACKAGE_NAME`),  `PRIVACY_POLICY.md`  | The final package ID. **Permanent once the app exists in the Play Console.** Staging builds use the same ID plus `.staging` |
 | `voicemode.example` (domain) | Website, privacy and deletion links in strings (all languages), `AboutScreen.kt`, `ProviderRegistry.kt` (`api.voicemode.example`, the server address), `cloud/wrangler.example.jsonc`, support email `support@voicemode.example` | Our domain. `.example` is reserved and never resolves, so no build can talk to anyone else's server by accident |
 | `VoiceMode` (download folder) | `DictateController.kt` (two places) and the strings that say `Downloads/VoiceMode` | The final name, no spaces |
-| `[OWNER NAME]` | `NOTICE` | The copyright holder of our changes |
+| `alvanx` (copyright holder) | `NOTICE`, `cloud/LICENSE.md`, `docs/specs/LICENSE.md` | Legal name or company, if different |
 | `[OPERATOR NAME]`, `[OPERATOR ADDRESS]`, `[SUPPORT EMAIL]` |  `PRIVACY_POLICY.md`  | The real operator's details |
 | Teal microphone icon | `app/src/main/res/drawable/ic_app_icon_foreground.xml`, `values/colors.xml` (`ic_app_icon_background`), and the same two in `wear/src/main/res/` | Our own mark. Play also needs a 512 px listing icon |
 
