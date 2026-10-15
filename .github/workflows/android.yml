@@ -1,22 +1,34 @@
 name: Android build
 
-# Builds the phone and Wear apps and runs the unit tests on every push, so a change that does not
-# compile is caught without anyone opening Android Studio. The debug APK is attached to each run:
-# download it from the run's "Artifacts" section and install it on a phone to try the app.
+# Builds the phone and Wear apps and runs the unit tests on every push to main, so a change that
+# does not compile is caught without anyone opening Android Studio. The debug APK is attached to
+# each run: download it from the run's "Artifacts" section and install it on a phone to try the app.
+#
+# Kept small on purpose: GitHub paused Actions on this fork after a burst of parallel branch builds
+# (Oct 13, 2026). So only main and manual runs build, commits that touch only docs or the server
+# skip the build, and one build runs at a time. Other branches can still be built by hand
+# ("Run workflow" on the Actions page).
 
 on:
   push:
-    branches: [main, 'claude/**']
-  pull_request:
+    branches: [main]
+    # Nothing here goes into the apps. The server in cloud/ is not built or tested by this workflow.
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'cloud/**'
   workflow_dispatch:
 
+# One build at a time across the whole repo; a newer push replaces a build still running.
 concurrency:
-  group: android-${{ github.ref }}
+  group: android-build
   cancel-in-progress: true
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Pinned rather than ubuntu-latest, so a change of GitHub's default image cannot break the build
+    # without a commit here.
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
