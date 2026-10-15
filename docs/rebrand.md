@@ -1,22 +1,23 @@
 # Rebrand notes
 
-Status: first pass, 2026-10-15. The product name is not chosen yet, so everything below uses
-placeholders that are easy to find and replace.
+Status: the name is final as of 2026-10-15: **Voice Mode**. It is already in place everywhere. The
+package ID, domain and operator details below are still placeholders.
 
-## Placeholders to replace when the name is chosen
+## Placeholders still to replace
 
 | Placeholder | Where it lives | Replace with |
 | --- | --- | --- |
-| `Voice Mode` (name) | In-app strings in every language (`app/src/main/res/values*/`, `wear/src/main/res/values*/`), theme names in `app/src/main/assets/ime/theme/*/extension.json`, `README.md`, `PRIVACY_POLICY.md`, `SECURITY.md`, `cloud/` operator pages, `ProviderRegistry.kt` (`displayName`) | The final name. Find with `grep -rIl "Voice Mode" .` |
-| `com.placeholder.voicemode` (Play package ID) | `gradle.properties` (`appId`), `app/src/androidTest/.../ExampleInstrumentedTest.kt`, `cloud/wrangler.example.jsonc` (`PACKAGE_NAME`),  `PRIVACY_POLICY.md`  | The final package ID. **Permanent once the app exists in the Play Console.** Staging builds use the same ID plus `.staging` |
+| `com.placeholder.voicemode` (Play package ID) | `gradle.properties` (`appId`), `app/src/androidTest/.../ExampleInstrumentedTest.kt`, `cloud/wrangler.example.jsonc` (`PACKAGE_NAME`),  `PRIVACY_POLICY.md`  | The final package ID, built from our domain (for example `com.<domain>.voicemode`). **Permanent once the app exists in the Play Console.** Staging builds use the same ID plus `.staging` |
 | `voicemode.example` (domain) | Website, privacy and deletion links in strings (all languages), `AboutScreen.kt`, `ProviderRegistry.kt` (`api.voicemode.example`, the server address), `cloud/wrangler.example.jsonc`, support email `support@voicemode.example` | Our domain. `.example` is reserved and never resolves, so no build can talk to anyone else's server by accident |
-| `VoiceMode` (download folder) | `DictateController.kt` (two places) and the strings that say `Downloads/VoiceMode` | The final name, no spaces |
 | `alvanx` (copyright holder) | `NOTICE`, `cloud/LICENSE.md`, `docs/specs/LICENSE.md` | Legal name or company, if different |
 | `[OPERATOR NAME]`, `[OPERATOR ADDRESS]`, `[SUPPORT EMAIL]` |  `PRIVACY_POLICY.md`  | The real operator's details |
 | Teal microphone icon | `app/src/main/res/drawable/ic_app_icon_foreground.xml`, `values/colors.xml` (`ic_app_icon_background`), and the same two in `wear/src/main/res/` | Our own mark. Play also needs a 512 px listing icon |
 
 ## Changed in this pass
 
+- Name: **Voice Mode** is final (2026-10-15). In-app strings in every language, theme names,
+  `README.md`, `PRIVACY_POLICY.md`, `SECURITY.md`, the `cloud/` operator pages, `ProviderRegistry.kt`
+  and the `Downloads/VoiceMode` folder already use it; nothing left to rename.
 - Application ID is one gradle property (`appId`) used by both the phone app and the Wear app.
 - App name, About screen, links, support email, themes, icon and README no longer point at the
   upstream author. Strings changed in all languages; the original author's personal signature was

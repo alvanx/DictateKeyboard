@@ -1,8 +1,5 @@
 # Voice Mode
 
-> **Working name.** "Voice Mode" is a placeholder. See [`docs/rebrand.md`](docs/rebrand.md) for what to
-> change when the real name is chosen.
-
 <br>
 
 ## 📲 Installation
