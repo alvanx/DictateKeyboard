@@ -757,8 +757,8 @@
     <string name="backup_and_restore__back_up__files">Auswählen, wovon eine Sicherung erstellt werden soll</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Einstellungen</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API-Schlüssel und Passwörter</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Dieses Archiv enthält deine API-Schlüssel und Passwörter im Klartext, dazu dein Voice-Mode-Cloud-Guthaben – wer es bekommt, kann auf deine Kosten diktieren. Gib es nicht weiter, und wenn du das schon getan hast, ändere den Schlüssel bei deinem Anbieter. Alles andere, was unten angehakt ist, geht mit – auch dein Transkriptionsverlauf und deine Zwischenablage.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Dieses Archiv enthält keine API-Schlüssel, Passwörter und kein Voice-Mode-Cloud-Guthaben, du kannst es also weitergeben – es stellt deine aber auch nicht wieder her. Alles andere, was unten angehakt ist, ist weiterhin enthalten, auch dein Transkriptionsverlauf und deine Zwischenablage.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Dieses Archiv enthält deine API-Schlüssel und Passwörter im Klartext, dazu deine Voice-Mode-Cloud-Anmeldung – wer es bekommt, kann auf deine Kosten diktieren. Gib es nicht weiter, und wenn du das schon getan hast, ändere den Schlüssel bei deinem Anbieter. Alles andere, was unten angehakt ist, geht mit – auch dein Transkriptionsverlauf und deine Zwischenablage.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Dieses Archiv enthält keine API-Schlüssel, Passwörter und keine Voice-Mode-Cloud-Anmeldung, du kannst es also weitergeben – es stellt deine aber auch nicht wieder her. Alles andere, was unten angehakt ist, ist weiterhin enthalten, auch dein Transkriptionsverlauf und deine Zwischenablage.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Dieses Archiv enthält keine API-Schlüssel und Passwörter, aber alles, was unten angehakt ist – deinen Transkriptionsverlauf samt aufbewahrter Aufnahmen, deine Zwischenablage, deine Prompts und die Wörter, die die Tastatur von dir gelernt hat.</string>
     <string name="backup_and_restore__back_up__files_dictate_prompts">Gespeicherte Umformulierungs-Prompts</string>
     <string name="backup_and_restore__back_up__files_personal_dictionary">Persönliches Wörterbuch und gelernte Wörter</string>
@@ -1251,9 +1251,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Wähle, wie Voice Mode transkribiert</string>
     <string name="setup__provider__choose_intro">Voice Mode wandelt deine Sprache mit einem KI-Dienst in Text um. Für die meisten passt einer der beiden Wege — und wenn du gar keinen Cloud-Dienst nutzen willst, stehen darunter zwei weitere.</string>
-    <string name="setup__provider__choice_cloud_title">Guthaben in der App kaufen</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: kein Konto irgendwo, kein API-Schlüssel. Du kaufst Diktatminuten über Google Play, und sie verfallen nicht. Der bequeme Weg — und etwas teurer, als direkt zu einem Anbieter zu gehen.</string>
-    <string name="setup__provider__choice_cloud_btn">Guthaben-Pakete anzeigen</string>
+    <string name="setup__provider__choice_cloud_title">In der App abonnieren</string>
+    <string name="setup__provider__choice_cloud_body">Plus: kein Konto bei einem KI-Anbieter, kein API-Schlüssel. Du schließt das Abo über Google Play ab und kannst jederzeit kündigen. Der bequeme Weg — und etwas teurer, als direkt zu einem Anbieter zu gehen.</string>
+    <string name="setup__provider__choice_cloud_btn">Abos anzeigen</string>
     <string name="setup__provider__choice_own_title">Eigenen KI-Anbieter nutzen</string>
     <string name="setup__provider__choice_own_body">Leg dir bei einem Anbieter deiner Wahl einen Schlüssel an — Groq ist für den Alltag kostenlos. Du behältst dein eigenes Konto und zahlst direkt beim Anbieter zu dessen Preisen. Dauert etwa zwei Minuten.</string>
     <string name="setup__provider__choice_own_btn">Eigenen Schlüssel einrichten</string>
@@ -1554,7 +1554,7 @@
     <string name="dictate__cloud_recovery_field">Wiederherstellungscode</string>
     <string name="dictate__cloud_recovery_confirm">Wiederherstellen</string>
     <string name="dictate__cloud_recovery_not_found">Zu diesem Code wurde kein Guthaben gefunden.</string>
-    <string name="dictate__error_cloud_no_account">Kein Guthabenkonto auf diesem Gerät</string>
+    <string name="dictate__error_cloud_no_account">Kein Voice-Mode-Cloud-Konto auf diesem Gerät</string>
     <string name="dictate__cloud_devices_full_title">Zu viele Geräte</string>
     <string name="dictate__cloud_devices_full_body">Dein Guthaben wird bereits auf {count} Geräten genutzt — mehr gehen nicht gleichzeitig. Melde eines ab, um es hier zu nutzen; das Guthaben selbst bleibt unberührt.</string>
     <string name="dictate__cloud_devices_sign_out">Abmelden</string>
@@ -1829,7 +1829,7 @@
     <string name="changelog__intro">Voice Mode wurde aktualisiert. Das ist neu:</string>
     <string name="changelog__version_header">Version {version}</string>
     <string name="changelog__donate">Gefällt dir Voice Mode? Tippe hier, um die Entwicklung zu unterstützen ♥</string>
-    <string name="changelog__current">• Brandneue Tastatur: Voice Mode gibt es jetzt als vollwertige, mehrsprachige Layout-Tastatur mit eigener Mikrofontaste, die das Sprachpanel öffnet.\n• Eigene KI nutzen: Wähle einen beliebigen OpenAI-kompatiblen Anbieter und gib deinen API-Schlüssel unter Einstellungen → Voice Mode ein.\n• Intelligente Formatierung und Umformulierung mit dem von dir gewählten Modell.\n• Deine Einstellungen aus der vorherigen Dictate-App werden automatisch importiert.</string>
+    <string name="changelog__current">• Brandneue Tastatur: Voice Mode gibt es jetzt als vollwertige, mehrsprachige Layout-Tastatur mit eigener Mikrofontaste, die das Sprachpanel öffnet.\n• Eigene KI nutzen: Wähle einen beliebigen OpenAI-kompatiblen Anbieter und gib deinen API-Schlüssel unter Einstellungen → Voice Mode ein.\n• Intelligente Formatierung und Umformulierung mit dem von dir gewählten Modell.\n• Deine Einstellungen aus der vorherigen Voice-Mode-App werden automatisch importiert.</string>
     <string name="changelog__v4_1_0">• Neu: Emojis direkt über die Tastatur suchen.\n• Neuer Transkriptions-Anbieter: Soniox.\n• Letzte Diktat-Eingabe erneut einfügen und Aufnahmen wiederherstellen, die beim Schließen der Tastatur unterbrochen wurden.\n• Die Prompt-Leiste aktualisiert sich jetzt live – lange auf einen Prompt tippen, um ihn zu bearbeiten.\n• Die Anbieter-Übersicht zeigt jetzt sowohl den aktiven Transkriptions- als auch den Umformulierungs-Anbieter.\n• Größerer, leichter treffbarer Aufnahme-Button.\n• Fixes: Ein Unterstützungs-Hinweis konnte hängenbleiben und die Leiste blockieren; Backup schlägt mit ausgewählten Prompts, Tastatur oder Theme nicht mehr fehl; gespeicherte API-Schlüssel bleiben beim Upgrade erhalten.</string>
     <string name="changelog__v4_2_0">• NEU: Floating-Diktat-Button — diktiere direkt in jede App, auch wenn eine andere Tastatur aktiv ist. Wähle aus drei Stilen (Pille, Ring, Kugel), sieh beim Sprechen eine Live-Wellenform, zieh ihn überallhin mit Kanten-Andocken, lege Farbe und Größe fest und halte ihn gedrückt zum Umformulieren. Aktiviere ihn unter Einstellungen ▸ Voice Mode ▸ Floating Button.\n• NEU: Google Gemini — nutze deinen eigenen AI-Studio-API-Schlüssel für Transkription und Umformulierung.\n• Prompts erscheinen jetzt standardmäßig in einer dauerhaften Zeile über den Tasten.\n• Zuverlässigeres Einfügen von Text über Apps hinweg, auch in Browsern und mit anderen Tastaturen.</string>
     <string name="changelog__v4_1_1">• Fix: Die Akzentfarbe konnte auf manchen Geräten grün erscheinen – Tasten und Buttons sind wieder im Voice-Mode-Blau.</string>
@@ -2109,7 +2109,7 @@
     <string name="apptour__providers_cta">Anbieter wählen</string>
     <string name="apptour__legacy_eyebrow">Ein Klassiker kehrt zurück</string>
     <string name="apptour__legacy_title">Klassisches Diktier-Layout</string>
-    <string name="apptour__legacy_body">Lieber sprechen statt tippen? Der tastaturfreie Bildschirm aus Dictate 3 ist zurück — mach ihn zur Standardansicht oder halte ihn nur einen Wisch von der vollen Tastatur entfernt.</string>
+    <string name="apptour__legacy_body">Lieber sprechen statt tippen? Der tastaturfreie Bildschirm ist zurück — mach ihn zur Standardansicht oder halte ihn nur einen Wisch von der vollen Tastatur entfernt.</string>
     <string name="apptour__legacy_cta">Layout wählen</string>
     <string name="apptour__library_eyebrow">Community</string>
     <string name="apptour__library_title">Prompt-Bibliothek</string>
@@ -2334,7 +2334,7 @@
     <string name="apptour63__outro_eyebrow">Das ist 6.3</string>
     <string name="apptour63__outro_title">Weniger Umwege, gleiche Tastatur</string>
     <string name="apptour63__outro_body">An der Art, wie du diktierst, ändert sich nichts — eigener Schlüssel, eigener Server oder ein Modell auf dem Gerät. Alle Touren findest du erneut unter Einstellungen › Über.</string>
-    <string name="changelog__v5_0_0">• NEU: Wischtippen — streiche über die Tasten, um ganze Wörter zu schreiben, mit Wörterbüchern pro Sprache, die bei Bedarf geladen werden. 👆\n• NEU: Wortvorschläge &amp; Autokorrektur — Tippfehler werden automatisch korrigiert und dein getipptes Wort bleibt einen Fingertipp entfernt. ✨\n• NEU: Echtzeit-Transkription — sieh deine Worte erscheinen, während du sprichst, mit OpenAI, Deepgram, Soniox, AssemblyAI und ElevenLabs. ⚡\n• NEU: Drei weitere Transkriptionsanbieter — ElevenLabs Scribe, Deepgram und AssemblyAI. ☁️\n• NEU: Klassisches Diktier-Layout — der tastaturfreie Sprachbildschirm aus Dictate 3 ist zurück, fest oder nur ein Wischen entfernt. 🎙️\n• NEU: Community-Prompt-Bibliothek — Umformulierungs-Prompts durchstöbern und teilen. 📚\n• NEU: Diktier-Statistik mit Meilensteinen. 📊\n• NEU: Offline-Modell NVIDIA Parakeet, plus ein Stillefilter, der leere Aufnahmen überspringt. 📴\n• Mehr: ein stabilerer schwebender Button, Reasoning-Aufwand, haptisches Feedback, ein neues E-Reader-Design und Dutzende Fehlerbehebungen. 🛠️</string>
+    <string name="changelog__v5_0_0">• NEU: Wischtippen — streiche über die Tasten, um ganze Wörter zu schreiben, mit Wörterbüchern pro Sprache, die bei Bedarf geladen werden. 👆\n• NEU: Wortvorschläge &amp; Autokorrektur — Tippfehler werden automatisch korrigiert und dein getipptes Wort bleibt einen Fingertipp entfernt. ✨\n• NEU: Echtzeit-Transkription — sieh deine Worte erscheinen, während du sprichst, mit OpenAI, Deepgram, Soniox, AssemblyAI und ElevenLabs. ⚡\n• NEU: Drei weitere Transkriptionsanbieter — ElevenLabs Scribe, Deepgram und AssemblyAI. ☁️\n• NEU: Klassisches Diktier-Layout — der tastaturfreie Sprachbildschirm ist zurück, fest oder nur ein Wischen entfernt. 🎙️\n• NEU: Community-Prompt-Bibliothek — Umformulierungs-Prompts durchstöbern und teilen. 📚\n• NEU: Diktier-Statistik mit Meilensteinen. 📊\n• NEU: Offline-Modell NVIDIA Parakeet, plus ein Stillefilter, der leere Aufnahmen überspringt. 📴\n• Mehr: ein stabilerer schwebender Button, Reasoning-Aufwand, haptisches Feedback, ein neues E-Reader-Design und Dutzende Fehlerbehebungen. 🛠️</string>
     <string name="media__tab__gifs">GIFs</string>
     <string name="prefs__media__gif__title">GIFs</string>
     <string name="prefs__media__gif_enabled">GIF-Suche aktivieren</string>

@@ -764,8 +764,8 @@
     <string name="backup_and_restore__back_up__files">Atlasīt, kam veidot rezerves kopiju</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Uzstādījumi</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API atslēgas un paroles</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Šis arhīvs satur tavas API atslēgas un paroles atklātā tekstā, kā arī tavu Voice Mode Cloud kredītu — ikviens, kas to saņem, var diktēt uz tava rēķina. Nenodod to tālāk, un, ja jau esi nodevis, nomaini atslēgu pie sava pakalpojuma sniedzēja. Viss pārējais, kas atzīmēts zemāk, ceļo kopā ar to, tostarp transkripcijas vēsture un starpliktuve.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Šajā arhīvā nav ne API atslēgu, ne paroļu, ne Voice Mode Cloud kredīta, tāpēc to var nodot tālāk, taču tavas tas arī neatjaunos. Viss pārējais, kas atzīmēts zemāk, tajā joprojām ir, tostarp transkripcijas vēsture un starpliktuve.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Šis arhīvs satur tavas API atslēgas un paroles atklātā tekstā, kā arī tavus Voice Mode Cloud pieteikšanās datus — ikviens, kas to saņem, var diktēt uz tava rēķina. Nenodod to tālāk, un, ja jau esi nodevis, nomaini atslēgu pie sava pakalpojuma sniedzēja. Viss pārējais, kas atzīmēts zemāk, ceļo kopā ar to, tostarp transkripcijas vēsture un starpliktuve.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Šajā arhīvā nav ne API atslēgu, ne paroļu, ne Voice Mode Cloud pieteikšanās datu, tāpēc to var nodot tālāk, taču tavas tas arī neatjaunos. Viss pārējais, kas atzīmēts zemāk, tajā joprojām ir, tostarp transkripcijas vēsture un starpliktuve.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Šajā arhīvā nav API atslēgu un paroļu, bet ir viss, kas atzīmēts zemāk: transkripcijas vēsture kopā ar saglabātajiem ierakstiem, starpliktuve, tavi uzvedņi un vārdi, ko tastatūra no tevis iemācījusies.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Tastatūras paplašinājumi</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Pareizrakstības paplašinājumi / vārdnīcas</string>
@@ -1257,9 +1257,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Izvēlieties, kā Voice Mode atšifrē runu</string>
     <string name="setup__provider__choose_intro">Voice Mode pārvērš jūsu runu tekstā ar MI pakalpojuma palīdzību. Vairumam cilvēku noder kāds no abiem augšējiem veidiem — un, ja nevēlaties izmantot nevienu mākoņpakalpojumu, zemāk ir vēl divi.</string>
-    <string name="setup__provider__choice_cloud_title">Pirkt kredītu lietotnē</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: nekur nav vajadzīgs konts, nav vajadzīga API atslēga. Diktēšanas minūtes pērkat caur Google Play, un tās nekad nezaudē derīgumu. Ērtais ceļš — un mazliet dārgāks nekā doties tieši pie pakalpojuma sniedzēja.</string>
-    <string name="setup__provider__choice_cloud_btn">Rādīt kredīta paketes</string>
+    <string name="setup__provider__choice_cloud_title">Abonēt lietotnē</string>
+    <string name="setup__provider__choice_cloud_body">Plus: nav vajadzīgs konts pie MI pakalpojuma sniedzēja, nav vajadzīga API atslēga. Abonējat caur Google Play un varat to atcelt jebkurā laikā. Ērtais ceļš — un mazliet dārgāks nekā doties tieši pie pakalpojuma sniedzēja.</string>
+    <string name="setup__provider__choice_cloud_btn">Rādīt plānus</string>
     <string name="setup__provider__choice_own_title">Izmantot savu MI pakalpojuma sniedzēju</string>
     <string name="setup__provider__choice_own_body">Izveidojiet atslēgu pie sev tīkama pakalpojuma sniedzēja — Groq ikdienas diktēšanai ir bez maksas. Jūs paturat savu kontu un maksājat tieši sniedzējam pēc viņa cenām. Aizņem apmēram divas minūtes.</string>
     <string name="setup__provider__choice_own_btn">Iestatīt savu atslēgu</string>
@@ -1800,7 +1800,7 @@
     <string name="changelog__intro">Voice Mode tika atjaunināts. Lūk, kas jauns:</string>
     <string name="changelog__version_header">Versija {version}</string>
     <string name="changelog__donate">Vai jums patīk Voice Mode? Pieskarieties šeit, lai atbalstītu izstrādi ♥</string>
-    <string name="changelog__current">• Pavisam jauna tastatūra: Voice Mode tagad tiek piedāvāta kā pilnvērtīga daudzvalodu izkārtojuma tastatūra ar īpašu mikrofona taustiņu, kas atver balss paneli.\n• Izmantojiet savu MI: izvēlieties jebkuru ar OpenAI saderīgu pakalpojuma sniedzēju un ievadiet savu API atslēgu sadaļā Iestatījumi → Voice Mode.\n• Vieda formatēšana un pārformulēšana, ko nodrošina jūsu izvēlētais modelis.\n• Jūsu iestatījumi no iepriekšējās Dictate lietotnes tiek importēti automātiski.</string>
+    <string name="changelog__current">• Pavisam jauna tastatūra: Voice Mode tagad tiek piedāvāta kā pilnvērtīga daudzvalodu izkārtojuma tastatūra ar īpašu mikrofona taustiņu, kas atver balss paneli.\n• Izmantojiet savu MI: izvēlieties jebkuru ar OpenAI saderīgu pakalpojuma sniedzēju un ievadiet savu API atslēgu sadaļā Iestatījumi → Voice Mode.\n• Vieda formatēšana un pārformulēšana, ko nodrošina jūsu izvēlētais modelis.\n• Jūsu iestatījumi no iepriekšējās Voice Mode lietotnes tiek importēti automātiski.</string>
     <string name="changelog__v4_1_0">• Jauns: meklē emocijzīmes tieši no tastatūras.\n• Jauns transkripcijas pakalpojums: Soniox.\n• Atkārtoti ievieto pēdējo diktātu un atjauno ierakstus, kas tika pārtraukti, aizverot tastatūru.\n• Uzvedņu josla tagad atjauninās reāllaikā: turi nospiestu uzvedni, lai to rediģētu.\n• AI pakalpojumu ekrānā tagad redzams gan aktīvais transkripcijas, gan pārformulēšanas pakalpojums.\n• Lielāka ierakstīšanas poga, kurā vieglāk trāpīt.\n• Labojumi: atbalsta paziņojums dažās valodās varēja iestrēgt un aizsegt joslu; dublēšana vairs neizgāžas, kad atlasītas uzvednes, tastatūra vai motīvs; saglabātās API atslēgas tiek saglabātas pēc atjaunināšanas.</string>
     <string name="changelog__v4_1_1">• Labojums: akcenta krāsa dažās ierīcēs varēja izskatīties zaļa; taustiņi un pogas atkal ir Voice Mode zilā krāsā.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -2079,7 +2079,7 @@
     <string name="apptour__providers_cta">Izvēlēties pakalpojumu</string>
     <string name="apptour__legacy_eyebrow">Klasika atgriežas</string>
     <string name="apptour__legacy_title">Klasiskais diktēšanas izkārtojums</string>
-    <string name="apptour__legacy_body">Dod priekšroku balsij, nevis taustiņiem? Dictate 3 ekrāns bez tastatūras ir atgriezies — padari to par noklusējumu vai turi to tikai vienu vilkšanu attālumā no pilnās tastatūras.</string>
+    <string name="apptour__legacy_body">Dod priekšroku balsij, nevis taustiņiem? Ekrāns bez tastatūras ir atgriezies — padari to par noklusējumu vai turi to tikai vienu vilkšanu attālumā no pilnās tastatūras.</string>
     <string name="apptour__legacy_cta">Izvēlēties izkārtojumu</string>
     <string name="apptour__library_eyebrow">Kopiena</string>
     <string name="apptour__library_title">Uzvednu bibliotēka</string>
@@ -2304,7 +2304,7 @@
     <string name="apptour63__outro_eyebrow">Tā ir 6.3</string>
     <string name="apptour63__outro_title">Mazāk līkumu, tā pati tastatūra</string>
     <string name="apptour63__outro_body">Nekas nemainās tajā, kā tu diktē — sava atslēga, savs serveris vai modelis ierīcē. Visas pamācības atkal atrodamas sadaļā Iestatījumi › Par.</string>
-    <string name="changelog__v5_0_0">• JAUNS: Vilkšanas rakstīšana — velc pār taustiņiem, lai rakstītu veselus vārdus, ar valodu vārdnīcām, kas tiek lejupielādētas pēc pieprasījuma. 👆\n• JAUNS: Vārdu ieteikumi un automātiskā labošana — drukas kļūdas tiek labotas automātiski, un ierakstītais vārds paliek viena pieskāriena attālumā. ✨\n• JAUNS: Reāllaika transkripcija — vēro, kā vārdi parādās, kamēr runā, ar OpenAI, Deepgram, Soniox, AssemblyAI un ElevenLabs. ⚡\n• JAUNS: Vēl trīs transkripcijas pakalpojumi — ElevenLabs Scribe, Deepgram un AssemblyAI. ☁️\n• JAUNS: Klasiskais diktēšanas izkārtojums — Dictate 3 balss ekrāns bez tastatūras ir atpakaļ, fiksēts vai viena vilkuma attālumā. 🎙️\n• JAUNS: Kopienas uzvednu bibliotēka — pārlūko un kopīgo pārformulēšanas uzvednes. 📚\n• JAUNS: Diktēšanas statistika ar atskaites punktiem. 📊\n• JAUNS: Bezsaistes modelis NVIDIA Parakeet, kā arī klusuma filtrs, kas izlaiž tukšos ierakstus. 📴\n• Vēl: stabilāka peldošā poga, spriešanas piepūles vadība, taktilā atsauce, jauna E-Reader tēma un desmitiem labojumu. 🛠️</string>
+    <string name="changelog__v5_0_0">• JAUNS: Vilkšanas rakstīšana — velc pār taustiņiem, lai rakstītu veselus vārdus, ar valodu vārdnīcām, kas tiek lejupielādētas pēc pieprasījuma. 👆\n• JAUNS: Vārdu ieteikumi un automātiskā labošana — drukas kļūdas tiek labotas automātiski, un ierakstītais vārds paliek viena pieskāriena attālumā. ✨\n• JAUNS: Reāllaika transkripcija — vēro, kā vārdi parādās, kamēr runā, ar OpenAI, Deepgram, Soniox, AssemblyAI un ElevenLabs. ⚡\n• JAUNS: Vēl trīs transkripcijas pakalpojumi — ElevenLabs Scribe, Deepgram un AssemblyAI. ☁️\n• JAUNS: Klasiskais diktēšanas izkārtojums — balss ekrāns bez tastatūras ir atpakaļ, fiksēts vai viena vilkuma attālumā. 🎙️\n• JAUNS: Kopienas uzvednu bibliotēka — pārlūko un kopīgo pārformulēšanas uzvednes. 📚\n• JAUNS: Diktēšanas statistika ar atskaites punktiem. 📊\n• JAUNS: Bezsaistes modelis NVIDIA Parakeet, kā arī klusuma filtrs, kas izlaiž tukšos ierakstus. 📴\n• Vēl: stabilāka peldošā poga, spriešanas piepūles vadība, taktilā atsauce, jauna E-Reader tēma un desmitiem labojumu. 🛠️</string>
     <string name="media__tab__gifs">GIF</string>
     <string name="prefs__media__gif__title">GIF</string>
     <string name="prefs__media__gif_enabled">Ieslēgt GIF meklēšanu</string>
@@ -2408,7 +2408,7 @@
     <string name="dictate__cloud_recovery_field">Atkopšanas kods</string>
     <string name="dictate__cloud_recovery_confirm">Atjaunot</string>
     <string name="dictate__cloud_recovery_not_found">Šim kodam kredīts netika atrasts.</string>
-    <string name="dictate__error_cloud_no_account">Šajā ierīcē nav kredīta konta</string>
+    <string name="dictate__error_cloud_no_account">Šajā ierīcē nav Voice Mode Cloud konta</string>
     <string name="dictate__cloud_devices_full_title">Pārāk daudz ierīču</string>
     <string name="dictate__cloud_devices_full_body">Tavs kredīts jau tiek lietots {count} ierīcēs — vairāk vienlaikus nevar. Izraksti vienu, lai lietotu to šeit; pats kredīts paliek neskarts.</string>
     <string name="dictate__cloud_devices_sign_out">Izrakstīties</string>

@@ -775,8 +775,8 @@
     <string name="backup_and_restore__back_up__files">バックアップするものを選択</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">設定</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API キーとパスワード</string>
-    <string name="backup_and_restore__back_up__credentials_warning">このアーカイブには API キーとパスワードが平文で入っており、Voice Mode Cloud の残高も含まれます。受け取った人は誰でもあなたの負担で音声入力できます。他人に渡さないでください。すでに渡してしまった場合は、プロバイダー側でキーを変更してください。下でチェックされているものはすべて一緒に入ります。文字起こしの履歴やクリップボードも含まれます。</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">このアーカイブには API キー、パスワード、Voice Mode Cloud の残高は含まれていないので、他人に渡せます。ただし、あなたのキーも復元されません。下でチェックされているものはそのまま入っており、文字起こしの履歴やクリップボードも含まれます。</string>
+    <string name="backup_and_restore__back_up__credentials_warning">このアーカイブには API キーとパスワードが平文で入っており、Voice Mode Cloud のログイン情報も含まれます。受け取った人は誰でもあなたの負担で音声入力できます。他人に渡さないでください。すでに渡してしまった場合は、プロバイダー側でキーを変更してください。下でチェックされているものはすべて一緒に入ります。文字起こしの履歴やクリップボードも含まれます。</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">このアーカイブには API キー、パスワード、Voice Mode Cloud のログイン情報は含まれていないので、他人に渡せます。ただし、あなたのキーも復元されません。下でチェックされているものはそのまま入っており、文字起こしの履歴やクリップボードも含まれます。</string>
     <string name="backup_and_restore__back_up__personal_content_note">このアーカイブに API キーとパスワードは含まれていませんが、下でチェックされているものはすべて入ります。保存された録音を含む文字起こしの履歴、クリップボード、プロンプト、キーボードがあなたから学習した単語です。</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">キーボード拡張機能</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">スペル拡張機能 / 辞書</string>
@@ -1244,9 +1244,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">文字起こしの方法を選ぶ</string>
     <string name="setup__provider__choose_intro">Voice Mode は AI サービスを使って音声を文字にします。ほとんどの方には上の2つの方法が合いますが、クラウドサービスをまったく使いたくない場合は、下にさらに2つあります。</string>
-    <string name="setup__provider__choice_cloud_title">アプリ内でクレジットを購入</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud：どこにもアカウント不要、API キーも不要。Google Play で音声入力の分数を購入でき、有効期限はありません。手軽な方法ですが、プロバイダーに直接申し込むより少し割高です。</string>
-    <string name="setup__provider__choice_cloud_btn">クレジットパックを見る</string>
+    <string name="setup__provider__choice_cloud_title">アプリ内で定期購入する</string>
+    <string name="setup__provider__choice_cloud_body">Plus：AI プロバイダーのアカウント不要、API キーも不要。Google Play で定期購入し、いつでも解約できます。手軽な方法ですが、プロバイダーに直接申し込むより少し割高です。</string>
+    <string name="setup__provider__choice_cloud_btn">プランを見る</string>
     <string name="setup__provider__choice_own_title">自分の AI プロバイダーを使う</string>
     <string name="setup__provider__choice_own_body">お好きなプロバイダーでキーを作成します。Groq は日常的な音声入力なら無料です。ご自身のアカウントのまま、プロバイダーの料金で直接支払います。2分ほどで終わります。</string>
     <string name="setup__provider__choice_own_btn">自分のキーを設定する</string>
@@ -1787,7 +1787,7 @@
     <string name="changelog__intro">Voice Modeが更新されました。新着情報はこちら:</string>
     <string name="changelog__version_header">バージョン{version}</string>
     <string name="changelog__donate">Voice Modeはいかがですか？ ここをタップして開発を応援してください ♥</string>
-    <string name="changelog__current">• まったく新しいキーボード: Voice Modeは、音声パネルを開く専用マイクキーを備えた本格的な多言語レイアウトキーボードとして提供されるようになりました。\n• 自分のAIを使用: OpenAI互換の任意のプロバイダーを選び、設定 → Voice ModeでAPIキーを入力します。\n• 選択したモデルによるスマートな書式設定と言い換え。\n• 以前のDictateアプリの設定が自動的にインポートされます。</string>
+    <string name="changelog__current">• まったく新しいキーボード: Voice Modeは、音声パネルを開く専用マイクキーを備えた本格的な多言語レイアウトキーボードとして提供されるようになりました。\n• 自分のAIを使用: OpenAI互換の任意のプロバイダーを選び、設定 → Voice ModeでAPIキーを入力します。\n• 選択したモデルによるスマートな書式設定と言い換え。\n• 以前のVoice Modeアプリの設定が自動的にインポートされます。</string>
     <string name="changelog__v4_1_0">• 新機能: キーボードから直接絵文字を検索できます。\n• 新しい文字起こしプロバイダー: Soniox。\n• 直前のディクテーションを再挿入し、キーボードを閉じたときに中断された録音を復元できます。\n• プロンプトバーがライブ更新されるようになりました。プロンプトを長押しすると編集できます。\n• AIプロバイダー画面に、有効な文字起こしプロバイダーと言い換えプロバイダーの両方が表示されるようになりました。\n• 録音ボタンが大きくなり、タップしやすくなりました。\n• 修正: 一部の言語でサポートの案内が固まってバーを覆ってしまう問題を修正しました。プロンプト・キーボード・テーマを選択した状態でバックアップが失敗しなくなりました。保存したAPIキーがアップデート後も保持されます。</string>
     <string name="changelog__v4_1_1">• 修正: 一部の端末でアクセントカラーが緑色に表示されることがありました。キーやボタンが本来のVoice Modeブルーに戻りました。</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -2064,7 +2064,7 @@
     <string name="apptour__providers_cta">プロバイダーを選択</string>
     <string name="apptour__legacy_eyebrow">名作の復活</string>
     <string name="apptour__legacy_title">クラシック音声入力レイアウト</string>
-    <string name="apptour__legacy_body">キーより音声派ですか？ Dictate 3 のキーボードなし画面が復活しました。既定にするもよし、フルキーボードからスワイプ一つの距離に置いておくもよし。</string>
+    <string name="apptour__legacy_body">キーより音声派ですか？ キーボードなし画面が復活しました。既定にするもよし、フルキーボードからスワイプ一つの距離に置いておくもよし。</string>
     <string name="apptour__legacy_cta">レイアウトを選択</string>
     <string name="apptour__library_eyebrow">コミュニティ</string>
     <string name="apptour__library_title">プロンプトライブラリ</string>
@@ -2289,7 +2289,7 @@
     <string name="apptour63__outro_eyebrow">これが 6.3 です</string>
     <string name="apptour63__outro_title">遠回りは減り、キーボードはそのまま</string>
     <string name="apptour63__outro_body">口述のやり方は何も変わりません。自分の鍵でも、自分のサーバーでも、端末上のモデルでも同じです。すべてのツアーは 設定 › このアプリについて から読み直せます。</string>
-    <string name="changelog__v5_0_0">• 新機能: グライド入力 — キーの上をスワイプして単語をまるごと入力。必要に応じてダウンロードされる言語別辞書付き。 👆\n• 新機能: 単語候補と自動修正 — 入力ミスは自動的に直り、入力した単語はワンタップで戻せます。 ✨\n• 新機能: リアルタイム文字起こし — 話しながら単語が現れる様子を確認。OpenAI、Deepgram、Soniox、AssemblyAI、ElevenLabsに対応。 ⚡\n• 新機能: さらに3つの文字起こしプロバイダー — ElevenLabs Scribe、Deepgram、AssemblyAI。 ☁️\n• 新機能: クラシック音声入力レイアウト — Dictate 3のキーボードなし音声画面が復活。固定またはスワイプ一つで。 🎙️\n• 新機能: コミュニティのプロンプトライブラリ — 言い換えプロンプトを閲覧・共有。 📚\n• 新機能: マイルストーン付きの音声入力統計。 📊\n• 新機能: オフラインモデルNVIDIA Parakeet、加えて空の録音をスキップする無音フィルター。 📴\n• その他: より安定したフローティングボタン、推論の強度の調整、触覚フィードバック、新しいE-Readerテーマ、そして数十件の修正。 🛠️</string>
+    <string name="changelog__v5_0_0">• 新機能: グライド入力 — キーの上をスワイプして単語をまるごと入力。必要に応じてダウンロードされる言語別辞書付き。 👆\n• 新機能: 単語候補と自動修正 — 入力ミスは自動的に直り、入力した単語はワンタップで戻せます。 ✨\n• 新機能: リアルタイム文字起こし — 話しながら単語が現れる様子を確認。OpenAI、Deepgram、Soniox、AssemblyAI、ElevenLabsに対応。 ⚡\n• 新機能: さらに3つの文字起こしプロバイダー — ElevenLabs Scribe、Deepgram、AssemblyAI。 ☁️\n• 新機能: クラシック音声入力レイアウト — キーボードなし音声画面が復活。固定またはスワイプ一つで。 🎙️\n• 新機能: コミュニティのプロンプトライブラリ — 言い換えプロンプトを閲覧・共有。 📚\n• 新機能: マイルストーン付きの音声入力統計。 📊\n• 新機能: オフラインモデルNVIDIA Parakeet、加えて空の録音をスキップする無音フィルター。 📴\n• その他: より安定したフローティングボタン、推論の強度の調整、触覚フィードバック、新しいE-Readerテーマ、そして数十件の修正。 🛠️</string>
     <string name="media__tab__gifs">GIF</string>
     <string name="prefs__media__gif__title">GIF</string>
     <string name="prefs__media__gif_enabled">GIF 検索を有効にする</string>
@@ -2393,7 +2393,7 @@
     <string name="dictate__cloud_recovery_field">復元コード</string>
     <string name="dictate__cloud_recovery_confirm">復元</string>
     <string name="dictate__cloud_recovery_not_found">このコードに対応するクレジットが見つかりません。</string>
-    <string name="dictate__error_cloud_no_account">この端末にクレジットアカウントがありません</string>
+    <string name="dictate__error_cloud_no_account">この端末に Voice Mode Cloud アカウントがありません</string>
     <string name="dictate__cloud_devices_full_title">端末が多すぎます</string>
     <string name="dictate__cloud_devices_full_body">クレジットはすでに {count} 台で使われています。同時に使えるのはここまでです。ここで使うには 1 台をサインアウトしてください。残高はそのままです。</string>
     <string name="dictate__cloud_devices_sign_out">サインアウト</string>

@@ -47,7 +47,8 @@ placeholders that are easy to find and replace.
    dictionaries (`LocalModelCatalog.kt`, `GlideDictionaryCatalog.kt`, `BigramCatalog.kt`,
    `TrigramCatalog.kt`, `PinyinPackManager.kt`). Mirror them to our own releases before launch; the
    catalogs carry checksums, so only the base URLs change.
-4. **Privacy policy** needs a rewrite for the subscription service and the real operator.
+4. **Privacy policy** is rewritten for Plus (2026-10-15). It still needs the real operator's name,
+   address and support email, and the effective date.
 5. **Leftover old name in a few strings:** Finnish, Hungarian and Latvian strings that carry the old
    name with a grammatical ending, and the in-app release-note and tour text that quotes upstream
    version names ("Dictate 5.0"). Handle in the translation pass or remove the tours.

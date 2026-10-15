@@ -687,8 +687,8 @@
     <string name="backup_and_restore__back_up__files">حدد ما يتم نسخه احتياطيا</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">تفضيلات</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">مفاتيح API وكلمات المرور</string>
-    <string name="backup_and_restore__back_up__credentials_warning">يحتوي هذا الأرشيف على مفاتيح API وكلمات المرور الخاصة بك بنص واضح، إلى جانب رصيدك في Voice Mode Cloud — ومن يحصل عليه يمكنه الإملاء على حسابك. لا تُشاركه، وإذا كنت قد شاركته بالفعل فغيِّر المفتاح عند مزوّدك. كل ما هو محدَّد أدناه يرحل معه أيضًا، بما في ذلك سجل النسخ النصي والحافظة.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">لا يحتوي هذا الأرشيف على مفاتيح API أو كلمات مرور أو رصيد Voice Mode Cloud، فيمكن مشاركته، لكنه لن يستعيد مفاتيحك كذلك. كل ما هو محدَّد أدناه لا يزال فيه، بما في ذلك سجل النسخ النصي والحافظة.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">يحتوي هذا الأرشيف على مفاتيح API وكلمات المرور الخاصة بك بنص واضح، إلى جانب بيانات دخولك إلى Voice Mode Cloud — ومن يحصل عليه يمكنه الإملاء على حسابك. لا تُشاركه، وإذا كنت قد شاركته بالفعل فغيِّر المفتاح عند مزوّدك. كل ما هو محدَّد أدناه يرحل معه أيضًا، بما في ذلك سجل النسخ النصي والحافظة.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">لا يحتوي هذا الأرشيف على مفاتيح API أو كلمات مرور أو بيانات الدخول إلى Voice Mode Cloud، فيمكن مشاركته، لكنه لن يستعيد مفاتيحك كذلك. كل ما هو محدَّد أدناه لا يزال فيه، بما في ذلك سجل النسخ النصي والحافظة.</string>
     <string name="backup_and_restore__back_up__personal_content_note">لا يحتوي هذا الأرشيف على مفاتيح API أو كلمات مرور، لكنه يحتوي على كل ما هو محدَّد أدناه: سجل النسخ النصي مع التسجيلات المحفوظة، والحافظة، ومطالباتك، والكلمات التي تعلّمتها لوحة المفاتيح منك.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">ملحقات لوحة المفاتيح</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">ملحقات التهجئة/ القاموس</string>
@@ -1170,9 +1170,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">اختر كيف يُفرِّغ Voice Mode كلامك</string>
     <string name="setup__provider__choose_intro">يحوِّل Voice Mode كلامك إلى نص بمساعدة خدمة ذكاء اصطناعي. الطريقتان أعلاه تناسبان معظم الناس — وإذا كنت تفضّل الاستغناء عن الخدمات السحابية تمامًا، فهناك طريقتان إضافيتان بالأسفل.</string>
-    <string name="setup__provider__choice_cloud_title">شراء رصيد داخل التطبيق</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: لا حساب في أي مكان، ولا مفتاح API. تشتري دقائق الإملاء عبر Google Play ولا تنتهي صلاحيتها أبدًا. الطريق المريح — وأغلى قليلًا من التوجّه إلى مزوّد مباشرة.</string>
-    <string name="setup__provider__choice_cloud_btn">عرض باقات الرصيد</string>
+    <string name="setup__provider__choice_cloud_title">الاشتراك داخل التطبيق</string>
+    <string name="setup__provider__choice_cloud_body">Plus: لا حساب لدى مزوّد ذكاء اصطناعي، ولا مفتاح API. تشترك عبر Google Play ويمكنك الإلغاء في أي وقت. الطريق المريح — وأغلى قليلًا من التوجّه إلى مزوّد مباشرة.</string>
+    <string name="setup__provider__choice_cloud_btn">عرض الخطط</string>
     <string name="setup__provider__choice_own_title">استخدام مزوّد ذكاء اصطناعي خاص بك</string>
     <string name="setup__provider__choice_own_body">أنشئ مفتاحًا لدى مزوّد تختاره — Groq مجاني للإملاء اليومي. تحتفظ بحسابك وتدفع للمزوّد مباشرة بأسعاره. يستغرق نحو دقيقتين.</string>
     <string name="setup__provider__choice_own_btn">إعداد مفتاحي الخاص</string>
@@ -1713,7 +1713,7 @@
     <string name="changelog__intro">تم تحديث Voice Mode. إليك ما الجديد:</string>
     <string name="changelog__version_header">الإصدار {version}</string>
     <string name="changelog__donate">هل يعجبك Voice Mode؟ انقر هنا لدعم التطوير ♥</string>
-    <string name="changelog__current">• لوحة مفاتيح جديدة كليًا: يأتي Voice Mode الآن كلوحة مفاتيح متعددة اللغات كاملة التخطيط مع مفتاح ميكروفون مخصّص يفتح لوحة الصوت.\n• استخدم ذكاءك الاصطناعي الخاص: اختر أي مزوّد متوافق مع OpenAI وأدخِل مفتاح API الخاص بك ضمن الإعدادات ← Voice Mode.\n• تنسيق وإعادة صياغة ذكيان بدعم من النموذج الذي تختاره.\n• تُستورَد إعداداتك من تطبيق Dictate السابق تلقائيًا.</string>
+    <string name="changelog__current">• لوحة مفاتيح جديدة كليًا: يأتي Voice Mode الآن كلوحة مفاتيح متعددة اللغات كاملة التخطيط مع مفتاح ميكروفون مخصّص يفتح لوحة الصوت.\n• استخدم ذكاءك الاصطناعي الخاص: اختر أي مزوّد متوافق مع OpenAI وأدخِل مفتاح API الخاص بك ضمن الإعدادات ← Voice Mode.\n• تنسيق وإعادة صياغة ذكيان بدعم من النموذج الذي تختاره.\n• تُستورَد إعداداتك من تطبيق Voice Mode السابق تلقائيًا.</string>
     <string name="changelog__v4_1_0">• جديد: ابحث عن الرموز التعبيرية مباشرة من لوحة المفاتيح.\n• مزوّد تفريغ صوتي جديد: Soniox.\n• أعد إدراج آخر إملاء، واستعد التسجيلات التي انقطعت عند إغلاق لوحة المفاتيح.\n• يتم الآن تحديث شريط المطالبات مباشرةً: اضغط مطوّلاً على مطالبة لتعديلها.\n• تعرض الآن شاشة مزوّدي الذكاء الاصطناعي مزوّد التفريغ الصوتي ومزوّد إعادة الصياغة النشطين معًا.\n• زر تسجيل أكبر وأسهل في الضغط عليه.\n• إصلاحات: كان من الممكن أن يعلق إشعار الدعم ويحجب الشريط في بعض اللغات؛ لم يعد النسخ الاحتياطي يفشل عند تحديد المطالبات أو لوحة المفاتيح أو السمة؛ تُحفظ مفاتيح API المخزّنة عند التحديث.</string>
     <string name="changelog__v4_1_1">• إصلاح: قد يظهر لون التمييز باللون الأخضر على بعض الأجهزة؛ عادت المفاتيح والأزرار إلى الأزرق الخاص بـ Voice Mode.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -1995,7 +1995,7 @@
     <string name="apptour__providers_cta">اختر مزوّدًا</string>
     <string name="apptour__legacy_eyebrow">عودة الكلاسيكية</string>
     <string name="apptour__legacy_title">تخطيط الإملاء الكلاسيكي</string>
-    <string name="apptour__legacy_body">أتفضّل الصوت على المفاتيح؟ عادت شاشة Dictate 3 الخالية من لوحة المفاتيح — اجعلها الافتراضية، أو أبقِها على بُعد تمريرة واحدة من لوحة المفاتيح الكاملة.</string>
+    <string name="apptour__legacy_body">أتفضّل الصوت على المفاتيح؟ عادت الشاشة الخالية من لوحة المفاتيح — اجعلها الافتراضية، أو أبقِها على بُعد تمريرة واحدة من لوحة المفاتيح الكاملة.</string>
     <string name="apptour__legacy_cta">اختر تخطيطًا</string>
     <string name="apptour__library_eyebrow">المجتمع</string>
     <string name="apptour__library_title">مكتبة الموجّهات</string>
@@ -2220,7 +2220,7 @@
     <string name="apptour63__outro_eyebrow">هذه هي 6.3</string>
     <string name="apptour63__outro_title">التفافات أقل، اللوحة نفسها</string>
     <string name="apptour63__outro_body">لا يتغير شيء في طريقة إملائك — مفتاحك الخاص أو خادمك الخاص أو نموذج على الجهاز. تجد كل الجولات من جديد في الإعدادات › حول التطبيق.</string>
-    <string name="changelog__v5_0_0">• جديد: الكتابة بالسحب — اسحب عبر المفاتيح لكتابة كلمات كاملة، مع قواميس لكل لغة تُنزَّل عند الطلب. 👆\n• جديد: اقتراحات الكلمات والتصحيح التلقائي — تُصحَّح الأخطاء المطبعية تلقائيًا وتبقى الكلمة التي كتبتها على بُعد نقرة واحدة. ✨\n• جديد: النسخ الفوري — شاهد كلماتك تظهر أثناء حديثك، مع OpenAI وDeepgram وSoniox وAssemblyAI وElevenLabs. ⚡\n• جديد: ثلاثة مزوّدي نسخ إضافيين — ElevenLabs Scribe وDeepgram وAssemblyAI. ☁️\n• جديد: تخطيط الإملاء الكلاسيكي — عادت شاشة الصوت بلا لوحة مفاتيح من Dictate 3، مثبتة أو على بُعد سحبة واحدة. 🎙️\n• جديد: مكتبة موجّهات المجتمع — تصفح موجّهات إعادة الصياغة وشاركها. 📚\n• جديد: إحصاءات الإملاء مع محطات إنجاز. 📊\n• جديد: نموذج NVIDIA Parakeet دون اتصال، إضافة إلى مرشّح صمت يتخطى التسجيلات الفارغة. 📴\n• المزيد: زر عائم أكثر ثباتًا، والتحكم في جهد الاستدلال، وردود لمسية، وسمة E-Reader جديدة، وعشرات الإصلاحات. 🛠️</string>
+    <string name="changelog__v5_0_0">• جديد: الكتابة بالسحب — اسحب عبر المفاتيح لكتابة كلمات كاملة، مع قواميس لكل لغة تُنزَّل عند الطلب. 👆\n• جديد: اقتراحات الكلمات والتصحيح التلقائي — تُصحَّح الأخطاء المطبعية تلقائيًا وتبقى الكلمة التي كتبتها على بُعد نقرة واحدة. ✨\n• جديد: النسخ الفوري — شاهد كلماتك تظهر أثناء حديثك، مع OpenAI وDeepgram وSoniox وAssemblyAI وElevenLabs. ⚡\n• جديد: ثلاثة مزوّدي نسخ إضافيين — ElevenLabs Scribe وDeepgram وAssemblyAI. ☁️\n• جديد: تخطيط الإملاء الكلاسيكي — عادت شاشة الصوت بلا لوحة مفاتيح، مثبتة أو على بُعد سحبة واحدة. 🎙️\n• جديد: مكتبة موجّهات المجتمع — تصفح موجّهات إعادة الصياغة وشاركها. 📚\n• جديد: إحصاءات الإملاء مع محطات إنجاز. 📊\n• جديد: نموذج NVIDIA Parakeet دون اتصال، إضافة إلى مرشّح صمت يتخطى التسجيلات الفارغة. 📴\n• المزيد: زر عائم أكثر ثباتًا، والتحكم في جهد الاستدلال، وردود لمسية، وسمة E-Reader جديدة، وعشرات الإصلاحات. 🛠️</string>
     <string name="media__tab__gifs">GIFs</string>
     <string name="prefs__media__gif__title">GIFs</string>
     <string name="prefs__media__gif_enabled">تفعيل البحث عن GIF</string>
@@ -2324,7 +2324,7 @@
     <string name="dictate__cloud_recovery_field">رمز الاسترداد</string>
     <string name="dictate__cloud_recovery_confirm">استرداد</string>
     <string name="dictate__cloud_recovery_not_found">لم يُعثر على رصيد لهذا الرمز.</string>
-    <string name="dictate__error_cloud_no_account">لا يوجد حساب رصيد على هذا الجهاز</string>
+    <string name="dictate__error_cloud_no_account">لا يوجد حساب Voice Mode Cloud على هذا الجهاز</string>
     <string name="dictate__cloud_devices_full_title">أجهزة كثيرة جدًا</string>
     <string name="dictate__cloud_devices_full_body">رصيدك مستخدم بالفعل على {count} أجهزة، وهذا أقصى عدد مسموح به في وقت واحد. سجّل خروج أحدها لاستخدامه هنا — الرصيد نفسه لا يتأثر.</string>
     <string name="dictate__cloud_devices_sign_out">تسجيل الخروج</string>

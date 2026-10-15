@@ -812,8 +812,8 @@
     <string name="backup_and_restore__back_up__files">Válassza ki, hogy miről készít biztonsági mentést</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Beállítások</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API-kulcsok és jelszavak</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Ez az archívum tisztán olvasható formában tartalmazza az API-kulcsaidat és jelszavaidat, valamint a Voice Mode Cloud egyenlegedet — aki megkapja, a te költségedre diktálhat. Ne add tovább, és ha már megtetted, változtasd meg a kulcsot a szolgáltatónál. Minden más, ami alább be van jelölve, vele együtt utazik, beleértve az átírási előzményeket és a vágólapot.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Ez az archívum nem tartalmaz API-kulcsot, jelszót és Voice Mode Cloud egyenleget, így továbbadható, de a tiédet sem állítja vissza. Minden más, ami alább be van jelölve, továbbra is benne van, az átírási előzmények és a vágólap is.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Ez az archívum tisztán olvasható formában tartalmazza az API-kulcsaidat és jelszavaidat, valamint a Voice Mode Cloud bejelentkezési adataidat — aki megkapja, a te költségedre diktálhat. Ne add tovább, és ha már megtetted, változtasd meg a kulcsot a szolgáltatónál. Minden más, ami alább be van jelölve, vele együtt utazik, beleértve az átírási előzményeket és a vágólapot.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Ez az archívum nem tartalmaz API-kulcsot, jelszót és Voice Mode Cloud bejelentkezési adatokat, így továbbadható, de a tiédet sem állítja vissza. Minden más, ami alább be van jelölve, továbbra is benne van, az átírási előzmények és a vágólap is.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Ez az archívum nem tartalmaz API-kulcsot és jelszót, de tartalmaz mindent, ami alább be van jelölve: az átírási előzményeket a megtartott felvételekkel, a vágólapot, a promptjaidat és azokat a szavakat, amelyeket a billentyűzet tőled tanult.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Billentyűzetkiterjesztések</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Helyesírási kiterjesztések / szótárak</string>
@@ -1311,9 +1311,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Válassza ki, hogyan írjon át a Voice Mode</string>
     <string name="setup__provider__choose_intro">A Voice Mode egy MI-szolgáltatás segítségével alakítja a beszédet szöveggé. A legtöbbeknek megfelel a két fenti mód valamelyike — ha pedig egyáltalán nem szeretne felhőszolgáltatást használni, alább van még kettő.</string>
-    <string name="setup__provider__choice_cloud_title">Egyenleg vásárlása az alkalmazásban</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: sehol nem kell fiók, nem kell API-kulcs. A diktálási perceket a Google Play-en keresztül veszi meg, és soha nem járnak le. A kényelmes út — és valamivel drágább, mintha közvetlenül egy szolgáltatóhoz fordulna.</string>
-    <string name="setup__provider__choice_cloud_btn">Egyenlegcsomagok megjelenítése</string>
+    <string name="setup__provider__choice_cloud_title">Előfizetés az alkalmazásban</string>
+    <string name="setup__provider__choice_cloud_body">Plus: nem kell fiók egy MI-szolgáltatónál, nem kell API-kulcs. Az előfizetést a Google Play-en keresztül köti meg, és bármikor lemondhatja. A kényelmes út — és valamivel drágább, mintha közvetlenül egy szolgáltatóhoz fordulna.</string>
+    <string name="setup__provider__choice_cloud_btn">Csomagok megjelenítése</string>
     <string name="setup__provider__choice_own_title">Saját MI-szolgáltató használata</string>
     <string name="setup__provider__choice_own_body">Hozzon létre kulcsot egy tetszőleges szolgáltatónál — a Groq ingyenes a mindennapi diktáláshoz. Megmarad a saját fiókja, és közvetlenül a szolgáltatónak fizet, az ő árain. Nagyjából két perc.</string>
     <string name="setup__provider__choice_own_btn">Saját kulcs beállítása</string>
@@ -1854,7 +1854,7 @@
     <string name="changelog__intro">A Voice Mode frissült. Íme az újdonságok:</string>
     <string name="changelog__version_header">{version} verzió</string>
     <string name="changelog__donate">Tetszik a Voice Mode? Koppintson ide a fejlesztés támogatásához ♥</string>
-    <string name="changelog__current">• Vadonatúj billentyűzet: a Voice Mode mostantól teljes értékű, többnyelvű elrendezésű billentyűzetként érkezik, dedikált mikrofongombbal, amely megnyitja a hangpanelt.\n• Hozza a saját MI-jét: válasszon bármilyen OpenAI-kompatibilis szolgáltatót, és adja meg az API-kulcsát a Beállítások → Voice Mode menüpontban.\n• Intelligens formázás és átfogalmazás az Ön által választott modell segítségével.\n• A korábbi Dictate alkalmazás beállításai automatikusan importálódnak.</string>
+    <string name="changelog__current">• Vadonatúj billentyűzet: a Voice Mode mostantól teljes értékű, többnyelvű elrendezésű billentyűzetként érkezik, dedikált mikrofongombbal, amely megnyitja a hangpanelt.\n• Hozza a saját MI-jét: válasszon bármilyen OpenAI-kompatibilis szolgáltatót, és adja meg az API-kulcsát a Beállítások → Voice Mode menüpontban.\n• Intelligens formázás és átfogalmazás az Ön által választott modell segítségével.\n• A korábbi Voice Mode alkalmazás beállításai automatikusan importálódnak.</string>
     <string name="changelog__v4_1_0">• Új: emodzsik keresése közvetlenül a billentyűzetről.\n• Új átírási szolgáltató: Soniox.\n• Szúrd be újra a legutóbbi diktálást, és állítsd vissza a billentyűzet bezárásakor megszakadt felvételeket.\n• A promptsáv mostantól élőben frissül: tartsd nyomva egy promptot a szerkesztéséhez.\n• Az AI-szolgáltatók képernyője mostantól az aktív átírási és átfogalmazási szolgáltatót is megjeleníti.\n• Nagyobb, könnyebben eltalálható felvétel gomb.\n• Javítások: egy támogatási üzenet beragadhatott, és eltakarhatta a sávot néhány nyelven; a biztonsági mentés már nem hiúsul meg, ha promptok, billentyűzet vagy téma van kiválasztva; a mentett API-kulcsok megmaradnak frissítéskor.</string>
     <string name="changelog__v4_1_1">• Javítás: a kiemelőszín egyes eszközökön zöldnek tűnhetett; a billentyűk és gombok ismét a Voice Mode kék színében jelennek meg.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -2132,7 +2132,7 @@
     <string name="apptour__providers_cta">Szolgáltató választása</string>
     <string name="apptour__legacy_eyebrow">Egy klasszikus visszatér</string>
     <string name="apptour__legacy_title">Klasszikus diktálási elrendezés</string>
-    <string name="apptour__legacy_body">Inkább a hangot részesíted előnyben a billentyűk helyett? A Dictate 3 billentyűzet nélküli képernyője visszatért — tedd alapértelmezetté, vagy tartsd egyetlen húzásnyira a teljes billentyűzettől.</string>
+    <string name="apptour__legacy_body">Inkább a hangot részesíted előnyben a billentyűk helyett? A billentyűzet nélküli képernyő visszatért — tedd alapértelmezetté, vagy tartsd egyetlen húzásnyira a teljes billentyűzettől.</string>
     <string name="apptour__legacy_cta">Elrendezés választása</string>
     <string name="apptour__library_eyebrow">Közösség</string>
     <string name="apptour__library_title">Prompt-könyvtár</string>
@@ -2357,7 +2357,7 @@
     <string name="apptour63__outro_eyebrow">Ez a 6.3</string>
     <string name="apptour63__outro_title">Kevesebb kerülő, ugyanaz a billentyűzet</string>
     <string name="apptour63__outro_body">Semmi nem változik abban, ahogy diktálsz — saját kulcs, saját kiszolgáló vagy egy modell az eszközön. Minden bemutatót újra megtalálsz a Beállítások › Névjegy alatt.</string>
-    <string name="changelog__v5_0_0">• ÚJ: Húzásos gépelés — húzza az ujját a billentyűkön, hogy egész szavakat írjon, igény szerint letöltődő, nyelvenkénti szótárakkal. 👆\n• ÚJ: Szójavaslatok és automatikus javítás — az elgépelések automatikusan javulnak, és a beírt szó egy koppintásra marad. ✨\n• ÚJ: Valós idejű átírás — nézze, ahogy a szavak megjelennek beszéd közben, OpenAI, Deepgram, Soniox, AssemblyAI és ElevenLabs használatával. ⚡\n• ÚJ: Három további átírási szolgáltató — ElevenLabs Scribe, Deepgram és AssemblyAI. ☁️\n• ÚJ: Klasszikus diktálási elrendezés — a Dictate 3 billentyűzet nélküli hangképernyője visszatért, rögzítve vagy egy húzásnyira. 🎙️\n• ÚJ: Közösségi prompt-könyvtár — böngésszen és osszon meg újrafogalmazási prompteket. 📚\n• ÚJ: Diktálási statisztikák mérföldkövekkel. 📊\n• ÚJ: Offline modell NVIDIA Parakeet, valamint egy csendszűrő, amely kihagyja az üres felvételeket. 📴\n• Továbbá: stabilabb lebegő gomb, gondolkodási erőfeszítés vezérlése, haptikus visszajelzés, új E-Reader téma és több tucat javítás. 🛠️</string>
+    <string name="changelog__v5_0_0">• ÚJ: Húzásos gépelés — húzza az ujját a billentyűkön, hogy egész szavakat írjon, igény szerint letöltődő, nyelvenkénti szótárakkal. 👆\n• ÚJ: Szójavaslatok és automatikus javítás — az elgépelések automatikusan javulnak, és a beírt szó egy koppintásra marad. ✨\n• ÚJ: Valós idejű átírás — nézze, ahogy a szavak megjelennek beszéd közben, OpenAI, Deepgram, Soniox, AssemblyAI és ElevenLabs használatával. ⚡\n• ÚJ: Három további átírási szolgáltató — ElevenLabs Scribe, Deepgram és AssemblyAI. ☁️\n• ÚJ: Klasszikus diktálási elrendezés — a billentyűzet nélküli hangképernyő visszatért, rögzítve vagy egy húzásnyira. 🎙️\n• ÚJ: Közösségi prompt-könyvtár — böngésszen és osszon meg újrafogalmazási prompteket. 📚\n• ÚJ: Diktálási statisztikák mérföldkövekkel. 📊\n• ÚJ: Offline modell NVIDIA Parakeet, valamint egy csendszűrő, amely kihagyja az üres felvételeket. 📴\n• Továbbá: stabilabb lebegő gomb, gondolkodási erőfeszítés vezérlése, haptikus visszajelzés, új E-Reader téma és több tucat javítás. 🛠️</string>
     <string name="media__tab__gifs">GIF-ek</string>
     <string name="prefs__media__gif__title">GIF-ek</string>
     <string name="prefs__media__gif_enabled">GIF-keresés engedélyezése</string>
@@ -2461,7 +2461,7 @@
     <string name="dictate__cloud_recovery_field">Helyreállítási kód</string>
     <string name="dictate__cloud_recovery_confirm">Visszaállítás</string>
     <string name="dictate__cloud_recovery_not_found">Ehhez a kódhoz nem található egyenleg.</string>
-    <string name="dictate__error_cloud_no_account">Nincs kreditfiók ezen az eszközön</string>
+    <string name="dictate__error_cloud_no_account">Nincs Voice Mode Cloud-fiók ezen az eszközön</string>
     <string name="dictate__cloud_devices_full_title">Túl sok eszköz</string>
     <string name="dictate__cloud_devices_full_body">A kredited már {count} eszközön van használatban, ennyi lehet egyszerre. Jelentkezz ki az egyikről, hogy itt használhasd — maga a kredit érintetlen marad.</string>
     <string name="dictate__cloud_devices_sign_out">Kijelentkezés</string>

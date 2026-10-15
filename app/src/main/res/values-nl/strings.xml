@@ -731,8 +731,8 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="backup_and_restore__back_up__files">Selecteer waarvan u een back-up wilt maken</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Voorkeuren</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API-sleutels en wachtwoorden</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Dit archief bevat je API-sleutels en wachtwoorden in leesbare tekst, plus je Voice Mode Cloud-krediet: wie het krijgt, kan op jouw kosten dicteren. Geef het niet door, en als je dat al hebt gedaan, wijzig dan de sleutel bij je aanbieder. Al het andere dat hieronder is aangevinkt gaat mee, ook je transcriptiegeschiedenis en je klembord.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Dit archief bevat geen API-sleutels, wachtwoorden of Voice Mode Cloud-krediet, dus je kunt het doorgeven, maar het zet die van jou ook niet terug. Al het andere dat hieronder is aangevinkt zit er nog in, ook je transcriptiegeschiedenis en je klembord.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Dit archief bevat je API-sleutels en wachtwoorden in leesbare tekst, plus je Voice Mode Cloud-aanmelding: wie het krijgt, kan op jouw kosten dicteren. Geef het niet door, en als je dat al hebt gedaan, wijzig dan de sleutel bij je aanbieder. Al het andere dat hieronder is aangevinkt gaat mee, ook je transcriptiegeschiedenis en je klembord.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Dit archief bevat geen API-sleutels, wachtwoorden of Voice Mode Cloud-aanmelding, dus je kunt het doorgeven, maar het zet die van jou ook niet terug. Al het andere dat hieronder is aangevinkt zit er nog in, ook je transcriptiegeschiedenis en je klembord.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Dit archief bevat geen API-sleutels of wachtwoorden, maar wel alles wat hieronder is aangevinkt: je transcriptiegeschiedenis met bewaarde opnames, je klembord, je prompts en de woorden die het toetsenbord van je heeft geleerd.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Toetsenbordextensies</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Spellingextensies /woordenboeken</string>
@@ -1212,9 +1212,9 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Kies hoe Voice Mode transcribeert</string>
     <string name="setup__provider__choose_intro">Voice Mode zet je spraak om in tekst met een AI-dienst. Voor de meeste mensen voldoet een van deze twee manieren — en wil je helemaal geen clouddienst gebruiken, dan staan er hieronder nog twee.</string>
-    <string name="setup__provider__choice_cloud_title">Tegoed kopen in de app</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: nergens een account, geen API-sleutel. Je koopt dicteerminuten via Google Play en ze verlopen nooit. De makkelijke weg — en wat duurder dan rechtstreeks naar een aanbieder gaan.</string>
-    <string name="setup__provider__choice_cloud_btn">Tegoedpakketten tonen</string>
+    <string name="setup__provider__choice_cloud_title">Abonneren in de app</string>
+    <string name="setup__provider__choice_cloud_body">Plus: geen account bij een AI-aanbieder, geen API-sleutel. Je neemt een abonnement via Google Play en kunt het altijd opzeggen. De makkelijke weg — en wat duurder dan rechtstreeks naar een aanbieder gaan.</string>
+    <string name="setup__provider__choice_cloud_btn">Abonnementen tonen</string>
     <string name="setup__provider__choice_own_title">Je eigen AI-aanbieder gebruiken</string>
     <string name="setup__provider__choice_own_body">Maak een sleutel aan bij een aanbieder naar keuze — Groq is gratis voor dagelijks dicteren. Je houdt je eigen account en betaalt de aanbieder rechtstreeks tegen diens prijzen. Duurt zo\'n twee minuten.</string>
     <string name="setup__provider__choice_own_btn">Mijn eigen sleutel instellen</string>
@@ -1755,7 +1755,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="changelog__intro">Voice Mode is bijgewerkt. Dit is er nieuw:</string>
     <string name="changelog__version_header">Versie {version}</string>
     <string name="changelog__donate">Vind je Voice Mode leuk? Tik hier om de ontwikkeling te steunen ♥</string>
-    <string name="changelog__current">• Gloednieuw toetsenbord: Voice Mode is nu een volwaardig meertalig lay-outtoetsenbord met een eigen microfoontoets die het spraakpaneel opent.\n• Gebruik je eigen AI: kies een willekeurige OpenAI-compatibele aanbieder en voer je API-sleutel in via Instellingen → Voice Mode.\n• Slimme opmaak en herformulering met het model van jouw keuze.\n• Je instellingen van de vorige Dictate-app worden automatisch geïmporteerd.</string>
+    <string name="changelog__current">• Gloednieuw toetsenbord: Voice Mode is nu een volwaardig meertalig lay-outtoetsenbord met een eigen microfoontoets die het spraakpaneel opent.\n• Gebruik je eigen AI: kies een willekeurige OpenAI-compatibele aanbieder en voer je API-sleutel in via Instellingen → Voice Mode.\n• Slimme opmaak en herformulering met het model van jouw keuze.\n• Je instellingen van de vorige Voice Mode-app worden automatisch geïmporteerd.</string>
     <string name="changelog__v4_1_0">• Nieuw: zoek emoji\'s rechtstreeks vanaf het toetsenbord.\n• Nieuwe transcriptieprovider: Soniox.\n• Voeg je laatste dictaat opnieuw in en herstel opnames die werden onderbroken toen het toetsenbord sloot.\n• De promptbalk wordt nu live bijgewerkt: houd een prompt ingedrukt om die te bewerken.\n• Het scherm met AI-providers toont nu zowel je actieve transcriptie- als herformuleringsprovider.\n• Grotere opnameknop die makkelijker te raken is.\n• Oplossingen: een ondersteuningsmelding kon blijven hangen en de balk blokkeren in sommige talen; back-up mislukt niet meer wanneer prompts, toetsenbord of thema zijn geselecteerd; opgeslagen API-sleutels blijven behouden bij het updaten.</string>
     <string name="changelog__v4_1_1">• Oplossing: de accentkleur kon op sommige apparaten groen lijken; toetsen en knoppen zijn weer Voice Mode-blauw.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -2033,7 +2033,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour__providers_cta">Kies een aanbieder</string>
     <string name="apptour__legacy_eyebrow">Een klassieker keert terug</string>
     <string name="apptour__legacy_title">Klassieke dicteerindeling</string>
-    <string name="apptour__legacy_body">Liever spreken dan typen? Het toetsenbordloze scherm uit Dictate 3 is terug — maak het je standaard of houd het op één veeg afstand van het volledige toetsenbord.</string>
+    <string name="apptour__legacy_body">Liever spreken dan typen? Het toetsenbordloze scherm is terug — maak het je standaard of houd het op één veeg afstand van het volledige toetsenbord.</string>
     <string name="apptour__legacy_cta">Kies een indeling</string>
     <string name="apptour__library_eyebrow">Community</string>
     <string name="apptour__library_title">Promptbibliotheek</string>
@@ -2258,7 +2258,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="apptour63__outro_eyebrow">Dat is 6.3</string>
     <string name="apptour63__outro_title">Minder omwegen, hetzelfde toetsenbord</string>
     <string name="apptour63__outro_body">Aan de manier waarop je dicteert verandert niets — je eigen sleutel, je eigen server of een model op het toestel. Alle rondleidingen vind je terug onder Instellingen › Over.</string>
-    <string name="changelog__v5_0_0">• NIEUW: Veegtypen — veeg over de toetsen om hele woorden te typen, met woordenboeken per taal die op aanvraag worden gedownload. 👆\n• NIEUW: Woordsuggesties &amp; autocorrectie — typfouten worden automatisch hersteld en het woord dat je typte blijft één tik verwijderd. ✨\n• NIEUW: Realtime transcriptie — zie je woorden verschijnen terwijl je praat, met OpenAI, Deepgram, Soniox, AssemblyAI en ElevenLabs. ⚡\n• NIEUW: Drie extra transcriptieaanbieders — ElevenLabs Scribe, Deepgram en AssemblyAI. ☁️\n• NIEUW: Klassieke dicteerindeling — het toetsenbordloze spraakscherm uit Dictate 3 is terug, vastgezet of gewoon één veeg weg. 🎙️\n• NIEUW: Community-promptbibliotheek — blader door en deel herformuleringsprompts. 📚\n• NIEUW: Dicteerstatistieken met mijlpalen. 📊\n• NIEUW: Offline-model NVIDIA Parakeet, plus een stiltefilter dat lege opnames overslaat. 📴\n• Meer: een stabielere zwevende knop, instelbare redeneerinspanning, haptische feedback, een nieuw E-Reader-thema en tientallen oplossingen. 🛠️</string>
+    <string name="changelog__v5_0_0">• NIEUW: Veegtypen — veeg over de toetsen om hele woorden te typen, met woordenboeken per taal die op aanvraag worden gedownload. 👆\n• NIEUW: Woordsuggesties &amp; autocorrectie — typfouten worden automatisch hersteld en het woord dat je typte blijft één tik verwijderd. ✨\n• NIEUW: Realtime transcriptie — zie je woorden verschijnen terwijl je praat, met OpenAI, Deepgram, Soniox, AssemblyAI en ElevenLabs. ⚡\n• NIEUW: Drie extra transcriptieaanbieders — ElevenLabs Scribe, Deepgram en AssemblyAI. ☁️\n• NIEUW: Klassieke dicteerindeling — het toetsenbordloze spraakscherm is terug, vastgezet of gewoon één veeg weg. 🎙️\n• NIEUW: Community-promptbibliotheek — blader door en deel herformuleringsprompts. 📚\n• NIEUW: Dicteerstatistieken met mijlpalen. 📊\n• NIEUW: Offline-model NVIDIA Parakeet, plus een stiltefilter dat lege opnames overslaat. 📴\n• Meer: een stabielere zwevende knop, instelbare redeneerinspanning, haptische feedback, een nieuw E-Reader-thema en tientallen oplossingen. 🛠️</string>
     <string name="media__tab__gifs">GIFs</string>
     <string name="prefs__media__gif__title">GIFs</string>
     <string name="prefs__media__gif_enabled">GIF-zoeken inschakelen</string>
@@ -2362,7 +2362,7 @@ Deze toestemming kan op elk moment worden gewijzigd in de systeeminstellingen.  
     <string name="dictate__cloud_recovery_field">Herstelcode</string>
     <string name="dictate__cloud_recovery_confirm">Herstellen</string>
     <string name="dictate__cloud_recovery_not_found">Geen tegoed gevonden voor deze code.</string>
-    <string name="dictate__error_cloud_no_account">Geen tegoedaccount op dit apparaat</string>
+    <string name="dictate__error_cloud_no_account">Geen Voice Mode Cloud-account op dit apparaat</string>
     <string name="dictate__cloud_devices_full_title">Te veel apparaten</string>
     <string name="dictate__cloud_devices_full_body">Je tegoed wordt al op {count} apparaten gebruikt, en meer kan niet tegelijk. Meld er één af om het hier te gebruiken — het tegoed zelf blijft ongemoeid.</string>
     <string name="dictate__cloud_devices_sign_out">Afmelden</string>

@@ -795,8 +795,8 @@
     <string name="backup_and_restore__back_up__files">Pilih apa yang akan dicadangkan</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Preferensi</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">Kunci API dan kata sandi</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Arsip ini memuat kunci API dan kata sandi Anda dalam teks biasa, beserta saldo Voice Mode Cloud Anda — siapa pun yang menerimanya bisa mendikte atas biaya Anda. Jangan meneruskannya, dan jika sudah, gantilah kuncinya di penyedia Anda. Semua hal lain yang dicentang di bawah ikut terbawa, termasuk riwayat transkripsi dan papan klip Anda.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Arsip ini tidak memuat kunci API, kata sandi, maupun saldo Voice Mode Cloud, jadi boleh diteruskan, tetapi juga tidak akan memulihkan milik Anda. Semua hal lain yang dicentang di bawah tetap ada di dalamnya, termasuk riwayat transkripsi dan papan klip Anda.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Arsip ini memuat kunci API dan kata sandi Anda dalam teks biasa, beserta akses Voice Mode Cloud Anda — siapa pun yang menerimanya bisa mendikte atas biaya Anda. Jangan meneruskannya, dan jika sudah, gantilah kuncinya di penyedia Anda. Semua hal lain yang dicentang di bawah ikut terbawa, termasuk riwayat transkripsi dan papan klip Anda.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Arsip ini tidak memuat kunci API, kata sandi, maupun akses Voice Mode Cloud, jadi boleh diteruskan, tetapi juga tidak akan memulihkan milik Anda. Semua hal lain yang dicentang di bawah tetap ada di dalamnya, termasuk riwayat transkripsi dan papan klip Anda.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Arsip ini tidak memuat kunci API dan kata sandi, tetapi memuat semua yang dicentang di bawah: riwayat transkripsi beserta rekaman yang disimpan, papan klip, prompt Anda, dan kata-kata yang dipelajari papan ketik dari Anda.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Ekstensi papan ketik</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Ekstensi / kamus ejaan</string>
@@ -1266,9 +1266,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Pilih cara Voice Mode menyalin suara</string>
     <string name="setup__provider__choose_intro">Voice Mode mengubah suaramu menjadi teks dengan bantuan layanan AI. Dua cara di atas cocok untuk kebanyakan orang — dan kalau kamu sama sekali tidak ingin memakai layanan awan, ada dua cara lagi di bawah.</string>
-    <string name="setup__provider__choice_cloud_title">Beli saldo di dalam aplikasi</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: tanpa akun di mana pun, tanpa kunci API. Kamu membeli menit pendiktean lewat Google Play dan saldonya tidak pernah kedaluwarsa. Jalan yang praktis — dan sedikit lebih mahal daripada langsung ke penyedia.</string>
-    <string name="setup__provider__choice_cloud_btn">Tampilkan paket saldo</string>
+    <string name="setup__provider__choice_cloud_title">Berlangganan di dalam aplikasi</string>
+    <string name="setup__provider__choice_cloud_body">Plus: tanpa akun di penyedia AI, tanpa kunci API. Kamu berlangganan lewat Google Play dan bisa membatalkan kapan saja. Jalan yang praktis — dan sedikit lebih mahal daripada langsung ke penyedia.</string>
+    <string name="setup__provider__choice_cloud_btn">Tampilkan paket langganan</string>
     <string name="setup__provider__choice_own_title">Pakai penyedia AI sendiri</string>
     <string name="setup__provider__choice_own_body">Buat kunci di penyedia pilihanmu — Groq gratis untuk pendiktean sehari-hari. Kamu tetap memegang akunmu sendiri dan membayar langsung ke penyedia dengan harganya. Perlu sekitar dua menit.</string>
     <string name="setup__provider__choice_own_btn">Siapkan kunci saya sendiri</string>
@@ -1809,7 +1809,7 @@
     <string name="changelog__intro">Voice Mode telah diperbarui. Inilah yang baru:</string>
     <string name="changelog__version_header">Versi {version}</string>
     <string name="changelog__donate">Suka dengan Voice Mode? Ketuk di sini untuk mendukung pengembangan ♥</string>
-    <string name="changelog__current">• Papan ketik yang sama sekali baru: Voice Mode kini hadir sebagai papan ketik tata letak multibahasa lengkap dengan tombol mikrofon khusus yang membuka panel suara.\n• Bawa AI Anda sendiri: pilih penyedia apa pun yang kompatibel dengan OpenAI dan masukkan kunci API Anda di Pengaturan → Voice Mode.\n• Pemformatan dan penyusunan ulang cerdas yang didukung oleh model pilihan Anda.\n• Pengaturan Anda dari aplikasi Dictate sebelumnya diimpor secara otomatis.</string>
+    <string name="changelog__current">• Papan ketik yang sama sekali baru: Voice Mode kini hadir sebagai papan ketik tata letak multibahasa lengkap dengan tombol mikrofon khusus yang membuka panel suara.\n• Bawa AI Anda sendiri: pilih penyedia apa pun yang kompatibel dengan OpenAI dan masukkan kunci API Anda di Pengaturan → Voice Mode.\n• Pemformatan dan penyusunan ulang cerdas yang didukung oleh model pilihan Anda.\n• Pengaturan Anda dari aplikasi Voice Mode sebelumnya diimpor secara otomatis.</string>
     <string name="changelog__v4_1_0">• Baru: cari emoji langsung dari keyboard.\n• Penyedia transkripsi baru: Soniox.\n• Sisipkan kembali dikte terakhir Anda, dan pulihkan rekaman yang terputus saat keyboard ditutup.\n• Bilah prompt kini diperbarui secara langsung: tekan lama sebuah prompt untuk mengeditnya.\n• Layar penyedia AI kini menampilkan penyedia transkripsi dan pengubahan kata yang aktif.\n• Tombol rekam lebih besar dan lebih mudah ditekan.\n• Perbaikan: pesan dukungan bisa macet dan menutupi bilah dalam beberapa bahasa; pencadangan tidak lagi gagal saat prompt, keyboard, atau tema dipilih; kunci API yang tersimpan dipertahankan saat memperbarui.</string>
     <string name="changelog__v4_1_1">• Perbaikan: warna aksen bisa tampak hijau di beberapa perangkat; tombol dan tuts kembali ke biru Voice Mode.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -2086,7 +2086,7 @@
     <string name="apptour__providers_cta">Pilih penyedia</string>
     <string name="apptour__legacy_eyebrow">Klasik yang kembali</string>
     <string name="apptour__legacy_title">Tata letak dikte klasik</string>
-    <string name="apptour__legacy_body">Lebih suka suara daripada tombol? Layar tanpa keyboard dari Dictate 3 kembali — jadikan default, atau simpan hanya sejauh satu geseran dari keyboard penuh.</string>
+    <string name="apptour__legacy_body">Lebih suka suara daripada tombol? Layar tanpa keyboard kembali — jadikan default, atau simpan hanya sejauh satu geseran dari keyboard penuh.</string>
     <string name="apptour__legacy_cta">Pilih tata letak</string>
     <string name="apptour__library_eyebrow">Komunitas</string>
     <string name="apptour__library_title">Pustaka prompt</string>
@@ -2311,7 +2311,7 @@
     <string name="apptour63__outro_eyebrow">Itulah 6.3</string>
     <string name="apptour63__outro_title">Lebih sedikit memutar, papan ketik yang sama</string>
     <string name="apptour63__outro_body">Tidak ada yang berubah dari cara kamu mendikte — kunci sendiri, server sendiri, atau model di perangkat. Semua panduan bisa kamu buka lagi di Setelan › Tentang.</string>
-    <string name="changelog__v5_0_0">• BARU: Ketik geser — geser di atas tombol untuk mengetik kata utuh, dengan kamus per bahasa yang diunduh sesuai permintaan. 👆\n• BARU: Saran kata &amp; koreksi otomatis — salah ketik diperbaiki otomatis dan kata yang Anda ketik tetap tinggal satu ketukan. ✨\n• BARU: Transkripsi waktu nyata — saksikan kata-kata Anda muncul saat berbicara, dengan OpenAI, Deepgram, Soniox, AssemblyAI, dan ElevenLabs. ⚡\n• BARU: Tiga penyedia transkripsi lagi — ElevenLabs Scribe, Deepgram, dan AssemblyAI. ☁️\n• BARU: Tata letak dikte klasik — layar suara tanpa keyboard dari Dictate 3 kembali, terkunci atau tinggal satu geseran. 🎙️\n• BARU: Pustaka prompt komunitas — jelajahi dan bagikan prompt penyusunan ulang. 📚\n• BARU: Statistik dikte dengan tonggak. 📊\n• BARU: Model luring NVIDIA Parakeet, ditambah filter keheningan yang melewati rekaman kosong. 📴\n• Lainnya: tombol mengambang yang lebih stabil, kontrol upaya penalaran, umpan balik haptik, tema E-Reader baru, dan puluhan perbaikan. 🛠️</string>
+    <string name="changelog__v5_0_0">• BARU: Ketik geser — geser di atas tombol untuk mengetik kata utuh, dengan kamus per bahasa yang diunduh sesuai permintaan. 👆\n• BARU: Saran kata &amp; koreksi otomatis — salah ketik diperbaiki otomatis dan kata yang Anda ketik tetap tinggal satu ketukan. ✨\n• BARU: Transkripsi waktu nyata — saksikan kata-kata Anda muncul saat berbicara, dengan OpenAI, Deepgram, Soniox, AssemblyAI, dan ElevenLabs. ⚡\n• BARU: Tiga penyedia transkripsi lagi — ElevenLabs Scribe, Deepgram, dan AssemblyAI. ☁️\n• BARU: Tata letak dikte klasik — layar suara tanpa keyboard kembali, terkunci atau tinggal satu geseran. 🎙️\n• BARU: Pustaka prompt komunitas — jelajahi dan bagikan prompt penyusunan ulang. 📚\n• BARU: Statistik dikte dengan tonggak. 📊\n• BARU: Model luring NVIDIA Parakeet, ditambah filter keheningan yang melewati rekaman kosong. 📴\n• Lainnya: tombol mengambang yang lebih stabil, kontrol upaya penalaran, umpan balik haptik, tema E-Reader baru, dan puluhan perbaikan. 🛠️</string>
     <string name="media__tab__gifs">GIF</string>
     <string name="prefs__media__gif__title">GIF</string>
     <string name="prefs__media__gif_enabled">Aktifkan pencarian GIF</string>
@@ -2415,7 +2415,7 @@
     <string name="dictate__cloud_recovery_field">Kode pemulihan</string>
     <string name="dictate__cloud_recovery_confirm">Pulihkan</string>
     <string name="dictate__cloud_recovery_not_found">Tidak ditemukan saldo untuk kode ini.</string>
-    <string name="dictate__error_cloud_no_account">Tidak ada akun kredit di perangkat ini</string>
+    <string name="dictate__error_cloud_no_account">Tidak ada akun Voice Mode Cloud di perangkat ini</string>
     <string name="dictate__cloud_devices_full_title">Terlalu banyak perangkat</string>
     <string name="dictate__cloud_devices_full_body">Saldo Anda sudah dipakai di {count} perangkat, dan itu batas maksimalnya. Keluarkan salah satu untuk memakainya di sini — saldonya sendiri tidak berubah.</string>
     <string name="dictate__cloud_devices_sign_out">Keluarkan</string>

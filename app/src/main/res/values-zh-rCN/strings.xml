@@ -811,8 +811,8 @@
     <string name="backup_and_restore__back_up__files">选择要备份的内容</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">选项</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API 密钥和密码</string>
-    <string name="backup_and_restore__back_up__credentials_warning">该归档以明文保存你的 API 密钥和密码，还包含你的 Voice Mode Cloud 余额——拿到它的人都能用你的账户来听写。不要转交；如果已经转交过，请在服务商处更换密钥。下面勾选的其他内容也会一同带走，包括听写历史和剪贴板。</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">该归档不含 API 密钥、密码和 Voice Mode Cloud 余额，因此可以转交——但也不会恢复你的密钥。下面勾选的其他内容仍在其中，包括听写历史和剪贴板。</string>
+    <string name="backup_and_restore__back_up__credentials_warning">该归档以明文保存你的 API 密钥和密码，还包含你的 Voice Mode Cloud 登录凭据——拿到它的人都能用你的账户来听写。不要转交；如果已经转交过，请在服务商处更换密钥。下面勾选的其他内容也会一同带走，包括听写历史和剪贴板。</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">该归档不含 API 密钥、密码和 Voice Mode Cloud 登录凭据，因此可以转交——但也不会恢复你的密钥。下面勾选的其他内容仍在其中，包括听写历史和剪贴板。</string>
     <string name="backup_and_restore__back_up__personal_content_note">该归档不含 API 密钥和密码，但包含下面勾选的一切：听写历史及保留的录音、剪贴板、你的提示词，以及键盘从你这里学到的词。</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">键盘扩展</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">拼写扩展 / 词典</string>
@@ -1307,9 +1307,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">选择 Voice Mode 的转写方式</string>
     <string name="setup__provider__choose_intro">Voice Mode 借助 AI 服务把语音转成文字。上面两种方式适合大多数人；如果你完全不想用云服务，下面还有两种。</string>
-    <string name="setup__provider__choice_cloud_title">在应用内购买额度</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud：不用在任何地方注册账号，也不用 API 密钥。你通过 Google Play 购买听写分钟数，且永不过期。这是省事的方式——比直接找服务商略贵一些。</string>
-    <string name="setup__provider__choice_cloud_btn">查看额度套餐</string>
+    <string name="setup__provider__choice_cloud_title">在应用内订阅</string>
+    <string name="setup__provider__choice_cloud_body">Plus：无需 AI 服务商账号，也不用 API 密钥。你通过 Google Play 订阅，可随时取消。这是省事的方式——比直接找服务商略贵一些。</string>
+    <string name="setup__provider__choice_cloud_btn">查看方案</string>
     <string name="setup__provider__choice_own_title">使用你自己的 AI 服务商</string>
     <string name="setup__provider__choice_own_body">在你选定的服务商处创建密钥——Groq 用于日常听写是免费的。你保留自己的账号，按服务商的价格直接付费。大约需要两分钟。</string>
     <string name="setup__provider__choice_own_btn">设置我自己的密钥</string>
@@ -1850,7 +1850,7 @@
     <string name="changelog__intro">Voice Mode 已更新。以下是新功能：</string>
     <string name="changelog__version_header">版本 {version}</string>
     <string name="changelog__donate">喜欢 Voice Mode 吗？点按此处支持开发 ♥</string>
-    <string name="changelog__current">• 全新键盘：Voice Mode 现在作为完整的多语言布局键盘提供，带有专用麦克风键以打开语音面板。\n• 自带 AI：选择任何兼容 OpenAI 的服务商，并在设置 → Voice Mode 中输入您的 API 密钥。\n• 由您选择的模型驱动的智能格式化和改写。\n• 您在旧版 Dictate 应用中的设置会自动导入。</string>
+    <string name="changelog__current">• 全新键盘：Voice Mode 现在作为完整的多语言布局键盘提供，带有专用麦克风键以打开语音面板。\n• 自带 AI：选择任何兼容 OpenAI 的服务商，并在设置 → Voice Mode 中输入您的 API 密钥。\n• 由您选择的模型驱动的智能格式化和改写。\n• 您在旧版 Voice Mode 应用中的设置会自动导入。</string>
     <string name="changelog__v4_1_0">• 新增：直接从键盘搜索表情符号。\n• 新的转录服务商：Soniox。\n• 重新插入上一次的听写，并恢复键盘关闭时中断的录音。\n• 提示词栏现在会实时刷新：长按某个提示词即可编辑。\n• AI 服务商界面现在会同时显示当前启用的转录服务商和改写服务商。\n• 录音按钮更大，更容易点按。\n• 修复：在某些语言下，支持提示可能卡住并遮挡操作栏；选择了提示词、键盘或主题时备份不再失败；升级后会保留已保存的 API 密钥。</string>
     <string name="changelog__v4_1_1">• 修复：在某些设备上强调色可能显示为绿色；按键和按钮已恢复为 Voice Mode 蓝色。</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -2126,7 +2126,7 @@
     <string name="apptour__providers_cta">选择服务商</string>
     <string name="apptour__legacy_eyebrow">经典回归</string>
     <string name="apptour__legacy_title">经典听写布局</string>
-    <string name="apptour__legacy_body">更爱用语音而非按键？Dictate 3 的无键盘界面回来了——把它设为默认，或让它与完整键盘只隔一次滑动。</string>
+    <string name="apptour__legacy_body">更爱用语音而非按键？无键盘界面回来了——把它设为默认，或让它与完整键盘只隔一次滑动。</string>
     <string name="apptour__legacy_cta">选择布局</string>
     <string name="apptour__library_eyebrow">社区</string>
     <string name="apptour__library_title">提示词库</string>
@@ -2351,7 +2351,7 @@
     <string name="apptour63__outro_eyebrow">这就是 6.3</string>
     <string name="apptour63__outro_title">弯路更少，键盘依旧</string>
     <string name="apptour63__outro_body">你的口述方式没有任何变化——自己的密钥、自己的服务器，或是设备上的模型。所有导览都能在 设置 › 关于 中重新查看。</string>
-    <string name="changelog__v5_0_0">• 新增：滑动输入 — 在按键上滑动即可输入整个单词，配有按需下载的分语言词典。 👆\n• 新增：单词建议与自动更正 — 拼写错误会自动更正，你输入的原词只需一按即可取回。 ✨\n• 新增：实时转录 — 说话时即可看到文字出现，支持 OpenAI、Deepgram、Soniox、AssemblyAI 和 ElevenLabs。 ⚡\n• 新增：又添三家转录服务商 — ElevenLabs Scribe、Deepgram 和 AssemblyAI。 ☁️\n• 新增：经典听写布局 — Dictate 3 的无键盘语音界面回归，可锁定或一滑即达。 🎙️\n• 新增：社区提示词库 — 浏览并分享改写提示词。 📚\n• 新增：带里程碑的听写统计。 📊\n• 新增：离线模型 NVIDIA Parakeet，以及跳过空录音的静音过滤器。 📴\n• 更多：更稳定的悬浮按钮、推理强度控制、触觉反馈、全新的 E-Reader 主题以及数十项修复。 🛠️</string>
+    <string name="changelog__v5_0_0">• 新增：滑动输入 — 在按键上滑动即可输入整个单词，配有按需下载的分语言词典。 👆\n• 新增：单词建议与自动更正 — 拼写错误会自动更正，你输入的原词只需一按即可取回。 ✨\n• 新增：实时转录 — 说话时即可看到文字出现，支持 OpenAI、Deepgram、Soniox、AssemblyAI 和 ElevenLabs。 ⚡\n• 新增：又添三家转录服务商 — ElevenLabs Scribe、Deepgram 和 AssemblyAI。 ☁️\n• 新增：经典听写布局 — 无键盘语音界面回归，可锁定或一滑即达。 🎙️\n• 新增：社区提示词库 — 浏览并分享改写提示词。 📚\n• 新增：带里程碑的听写统计。 📊\n• 新增：离线模型 NVIDIA Parakeet，以及跳过空录音的静音过滤器。 📴\n• 更多：更稳定的悬浮按钮、推理强度控制、触觉反馈、全新的 E-Reader 主题以及数十项修复。 🛠️</string>
     <string name="media__tab__gifs">GIFs</string>
     <string name="prefs__media__gif__title">GIFs</string>
     <string name="prefs__media__gif_enabled">启用 GIF 搜索</string>
@@ -2455,7 +2455,7 @@
     <string name="dictate__cloud_recovery_field">恢复码</string>
     <string name="dictate__cloud_recovery_confirm">恢复</string>
     <string name="dictate__cloud_recovery_not_found">未找到与此码对应的额度。</string>
-    <string name="dictate__error_cloud_no_account">此设备上没有余额账户</string>
+    <string name="dictate__error_cloud_no_account">此设备上没有 Voice Mode Cloud 账户</string>
     <string name="dictate__cloud_devices_full_title">设备太多</string>
     <string name="dictate__cloud_devices_full_body">你的额度已在 {count} 台设备上使用，这是同时使用的上限。退出其中一台即可在这里使用——额度本身不受影响。</string>
     <string name="dictate__cloud_devices_sign_out">退出</string>

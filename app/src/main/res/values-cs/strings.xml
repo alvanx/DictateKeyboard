@@ -811,8 +811,8 @@
     <string name="backup_and_restore__back_up__files">Vyberte, co chcete zálohovat</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Předvolby</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">Klíče API a hesla</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Tento archiv obsahuje tvoje klíče API a hesla v čitelné podobě i tvůj kredit Voice Mode Cloud — kdokoli ho dostane, může diktovat na tvůj účet. Nepředávej ho dál, a pokud jsi to už udělal, změň klíč u svého poskytovatele. Všechno ostatní zaškrtnuté níže jde s ním, včetně historie přepisů a schránky.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Tento archiv neobsahuje žádné klíče API, hesla ani kredit Voice Mode Cloud, takže ho můžeš předat dál, ale tvoje také neobnoví. Všechno ostatní zaškrtnuté níže v něm zůstává, včetně historie přepisů a schránky.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Tento archiv obsahuje tvoje klíče API a hesla v čitelné podobě i tvoje přihlášení do Voice Mode Cloud — kdokoli ho dostane, může diktovat na tvůj účet. Nepředávej ho dál, a pokud jsi to už udělal, změň klíč u svého poskytovatele. Všechno ostatní zaškrtnuté níže jde s ním, včetně historie přepisů a schránky.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Tento archiv neobsahuje žádné klíče API, hesla ani přihlášení do Voice Mode Cloud, takže ho můžeš předat dál, ale tvoje také neobnoví. Všechno ostatní zaškrtnuté níže v něm zůstává, včetně historie přepisů a schránky.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Tento archiv neobsahuje klíče API ani hesla, ale obsahuje všechno zaškrtnuté níže: historii přepisů i s uchovanými nahrávkami, schránku, tvoje prompty a slova, která se klávesnice od tebe naučila.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Rozšíření klávesnice</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Rozšíření kontroly pravopisu / slovníky</string>
@@ -1328,9 +1328,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Vyberte, jak má Voice Mode přepisovat</string>
     <string name="setup__provider__choose_intro">Voice Mode převádí vaši řeč na text pomocí služby AI. Většině lidí vyhoví jeden ze dvou způsobů — a pokud nechcete používat žádnou cloudovou službu, níže najdete další dva.</string>
-    <string name="setup__provider__choice_cloud_title">Koupit kredit v aplikaci</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: nikde žádný účet, žádný klíč API. Minuty diktování kupujete přes Google Play a nikdy nevyprší. Pohodlná cesta — a o něco dražší než jít k poskytovateli přímo.</string>
-    <string name="setup__provider__choice_cloud_btn">Zobrazit balíčky kreditu</string>
+    <string name="setup__provider__choice_cloud_title">Předplatit si v aplikaci</string>
+    <string name="setup__provider__choice_cloud_body">Plus: žádný účet u poskytovatele AI, žádný klíč API. Předplatné sjednáte přes Google Play a můžete ho kdykoli zrušit. Pohodlná cesta — a o něco dražší než jít k poskytovateli přímo.</string>
+    <string name="setup__provider__choice_cloud_btn">Zobrazit tarify</string>
     <string name="setup__provider__choice_own_title">Použít vlastního poskytovatele AI</string>
     <string name="setup__provider__choice_own_body">Vytvořte si klíč u poskytovatele podle svého výběru — Groq je pro běžné diktování zdarma. Zůstává vám vlastní účet a platíte přímo poskytovateli za jeho ceny. Zabere to asi dvě minuty.</string>
     <string name="setup__provider__choice_own_btn">Nastavit vlastní klíč</string>
@@ -1871,7 +1871,7 @@
     <string name="changelog__intro">Voice Mode byl aktualizován. Co je nového:</string>
     <string name="changelog__version_header">Verze {version}</string>
     <string name="changelog__donate">Líbí se vám Voice Mode? Klepnutím sem podpoříte vývoj ♥</string>
-    <string name="changelog__current">• Zcela nová klávesnice: Voice Mode je nyní plnohodnotná vícejazyčná klávesnice s vyhrazenou klávesou mikrofonu, která otevírá hlasový panel.\n• Vlastní AI: vyberte libovolného poskytovatele kompatibilního s OpenAI a zadejte klíč API v Nastavení → Voice Mode.\n• Inteligentní formátování a přeformulování pomocí zvoleného modelu.\n• Nastavení z předchozí aplikace Dictate se importují automaticky.</string>
+    <string name="changelog__current">• Zcela nová klávesnice: Voice Mode je nyní plnohodnotná vícejazyčná klávesnice s vyhrazenou klávesou mikrofonu, která otevírá hlasový panel.\n• Vlastní AI: vyberte libovolného poskytovatele kompatibilního s OpenAI a zadejte klíč API v Nastavení → Voice Mode.\n• Inteligentní formátování a přeformulování pomocí zvoleného modelu.\n• Nastavení z předchozí aplikace Voice Mode se importují automaticky.</string>
     <string name="changelog__v4_1_0">• Novinka: vyhledávejte emoji přímo z klávesnice.\n• Nový poskytovatel přepisu: Soniox.\n• Znovu vložte své poslední diktování a obnovte nahrávky přerušené při zavření klávesnice.\n• Lišta promptů se nyní aktualizuje živě: podržením promptu jej upravíte.\n• Obrazovka poskytovatelů AI nyní zobrazuje aktivního poskytovatele přepisu i přeformulování.\n• Větší tlačítko nahrávání, na které se snáze míří.\n• Opravy: výzva k podpoře mohla zůstat viset a zakrýt lištu v některých jazycích; záloha už neselhává při vybraných promptech, klávesnici nebo motivu; uložené klíče API zůstanou zachovány při aktualizaci.</string>
     <string name="changelog__v4_1_1">• Oprava: zvýrazňovací barva se na některých zařízeních mohla zobrazovat zeleně; klávesy a tlačítka jsou opět v modré barvě Voice Mode.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -2151,7 +2151,7 @@
     <string name="apptour__providers_cta">Vybrat poskytovatele</string>
     <string name="apptour__legacy_eyebrow">Návrat klasiky</string>
     <string name="apptour__legacy_title">Klasické rozvržení diktování</string>
-    <string name="apptour__legacy_body">Dáváte přednost hlasu před klávesami? Obrazovka bez klávesnice z Dictate 3 je zpět — nastavte si ji jako výchozí, nebo ji mějte jen jedno přejetí od plné klávesnice.</string>
+    <string name="apptour__legacy_body">Dáváte přednost hlasu před klávesami? Obrazovka bez klávesnice je zpět — nastavte si ji jako výchozí, nebo ji mějte jen jedno přejetí od plné klávesnice.</string>
     <string name="apptour__legacy_cta">Vybrat rozvržení</string>
     <string name="apptour__library_eyebrow">Komunita</string>
     <string name="apptour__library_title">Knihovna promptů</string>
@@ -2376,7 +2376,7 @@
     <string name="apptour63__outro_eyebrow">To je 6.3</string>
     <string name="apptour63__outro_title">Méně oklik, stejná klávesnice</string>
     <string name="apptour63__outro_body">Na tom, jak diktujete, se nic nemění — vlastní klíč, vlastní server nebo model v zařízení. Všechny prohlídky najdete znovu v Nastavení › O aplikaci.</string>
-    <string name="changelog__v5_0_0">• NOVÉ: Psaní tahem — přejíždějte po klávesách a pište celá slova, se slovníky pro jednotlivé jazyky staženými na vyžádání. 👆\n• NOVÉ: Návrhy slov a automatické opravy — překlepy se opravují automaticky a napsané slovo zůstává na jedno klepnutí. ✨\n• NOVÉ: Přepis v reálném čase — sledujte, jak se slova objevují, zatímco mluvíte, s OpenAI, Deepgram, Soniox, AssemblyAI a ElevenLabs. ⚡\n• NOVÉ: Tři další poskytovatelé přepisu — ElevenLabs Scribe, Deepgram a AssemblyAI. ☁️\n• NOVÉ: Klasické rozvržení diktování — hlasová obrazovka bez klávesnice z Dictate 3 je zpět, zafixovaná nebo na jedno přejetí. 🎙️\n• NOVÉ: Komunitní knihovna promptů — procházejte a sdílejte prompty pro přeformulování. 📚\n• NOVÉ: Statistiky diktování s milníky. 📊\n• NOVÉ: Offline model NVIDIA Parakeet a filtr ticha, který přeskočí prázdné nahrávky. 📴\n• Více: stabilnější plovoucí tlačítko, ovládání úsilí uvažování, haptická odezva, nový motiv E-Reader a desítky oprav. 🛠️</string>
+    <string name="changelog__v5_0_0">• NOVÉ: Psaní tahem — přejíždějte po klávesách a pište celá slova, se slovníky pro jednotlivé jazyky staženými na vyžádání. 👆\n• NOVÉ: Návrhy slov a automatické opravy — překlepy se opravují automaticky a napsané slovo zůstává na jedno klepnutí. ✨\n• NOVÉ: Přepis v reálném čase — sledujte, jak se slova objevují, zatímco mluvíte, s OpenAI, Deepgram, Soniox, AssemblyAI a ElevenLabs. ⚡\n• NOVÉ: Tři další poskytovatelé přepisu — ElevenLabs Scribe, Deepgram a AssemblyAI. ☁️\n• NOVÉ: Klasické rozvržení diktování — hlasová obrazovka bez klávesnice je zpět, zafixovaná nebo na jedno přejetí. 🎙️\n• NOVÉ: Komunitní knihovna promptů — procházejte a sdílejte prompty pro přeformulování. 📚\n• NOVÉ: Statistiky diktování s milníky. 📊\n• NOVÉ: Offline model NVIDIA Parakeet a filtr ticha, který přeskočí prázdné nahrávky. 📴\n• Více: stabilnější plovoucí tlačítko, ovládání úsilí uvažování, haptická odezva, nový motiv E-Reader a desítky oprav. 🛠️</string>
     <string name="media__tab__gifs">GIFs</string>
     <string name="prefs__media__gif__title">GIFs</string>
     <string name="prefs__media__gif_enabled">Povolit vyhledávání GIFs</string>
@@ -2480,7 +2480,7 @@
     <string name="dictate__cloud_recovery_field">Obnovovací kód</string>
     <string name="dictate__cloud_recovery_confirm">Obnovit</string>
     <string name="dictate__cloud_recovery_not_found">K tomuto kódu nebyl nalezen žádný kredit.</string>
-    <string name="dictate__error_cloud_no_account">Na tomto zařízení není kreditní účet</string>
+    <string name="dictate__error_cloud_no_account">Na tomto zařízení není účet Voice Mode Cloud</string>
     <string name="dictate__cloud_devices_full_title">Příliš mnoho zařízení</string>
     <string name="dictate__cloud_devices_full_body">Tvůj kredit se už používá na {count} zařízeních, což je nejvíc najednou. Odhlas jedno, abys ho mohl použít tady — kredit sám zůstane nedotčený.</string>
     <string name="dictate__cloud_devices_sign_out">Odhlásit</string>

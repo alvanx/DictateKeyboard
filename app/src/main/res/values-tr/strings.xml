@@ -800,8 +800,8 @@
     <string name="backup_and_restore__back_up__files">Nelerin yedekleneceğini seç</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Tercihler</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">API anahtarları ve şifreler</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Bu arşiv API anahtarlarınızı ve şifrelerinizi düz metin olarak, Voice Mode Cloud bakiyenizle birlikte içerir — onu alan herkes sizin hesabınıza dikte edebilir. Başkasına vermeyin; verdiyseniz sağlayıcınızdaki anahtarı değiştirin. Aşağıda işaretli olan her şey onunla birlikte gider, dikte geçmişiniz ve panonuz da dahil.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Bu arşivde API anahtarı, şifre veya Voice Mode Cloud bakiyesi yok, bu yüzden paylaşılabilir; ama sizinkileri de geri yüklemez. Aşağıda işaretli olan her şey hâlâ içindedir, dikte geçmişiniz ve panonuz da dahil.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Bu arşiv API anahtarlarınızı ve şifrelerinizi düz metin olarak, Voice Mode Cloud giriş bilgilerinizle birlikte içerir — onu alan herkes sizin hesabınıza dikte edebilir. Başkasına vermeyin; verdiyseniz sağlayıcınızdaki anahtarı değiştirin. Aşağıda işaretli olan her şey onunla birlikte gider, dikte geçmişiniz ve panonuz da dahil.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Bu arşivde API anahtarı, şifre veya Voice Mode Cloud giriş bilgisi yok, bu yüzden paylaşılabilir; ama sizinkileri de geri yüklemez. Aşağıda işaretli olan her şey hâlâ içindedir, dikte geçmişiniz ve panonuz da dahil.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Bu arşivde API anahtarı ve şifre yok, ama aşağıda işaretli olan her şey var: saklanan kayıtlarla birlikte dikte geçmişiniz, panonuz, istemleriniz ve klavyenin sizden öğrendiği kelimeler.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Klavye eklentileri</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Yazım denetimi eklentileri / sözlükler</string>
@@ -1291,9 +1291,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Voice Mode\'un nasıl yazıya dökeceğini seçin</string>
     <string name="setup__provider__choose_intro">Voice Mode, konuşmanızı bir yapay zekâ hizmetiyle metne dönüştürür. Çoğu kişiye yukarıdaki iki yoldan biri uyar — hiç bulut hizmeti kullanmak istemiyorsanız aşağıda iki yol daha var.</string>
-    <string name="setup__provider__choice_cloud_title">Uygulamada kontör satın alın</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: hiçbir yerde hesap yok, API anahtarı yok. Dikte dakikalarını Google Play üzerinden satın alırsınız ve süreleri hiç dolmaz. Rahat yol — ve doğrudan bir sağlayıcıya gitmekten biraz daha pahalı.</string>
-    <string name="setup__provider__choice_cloud_btn">Kontör paketlerini göster</string>
+    <string name="setup__provider__choice_cloud_title">Uygulamada abone olun</string>
+    <string name="setup__provider__choice_cloud_body">Plus: yapay zekâ sağlayıcısında hesap yok, API anahtarı yok. Google Play üzerinden abone olursunuz ve istediğiniz zaman iptal edebilirsiniz. Rahat yol — ve doğrudan bir sağlayıcıya gitmekten biraz daha pahalı.</string>
+    <string name="setup__provider__choice_cloud_btn">Planları göster</string>
     <string name="setup__provider__choice_own_title">Kendi yapay zekâ sağlayıcınızı kullanın</string>
     <string name="setup__provider__choice_own_body">Seçtiğiniz sağlayıcıda bir anahtar oluşturun — Groq günlük dikte için ücretsiz. Kendi hesabınızı korur ve sağlayıcıya doğrudan kendi fiyatlarından ödersiniz. Yaklaşık iki dakika sürer.</string>
     <string name="setup__provider__choice_own_btn">Kendi anahtarımı kur</string>
@@ -1834,7 +1834,7 @@
     <string name="changelog__intro">Voice Mode güncellendi. İşte yenilikler:</string>
     <string name="changelog__version_header">Sürüm {version}</string>
     <string name="changelog__donate">Voice Mode\'dan memnun musunuz? Geliştirmeyi desteklemek için buraya dokunun ♥</string>
-    <string name="changelog__current">• Yepyeni bir klavye: Voice Mode artık, ses panelini açan özel bir mikrofon tuşuna sahip, tam donanımlı çok dilli bir düzen klavyesi olarak geliyor.\n• Kendi yapay zekânızı getirin: OpenAI uyumlu herhangi bir sağlayıcı seçin ve API anahtarınızı Ayarlar → Voice Mode altında girin.\n• Seçtiğiniz modelle desteklenen akıllı biçimlendirme ve yeniden ifade etme.\n• Önceki Dictate uygulamasındaki ayarlarınız otomatik olarak içe aktarılır.</string>
+    <string name="changelog__current">• Yepyeni bir klavye: Voice Mode artık, ses panelini açan özel bir mikrofon tuşuna sahip, tam donanımlı çok dilli bir düzen klavyesi olarak geliyor.\n• Kendi yapay zekânızı getirin: OpenAI uyumlu herhangi bir sağlayıcı seçin ve API anahtarınızı Ayarlar → Voice Mode altında girin.\n• Seçtiğiniz modelle desteklenen akıllı biçimlendirme ve yeniden ifade etme.\n• Önceki Voice Mode uygulamasındaki ayarlarınız otomatik olarak içe aktarılır.</string>
     <string name="changelog__v4_1_0">• Yeni: doğrudan klavyeden emoji arayın.\n• Yeni transkripsiyon sağlayıcısı: Soniox.\n• Son dikte ettiğinizi yeniden ekleyin ve klavye kapandığında kesilen kayıtları geri getirin.\n• İstem çubuğu artık canlı olarak yenileniyor: düzenlemek için bir isteme uzun basın.\n• Yapay zekâ sağlayıcıları ekranı artık hem etkin transkripsiyon hem de yeniden ifade sağlayıcınızı gösteriyor.\n• Daha büyük, daha kolay dokunulan kayıt düğmesi.\n• Düzeltmeler: bir destek bildirimi bazı dillerde takılıp çubuğu kapatabiliyordu; istemler, klavye veya tema seçiliyken yedekleme artık başarısız olmuyor; kaydedilen API anahtarları güncellemede korunuyor.</string>
     <string name="changelog__v4_1_1">• Düzeltme: vurgu rengi bazı cihazlarda yeşil görünebiliyordu; tuşlar ve düğmeler yeniden Voice Mode mavisinde.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -2112,7 +2112,7 @@
     <string name="apptour__providers_cta">Bir sağlayıcı seç</string>
     <string name="apptour__legacy_eyebrow">Bir klasik geri döndü</string>
     <string name="apptour__legacy_title">Klasik dikte düzeni</string>
-    <string name="apptour__legacy_body">Tuşlar yerine sesi mi tercih edersin? Dictate 3’teki klavyesiz ekran geri döndü — onu varsayılanın yap ya da tam klavyeden tek kaydırma uzakta tut.</string>
+    <string name="apptour__legacy_body">Tuşlar yerine sesi mi tercih edersin? Klavyesiz ekran geri döndü — onu varsayılanın yap ya da tam klavyeden tek kaydırma uzakta tut.</string>
     <string name="apptour__legacy_cta">Bir düzen seç</string>
     <string name="apptour__library_eyebrow">Topluluk</string>
     <string name="apptour__library_title">İstem kütüphanesi</string>
@@ -2337,7 +2337,7 @@
     <string name="apptour63__outro_eyebrow">İşte 6.3</string>
     <string name="apptour63__outro_title">Daha az dolambaç, aynı klavye</string>
     <string name="apptour63__outro_body">Nasıl dikte ettiğin konusunda hiçbir şey değişmiyor — kendi anahtarın, kendi sunucun ya da cihazdaki bir model. Tüm turları yeniden Ayarlar › Hakkında altında bulabilirsin.</string>
-    <string name="changelog__v5_0_0">• YENİ: Kaydırarak yazma — tam kelimeler yazmak için tuşların üzerinde kaydırın, istek üzerine indirilen dile özel sözlüklerle. 👆\n• YENİ: Kelime önerileri ve otomatik düzeltme — yazım hataları otomatik düzeltilir ve yazdığınız kelime bir dokunuş uzağınızda kalır. ✨\n• YENİ: Gerçek zamanlı transkripsiyon — konuşurken kelimelerinizin belirişini izleyin; OpenAI, Deepgram, Soniox, AssemblyAI ve ElevenLabs ile. ⚡\n• YENİ: Üç transkripsiyon sağlayıcısı daha — ElevenLabs Scribe, Deepgram ve AssemblyAI. ☁️\n• YENİ: Klasik dikte düzeni — Dictate 3’ün klavyesiz ses ekranı geri döndü, sabit ya da yalnızca bir kaydırma uzakta. 🎙️\n• YENİ: Topluluk istem kütüphanesi — yeniden ifade istemlerine göz atın ve paylaşın. 📚\n• YENİ: Kilometre taşlarıyla dikte istatistikleri. 📊\n• YENİ: Çevrimdışı model NVIDIA Parakeet, ayrıca boş kayıtları atlayan bir sessizlik filtresi. 📴\n• Dahası: daha kararlı bir kayan düğme, akıl yürütme çabası denetimi, dokunsal geri bildirim, yeni bir E-Reader teması ve onlarca düzeltme. 🛠️</string>
+    <string name="changelog__v5_0_0">• YENİ: Kaydırarak yazma — tam kelimeler yazmak için tuşların üzerinde kaydırın, istek üzerine indirilen dile özel sözlüklerle. 👆\n• YENİ: Kelime önerileri ve otomatik düzeltme — yazım hataları otomatik düzeltilir ve yazdığınız kelime bir dokunuş uzağınızda kalır. ✨\n• YENİ: Gerçek zamanlı transkripsiyon — konuşurken kelimelerinizin belirişini izleyin; OpenAI, Deepgram, Soniox, AssemblyAI ve ElevenLabs ile. ⚡\n• YENİ: Üç transkripsiyon sağlayıcısı daha — ElevenLabs Scribe, Deepgram ve AssemblyAI. ☁️\n• YENİ: Klasik dikte düzeni — klavyesiz ses ekranı geri döndü, sabit ya da yalnızca bir kaydırma uzakta. 🎙️\n• YENİ: Topluluk istem kütüphanesi — yeniden ifade istemlerine göz atın ve paylaşın. 📚\n• YENİ: Kilometre taşlarıyla dikte istatistikleri. 📊\n• YENİ: Çevrimdışı model NVIDIA Parakeet, ayrıca boş kayıtları atlayan bir sessizlik filtresi. 📴\n• Dahası: daha kararlı bir kayan düğme, akıl yürütme çabası denetimi, dokunsal geri bildirim, yeni bir E-Reader teması ve onlarca düzeltme. 🛠️</string>
     <string name="media__tab__gifs">GIFs</string>
     <string name="prefs__media__gif__title">GIFs</string>
     <string name="prefs__media__gif_enabled">GIF aramayı etkinleştir</string>
@@ -2441,7 +2441,7 @@
     <string name="dictate__cloud_recovery_field">Kurtarma kodu</string>
     <string name="dictate__cloud_recovery_confirm">Geri yükle</string>
     <string name="dictate__cloud_recovery_not_found">Bu koda ait kontör bulunamadı.</string>
-    <string name="dictate__error_cloud_no_account">Bu cihazda kredi hesabı yok</string>
+    <string name="dictate__error_cloud_no_account">Bu cihazda Voice Mode Cloud hesabı yok</string>
     <string name="dictate__cloud_devices_full_title">Çok fazla cihaz</string>
     <string name="dictate__cloud_devices_full_body">Kontörünüz zaten {count} cihazda kullanılıyor; aynı anda daha fazlası olamaz. Burada kullanmak için birinin oturumunu kapatın — kontörün kendisi etkilenmez.</string>
     <string name="dictate__cloud_devices_sign_out">Oturumu kapat</string>

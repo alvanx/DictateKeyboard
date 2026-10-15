@@ -812,8 +812,8 @@
     <string name="backup_and_restore__back_up__files">Wybierz, co chcesz zapisać w kopii bezpieczeństwa</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Preferencje</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">Klucze API i hasła</string>
-    <string name="backup_and_restore__back_up__credentials_warning">To archiwum zawiera twoje klucze API i hasła w postaci jawnej, a także twoje środki Voice Mode Cloud — każdy, kto je otrzyma, może dyktować na twój koszt. Nie przekazuj go dalej, a jeśli już to zrobiłeś, zmień klucz u swojego dostawcy. Wszystko inne zaznaczone poniżej jedzie razem z nim, w tym historia transkrypcji i schowek.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">To archiwum nie zawiera kluczy API, haseł ani środków Voice Mode Cloud, więc można je przekazać dalej, ale nie przywróci też twoich. Wszystko inne zaznaczone poniżej nadal w nim jest, w tym historia transkrypcji i schowek.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">To archiwum zawiera twoje klucze API i hasła w postaci jawnej, a także twoje dane logowania do Voice Mode Cloud — każdy, kto je otrzyma, może dyktować na twój koszt. Nie przekazuj go dalej, a jeśli już to zrobiłeś, zmień klucz u swojego dostawcy. Wszystko inne zaznaczone poniżej jedzie razem z nim, w tym historia transkrypcji i schowek.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">To archiwum nie zawiera kluczy API, haseł ani danych logowania do Voice Mode Cloud, więc można je przekazać dalej, ale nie przywróci też twoich. Wszystko inne zaznaczone poniżej nadal w nim jest, w tym historia transkrypcji i schowek.</string>
     <string name="backup_and_restore__back_up__personal_content_note">To archiwum nie zawiera kluczy API ani haseł, ale zawiera wszystko, co zaznaczono poniżej: historię transkrypcji wraz z zachowanymi nagraniami, schowek, twoje prompty i słowa, których klawiatura się od ciebie nauczyła.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Rozszerzenia klawiatury</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Rozszerzenia pisowni / słowniki</string>
@@ -1329,9 +1329,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Wybierz, jak Voice Mode ma transkrybować</string>
     <string name="setup__provider__choose_intro">Voice Mode zamienia twoją mowę w tekst przy pomocy usługi AI. Większości osób wystarczy jeden z dwóch powyższych sposobów — a jeśli wolisz w ogóle nie korzystać z usługi w chmurze, poniżej są jeszcze dwa.</string>
-    <string name="setup__provider__choice_cloud_title">Kup środki w aplikacji</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: nigdzie żadnego konta, żadnego klucza API. Kupujesz minuty dyktowania przez Google Play i nigdy nie tracą ważności. Wygodna droga — i nieco droższa niż pójście wprost do dostawcy.</string>
-    <string name="setup__provider__choice_cloud_btn">Pokaż pakiety środków</string>
+    <string name="setup__provider__choice_cloud_title">Subskrybuj w aplikacji</string>
+    <string name="setup__provider__choice_cloud_body">Plus: bez konta u dostawcy AI, bez klucza API. Subskrybujesz przez Google Play i możesz zrezygnować w każdej chwili. Wygodna droga — i nieco droższa niż pójście wprost do dostawcy.</string>
+    <string name="setup__provider__choice_cloud_btn">Pokaż plany</string>
     <string name="setup__provider__choice_own_title">Użyj własnego dostawcy AI</string>
     <string name="setup__provider__choice_own_body">Załóż klucz u wybranego dostawcy — Groq jest bezpłatny do codziennego dyktowania. Zachowujesz własne konto i płacisz dostawcy bezpośrednio, według jego cen. Zajmuje około dwóch minut.</string>
     <string name="setup__provider__choice_own_btn">Skonfiguruj własny klucz</string>
@@ -1872,7 +1872,7 @@
     <string name="changelog__intro">Voice Mode został zaktualizowany. Oto nowości:</string>
     <string name="changelog__version_header">Wersja {version}</string>
     <string name="changelog__donate">Podoba Ci się Voice Mode? Dotknij tutaj, aby wesprzeć rozwój ♥</string>
-    <string name="changelog__current">• Zupełnie nowa klawiatura: Voice Mode jest teraz pełnoprawną, wielojęzyczną klawiaturą z dedykowanym klawiszem mikrofonu, który otwiera panel głosowy.\n• Własne AI: wybierz dowolnego dostawcę zgodnego z OpenAI i wprowadź klucz API w Ustawienia → Voice Mode.\n• Inteligentne formatowanie i przeformułowanie dzięki wybranemu modelowi.\n• Ustawienia z poprzedniej aplikacji Dictate są importowane automatycznie.</string>
+    <string name="changelog__current">• Zupełnie nowa klawiatura: Voice Mode jest teraz pełnoprawną, wielojęzyczną klawiaturą z dedykowanym klawiszem mikrofonu, który otwiera panel głosowy.\n• Własne AI: wybierz dowolnego dostawcę zgodnego z OpenAI i wprowadź klucz API w Ustawienia → Voice Mode.\n• Inteligentne formatowanie i przeformułowanie dzięki wybranemu modelowi.\n• Ustawienia z poprzedniej aplikacji Voice Mode są importowane automatycznie.</string>
     <string name="changelog__v4_1_0">• Nowość: wyszukuj emoji bezpośrednio z klawiatury.\n• Nowy dostawca transkrypcji: Soniox.\n• Ponownie wstawiaj ostatnie dyktowanie i odzyskuj nagrania przerwane po zamknięciu klawiatury.\n• Pasek promptów odświeża się teraz na żywo: przytrzymaj prompt, aby go edytować.\n• Ekran dostawców AI pokazuje teraz zarówno aktywnego dostawcę transkrypcji, jak i przeredagowywania.\n• Większy przycisk nagrywania, w który łatwiej trafić.\n• Poprawki: komunikat o wsparciu mógł się zaciąć i zasłonić pasek w niektórych językach; kopia zapasowa nie kończy się już błędem przy wybranych promptach, klawiaturze lub motywie; zapisane klucze API są zachowywane przy aktualizacji.</string>
     <string name="changelog__v4_1_1">• Poprawka: kolor akcentu mógł wyglądać na zielony na niektórych urządzeniach; klawisze i przyciski znów mają niebieski kolor Voice Mode.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -2152,7 +2152,7 @@
     <string name="apptour__providers_cta">Wybierz dostawcę</string>
     <string name="apptour__legacy_eyebrow">Powrót klasyka</string>
     <string name="apptour__legacy_title">Klasyczny układ dyktowania</string>
-    <string name="apptour__legacy_body">Wolisz głos od klawiszy? Ekran bez klawiatury z Dictate 3 powraca — ustaw go jako domyślny albo trzymaj o jedno przesunięcie od pełnej klawiatury.</string>
+    <string name="apptour__legacy_body">Wolisz głos od klawiszy? Ekran bez klawiatury powraca — ustaw go jako domyślny albo trzymaj o jedno przesunięcie od pełnej klawiatury.</string>
     <string name="apptour__legacy_cta">Wybierz układ</string>
     <string name="apptour__library_eyebrow">Społeczność</string>
     <string name="apptour__library_title">Biblioteka promptów</string>
@@ -2377,7 +2377,7 @@
     <string name="apptour63__outro_eyebrow">To jest 6.3</string>
     <string name="apptour63__outro_title">Mniej objazdów, ta sama klawiatura</string>
     <string name="apptour63__outro_body">Nic się nie zmienia w tym, jak dyktujesz — własny klucz, własny serwer albo model na urządzeniu. Wszystkie przewodniki znajdziesz ponownie w Ustawienia › O aplikacji.</string>
-    <string name="changelog__v5_0_0">• NOWOŚĆ: Pisanie gestami — przesuwaj po klawiszach, aby pisać całe słowa, ze słownikami dla poszczególnych języków pobieranymi na żądanie. 👆\n• NOWOŚĆ: Podpowiedzi słów i autokorekta — literówki są poprawiane automatycznie, a wpisane słowo pozostaje o jedno dotknięcie. ✨\n• NOWOŚĆ: Transkrypcja na żywo — patrz, jak słowa pojawiają się, gdy mówisz, z OpenAI, Deepgram, Soniox, AssemblyAI i ElevenLabs. ⚡\n• NOWOŚĆ: Trzej kolejni dostawcy transkrypcji — ElevenLabs Scribe, Deepgram i AssemblyAI. ☁️\n• NOWOŚĆ: Klasyczny układ dyktowania — pozbawiony klawiatury ekran głosowy z Dictate 3 wraca, zablokowany lub o jedno przesunięcie. 🎙️\n• NOWOŚĆ: Biblioteka promptów społeczności — przeglądaj i udostępniaj prompty do przeredagowania. 📚\n• NOWOŚĆ: Statystyki dyktowania z kamieniami milowymi. 📊\n• NOWOŚĆ: Model offline NVIDIA Parakeet oraz filtr ciszy pomijający puste nagrania. 📴\n• Więcej: stabilniejszy pływający przycisk, regulacja wysiłku rozumowania, wibracje haptyczne, nowy motyw E-Reader i dziesiątki poprawek. 🛠️</string>
+    <string name="changelog__v5_0_0">• NOWOŚĆ: Pisanie gestami — przesuwaj po klawiszach, aby pisać całe słowa, ze słownikami dla poszczególnych języków pobieranymi na żądanie. 👆\n• NOWOŚĆ: Podpowiedzi słów i autokorekta — literówki są poprawiane automatycznie, a wpisane słowo pozostaje o jedno dotknięcie. ✨\n• NOWOŚĆ: Transkrypcja na żywo — patrz, jak słowa pojawiają się, gdy mówisz, z OpenAI, Deepgram, Soniox, AssemblyAI i ElevenLabs. ⚡\n• NOWOŚĆ: Trzej kolejni dostawcy transkrypcji — ElevenLabs Scribe, Deepgram i AssemblyAI. ☁️\n• NOWOŚĆ: Klasyczny układ dyktowania — pozbawiony klawiatury ekran głosowy wraca, zablokowany lub o jedno przesunięcie. 🎙️\n• NOWOŚĆ: Biblioteka promptów społeczności — przeglądaj i udostępniaj prompty do przeredagowania. 📚\n• NOWOŚĆ: Statystyki dyktowania z kamieniami milowymi. 📊\n• NOWOŚĆ: Model offline NVIDIA Parakeet oraz filtr ciszy pomijający puste nagrania. 📴\n• Więcej: stabilniejszy pływający przycisk, regulacja wysiłku rozumowania, wibracje haptyczne, nowy motyw E-Reader i dziesiątki poprawek. 🛠️</string>
     <string name="media__tab__gifs">GIFs</string>
     <string name="prefs__media__gif__title">GIFs</string>
     <string name="prefs__media__gif_enabled">Włącz wyszukiwanie GIFs</string>
@@ -2481,7 +2481,7 @@
     <string name="dictate__cloud_recovery_field">Kod odzyskiwania</string>
     <string name="dictate__cloud_recovery_confirm">Przywróć</string>
     <string name="dictate__cloud_recovery_not_found">Nie znaleziono środków dla tego kodu.</string>
-    <string name="dictate__error_cloud_no_account">Brak konta z kredytem na tym urządzeniu</string>
+    <string name="dictate__error_cloud_no_account">Brak konta Voice Mode Cloud na tym urządzeniu</string>
     <string name="dictate__cloud_devices_full_title">Za dużo urządzeń</string>
     <string name="dictate__cloud_devices_full_body">Twoje środki są już używane na {count} urządzeniach, czyli maksymalnej liczbie naraz. Wyloguj jedno, aby korzystać tutaj — same środki pozostają nietknięte.</string>
     <string name="dictate__cloud_devices_sign_out">Wyloguj</string>

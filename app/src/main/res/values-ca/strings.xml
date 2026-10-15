@@ -704,8 +704,8 @@
     <string name="backup_and_restore__back_up__files">Tria de què fer còpia de seguretat</string>
     <string name="backup_and_restore__back_up__files_jetpref_datastore">Preferències</string>
     <string name="backup_and_restore__back_up__files_provider_credentials">Claus API i contrasenyes</string>
-    <string name="backup_and_restore__back_up__credentials_warning">Aquest arxiu conté les teves claus API i contrasenyes en text net, juntament amb el teu crèdit de Voice Mode Cloud: qui el rebi pot dictar a càrrec teu. No el comparteixis i, si ja ho has fet, canvia la clau al teu proveïdor. Tota la resta que estigui marcada a sota hi viatja, inclòs l’historial de transcripcions i el porta-retalls.</string>
-    <string name="backup_and_restore__back_up__credentials_excluded_note">Aquest arxiu no conté claus API, contrasenyes ni crèdit de Voice Mode Cloud, així que es pot compartir, però tampoc no restaurarà les teves. Tota la resta que estigui marcada a sota hi continua, inclòs l’historial de transcripcions i el porta-retalls.</string>
+    <string name="backup_and_restore__back_up__credentials_warning">Aquest arxiu conté les teves claus API i contrasenyes en text net, juntament amb el teu accés a Voice Mode Cloud: qui el rebi pot dictar a càrrec teu. No el comparteixis i, si ja ho has fet, canvia la clau al teu proveïdor. Tota la resta que estigui marcada a sota hi viatja, inclòs l’historial de transcripcions i el porta-retalls.</string>
+    <string name="backup_and_restore__back_up__credentials_excluded_note">Aquest arxiu no conté claus API, contrasenyes ni l\'accés a Voice Mode Cloud, així que es pot compartir, però tampoc no restaurarà les teves. Tota la resta que estigui marcada a sota hi continua, inclòs l’historial de transcripcions i el porta-retalls.</string>
     <string name="backup_and_restore__back_up__personal_content_note">Aquest arxiu no conté claus API ni contrasenyes, però sí tot el que estigui marcat a sota: l’historial de transcripcions amb els enregistraments conservats, el porta-retalls, els teus prompts i les paraules que el teclat ha après de tu.</string>
     <string name="backup_and_restore__back_up__files_ime_keyboard">Extensions del teclat</string>
     <string name="backup_and_restore__back_up__files_ime_spelling">Extensions de correcció ortogràfica / diccionaris</string>
@@ -1182,9 +1182,9 @@
     <string name="about__feedback__email">contact@devemperor.net</string>
     <string name="setup__provider__title">Tria com transcriu Voice Mode</string>
     <string name="setup__provider__choose_intro">Voice Mode converteix la teva veu en text amb un servei d\'IA. A la majoria de gent li va bé una d\'aquestes dues maneres, i si prefereixes no fer servir cap servei al núvol, a sota en tens dues més.</string>
-    <string name="setup__provider__choice_cloud_title">Comprar saldo a l\'aplicació</string>
-    <string name="setup__provider__choice_cloud_body">Voice Mode Cloud: cap compte enlloc, cap clau API. Compres minuts de dictat a través de Google Play i no caduquen mai. La via còmoda, i una mica més cara que anar directament a un proveïdor.</string>
-    <string name="setup__provider__choice_cloud_btn">Mostra els paquets de saldo</string>
+    <string name="setup__provider__choice_cloud_title">Subscriure\'s a l\'aplicació</string>
+    <string name="setup__provider__choice_cloud_body">Plus: cap compte amb un proveïdor d\'IA, cap clau API. Et subscrius a través de Google Play i pots cancel·lar quan vulguis. La via còmoda, i una mica més cara que anar directament a un proveïdor.</string>
+    <string name="setup__provider__choice_cloud_btn">Mostra els plans</string>
     <string name="setup__provider__choice_own_title">Utilitzar el teu propi proveïdor d\'IA</string>
     <string name="setup__provider__choice_own_body">Crea una clau al proveïdor que vulguis: Groq és gratuït per al dictat del dia a dia. Conserves el teu compte i pagues directament al proveïdor als seus preus. Es triga uns dos minuts.</string>
     <string name="setup__provider__choice_own_btn">Configura la meva clau</string>
@@ -1725,7 +1725,7 @@
     <string name="changelog__intro">Voice Mode s\'ha actualitzat. Aquestes són les novetats:</string>
     <string name="changelog__version_header">Versió {version}</string>
     <string name="changelog__donate">T\'agrada Voice Mode? Toca aquí per donar suport al desenvolupament ♥</string>
-    <string name="changelog__current">• Teclat totalment nou: Voice Mode ara és un teclat amb disposició completa i multilingüe, amb una tecla de micròfon dedicada que obre el tauler de veu.\n• Usa la teva pròpia IA: tria qualsevol proveïdor compatible amb OpenAI i introdueix la teva clau d\'API a Configuració → Voice Mode.\n• Formatació i reformulació intel·ligents amb el model que triïs.\n• La configuració de l\'app Dictate anterior s\'importa automàticament.</string>
+    <string name="changelog__current">• Teclat totalment nou: Voice Mode ara és un teclat amb disposició completa i multilingüe, amb una tecla de micròfon dedicada que obre el tauler de veu.\n• Usa la teva pròpia IA: tria qualsevol proveïdor compatible amb OpenAI i introdueix la teva clau d\'API a Configuració → Voice Mode.\n• Formatació i reformulació intel·ligents amb el model que triïs.\n• La configuració de l\'app Voice Mode anterior s\'importa automàticament.</string>
     <string name="changelog__v4_1_0">• Nou: cerca emojis directament des del teclat.\n• Nou proveïdor de transcripció: Soniox.\n• Torna a inserir l\'últim dictat i recupera els enregistraments interromputs en tancar-se el teclat.\n• La barra de prompts ara s\'actualitza en directe: mantén premut un prompt per editar-lo.\n• La pantalla de proveïdors d\'IA ara mostra tant el proveïdor de transcripció com el de reformulació actius.\n• Botó d\'enregistrament més gran i més fàcil de prémer.\n• Correccions: un avís de suport es podia quedar encallat i tapar la barra en alguns idiomes; la còpia de seguretat ja no falla quan hi ha prompts, teclat o tema seleccionats; les claus d\'API desades es conserven en actualitzar.</string>
     <string name="changelog__v4_1_1">• Correcció: el color d\'accent podia aparèixer verd en alguns dispositius; les tecles i els botons tornen a ser del blau de Voice Mode.</string>
     <!-- Voice Mode on-device (offline) models -->
@@ -2003,7 +2003,7 @@
     <string name="apptour__providers_cta">Tria un proveïdor</string>
     <string name="apptour__legacy_eyebrow">Torna un clàssic</string>
     <string name="apptour__legacy_title">Disposició de dictat clàssica</string>
-    <string name="apptour__legacy_body">Prefereixes la veu a les tecles? La pantalla sense teclat de Dictate 3 ha tornat — fes-la predeterminada o mantén-la a només una lliscada del teclat complet.</string>
+    <string name="apptour__legacy_body">Prefereixes la veu a les tecles? La pantalla sense teclat ha tornat — fes-la predeterminada o mantén-la a només una lliscada del teclat complet.</string>
     <string name="apptour__legacy_cta">Tria una disposició</string>
     <string name="apptour__library_eyebrow">Comunitat</string>
     <string name="apptour__library_title">Biblioteca d’indicacions</string>
@@ -2228,7 +2228,7 @@
     <string name="apptour63__outro_eyebrow">Això és la 6.3</string>
     <string name="apptour63__outro_title">Menys marrades, el mateix teclat</string>
     <string name="apptour63__outro_body">No canvia res en la manera com dictes — la teva clau, el teu servidor o un model al dispositiu. Retrobaràs totes les visites a Configuració › Quant a.</string>
-    <string name="changelog__v5_0_0">• NOU: Escriptura lliscant — llisca per les tecles per escriure paraules senceres, amb diccionaris per idioma que es baixen a demanda. 👆\n• NOU: Suggeriments de paraules i correcció automàtica — els errors es corregeixen sols i la paraula que has escrit queda a un toc. ✨\n• NOU: Transcripció en temps real — mira com les teves paraules apareixen mentre parles, amb OpenAI, Deepgram, Soniox, AssemblyAI i ElevenLabs. ⚡\n• NOU: Tres proveïdors de transcripció més — ElevenLabs Scribe, Deepgram i AssemblyAI. ☁️\n• NOU: Disposició de dictat clàssica — la pantalla de veu sense teclat de Dictate 3 ha tornat, fixada o a un simple lliscament. 🎙️\n• NOU: Biblioteca d’indicacions de la comunitat — explora i comparteix indicacions de reformulació. 📚\n• NOU: Estadístiques de dictat amb fites. 📊\n• NOU: Model sense connexió NVIDIA Parakeet, a més d’un filtre de silenci que omet els enregistraments buits. 📴\n• Més: un botó flotant més estable, control de l’esforç de raonament, resposta hàptica, un nou tema E-Reader i desenes de correccions. 🛠️</string>
+    <string name="changelog__v5_0_0">• NOU: Escriptura lliscant — llisca per les tecles per escriure paraules senceres, amb diccionaris per idioma que es baixen a demanda. 👆\n• NOU: Suggeriments de paraules i correcció automàtica — els errors es corregeixen sols i la paraula que has escrit queda a un toc. ✨\n• NOU: Transcripció en temps real — mira com les teves paraules apareixen mentre parles, amb OpenAI, Deepgram, Soniox, AssemblyAI i ElevenLabs. ⚡\n• NOU: Tres proveïdors de transcripció més — ElevenLabs Scribe, Deepgram i AssemblyAI. ☁️\n• NOU: Disposició de dictat clàssica — la pantalla de veu sense teclat ha tornat, fixada o a un simple lliscament. 🎙️\n• NOU: Biblioteca d’indicacions de la comunitat — explora i comparteix indicacions de reformulació. 📚\n• NOU: Estadístiques de dictat amb fites. 📊\n• NOU: Model sense connexió NVIDIA Parakeet, a més d’un filtre de silenci que omet els enregistraments buits. 📴\n• Més: un botó flotant més estable, control de l’esforç de raonament, resposta hàptica, un nou tema E-Reader i desenes de correccions. 🛠️</string>
     <string name="media__tab__gifs">GIFs</string>
     <string name="prefs__media__gif__title">GIFs</string>
     <string name="prefs__media__gif_enabled">Activa la cerca de GIFs</string>
@@ -2332,7 +2332,7 @@
     <string name="dictate__cloud_recovery_field">Codi de recuperació</string>
     <string name="dictate__cloud_recovery_confirm">Restaura</string>
     <string name="dictate__cloud_recovery_not_found">No s\'ha trobat cap saldo per a aquest codi.</string>
-    <string name="dictate__error_cloud_no_account">Cap compte de crèdit en aquest dispositiu</string>
+    <string name="dictate__error_cloud_no_account">Cap compte de Voice Mode Cloud en aquest dispositiu</string>
     <string name="dictate__cloud_devices_full_title">Massa dispositius</string>
     <string name="dictate__cloud_devices_full_body">El teu saldo ja s\'utilitza en {count} dispositius, el màxim permès alhora. Tanca la sessió d\'un per fer-lo servir aquí: el saldo no es toca.</string>
     <string name="dictate__cloud_devices_sign_out">Tanca la sessió</string>

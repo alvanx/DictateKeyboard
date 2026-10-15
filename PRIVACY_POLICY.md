@@ -1,8 +1,8 @@
 # Privacy Policy for Voice Mode
 
-> **Draft. Do not publish as is.** Fill in the operator's details and every point marked
-> **[TO CONFIRM]** first. Everything else describes the App and the server in this repository as
-> they are today.
+> **Draft. Do not publish as is.** First fill in the operator's name, address and support email, the
+> effective date, and the final app name, app ID and web address (see `docs/rebrand.md`). Everything
+> else describes the App and the server in this repository as they are today.
 
 **Effective date:** [DATE OF FIRST RELEASE]
 **Last updated:** 15 October 2026
@@ -247,9 +247,9 @@ sends back the text. Rewording and one-tap cleanup work the same way.
 straight on to Groq. The same goes for text you reword or clean up. We keep none of it: no audio, no
 transcript, no prompt.
 
-**At Groq.** [TO CONFIRM BEFORE LAUNCH: how long Groq keeps API inputs and outputs, if at all, the
-data-retention setting chosen for our account, and that they are not used to train models. State
-this only once Groq's terms and the account setting say so.]
+**At Groq.** By default, Groq does not keep your recordings or text. It may keep them for up to 30
+days, but only to fix errors or look into suspected abuse, or longer if the law requires it. Groq's
+contract does not allow it to use them to train AI models.
 
 **Your Voice Mode Cloud account.** Subscribing creates an account on our server. It holds a random
 ID, a hash of your recovery code and hashes of your access keys. It is not an account in the usual
@@ -262,9 +262,8 @@ when it was last used.
 **IP address.** Like any server on the internet, ours sees your IP address when the App connects. We
 do not store it in our database. It is used briefly in two places. When someone enters a recovery
 code, the server counts attempts from that address for one minute, to stop guessing. And Cloudflare,
-which runs our server, keeps short technical request logs that we use to fix problems. [TO CONFIRM
-BEFORE LAUNCH: which request details Cloudflare's Workers Logs keep, IP address included, and for how
-long on our plan.]
+which runs our server, keeps technical logs of each request for up to 7 days, which we use to fix
+problems. They can include your IP address and rough location, but never your recordings or text.
 
 **Your subscription.** We store what Google tells us about your subscription: Google's purchase
 token, the plan (monthly or yearly), any free-trial offer, its status, when the current period ends,
@@ -292,21 +291,23 @@ repeated refunds. A first subscription, or one made after you deleted your accou
 | --- | --- |
 | Providing the service and handling your subscription | Art. 6(1)(b) GDPR (contract) |
 | Detecting abuse, keeping the service secure, alerts | Art. 6(1)(f) GDPR (legitimate interests) |
-| Keeping subscription and order records | Art. 6(1)(c) GDPR, with the tax law that applies [TO CONFIRM] |
+| Keeping subscription and order records | Art. 6(1)(c) GDPR (our legal duty under tax law) |
 
 ### 4.3 Who else receives the data, and where it is
 
 - **Cloudflare, Inc.**, USA, runs our server and database. This rests on Cloudflare's data
   processing addendum, which is part of its terms. The transfer relies on the European Commission's
   **standard contractual clauses**.
-- **Groq, Inc.**, USA, transcribes your recordings and rewords and cleans up your text. [TO CONFIRM
-  BEFORE LAUNCH: Groq's data processing addendum and the transfer mechanism it relies on.]
+- **Groq, Inc.**, USA, transcribes your recordings and rewords and cleans up your text. This rests on
+  Groq's data processing addendum, which is part of its services agreement. The transfer relies on
+  the European Commission's **standard contractual clauses**.
 
 **Where your data is.** Our database and your account are kept in the **European Union** (Western
 Europe). We chose that on purpose.
 
-**That does not cover transcription and rewording.** Those run at Groq, in the United States. We
-would rather say so plainly.
+**That does not cover transcription and rewording.** Those run at Groq, a US company. Groq may
+process them in the United States or in other countries where it runs data centres, and anything it
+keeps is stored in the United States. We would rather say so plainly.
 
 Keeping the database in Europe is not the whole answer anyway. Cloudflare is a US company, and access
 from the United States counts as a transfer under data protection law, even when the data sits in
@@ -317,13 +318,13 @@ recordings or text**, so there is nothing of that kind to reach.
 
 | What | How long |
 | --- | --- |
-| Recordings, transcripts, prompts | Not at all, on our side. At Groq: [TO CONFIRM BEFORE LAUNCH] |
+| Recordings, transcripts, prompts | Not at all, on our side. At Groq: not by default; up to 30 days if needed to fix errors or look into abuse |
 | Usage log (one row per request) | 90 days |
 | IP address for the recovery-code limit | 1 minute |
-| Request logs at Cloudflare | [TO CONFIRM BEFORE LAUNCH] |
+| Request logs at Cloudflare | Up to 7 days |
 | Daily totals | Indefinitely, with no link to an account |
 | Account, access keys, device names | Until you delete the account |
-| Subscription and order records | As long as tax law requires [TO CONFIRM: the period, for example 10 years under § 147 AO in Germany] |
+| Subscription and order records | As long as tax law requires us to keep them, and no longer |
 | Hash of a previous account | 24 months after you delete the account |
 
 ### 4.5 Deleting your Voice Mode Cloud account
