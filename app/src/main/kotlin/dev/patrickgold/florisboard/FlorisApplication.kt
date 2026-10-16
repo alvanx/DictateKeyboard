@@ -157,6 +157,7 @@ class FlorisApplication : Application() {
             DictateLegacyMigrator.migrateFrenchPunctuationRuleIfNeeded()
             DictateLegacyMigrator.migrateDevanagariPunctuationRuleIfNeeded()
             DictateLegacyMigrator.reofferRateAndDonateIfNeeded()
+            DictateLegacyMigrator.linkKeyboardAccentToAppIfNeeded()
             preferenceStoreLoaded.value = true
             dev.patrickgold.florisboard.dictate.cloud.Entitlements.reload()
             // Recordings saved while offline are transcribed by a system job, which a reboot forgets.
@@ -175,6 +176,8 @@ class FlorisApplication : Application() {
             DictateWearPublisher.startPublishingOnChange(this@FlorisApplication, scope)
             // My words is also the keyboard's list: keep the personal dictionary following it.
             MyWordsSync.startMirroring(this@FlorisApplication, scope)
+            // One accent colour for app and keyboard: the keyboard follows the app's.
+            launch { DictateLegacyMigrator.mirrorAppAccentToKeyboard() }
             // First launch only: read the Play install referrer for a friend's invite code. Off the main thread, never throws.
             dev.patrickgold.florisboard.dictate.referral.Referral.get(this@FlorisApplication)
                 .captureOnce(this@FlorisApplication)

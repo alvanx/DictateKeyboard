@@ -339,6 +339,32 @@ object DictateLegacyMigrator {
      * install this is a no-op (everything is already at its default). Idempotent via
      * `prefs.dictate.promoReengagementDone`, so it fires exactly once.
      */
+    /**
+     * One-time step for the keyboard taking the app's accent colour. Someone who had only recoloured the
+     * keyboard keeps that colour: it becomes the app's accent too, rather than being replaced by the app's
+     * untouched default. From then on [mirrorAppAccentToKeyboard] keeps the two the same.
+     */
+    suspend fun linkKeyboardAccentToAppIfNeeded() {
+        val prefs by FlorisPreferenceStore
+        if (prefs.dictate.keyboardAccentLinked.get()) return
+        val keyboard = prefs.theme.accentColor.get()
+        if (prefs.other.accentColor.get() == prefs.other.accentColor.default && keyboard != prefs.theme.accentColor.default) {
+            prefs.other.accentColor.set(keyboard)
+        }
+        prefs.dictate.keyboardAccentLinked.set(true)
+    }
+
+    /**
+     * The keyboard wears the app's accent: every change to the app's accent colour is copied to the
+     * keyboard's, which is what the keyboard, its panels and the watch read. One setting styles both.
+     */
+    suspend fun mirrorAppAccentToKeyboard() {
+        val prefs by FlorisPreferenceStore
+        prefs.other.accentColor.asFlow().collect { accent ->
+            if (prefs.theme.accentColor.get() != accent) prefs.theme.accentColor.set(accent)
+        }
+    }
+
     suspend fun reofferRateAndDonateIfNeeded() {
         val prefs by FlorisPreferenceStore
         if (prefs.dictate.promoReengagementDone.get()) return

@@ -1022,6 +1022,11 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__promo_reengagement_done",
             default = false,
         )
+        // DictateLegacyMigrator.linkKeyboardAccentToAppIfNeeded: the keyboard now takes the app's accent.
+        val keyboardAccentLinked = boolean(
+            key = "dictate__keyboard_accent_linked",
+            default = false,
+        )
 
         // --- Rewording / GPT (roadmap section 4) -------------------------------------------------
         // Master switch for the rewording feature (prompt chips, auto-apply, live prompt). Default
