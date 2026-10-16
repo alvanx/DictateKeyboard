@@ -302,7 +302,13 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         }
         scope.launch {
             val base = combine(
-                prefs.dictate.floatingButtonEnabled.asFlow(),
+                // Switched on AND the user has agreed to the current accessibility disclosure: a service
+                // enabled straight from system settings, without the in-app consent, stays invisible.
+                combine(
+                    prefs.dictate.floatingButtonEnabled.asFlow(),
+                    prefs.dictate.floatingButtonConsentVersion.asFlow(),
+                    prefs.dictate.floatingButtonConsentAt.asFlow(),
+                ) { on, version, at -> on && AccessibilityConsent.isValid(version, at) },
                 prefs.dictate.floatingButtonShowWhen.asFlow(),
                 DictateAccessibilityService.editableFocused,
                 DictateAccessibilityService.dictateKeyboardActive,

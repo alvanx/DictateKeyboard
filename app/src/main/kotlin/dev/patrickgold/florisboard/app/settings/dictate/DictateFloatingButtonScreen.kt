@@ -37,6 +37,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
@@ -57,6 +59,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -70,6 +73,7 @@ import dev.patrickgold.florisboard.app.settings.MainTab
 import dev.patrickgold.florisboard.app.settings.navigateToTab
 import dev.patrickgold.florisboard.app.settings.style.charmLabel
 import dev.patrickgold.florisboard.dictate.DictateFloatingButtonAppScope
+import dev.patrickgold.florisboard.dictate.overlay.AccessibilityConsent
 import dev.patrickgold.florisboard.dictate.overlay.BubbleMenuAction
 import dev.patrickgold.florisboard.dictate.overlay.DictateAccessibilityService
 import dev.patrickgold.florisboard.lib.compose.FlorisScreen
@@ -131,6 +135,10 @@ fun DictateFloatingButtonScreen() = FlorisScreen {
             ActivityResultContracts.RequestPermission(),
         ) { granted -> micGranted = granted }
 
+        val consentVersion by prefs.dictate.floatingButtonConsentVersion.collectAsState()
+        val consentAt by prefs.dictate.floatingButtonConsentAt.collectAsState()
+        val consentValid = AccessibilityConsent.isValid(consentVersion, consentAt)
+        val consentScope = rememberCoroutineScope()
         var showDisclosure by remember { mutableStateOf(false) }
         var showMenuDialog by remember { mutableStateOf(false) }
 
@@ -156,7 +164,7 @@ fun DictateFloatingButtonScreen() = FlorisScreen {
                         stringRes(R.string.dictate__floating_button_service_disabled)
                     },
                     onClick = {
-                        if (serviceEnabled) {
+                        if (serviceEnabled || consentValid) {
                             openAccessibilitySettings(context)
                         } else {
                             showDisclosure = true
@@ -375,21 +383,32 @@ fun DictateFloatingButtonScreen() = FlorisScreen {
         }
 
         if (showDisclosure) {
+            // Not dismissable by tapping outside or pressing back: only the two buttons answer it, and
+            // only "I agree" ever leads to the system accessibility settings.
             AlertDialog(
-                onDismissRequest = { showDisclosure = false },
-                title = { Text(stringRes(R.string.dictate__floating_button_disclosure_title)) },
-                text = { Text(stringRes(R.string.dictate__floating_button_disclosure_message)) },
+                onDismissRequest = {},
+                properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false),
+                title = { Text(stringRes(R.string.dictate__floating_button_consent_title)) },
+                text = {
+                    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                        Text(stringRes(R.string.dictate__floating_button_consent_message))
+                    }
+                },
                 confirmButton = {
                     TextButton(onClick = {
                         showDisclosure = false
+                        consentScope.launch {
+                            prefs.dictate.floatingButtonConsentAt.set(System.currentTimeMillis())
+                            prefs.dictate.floatingButtonConsentVersion.set(AccessibilityConsent.CURRENT_VERSION)
+                        }
                         openAccessibilitySettings(context)
                     }) {
-                        Text(stringRes(R.string.dictate__floating_button_disclosure_continue))
+                        Text(stringRes(R.string.dictate__floating_button_consent_agree))
                     }
                 },
                 dismissButton = {
                     TextButton(onClick = { showDisclosure = false }) {
-                        Text(stringRes(android.R.string.cancel))
+                        Text(stringRes(R.string.dictate__floating_button_consent_decline))
                     }
                 },
             )

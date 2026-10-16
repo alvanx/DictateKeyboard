@@ -266,7 +266,9 @@ class DictateAccessibilityService : AccessibilityService() {
     ): AccessibilityNodeInfo? =
         targetUnderFocus(
             focused = focused,
-            editable = { it.isLikelyEditable() },
+            // Password fields are never a dictation target: the bubble does not appear there and the
+            // service neither reads nor writes them.
+            editable = { !it.isPassword && it.isLikelyEditable() },
             children = { node -> (0 until node.childCount).mapNotNull { node.getChild(it) } },
             hasFocus = if (preferFocused) ({ it.isFocused }) else null,
         )
