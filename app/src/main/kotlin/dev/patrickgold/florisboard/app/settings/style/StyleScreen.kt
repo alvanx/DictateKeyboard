@@ -68,6 +68,7 @@ import dev.patrickgold.florisboard.dictate.DictateMicCollection
 import dev.patrickgold.florisboard.dictate.DictateMicColors
 import dev.patrickgold.florisboard.dictate.DictateMicMove
 import dev.patrickgold.florisboard.dictate.MicCharmPainter
+import dev.patrickgold.florisboard.dictate.ui.DesignPreview
 import dev.patrickgold.florisboard.dictate.ui.MicCharm
 import dev.patrickgold.florisboard.dictate.ui.MicCharmRipple
 import dev.patrickgold.florisboard.dictate.ui.MovingMicCharm
@@ -100,6 +101,7 @@ fun StyleScreen() = FlorisScreen {
         val charm by prefs.dictate.floatingButtonCharm.collectAsState()
         val charmColor by prefs.dictate.floatingButtonCharmColor.collectAsState()
         val classicColor by prefs.dictate.floatingButtonColor.collectAsState()
+        val design by prefs.dictate.floatingButtonDesign.collectAsState()
         val animated by prefs.dictate.floatingButtonCharmAnimated.collectAsState()
         val buttonOn = rememberMicButtonOn()
         val classic = charm == DictateMicCharm.CLASSIC
@@ -115,7 +117,7 @@ fun StyleScreen() = FlorisScreen {
             modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 12.dp),
         )
 
-        StylePreview(charm = charm, color = shownColor(charm), moving = animated || classic)
+        StylePreview(charm = charm, design = design, color = shownColor(charm), moving = animated || classic)
 
         if (!buttonOn) {
             Row(
@@ -316,7 +318,7 @@ private fun shelfOf(collection: DictateMicCollection): Shelf = when (collection)
  * judged; on screen the button only moves while it records.
  */
 @Composable
-private fun StylePreview(charm: DictateMicCharm, color: Int, moving: Boolean) {
+private fun StylePreview(charm: DictateMicCharm, design: DictateFloatingButtonDesign, color: Int, moving: Boolean) {
     Card(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).height(188.dp),
         shape = RoundedCornerShape(32.dp),
@@ -360,14 +362,19 @@ private fun StylePreview(charm: DictateMicCharm, color: Int, moving: Boolean) {
                 )
             }
             Box(modifier = Modifier.align(Alignment.BottomEnd).size(80.dp), contentAlignment = Alignment.Center) {
-                MicCharmRipple(modifier = Modifier.fillMaxSize())
-                MovingMicCharm(
-                    charm = charm,
-                    color = color,
-                    moving = moving,
-                    signRes = R.drawable.ic_dictate_overlay_stop,
-                    modifier = Modifier.size(64.dp),
-                )
+                if (charm == DictateMicCharm.CLASSIC) {
+                    // The classic button in the design picked below, as it waits on screen.
+                    DesignPreview(design = design, color = color)
+                } else {
+                    MicCharmRipple(modifier = Modifier.fillMaxSize())
+                    MovingMicCharm(
+                        charm = charm,
+                        color = color,
+                        moving = moving,
+                        signRes = R.drawable.ic_dictate_overlay_stop,
+                        modifier = Modifier.size(64.dp),
+                    )
+                }
             }
         }
     }
