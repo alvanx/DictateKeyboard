@@ -111,6 +111,7 @@ import dev.patrickgold.jetpref.datastore.model.collectAsState
 import dev.patrickgold.jetpref.datastore.ui.DialogSliderPreference
 import dev.patrickgold.jetpref.datastore.ui.PreferenceGroup
 import dev.patrickgold.jetpref.datastore.ui.Preference
+import dev.patrickgold.florisboard.dictate.referral.ReferralCodePreference
 import dev.patrickgold.jetpref.datastore.ui.SwitchPreference
 import dev.patrickgold.jetpref.datastore.ui.ListPreference
 import dev.patrickgold.jetpref.datastore.ui.listPrefEntries
@@ -277,6 +278,8 @@ fun DictateScreen() = FlorisScreen {
             summary = stringRes(R.string.dictate__wear_summary),
             onClick = { navController.navigate(Routes.Settings.DictateWear) },
         )
+
+        ReferralCodePreference()
     }
 }
 

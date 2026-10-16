@@ -175,6 +175,9 @@ class FlorisApplication : Application() {
             DictateWearPublisher.startPublishingOnChange(this@FlorisApplication, scope)
             // My words is also the keyboard's list: keep the personal dictionary following it.
             MyWordsSync.startMirroring(this@FlorisApplication, scope)
+            // First launch only: read the Play install referrer for a friend's invite code. Off the main thread, never throws.
+            dev.patrickgold.florisboard.dictate.referral.Referral.get(this@FlorisApplication)
+                .captureOnce(this@FlorisApplication)
         }
         extensionManager.value.init()
         clipboardManager.value.initializeForContext(this)

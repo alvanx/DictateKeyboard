@@ -48,6 +48,9 @@ exactly what the summary contains.
 - Your API keys, prompts and settings are stored **on your phone**, and we never receive them. Copies
   can exist in two other places, and only if you use them: Android's own backup, where they are
   end-to-end encrypted (section 2.6), and your watch, if you use the Wear OS app (section 3.5).
+- If you installed the App from a friend's invite link, it reads Google Play's install referrer
+  **once**, on first launch, and keeps the friend's referral code **on your phone only**. This
+  feature sends it nowhere.
 - The App has **no ads, no tracking, and no third-party analytics or crash-reporting tools**. The only
   statistics it can send are an anonymous daily summary, and only if you say yes (section 5).
 - The App is a keyboard, but it **does not log your keystrokes** or collect what you type in other

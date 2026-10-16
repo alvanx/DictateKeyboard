@@ -231,6 +231,7 @@ dependencies {
     // Play Billing for the optional Dictate Cloud credit packs (#255 follow-up). Version 8 is
     // not a choice: from 31.08.2026 Play refuses uploads built against anything older.
     implementation(libs.android.billing.ktx)
+    implementation(libs.android.installreferrer)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.autofill)
