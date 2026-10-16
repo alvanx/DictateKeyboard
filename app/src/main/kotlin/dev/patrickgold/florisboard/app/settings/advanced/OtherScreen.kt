@@ -23,7 +23,6 @@ import androidx.compose.material.icons.filled.Archive
 import androidx.compose.material.icons.filled.CleaningServices
 import androidx.compose.material.icons.filled.FormatColorFill
 import androidx.compose.material.icons.filled.Language
-import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Preview
 import androidx.compose.material.icons.filled.SettingsBackupRestore
 import androidx.compose.material3.Text
@@ -42,10 +41,8 @@ import androidx.compose.ui.res.vectorResource
 import dev.patrickgold.florisboard.BuildConfig
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.settings.search.settingsSearchAnchor
-import dev.patrickgold.florisboard.app.AppTheme
 import dev.patrickgold.florisboard.app.LocalNavController
 import dev.patrickgold.florisboard.app.Routes
-import dev.patrickgold.florisboard.app.enumDisplayEntriesOf
 import dev.patrickgold.florisboard.ime.core.DisplayLanguageNamesIn
 import dev.patrickgold.florisboard.lib.FlorisLocale
 import dev.patrickgold.florisboard.lib.cache.AppCache
@@ -87,13 +84,7 @@ fun OtherScreen() = FlorisScreen {
             cacheBytes = withContext(Dispatchers.IO) { AppCache.sizeBytes(context) }
         }
 
-        ListPreference(
-            prefs.other.settingsTheme,
-            icon = Icons.Default.Palette,
-            modifier = Modifier.settingsSearchAnchor("pref__other__settings_theme__label"),
-            title = stringRes(R.string.pref__other__settings_theme__label),
-            entries = enumDisplayEntriesOf(AppTheme::class),
-        )
+        AppThemePicker()
         ColorPickerPreference(
             pref = prefs.other.accentColor,
             modifier = Modifier.settingsSearchAnchor("pref__other__settings_accent_color__label"),

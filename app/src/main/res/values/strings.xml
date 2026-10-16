@@ -997,6 +997,7 @@
     <string name="pref__other__settings_theme__auto_amoled" comment="Possible value of Settings theme preference in Other">System default (AMOLED)</string>
     <string name="pref__other__settings_theme__light" comment="Possible value of Settings theme preference in Other">Light</string>
     <string name="pref__other__settings_theme__dark" comment="Possible value of Settings theme preference in Other">Dark</string>
+    <string name="pref__other__settings_theme__pure_black" comment="Switch under the Settings theme choice: dark mode uses pure black backgrounds">Pure black in dark mode</string>
     <string name="pref__other__settings_theme__amoled_dark" comment="Possible value of Settings theme preference in Other">AMOLED Dark</string>
     <string name="pref__other__settings_accent_color__label" comment="Label of accent color preference in Other">
         Settings accent color
