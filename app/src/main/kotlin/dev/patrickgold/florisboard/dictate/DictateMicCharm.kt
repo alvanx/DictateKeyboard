@@ -552,8 +552,8 @@ object MicCharmPainter {
     /** Down and back up once a loop, like a thumb on an arcade button. */
     private fun press(t: Float): Float = when {
         t < 0.55f -> 0f
-        t < 0.65f -> 60f * (t - 0.55f)
-        t < 0.8f -> 6f - 40f * (t - 0.65f)
+        t < 0.65f -> 90f * (t - 0.55f)
+        t < 0.8f -> 9f - 60f * (t - 0.65f)
         else -> 0f
     }
 

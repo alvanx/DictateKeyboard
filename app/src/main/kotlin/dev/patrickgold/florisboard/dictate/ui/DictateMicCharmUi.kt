@@ -33,7 +33,6 @@ import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.core.content.ContextCompat
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
@@ -103,33 +102,14 @@ internal fun MovingMicCharm(
     }
 }
 
-/** The recording ripple the floating button spreads behind itself. */
-@Composable
-internal fun MicCharmRipple(modifier: Modifier) {
-    val ripple by rememberInfiniteTransition(label = "ripple").animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(tween(1600, easing = LinearEasing), RepeatMode.Restart),
-        label = "ripple",
-    )
-    val haloColor = colorResource(R.color.dictate_overlay_recording)
-    Canvas(modifier = modifier) {
-        drawCircle(
-            color = haloColor.copy(alpha = (1f - ripple) * 0.45f),
-            radius = size.minDimension / 2f * (0.7f + 0.3f * ripple),
-        )
-    }
-}
-
 /**
  * The keyboard's own mic, in the look picked on the Style tab, so it matches the floating button: the
  * same drawing, the same colour, the same movement. Only drawn for a look other than the classic one —
  * the classic mic keeps the themed accent circle the keyboard has always had.
  *
  * It behaves as the floating button does: still at rest, since it sits there all day; while it listens it
- * wears the stop sign (tapping it again finishes, there is no separate done button), spreads the
- * recording ripple behind itself and moves its own way, but only with "Move while listening" on. While
- * the dictation is worked on it keeps the stop sign, because a tap then stops that work, and breathes
+ * wears the stop sign (tapping it again finishes, there is no separate done button) and moves its own
+ * way, but only with "Move while listening" on. While the dictation is worked on it keeps the stop sign, because a tap then stops that work, and breathes
  * slowly so it still says "busy".
  */
 @Composable
@@ -147,7 +127,6 @@ internal fun KeyboardMicCharm(charm: DictateMicCharm, modifier: Modifier = Modif
     val signRes = if (recording != null || busy) R.drawable.ic_dictate_overlay_stop else R.drawable.ic_dictate_overlay_mic
 
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
-        if (listening) MicCharmRipple(Modifier.fillMaxSize())
         val breathe = if (busy) {
             val t by rememberInfiniteTransition(label = "charmBusy").animateFloat(
                 initialValue = 0f,

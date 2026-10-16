@@ -71,7 +71,6 @@ import dev.patrickgold.florisboard.dictate.DictateMicMove
 import dev.patrickgold.florisboard.dictate.MicCharmPainter
 import dev.patrickgold.florisboard.dictate.ui.DesignPreview
 import dev.patrickgold.florisboard.dictate.ui.MicCharm
-import dev.patrickgold.florisboard.dictate.ui.MicCharmRipple
 import dev.patrickgold.florisboard.dictate.ui.MovingMicCharm
 import dev.patrickgold.florisboard.lib.compose.FlorisScreen
 import dev.patrickgold.jetpref.datastore.model.collectAsState
@@ -367,7 +366,6 @@ private fun StylePreview(charm: DictateMicCharm, design: DictateFloatingButtonDe
                     // The classic button in the design picked below, as it waits on screen.
                     DesignPreview(design = design, color = color)
                 } else {
-                    MicCharmRipple(modifier = Modifier.fillMaxSize())
                     MovingMicCharm(
                         charm = charm,
                         color = color,

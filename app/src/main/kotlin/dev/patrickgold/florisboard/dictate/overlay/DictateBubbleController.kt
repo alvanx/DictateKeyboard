@@ -38,8 +38,10 @@ import android.view.View
 import android.view.ViewConfiguration
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
+import android.view.animation.OvershootInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -1063,6 +1065,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
                     snapAnim?.cancel()
                     cancelDim()
                     applyDim(false) // wake the bubble on touch
+                    pressVisual(true)
                     v.postDelayed(longPress, longPressTimeout)
                     true
                 }
@@ -1072,6 +1075,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
                     if (!moved && hypot(dx, dy) > slop) {
                         moved = true
                         v.removeCallbacks(longPress) // a drag cancels the pending long-press
+                        pressVisual(false) // it is being carried, not pressed
                     }
                     if (moved) {
                         val maxX = (screenWidth() - v.width).coerceAtLeast(0)
@@ -1092,6 +1096,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
                 }
                 MotionEvent.ACTION_UP -> {
                     v.removeCallbacks(longPress)
+                    if (!moved) pressVisual(false)
                     when {
                         longPressFired -> Unit // handled by the long-press (prompt menu)
                         !moved -> onTap()
@@ -1105,6 +1110,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
                 }
                 MotionEvent.ACTION_CANCEL -> {
                     v.removeCallbacks(longPress)
+                    pressVisual(false)
                     true
                 }
                 else -> false
@@ -1578,9 +1584,31 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
             .scaleX(if (dim) fade.scale else 1f)
             .scaleY(if (dim) fade.scale else 1f)
             .setDuration(200)
+            // The press below leaves its own easing on the view's animator, which would carry over.
+            .setInterpolator(AccelerateDecelerateInterpolator())
             .start()
         // Keep the undo button in step with the bubble: hide it while dimmed, restore it on wake.
         if (dim) hideUndo() else manageUndo(DictateController.state.value, added)
+    }
+
+    /**
+     * Pushes the button in under the finger and lets it spring back on release, so a tap feels like
+     * pressing a real button rather than touching glass. Around the button's centre, which is also the
+     * canvas's (see [positionVisual]); the dim shrink moves the pivot to the wall, but only once released.
+     */
+    private fun pressVisual(down: Boolean) {
+        val view = skin?.root ?: return
+        if (down) {
+            view.pivotX = view.width / 2f
+            view.pivotY = view.height / 2f
+        }
+        val scale = if (down) PRESS_SCALE else 1f
+        view.animate()
+            .scaleX(scale)
+            .scaleY(scale)
+            .setDuration(if (down) 70L else 220L)
+            .setInterpolator(if (down) DecelerateInterpolator() else OvershootInterpolator(2.5f))
+            .start()
     }
 
     private fun vibrateTap() {
@@ -2853,9 +2881,10 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
      *
      * Same 64dp window as the orb, with the look a little smaller than it, so it has room to bloom, sway
      * and glow without being clipped. It stays still at rest, since it sits on screen all day. While it
-     * listens it moves its own way (unless the user turned that off), with a ripple in the recording colour
-     * behind it; while the transcript is worked on it breathes slowly, so it still says "busy". The
-     * drawing and the movement both come from [MicCharmPainter], the same code the Style tab previews with.
+     * listens it moves its own way (unless the user turned that off) and wears the stop sign, with no red
+     * halo behind it: the look and the sign say it already. While the transcript is worked on it breathes
+     * slowly, so it still says "busy". The drawing and the movement both come
+     * from [MicCharmPainter], the same code the Style tab previews with.
      */
     private inner class CharmSkin(
         context: Context,
@@ -2871,14 +2900,10 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         override val shapeWidth: Int get() = viewSize
         override val shapeHeight: Int get() = viewSize
 
-        private val halo = HaloView(context)
         private val body = CharmView(context)
         private var moveAnim: ValueAnimator? = null
-        private var haloAnim: ValueAnimator? = null
-        private var smoothed = 0f
 
         override val root: View = FrameLayout(context).apply {
-            addView(halo, FrameLayout.LayoutParams(viewSize, viewSize))
             addView(body, FrameLayout.LayoutParams(viewSize, viewSize))
         }
 
@@ -2887,8 +2912,6 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
             when (state) {
                 is DictateController.UiState.Recording -> {
                     body.setSign(R.drawable.ic_dictate_overlay_stop)
-                    smoothed = 0f
-                    startHalo()
                     if (animated) startMove()
                 }
                 is DictateController.UiState.Transcribing,
@@ -2910,10 +2933,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
             )
         }
 
-        override fun onRecordingTick(level: Float, elapsedMs: Long) {
-            smoothed += (level - smoothed) * 0.35f
-            halo.level = smoothed
-        }
+        override fun onRecordingTick(level: Float, elapsedMs: Long) = Unit
 
         override fun destroy() = stopAnims()
 
@@ -2933,14 +2953,6 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
             }
         }
 
-        private fun startHalo() {
-            halo.color = color(R.color.dictate_overlay_recording)
-            haloAnim = loop(1600L) { t ->
-                halo.phase = t
-                halo.invalidate()
-            }
-        }
-
         private fun loop(period: Long, onFrame: (Float) -> Unit): ValueAnimator =
             ValueAnimator.ofFloat(0f, 1f).apply {
                 duration = period
@@ -2954,14 +2966,10 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         private fun stopAnims() {
             moveAnim?.cancel()
             moveAnim = null
-            haloAnim?.cancel()
-            haloAnim = null
             body.scaleX = 1f
             body.scaleY = 1f
             body.t = 0f
             body.invalidate()
-            halo.phase = -1f
-            halo.invalidate()
         }
 
         private inner class CharmView(context: Context) : View(context) {
@@ -2991,24 +2999,6 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
                 invalidate()
             }
         }
-
-        /** A ring spreading out from behind the look and fading, louder voice making it bolder. */
-        private inner class HaloView(context: Context) : View(context) {
-            var color: Int = Color.TRANSPARENT
-            /** 0..1 through one ripple; below zero means no ripple. */
-            var phase: Float = -1f
-            var level: Float = 0f
-            private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.FILL }
-
-            override fun onDraw(canvas: Canvas) {
-                if (phase < 0f || width == 0) return
-                val maxR = width / 2f
-                val r = maxR * (0.7f + 0.3f * phase)
-                val alpha = (1f - phase) * (0.35f + 0.4f * level.coerceIn(0f, 1f))
-                paint.color = ColorUtils.setAlphaComponent(color, (alpha * 255).toInt().coerceIn(0, 255))
-                canvas.drawCircle(width / 2f, height / 2f, r, paint)
-            }
-        }
     }
 
     private companion object {
@@ -3031,6 +3021,9 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
          * system had shoved aside rather than something placed there.
          */
         private const val EDGE_MARGIN_DP = 16
+
+        /** How far a press pushes the button in. */
+        private const val PRESS_SCALE = 0.88f
 
         /** How much of the screen the hold menu may take before its rows wrap / it scrolls (#408). */
         private const val MENU_MAX_WIDTH = 0.8f
