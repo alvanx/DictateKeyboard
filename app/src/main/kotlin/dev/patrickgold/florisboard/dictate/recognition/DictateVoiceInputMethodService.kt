@@ -67,7 +67,7 @@ class DictateVoiceInputMethodService : InputMethodService() {
 
     override fun onCreateInputView(): View {
         val accentColor = runCatching { prefs.theme.accentColor.get() }
-            .getOrDefault(ComposeColor(0xFF30B7E6))
+            .getOrDefault(ComposeColor(0xFF6A3D9A))
         val accent = accentColor.toArgb()
         // The accent is the user's own colour, so the label on a surface filled with it is picked against
         // the fill rather than assumed to be white — the shared rule from lib/compose.

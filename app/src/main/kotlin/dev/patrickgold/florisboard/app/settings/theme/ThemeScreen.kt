@@ -147,8 +147,7 @@ fun ThemeScreen() = FlorisScreen {
             icon = Icons.Default.Brightness2,
             enabledIf = { prefs.theme.mode isEqualTo ThemeMode.FOLLOW_TIME },
         )
-        // The same accent as Settings › Other: the keyboard follows the app's colour, so either place
-        // changes both.
+        // The keyboard's accent. The app's own colours stay Lavender whatever is picked here.
         ColorPickerPreference(
             pref = prefs.other.accentColor,
             modifier = Modifier.settingsSearchAnchor("pref__theme__theme_accent_color__label"),

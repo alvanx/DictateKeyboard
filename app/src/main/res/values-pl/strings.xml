@@ -239,6 +239,9 @@
     <string name="style__move_flicker">Mruga, gdy słucha</string>
     <string name="style__move_title">Ruch podczas słuchania</string>
     <string name="style__move_off">Pozostaje nieruchomy</string>
+    <string name="style__sticker_title">Krawędź naklejki</string>
+    <string name="style__sticker_on">Biały obrys i miękki cień, na zatłoczone ekrany</string>
+    <string name="style__sticker_off">Bez krawędzi</string>
     <string name="style__color_original">Oryginalne kolory</string>
     <string name="style__color_fixed">{charm} zachowuje własne kolory.</string>
     <string name="style__color">Kolor</string>

@@ -232,6 +232,9 @@
     <string name="style__move_flicker">Mirgo, kamēr klausās</string>
     <string name="style__move_title">Kustēties, kamēr klausās</string>
     <string name="style__move_off">Paliek nekustīga</string>
+    <string name="style__sticker_title">Uzlīmes mala</string>
+    <string name="style__sticker_on">Balta mala un maiga ēna raibiem ekrāniem</string>
+    <string name="style__sticker_off">Bez malas</string>
     <string name="style__color_original">Oriģinālās krāsas</string>
     <string name="style__color_fixed">{charm} saglabā savas krāsas.</string>
     <string name="style__color">Krāsa</string>

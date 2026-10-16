@@ -19,6 +19,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -28,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
@@ -38,13 +40,15 @@ import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.dictate.DictateController
 import dev.patrickgold.florisboard.dictate.DictateMicCharm
 import dev.patrickgold.florisboard.dictate.MicCharmPainter
+import dev.patrickgold.florisboard.themeManager
 import dev.patrickgold.jetpref.datastore.model.collectAsState as collectPrefAsState
 import kotlin.math.PI
 import kotlin.math.cos
 
 /**
  * A look drawn in Compose, with the same shapes and movement the floating button paints: [MicCharmPainter]
- * draws both. [t] is how far through one loop of the look's movement; 0 is at rest.
+ * draws both. [t] is how far through one loop of the look's movement; 0 is at rest. [dark] says whether
+ * the screen behind it is dark; by default, whether the app's own colours are.
  */
 @Composable
 internal fun MicCharm(
@@ -53,14 +57,17 @@ internal fun MicCharm(
     modifier: Modifier = Modifier,
     signRes: Int? = R.drawable.ic_dictate_overlay_mic,
     t: Float = 0f,
+    dark: Boolean = MaterialTheme.colorScheme.background.luminance() < 0.5f,
 ) {
     val context = LocalContext.current
+    val prefs by FlorisPreferenceStore
+    val sticker by prefs.dictate.floatingButtonCharmSticker.collectPrefAsState()
     val sign = remember(signRes) { signRes?.let { ContextCompat.getDrawable(context, it)?.mutate() } }
     Canvas(modifier = modifier) {
         drawIntoCanvas { canvas ->
             MicCharmPainter.draw(
                 canvas.nativeCanvas, charm, color, size.minDimension, sign,
-                signIsMic = signRes == R.drawable.ic_dictate_overlay_mic, t = t,
+                signIsMic = signRes == R.drawable.ic_dictate_overlay_mic, t = t, dark = dark, sticker = sticker,
             )
         }
     }
@@ -75,9 +82,10 @@ internal fun MovingMicCharm(
     modifier: Modifier = Modifier,
     signRes: Int? = R.drawable.ic_dictate_overlay_mic,
     slowdown: Int = 1,
+    dark: Boolean = MaterialTheme.colorScheme.background.luminance() < 0.5f,
 ) {
     if (!moving) {
-        MicCharm(charm, color, modifier, signRes)
+        MicCharm(charm, color, modifier, signRes, dark = dark)
         return
     }
     // A new clock per look, since a running one keeps the timing it started with.
@@ -91,7 +99,7 @@ internal fun MovingMicCharm(
             ),
             label = "t",
         )
-        MicCharm(charm, color, modifier, signRes, t)
+        MicCharm(charm, color, modifier, signRes, t, dark)
     }
 }
 
@@ -129,6 +137,9 @@ internal fun KeyboardMicCharm(charm: DictateMicCharm, modifier: Modifier = Modif
     val prefs by FlorisPreferenceStore
     val charmColor by prefs.dictate.floatingButtonCharmColor.collectPrefAsState()
     val animated by prefs.dictate.floatingButtonCharmAnimated.collectPrefAsState()
+    // The keyboard has its own day and night themes, apart from the app's colours.
+    val themeManager by LocalContext.current.themeManager()
+    val themeInfo by themeManager.activeThemeInfo.collectAsState()
     val state by DictateController.state.collectAsState()
     val recording = state as? DictateController.UiState.Recording
     val listening = recording != null && !recording.paused
@@ -153,6 +164,7 @@ internal fun KeyboardMicCharm(charm: DictateMicCharm, modifier: Modifier = Modif
             color = charm.resolveColor(charmColor.toArgb()),
             moving = listening && animated,
             signRes = signRes,
+            dark = themeInfo.config.isNightTheme,
             // A little inside the key, so a look that blooms or sways is never cut off by the bar.
             modifier = Modifier
                 .fillMaxSize(CHARM_FILL)

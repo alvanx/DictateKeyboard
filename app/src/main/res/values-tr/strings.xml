@@ -236,6 +236,9 @@
     <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">Dinlerken titreşir</string>
     <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">Dinlerken hareket et</string>
     <string name="style__move_off" comment="Summary of the movement switch while it is off">Sabit kalır</string>
+    <string name="style__sticker_title">Çıkartma kenarı</string>
+    <string name="style__sticker_on">Kalabalık ekranlar için beyaz kenar ve yumuşak gölge</string>
+    <string name="style__sticker_off">Kenar yok</string>
     <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">Orijinal renkler</string>
     <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">{charm} kendi renklerini korur.</string>
     <string name="style__color" comment="Style tab heading above the colour swatches">Renk</string>

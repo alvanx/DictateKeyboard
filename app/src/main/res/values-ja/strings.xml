@@ -232,6 +232,9 @@
     <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">聞いている間、ちらつく</string>
     <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">聞いている間に動く</string>
     <string name="style__move_off" comment="Summary of the movement switch while it is off">動かない</string>
+    <string name="style__sticker_title">ステッカー縁取り</string>
+    <string name="style__sticker_on">白い縁取りとやわらかい影。にぎやかな画面向け</string>
+    <string name="style__sticker_off">縁取りなし</string>
     <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">元の色</string>
     <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">{charm} は固有の色のままです。</string>
     <string name="style__color" comment="Style tab heading above the colour swatches">色</string>

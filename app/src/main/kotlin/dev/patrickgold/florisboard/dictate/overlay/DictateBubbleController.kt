@@ -48,6 +48,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.compose.ui.graphics.toArgb
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
@@ -153,9 +154,9 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
     private var menuView: View? = null
     private var menuAdded = false
 
-    private var currentLook = Look(DictateFloatingButtonDesign.PILL, DictateMicCharm.CLASSIC, 0, true)
+    private var currentLook = Look(DictateFloatingButtonDesign.PILL, DictateMicCharm.CLASSIC, 0, true, false)
     private var sizeScale = DictateFloatingButtonSize.MEDIUM.scale
-    private var accentColor = 0xFF30B7E6.toInt()
+    private var accentColor = 0xFF6A3D9A.toInt()
 
     /**
      * Where the bubble is parked, as an intent rather than as a pixel pair (issue #323): which side, and
@@ -251,6 +252,8 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         /** The charm's colour as picked; 0 for its own. See [DictateMicCharm.resolveColor]. */
         val charmColor: Int,
         val animated: Boolean,
+        /** The Style tab's sticker edge: a white rim and soft shadow round a charm. */
+        val sticker: Boolean,
     )
 
     /** [Inputs] plus the design/size/color prefs and the IME-visible signal; one combined emission. */
@@ -321,8 +324,9 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
                 prefs.dictate.floatingButtonCharm.asFlow(),
                 prefs.dictate.floatingButtonCharmColor.asFlow(),
                 prefs.dictate.floatingButtonCharmAnimated.asFlow(),
-            ) { design, charm, charmColor, animated ->
-                Look(design, charm, charmColor.toArgb(), animated)
+                prefs.dictate.floatingButtonCharmSticker.asFlow(),
+            ) { design, charm, charmColor, animated, sticker ->
+                Look(design, charm, charmColor.toArgb(), animated, sticker)
             }
             val emissions = combine(
                 base,
@@ -922,7 +926,10 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
 
     private fun createView(): View {
         val newSkin = if (currentLook.charm != DictateMicCharm.CLASSIC) {
-            CharmSkin(context, currentLook.charm, currentLook.charm.resolveColor(currentLook.charmColor), currentLook.animated)
+            CharmSkin(
+                context, currentLook.charm, currentLook.charm.resolveColor(currentLook.charmColor),
+                currentLook.animated, currentLook.sticker,
+            )
         } else when (currentLook.design) {
             DictateFloatingButtonDesign.RING -> RingSkin(context)
             DictateFloatingButtonDesign.PILL -> PillSkin(context)
@@ -2855,6 +2862,7 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
         private val charm: DictateMicCharm,
         private val charmColor: Int,
         private val animated: Boolean,
+        private val sticker: Boolean,
     ) : BubbleSkin {
         private val viewSize = sdp(64)
         private val charmSize = sdp(54)
@@ -2971,8 +2979,16 @@ class DictateBubbleController(private val service: DictateAccessibilityService) 
                 val inset = (width - charmSize) / 2f
                 canvas.save()
                 canvas.translate(inset, inset)
-                MicCharmPainter.draw(canvas, charm, charmColor, charmSize.toFloat(), sign, signIsMic, t)
+                // Over another app the screen behind is unknown, so the phone's own dark mode stands in for it.
+                val dark = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+                    Configuration.UI_MODE_NIGHT_YES
+                MicCharmPainter.draw(canvas, charm, charmColor, charmSize.toFloat(), sign, signIsMic, t, dark, sticker)
                 canvas.restore()
+            }
+
+            override fun onConfigurationChanged(newConfig: Configuration) {
+                super.onConfigurationChanged(newConfig)
+                invalidate()
             }
         }
 

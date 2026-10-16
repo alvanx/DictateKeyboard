@@ -86,7 +86,8 @@ enum class DictateMicCharm(
     PIXEL_HEART(DictateMicCollection.ARCADE, DictateMicMove.BEAT, true, 0xFFFF3B5C.toInt()),
     NEON(DictateMicCollection.ARCADE, DictateMicMove.FLICKER, true, 0xFFFF6FD8.toInt()),
     STUDIO_MIC(DictateMicCollection.ARCADE, DictateMicMove.PULSE, false, 0xFFD7D2E0.toInt()),
-    CLASSIC(DictateMicCollection.SIMPLE, DictateMicMove.PULSE, true, 0xFF30B7E6.toInt());
+    // The app's own lavender, so the default button matches the app (the colours never go the other way).
+    CLASSIC(DictateMicCollection.SIMPLE, DictateMicMove.PULSE, true, 0xFF6A3D9A.toInt());
 
     /** The colour to paint with: the user's pick when the look takes one, otherwise its own. */
     fun resolveColor(picked: Int): Int =
@@ -112,10 +113,21 @@ object DictateMicColors {
  * Every look is laid out on a 100 × 100 grid and scaled to the size asked for. Movement is a function of
  * [draw]'s `t`, the position in one loop of the look's [DictateMicMove] from 0 to 1, so whoever runs the
  * clock only has to count; nothing here keeps time.
+ *
+ * The app keeps one set of colours whatever look is picked, so the looks adapt to the screen instead: on a
+ * dark one their dark outlines (and the dark stands and frames that act as outlines) turn light, and an
+ * optional sticker edge, a white rim with a soft shadow, sets them off any background at all.
  */
 object MicCharmPainter {
     /** The dark line and glyph colour the looks are drawn with. */
     const val INK: Int = 0xFF2B2340.toInt()
+
+    /** What [INK] lines turn into on a dark screen, where they would vanish. */
+    private const val INK_ON_DARK: Int = 0xFFEFE6FA.toInt()
+
+    /** How far the sticker edge reaches past a shape, and how far its shadow drops, on the 100 grid. */
+    private const val STICKER_RIM = 3.5f
+    private const val STICKER_DROP = 2.5f
 
     // Stand-ins for the look's colour, resolved when painting: the colour itself, and a lighter and a
     // darker shade of it for the parts that go with it. Fully transparent, so no real colour collides.
@@ -138,6 +150,8 @@ object MicCharmPainter {
         val alpha: Float,
         val pivotX: Float,
         val pivotY: Float,
+        /** A dark fill that works as an outline (a stand, a base, a frame): lightened on a dark screen too. */
+        val edge: Boolean,
     ) {
         val bounds = RectF().also { path.computeBounds(it, true) }
     }
@@ -169,8 +183,9 @@ object MicCharmPainter {
             alpha: Float = 1f,
             pivotX: Float = 50f,
             pivotY: Float = 50f,
+            edge: Boolean = false,
         ) {
-            shapes += Shape(path, fill, stroke, width, part, alpha, pivotX, pivotY)
+            shapes += Shape(path, fill, stroke, width, part, alpha, pivotX, pivotY, edge)
         }
     }
 
@@ -203,7 +218,8 @@ object MicCharmPainter {
     private val arts: Map<DictateMicCharm, Art> by lazy {
         mapOf(
             DictateMicCharm.DAISY to art(RectF(36f, 36f, 64f, 64f), whiteSign = false) {
-                for (i in 0 until 12) add(oval(50f, 21f, 9f, 19f, i * 30f), TINT, c(0xFFD9C2F0), 1.6f)
+                // A mid lavender edge, so a white daisy still has a shape on a white page.
+                for (i in 0 until 12) add(oval(50f, 21f, 9f, 19f, i * 30f), TINT, c(0xFFA88BC9), 1.6f)
                 add(circle(50f, 50f, 16f), GOLD)
             },
             DictateMicCharm.BUTTERFLY to art(RectF(39f, 43f, 61f, 65f), whiteSign = true) {
@@ -243,7 +259,7 @@ object MicCharmPainter {
                 add(circle(50f, 50f, 14f), INK)
             },
             DictateMicCharm.ON_AIR to art(null, glow = c(0xFFFF3B30), label = "ON AIR") {
-                add(rect(4f, 27f, 92f, 46f, 12f), c(0xFF3A0D0D))
+                add(rect(4f, 27f, 92f, 46f, 12f), c(0xFF3A0D0D), edge = true)
                 add(rect(10f, 33f, 80f, 34f, 8f), c(0xFFFF3B30))
             },
             DictateMicCharm.GRAMOPHONE to art(null) {
@@ -254,8 +270,8 @@ object MicCharmPainter {
             DictateMicCharm.CROONER to art(null) {
                 add(rect(30f, 8f, 40f, 58f, 20f), c(0xFFE3E6EC), INK, 2.5f)
                 add(svg("M36 22h28M34 30h32M34 38h32M34 46h32M36 54h28"), stroke = c(0xFF8A90A0), width = 2f)
-                add(rect(46f, 66f, 8f, 16f), INK)
-                add(oval(50f, 86f, 22f, 6f), INK)
+                add(rect(46f, 66f, 8f, 16f), INK, edge = true)
+                add(oval(50f, 86f, 22f, 6f), INK, edge = true)
             },
             DictateMicCharm.MIXTAPE to art(null) {
                 add(rect(8f, 22f, 84f, 56f, 8f), TINT, INK, 2.5f)
@@ -297,7 +313,7 @@ object MicCharmPainter {
                 add(svg("M14 80l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z"), c(0xFFFF9EBB), part = Part.TWINKLE)
             },
             DictateMicCharm.BIG_RED_BUTTON to art(null) {
-                add(oval(50f, 76f, 40f, 13f), c(0xFF0E0A14))
+                add(oval(50f, 76f, 40f, 13f), c(0xFF0E0A14), edge = true)
                 add(oval(50f, 70f, 40f, 13f), c(0xFF463A5C))
                 add(svg("M20 64A30 26 0 0 1 80 64V68A30 10 0 0 1 20 68Z"), c(0xFFFF3B5C), part = Part.PRESS)
                 add(oval(40f, 50f, 8f, 4f), WHITE, alpha = 0.6f, part = Part.PRESS)
@@ -339,6 +355,12 @@ object MicCharmPainter {
         strokeCap = Paint.Cap.ROUND
     }
     private val glowPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val rim = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        strokeJoin = Paint.Join.ROUND
+        strokeCap = Paint.Cap.ROUND
+    }
+    private val shadowLayer = Paint().apply { alpha = 0x48 }
+    private val stickerBounds = RectF(-10f, -10f, 110f, 110f)
     private val labelPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = c(0xFFFFF6E8)
         textAlign = Paint.Align.CENTER
@@ -358,6 +380,8 @@ object MicCharmPainter {
      * @param signIsMic whether [sign] is the plain mic: a look without room for a sign skips that one,
      *   since it is a microphone button anyway, but wears every other sign as a badge.
      * @param t how far through one loop of the look's movement, 0 to 1. 0 is the look at rest.
+     * @param dark whether the look sits on a dark screen, which turns its dark outlines light.
+     * @param sticker whether to set the look off with a white rim and a soft shadow (the Style tab switch).
      */
     fun draw(
         canvas: Canvas,
@@ -367,6 +391,8 @@ object MicCharmPainter {
         sign: Drawable?,
         signIsMic: Boolean = true,
         t: Float = 0f,
+        dark: Boolean = false,
+        sticker: Boolean = false,
     ) {
         val art = arts.getValue(charm)
         val tint = color or 0xFF000000.toInt()
@@ -419,27 +445,27 @@ object MicCharmPainter {
         }
 
         val signInBox = sign != null && art.signBox != null
-        for (shape in art.shapes) {
-            if (shape.part == Part.UNDER_SIGN && signInBox) continue
+        val shown = art.shapes.filter { !(it.part == Part.UNDER_SIGN && signInBox) }
+        if (sticker) {
+            // The shadow first, in a layer of its own so overlapping shapes don't darken it twice, then
+            // the white rim, then the look itself on top of both.
+            canvas.saveLayer(stickerBounds, shadowLayer)
+            canvas.translate(0f, STICKER_DROP)
+            for (shape in shown) drawRim(canvas, shape, move, t, wave, Color.BLACK)
+            canvas.restore()
+            for (shape in shown) drawRim(canvas, shape, move, t, wave, WHITE)
+        }
+        for (shape in shown) {
             canvas.save()
-            var partAlpha = 1f
-            when (shape.part) {
-                Part.REEL -> if (move == DictateMicMove.SPIN) canvas.rotate(360f * t, shape.pivotX, shape.pivotY)
-                Part.TWINKLE -> {
-                    // A twinkle runs on the look's own clock, whatever its main movement.
-                    val tw = if (move == DictateMicMove.TWINKLE) wave else ((1 - cos(4 * PI * t)) / 2).toFloat()
-                    val s = 1f - 0.2f * tw
-                    canvas.scale(s, s, shape.bounds.centerX(), shape.bounds.centerY())
-                    partAlpha = 1f - 0.55f * tw
-                }
-                Part.PRESS -> if (move == DictateMicMove.PRESS) canvas.translate(0f, press(t))
-                Part.BODY, Part.UNDER_SIGN -> Unit
+            val a = alpha * moveShape(canvas, shape, move, t, wave) * shape.alpha
+            shape.fill?.let {
+                val f = resolve(it, tint)
+                canvas.drawPath(shape.path, paint(fill, if (dark && shape.edge) onDark(f) else f, a))
             }
-            val a = alpha * partAlpha * shape.alpha
-            shape.fill?.let { canvas.drawPath(shape.path, paint(fill, resolve(it, tint), a)) }
             shape.stroke?.let {
+                val s = resolve(it, tint)
                 stroke.strokeWidth = shape.width
-                canvas.drawPath(shape.path, paint(stroke, resolve(it, tint), a))
+                canvas.drawPath(shape.path, paint(stroke, if (dark) onDark(s) else s, a))
             }
             canvas.restore()
         }
@@ -465,6 +491,46 @@ object MicCharmPainter {
             drawSign(canvas, sign, RectF(69f, 69f, 91f, 91f), WHITE)
             canvas.restore()
         }
+    }
+
+    /**
+     * Moves the canvas the way [shape]'s part moves inside the look's overall movement, and returns how
+     * opaque the part is just now. The caller saves and restores the canvas around it.
+     */
+    private fun moveShape(canvas: Canvas, shape: Shape, move: DictateMicMove, t: Float, wave: Float): Float {
+        when (shape.part) {
+            Part.REEL -> if (move == DictateMicMove.SPIN) canvas.rotate(360f * t, shape.pivotX, shape.pivotY)
+            Part.TWINKLE -> {
+                // A twinkle runs on the look's own clock, whatever its main movement.
+                val tw = if (move == DictateMicMove.TWINKLE) wave else ((1 - cos(4 * PI * t)) / 2).toFloat()
+                val s = 1f - 0.2f * tw
+                canvas.scale(s, s, shape.bounds.centerX(), shape.bounds.centerY())
+                return 1f - 0.55f * tw
+            }
+            Part.PRESS -> if (move == DictateMicMove.PRESS) canvas.translate(0f, press(t))
+            Part.BODY, Part.UNDER_SIGN -> Unit
+        }
+        return 1f
+    }
+
+    /** [shape] grown by the sticker rim, in [color]: filled and outlined, or only outlined for a line. */
+    private fun drawRim(canvas: Canvas, shape: Shape, move: DictateMicMove, t: Float, wave: Float, color: Int) {
+        canvas.save()
+        moveShape(canvas, shape, move, t, wave)
+        rim.color = color
+        rim.style = if (shape.fill != null) Paint.Style.FILL_AND_STROKE else Paint.Style.STROKE
+        rim.strokeWidth = shape.width + 2 * STICKER_RIM
+        canvas.drawPath(shape.path, rim)
+        canvas.restore()
+    }
+
+    /** The light stand-in for a dark outline colour on a dark screen; other colours stay as they are. */
+    private fun onDark(color: Int): Int = when (color) {
+        INK -> INK_ON_DARK
+        c(0xFF3E2410) -> c(0xFFD9B38A) // the gramophone's base
+        c(0xFF0E0A14) -> c(0xFF5A4D70) // the arcade button's base
+        c(0xFF3A0D0D) -> c(0xFF6B2020) // the On Air sign's frame
+        else -> color
     }
 
     /** Draws [sign] into [box], given on the 100 × 100 grid the canvas is scaled to. */

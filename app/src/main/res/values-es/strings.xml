@@ -235,6 +235,9 @@
     <string name="style__move_flicker">Parpadea mientras escucha</string>
     <string name="style__move_title">Moverse al escuchar</string>
     <string name="style__move_off">Se queda quieto</string>
+    <string name="style__sticker_title">Borde de pegatina</string>
+    <string name="style__sticker_on">Contorno blanco y sombra suave, para pantallas recargadas</string>
+    <string name="style__sticker_off">Sin borde</string>
     <string name="style__color_original">Colores originales</string>
     <string name="style__color_fixed">{charm} mantiene sus propios colores.</string>
     <string name="style__color">Color</string>

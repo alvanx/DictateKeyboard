@@ -355,8 +355,9 @@ object DictateLegacyMigrator {
     }
 
     /**
-     * The keyboard wears the app's accent: every change to the app's accent colour is copied to the
-     * keyboard's, which is what the keyboard, its panels and the watch read. One setting styles both.
+     * Every change to the accent colour (other.accentColor, picked on the keyboard Theme screen) is copied
+     * to the keyboard's, which is what the keyboard, its panels and the watch read. The app's own colours
+     * are fixed and don't take it.
      */
     suspend fun mirrorAppAccentToKeyboard() {
         val prefs by FlorisPreferenceStore

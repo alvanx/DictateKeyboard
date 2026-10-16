@@ -231,6 +231,9 @@
     <string name="style__move_flicker">Clignote pendant l\'écoute</string>
     <string name="style__move_title">Bouger pendant l\'écoute</string>
     <string name="style__move_off">Reste immobile</string>
+    <string name="style__sticker_title">Bord autocollant</string>
+    <string name="style__sticker_on">Contour blanc et ombre douce, pour les écrans chargés</string>
+    <string name="style__sticker_off">Sans bord</string>
     <string name="style__color_original">Couleurs d\'origine</string>
     <string name="style__color_fixed">{charm} garde ses propres couleurs.</string>
     <string name="style__color">Couleur</string>

@@ -231,6 +231,9 @@
     <string name="style__move_flicker">Блимає, поки слухає</string>
     <string name="style__move_title">Рухатися під час прослуховування</string>
     <string name="style__move_off">Залишається нерухомою</string>
+    <string name="style__sticker_title">Контур наліпки</string>
+    <string name="style__sticker_on">Білий контур і м\'яка тінь для строкатих екранів</string>
+    <string name="style__sticker_off">Без контуру</string>
     <string name="style__color_original">Оригінальні кольори</string>
     <string name="style__color_fixed">{charm} зберігає власні кольори.</string>
     <string name="style__color">Колір</string>

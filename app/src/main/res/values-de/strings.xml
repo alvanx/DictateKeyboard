@@ -235,6 +235,9 @@
     <string name="style__move_flicker">Flackert beim Zuhören</string>
     <string name="style__move_title">Beim Zuhören bewegen</string>
     <string name="style__move_off">Bleibt ruhig</string>
+    <string name="style__sticker_title">Sticker-Rand</string>
+    <string name="style__sticker_on">Weißer Rand mit sanftem Schatten, für unruhige Hintergründe</string>
+    <string name="style__sticker_off">Kein Rand</string>
     <string name="style__color_original">Originalfarben</string>
     <string name="style__color_fixed">{charm} behält seine eigenen Farben.</string>
     <string name="style__color">Farbe</string>

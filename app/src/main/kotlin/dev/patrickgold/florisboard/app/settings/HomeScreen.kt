@@ -133,6 +133,8 @@ fun HomeScreen() = FlorisScreen {
             onClick = { transcribePicker.launch(TranscribeShareActivity.MIME_TYPES) },
             icon = { Icon(Icons.Default.AudioFile, contentDescription = null) },
             text = { Text(stringRes(R.string.home__transcribe_file)) },
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+            contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
         )
     }
 

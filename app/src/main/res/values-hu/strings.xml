@@ -239,6 +239,9 @@
     <string name="style__move_flicker">Vibrál, amíg figyel</string>
     <string name="style__move_title">Mozgás figyelés közben</string>
     <string name="style__move_off">Mozdulatlan marad</string>
+    <string name="style__sticker_title">Matrica szegély</string>
+    <string name="style__sticker_on">Fehér szegély és lágy árnyék zsúfolt képernyőkhöz</string>
+    <string name="style__sticker_off">Nincs szegély</string>
     <string name="style__color_original">Eredeti színek</string>
     <string name="style__color_fixed">A(z) {charm} megtartja a saját színeit.</string>
     <string name="style__color">Szín</string>

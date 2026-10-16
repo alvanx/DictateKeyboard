@@ -232,6 +232,9 @@
     <string name="style__move_flicker">Flikkert tijdens het luisteren</string>
     <string name="style__move_title">Bewegen tijdens het luisteren</string>
     <string name="style__move_off">Blijft stil staan</string>
+    <string name="style__sticker_title">Stickerrand</string>
+    <string name="style__sticker_on">Witte rand en zachte schaduw, voor drukke schermen</string>
+    <string name="style__sticker_off">Geen rand</string>
     <string name="style__color_original">Originele kleuren</string>
     <string name="style__color_fixed">{charm} houdt zijn eigen kleuren.</string>
     <string name="style__color">Kleur</string>

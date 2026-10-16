@@ -234,6 +234,9 @@
     <string name="style__move_flicker">Tremeluz enquanto ouve</string>
     <string name="style__move_title">Mexer-se enquanto ouve</string>
     <string name="style__move_off">Fica parado</string>
+    <string name="style__sticker_title">Contorno de autocolante</string>
+    <string name="style__sticker_on">Contorno branco e sombra suave, para ecrãs carregados</string>
+    <string name="style__sticker_off">Sem contorno</string>
     <string name="style__color_original">Cores originais</string>
     <string name="style__color_fixed">{charm} mantém as suas próprias cores.</string>
     <string name="style__color">Cor</string>

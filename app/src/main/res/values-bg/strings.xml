@@ -239,6 +239,9 @@
     <string name="style__move_flicker">Примигва, докато слуша</string>
     <string name="style__move_title">Движение по време на слушане</string>
     <string name="style__move_off">Стои неподвижно</string>
+    <string name="style__sticker_title">Контур на стикер</string>
+    <string name="style__sticker_on">Бял контур и мека сянка за пъстри екрани</string>
+    <string name="style__sticker_off">Без контур</string>
     <string name="style__color_original">Оригинални цветове</string>
     <string name="style__color_fixed">{charm} запазва собствените си цветове.</string>
     <string name="style__color">Цвят</string>

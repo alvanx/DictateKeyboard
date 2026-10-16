@@ -232,6 +232,9 @@
     <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">يومض وهو يستمع</string>
     <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">التحرك أثناء الاستماع</string>
     <string name="style__move_off" comment="Summary of the movement switch while it is off">يبقى ثابتًا</string>
+    <string name="style__sticker_title">حافة ملصق</string>
+    <string name="style__sticker_on">حافة بيضاء وظل خفيف للشاشات المزدحمة</string>
+    <string name="style__sticker_off">بلا حافة</string>
     <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">الألوان الأصلية</string>
     <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">يحتفظ {charm} بألوانه الخاصة.</string>
     <string name="style__color" comment="Style tab heading above the colour swatches">اللون</string>

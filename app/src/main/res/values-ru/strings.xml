@@ -237,6 +237,9 @@
     <string name="style__move_flicker">Мигает, пока слушает</string>
     <string name="style__move_title">Двигаться во время прослушивания</string>
     <string name="style__move_off">Остаётся неподвижной</string>
+    <string name="style__sticker_title">Контур наклейки</string>
+    <string name="style__sticker_on">Белый контур и мягкая тень для пёстрых экранов</string>
+    <string name="style__sticker_off">Без контура</string>
     <string name="style__color_original">Исходные цвета</string>
     <string name="style__color_fixed">{charm} сохраняет свои цвета.</string>
     <string name="style__color">Цвет</string>

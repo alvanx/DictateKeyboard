@@ -232,6 +232,9 @@
     <string name="style__move_flicker">Parpelleja mentre escolta</string>
     <string name="style__move_title">Moure\'s mentre escolta</string>
     <string name="style__move_off">Es queda quiet</string>
+    <string name="style__sticker_title">Vora d\'adhesiu</string>
+    <string name="style__sticker_on">Contorn blanc i ombra suau, per a pantalles carregades</string>
+    <string name="style__sticker_off">Sense vora</string>
     <string name="style__color_original">Colors originals</string>
     <string name="style__color_fixed">{charm} manté els seus propis colors.</string>
     <string name="style__color">Color</string>

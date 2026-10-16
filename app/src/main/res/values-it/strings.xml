@@ -232,6 +232,9 @@
     <string name="style__move_flicker">Tremola mentre ascolta</string>
     <string name="style__move_title">Movimento durante l\'ascolto</string>
     <string name="style__move_off">Resta fermo</string>
+    <string name="style__sticker_title">Bordo adesivo</string>
+    <string name="style__sticker_on">Contorno bianco e ombra morbida, per schermate affollate</string>
+    <string name="style__sticker_off">Nessun bordo</string>
     <string name="style__color_original">Colori originali</string>
     <string name="style__color_fixed">{charm} mantiene i suoi colori.</string>
     <string name="style__color">Colore</string>

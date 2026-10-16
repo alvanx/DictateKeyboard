@@ -598,10 +598,10 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "dictate__floating_button_snap_to_edge",
             default = true,
         )
-        // Accent color of the floating button (idle/transcribing visuals). Defaults to the Dictate light blue.
+        // Accent color of the floating button (idle/transcribing visuals). Defaults to the app's lavender.
         val floatingButtonColor = custom(
             key = "dictate__floating_button_color",
-            default = Color(0xFF30B7E6),
+            default = Color(0xFF6A3D9A),
             serializer = ColorPreferenceSerializer,
         )
         // The look picked on the Style tab: a charm (daisy, mixtape, neon…) in place of the round button, or
@@ -621,6 +621,12 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
         val floatingButtonCharmAnimated = boolean(
             key = "dictate__floating_button_charm_animated",
             default = true,
+        )
+        // Whether a charm wears a white rim and soft shadow, to stand out on busy screens. Off by default:
+        // the charms already turn their outlines light on dark screens.
+        val floatingButtonCharmSticker = boolean(
+            key = "dictate__floating_button_charm_sticker",
+            default = false,
         )
         // How far the button fades + shrinks while unused. Replaces the boolean
         // `dictate__floating_button_auto_dim`, which migrate() carries over. See DictateFloatingButtonFade.
@@ -1731,9 +1737,11 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
             key = "other__settings_theme",
             default = AppTheme.AUTO,
         )
+        // The keyboard's accent, picked on the keyboard Theme screen and copied to theme.accentColor
+        // (DictateLegacyMigrator.mirrorAppAccentToKeyboard). The app's own colours are fixed (apptheme/Theme.kt).
         val accentColor = custom(
             key = "other__accent_color",
-            default = Color(0xFF30B7E6), // Dictate light blue
+            default = Color(0xFF6A3D9A), // the app's lavender
             serializer = ColorPreferenceSerializer,
         )
         val settingsLanguage = string(
@@ -1944,7 +1952,7 @@ abstract class FlorisPreferenceModel : PreferenceModel() {
         )
         val accentColor = custom(
             key = "theme__accent_color",
-            default = Color(0xFF30B7E6), // Dictate light blue
+            default = Color(0xFF6A3D9A), // the app's lavender
             serializer = ColorPreferenceSerializer,
         )
         // What the high-contrast switch (#387) replaced, so turning it off puts the user's own themes

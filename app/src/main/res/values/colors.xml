@@ -21,8 +21,8 @@
 
     <color name="florisApp_windowBackground">#FFFFFFFF</color>
 
-    <!-- Voice Mode floating button (issue #88): idle blue (matches the keyboard accent) and recording red -->
-    <color name="dictate_overlay_accent">#30B7E6</color>
+    <!-- Voice Mode floating button (issue #88): idle lavender (the app's own primary) and recording red -->
+    <color name="dictate_overlay_accent">#6A3D9A</color>
     <color name="dictate_overlay_recording">#EC6A5E</color>
     <color name="dictate_overlay_icon">#FFFFFF</color>
     <!-- Rewording (AI) ring tint and the brief success-flash green -->

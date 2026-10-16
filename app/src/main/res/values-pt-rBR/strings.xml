@@ -230,6 +230,9 @@
     <string name="style__move_flicker">Pisca enquanto ouve</string>
     <string name="style__move_title">Mexer enquanto ouve</string>
     <string name="style__move_off">Fica parado</string>
+    <string name="style__sticker_title">Borda de adesivo</string>
+    <string name="style__sticker_on">Contorno branco e sombra suave, para telas carregadas</string>
+    <string name="style__sticker_off">Sem borda</string>
     <string name="style__color_original">Cores originais</string>
     <string name="style__color_fixed">{charm} mantém as próprias cores.</string>
     <string name="style__color">Cor</string>

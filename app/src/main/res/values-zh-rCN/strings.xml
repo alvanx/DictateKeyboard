@@ -239,6 +239,9 @@
     <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">聆听时忽明忽暗</string>
     <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">聆听时动起来</string>
     <string name="style__move_off" comment="Summary of the movement switch while it is off">保持静止</string>
+    <string name="style__sticker_title">贴纸描边</string>
+    <string name="style__sticker_on">白色描边和柔和阴影，适合杂乱的屏幕</string>
+    <string name="style__sticker_off">无描边</string>
     <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">原始颜色</string>
     <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">{charm} 保持其自身的颜色。</string>
     <string name="style__color" comment="Style tab heading above the colour swatches">颜色</string>

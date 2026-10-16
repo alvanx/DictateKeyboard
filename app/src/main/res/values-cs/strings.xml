@@ -238,6 +238,9 @@
     <string name="style__move_flicker">Bliká, když poslouchá</string>
     <string name="style__move_title">Pohyb při poslechu</string>
     <string name="style__move_off">Zůstává v klidu</string>
+    <string name="style__sticker_title">Okraj nálepky</string>
+    <string name="style__sticker_on">Bílý okraj a jemný stín pro rušné obrazovky</string>
+    <string name="style__sticker_off">Bez okraje</string>
     <string name="style__color_original">Původní barvy</string>
     <string name="style__color_fixed">{charm} si ponechává vlastní barvy.</string>
     <string name="style__color">Barva</string>

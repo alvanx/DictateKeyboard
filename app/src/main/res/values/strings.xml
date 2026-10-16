@@ -408,6 +408,9 @@
     <string name="style__move_flicker" comment="How the mic button moves while recording: glows with the odd flicker, like a neon tube">Flickers while it listens</string>
     <string name="style__move_title" comment="Style tab switch: whether the mic button moves while recording">Move while listening</string>
     <string name="style__move_off" comment="Summary of the movement switch while it is off">Stays still</string>
+    <string name="style__sticker_title" comment="Style tab switch: a white rim and shadow around the mic button">Sticker edge</string>
+    <string name="style__sticker_on" comment="Summary of the sticker edge switch while it is on">A white rim and soft shadow, for busy screens</string>
+    <string name="style__sticker_off" comment="Summary of the sticker edge switch while it is off">No edge</string>
     <string name="style__color_original" comment="Colour swatch that keeps the look's own colours">Original colors</string>
     <string name="style__color_fixed" comment="Style tab note for a look that cannot be recoloured. {charm} is its name">{charm} keeps its own colors.</string>
     <string name="style__color" comment="Style tab heading above the colour swatches">Color</string>

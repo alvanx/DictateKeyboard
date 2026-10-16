@@ -31,6 +31,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BorderOuter
 import androidx.compose.material.icons.filled.Brush
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ColorLens
@@ -227,6 +228,17 @@ fun StyleScreen() = FlorisScreen {
                 modifier = Modifier.padding(horizontal = 24.dp, vertical = 4.dp),
             )
         }
+        // Off by default: the looks already change their outlines for dark mode. The rim is for screens
+        // so busy or mixed that a look still gets lost. The classic designs draw their own edge.
+        if (!classic) {
+            SwitchPreference(
+                prefs.dictate.floatingButtonCharmSticker,
+                icon = Icons.Default.BorderOuter,
+                title = stringRes(R.string.style__sticker_title),
+                summaryOn = stringRes(R.string.style__sticker_on),
+                summaryOff = stringRes(R.string.style__sticker_off),
+            )
+        }
 
         // The classic designs bring their own movement; every other look gets its own, on or off.
         if (!classic) {
@@ -288,29 +300,18 @@ private fun moveLabel(move: DictateMicMove): String = stringRes(
     },
 )
 
-private class Shelf(val name: Int, val tagline: Int, val tile: Color, val label: Color)
+/**
+ * A collection's name and mood. Every shelf sits on the same tiles in the app's own colours: a look never
+ * recolours the screen around it, it adapts to the screen instead.
+ */
+private class Shelf(val name: Int, val tagline: Int)
 
 private fun shelfOf(collection: DictateMicCollection): Shelf = when (collection) {
-    DictateMicCollection.GARDEN -> Shelf(
-        R.string.style__collection_garden, R.string.style__collection_garden_tagline,
-        Color(0xFFEBDCFF), Color(0xFF1E1726),
-    )
-    DictateMicCollection.RETRO -> Shelf(
-        R.string.style__collection_retro, R.string.style__collection_retro_tagline,
-        Color(0xFFFFF0D6), Color(0xFF1E1726),
-    )
-    DictateMicCollection.NIGHT_SKY -> Shelf(
-        R.string.style__collection_night_sky, R.string.style__collection_night_sky_tagline,
-        Color(0xFF1D2246), Color(0xFFEEF0FF),
-    )
-    DictateMicCollection.ARCADE -> Shelf(
-        R.string.style__collection_arcade, R.string.style__collection_arcade_tagline,
-        Color(0xFF221A2E), Color(0xFFF3EEFB),
-    )
-    DictateMicCollection.SIMPLE -> Shelf(
-        R.string.style__collection_simple, R.string.style__collection_simple_tagline,
-        Color(0xFFF1E8FB), Color(0xFF1E1726),
-    )
+    DictateMicCollection.GARDEN -> Shelf(R.string.style__collection_garden, R.string.style__collection_garden_tagline)
+    DictateMicCollection.RETRO -> Shelf(R.string.style__collection_retro, R.string.style__collection_retro_tagline)
+    DictateMicCollection.NIGHT_SKY -> Shelf(R.string.style__collection_night_sky, R.string.style__collection_night_sky_tagline)
+    DictateMicCollection.ARCADE -> Shelf(R.string.style__collection_arcade, R.string.style__collection_arcade_tagline)
+    DictateMicCollection.SIMPLE -> Shelf(R.string.style__collection_simple, R.string.style__collection_simple_tagline)
 }
 
 /**
@@ -414,7 +415,6 @@ private fun CollectionShelf(
             LookTile(
                 charm = look,
                 color = colorOf(look),
-                shelf = shelf,
                 selected = look == selected,
                 onClick = { onPick(look) },
             )
@@ -423,14 +423,14 @@ private fun CollectionShelf(
 }
 
 @Composable
-private fun LookTile(charm: DictateMicCharm, color: Int, shelf: Shelf, selected: Boolean, onClick: () -> Unit) {
+private fun LookTile(charm: DictateMicCharm, color: Int, selected: Boolean, onClick: () -> Unit) {
     val shape = RoundedCornerShape(24.dp)
     Column(
         modifier = Modifier
             .width(92.dp)
             .height(104.dp)
             .clip(shape)
-            .background(shelf.tile)
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .border(
                 width = 3.dp,
                 color = if (selected) MaterialTheme.colorScheme.primary else Color.Transparent,
@@ -446,7 +446,7 @@ private fun LookTile(charm: DictateMicCharm, color: Int, shelf: Shelf, selected:
             charmLabel(charm),
             style = MaterialTheme.typography.labelMedium,
             fontWeight = FontWeight.SemiBold,
-            color = shelf.label,
+            color = MaterialTheme.colorScheme.onSurface,
             textAlign = TextAlign.Center,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,

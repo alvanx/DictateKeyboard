@@ -93,7 +93,6 @@ object SettingsSearchIndex {
         SettingsSearchEntry(R.string.about__project_license__title, R.string.about__title, Routes.Settings.About, anchor = "about__project_license__title"),
         SettingsSearchEntry(R.string.about__data_attributions__title, R.string.about__title, Routes.Settings.About, anchor = "about__data_attributions__title"),
         SettingsSearchEntry(R.string.pref__other__settings_theme__label, R.string.settings__other__title, Routes.Settings.Other, anchor = "pref__other__settings_theme__label"),
-        SettingsSearchEntry(R.string.pref__other__settings_accent_color__label, R.string.settings__other__title, Routes.Settings.Other, anchor = "pref__other__settings_accent_color__label"),
         SettingsSearchEntry(R.string.pref__other__settings_language__label, R.string.settings__other__title, Routes.Settings.Other, anchor = "pref__other__settings_language__label"),
         SettingsSearchEntry(R.string.pref__other__show_app_icon__label, R.string.settings__other__title, Routes.Settings.Other, anchor = "pref__other__show_app_icon__label"),
         SettingsSearchEntry(R.string.physical_keyboard__title, R.string.settings__other__title, Routes.Settings.Other, anchor = "physical_keyboard__title"),
