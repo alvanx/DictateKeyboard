@@ -28,7 +28,8 @@ object ProviderListing {
      * else. Dictate Cloud is bought inside the app and the on-device engine needs only a download, so
      * hiding them until they were set up would hide them from exactly the people they are for.
      */
-    val pinnedIds: Set<String> = setOf(ProviderRegistry.LOCAL.id, ProviderRegistry.CLOUD.id)
+    fun pinnedIds(cloudEnabled: Boolean = CloudAvailability.ENABLED): Set<String> =
+        if (cloudEnabled) setOf(ProviderRegistry.LOCAL.id, ProviderRegistry.CLOUD.id) else setOf(ProviderRegistry.LOCAL.id)
 
     /**
      * Whether [preset] can be used right now.
@@ -67,7 +68,9 @@ object ProviderListing {
         accounts: ProviderAccounts,
         activeIds: Set<String>,
         isModelInstalled: (String) -> Boolean,
-    ): Boolean = preset.id in pinnedIds || preset.id in activeIds || isSetUp(preset, accounts, isModelInstalled)
+        cloudEnabled: Boolean = CloudAvailability.ENABLED,
+    ): Boolean = (cloudEnabled || preset.id != ProviderRegistry.CLOUD.id) &&
+        (preset.id in pinnedIds(cloudEnabled) || preset.id in activeIds || isSetUp(preset, accounts, isModelInstalled))
 
     /**
      * Whether an active-provider picker offers [preset]: set up, or already the choice.
@@ -80,7 +83,9 @@ object ProviderListing {
         accounts: ProviderAccounts,
         selectedId: String,
         isModelInstalled: (String) -> Boolean,
-    ): Boolean = preset.id == selectedId || isSetUp(preset, accounts, isModelInstalled)
+        cloudEnabled: Boolean = CloudAvailability.ENABLED,
+    ): Boolean = (cloudEnabled || preset.id != ProviderRegistry.CLOUD.id) &&
+        (preset.id == selectedId || isSetUp(preset, accounts, isModelInstalled))
 
     /**
      * What the transcription picker offers, as `id to name`, in the order it offers them: the pickable
@@ -93,10 +98,19 @@ object ProviderListing {
         accounts: ProviderAccounts,
         selectedId: String,
         isModelInstalled: (String) -> Boolean,
+    ): List<Pair<String, String>> =
+        transcriptionChoices(accounts, selectedId, isModelInstalled, CloudAvailability.ENABLED)
+
+    /** [transcriptionChoices] with the Cloud switch given, so it can be tested both ways. */
+    fun transcriptionChoices(
+        accounts: ProviderAccounts,
+        selectedId: String,
+        isModelInstalled: (String) -> Boolean,
+        cloudEnabled: Boolean,
     ): List<Pair<String, String>> = buildList {
-        ProviderRegistry.presets
+        ProviderRegistry.presetsFor(cloudEnabled)
             .filter { it.capabilities.transcription }
-            .filter { isPickable(it, accounts, selectedId, isModelInstalled) }
+            .filter { isPickable(it, accounts, selectedId, isModelInstalled, cloudEnabled) }
             .sortedByDescending { it.transcriptionApi == TranscriptionApi.LOCAL_ONDEVICE }
             .forEach { add(it.id to it.displayName) }
         accounts.accounts.values

@@ -66,6 +66,7 @@ import dev.patrickgold.florisboard.dictate.data.history.DictateHistoryStore
 import dev.patrickgold.florisboard.dictate.data.stats.DictateStats
 import dev.patrickgold.florisboard.dictate.field.TranscriptHandover
 import dev.patrickgold.florisboard.dictate.provider.ChatRequest
+import dev.patrickgold.florisboard.dictate.provider.CloudAvailability
 import dev.patrickgold.florisboard.dictate.provider.DictateApiException
 import dev.patrickgold.florisboard.dictate.provider.LocalModelCatalog
 import dev.patrickgold.florisboard.dictate.provider.LocalModelManager
@@ -4144,6 +4145,7 @@ object DictateController {
      * kicked off alongside instead, so the cache is at most [ENTITLEMENT_REFRESH_INTERVAL_MS] stale.
      */
     private fun maybeWarnCloudPayment(): Boolean {
+        if (!CloudAvailability.ENABLED) return false
         if (prefs.dictate.transcriptionProviderId.get() != ProviderRegistry.CLOUD.id) return false
         val account = prefs.dictate.providerAccounts.get().getOrEmpty(ProviderRegistry.CLOUD.id)
         if (!account.hasWallet) return false

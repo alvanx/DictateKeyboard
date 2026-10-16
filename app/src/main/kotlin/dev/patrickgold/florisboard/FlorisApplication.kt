@@ -30,6 +30,7 @@ import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.app.PreferenceRecovery
 import dev.patrickgold.florisboard.dictate.data.prefs.DictateLegacyMigrator
 import dev.patrickgold.florisboard.dictate.data.prompts.MyWordsSync
+import dev.patrickgold.florisboard.dictate.provider.CloudFallback
 import dev.patrickgold.florisboard.dictate.wear.DictateWearPublisher
 import dev.patrickgold.florisboard.ime.clipboard.ClipboardManager
 import dev.patrickgold.florisboard.ime.core.SubtypeManager
@@ -143,6 +144,7 @@ class FlorisApplication : Application() {
             DictateLegacyMigrator.migrateIfNeeded(this@FlorisApplication)
             DictateLegacyMigrator.seedDeviceLanguageIfNeeded()
             DictateLegacyMigrator.migrateProviderKeyringIfNeeded()
+            CloudFallback.applyIfNeeded(this@FlorisApplication)
             DictateLegacyMigrator.removeLivePromptActionIfNeeded(this@FlorisApplication)
             DictateLegacyMigrator.removeGeneratorExamplesIfNeeded(this@FlorisApplication)
             DictateLegacyMigrator.migratePromptsActionIfNeeded(this@FlorisApplication)

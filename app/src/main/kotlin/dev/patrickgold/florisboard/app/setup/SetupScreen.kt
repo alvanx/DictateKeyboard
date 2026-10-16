@@ -86,6 +86,7 @@ import dev.patrickgold.florisboard.app.FlorisPreferenceModel
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.app.LocalNavController
 import dev.patrickgold.florisboard.dictate.cloud.DictateCloud
+import dev.patrickgold.florisboard.dictate.provider.CloudAvailability
 import dev.patrickgold.florisboard.dictate.ui.DictateWaveform
 import dev.patrickgold.florisboard.app.settings.dictate.ProviderSetupHandoff
 import dev.patrickgold.florisboard.app.settings.dictate.modelLanguagesAndSize
@@ -832,15 +833,17 @@ private fun FlorisStepLayoutScope.ProviderChoice(
     StepText(stringRes(R.string.setup__provider__choose_intro))
     Spacer(modifier = Modifier.height(16.dp))
 
-    ChoiceCard(
-        title = stringRes(R.string.setup__provider__choice_cloud_title),
-        body = stringRes(R.string.setup__provider__choice_cloud_body),
-        buttonLabel = stringRes(R.string.setup__provider__choice_cloud_btn),
-        onClick = onChooseCloud,
-        // One mark, because this is one service.
-        marks = listOf(ProviderRegistry.CLOUD.id),
-    )
-    Spacer(modifier = Modifier.height(12.dp))
+    if (CloudAvailability.ENABLED) {
+        ChoiceCard(
+            title = stringRes(R.string.setup__provider__choice_cloud_title),
+            body = stringRes(R.string.setup__provider__choice_cloud_body),
+            buttonLabel = stringRes(R.string.setup__provider__choice_cloud_btn),
+            onClick = onChooseCloud,
+            // One mark, because this is one service.
+            marks = listOf(ProviderRegistry.CLOUD.id),
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+    }
     ChoiceCard(
         title = stringRes(R.string.setup__provider__choice_own_title),
         body = stringRes(R.string.setup__provider__choice_own_body),

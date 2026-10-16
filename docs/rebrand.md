@@ -42,8 +42,12 @@ package ID, domain and operator details below are still placeholders.
 1. **Not compiled.** There is no Android SDK in the environment this was written in. Run
    `./gradlew assembleDebug testDebugUnitTest` before relying on it. The server was type-checked
    (`npx tsc --noEmit` in `cloud/`).
-2. **The Cloud option still appears in the app** although no server exists at the placeholder
-   address. Hide or gate it until the subscription server is deployed.
+2. ~~**The Cloud option still appears in the app**~~ **Done: hidden behind one switch.** `CloudAvailability.ENABLED`
+   (`lib/dictate-core/.../dictate/provider/CloudAvailability.kt`) is `false`. While it is, Cloud is gone from the
+   provider lists and pickers, setup, settings search, the credit screen and the "What's new" tour, no request
+   goes to the Cloud address, and a saved Cloud choice falls back to another provider at startup
+   (`CloudFallback`). The code is kept. **When the server is live:** set the real address
+   in `ProviderRegistry.CLOUD`, then flip the switch to `true`.
 3. **Downloads still come from the upstream author's GitHub releases:** on-device models and
    dictionaries (`LocalModelCatalog.kt`, `GlideDictionaryCatalog.kt`, `BigramCatalog.kt`,
    `TrigramCatalog.kt`, `PinyinPackManager.kt`). Mirror them to our own releases before launch; the

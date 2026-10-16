@@ -27,14 +27,54 @@ class ProviderListingTest {
 
     private val nothingInstalled: (String) -> Boolean = { false }
 
-    private fun listed(accounts: ProviderAccounts, active: Set<String> = emptySet()) =
-        ProviderRegistry.presets
-            .filter { ProviderListing.isListed(it, accounts, active, nothingInstalled) }
-            .map { it.id }
+    private fun listed(
+        accounts: ProviderAccounts,
+        active: Set<String> = emptySet(),
+        cloudEnabled: Boolean = true,
+    ) = ProviderRegistry.presetsFor(cloudEnabled)
+        .filter { ProviderListing.isListed(it, accounts, active, nothingInstalled, cloudEnabled) }
+        .map { it.id }
 
     @Test
     fun `a fresh install lists the two pinned providers and nothing else`() {
         assertEquals(listOf(ProviderRegistry.CLOUD.id, ProviderRegistry.LOCAL.id), listed(accountsOf()))
+    }
+
+    @Test
+    fun `with Cloud switched off a fresh install lists on-device only`() {
+        assertEquals(listOf(ProviderRegistry.LOCAL.id), listed(accountsOf(), cloudEnabled = false))
+    }
+
+    // The switch in CloudAvailability decides what the app offers; today it is off.
+    @Test
+    fun `the shipped switch hides Cloud from the registry`() {
+        assertEquals(CloudAvailability.ENABLED, ProviderRegistry.CLOUD in ProviderRegistry.presets)
+    }
+
+    @Test
+    fun `Cloud is absent from the pickable list when disabled and present when enabled`() {
+        val cloud = ProviderRegistry.CLOUD.id
+        val funded = accountsOf(ProviderAccount(providerId = cloud, apiKey = "wallet-token"))
+        fun ids(enabled: Boolean, selected: String = "") =
+            ProviderListing.transcriptionChoices(funded, selected, nothingInstalled, enabled).map { it.first }
+
+        assertTrue(cloud in ids(enabled = true))
+        assertFalse(cloud in ids(enabled = false))
+        // Even a saved Cloud choice is not offered: the startup fallback replaces it.
+        assertFalse(cloud in ids(enabled = false, selected = cloud))
+    }
+
+    @Test
+    fun `a saved Cloud choice falls back to a set-up provider, else the default`() {
+        val cloud = ProviderRegistry.CLOUD.id
+        val groq = accountsOf(ProviderAccount(providerId = ProviderRegistry.GROQ.id, apiKey = "gsk_x"))
+        fun fallback(id: String, accounts: ProviderAccounts, enabled: Boolean = false) =
+            CloudFallback.resolve(id, accounts, needsChat = false, isModelInstalled = nothingInstalled, cloudEnabled = enabled)
+
+        assertEquals(ProviderRegistry.GROQ.id, fallback(cloud, groq))
+        assertEquals("openai", fallback(cloud, accountsOf()))
+        assertEquals(cloud, fallback(cloud, groq, enabled = true))
+        assertEquals(ProviderRegistry.OPENAI.id, fallback(ProviderRegistry.OPENAI.id, groq))
     }
 
     @Test
@@ -87,10 +127,10 @@ class ProviderListingTest {
     @Test
     fun `Dictate Cloud is always listed but only pickable with a wallet`() {
         val cloud = ProviderRegistry.CLOUD
-        assertTrue(ProviderListing.isListed(cloud, accountsOf(), emptySet(), nothingInstalled))
-        assertFalse(ProviderListing.isPickable(cloud, accountsOf(), selectedId = "", nothingInstalled))
+        assertTrue(ProviderListing.isListed(cloud, accountsOf(), emptySet(), nothingInstalled, cloudEnabled = true))
+        assertFalse(ProviderListing.isPickable(cloud, accountsOf(), selectedId = "", nothingInstalled, cloudEnabled = true))
         val funded = accountsOf(ProviderAccount(providerId = cloud.id, apiKey = "wallet-token"))
-        assertTrue(ProviderListing.isPickable(cloud, funded, selectedId = "", nothingInstalled))
+        assertTrue(ProviderListing.isPickable(cloud, funded, selectedId = "", nothingInstalled, cloudEnabled = true))
     }
 
     // Issue #431: the keyboard's picker and the settings dialog offer one and the same list.

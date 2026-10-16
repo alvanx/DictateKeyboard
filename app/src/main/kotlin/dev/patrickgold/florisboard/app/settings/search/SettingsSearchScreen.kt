@@ -48,12 +48,19 @@ import androidx.compose.runtime.LaunchedEffect
 import dev.patrickgold.florisboard.R
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.app.LocalNavController
+import dev.patrickgold.florisboard.app.Routes
+import dev.patrickgold.florisboard.dictate.provider.CloudAvailability
 import dev.patrickgold.florisboard.lib.compose.FlorisScreen
 import dev.patrickgold.jetpref.datastore.model.collectAsState
 import dev.patrickgold.jetpref.datastore.ui.Preference
 import kotlinx.coroutines.launch
 import org.florisboard.lib.compose.FlorisIconButton
 import org.florisboard.lib.compose.stringRes
+
+/** The index minus the Cloud screen's entries while Cloud is switched off (see [CloudAvailability]). */
+private val visibleEntries = SettingsSearchIndex.entries.filter {
+    CloudAvailability.ENABLED || it.route != Routes.Settings.DictateCloud
+}
 
 /** Title resources shown as quick "Popular" shortcuts when the search box is still empty. */
 private val POPULAR_TITLES = setOf(
@@ -124,7 +131,7 @@ fun SettingsSearchScreen() = FlorisScreen {
             if (q.isEmpty()) {
                 emptyList()
             } else {
-                SettingsSearchIndex.entries.filter { e ->
+                visibleEntries.filter { e ->
                     context.getString(e.titleRes).contains(q, ignoreCase = true) ||
                         context.getString(e.sectionRes).contains(q, ignoreCase = true) ||
                         (e.parentRes != null && context.getString(e.parentRes).contains(q, ignoreCase = true)) ||
@@ -174,7 +181,7 @@ fun SettingsSearchScreen() = FlorisScreen {
             }
             // Popular shortcuts.
             SectionHeader(stringRes(R.string.settings__search__popular))
-            SettingsSearchIndex.entries.filter { it.titleRes in POPULAR_TITLES }.forEach { entry ->
+            visibleEntries.filter { it.titleRes in POPULAR_TITLES }.forEach { entry ->
                 ResultRow(entry, onClick = { open(entry) })
             }
         } else if (results.isEmpty()) {
