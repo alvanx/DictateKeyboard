@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.graphics.ColorUtils
 import dev.patrickgold.florisboard.R
+import dev.patrickgold.florisboard.app.AppTheme
 import dev.patrickgold.florisboard.app.FlorisPreferenceStore
 import dev.patrickgold.florisboard.appContext
 import dev.patrickgold.florisboard.extensionManager
@@ -102,6 +103,8 @@ class ThemeManager(context: Context) {
             prefs.theme.mode.asFlow(),
             prefs.theme.dayThemeId.asFlow(),
             prefs.theme.nightThemeId.asFlow(),
+            // "Follow system" follows the app's own Light/Dark choice first, so it must re-decide with it.
+            prefs.other.settingsTheme.asFlow(),
             previewThemeId,
             previewThemeInfo,
             configurationChangeCounter,
@@ -169,8 +172,14 @@ class ThemeManager(context: Context) {
             ThemeMode.ALWAYS_NIGHT -> {
                 prefs.theme.nightThemeId.get()
             }
-            ThemeMode.FOLLOW_SYSTEM -> if (appContext.resources.configuration.uiMode and
-                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+            // The keyboard wears the app's style: picking Light or Dark for the app picks it here too, and
+            // only "System default" leaves the choice to the phone.
+            ThemeMode.FOLLOW_SYSTEM -> if (when (prefs.other.settingsTheme.get()) {
+                    AppTheme.LIGHT -> false
+                    AppTheme.DARK, AppTheme.AMOLED_DARK -> true
+                    AppTheme.AUTO, AppTheme.AUTO_AMOLED -> appContext.resources.configuration.uiMode and
+                        Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+                }
             ) {
                 prefs.theme.nightThemeId.get()
             } else {
