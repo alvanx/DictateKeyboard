@@ -34,13 +34,19 @@ class DictationTargetTest {
         val focused: Boolean = false,
     )
 
-    private fun target(focused: Node?, maxDepth: Int = 6, preferFocused: Boolean = false): Node? =
+    private fun target(
+        focused: Node?,
+        maxDepth: Int = 6,
+        preferFocused: Boolean = false,
+        focusedOnly: Boolean = false,
+    ): Node? =
         DictateAccessibilityService.targetUnderFocus(
             focused = focused,
             editable = { it.editable },
             children = { it.children },
             maxDepth = maxDepth,
-            hasFocus = if (preferFocused) ({ it.focused }) else null,
+            hasFocus = if (preferFocused || focusedOnly) ({ it.focused }) else null,
+            fallBackToFirst = !focusedOnly,
         )
 
     // Chrome, as reported: the toolbar's URL bar is a real editable node, the notepad in the page is a
@@ -101,9 +107,21 @@ class DictationTargetTest {
     }
 
     @Test
-    fun `deciding whether to show the bubble keeps to the first field`() {
-        // Only whether there is a field at all matters there, and it runs on every focus event.
-        assertEquals(text, target(webView))
+    fun `deciding whether to show the bubble finds the field that reports focus`() {
+        assertEquals(password, target(webView, focusedOnly = true))
+    }
+
+    @Test
+    fun `reading a page with a search box somewhere on it does not show the bubble`() {
+        // Chrome keeps input focus on the page while it is read; the page's search box is beneath it.
+        val searchBox = Node("search box", editable = true)
+        val article = Node("web contents", children = listOf(Node("header", children = listOf(searchBox))))
+        assertNull(target(article, focusedOnly = true))
+    }
+
+    @Test
+    fun `a focused field still shows the bubble on its own`() {
+        assertEquals(urlBar, target(urlBar, focusedOnly = true))
     }
 
     @Test

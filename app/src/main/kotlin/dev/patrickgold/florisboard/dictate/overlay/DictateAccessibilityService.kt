@@ -249,20 +249,27 @@ class DictateAccessibilityService : AccessibilityService() {
      * Deliberately the single lookup rather than [dictationTarget]'s two: this runs on every focus and
      * window event, and the second lookup would be paid on exactly the events where there is no field —
      * the common case while browsing. Writing is rare and can afford to ask twice; showing is not.
+     *
+     * Beneath a focused container only a field that reports focus itself counts. A browser keeps input
+     * focus on the page the whole time someone reads it, and every page has a search box or a sign-up form
+     * somewhere beneath it: settling for the first field there brought the button up over an article no
+     * one had tapped into. A wrapped field that never admits focus still brings it up the moment its
+     * keyboard does.
      */
     private fun focusedEditableNode(): AccessibilityNodeInfo? =
-        editableUnderFocus(findFocus(AccessibilityNodeInfo.FOCUS_INPUT))
+        editableUnderFocus(findFocus(AccessibilityNodeInfo.FOCUS_INPUT), focusedOnly = true)
 
     /**
      * [targetUnderFocus] over accessibility nodes, with this service's editability heuristic.
      *
-     * [preferFocused] is for writing: it looks past the first field for the one that reports focus, which
-     * can mean walking more of the tree. Deciding whether to show the bubble only needs to know that there
-     * is a field at all, and runs on every focus event, so it keeps the first one.
+     * [preferFocused] is for writing: it looks past the first field for the one that reports focus, and
+     * takes the first field when none does. [focusedOnly] is for showing: the field that reports focus, or
+     * nothing.
      */
     private fun editableUnderFocus(
         focused: AccessibilityNodeInfo?,
         preferFocused: Boolean = false,
+        focusedOnly: Boolean = false,
     ): AccessibilityNodeInfo? =
         targetUnderFocus(
             focused = focused,
@@ -270,7 +277,8 @@ class DictateAccessibilityService : AccessibilityService() {
             // service neither reads nor writes them.
             editable = { !it.isPassword && it.isLikelyEditable() },
             children = { node -> (0 until node.childCount).mapNotNull { node.getChild(it) } },
-            hasFocus = if (preferFocused) ({ it.isFocused }) else null,
+            hasFocus = if (preferFocused || focusedOnly) ({ it.isFocused }) else null,
+            fallBackToFirst = !focusedOnly,
         )
 
     /**
@@ -1456,8 +1464,8 @@ class DictateAccessibilityService : AccessibilityService() {
          *
          * With [hasFocus], a field beneath the container that reports focus itself wins over the first
          * one. A WebView form is the case: the WebView holds input focus, and the field the user tapped is
-         * any of the fields beneath it. Without a focused field the first one is still the answer, as
-         * before.
+         * any of the fields beneath it. Without a focused field the first one is still the answer, unless
+         * [fallBackToFirst] is off — then it is nothing.
          */
         internal fun <N : Any> targetUnderFocus(
             focused: N?,
@@ -1465,6 +1473,7 @@ class DictateAccessibilityService : AccessibilityService() {
             children: (N) -> List<N>,
             maxDepth: Int = MAX_EDITABLE_SEARCH_DEPTH,
             hasFocus: ((N) -> Boolean)? = null,
+            fallBackToFirst: Boolean = true,
         ): N? {
             val node = focused ?: return null
             if (editable(node)) return node
@@ -1480,7 +1489,7 @@ class DictateAccessibilityService : AccessibilityService() {
                 }
                 return null
             }
-            return descend(node, 0) ?: firstEditable
+            return descend(node, 0) ?: firstEditable?.takeIf { fallBackToFirst }
         }
         // Debounce window for focus re-checks so a typing burst triggers at most one focused-node fetch.
         private const val FOCUS_UPDATE_DEBOUNCE_MS = 150L
